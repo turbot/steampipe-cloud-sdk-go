@@ -29,11 +29,11 @@ var (
 type UserWorkspaceConnectionAssociationsApiService service
 
 type ApiCreateUserWorkspaceConnectionAssociationRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsApiService
+	userHandle      string
 	workspaceHandle string
-	request *TypesCreateWorkspaceConnRequest
+	request         *TypesCreateWorkspaceConnRequest
 }
 
 // The request body for the association to be created.
@@ -58,9 +58,9 @@ Associate a connection with the workspace. A workspace can have multiple assocai
 */
 func (a *UserWorkspaceConnectionAssociationsApiService) CreateUserWorkspaceConnectionAssociation(ctx _context.Context, userHandle string, workspaceHandle string) ApiCreateUserWorkspaceConnectionAssociationRequest {
 	return ApiCreateUserWorkspaceConnectionAssociationRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -69,10 +69,10 @@ func (a *UserWorkspaceConnectionAssociationsApiService) CreateUserWorkspaceConne
 //  @return TypesWorkspaceConn
 func (a *UserWorkspaceConnectionAssociationsApiService) CreateUserWorkspaceConnectionAssociationExecute(r ApiCreateUserWorkspaceConnectionAssociationRequest) (TypesWorkspaceConn, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesWorkspaceConn
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesWorkspaceConn
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsApiService.CreateUserWorkspaceConnectionAssociation")
@@ -182,6 +182,16 @@ func (a *UserWorkspaceConnectionAssociationsApiService) CreateUserWorkspaceConne
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -207,13 +217,12 @@ func (a *UserWorkspaceConnectionAssociationsApiService) CreateUserWorkspaceConne
 }
 
 type ApiDeleteUserWorkspaceConnectionAssociationRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsApiService
+	userHandle      string
 	workspaceHandle string
-	connHandle string
+	connHandle      string
 }
-
 
 func (r ApiDeleteUserWorkspaceConnectionAssociationRequest) Execute() (TypesWorkspaceConn, *_nethttp.Response, error) {
 	return r.ApiService.DeleteUserWorkspaceConnectionAssociationExecute(r)
@@ -232,11 +241,11 @@ Deletes the workspace association with the connection.
 */
 func (a *UserWorkspaceConnectionAssociationsApiService) DeleteUserWorkspaceConnectionAssociation(ctx _context.Context, userHandle string, workspaceHandle string, connHandle string) ApiDeleteUserWorkspaceConnectionAssociationRequest {
 	return ApiDeleteUserWorkspaceConnectionAssociationRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
-		connHandle: connHandle,
+		connHandle:      connHandle,
 	}
 }
 
@@ -244,10 +253,10 @@ func (a *UserWorkspaceConnectionAssociationsApiService) DeleteUserWorkspaceConne
 //  @return TypesWorkspaceConn
 func (a *UserWorkspaceConnectionAssociationsApiService) DeleteUserWorkspaceConnectionAssociationExecute(r ApiDeleteUserWorkspaceConnectionAssociationRequest) (TypesWorkspaceConn, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesWorkspaceConn
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesWorkspaceConn
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsApiService.DeleteUserWorkspaceConnectionAssociation")
@@ -333,6 +342,16 @@ func (a *UserWorkspaceConnectionAssociationsApiService) DeleteUserWorkspaceConne
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -358,13 +377,12 @@ func (a *UserWorkspaceConnectionAssociationsApiService) DeleteUserWorkspaceConne
 }
 
 type ApiGetUserWorkspaceConnectionAssociationRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsApiService
+	userHandle      string
 	workspaceHandle string
-	connHandle string
+	connHandle      string
 }
-
 
 func (r ApiGetUserWorkspaceConnectionAssociationRequest) Execute() (TypesWorkspaceConn, *_nethttp.Response, error) {
 	return r.ApiService.GetUserWorkspaceConnectionAssociationExecute(r)
@@ -383,11 +401,11 @@ Get the details for a workspace and connection association.
 */
 func (a *UserWorkspaceConnectionAssociationsApiService) GetUserWorkspaceConnectionAssociation(ctx _context.Context, userHandle string, workspaceHandle string, connHandle string) ApiGetUserWorkspaceConnectionAssociationRequest {
 	return ApiGetUserWorkspaceConnectionAssociationRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
-		connHandle: connHandle,
+		connHandle:      connHandle,
 	}
 }
 
@@ -395,10 +413,10 @@ func (a *UserWorkspaceConnectionAssociationsApiService) GetUserWorkspaceConnecti
 //  @return TypesWorkspaceConn
 func (a *UserWorkspaceConnectionAssociationsApiService) GetUserWorkspaceConnectionAssociationExecute(r ApiGetUserWorkspaceConnectionAssociationRequest) (TypesWorkspaceConn, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesWorkspaceConn
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesWorkspaceConn
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsApiService.GetUserWorkspaceConnectionAssociation")
@@ -494,6 +512,16 @@ func (a *UserWorkspaceConnectionAssociationsApiService) GetUserWorkspaceConnecti
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -519,12 +547,12 @@ func (a *UserWorkspaceConnectionAssociationsApiService) GetUserWorkspaceConnecti
 }
 
 type ApiListUserWorkspaceConnectionAssociationsRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsApiService
+	userHandle      string
 	workspaceHandle string
-	limit *int32
-	nextToken *string
+	limit           *int32
+	nextToken       *string
 }
 
 // Pagination limit
@@ -532,6 +560,7 @@ func (r ApiListUserWorkspaceConnectionAssociationsRequest) Limit(limit int32) Ap
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListUserWorkspaceConnectionAssociationsRequest) NextToken(nextToken string) ApiListUserWorkspaceConnectionAssociationsRequest {
 	r.nextToken = &nextToken
@@ -554,9 +583,9 @@ List the connections associated with a workspace.
 */
 func (a *UserWorkspaceConnectionAssociationsApiService) ListUserWorkspaceConnectionAssociations(ctx _context.Context, userHandle string, workspaceHandle string) ApiListUserWorkspaceConnectionAssociationsRequest {
 	return ApiListUserWorkspaceConnectionAssociationsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -565,10 +594,10 @@ func (a *UserWorkspaceConnectionAssociationsApiService) ListUserWorkspaceConnect
 //  @return TypesListWorkspaceConnResponse
 func (a *UserWorkspaceConnectionAssociationsApiService) ListUserWorkspaceConnectionAssociationsExecute(r ApiListUserWorkspaceConnectionAssociationsRequest) (TypesListWorkspaceConnResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesListWorkspaceConnResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesListWorkspaceConnResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsApiService.ListUserWorkspaceConnectionAssociations")
@@ -659,6 +688,16 @@ func (a *UserWorkspaceConnectionAssociationsApiService) ListUserWorkspaceConnect
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -684,13 +723,12 @@ func (a *UserWorkspaceConnectionAssociationsApiService) ListUserWorkspaceConnect
 }
 
 type ApiTestUserWorkspaceConnectionAssociationRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsApiService
+	userHandle      string
 	workspaceHandle string
-	connHandle string
+	connHandle      string
 }
-
 
 func (r ApiTestUserWorkspaceConnectionAssociationRequest) Execute() (TypesConnectionTestResponse, *_nethttp.Response, error) {
 	return r.ApiService.TestUserWorkspaceConnectionAssociationExecute(r)
@@ -709,11 +747,11 @@ Test a user connection associated with a workspace to ensure that its config wor
 */
 func (a *UserWorkspaceConnectionAssociationsApiService) TestUserWorkspaceConnectionAssociation(ctx _context.Context, userHandle string, workspaceHandle string, connHandle string) ApiTestUserWorkspaceConnectionAssociationRequest {
 	return ApiTestUserWorkspaceConnectionAssociationRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
-		connHandle: connHandle,
+		connHandle:      connHandle,
 	}
 }
 
@@ -721,10 +759,10 @@ func (a *UserWorkspaceConnectionAssociationsApiService) TestUserWorkspaceConnect
 //  @return TypesConnectionTestResponse
 func (a *UserWorkspaceConnectionAssociationsApiService) TestUserWorkspaceConnectionAssociationExecute(r ApiTestUserWorkspaceConnectionAssociationRequest) (TypesConnectionTestResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesConnectionTestResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesConnectionTestResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsApiService.TestUserWorkspaceConnectionAssociation")

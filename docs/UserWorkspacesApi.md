@@ -87,7 +87,7 @@ No authorization required
 
 ## DeleteUserWorkspace
 
-> TypesWorkspace DeleteUserWorkspace(ctx, workspaceHandle, userHandle).Execute()
+> TypesWorkspace DeleteUserWorkspace(ctx, userHandle, workspaceHandle).Execute()
 
 Delete user workspace
 
@@ -106,12 +106,12 @@ import (
 )
 
 func main() {
-    workspaceHandle := "workspaceHandle_example" // string | Provide the handle of the workspace which needs to be deleted.
     userHandle := "userHandle_example" // string | The handle of the user where the workspace exist.
+    workspaceHandle := "workspaceHandle_example" // string | Provide the handle of the workspace which needs to be deleted.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspacesApi.DeleteUserWorkspace(context.Background(), workspaceHandle, userHandle).Execute()
+    resp, r, err := api_client.UserWorkspacesApi.DeleteUserWorkspace(context.Background(), userHandle, workspaceHandle).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspacesApi.DeleteUserWorkspace``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,8 +127,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceHandle** | **string** | Provide the handle of the workspace which needs to be deleted. | 
 **userHandle** | **string** | The handle of the user where the workspace exist. | 
+**workspaceHandle** | **string** | Provide the handle of the workspace which needs to be deleted. | 
 
 ### Other Parameters
 
@@ -160,7 +160,7 @@ No authorization required
 
 ## GetUserWorkspace
 
-> TypesWorkspace GetUserWorkspace(ctx, workspaceHandle, userHandle).Execute()
+> TypesWorkspace GetUserWorkspace(ctx, userHandle, workspaceHandle).Execute()
 
 Get user workspace
 
@@ -179,12 +179,12 @@ import (
 )
 
 func main() {
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace whose detail needs to be fetched.
     userHandle := "userHandle_example" // string | The handle of the user where the workspace exist.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace whose detail needs to be fetched.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspacesApi.GetUserWorkspace(context.Background(), workspaceHandle, userHandle).Execute()
+    resp, r, err := api_client.UserWorkspacesApi.GetUserWorkspace(context.Background(), userHandle, workspaceHandle).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspacesApi.GetUserWorkspace``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -200,8 +200,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceHandle** | **string** | The handle of the workspace whose detail needs to be fetched. | 
 **userHandle** | **string** | The handle of the user where the workspace exist. | 
+**workspaceHandle** | **string** | The handle of the workspace whose detail needs to be fetched. | 
 
 ### Other Parameters
 

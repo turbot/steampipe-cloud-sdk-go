@@ -17,13 +17,13 @@ import (
 
 // SperrErrorModel struct for SperrErrorModel
 type SperrErrorModel struct {
-	Detail *string `json:"detail,omitempty"`
-	Errors *[]SperrErrorDetailModel `json:"errors,omitempty"`
-	Id string `json:"id"`
-	Instance *string `json:"instance,omitempty"`
-	Status int32 `json:"status"`
-	Title string `json:"title"`
-	Type string `json:"type"`
+	Detail   *string                  `json:"detail,omitempty"`
+	Errors   *[]SperrErrorDetailModel `json:"errors,omitempty"`
+	Id       string                   `json:"id"`
+	Instance *string                  `json:"instance,omitempty"`
+	Status   int32                    `json:"status"`
+	Title    string                   `json:"title"`
+	Type     string                   `json:"type"`
 }
 
 // NewSperrErrorModel instantiates a new SperrErrorModel object
@@ -124,7 +124,7 @@ func (o *SperrErrorModel) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *SperrErrorModel) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -180,7 +180,7 @@ func (o *SperrErrorModel) GetStatus() int32 {
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *SperrErrorModel) GetStatusOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Status, true
@@ -204,7 +204,7 @@ func (o *SperrErrorModel) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
 func (o *SperrErrorModel) GetTitleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Title, true
@@ -228,7 +228,7 @@ func (o *SperrErrorModel) GetType() string {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SperrErrorModel) GetTypeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Type, true
@@ -300,5 +300,3 @@ func (v *NullableSperrErrorModel) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

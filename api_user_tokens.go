@@ -29,11 +29,10 @@ var (
 type UserTokensApiService service
 
 type ApiCreateTokenRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserTokensApiService
 	userHandle string
 }
-
 
 func (r ApiCreateTokenRequest) Execute() (TypesToken, *_nethttp.Response, error) {
 	return r.ApiService.CreateTokenExecute(r)
@@ -51,7 +50,7 @@ Creates a new token for the specified user. The limit is 2 per user. If you requ
 func (a *UserTokensApiService) CreateToken(ctx _context.Context, userHandle string) ApiCreateTokenRequest {
 	return ApiCreateTokenRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -60,10 +59,10 @@ func (a *UserTokensApiService) CreateToken(ctx _context.Context, userHandle stri
 //  @return TypesToken
 func (a *UserTokensApiService) CreateTokenExecute(r ApiCreateTokenRequest) (TypesToken, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesToken
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesToken
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokensApiService.CreateToken")
@@ -157,6 +156,16 @@ func (a *UserTokensApiService) CreateTokenExecute(r ApiCreateTokenRequest) (Type
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -182,12 +191,11 @@ func (a *UserTokensApiService) CreateTokenExecute(r ApiCreateTokenRequest) (Type
 }
 
 type ApiDeleteTokenRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserTokensApiService
 	userHandle string
-	tokenId string
+	tokenId    string
 }
-
 
 func (r ApiDeleteTokenRequest) Execute() (TypesToken, *_nethttp.Response, error) {
 	return r.ApiService.DeleteTokenExecute(r)
@@ -206,9 +214,9 @@ Deletes the token associated with the specified user.
 func (a *UserTokensApiService) DeleteToken(ctx _context.Context, userHandle string, tokenId string) ApiDeleteTokenRequest {
 	return ApiDeleteTokenRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
-		tokenId: tokenId,
+		tokenId:    tokenId,
 	}
 }
 
@@ -216,10 +224,10 @@ func (a *UserTokensApiService) DeleteToken(ctx _context.Context, userHandle stri
 //  @return TypesToken
 func (a *UserTokensApiService) DeleteTokenExecute(r ApiDeleteTokenRequest) (TypesToken, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesToken
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesToken
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokensApiService.DeleteToken")
@@ -304,6 +312,16 @@ func (a *UserTokensApiService) DeleteTokenExecute(r ApiDeleteTokenRequest) (Type
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -329,12 +347,11 @@ func (a *UserTokensApiService) DeleteTokenExecute(r ApiDeleteTokenRequest) (Type
 }
 
 type ApiGetTokenRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserTokensApiService
-	tokenId string
+	tokenId    string
 	userHandle string
 }
-
 
 func (r ApiGetTokenRequest) Execute() (TypesToken, *_nethttp.Response, error) {
 	return r.ApiService.GetTokenExecute(r)
@@ -353,8 +370,8 @@ Retrives the information of a specified token.
 func (a *UserTokensApiService) GetToken(ctx _context.Context, tokenId string, userHandle string) ApiGetTokenRequest {
 	return ApiGetTokenRequest{
 		ApiService: a,
-		ctx: ctx,
-		tokenId: tokenId,
+		ctx:        ctx,
+		tokenId:    tokenId,
 		userHandle: userHandle,
 	}
 }
@@ -363,10 +380,10 @@ func (a *UserTokensApiService) GetToken(ctx _context.Context, tokenId string, us
 //  @return TypesToken
 func (a *UserTokensApiService) GetTokenExecute(r ApiGetTokenRequest) (TypesToken, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesToken
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesToken
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokensApiService.GetToken")
@@ -461,6 +478,16 @@ func (a *UserTokensApiService) GetTokenExecute(r ApiGetTokenRequest) (TypesToken
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -486,11 +513,11 @@ func (a *UserTokensApiService) GetTokenExecute(r ApiGetTokenRequest) (TypesToken
 }
 
 type ApiListTokensRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserTokensApiService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -498,6 +525,7 @@ func (r ApiListTokensRequest) Limit(limit int32) ApiListTokensRequest {
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListTokensRequest) NextToken(nextToken string) ApiListTokensRequest {
 	r.nextToken = &nextToken
@@ -520,7 +548,7 @@ List the token for a user. The action supports list pagination and does not retu
 func (a *UserTokensApiService) ListTokens(ctx _context.Context, userHandle string) ApiListTokensRequest {
 	return ApiListTokensRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -529,10 +557,10 @@ func (a *UserTokensApiService) ListTokens(ctx _context.Context, userHandle strin
 //  @return TypesListTokensResponse
 func (a *UserTokensApiService) ListTokensExecute(r ApiListTokensRequest) (TypesListTokensResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesListTokensResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesListTokensResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokensApiService.ListTokens")
@@ -622,6 +650,16 @@ func (a *UserTokensApiService) ListTokensExecute(r ApiListTokensRequest) (TypesL
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -647,11 +685,11 @@ func (a *UserTokensApiService) ListTokensExecute(r ApiListTokensRequest) (TypesL
 }
 
 type ApiUpdateTokenRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserTokensApiService
 	userHandle string
-	tokenId string
-	request *TypesUpdateTokenRequest
+	tokenId    string
+	request    *TypesUpdateTokenRequest
 }
 
 // The request body for the token which needs to be updated.
@@ -677,9 +715,9 @@ Changes the status of the specified token from Active to Inactive or vice versa.
 func (a *UserTokensApiService) UpdateToken(ctx _context.Context, userHandle string, tokenId string) ApiUpdateTokenRequest {
 	return ApiUpdateTokenRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
-		tokenId: tokenId,
+		tokenId:    tokenId,
 	}
 }
 
@@ -687,10 +725,10 @@ func (a *UserTokensApiService) UpdateToken(ctx _context.Context, userHandle stri
 //  @return TypesToken
 func (a *UserTokensApiService) UpdateTokenExecute(r ApiUpdateTokenRequest) (TypesToken, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesToken
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesToken
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokensApiService.UpdateToken")
@@ -791,6 +829,16 @@ func (a *UserTokensApiService) UpdateTokenExecute(r ApiUpdateTokenRequest) (Type
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

@@ -29,10 +29,10 @@ var (
 type UserWorkspacesApiService service
 
 type ApiCreateUserWorkspaceRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserWorkspacesApiService
 	userHandle string
-	request *TypesCreateWorkspaceRequest
+	request    *TypesCreateWorkspaceRequest
 }
 
 // The request body for the workspace to be created.
@@ -57,7 +57,7 @@ Creates a new workspace for an user. The limit is 5 per user. If you require mor
 func (a *UserWorkspacesApiService) CreateUserWorkspace(ctx _context.Context, userHandle string) ApiCreateUserWorkspaceRequest {
 	return ApiCreateUserWorkspaceRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -66,10 +66,10 @@ func (a *UserWorkspacesApiService) CreateUserWorkspace(ctx _context.Context, use
 //  @return TypesWorkspace
 func (a *UserWorkspacesApiService) CreateUserWorkspaceExecute(r ApiCreateUserWorkspaceRequest) (TypesWorkspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesWorkspace
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesWorkspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesApiService.CreateUserWorkspace")
@@ -178,6 +178,16 @@ func (a *UserWorkspacesApiService) CreateUserWorkspaceExecute(r ApiCreateUserWor
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -203,12 +213,11 @@ func (a *UserWorkspacesApiService) CreateUserWorkspaceExecute(r ApiCreateUserWor
 }
 
 type ApiDeleteUserWorkspaceRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesApiService
+	ctx             _context.Context
+	ApiService      *UserWorkspacesApiService
+	userHandle      string
 	workspaceHandle string
-	userHandle string
 }
-
 
 func (r ApiDeleteUserWorkspaceRequest) Execute() (TypesWorkspace, *_nethttp.Response, error) {
 	return r.ApiService.DeleteUserWorkspaceExecute(r)
@@ -220,16 +229,16 @@ DeleteUserWorkspace Delete user workspace
 Deletes the workspace specified in the request by the user.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param workspaceHandle Provide the handle of the workspace which needs to be deleted.
  @param userHandle The handle of the user where the workspace exist.
+ @param workspaceHandle Provide the handle of the workspace which needs to be deleted.
  @return ApiDeleteUserWorkspaceRequest
 */
-func (a *UserWorkspacesApiService) DeleteUserWorkspace(ctx _context.Context, workspaceHandle string, userHandle string) ApiDeleteUserWorkspaceRequest {
+func (a *UserWorkspacesApiService) DeleteUserWorkspace(ctx _context.Context, userHandle string, workspaceHandle string) ApiDeleteUserWorkspaceRequest {
 	return ApiDeleteUserWorkspaceRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
-		userHandle: userHandle,
 	}
 }
 
@@ -237,10 +246,10 @@ func (a *UserWorkspacesApiService) DeleteUserWorkspace(ctx _context.Context, wor
 //  @return TypesWorkspace
 func (a *UserWorkspacesApiService) DeleteUserWorkspaceExecute(r ApiDeleteUserWorkspaceRequest) (TypesWorkspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesWorkspace
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesWorkspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesApiService.DeleteUserWorkspace")
@@ -249,8 +258,8 @@ func (a *UserWorkspacesApiService) DeleteUserWorkspaceExecute(r ApiDeleteUserWor
 	}
 
 	localVarPath := localBasePath + "/user/{user_handle}/workspace/{workspace_handle}"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -325,6 +334,16 @@ func (a *UserWorkspacesApiService) DeleteUserWorkspaceExecute(r ApiDeleteUserWor
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -350,12 +369,11 @@ func (a *UserWorkspacesApiService) DeleteUserWorkspaceExecute(r ApiDeleteUserWor
 }
 
 type ApiGetUserWorkspaceRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesApiService
+	ctx             _context.Context
+	ApiService      *UserWorkspacesApiService
+	userHandle      string
 	workspaceHandle string
-	userHandle string
 }
-
 
 func (r ApiGetUserWorkspaceRequest) Execute() (TypesWorkspace, *_nethttp.Response, error) {
 	return r.ApiService.GetUserWorkspaceExecute(r)
@@ -367,16 +385,16 @@ GetUserWorkspace Get user workspace
 Get the details for the workspace.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param workspaceHandle The handle of the workspace whose detail needs to be fetched.
  @param userHandle The handle of the user where the workspace exist.
+ @param workspaceHandle The handle of the workspace whose detail needs to be fetched.
  @return ApiGetUserWorkspaceRequest
 */
-func (a *UserWorkspacesApiService) GetUserWorkspace(ctx _context.Context, workspaceHandle string, userHandle string) ApiGetUserWorkspaceRequest {
+func (a *UserWorkspacesApiService) GetUserWorkspace(ctx _context.Context, userHandle string, workspaceHandle string) ApiGetUserWorkspaceRequest {
 	return ApiGetUserWorkspaceRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
-		userHandle: userHandle,
 	}
 }
 
@@ -384,10 +402,10 @@ func (a *UserWorkspacesApiService) GetUserWorkspace(ctx _context.Context, worksp
 //  @return TypesWorkspace
 func (a *UserWorkspacesApiService) GetUserWorkspaceExecute(r ApiGetUserWorkspaceRequest) (TypesWorkspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesWorkspace
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesWorkspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesApiService.GetUserWorkspace")
@@ -396,8 +414,8 @@ func (a *UserWorkspacesApiService) GetUserWorkspaceExecute(r ApiGetUserWorkspace
 	}
 
 	localVarPath := localBasePath + "/user/{user_handle}/workspace/{workspace_handle}"
-	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -482,6 +500,16 @@ func (a *UserWorkspacesApiService) GetUserWorkspaceExecute(r ApiGetUserWorkspace
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -507,10 +535,10 @@ func (a *UserWorkspacesApiService) GetUserWorkspaceExecute(r ApiGetUserWorkspace
 }
 
 type ApiListActorWorkspacesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserWorkspacesApiService
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -518,6 +546,7 @@ func (r ApiListActorWorkspacesRequest) Limit(limit int32) ApiListActorWorkspaces
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListActorWorkspacesRequest) NextToken(nextToken string) ApiListActorWorkspacesRequest {
 	r.nextToken = &nextToken
@@ -539,7 +568,7 @@ List the workspace for an actor.
 func (a *UserWorkspacesApiService) ListActorWorkspaces(ctx _context.Context) ApiListActorWorkspacesRequest {
 	return ApiListActorWorkspacesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -547,10 +576,10 @@ func (a *UserWorkspacesApiService) ListActorWorkspaces(ctx _context.Context) Api
 //  @return TypesListWorkspacesResponse
 func (a *UserWorkspacesApiService) ListActorWorkspacesExecute(r ApiListActorWorkspacesRequest) (TypesListWorkspacesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesListWorkspacesResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesListWorkspacesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesApiService.ListActorWorkspaces")
@@ -639,6 +668,16 @@ func (a *UserWorkspacesApiService) ListActorWorkspacesExecute(r ApiListActorWork
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -664,11 +703,11 @@ func (a *UserWorkspacesApiService) ListActorWorkspacesExecute(r ApiListActorWork
 }
 
 type ApiListUserWorkspacesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserWorkspacesApiService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -676,6 +715,7 @@ func (r ApiListUserWorkspacesRequest) Limit(limit int32) ApiListUserWorkspacesRe
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListUserWorkspacesRequest) NextToken(nextToken string) ApiListUserWorkspacesRequest {
 	r.nextToken = &nextToken
@@ -698,7 +738,7 @@ List the workspace for an user. The action supports list pagination and does not
 func (a *UserWorkspacesApiService) ListUserWorkspaces(ctx _context.Context, userHandle string) ApiListUserWorkspacesRequest {
 	return ApiListUserWorkspacesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -707,10 +747,10 @@ func (a *UserWorkspacesApiService) ListUserWorkspaces(ctx _context.Context, user
 //  @return TypesListWorkspacesResponse
 func (a *UserWorkspacesApiService) ListUserWorkspacesExecute(r ApiListUserWorkspacesRequest) (TypesListWorkspacesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesListWorkspacesResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesListWorkspacesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesApiService.ListUserWorkspaces")
@@ -800,6 +840,16 @@ func (a *UserWorkspacesApiService) ListUserWorkspacesExecute(r ApiListUserWorksp
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -825,11 +875,11 @@ func (a *UserWorkspacesApiService) ListUserWorkspacesExecute(r ApiListUserWorksp
 }
 
 type ApiUpdateUserWorkspaceRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesApiService
+	userHandle      string
 	workspaceHandle string
-	request *TypesUpdateWorkspaceRequest
+	request         *TypesUpdateWorkspaceRequest
 }
 
 // The request body for the workspace which needs to be updated.
@@ -854,9 +904,9 @@ Update the workspace for a user.
 */
 func (a *UserWorkspacesApiService) UpdateUserWorkspace(ctx _context.Context, userHandle string, workspaceHandle string) ApiUpdateUserWorkspaceRequest {
 	return ApiUpdateUserWorkspaceRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -865,10 +915,10 @@ func (a *UserWorkspacesApiService) UpdateUserWorkspace(ctx _context.Context, use
 //  @return TypesWorkspace
 func (a *UserWorkspacesApiService) UpdateUserWorkspaceExecute(r ApiUpdateUserWorkspaceRequest) (TypesWorkspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesWorkspace
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesWorkspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesApiService.UpdateUserWorkspace")
@@ -969,6 +1019,16 @@ func (a *UserWorkspacesApiService) UpdateUserWorkspaceExecute(r ApiUpdateUserWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

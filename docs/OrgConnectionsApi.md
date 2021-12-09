@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**GetOrgConnection**](OrgConnectionsApi.md#GetOrgConnection) | **Get** /org/{org_handle}/conn/{conn_handle} | Get org connection
 [**ListOrgConnections**](OrgConnectionsApi.md#ListOrgConnections) | **Get** /org/{org_handle}/conn | List org connections
 [**TestOrgConnection**](OrgConnectionsApi.md#TestOrgConnection) | **Post** /org/{org_handle}/test/conn | Test org connection config
-[**UpdateOrgConnection**](OrgConnectionsApi.md#UpdateOrgConnection) | **Patch** /org/{org_handle}/connection/{conn_handle} | Update org connection
+[**UpdateOrgConnection**](OrgConnectionsApi.md#UpdateOrgConnection) | **Patch** /org/{org_handle}/conn/{conn_handle} | Update org connection
 
 
 

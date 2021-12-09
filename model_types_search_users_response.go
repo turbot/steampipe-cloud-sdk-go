@@ -17,8 +17,8 @@ import (
 
 // TypesSearchUsersResponse struct for TypesSearchUsersResponse
 type TypesSearchUsersResponse struct {
-	Items *[]TypesUserSearch `json:"items,omitempty"`
-	NextToken *string `json:"next_token,omitempty"`
+	Items     *[]TypesUserSearch `json:"items,omitempty"`
+	NextToken *string            `json:"next_token,omitempty"`
 }
 
 // NewTypesSearchUsersResponse instantiates a new TypesSearchUsersResponse object
@@ -148,5 +148,3 @@ func (v *NullableTypesSearchUsersResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

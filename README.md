@@ -83,7 +83,7 @@ Class | Method | HTTP request | Description
 *OrgConnectionsApi* | [**GetOrgConnection**](docs/OrgConnectionsApi.md#getorgconnection) | **Get** /org/{org_handle}/conn/{conn_handle} | Get org connection
 *OrgConnectionsApi* | [**ListOrgConnections**](docs/OrgConnectionsApi.md#listorgconnections) | **Get** /org/{org_handle}/conn | List org connections
 *OrgConnectionsApi* | [**TestOrgConnection**](docs/OrgConnectionsApi.md#testorgconnection) | **Post** /org/{org_handle}/test/conn | Test org connection config
-*OrgConnectionsApi* | [**UpdateOrgConnection**](docs/OrgConnectionsApi.md#updateorgconnection) | **Patch** /org/{org_handle}/connection/{conn_handle} | Update org connection
+*OrgConnectionsApi* | [**UpdateOrgConnection**](docs/OrgConnectionsApi.md#updateorgconnection) | **Patch** /org/{org_handle}/conn/{conn_handle} | Update org connection
 *OrgMembersApi* | [**ConfirmOrgMemberInvite**](docs/OrgMembersApi.md#confirmorgmemberinvite) | **Get** /org/{org_handle}/member/invite/confirm | Confirm org member invite
 *OrgMembersApi* | [**DeleteOrgMember**](docs/OrgMembersApi.md#deleteorgmember) | **Delete** /org/{org_handle}/member/{user_handle} | Delete org member
 *OrgMembersApi* | [**DeleteOrgMemberInvite**](docs/OrgMembersApi.md#deleteorgmemberinvite) | **Delete** /org/{org_handle}/member/invite | Delete org member invite

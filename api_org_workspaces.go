@@ -29,10 +29,10 @@ var (
 type OrgWorkspacesApiService service
 
 type ApiCreateOrgWorkspaceRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgWorkspacesApiService
-	orgHandle string
-	request *TypesCreateWorkspaceRequest
+	orgHandle  string
+	request    *TypesCreateWorkspaceRequest
 }
 
 // The request body for the workspace to be created.
@@ -57,8 +57,8 @@ Creates a new workspace for an organization. The limit is 10 per organization. I
 func (a *OrgWorkspacesApiService) CreateOrgWorkspace(ctx _context.Context, orgHandle string) ApiCreateOrgWorkspaceRequest {
 	return ApiCreateOrgWorkspaceRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -66,10 +66,10 @@ func (a *OrgWorkspacesApiService) CreateOrgWorkspace(ctx _context.Context, orgHa
 //  @return TypesWorkspace
 func (a *OrgWorkspacesApiService) CreateOrgWorkspaceExecute(r ApiCreateOrgWorkspaceRequest) (TypesWorkspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesWorkspace
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesWorkspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesApiService.CreateOrgWorkspace")
@@ -178,6 +178,16 @@ func (a *OrgWorkspacesApiService) CreateOrgWorkspaceExecute(r ApiCreateOrgWorksp
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -203,12 +213,11 @@ func (a *OrgWorkspacesApiService) CreateOrgWorkspaceExecute(r ApiCreateOrgWorksp
 }
 
 type ApiDeleteOrgWorkspaceRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesApiService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesApiService
+	orgHandle       string
 	workspaceHandle string
 }
-
 
 func (r ApiDeleteOrgWorkspaceRequest) Execute() (TypesWorkspace, *_nethttp.Response, error) {
 	return r.ApiService.DeleteOrgWorkspaceExecute(r)
@@ -226,9 +235,9 @@ Deletes the workspace specified in the request.
 */
 func (a *OrgWorkspacesApiService) DeleteOrgWorkspace(ctx _context.Context, orgHandle string, workspaceHandle string) ApiDeleteOrgWorkspaceRequest {
 	return ApiDeleteOrgWorkspaceRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -237,10 +246,10 @@ func (a *OrgWorkspacesApiService) DeleteOrgWorkspace(ctx _context.Context, orgHa
 //  @return TypesWorkspace
 func (a *OrgWorkspacesApiService) DeleteOrgWorkspaceExecute(r ApiDeleteOrgWorkspaceRequest) (TypesWorkspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesWorkspace
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesWorkspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesApiService.DeleteOrgWorkspace")
@@ -325,6 +334,16 @@ func (a *OrgWorkspacesApiService) DeleteOrgWorkspaceExecute(r ApiDeleteOrgWorksp
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -350,12 +369,11 @@ func (a *OrgWorkspacesApiService) DeleteOrgWorkspaceExecute(r ApiDeleteOrgWorksp
 }
 
 type ApiGetOrgWorkspaceRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesApiService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesApiService
+	orgHandle       string
 	workspaceHandle string
 }
-
 
 func (r ApiGetOrgWorkspaceRequest) Execute() (TypesWorkspace, *_nethttp.Response, error) {
 	return r.ApiService.GetOrgWorkspaceExecute(r)
@@ -373,9 +391,9 @@ Get the details for a workspace in an organization.
 */
 func (a *OrgWorkspacesApiService) GetOrgWorkspace(ctx _context.Context, orgHandle string, workspaceHandle string) ApiGetOrgWorkspaceRequest {
 	return ApiGetOrgWorkspaceRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -384,10 +402,10 @@ func (a *OrgWorkspacesApiService) GetOrgWorkspace(ctx _context.Context, orgHandl
 //  @return TypesWorkspace
 func (a *OrgWorkspacesApiService) GetOrgWorkspaceExecute(r ApiGetOrgWorkspaceRequest) (TypesWorkspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesWorkspace
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesWorkspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesApiService.GetOrgWorkspace")
@@ -482,6 +500,16 @@ func (a *OrgWorkspacesApiService) GetOrgWorkspaceExecute(r ApiGetOrgWorkspaceReq
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -507,11 +535,11 @@ func (a *OrgWorkspacesApiService) GetOrgWorkspaceExecute(r ApiGetOrgWorkspaceReq
 }
 
 type ApiListOrgWorkspacesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgWorkspacesApiService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -519,6 +547,7 @@ func (r ApiListOrgWorkspacesRequest) Limit(limit int32) ApiListOrgWorkspacesRequ
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListOrgWorkspacesRequest) NextToken(nextToken string) ApiListOrgWorkspacesRequest {
 	r.nextToken = &nextToken
@@ -541,8 +570,8 @@ List the workspace for an organization. The action supports list pagination and 
 func (a *OrgWorkspacesApiService) ListOrgWorkspaces(ctx _context.Context, orgHandle string) ApiListOrgWorkspacesRequest {
 	return ApiListOrgWorkspacesRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -550,10 +579,10 @@ func (a *OrgWorkspacesApiService) ListOrgWorkspaces(ctx _context.Context, orgHan
 //  @return TypesListWorkspacesResponse
 func (a *OrgWorkspacesApiService) ListOrgWorkspacesExecute(r ApiListOrgWorkspacesRequest) (TypesListWorkspacesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesListWorkspacesResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesListWorkspacesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesApiService.ListOrgWorkspaces")
@@ -643,6 +672,16 @@ func (a *OrgWorkspacesApiService) ListOrgWorkspacesExecute(r ApiListOrgWorkspace
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -668,11 +707,11 @@ func (a *OrgWorkspacesApiService) ListOrgWorkspacesExecute(r ApiListOrgWorkspace
 }
 
 type ApiUpdateOrgWorkspaceRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesApiService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesApiService
+	orgHandle       string
 	workspaceHandle string
-	request *TypesUpdateWorkspaceRequest
+	request         *TypesUpdateWorkspaceRequest
 }
 
 // The request body of the workspace which needs to be updated.
@@ -697,9 +736,9 @@ Update a workspace in an organization.
 */
 func (a *OrgWorkspacesApiService) UpdateOrgWorkspace(ctx _context.Context, orgHandle string, workspaceHandle string) ApiUpdateOrgWorkspaceRequest {
 	return ApiUpdateOrgWorkspaceRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -708,10 +747,10 @@ func (a *OrgWorkspacesApiService) UpdateOrgWorkspace(ctx _context.Context, orgHa
 //  @return TypesWorkspace
 func (a *OrgWorkspacesApiService) UpdateOrgWorkspaceExecute(r ApiUpdateOrgWorkspaceRequest) (TypesWorkspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesWorkspace
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesWorkspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesApiService.UpdateOrgWorkspace")
@@ -812,6 +851,16 @@ func (a *OrgWorkspacesApiService) UpdateOrgWorkspaceExecute(r ApiUpdateOrgWorksp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

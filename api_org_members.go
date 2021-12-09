@@ -29,10 +29,10 @@ var (
 type OrgMembersApiService service
 
 type ApiConfirmOrgMemberInviteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
-	t *string
+	orgHandle  string
+	t          *string
 }
 
 // Specify the token.
@@ -57,17 +57,17 @@ Confirm org member invite.
 func (a *OrgMembersApiService) ConfirmOrgMemberInvite(ctx _context.Context, orgHandle string) ApiConfirmOrgMemberInviteRequest {
 	return ApiConfirmOrgMemberInviteRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
 // Execute executes the request
 func (a *OrgMembersApiService) ConfirmOrgMemberInviteExecute(r ApiConfirmOrgMemberInviteRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = _nethttp.MethodGet
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersApiService.ConfirmOrgMemberInvite")
@@ -165,6 +165,16 @@ func (a *OrgMembersApiService) ConfirmOrgMemberInviteExecute(r ApiConfirmOrgMemb
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -181,12 +191,11 @@ func (a *OrgMembersApiService) ConfirmOrgMemberInviteExecute(r ApiConfirmOrgMemb
 }
 
 type ApiDeleteOrgMemberRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
+	orgHandle  string
 	userHandle string
 }
-
 
 func (r ApiDeleteOrgMemberRequest) Execute() (TypesOrgUser, *_nethttp.Response, error) {
 	return r.ApiService.DeleteOrgMemberExecute(r)
@@ -205,8 +214,8 @@ Delete the user from the org.
 func (a *OrgMembersApiService) DeleteOrgMember(ctx _context.Context, orgHandle string, userHandle string) ApiDeleteOrgMemberRequest {
 	return ApiDeleteOrgMemberRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		userHandle: userHandle,
 	}
 }
@@ -215,10 +224,10 @@ func (a *OrgMembersApiService) DeleteOrgMember(ctx _context.Context, orgHandle s
 //  @return TypesOrgUser
 func (a *OrgMembersApiService) DeleteOrgMemberExecute(r ApiDeleteOrgMemberRequest) (TypesOrgUser, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesOrgUser
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesOrgUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersApiService.DeleteOrgMember")
@@ -323,6 +332,16 @@ func (a *OrgMembersApiService) DeleteOrgMemberExecute(r ApiDeleteOrgMemberReques
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -348,10 +367,10 @@ func (a *OrgMembersApiService) DeleteOrgMemberExecute(r ApiDeleteOrgMemberReques
 }
 
 type ApiDeleteOrgMemberInviteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
-	t *string
+	orgHandle  string
+	t          *string
 }
 
 // Specify the token to be rejected.
@@ -376,17 +395,17 @@ Delete the org member invite.
 func (a *OrgMembersApiService) DeleteOrgMemberInvite(ctx _context.Context, orgHandle string) ApiDeleteOrgMemberInviteRequest {
 	return ApiDeleteOrgMemberInviteRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
 // Execute executes the request
 func (a *OrgMembersApiService) DeleteOrgMemberInviteExecute(r ApiDeleteOrgMemberInviteRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersApiService.DeleteOrgMemberInvite")
@@ -474,6 +493,16 @@ func (a *OrgMembersApiService) DeleteOrgMemberInviteExecute(r ApiDeleteOrgMember
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -490,12 +519,11 @@ func (a *OrgMembersApiService) DeleteOrgMemberInviteExecute(r ApiDeleteOrgMember
 }
 
 type ApiGetOrgMemberRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
+	orgHandle  string
 	userHandle string
 }
-
 
 func (r ApiGetOrgMemberRequest) Execute() (TypesListOrgUsersResponse, *_nethttp.Response, error) {
 	return r.ApiService.GetOrgMemberExecute(r)
@@ -514,8 +542,8 @@ Get org member.
 func (a *OrgMembersApiService) GetOrgMember(ctx _context.Context, orgHandle string, userHandle string) ApiGetOrgMemberRequest {
 	return ApiGetOrgMemberRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		userHandle: userHandle,
 	}
 }
@@ -524,10 +552,10 @@ func (a *OrgMembersApiService) GetOrgMember(ctx _context.Context, orgHandle stri
 //  @return TypesListOrgUsersResponse
 func (a *OrgMembersApiService) GetOrgMemberExecute(r ApiGetOrgMemberRequest) (TypesListOrgUsersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesListOrgUsersResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesListOrgUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersApiService.GetOrgMember")
@@ -622,6 +650,16 @@ func (a *OrgMembersApiService) GetOrgMemberExecute(r ApiGetOrgMemberRequest) (Ty
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -647,10 +685,10 @@ func (a *OrgMembersApiService) GetOrgMemberExecute(r ApiGetOrgMemberRequest) (Ty
 }
 
 type ApiInviteOrgMemberRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
-	request *TypesInviteOrgUserRequest
+	orgHandle  string
+	request    *TypesInviteOrgUserRequest
 }
 
 // The request body to invite a member to an organization.
@@ -675,8 +713,8 @@ Invite member to an org.
 func (a *OrgMembersApiService) InviteOrgMember(ctx _context.Context, orgHandle string) ApiInviteOrgMemberRequest {
 	return ApiInviteOrgMemberRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -684,10 +722,10 @@ func (a *OrgMembersApiService) InviteOrgMember(ctx _context.Context, orgHandle s
 //  @return TypesOrgUser
 func (a *OrgMembersApiService) InviteOrgMemberExecute(r ApiInviteOrgMemberRequest) (TypesOrgUser, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesOrgUser
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesOrgUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersApiService.InviteOrgMember")
@@ -776,6 +814,16 @@ func (a *OrgMembersApiService) InviteOrgMemberExecute(r ApiInviteOrgMemberReques
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -801,11 +849,11 @@ func (a *OrgMembersApiService) InviteOrgMemberExecute(r ApiInviteOrgMemberReques
 }
 
 type ApiListAcceptedOrgMembersRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -813,6 +861,7 @@ func (r ApiListAcceptedOrgMembersRequest) Limit(limit int32) ApiListAcceptedOrgM
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListAcceptedOrgMembersRequest) NextToken(nextToken string) ApiListAcceptedOrgMembersRequest {
 	r.nextToken = &nextToken
@@ -835,8 +884,8 @@ List all the members who has accepted the request.
 func (a *OrgMembersApiService) ListAcceptedOrgMembers(ctx _context.Context, orgHandle string) ApiListAcceptedOrgMembersRequest {
 	return ApiListAcceptedOrgMembersRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -844,10 +893,10 @@ func (a *OrgMembersApiService) ListAcceptedOrgMembers(ctx _context.Context, orgH
 //  @return TypesListOrgUsersResponse
 func (a *OrgMembersApiService) ListAcceptedOrgMembersExecute(r ApiListAcceptedOrgMembersRequest) (TypesListOrgUsersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesListOrgUsersResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesListOrgUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersApiService.ListAcceptedOrgMembers")
@@ -937,6 +986,16 @@ func (a *OrgMembersApiService) ListAcceptedOrgMembersExecute(r ApiListAcceptedOr
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -962,11 +1021,11 @@ func (a *OrgMembersApiService) ListAcceptedOrgMembersExecute(r ApiListAcceptedOr
 }
 
 type ApiListInvitedOrgMembersRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -974,6 +1033,7 @@ func (r ApiListInvitedOrgMembersRequest) Limit(limit int32) ApiListInvitedOrgMem
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListInvitedOrgMembersRequest) NextToken(nextToken string) ApiListInvitedOrgMembersRequest {
 	r.nextToken = &nextToken
@@ -996,8 +1056,8 @@ List all the members who has been invited to the org.
 func (a *OrgMembersApiService) ListInvitedOrgMembers(ctx _context.Context, orgHandle string) ApiListInvitedOrgMembersRequest {
 	return ApiListInvitedOrgMembersRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -1005,10 +1065,10 @@ func (a *OrgMembersApiService) ListInvitedOrgMembers(ctx _context.Context, orgHa
 //  @return TypesListOrgUsersResponse
 func (a *OrgMembersApiService) ListInvitedOrgMembersExecute(r ApiListInvitedOrgMembersRequest) (TypesListOrgUsersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesListOrgUsersResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesListOrgUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersApiService.ListInvitedOrgMembers")
@@ -1098,6 +1158,16 @@ func (a *OrgMembersApiService) ListInvitedOrgMembersExecute(r ApiListInvitedOrgM
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1123,11 +1193,11 @@ func (a *OrgMembersApiService) ListInvitedOrgMembersExecute(r ApiListInvitedOrgM
 }
 
 type ApiUpdateOrgMemberRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
+	orgHandle  string
 	userHandle string
-	request *TypesUpdateOrgUserRequest
+	request    *TypesUpdateOrgUserRequest
 }
 
 // The request body for the member.
@@ -1153,8 +1223,8 @@ Update the role of the member.
 func (a *OrgMembersApiService) UpdateOrgMember(ctx _context.Context, orgHandle string, userHandle string) ApiUpdateOrgMemberRequest {
 	return ApiUpdateOrgMemberRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		userHandle: userHandle,
 	}
 }
@@ -1163,10 +1233,10 @@ func (a *OrgMembersApiService) UpdateOrgMember(ctx _context.Context, orgHandle s
 //  @return TypesOrgUser
 func (a *OrgMembersApiService) UpdateOrgMemberExecute(r ApiUpdateOrgMemberRequest) (TypesOrgUser, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  TypesOrgUser
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue TypesOrgUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersApiService.UpdateOrgMember")
@@ -1267,6 +1337,16 @@ func (a *OrgMembersApiService) UpdateOrgMemberExecute(r ApiUpdateOrgMemberReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v SperrErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
 			var v SperrErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

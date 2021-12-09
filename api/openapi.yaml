@@ -45,6 +45,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -106,6 +112,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -167,6 +179,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -228,6 +246,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -363,6 +387,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -556,6 +586,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -612,6 +648,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -665,6 +707,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -719,6 +767,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -785,6 +839,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -856,6 +916,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -930,6 +996,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -998,6 +1070,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1059,6 +1137,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1121,6 +1205,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1130,7 +1220,6 @@ paths:
       summary: Get org connection
       tags:
       - OrgConnections
-  /org/{org_handle}/connection/{conn_handle}:
     patch:
       description: Update the connection in an organization.
       operationId: update-org-connection
@@ -1197,6 +1286,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1268,6 +1363,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1323,6 +1424,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1392,6 +1499,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1447,6 +1560,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1507,6 +1626,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1576,6 +1701,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1639,6 +1770,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1714,6 +1851,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1763,6 +1906,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1886,6 +2035,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -1954,6 +2109,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2015,6 +2176,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2077,6 +2244,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2152,6 +2325,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2232,6 +2411,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2311,6 +2496,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2387,6 +2578,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2457,6 +2654,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2530,6 +2733,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2654,6 +2863,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2809,6 +3024,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2865,6 +3086,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2935,6 +3162,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -2986,6 +3219,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3040,6 +3279,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3106,6 +3351,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3177,6 +3428,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3250,6 +3507,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3317,6 +3580,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3384,6 +3653,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3446,6 +3721,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3521,6 +3802,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3592,6 +3879,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3662,6 +3955,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3722,6 +4021,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3789,6 +4094,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3838,6 +4149,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -3960,6 +4277,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4014,6 +4337,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4074,6 +4403,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4136,6 +4471,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4212,6 +4553,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4286,6 +4633,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4353,6 +4706,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4368,19 +4727,19 @@ paths:
       description: Deletes the workspace specified in the request by the user.
       operationId: delete-user-workspace
       parameters:
-      - description: Provide the handle of the workspace which needs to be deleted.
+      - description: The handle of the user where the workspace exist.
         explode: false
         in: path
-        name: workspace_handle
+        name: user_handle
         required: true
         schema:
           format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
           type: string
         style: simple
-      - description: The handle of the user where the workspace exist.
+      - description: Provide the handle of the workspace which needs to be deleted.
         explode: false
         in: path
-        name: user_handle
+        name: workspace_handle
         required: true
         schema:
           format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
@@ -4414,6 +4773,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4427,19 +4792,19 @@ paths:
       description: Get the details for the workspace.
       operationId: get-user-workspace
       parameters:
-      - description: The handle of the workspace whose detail needs to be fetched.
+      - description: The handle of the user where the workspace exist.
         explode: false
         in: path
-        name: workspace_handle
+        name: user_handle
         required: true
         schema:
           format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
           type: string
         style: simple
-      - description: The handle of the user where the workspace exist.
+      - description: The handle of the workspace whose detail needs to be fetched.
         explode: false
         in: path
-        name: user_handle
+        name: workspace_handle
         required: true
         schema:
           format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
@@ -4476,6 +4841,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4551,6 +4922,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4631,6 +5008,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4709,6 +5092,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4785,6 +5174,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4855,6 +5250,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -4927,6 +5328,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:
@@ -5054,6 +5461,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/sperr.ErrorModel'
           description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Too Many Requests
         "500":
           content:
             application/json:

@@ -17,8 +17,8 @@ import (
 
 // TypesConnectionTestResponse struct for TypesConnectionTestResponse
 type TypesConnectionTestResponse struct {
-	Items *[]TypesConnectionTestRow `json:"items,omitempty"`
-	NextToken *string `json:"next_token,omitempty"`
+	Items     *[]TypesConnectionTestRow `json:"items,omitempty"`
+	NextToken *string                   `json:"next_token,omitempty"`
 }
 
 // NewTypesConnectionTestResponse instantiates a new TypesConnectionTestResponse object
@@ -148,5 +148,3 @@ func (v *NullableTypesConnectionTestResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
