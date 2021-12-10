@@ -1,4 +1,4 @@
-module github.com/turbot/steampipecloud-sdk-go
+module github.com/turbot/steampipe-cloud-sdk-go
 
 go 1.13
 
