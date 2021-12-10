@@ -710,6 +710,7 @@ type ApiTestOrgConnectionRequest struct {
 	ctx        _context.Context
 	ApiService *OrgConnectionsApiService
 	orgHandle  string
+	connHandle string
 }
 
 func (r ApiTestOrgConnectionRequest) Execute() (TypesConnectionTestResult, *_nethttp.Response, error) {
@@ -717,19 +718,21 @@ func (r ApiTestOrgConnectionRequest) Execute() (TypesConnectionTestResult, *_net
 }
 
 /*
-TestOrgConnection Test org connection config
+TestOrgConnection Test org connection
 
 Test the config for an org connection to check for basic connectivity before you create it.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle The handle of the org performing the action.
+ @param connHandle The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
  @return ApiTestOrgConnectionRequest
 */
-func (a *OrgConnectionsApiService) TestOrgConnection(ctx _context.Context, orgHandle string) ApiTestOrgConnectionRequest {
+func (a *OrgConnectionsApiService) TestOrgConnection(ctx _context.Context, orgHandle string, connHandle string) ApiTestOrgConnectionRequest {
 	return ApiTestOrgConnectionRequest{
 		ApiService: a,
 		ctx:        ctx,
 		orgHandle:  orgHandle,
+		connHandle: connHandle,
 	}
 }
 
@@ -748,8 +751,9 @@ func (a *OrgConnectionsApiService) TestOrgConnectionExecute(r ApiTestOrgConnecti
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/org/{org_handle}/test/conn"
+	localVarPath := localBasePath + "/org/{org_handle}/conn/{conn_handle}/test"
 	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"conn_handle"+"}", _neturl.PathEscape(parameterToString(r.connHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

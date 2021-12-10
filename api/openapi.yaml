@@ -676,7 +676,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       responses:
@@ -733,7 +733,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       responses:
@@ -792,7 +792,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       requestBody:
@@ -866,7 +866,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Pagination limit
@@ -947,7 +947,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Pagination limit
@@ -1023,7 +1023,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       requestBody:
@@ -1097,7 +1097,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Provide the handle of the connection which needs to be deleted.
@@ -1106,7 +1106,7 @@ paths:
         name: conn_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
           type: string
         style: simple
       responses:
@@ -1162,7 +1162,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the connection whose detail needs to be fetched.
@@ -1171,7 +1171,7 @@ paths:
         name: conn_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
           type: string
         style: simple
       responses:
@@ -1230,7 +1230,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the connection which needs to be updated.
@@ -1239,7 +1239,7 @@ paths:
         name: conn_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
           type: string
         style: simple
       requestBody:
@@ -1302,6 +1302,66 @@ paths:
       tags:
       - OrgConnections
       x-codegen-request-body-name: request
+  /org/{org_handle}/conn/{conn_handle}/test:
+    post:
+      description: Test the config for an org connection to check for basic connectivity
+        before you create it.
+      operationId: test-org-connection
+      parameters:
+      - description: The handle of the org performing the action.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the connection to be tested. For connections that
+          are not yet created, use underscore `_` as the handle, else pass the handle
+          of the existing connection.
+        explode: false
+        in: path
+        name: conn_handle
+        required: true
+        schema:
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/types.ConnectionTestResult'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Internal Server Error
+      summary: Test org connection
+      tags:
+      - OrgConnections
   /org/{org_handle}/member:
     get:
       description: List all the members who has accepted the request.
@@ -1313,7 +1373,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Pagination limit
@@ -1389,7 +1449,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Specify the token to be rejected.
@@ -1449,7 +1509,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Pagination limit
@@ -1525,7 +1585,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       requestBody:
@@ -1588,7 +1648,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Specify the token.
@@ -1652,7 +1712,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Specify the handle of the user which need to be removed.
@@ -1661,7 +1721,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       responses:
@@ -1726,7 +1786,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Specify the handle of the user whose information you want to
@@ -1736,7 +1796,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       responses:
@@ -1795,7 +1855,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Specify the handle of the user whose role need to be updated.
@@ -1804,7 +1864,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       requestBody:
@@ -1878,7 +1938,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       responses:
@@ -1921,55 +1981,6 @@ paths:
       summary: Org quota
       tags:
       - Orgs
-  /org/{org_handle}/test/conn:
-    post:
-      description: Test the config for an org connection to check for basic connectivity
-        before you create it.
-      operationId: test-org-connection
-      parameters:
-      - description: The handle of the org performing the action.
-        explode: false
-        in: path
-        name: org_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/types.ConnectionTestResult'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Forbidden
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Internal Server Error
-      summary: Test org connection config
-      tags:
-      - OrgConnections
   /org/{org_handle}/workspace:
     get:
       description: List the workspace for an organization. The action supports list
@@ -1986,7 +1997,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Pagination limit
@@ -2062,7 +2073,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       requestBody:
@@ -2136,7 +2147,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Provide the handle of the workspace which needs to be deleted.
@@ -2145,7 +2156,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       responses:
@@ -2201,7 +2212,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace whose detail needs to be fetched.
@@ -2210,7 +2221,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       responses:
@@ -2269,7 +2280,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace which needs to be updated.
@@ -2278,7 +2289,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       requestBody:
@@ -2352,7 +2363,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace whose logs needs to be fetched.
@@ -2361,7 +2372,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       - description: Pagination limit
@@ -2438,7 +2449,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace where you want to list the associations.
@@ -2447,7 +2458,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       - description: Pagination limit
@@ -2522,7 +2533,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace where the connection will be associated.
@@ -2531,7 +2542,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       requestBody:
@@ -2605,7 +2616,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace whose association needs to be deleted.
@@ -2614,7 +2625,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       - description: The handle of the conn whose association needs to be deleted.
@@ -2623,7 +2634,7 @@ paths:
         name: conn_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
           type: string
         style: simple
       responses:
@@ -2680,7 +2691,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace where the connection exist.
@@ -2689,7 +2700,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       - description: The handle of the conn whose association details needs to be
@@ -2699,7 +2710,7 @@ paths:
         name: conn_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
           type: string
         style: simple
       responses:
@@ -2760,7 +2771,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace whose association needs to be deleted.
@@ -2769,7 +2780,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       - description: The handle of the conn whose association needs to be deleted.
@@ -2778,7 +2789,7 @@ paths:
         name: conn_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
           type: string
         style: simple
       responses:
@@ -2826,7 +2837,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace whose logs needs to be fetched.
@@ -2835,7 +2846,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       responses:
@@ -3188,7 +3199,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       responses:
@@ -3245,7 +3256,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       responses:
@@ -3304,7 +3315,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       requestBody:
@@ -3378,7 +3389,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Pagination limit
@@ -3458,7 +3469,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Pagination limit
@@ -3533,7 +3544,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       requestBody:
@@ -3607,7 +3618,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Provide the handle of the connection which needs to be deleted.
@@ -3616,7 +3627,7 @@ paths:
         name: conn_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
           type: string
         style: simple
       responses:
@@ -3678,7 +3689,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the connection whose detail needs to be fetched.
@@ -3687,7 +3698,7 @@ paths:
         name: conn_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
           type: string
         style: simple
       responses:
@@ -3746,7 +3757,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the connection which needs to be updated.
@@ -3755,7 +3766,7 @@ paths:
         name: conn_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
           type: string
         style: simple
       requestBody:
@@ -3818,6 +3829,66 @@ paths:
       tags:
       - UserConnections
       x-codegen-request-body-name: request
+  /user/{user_handle}/conn/{conn_handle}/test:
+    post:
+      description: Test the config for a user connection to check for basic connectivity
+        before you create it.
+      operationId: test-user-connection
+      parameters:
+      - description: The handle of the user performing the action.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the connection to be tested. For connections that
+          are not yet created, use underscore `_` as the handle, else pass the handle
+          of the existing connection.
+        explode: false
+        in: path
+        name: conn_handle
+        required: true
+        schema:
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/types.ConnectionTestResult'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Internal Server Error
+      summary: Test user connection
+      tags:
+      - UserConnections
   /user/{user_handle}/org:
     get:
       description: List the orgs which the user has access.
@@ -3829,7 +3900,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Pagination limit
@@ -3905,7 +3976,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Pagination limit
@@ -3981,7 +4052,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       responses:
@@ -4047,7 +4118,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       requestBody:
@@ -4121,7 +4192,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       responses:
@@ -4164,55 +4235,6 @@ paths:
       summary: User quota
       tags:
       - Users
-  /user/{user_handle}/test/conn:
-    post:
-      description: Test the config for a user connection to check for basic connectivity
-        before you create it.
-      operationId: test-user-connection
-      parameters:
-      - description: The handle of the user performing the action.
-        explode: false
-        in: path
-        name: user_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/types.ConnectionTestResult'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Forbidden
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Internal Server Error
-      summary: Test user connection config
-      tags:
-      - UserConnections
   /user/{user_handle}/token:
     get:
       description: List the token for a user. The action supports list pagination
@@ -4228,7 +4250,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Pagination limit
@@ -4303,7 +4325,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       responses:
@@ -4363,7 +4385,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The identifier of the token.
@@ -4437,7 +4459,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       responses:
@@ -4497,7 +4519,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The identifier of the token.
@@ -4584,7 +4606,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Pagination limit
@@ -4659,7 +4681,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       requestBody:
@@ -4733,7 +4755,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: Provide the handle of the workspace which needs to be deleted.
@@ -4742,7 +4764,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       responses:
@@ -4798,7 +4820,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace whose detail needs to be fetched.
@@ -4807,7 +4829,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       responses:
@@ -4866,7 +4888,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace which needs to be updated.
@@ -4875,7 +4897,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       requestBody:
@@ -4949,7 +4971,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace whose logs needs to be fetched.
@@ -4958,7 +4980,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       - description: Pagination limit
@@ -5034,7 +5056,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace where you want to list the associations.
@@ -5043,7 +5065,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       - description: Pagination limit
@@ -5118,7 +5140,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace where the connection will be associated.
@@ -5127,7 +5149,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       requestBody:
@@ -5201,7 +5223,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace whose association needs to be deleted.
@@ -5210,7 +5232,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       - description: The handle of the conn whose association needs to be deleted.
@@ -5219,7 +5241,7 @@ paths:
         name: conn_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
           type: string
         style: simple
       responses:
@@ -5275,7 +5297,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace wherethe association exist.
@@ -5284,7 +5306,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       - description: The handle of the conn whose association details needs to be
@@ -5294,7 +5316,7 @@ paths:
         name: conn_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
           type: string
         style: simple
       responses:
@@ -5355,7 +5377,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace to test the connection in. The connection
@@ -5365,7 +5387,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       - description: The handle of the connection to test in this workspace. The connection
@@ -5376,7 +5398,7 @@ paths:
         name: conn_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
           type: string
         style: simple
       responses:
@@ -5424,7 +5446,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
       - description: The handle of the workspace whose logs needs to be fetched.
@@ -5433,7 +5455,7 @@ paths:
         name: workspace_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
       responses:
@@ -5476,6 +5498,85 @@ paths:
       summary: User workspace logs
       tags:
       - Users
+  /user/{user_handle}/workspace/{workspace_handle}/query:
+    get:
+      description: Performs a query in a user workspace. Accepts Creates a new workspace
+        for an organization. The limit is 10 per organization. If you require more
+        than 10, you must contact support to request an increase.
+      parameters:
+      - description: The handle of the user that owns the workspace where we want
+          to create the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace to query.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: Specify the token.
+        explode: true
+        in: query
+        name: t
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/types.WorkspaceQueryResult'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Unauthorized
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Payment Required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Conflict
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sperr.ErrorModel'
+          description: Internal Server Error
+      summary: Query user workspace
+      tags:
+      - OrgWorkspaces
 components:
   schemas:
     sperr.ErrorDetailModel:
@@ -6841,6 +6942,51 @@ components:
       - identity_id
       - version_id
       - workspace_id
+      type: object
+    types.WorkspaceQueryResult:
+      example:
+        columns:
+        - name: name
+          max_data_length: 0
+          data_type_name: data_type_name
+        - name: name
+          max_data_length: 0
+          data_type_name: data_type_name
+        rows:
+        - - '{}'
+          - '{}'
+        - - '{}'
+          - '{}'
+      properties:
+        columns:
+          items:
+            $ref: '#/components/schemas/types.WorkspaceQueryResultColumn'
+          type: array
+        rows:
+          items:
+            items:
+              type: object
+            type: array
+          type: array
+      required:
+      - columns
+      - rows
+      type: object
+    types.WorkspaceQueryResultColumn:
+      example:
+        name: name
+        max_data_length: 0
+        data_type_name: data_type_name
+      properties:
+        data_type_name:
+          type: string
+        max_data_length:
+          type: integer
+        name:
+          type: string
+      required:
+      - data_type_name
+      - name
       type: object
   securitySchemes:
     ApiKeyAuth:

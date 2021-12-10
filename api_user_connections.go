@@ -888,6 +888,7 @@ type ApiTestUserConnectionRequest struct {
 	ctx        _context.Context
 	ApiService *UserConnectionsApiService
 	userHandle string
+	connHandle string
 }
 
 func (r ApiTestUserConnectionRequest) Execute() (TypesConnectionTestResult, *_nethttp.Response, error) {
@@ -895,19 +896,21 @@ func (r ApiTestUserConnectionRequest) Execute() (TypesConnectionTestResult, *_ne
 }
 
 /*
-TestUserConnection Test user connection config
+TestUserConnection Test user connection
 
 Test the config for a user connection to check for basic connectivity before you create it.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user performing the action.
+ @param connHandle The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
  @return ApiTestUserConnectionRequest
 */
-func (a *UserConnectionsApiService) TestUserConnection(ctx _context.Context, userHandle string) ApiTestUserConnectionRequest {
+func (a *UserConnectionsApiService) TestUserConnection(ctx _context.Context, userHandle string, connHandle string) ApiTestUserConnectionRequest {
 	return ApiTestUserConnectionRequest{
 		ApiService: a,
 		ctx:        ctx,
 		userHandle: userHandle,
+		connHandle: connHandle,
 	}
 }
 
@@ -926,8 +929,9 @@ func (a *UserConnectionsApiService) TestUserConnectionExecute(r ApiTestUserConne
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/user/{user_handle}/test/conn"
+	localVarPath := localBasePath + "/user/{user_handle}/conn/{conn_handle}/test"
 	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"conn_handle"+"}", _neturl.PathEscape(parameterToString(r.connHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

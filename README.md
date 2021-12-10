@@ -82,7 +82,7 @@ Class | Method | HTTP request | Description
 *OrgConnectionsApi* | [**DeleteOrgConnection**](docs/OrgConnectionsApi.md#deleteorgconnection) | **Delete** /org/{org_handle}/conn/{conn_handle} | Delete org connection
 *OrgConnectionsApi* | [**GetOrgConnection**](docs/OrgConnectionsApi.md#getorgconnection) | **Get** /org/{org_handle}/conn/{conn_handle} | Get org connection
 *OrgConnectionsApi* | [**ListOrgConnections**](docs/OrgConnectionsApi.md#listorgconnections) | **Get** /org/{org_handle}/conn | List org connections
-*OrgConnectionsApi* | [**TestOrgConnection**](docs/OrgConnectionsApi.md#testorgconnection) | **Post** /org/{org_handle}/test/conn | Test org connection config
+*OrgConnectionsApi* | [**TestOrgConnection**](docs/OrgConnectionsApi.md#testorgconnection) | **Post** /org/{org_handle}/conn/{conn_handle}/test | Test org connection
 *OrgConnectionsApi* | [**UpdateOrgConnection**](docs/OrgConnectionsApi.md#updateorgconnection) | **Patch** /org/{org_handle}/conn/{conn_handle} | Update org connection
 *OrgMembersApi* | [**ConfirmOrgMemberInvite**](docs/OrgMembersApi.md#confirmorgmemberinvite) | **Get** /org/{org_handle}/member/invite/confirm | Confirm org member invite
 *OrgMembersApi* | [**DeleteOrgMember**](docs/OrgMembersApi.md#deleteorgmember) | **Delete** /org/{org_handle}/member/{user_handle} | Delete org member
@@ -102,6 +102,7 @@ Class | Method | HTTP request | Description
 *OrgWorkspacesApi* | [**GetOrgWorkspace**](docs/OrgWorkspacesApi.md#getorgworkspace) | **Get** /org/{org_handle}/workspace/{workspace_handle} | Get org workspace
 *OrgWorkspacesApi* | [**ListOrgWorkspaces**](docs/OrgWorkspacesApi.md#listorgworkspaces) | **Get** /org/{org_handle}/workspace | List org workspaces
 *OrgWorkspacesApi* | [**UpdateOrgWorkspace**](docs/OrgWorkspacesApi.md#updateorgworkspace) | **Patch** /org/{org_handle}/workspace/{workspace_handle} | Update org workspace
+*OrgWorkspacesApi* | [**UserUserHandleWorkspaceWorkspaceHandleQueryGet**](docs/OrgWorkspacesApi.md#useruserhandleworkspaceworkspacehandlequeryget) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
 *OrgsApi* | [**CreateOrg**](docs/OrgsApi.md#createorg) | **Post** /org | Create org
 *OrgsApi* | [**DeleteOrg**](docs/OrgsApi.md#deleteorg) | **Delete** /org/{org_handle} | Delete org
 *OrgsApi* | [**GetOrg**](docs/OrgsApi.md#getorg) | **Get** /org/{org_handle} | Get org
@@ -116,7 +117,7 @@ Class | Method | HTTP request | Description
 *UserConnectionsApi* | [**GetUserConnection**](docs/UserConnectionsApi.md#getuserconnection) | **Get** /user/{user_handle}/conn/{conn_handle} | Get user connection
 *UserConnectionsApi* | [**ListActorConnections**](docs/UserConnectionsApi.md#listactorconnections) | **Get** /actor/conn | List actor connections
 *UserConnectionsApi* | [**ListUserConnections**](docs/UserConnectionsApi.md#listuserconnections) | **Get** /user/{user_handle}/conn | List user connections
-*UserConnectionsApi* | [**TestUserConnection**](docs/UserConnectionsApi.md#testuserconnection) | **Post** /user/{user_handle}/test/conn | Test user connection config
+*UserConnectionsApi* | [**TestUserConnection**](docs/UserConnectionsApi.md#testuserconnection) | **Post** /user/{user_handle}/conn/{conn_handle}/test | Test user connection
 *UserConnectionsApi* | [**UpdateUserConnection**](docs/UserConnectionsApi.md#updateuserconnection) | **Patch** /user/{user_handle}/conn/{conn_handle} | Update user connection
 *UserTokensApi* | [**CreateToken**](docs/UserTokensApi.md#createtoken) | **Post** /user/{user_handle}/token | Create token
 *UserTokensApi* | [**DeleteToken**](docs/UserTokensApi.md#deletetoken) | **Delete** /user/{user_handle}/token/{token_id} | Delete token
@@ -211,6 +212,8 @@ Class | Method | HTTP request | Description
  - [TypesUserSignupRequest](docs/TypesUserSignupRequest.md)
  - [TypesWorkspace](docs/TypesWorkspace.md)
  - [TypesWorkspaceConn](docs/TypesWorkspaceConn.md)
+ - [TypesWorkspaceQueryResult](docs/TypesWorkspaceQueryResult.md)
+ - [TypesWorkspaceQueryResultColumn](docs/TypesWorkspaceQueryResultColumn.md)
 
 
 ## Documentation For Authorization
