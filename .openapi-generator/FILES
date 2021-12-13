@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -69,6 +68,8 @@ docs/TypesUserSearch.md
 docs/TypesUserSignupRequest.md
 docs/TypesWorkspace.md
 docs/TypesWorkspaceConn.md
+docs/TypesWorkspaceQueryResult.md
+docs/TypesWorkspaceQueryResultColumn.md
 docs/UserConnectionsApi.md
 docs/UserTokensApi.md
 docs/UserWorkspaceConnectionAssociationsApi.md
@@ -126,5 +127,7 @@ model_types_user_search.go
 model_types_user_signup_request.go
 model_types_workspace.go
 model_types_workspace_conn.go
+model_types_workspace_query_result.go
+model_types_workspace_query_result_column.go
 response.go
 utils.go

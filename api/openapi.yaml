@@ -532,12 +532,7 @@ paths:
       - Users
   /org:
     get:
-      description: List the organizations on which the user has access. The action
-        supports list pagination and does not return more than 50 organizations at
-        a time.If there are more organizations to list, then there is a value in next_token.
-        You can use the next_token value to continue the pagination of the list by
-        passing the value in next_token in the request to get the next page. This
-        will only return the organization which the user has access.
+      description: List all the organizations.
       operationId: list-orgs
       parameters:
       - description: Pagination limit
@@ -2982,11 +2977,7 @@ paths:
       - Users
   /user:
     get:
-      description: List the users. The action supports list pagination and does not
-        return more than 50 users at a time.If there are more users to list, then
-        there is a value in next_token. You can use the next_token value to continue
-        the pagination of the list by passing the value in next_token in the request
-        to get the next page.
+      description: List the users.
       operationId: list-users
       parameters:
       - description: Pagination limit
@@ -3456,11 +3447,7 @@ paths:
       - Users
   /user/{user_handle}/conn:
     get:
-      description: List the connection for an user. The action supports list pagination
-        and does not return more than 50 workspaces at a time.If there are more workspaces
-        to list, then there is a value in next_token. You can use the next_token value
-        to continue the pagination of the list by passing the value in next_token
-        in the request to get the next page.
+      description: List the connection for an user.
       operationId: list-user-connections
       parameters:
       - description: The handle of the user for which we want to list the connection.
@@ -3534,8 +3521,8 @@ paths:
       tags:
       - UserConnections
     post:
-      description: Creates a new connection for an user. The limit is 5 per user.
-        If you require more than 5, you must contact support to request an increase.
+      description: Creates a new connection for a user. The limit is 5 per user. If
+        you require more than 5, you must contact support to request an increase.
       operationId: create-user-connection
       parameters:
       - description: The handle of the user where we want to create the connection.
@@ -4593,11 +4580,7 @@ paths:
       x-codegen-request-body-name: request
   /user/{user_handle}/workspace:
     get:
-      description: List the workspace for an user. The action supports list pagination
-        and does not return more than 50 workspaces at a time.If there are more workspaces
-        to list, then there is a value in next_token. You can use the next_token value
-        to continue the pagination of the list by passing the value in next_token
-        in the request to get the next page.
+      description: List the workspace for a user.
       operationId: list-user-workspaces
       parameters:
       - description: The handle of the user for which we want to list the workspace.
@@ -4671,7 +4654,7 @@ paths:
       tags:
       - UserWorkspaces
     post:
-      description: Creates a new workspace for an user. The limit is 5 per user. If
+      description: Creates a new workspace for a user. The limit is 5 per user. If
         you require more than 5, you must contact support to request an increase.
       operationId: create-user-workspace
       parameters:

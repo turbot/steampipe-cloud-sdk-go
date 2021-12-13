@@ -1,4 +1,4 @@
-# Go API client for openapi
+# Go API client for steampipe
 
 Interrogate your CloudOps data with the simplicity and power of SQL, then share your discoveries using Steampipe Cloud.
 
@@ -22,7 +22,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import sw "./openapi"
+import sw "./steampipe"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
