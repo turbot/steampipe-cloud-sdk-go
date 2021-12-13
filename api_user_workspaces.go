@@ -48,7 +48,7 @@ func (r ApiCreateUserWorkspaceRequest) Execute() (TypesWorkspace, *_nethttp.Resp
 /*
 CreateUserWorkspace Create user workspace
 
-Creates a new workspace for an user. The limit is 5 per user. If you require more than 5, you must contact support to request an increase.
+Creates a new workspace for a user. The limit is 5 per user. If you require more than 5, you must contact support to request an increase.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user where we want to create the workspace.
@@ -68,7 +68,9 @@ func (a *UserWorkspacesApiService) CreateUserWorkspaceExecute(r ApiCreateUserWor
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesWorkspace
 	)
 
@@ -106,7 +108,7 @@ func (a *UserWorkspacesApiService) CreateUserWorkspaceExecute(r ApiCreateUserWor
 	}
 	// body params
 	localVarPostBody = r.request
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -249,7 +251,9 @@ func (a *UserWorkspacesApiService) DeleteUserWorkspaceExecute(r ApiDeleteUserWor
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesWorkspace
 	)
 
@@ -283,7 +287,7 @@ func (a *UserWorkspacesApiService) DeleteUserWorkspaceExecute(r ApiDeleteUserWor
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -406,7 +410,9 @@ func (a *UserWorkspacesApiService) GetUserWorkspaceExecute(r ApiGetUserWorkspace
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesWorkspace
 	)
 
@@ -440,7 +446,7 @@ func (a *UserWorkspacesApiService) GetUserWorkspaceExecute(r ApiGetUserWorkspace
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -579,7 +585,9 @@ func (a *UserWorkspacesApiService) ListActorWorkspacesExecute(r ApiListActorWork
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesListWorkspacesResponse
 	)
 
@@ -617,7 +625,7 @@ func (a *UserWorkspacesApiService) ListActorWorkspacesExecute(r ApiListActorWork
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -729,7 +737,7 @@ func (r ApiListUserWorkspacesRequest) Execute() (TypesListWorkspacesResponse, *_
 /*
 ListUserWorkspaces List user workspaces
 
-List the workspace for an user. The action supports list pagination and does not return more than 50 workspaces at a time.If there are more workspaces to list, then there is a value in next_token. You can use the next_token value to continue the pagination of the list by passing the value in next_token in the request to get the next page.
+List the workspace for a user.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user for which we want to list the workspace.
@@ -749,7 +757,9 @@ func (a *UserWorkspacesApiService) ListUserWorkspacesExecute(r ApiListUserWorksp
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesListWorkspacesResponse
 	)
 
@@ -788,7 +798,7 @@ func (a *UserWorkspacesApiService) ListUserWorkspacesExecute(r ApiListUserWorksp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -917,7 +927,9 @@ func (a *UserWorkspacesApiService) UpdateUserWorkspaceExecute(r ApiUpdateUserWor
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesWorkspace
 	)
 
@@ -956,7 +968,7 @@ func (a *UserWorkspacesApiService) UpdateUserWorkspaceExecute(r ApiUpdateUserWor
 	}
 	// body params
 	localVarPostBody = r.request
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

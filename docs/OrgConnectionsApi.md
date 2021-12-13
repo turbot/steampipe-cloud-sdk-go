@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**DeleteOrgConnection**](OrgConnectionsApi.md#DeleteOrgConnection) | **Delete** /org/{org_handle}/conn/{conn_handle} | Delete org connection
 [**GetOrgConnection**](OrgConnectionsApi.md#GetOrgConnection) | **Get** /org/{org_handle}/conn/{conn_handle} | Get org connection
 [**ListOrgConnections**](OrgConnectionsApi.md#ListOrgConnections) | **Get** /org/{org_handle}/conn | List org connections
-[**TestOrgConnection**](OrgConnectionsApi.md#TestOrgConnection) | **Post** /org/{org_handle}/test/conn | Test org connection config
+[**TestOrgConnection**](OrgConnectionsApi.md#TestOrgConnection) | **Post** /org/{org_handle}/conn/{conn_handle}/test | Test org connection
 [**UpdateOrgConnection**](OrgConnectionsApi.md#UpdateOrgConnection) | **Patch** /org/{org_handle}/conn/{conn_handle} | Update org connection
 
 
@@ -307,9 +307,9 @@ No authorization required
 
 ## TestOrgConnection
 
-> TypesConnectionTestResult TestOrgConnection(ctx, orgHandle).Execute()
+> TypesConnectionTestResult TestOrgConnection(ctx, orgHandle, connHandle).Execute()
 
-Test org connection config
+Test org connection
 
 
 
@@ -327,10 +327,11 @@ import (
 
 func main() {
     orgHandle := "orgHandle_example" // string | The handle of the org performing the action.
+    connHandle := "connHandle_example" // string | The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgConnectionsApi.TestOrgConnection(context.Background(), orgHandle).Execute()
+    resp, r, err := api_client.OrgConnectionsApi.TestOrgConnection(context.Background(), orgHandle, connHandle).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgConnectionsApi.TestOrgConnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -347,6 +348,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **orgHandle** | **string** | The handle of the org performing the action. | 
+**connHandle** | **string** | The handle of the connection to be tested. For connections that are not yet created, use underscore &#x60;_&#x60; as the handle, else pass the handle of the existing connection. | 
 
 ### Other Parameters
 
@@ -355,6 +357,7 @@ Other parameters are passed through a pointer to a apiTestOrgConnectionRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type

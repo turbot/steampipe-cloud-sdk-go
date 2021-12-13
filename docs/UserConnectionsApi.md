@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**GetUserConnection**](UserConnectionsApi.md#GetUserConnection) | **Get** /user/{user_handle}/conn/{conn_handle} | Get user connection
 [**ListActorConnections**](UserConnectionsApi.md#ListActorConnections) | **Get** /actor/conn | List actor connections
 [**ListUserConnections**](UserConnectionsApi.md#ListUserConnections) | **Get** /user/{user_handle}/conn | List user connections
-[**TestUserConnection**](UserConnectionsApi.md#TestUserConnection) | **Post** /user/{user_handle}/test/conn | Test user connection config
+[**TestUserConnection**](UserConnectionsApi.md#TestUserConnection) | **Post** /user/{user_handle}/conn/{conn_handle}/test | Test user connection
 [**UpdateUserConnection**](UserConnectionsApi.md#UpdateUserConnection) | **Patch** /user/{user_handle}/conn/{conn_handle} | Update user connection
 
 
@@ -376,9 +376,9 @@ No authorization required
 
 ## TestUserConnection
 
-> TypesConnectionTestResult TestUserConnection(ctx, userHandle).Execute()
+> TypesConnectionTestResult TestUserConnection(ctx, userHandle, connHandle).Execute()
 
-Test user connection config
+Test user connection
 
 
 
@@ -396,10 +396,11 @@ import (
 
 func main() {
     userHandle := "userHandle_example" // string | The handle of the user performing the action.
+    connHandle := "connHandle_example" // string | The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserConnectionsApi.TestUserConnection(context.Background(), userHandle).Execute()
+    resp, r, err := api_client.UserConnectionsApi.TestUserConnection(context.Background(), userHandle, connHandle).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserConnectionsApi.TestUserConnection``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -416,6 +417,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userHandle** | **string** | The handle of the user performing the action. | 
+**connHandle** | **string** | The handle of the connection to be tested. For connections that are not yet created, use underscore &#x60;_&#x60; as the handle, else pass the handle of the existing connection. | 
 
 ### Other Parameters
 
@@ -424,6 +426,7 @@ Other parameters are passed through a pointer to a apiTestUserConnectionRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type

@@ -48,7 +48,7 @@ func (r ApiCreateUserConnectionRequest) Execute() (TypesConnection, *_nethttp.Re
 /*
 CreateUserConnection Create user connection
 
-Creates a new connection for an user. The limit is 5 per user. If you require more than 5, you must contact support to request an increase.
+Creates a new connection for a user. The limit is 5 per user. If you require more than 5, you must contact support to request an increase.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user where we want to create the connection.
@@ -68,7 +68,9 @@ func (a *UserConnectionsApiService) CreateUserConnectionExecute(r ApiCreateUserC
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesConnection
 	)
 
@@ -106,7 +108,7 @@ func (a *UserConnectionsApiService) CreateUserConnectionExecute(r ApiCreateUserC
 	}
 	// body params
 	localVarPostBody = r.request
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -249,7 +251,9 @@ func (a *UserConnectionsApiService) DeleteUserConnectionExecute(r ApiDeleteUserC
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesConnection
 	)
 
@@ -283,7 +287,7 @@ func (a *UserConnectionsApiService) DeleteUserConnectionExecute(r ApiDeleteUserC
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -416,7 +420,9 @@ func (a *UserConnectionsApiService) GetUserConnectionExecute(r ApiGetUserConnect
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesConnection
 	)
 
@@ -450,7 +456,7 @@ func (a *UserConnectionsApiService) GetUserConnectionExecute(r ApiGetUserConnect
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -589,7 +595,9 @@ func (a *UserConnectionsApiService) ListActorConnectionsExecute(r ApiListActorCo
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesListConnectionsResponse
 	)
 
@@ -627,7 +635,7 @@ func (a *UserConnectionsApiService) ListActorConnectionsExecute(r ApiListActorCo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -739,7 +747,7 @@ func (r ApiListUserConnectionsRequest) Execute() (TypesListConnectionsResponse, 
 /*
 ListUserConnections List user connections
 
-List the connection for an user. The action supports list pagination and does not return more than 50 workspaces at a time.If there are more workspaces to list, then there is a value in next_token. You can use the next_token value to continue the pagination of the list by passing the value in next_token in the request to get the next page.
+List the connection for an user.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user for which we want to list the connection.
@@ -759,7 +767,9 @@ func (a *UserConnectionsApiService) ListUserConnectionsExecute(r ApiListUserConn
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesListConnectionsResponse
 	)
 
@@ -798,7 +808,7 @@ func (a *UserConnectionsApiService) ListUserConnectionsExecute(r ApiListUserConn
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -888,6 +898,7 @@ type ApiTestUserConnectionRequest struct {
 	ctx _context.Context
 	ApiService *UserConnectionsApiService
 	userHandle string
+	connHandle string
 }
 
 
@@ -896,19 +907,21 @@ func (r ApiTestUserConnectionRequest) Execute() (TypesConnectionTestResult, *_ne
 }
 
 /*
-TestUserConnection Test user connection config
+TestUserConnection Test user connection
 
 Test the config for a user connection to check for basic connectivity before you create it.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user performing the action.
+ @param connHandle The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
  @return ApiTestUserConnectionRequest
 */
-func (a *UserConnectionsApiService) TestUserConnection(ctx _context.Context, userHandle string) ApiTestUserConnectionRequest {
+func (a *UserConnectionsApiService) TestUserConnection(ctx _context.Context, userHandle string, connHandle string) ApiTestUserConnectionRequest {
 	return ApiTestUserConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
 		userHandle: userHandle,
+		connHandle: connHandle,
 	}
 }
 
@@ -918,7 +931,9 @@ func (a *UserConnectionsApiService) TestUserConnectionExecute(r ApiTestUserConne
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesConnectionTestResult
 	)
 
@@ -927,8 +942,9 @@ func (a *UserConnectionsApiService) TestUserConnectionExecute(r ApiTestUserConne
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/user/{user_handle}/test/conn"
+	localVarPath := localBasePath + "/user/{user_handle}/conn/{conn_handle}/test"
 	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"conn_handle"+"}", _neturl.PathEscape(parameterToString(r.connHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -951,7 +967,7 @@ func (a *UserConnectionsApiService) TestUserConnectionExecute(r ApiTestUserConne
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1070,7 +1086,9 @@ func (a *UserConnectionsApiService) UpdateUserConnectionExecute(r ApiUpdateUserC
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesConnection
 	)
 
@@ -1109,7 +1127,7 @@ func (a *UserConnectionsApiService) UpdateUserConnectionExecute(r ApiUpdateUserC
 	}
 	// body params
 	localVarPostBody = r.request
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

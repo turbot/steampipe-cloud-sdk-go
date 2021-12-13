@@ -1,0 +1,5888 @@
+openapi: 3.0.1
+info:
+  title: Steampipe Cloud
+  description: "Interrogate your CloudOps data with the simplicity and power of SQL, then share your discoveries using Steampipe Cloud."
+  contact:
+    name: Support
+    email: help@steampipe.io
+  version: "1.0"
+servers:
+  - url: "https://cloud.steampipe.io/api/v1"
+paths:
+  /actor:
+    get:
+      tags:
+        - Users
+      summary: Actor information
+      description: Returns the actor information.
+      operationId: get-actor
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.User"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  /actor/activity:
+    get:
+      tags:
+        - Users
+      summary: List actor activity
+      description: List the activity for an actor.
+      operationId: list-actor-activities
+      parameters:
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListAuditLogsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  /actor/conn:
+    get:
+      tags:
+        - UserConnections
+      summary: List actor connections
+      description: List the connections for an actor.
+      operationId: list-actor-connections
+      parameters:
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListConnectionsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  /actor/workspace:
+    get:
+      tags:
+        - UserWorkspaces
+      summary: List actor workspaces
+      description: List the workspace for an actor.
+      operationId: list-actor-workspaces
+      parameters:
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListWorkspacesResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/auth/{provider}":
+    get:
+      tags:
+        - Users
+      summary: Auth Provider
+      description: "With an authentication provider, users can access Steampipe Cloud with single sign-on (SSO) using credentials from a third party. Steampipe Cloud currently supports GitHub as an authentication provider."
+      operationId: auth-provider
+      parameters:
+        - name: provider
+          in: path
+          description: The authentication provider.
+          required: true
+          schema:
+            type: string
+      responses:
+        "307":
+          description: ""
+          content: {}
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/auth/{provider}/callback":
+    get:
+      tags:
+        - Users
+      summary: Auth provider callback
+      description: Auth provider callback.
+      operationId: auth-provider-callback
+      parameters:
+        - name: provider
+          in: path
+          description: The authentication provider.
+          required: true
+          schema:
+            type: string
+      responses:
+        "307":
+          description: ""
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  /identity/search:
+    get:
+      tags:
+        - Users
+      summary: Search identity
+      description: Search identity handle name.
+      operationId: user-search
+      parameters:
+        - name: q
+          in: query
+          description: Specify the search string.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.SearchIdentitiesResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  /login:
+    post:
+      tags:
+        - Users
+      summary: User login
+      description: User login.
+      operationId: user-login
+      requestBody:
+        description: The request body to login.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.UserLoginRequest"
+        required: true
+      responses:
+        "201":
+          description: ""
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  /login/confirm:
+    get:
+      tags:
+        - Users
+      summary: Confirm user login
+      description: Confirm user login.
+      operationId: user-login-confirm
+      parameters:
+        - name: t
+          in: query
+          description: Specify the token.
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: ""
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/logout/{provider}":
+    get:
+      tags:
+        - Users
+      summary: User logout
+      description: Removes the session that is associated with the user.
+      operationId: user-logout
+      parameters:
+        - name: provider
+          in: path
+          description: The authentication provider.
+          required: true
+          schema:
+            type: string
+      responses:
+        "307":
+          description: ""
+          content: {}
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  /org:
+    get:
+      tags:
+        - Orgs
+      summary: List orgs
+      description: List all the organizations.
+      operationId: list-orgs
+      parameters:
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListOrgsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    post:
+      tags:
+        - Orgs
+      summary: Create org
+      description: Creates an organization.
+      operationId: create-org
+      requestBody:
+        description: The request body to create the organization.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.CreateOrgRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Org"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/org/{org_handle}":
+    get:
+      tags:
+        - Orgs
+      summary: Get org
+      description: Retrives the organization information.
+      operationId: get-org
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the handle of an organization whose information you want to retrive.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Org"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    delete:
+      tags:
+        - Orgs
+      summary: Delete org
+      description: Deletes the specified organization if you have the appropriate access.
+      operationId: delete-org
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the handle of the organization which need to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Org"
+        "204":
+          description: No Content
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    patch:
+      tags:
+        - Orgs
+      summary: Update org
+      description: "Updates the handle name, display name or the URl of the organization."
+      operationId: update-org
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the handle of the organization which need to be updated.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      requestBody:
+        description: The request body for the organization.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.UpdateOrgRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Org"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/org/{org_handle}/audit":
+    get:
+      tags:
+        - Orgs
+      summary: Org audit logs
+      description: Returns the audit logs for an org.
+      operationId: list-org-audit-logs
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the org handle to get the audit logs.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListAuditLogsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/org/{org_handle}/conn":
+    get:
+      tags:
+        - OrgConnections
+      summary: List org connections
+      description: "List the connection for an organization. The action supports list pagination and does not return more than 50 connections at a time.If there are more connections to list, then there is a value in next_token. You can use the next_token value to continue the pagination of the list by passing the value in next_token in the request to get the next page."
+      operationId: list-org-connections
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of the organization for which we want to list the connections.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListConnectionsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    post:
+      tags:
+        - OrgConnections
+      summary: Create org connection
+      description: "Creates a new connection for an organization. The limit is 10 per organization. If you require more than 10, you must contact support to request an increase."
+      operationId: create-org-connection
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of the organization where we want to create the connection.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      requestBody:
+        description: The request body for the connection to be created.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.CreateConnectionRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Connection"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/org/{org_handle}/conn/{conn_handle}":
+    get:
+      tags:
+        - OrgConnections
+      summary: Get org connection
+      description: Get the details for a connection.
+      operationId: get-org-connection
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of an organization where the connection exists.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: conn_handle
+          in: path
+          description: The handle of the connection whose detail needs to be fetched.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Connection"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    delete:
+      tags:
+        - OrgConnections
+      summary: Delete org connection
+      description: Deletes the connection specified in the request.
+      operationId: delete-org-connection
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of the organization where the connection exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: conn_handle
+          in: path
+          description: Provide the handle of the connection which needs to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Connection"
+        "204":
+          description: No Content
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    patch:
+      tags:
+        - OrgConnections
+      summary: Update org connection
+      description: Update the connection in an organization.
+      operationId: update-org-connection
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of the organization where the connection exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: conn_handle
+          in: path
+          description: The handle of the connection which needs to be updated.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      requestBody:
+        description: The request body of the connection which needs to be updated.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.UpdateConnectionRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Connection"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/org/{org_handle}/conn/{conn_handle}/test":
+    post:
+      tags:
+        - OrgConnections
+      summary: Test org connection
+      description: Test the config for an org connection to check for basic connectivity before you create it.
+      operationId: test-org-connection
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of the org performing the action.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: conn_handle
+          in: path
+          description: "The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection."
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ConnectionTestResult"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/org/{org_handle}/member":
+    get:
+      tags:
+        - OrgMembers
+      summary: List accepted org members
+      description: List all the members who has accepted the request.
+      operationId: list-accepted-org-members
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the organization handle.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListOrgUsersResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/org/{org_handle}/member/invite":
+    get:
+      tags:
+        - OrgMembers
+      summary: List invited org members
+      description: List all the members who has been invited to the org.
+      operationId: list-invited-org-members
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the organization handle.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListOrgUsersResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    post:
+      tags:
+        - OrgMembers
+      summary: Invite org member
+      description: Invite member to an org.
+      operationId: invite-org-member
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the handle of an organization where the member need to be invited.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      requestBody:
+        description: The request body to invite a member to an organization.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.InviteOrgUserRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.OrgUser"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+    delete:
+      tags:
+        - OrgMembers
+      summary: Delete org member invite
+      description: Delete the org member invite.
+      operationId: delete-org-member-invite
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the organization handle.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: t
+          in: query
+          description: Specify the token to be rejected.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content: {}
+        "204":
+          description: No Content
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/org/{org_handle}/member/invite/confirm":
+    get:
+      tags:
+        - OrgMembers
+      summary: Confirm org member invite
+      description: Confirm org member invite.
+      operationId: confirm-org-member-invite
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the handle of an organization where the member need to be invited.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: t
+          in: query
+          description: Specify the token.
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: ""
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/org/{org_handle}/member/{user_handle}":
+    get:
+      tags:
+        - OrgMembers
+      summary: Get org member
+      description: Get org member.
+      operationId: get-org-member
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the organization handle where the member is associated.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: user_handle
+          in: path
+          description: Specify the handle of the user whose information you want to retrive.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListOrgUsersResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    delete:
+      tags:
+        - OrgMembers
+      summary: Delete org member
+      description: Delete the user from the org.
+      operationId: delete-org-member
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the handle of the organization where the member exists.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: user_handle
+          in: path
+          description: Specify the handle of the user which need to be removed.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.OrgUser"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    patch:
+      tags:
+        - OrgMembers
+      summary: Update org member
+      description: Update the role of the member.
+      operationId: update-org-member
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the handle of the organization where the member exists.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: user_handle
+          in: path
+          description: Specify the handle of the user whose role need to be updated.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      requestBody:
+        description: The request body for the member.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.UpdateOrgUserRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.OrgUser"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/org/{org_handle}/quota":
+    get:
+      tags:
+        - Orgs
+      summary: Org quota
+      description: Returns the quota information for an org.
+      operationId: org-quota
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the org handle to get the quota details.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.OrgQuota"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/org/{org_handle}/workspace":
+    get:
+      tags:
+        - OrgWorkspaces
+      summary: List org workspaces
+      description: "List the workspace for an organization. The action supports list pagination and does not return more than 50 workspaces at a time.If there are more workspaces to list, then there is a value in next_token. You can use the next_token value to continue the pagination of the list by passing the value in next_token in the request to get the next page."
+      operationId: list-org-workspaces
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of the organization for which we want to list the workspace.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListWorkspacesResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    post:
+      tags:
+        - OrgWorkspaces
+      summary: Create org workspace
+      description: "Creates a new workspace for an organization. The limit is 10 per organization. If you require more than 10, you must contact support to request an increase."
+      operationId: create-org-workspace
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of the organization where we want to create the workspace.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      requestBody:
+        description: The request body for the workspace to be created.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.CreateWorkspaceRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Workspace"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/org/{org_handle}/workspace/{workspace_handle}":
+    get:
+      tags:
+        - OrgWorkspaces
+      summary: Get org workspace
+      description: Get the details for a workspace in an organization.
+      operationId: get-org-workspace
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle for an organization where the workspace exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace whose detail needs to be fetched.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Workspace"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    delete:
+      tags:
+        - OrgWorkspaces
+      summary: Delete org workspace
+      description: Deletes the workspace specified in the request.
+      operationId: delete-org-workspace
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of the organization where the workspace exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: Provide the handle of the workspace which needs to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Workspace"
+        "204":
+          description: No Content
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    patch:
+      tags:
+        - OrgWorkspaces
+      summary: Update org workspace
+      description: Update a workspace in an organization.
+      operationId: update-org-workspace
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of the organization where the workspace exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace which needs to be updated.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+      requestBody:
+        description: The request body of the workspace which needs to be updated.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.UpdateWorkspaceRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Workspace"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/org/{org_handle}/workspace/{workspace_handle}/audit":
+    get:
+      tags:
+        - Orgs
+      summary: Org workspace audit logs
+      description: Returns the audit logs for an org workspace.
+      operationId: list-org-workspace-audit-logs
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the org handle to get the audit logs.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace whose logs needs to be fetched.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListAuditLogsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/org/{org_handle}/workspace/{workspace_handle}/conn":
+    get:
+      tags:
+        - OrgWorkspaceConnectionAssociations
+      summary: List org workspace connection associations
+      description: List the connections associated with a workspace.
+      operationId: list-org-workspace-connection-associations
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of an organization for which you want to list the associations.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace where you want to list the associations.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListWorkspaceConnResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    post:
+      tags:
+        - OrgWorkspaceConnectionAssociations
+      summary: Create org workspace connection association
+      description: Associate a connection with the workspace. A workspace can have multiple association.
+      operationId: create-org-workspace-connection-association
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of the organization where we want to create an association.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace where the connection will be associated.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+      requestBody:
+        description: The request body for the association to be created.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.CreateWorkspaceConnRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.WorkspaceConn"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle}":
+    get:
+      tags:
+        - OrgWorkspaceConnectionAssociations
+      summary: Get org workspace connection association
+      description: Get the details for a workspace and connection association on an organization.
+      operationId: get-org-workspace-connection-association
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of the org for which you want to get the association.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace where the connection exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+        - name: conn_handle
+          in: path
+          description: The handle of the conn whose association details needs to be fetched.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.WorkspaceConn"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    delete:
+      tags:
+        - OrgWorkspaceConnectionAssociations
+      summary: Delete org workspace connection association
+      description: Deletes the workspace association with the connection.
+      operationId: delete-org-workspace-connection-association
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of an organization where we want to delete the association.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace whose association needs to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+        - name: conn_handle
+          in: path
+          description: The handle of the conn whose association needs to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.WorkspaceConn"
+        "204":
+          description: No Content
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle}/test":
+    get:
+      tags:
+        - OrgWorkspaceConnectionAssociations
+      summary: Test org workspace connection
+      description: Test an org connection associated with a workspace to ensure that its config works with common plugin queries.
+      operationId: test-org-workspace-connection-association
+      parameters:
+        - name: org_handle
+          in: path
+          description: The handle of an organization where we want to delete the association.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace whose association needs to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+        - name: conn_handle
+          in: path
+          description: The handle of the conn whose association needs to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ConnectionTestResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/org/{org_handle}/workspace/{workspace_handle}/logs":
+    get:
+      tags:
+        - Orgs
+      summary: Org workspace logs
+      description: Returns the workspace logs for an org.
+      operationId: list-org-workspace-logs
+      parameters:
+        - name: org_handle
+          in: path
+          description: Specify the org handle to get the workspace logs.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace whose logs needs to be fetched.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListLogsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  /signup:
+    post:
+      tags:
+        - Users
+      summary: User signup
+      description: New user signup.
+      operationId: user-signup
+      requestBody:
+        description: The request body to signup.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.UserSignupRequest"
+        required: true
+      responses:
+        "201":
+          description: ""
+          content: {}
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  /signup/confirm:
+    get:
+      tags:
+        - Users
+      summary: Confirm user signup
+      description: Confirm user signup.
+      operationId: user-signup-confirm
+      parameters:
+        - name: t
+          in: query
+          description: Specify the token.
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: ""
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  /user:
+    get:
+      tags:
+        - Users
+      summary: List users
+      description: List the users.
+      operationId: list-users
+      parameters:
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListUsersResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    post:
+      tags:
+        - Users
+      summary: Create user
+      description: Creates a new user.
+      operationId: create-user
+      requestBody:
+        description: The request body to create the user.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.CreateUserRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.User"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  /user/search:
+    get:
+      tags:
+        - Users
+      summary: Search users
+      description: Search users and lists the ones that meet the filter criteria.
+      operationId: search-users
+      parameters:
+        - name: q
+          in: query
+          description: Specify the search string.
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.SearchUsersResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/user/{user_handle}":
+    get:
+      tags:
+        - Users
+      summary: Get user
+      description: Retrives information of the specified user.
+      operationId: get-user
+      parameters:
+        - name: user_handle
+          in: path
+          description: Specify the handle of the user whose information you want to retrive.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.User"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    delete:
+      tags:
+        - Users
+      summary: Delete user
+      description: Deletes the specified user.
+      operationId: delete-user
+      parameters:
+        - name: user_handle
+          in: path
+          description: Specify the handle of the user which need to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.User"
+        "204":
+          description: No Content
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    patch:
+      tags:
+        - Users
+      summary: Update user
+      description: "Updates the handle name, display name or the URl of the user."
+      operationId: update-user
+      parameters:
+        - name: user_handle
+          in: path
+          description: Specify the handle of the user which need to be updated.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      requestBody:
+        description: The request body for the user.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.UpdateUserRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.User"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/user/{user_handle}/audit":
+    get:
+      tags:
+        - Users
+      summary: User audit logs
+      description: Returns the audit logs for a user.
+      operationId: list-user-audit-logs
+      parameters:
+        - name: user_handle
+          in: path
+          description: Specify the user handle to get the audit logs.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListAuditLogsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/user/{user_handle}/conn":
+    get:
+      tags:
+        - UserConnections
+      summary: List user connections
+      description: List the connection for an user.
+      operationId: list-user-connections
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user for which we want to list the connection.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListConnectionsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    post:
+      tags:
+        - UserConnections
+      summary: Create user connection
+      description: "Creates a new connection for a user. The limit is 5 per user. If you require more than 5, you must contact support to request an increase."
+      operationId: create-user-connection
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user where we want to create the connection.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      requestBody:
+        description: The request body for the connection to be created.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.CreateConnectionRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Connection"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/user/{user_handle}/conn/{conn_handle}":
+    get:
+      tags:
+        - UserConnections
+      summary: Get user connection
+      description: Get the details for a connection.
+      operationId: get-user-connection
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle for the user where the connection exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: conn_handle
+          in: path
+          description: The handle of the connection whose detail needs to be fetched.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Connection"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    delete:
+      tags:
+        - UserConnections
+      summary: Delete user connection
+      description: Deletes the connection specified in the request by the user.
+      operationId: delete-user-connection
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user where the connection exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: conn_handle
+          in: path
+          description: Provide the handle of the connection which needs to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Connection"
+        "204":
+          description: No Content
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    patch:
+      tags:
+        - UserConnections
+      summary: Update user connection
+      description: Update a connection for a user.
+      operationId: update-user-connection
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user where the connection exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: conn_handle
+          in: path
+          description: The handle of the connection which needs to be updated.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      requestBody:
+        description: The request body for the connection which needs to be updated.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.UpdateConnectionRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Connection"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/user/{user_handle}/conn/{conn_handle}/test":
+    post:
+      tags:
+        - UserConnections
+      summary: Test user connection
+      description: Test the config for a user connection to check for basic connectivity before you create it.
+      operationId: test-user-connection
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user performing the action.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: conn_handle
+          in: path
+          description: "The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection."
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ConnectionTestResult"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/user/{user_handle}/org":
+    get:
+      tags:
+        - Users
+      summary: List org users
+      description: List the orgs which the user has access.
+      operationId: list-org-users
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user for which we want to list the org.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListUserOrgsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/user/{user_handle}/org/invite":
+    get:
+      tags:
+        - Users
+      summary: List org invited users
+      description: List the orgs on which the user has been invited.
+      operationId: list-org-invited-users
+      parameters:
+        - name: user_handle
+          in: path
+          description: Pass the handle of the user.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListUserOrgsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/user/{user_handle}/password":
+    get:
+      tags:
+        - Users
+      summary: Get user password
+      description: Get user password.
+      operationId: get-user-password
+      parameters:
+        - name: user_handle
+          in: path
+          description: Specify the handle of the user whose password need to be retrived.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.UserDatabasePassword"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    post:
+      tags:
+        - Users
+      summary: Create user password
+      description: Create or rotate user password.
+      operationId: create-user-password
+      parameters:
+        - name: user_handle
+          in: path
+          description: Specify the handle of the user whose password need to be created or rotated.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      requestBody:
+        description: The request body to create or rotate the password.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.CreateUserPasswordRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.UserDatabasePassword"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/user/{user_handle}/quota":
+    get:
+      tags:
+        - Users
+      summary: User quota
+      description: Returns the quota information for a user.
+      operationId: user-quota
+      parameters:
+        - name: user_handle
+          in: path
+          description: Specify the user handle to get the quota details.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.UserQuota"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/user/{user_handle}/token":
+    get:
+      tags:
+        - UserTokens
+      summary: List tokens
+      description: "List the token for a user. The action supports list pagination and does not return more than 50 tokens at a time.If there are more tokens to list, then there is a value in next_token. You can use the next_token value to continue the pagination of the list by passing the value in next_token in the request to get the next page."
+      operationId: list-tokens
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListTokensResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    post:
+      tags:
+        - UserTokens
+      summary: Create token
+      description: "Creates a new token for the specified user. The limit is 2 per user. If you require more than 5, you must contact support to request an increase."
+      operationId: create-token
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user where the token will be created.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Token"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/user/{user_handle}/token/{token_id}":
+    get:
+      tags:
+        - UserTokens
+      summary: Get token
+      description: Retrives the information of a specified token.
+      operationId: get-token
+      parameters:
+        - name: token_id
+          in: path
+          description: The identifier of the token.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z]_[0-9a-v]{20}$"
+        - name: user_handle
+          in: path
+          description: The handle of the user where the token exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Token"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    delete:
+      tags:
+        - UserTokens
+      summary: Delete token
+      description: Deletes the token associated with the specified user.
+      operationId: delete-token
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user where the token exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: token_id
+          in: path
+          description: The identifier of the token.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z]_[0-9a-v]{20}$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Token"
+        "204":
+          description: No Content
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    patch:
+      tags:
+        - UserTokens
+      summary: Update token
+      description: Changes the status of the specified token from Active to Inactive or vice versa.
+      operationId: update-token
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user where the token exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: token_id
+          in: path
+          description: The identifier of the token.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z]_[0-9a-v]{20}$"
+      requestBody:
+        description: The request body for the token which needs to be updated.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.UpdateTokenRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Token"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/user/{user_handle}/workspace":
+    get:
+      tags:
+        - UserWorkspaces
+      summary: List user workspaces
+      description: List the workspace for a user.
+      operationId: list-user-workspaces
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user for which we want to list the workspace.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListWorkspacesResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    post:
+      tags:
+        - UserWorkspaces
+      summary: Create user workspace
+      description: "Creates a new workspace for a user. The limit is 5 per user. If you require more than 5, you must contact support to request an increase."
+      operationId: create-user-workspace
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user where we want to create the workspace.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+      requestBody:
+        description: The request body for the workspace to be created.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.CreateWorkspaceRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Workspace"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/user/{user_handle}/workspace/{workspace_handle}":
+    get:
+      tags:
+        - UserWorkspaces
+      summary: Get user workspace
+      description: Get the details for the workspace.
+      operationId: get-user-workspace
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user where the workspace exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace whose detail needs to be fetched.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Workspace"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    delete:
+      tags:
+        - UserWorkspaces
+      summary: Delete user workspace
+      description: Deletes the workspace specified in the request by the user.
+      operationId: delete-user-workspace
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user where the workspace exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: Provide the handle of the workspace which needs to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Workspace"
+        "204":
+          description: No Content
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    patch:
+      tags:
+        - UserWorkspaces
+      summary: Update user workspace
+      description: Update the workspace for a user.
+      operationId: update-user-workspace
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user where the workspace exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace which needs to be updated.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+      requestBody:
+        description: The request body for the workspace which needs to be updated.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.UpdateWorkspaceRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.Workspace"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/user/{user_handle}/workspace/{workspace_handle}/audit":
+    get:
+      tags:
+        - Users
+      summary: User workspace audit logs
+      description: Returns the audit logs for a user workspace.
+      operationId: list-user-workspace-audit-logs
+      parameters:
+        - name: user_handle
+          in: path
+          description: Specify the user handle to get the audit logs.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace whose logs needs to be fetched.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListAuditLogsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/user/{user_handle}/workspace/{workspace_handle}/conn":
+    get:
+      tags:
+        - UserWorkspaceConnectionAssociations
+      summary: List user workspace connection associations
+      description: List the connections associated with a workspace.
+      operationId: list-user-workspace-connection-associations
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user for which you want to start listing associations.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace where you want to list the associations.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+        - name: limit
+          in: query
+          description: Pagination limit
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 20
+        - name: next_token
+          in: query
+          description: "When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListWorkspaceConnResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    post:
+      tags:
+        - UserWorkspaceConnectionAssociations
+      summary: Create user workspace connection association
+      description: Associate a connection with the workspace. A workspace can have multiple assocaition.
+      operationId: create-user-workspace-connection-association
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user where we want to create an association.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace where the connection will be associated.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+      requestBody:
+        description: The request body for the association to be created.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/types.CreateWorkspaceConnRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.WorkspaceConn"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+      x-codegen-request-body-name: request
+  "/user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle}":
+    get:
+      tags:
+        - UserWorkspaceConnectionAssociations
+      summary: Get user workspace connection association
+      description: Get the details for a workspace and connection association.
+      operationId: get-user-workspace-connection-association
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user for which you want to get the association.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace wherethe association exist.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+        - name: conn_handle
+          in: path
+          description: The handle of the conn whose association details needs to be fetched.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.WorkspaceConn"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+    delete:
+      tags:
+        - UserWorkspaceConnectionAssociations
+      summary: Delete user workspace connection association
+      description: Deletes the workspace association with the connection.
+      operationId: delete-user-workspace-connection-association
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user performing the action.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace whose association needs to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+        - name: conn_handle
+          in: path
+          description: The handle of the conn whose association needs to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.WorkspaceConn"
+        "204":
+          description: No Content
+          content: {}
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle}/test":
+    get:
+      tags:
+        - UserWorkspaceConnectionAssociations
+      summary: Test user workspace connection
+      description: Test a user connection associated with a workspace to ensure that its config works with common plugin queries.
+      operationId: test-user-workspace-connection-association
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user performing the action.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace to test the connection in. The connection must already be associated with this workspace.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+        - name: conn_handle
+          in: path
+          description: The handle of the connection to test in this workspace. The connection must already be associated with this workspace whose association needs to be deleted.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z][a-z0-9_]{0,37}[a-z0-9]?$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ConnectionTestResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/user/{user_handle}/workspace/{workspace_handle}/logs":
+    get:
+      tags:
+        - Users
+      summary: User workspace logs
+      description: Returns the workspace logs for a user.
+      operationId: list-user-workspace-logs
+      parameters:
+        - name: user_handle
+          in: path
+          description: Specify the user handle to get the workspace logs.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace whose logs needs to be fetched.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.ListLogsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+  "/user/{user_handle}/workspace/{workspace_handle}/query":
+    get:
+      tags:
+        - OrgWorkspaces
+      summary: Query user workspace
+      description: "Performs a query in a user workspace. Accepts Creates a new workspace for an organization. The limit is 10 per organization. If you require more than 10, you must contact support to request an increase."
+      parameters:
+        - name: user_handle
+          in: path
+          description: The handle of the user that owns the workspace where we want to create the workspace.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$"
+        - name: workspace_handle
+          in: path
+          description: The handle of the workspace to query.
+          required: true
+          schema:
+            type: string
+            format: "^[a-z0-9]{1,23}$"
+        - name: t
+          in: query
+          description: Specify the token.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/types.WorkspaceQueryResult"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "402":
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sperr.ErrorModel"
+components:
+  schemas:
+    sperr.ErrorDetailModel:
+      type: object
+      properties:
+        location:
+          type: string
+        message:
+          type: string
+        value:
+          type: string
+    sperr.ErrorModel:
+      required:
+        - id
+        - status
+        - title
+        - type
+      type: object
+      properties:
+        detail:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/sperr.ErrorDetailModel"
+        id:
+          type: string
+        instance:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+    types.AssociationQuota:
+      type: object
+      additionalProperties:
+        $ref: "#/components/schemas/types.Quota"
+    types.AuditRecord:
+      required:
+        - action_type
+        - actor_avatar_url
+        - actor_display_name
+        - actor_handle
+        - actor_id
+        - actor_ip
+        - created_at
+        - data
+        - id
+        - identity_handle
+        - identity_id
+      type: object
+      properties:
+        action_type:
+          type: string
+        actor_avatar_url:
+          type: string
+        actor_display_name:
+          type: string
+        actor_handle:
+          type: string
+        actor_id:
+          type: string
+        actor_ip:
+          type: string
+        created_at:
+          type: string
+        data:
+          $ref: "#/components/schemas/types.JSONB"
+        id:
+          type: string
+        identity_handle:
+          type: string
+        identity_id:
+          type: string
+        target_handle:
+          type: string
+        target_id:
+          type: string
+    types.Connection:
+      required:
+        - created_at
+        - handle
+        - id
+        - identity_id
+        - version_id
+      type: object
+      properties:
+        config:
+          $ref: "#/components/schemas/types.ConnectionConfig"
+        created_at:
+          type: string
+        handle:
+          type: string
+          format: "^[a-z](?:[a-z0-9]|_(?=[a-z0-9])){0,38}$"
+        id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        identity:
+          $ref: "#/components/schemas/types.Identity"
+        identity_id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        plugin:
+          type: string
+        type:
+          type: string
+        updated_at:
+          type: string
+        version_id:
+          type: integer
+    types.ConnectionConfig:
+      type: object
+    types.ConnectionTestResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.ConnectionTestRow"
+        next_token:
+          type: string
+    types.ConnectionTestResult:
+      type: object
+      properties:
+        reason:
+          type: string
+        status:
+          type: string
+    types.ConnectionTestRow:
+      type: object
+      properties:
+        id:
+          type: string
+        reason:
+          type: string
+        status:
+          type: string
+        test:
+          type: string
+    types.CreateConnectionRequest:
+      required:
+        - handle
+        - plugin
+      type: object
+      properties:
+        config:
+          type: object
+          properties: {}
+        handle:
+          type: string
+          format: "^[a-z](?:[a-z0-9]|_(?=[a-z0-9])){0,38}$"
+        plugin:
+          type: string
+          description: 'Type   string                 `json:"type" binding:"required,steampipe_connection_type"`'
+    types.CreateOrgRequest:
+      required:
+        - handle
+      type: object
+      properties:
+        avatar_url:
+          type: string
+        display_name:
+          type: string
+        handle:
+          type: string
+          format: "^[a-z0-9](?:[a-z0-9]|-(?=[a-z0-9])){0,38}$"
+        url:
+          type: string
+    types.CreateUserPasswordRequest:
+      type: object
+      properties:
+        expires_in_minutes:
+          type: integer
+    types.CreateUserRequest:
+      required:
+        - email
+        - handle
+      type: object
+      properties:
+        display_name:
+          type: string
+        email:
+          type: string
+        handle:
+          type: string
+          format: "^[a-z0-9](?:[a-z0-9]|-(?=[a-z0-9])){0,38}$"
+        url:
+          type: string
+    types.CreateWorkspaceConnRequest:
+      required:
+        - connection_handle
+      type: object
+      properties:
+        connection_handle:
+          type: string
+          format: "^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$"
+    types.CreateWorkspaceRequest:
+      required:
+        - handle
+      type: object
+      properties:
+        handle:
+          type: string
+          format: "^[a-z0-9]{1,23}$"
+    types.Identity:
+      required:
+        - handle
+        - id
+        - type
+      type: object
+      properties:
+        display_name:
+          type: string
+        handle:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+    types.IdentitySearch:
+      required:
+        - handle
+        - id
+      type: object
+      properties:
+        avatar_url:
+          type: string
+        display_name:
+          type: string
+        handle:
+          type: string
+        id:
+          type: string
+    types.InviteOrgUserRequest:
+      required:
+        - role
+      type: object
+      properties:
+        email:
+          type: string
+        handle:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        role:
+          type: string
+    types.JSONB:
+      type: object
+    types.ListAuditLogsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.AuditRecord"
+        next_token:
+          type: string
+    types.ListConnectionsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.Connection"
+        next_token:
+          type: string
+    types.ListLogsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.LogRecord"
+        next_token:
+          type: string
+    types.ListOrgUsersResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.OrgUser"
+        next_token:
+          type: string
+    types.ListOrgsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.Org"
+        next_token:
+          type: string
+    types.ListTokensResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.Token"
+        next_token:
+          type: string
+    types.ListUserOrgsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.UserOrg"
+        next_token:
+          type: string
+    types.ListUsersResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.User"
+        next_token:
+          type: string
+    types.ListWorkspaceConnResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.WorkspaceConn"
+        next_token:
+          type: string
+    types.ListWorkspacesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.Workspace"
+        next_token:
+          type: string
+    types.LogRecord:
+      required:
+        - actor_avatar_url
+        - actor_display_name
+        - actor_handle
+        - actor_id
+        - created_at
+        - id
+        - workspace_handle
+        - workspace_id
+      type: object
+      properties:
+        actor_avatar_url:
+          type: string
+        actor_display_name:
+          type: string
+        actor_handle:
+          type: string
+        actor_id:
+          type: string
+        created_at:
+          type: string
+        duration:
+          type: integer
+        id:
+          type: string
+        log_timestamp:
+          type: string
+        query:
+          type: string
+        workspace_handle:
+          type: string
+        workspace_id:
+          type: string
+    types.Org:
+      required:
+        - created_at
+        - handle
+        - id
+        - version_id
+      type: object
+      properties:
+        avatar_url:
+          type: string
+        created_at:
+          type: string
+        display_name:
+          type: string
+        handle:
+          type: string
+        id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        updated_at:
+          type: string
+        url:
+          type: string
+        version_id:
+          type: integer
+    types.OrgQuota:
+      required:
+        - association
+        - conn
+        - workspace
+      type: object
+      properties:
+        association:
+          $ref: "#/components/schemas/types.AssociationQuota"
+        conn:
+          $ref: "#/components/schemas/types.Quota"
+        workspace:
+          $ref: "#/components/schemas/types.Quota"
+    types.OrgUser:
+      required:
+        - email
+        - id
+        - org_id
+        - status
+        - user_handle
+        - user_id
+      type: object
+      properties:
+        created_at:
+          type: string
+        email:
+          type: string
+        id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        org_id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        role:
+          type: string
+        status:
+          type: string
+          format: "pending|accepted"
+        updated_at:
+          type: string
+        user:
+          $ref: "#/components/schemas/types.User"
+        user_handle:
+          type: string
+        user_id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        version_id:
+          type: integer
+    types.Quota:
+      type: object
+      properties:
+        available:
+          type: integer
+        limit:
+          type: integer
+        used:
+          type: integer
+    types.SearchIdentitiesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.IdentitySearch"
+    types.SearchUsersResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.UserSearch"
+        next_token:
+          type: string
+    types.Token:
+      required:
+        - created_at
+        - id
+        - status
+        - user_id
+        - version_id
+      type: object
+      properties:
+        created_at:
+          type: string
+        id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        last4:
+          type: string
+        status:
+          type: string
+        updated_at:
+          type: string
+        user_id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        version_id:
+          type: integer
+    types.UpdateConnectionRequest:
+      type: object
+      properties:
+        config:
+          type: object
+          properties: {}
+        handle:
+          type: string
+          format: "^[a-z](?:[a-z0-9]|_(?=[a-z0-9])){0,38}$"
+    types.UpdateOrgRequest:
+      type: object
+      properties:
+        avatar_url:
+          type: string
+        display_name:
+          type: string
+        handle:
+          type: string
+          format: "^[a-z0-9](?:[a-z0-9]|-(?=[a-z0-9])){0,38}$"
+        url:
+          type: string
+    types.UpdateOrgUserRequest:
+      required:
+        - role
+      type: object
+      properties:
+        role:
+          type: string
+    types.UpdateTokenRequest:
+      required:
+        - status
+      type: object
+      properties:
+        status:
+          type: string
+    types.UpdateUserRequest:
+      type: object
+      properties:
+        avatar_url:
+          type: string
+        display_name:
+          type: string
+        handle:
+          type: string
+          format: "^[a-z0-9](?:[a-z0-9]|-(?=[a-z0-9])){0,38}$"
+        url:
+          type: string
+    types.UpdateWorkspaceRequest:
+      type: object
+      properties:
+        handle:
+          type: string
+          format: "^[a-z0-9]{1,23}$"
+    types.User:
+      required:
+        - created_at
+        - email
+        - handle
+        - id
+        - status
+        - version_id
+      type: object
+      properties:
+        avatar_url:
+          type: string
+        created_at:
+          type: string
+        display_name:
+          type: string
+        email:
+          type: string
+        handle:
+          type: string
+        id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        preview_access_mode:
+          type: string
+        status:
+          type: string
+        updated_at:
+          type: string
+        url:
+          type: string
+        version_id:
+          type: integer
+    types.UserDatabasePassword:
+      required:
+        - $password
+        - created_at
+        - id
+      type: object
+      properties:
+        $password:
+          type: string
+        created_at:
+          type: string
+        expires_at:
+          type: string
+        id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        user_id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+    types.UserLoginRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+    types.UserOrg:
+      required:
+        - created_at
+        - id
+        - org_id
+        - role
+        - status
+        - user_id
+      type: object
+      properties:
+        created_at:
+          type: string
+        id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        org:
+          $ref: "#/components/schemas/types.Org"
+        org_id:
+          type: string
+        role:
+          type: string
+        status:
+          type: string
+          format: "pending|accepted"
+        updated_at:
+          type: string
+        user_id:
+          type: string
+        version_id:
+          type: integer
+    types.UserQuota:
+      required:
+        - association
+        - conn
+        - organization
+        - token
+        - workspace
+      type: object
+      properties:
+        association:
+          $ref: "#/components/schemas/types.AssociationQuota"
+        conn:
+          $ref: "#/components/schemas/types.Quota"
+        organization:
+          $ref: "#/components/schemas/types.Quota"
+        token:
+          $ref: "#/components/schemas/types.Quota"
+        workspace:
+          $ref: "#/components/schemas/types.Quota"
+    types.UserSearch:
+      required:
+        - id
+      type: object
+      properties:
+        avatar_url:
+          type: string
+        display_name:
+          type: string
+        handle:
+          type: string
+          format: "^[a-z](?:[a-z0-9]|_(?=[a-z0-9])){0,38}$"
+        id:
+          type: string
+    types.UserSignupRequest:
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+    types.Workspace:
+      required:
+        - created_at
+        - handle
+        - id
+        - identity_id
+        - version_id
+      type: object
+      properties:
+        created_at:
+          type: string
+        database_name:
+          type: string
+        handle:
+          type: string
+          format: "^[a-z0-9]{1,23}$"
+          example: aaa
+        hive:
+          type: string
+        host:
+          type: string
+        id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        identity:
+          $ref: "#/components/schemas/types.Identity"
+        identity_id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        public_key:
+          type: string
+        updated_at:
+          type: string
+        version_id:
+          type: integer
+        workspace_state:
+          type: string
+    types.WorkspaceConn:
+      required:
+        - connection_id
+        - created_at
+        - id
+        - identity_id
+        - version_id
+        - workspace_id
+      type: object
+      properties:
+        connection:
+          $ref: "#/components/schemas/types.Connection"
+        connection_id:
+          type: string
+        created_at:
+          type: string
+        id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        identity_id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+        updated_at:
+          type: string
+        version_id:
+          type: integer
+        workspace:
+          $ref: "#/components/schemas/types.Workspace"
+        workspace_id:
+          type: string
+          format: "^[a-z]_[0-9a-v]{20}$"
+    types.WorkspaceQueryResult:
+      required:
+        - columns
+        - rows
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: "#/components/schemas/types.WorkspaceQueryResultColumn"
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              type: object
+    types.WorkspaceQueryResultColumn:
+      required:
+        - data_type_name
+        - name
+      type: object
+      properties:
+        data_type_name:
+          type: string
+        max_data_length:
+          type: integer
+        name:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

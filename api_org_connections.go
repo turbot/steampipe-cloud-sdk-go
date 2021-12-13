@@ -68,7 +68,9 @@ func (a *OrgConnectionsApiService) CreateOrgConnectionExecute(r ApiCreateOrgConn
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesConnection
 	)
 
@@ -106,7 +108,7 @@ func (a *OrgConnectionsApiService) CreateOrgConnectionExecute(r ApiCreateOrgConn
 	}
 	// body params
 	localVarPostBody = r.request
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -249,7 +251,9 @@ func (a *OrgConnectionsApiService) DeleteOrgConnectionExecute(r ApiDeleteOrgConn
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesConnection
 	)
 
@@ -283,7 +287,7 @@ func (a *OrgConnectionsApiService) DeleteOrgConnectionExecute(r ApiDeleteOrgConn
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -406,7 +410,9 @@ func (a *OrgConnectionsApiService) GetOrgConnectionExecute(r ApiGetOrgConnection
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesConnection
 	)
 
@@ -440,7 +446,7 @@ func (a *OrgConnectionsApiService) GetOrgConnectionExecute(r ApiGetOrgConnection
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -582,7 +588,9 @@ func (a *OrgConnectionsApiService) ListOrgConnectionsExecute(r ApiListOrgConnect
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesListConnectionsResponse
 	)
 
@@ -621,7 +629,7 @@ func (a *OrgConnectionsApiService) ListOrgConnectionsExecute(r ApiListOrgConnect
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -711,6 +719,7 @@ type ApiTestOrgConnectionRequest struct {
 	ctx _context.Context
 	ApiService *OrgConnectionsApiService
 	orgHandle string
+	connHandle string
 }
 
 
@@ -719,19 +728,21 @@ func (r ApiTestOrgConnectionRequest) Execute() (TypesConnectionTestResult, *_net
 }
 
 /*
-TestOrgConnection Test org connection config
+TestOrgConnection Test org connection
 
 Test the config for an org connection to check for basic connectivity before you create it.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle The handle of the org performing the action.
+ @param connHandle The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
  @return ApiTestOrgConnectionRequest
 */
-func (a *OrgConnectionsApiService) TestOrgConnection(ctx _context.Context, orgHandle string) ApiTestOrgConnectionRequest {
+func (a *OrgConnectionsApiService) TestOrgConnection(ctx _context.Context, orgHandle string, connHandle string) ApiTestOrgConnectionRequest {
 	return ApiTestOrgConnectionRequest{
 		ApiService: a,
 		ctx: ctx,
 		orgHandle: orgHandle,
+		connHandle: connHandle,
 	}
 }
 
@@ -741,7 +752,9 @@ func (a *OrgConnectionsApiService) TestOrgConnectionExecute(r ApiTestOrgConnecti
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesConnectionTestResult
 	)
 
@@ -750,8 +763,9 @@ func (a *OrgConnectionsApiService) TestOrgConnectionExecute(r ApiTestOrgConnecti
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/org/{org_handle}/test/conn"
+	localVarPath := localBasePath + "/org/{org_handle}/conn/{conn_handle}/test"
 	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"conn_handle"+"}", _neturl.PathEscape(parameterToString(r.connHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -774,7 +788,7 @@ func (a *OrgConnectionsApiService) TestOrgConnectionExecute(r ApiTestOrgConnecti
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -893,7 +907,9 @@ func (a *OrgConnectionsApiService) UpdateOrgConnectionExecute(r ApiUpdateOrgConn
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
 		localVarReturnValue  TypesConnection
 	)
 
@@ -932,7 +948,7 @@ func (a *OrgConnectionsApiService) UpdateOrgConnectionExecute(r ApiUpdateOrgConn
 	}
 	// body params
 	localVarPostBody = r.request
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

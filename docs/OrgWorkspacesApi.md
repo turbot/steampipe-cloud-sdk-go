@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**GetOrgWorkspace**](OrgWorkspacesApi.md#GetOrgWorkspace) | **Get** /org/{org_handle}/workspace/{workspace_handle} | Get org workspace
 [**ListOrgWorkspaces**](OrgWorkspacesApi.md#ListOrgWorkspaces) | **Get** /org/{org_handle}/workspace | List org workspaces
 [**UpdateOrgWorkspace**](OrgWorkspacesApi.md#UpdateOrgWorkspace) | **Patch** /org/{org_handle}/workspace/{workspace_handle} | Update org workspace
+[**UserUserHandleWorkspaceWorkspaceHandleQueryGet**](OrgWorkspacesApi.md#UserUserHandleWorkspaceWorkspaceHandleQueryGet) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
 
 
 
@@ -372,6 +373,81 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UserUserHandleWorkspaceWorkspaceHandleQueryGet
+
+> TypesWorkspaceQueryResult UserUserHandleWorkspaceWorkspaceHandleQueryGet(ctx, userHandle, workspaceHandle).T(t).Execute()
+
+Query user workspace
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | The handle of the user that owns the workspace where we want to create the workspace.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
+    t := "t_example" // string | Specify the token. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrgWorkspacesApi.UserUserHandleWorkspaceWorkspaceHandleQueryGet(context.Background(), userHandle, workspaceHandle).T(t).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspacesApi.UserUserHandleWorkspaceWorkspaceHandleQueryGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UserUserHandleWorkspaceWorkspaceHandleQueryGet`: TypesWorkspaceQueryResult
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspacesApi.UserUserHandleWorkspaceWorkspaceHandleQueryGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | The handle of the user that owns the workspace where we want to create the workspace. | 
+**workspaceHandle** | **string** | The handle of the workspace to query. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserUserHandleWorkspaceWorkspaceHandleQueryGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **t** | **string** | Specify the token. | 
+
+### Return type
+
+[**TypesWorkspaceQueryResult**](TypesWorkspaceQueryResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
