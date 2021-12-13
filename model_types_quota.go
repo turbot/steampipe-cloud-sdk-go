@@ -18,8 +18,8 @@ import (
 // TypesQuota struct for TypesQuota
 type TypesQuota struct {
 	Available *int32 `json:"available,omitempty"`
-	Limit *int32 `json:"limit,omitempty"`
-	Used *int32 `json:"used,omitempty"`
+	Limit     *int32 `json:"limit,omitempty"`
+	Used      *int32 `json:"used,omitempty"`
 }
 
 // NewTypesQuota instantiates a new TypesQuota object
@@ -184,5 +184,3 @@ func (v *NullableTypesQuota) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

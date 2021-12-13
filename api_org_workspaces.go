@@ -29,10 +29,10 @@ var (
 type OrgWorkspacesApiService service
 
 type ApiCreateOrgWorkspaceRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgWorkspacesApiService
-	orgHandle string
-	request *TypesCreateWorkspaceRequest
+	orgHandle  string
+	request    *TypesCreateWorkspaceRequest
 }
 
 // The request body for the workspace to be created.
@@ -57,8 +57,8 @@ Creates a new workspace for an organization. The limit is 10 per organization. I
 func (a *OrgWorkspacesApiService) CreateOrgWorkspace(ctx _context.Context, orgHandle string) ApiCreateOrgWorkspaceRequest {
 	return ApiCreateOrgWorkspaceRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -215,12 +215,11 @@ func (a *OrgWorkspacesApiService) CreateOrgWorkspaceExecute(r ApiCreateOrgWorksp
 }
 
 type ApiDeleteOrgWorkspaceRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesApiService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesApiService
+	orgHandle       string
 	workspaceHandle string
 }
-
 
 func (r ApiDeleteOrgWorkspaceRequest) Execute() (TypesWorkspace, *_nethttp.Response, error) {
 	return r.ApiService.DeleteOrgWorkspaceExecute(r)
@@ -238,9 +237,9 @@ Deletes the workspace specified in the request.
 */
 func (a *OrgWorkspacesApiService) DeleteOrgWorkspace(ctx _context.Context, orgHandle string, workspaceHandle string) ApiDeleteOrgWorkspaceRequest {
 	return ApiDeleteOrgWorkspaceRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -374,12 +373,11 @@ func (a *OrgWorkspacesApiService) DeleteOrgWorkspaceExecute(r ApiDeleteOrgWorksp
 }
 
 type ApiGetOrgWorkspaceRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesApiService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesApiService
+	orgHandle       string
 	workspaceHandle string
 }
-
 
 func (r ApiGetOrgWorkspaceRequest) Execute() (TypesWorkspace, *_nethttp.Response, error) {
 	return r.ApiService.GetOrgWorkspaceExecute(r)
@@ -397,9 +395,9 @@ Get the details for a workspace in an organization.
 */
 func (a *OrgWorkspacesApiService) GetOrgWorkspace(ctx _context.Context, orgHandle string, workspaceHandle string) ApiGetOrgWorkspaceRequest {
 	return ApiGetOrgWorkspaceRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -543,11 +541,11 @@ func (a *OrgWorkspacesApiService) GetOrgWorkspaceExecute(r ApiGetOrgWorkspaceReq
 }
 
 type ApiListOrgWorkspacesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgWorkspacesApiService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -555,6 +553,7 @@ func (r ApiListOrgWorkspacesRequest) Limit(limit int32) ApiListOrgWorkspacesRequ
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListOrgWorkspacesRequest) NextToken(nextToken string) ApiListOrgWorkspacesRequest {
 	r.nextToken = &nextToken
@@ -577,8 +576,8 @@ List the workspace for an organization. The action supports list pagination and 
 func (a *OrgWorkspacesApiService) ListOrgWorkspaces(ctx _context.Context, orgHandle string) ApiListOrgWorkspacesRequest {
 	return ApiListOrgWorkspacesRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -716,11 +715,11 @@ func (a *OrgWorkspacesApiService) ListOrgWorkspacesExecute(r ApiListOrgWorkspace
 }
 
 type ApiUpdateOrgWorkspaceRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesApiService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesApiService
+	orgHandle       string
 	workspaceHandle string
-	request *TypesUpdateWorkspaceRequest
+	request         *TypesUpdateWorkspaceRequest
 }
 
 // The request body of the workspace which needs to be updated.
@@ -745,9 +744,9 @@ Update a workspace in an organization.
 */
 func (a *OrgWorkspacesApiService) UpdateOrgWorkspace(ctx _context.Context, orgHandle string, workspaceHandle string) ApiUpdateOrgWorkspaceRequest {
 	return ApiUpdateOrgWorkspaceRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -906,11 +905,11 @@ func (a *OrgWorkspacesApiService) UpdateOrgWorkspaceExecute(r ApiUpdateOrgWorksp
 }
 
 type ApiUserUserHandleWorkspaceWorkspaceHandleQueryGetRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesApiService
+	userHandle      string
 	workspaceHandle string
-	t *string
+	t               *string
 }
 
 // Specify the token.
@@ -935,9 +934,9 @@ Performs a query in a user workspace. Accepts Creates a new workspace for an org
 */
 func (a *OrgWorkspacesApiService) UserUserHandleWorkspaceWorkspaceHandleQueryGet(ctx _context.Context, userHandle string, workspaceHandle string) ApiUserUserHandleWorkspaceWorkspaceHandleQueryGetRequest {
 	return ApiUserUserHandleWorkspaceWorkspaceHandleQueryGetRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }

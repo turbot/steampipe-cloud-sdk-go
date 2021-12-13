@@ -29,11 +29,10 @@ var (
 type UsersApiService service
 
 type ApiAuthProviderRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
-	provider string
+	provider   string
 }
-
 
 func (r ApiAuthProviderRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.AuthProviderExecute(r)
@@ -51,8 +50,8 @@ With an authentication provider, users can access Steampipe Cloud with single si
 func (a *UsersApiService) AuthProvider(ctx _context.Context, provider string) ApiAuthProviderRequest {
 	return ApiAuthProviderRequest{
 		ApiService: a,
-		ctx: ctx,
-		provider: provider,
+		ctx:        ctx,
+		provider:   provider,
 	}
 }
 
@@ -153,11 +152,10 @@ func (a *UsersApiService) AuthProviderExecute(r ApiAuthProviderRequest) (*_netht
 }
 
 type ApiAuthProviderCallbackRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
-	provider string
+	provider   string
 }
-
 
 func (r ApiAuthProviderCallbackRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.AuthProviderCallbackExecute(r)
@@ -175,8 +173,8 @@ Auth provider callback.
 func (a *UsersApiService) AuthProviderCallback(ctx _context.Context, provider string) ApiAuthProviderCallbackRequest {
 	return ApiAuthProviderCallbackRequest{
 		ApiService: a,
-		ctx: ctx,
-		provider: provider,
+		ctx:        ctx,
+		provider:   provider,
 	}
 }
 
@@ -297,9 +295,9 @@ func (a *UsersApiService) AuthProviderCallbackExecute(r ApiAuthProviderCallbackR
 }
 
 type ApiCreateUserRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
-	request *TypesCreateUserRequest
+	request    *TypesCreateUserRequest
 }
 
 // The request body to create the user.
@@ -323,7 +321,7 @@ Creates a new user.
 func (a *UsersApiService) CreateUser(ctx _context.Context) ApiCreateUserRequest {
 	return ApiCreateUserRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -479,10 +477,10 @@ func (a *UsersApiService) CreateUserExecute(r ApiCreateUserRequest) (TypesUser, 
 }
 
 type ApiCreateUserPasswordRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
-	request *TypesCreateUserPasswordRequest
+	request    *TypesCreateUserPasswordRequest
 }
 
 // The request body to create or rotate the password.
@@ -507,7 +505,7 @@ Create or rotate user password.
 func (a *UsersApiService) CreateUserPassword(ctx _context.Context, userHandle string) ApiCreateUserPasswordRequest {
 	return ApiCreateUserPasswordRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -665,11 +663,10 @@ func (a *UsersApiService) CreateUserPasswordExecute(r ApiCreateUserPasswordReque
 }
 
 type ApiDeleteUserRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
 }
-
 
 func (r ApiDeleteUserRequest) Execute() (TypesUser, *_nethttp.Response, error) {
 	return r.ApiService.DeleteUserExecute(r)
@@ -687,7 +684,7 @@ Deletes the specified user.
 func (a *UsersApiService) DeleteUser(ctx _context.Context, userHandle string) ApiDeleteUserRequest {
 	return ApiDeleteUserRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -820,10 +817,9 @@ func (a *UsersApiService) DeleteUserExecute(r ApiDeleteUserRequest) (TypesUser, 
 }
 
 type ApiGetActorRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
 }
-
 
 func (r ApiGetActorRequest) Execute() (TypesUser, *_nethttp.Response, error) {
 	return r.ApiService.GetActorExecute(r)
@@ -840,7 +836,7 @@ Returns the actor information.
 func (a *UsersApiService) GetActor(ctx _context.Context) ApiGetActorRequest {
 	return ApiGetActorRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -981,11 +977,10 @@ func (a *UsersApiService) GetActorExecute(r ApiGetActorRequest) (TypesUser, *_ne
 }
 
 type ApiGetUserRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
 }
-
 
 func (r ApiGetUserRequest) Execute() (TypesUser, *_nethttp.Response, error) {
 	return r.ApiService.GetUserExecute(r)
@@ -1003,7 +998,7 @@ Retrives information of the specified user.
 func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) ApiGetUserRequest {
 	return ApiGetUserRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -1146,11 +1141,10 @@ func (a *UsersApiService) GetUserExecute(r ApiGetUserRequest) (TypesUser, *_neth
 }
 
 type ApiGetUserPasswordRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
 }
-
 
 func (r ApiGetUserPasswordRequest) Execute() (TypesUserDatabasePassword, *_nethttp.Response, error) {
 	return r.ApiService.GetUserPasswordExecute(r)
@@ -1168,7 +1162,7 @@ Get user password.
 func (a *UsersApiService) GetUserPassword(ctx _context.Context, userHandle string) ApiGetUserPasswordRequest {
 	return ApiGetUserPasswordRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -1321,10 +1315,10 @@ func (a *UsersApiService) GetUserPasswordExecute(r ApiGetUserPasswordRequest) (T
 }
 
 type ApiListActorActivitiesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1332,6 +1326,7 @@ func (r ApiListActorActivitiesRequest) Limit(limit int32) ApiListActorActivities
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListActorActivitiesRequest) NextToken(nextToken string) ApiListActorActivitiesRequest {
 	r.nextToken = &nextToken
@@ -1353,7 +1348,7 @@ List the activity for an actor.
 func (a *UsersApiService) ListActorActivities(ctx _context.Context) ApiListActorActivitiesRequest {
 	return ApiListActorActivitiesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -1490,11 +1485,11 @@ func (a *UsersApiService) ListActorActivitiesExecute(r ApiListActorActivitiesReq
 }
 
 type ApiListOrgInvitedUsersRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1502,6 +1497,7 @@ func (r ApiListOrgInvitedUsersRequest) Limit(limit int32) ApiListOrgInvitedUsers
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListOrgInvitedUsersRequest) NextToken(nextToken string) ApiListOrgInvitedUsersRequest {
 	r.nextToken = &nextToken
@@ -1524,7 +1520,7 @@ List the orgs on which the user has been invited.
 func (a *UsersApiService) ListOrgInvitedUsers(ctx _context.Context, userHandle string) ApiListOrgInvitedUsersRequest {
 	return ApiListOrgInvitedUsersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -1663,11 +1659,11 @@ func (a *UsersApiService) ListOrgInvitedUsersExecute(r ApiListOrgInvitedUsersReq
 }
 
 type ApiListOrgUsersRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1675,6 +1671,7 @@ func (r ApiListOrgUsersRequest) Limit(limit int32) ApiListOrgUsersRequest {
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListOrgUsersRequest) NextToken(nextToken string) ApiListOrgUsersRequest {
 	r.nextToken = &nextToken
@@ -1697,7 +1694,7 @@ List the orgs which the user has access.
 func (a *UsersApiService) ListOrgUsers(ctx _context.Context, userHandle string) ApiListOrgUsersRequest {
 	return ApiListOrgUsersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -1836,11 +1833,11 @@ func (a *UsersApiService) ListOrgUsersExecute(r ApiListOrgUsersRequest) (TypesLi
 }
 
 type ApiListUserAuditLogsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1848,6 +1845,7 @@ func (r ApiListUserAuditLogsRequest) Limit(limit int32) ApiListUserAuditLogsRequ
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListUserAuditLogsRequest) NextToken(nextToken string) ApiListUserAuditLogsRequest {
 	r.nextToken = &nextToken
@@ -1870,7 +1868,7 @@ Returns the audit logs for a user.
 func (a *UsersApiService) ListUserAuditLogs(ctx _context.Context, userHandle string) ApiListUserAuditLogsRequest {
 	return ApiListUserAuditLogsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -2009,12 +2007,12 @@ func (a *UsersApiService) ListUserAuditLogsExecute(r ApiListUserAuditLogsRequest
 }
 
 type ApiListUserWorkspaceAuditLogsRequest struct {
-	ctx _context.Context
-	ApiService *UsersApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UsersApiService
+	userHandle      string
 	workspaceHandle string
-	limit *int32
-	nextToken *string
+	limit           *int32
+	nextToken       *string
 }
 
 // Pagination limit
@@ -2022,6 +2020,7 @@ func (r ApiListUserWorkspaceAuditLogsRequest) Limit(limit int32) ApiListUserWork
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListUserWorkspaceAuditLogsRequest) NextToken(nextToken string) ApiListUserWorkspaceAuditLogsRequest {
 	r.nextToken = &nextToken
@@ -2044,9 +2043,9 @@ Returns the audit logs for a user workspace.
 */
 func (a *UsersApiService) ListUserWorkspaceAuditLogs(ctx _context.Context, userHandle string, workspaceHandle string) ApiListUserWorkspaceAuditLogsRequest {
 	return ApiListUserWorkspaceAuditLogsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -2186,12 +2185,11 @@ func (a *UsersApiService) ListUserWorkspaceAuditLogsExecute(r ApiListUserWorkspa
 }
 
 type ApiListUserWorkspaceLogsRequest struct {
-	ctx _context.Context
-	ApiService *UsersApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UsersApiService
+	userHandle      string
 	workspaceHandle string
 }
-
 
 func (r ApiListUserWorkspaceLogsRequest) Execute() (TypesListLogsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListUserWorkspaceLogsExecute(r)
@@ -2209,9 +2207,9 @@ Returns the workspace logs for a user.
 */
 func (a *UsersApiService) ListUserWorkspaceLogs(ctx _context.Context, userHandle string, workspaceHandle string) ApiListUserWorkspaceLogsRequest {
 	return ApiListUserWorkspaceLogsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -2345,10 +2343,10 @@ func (a *UsersApiService) ListUserWorkspaceLogsExecute(r ApiListUserWorkspaceLog
 }
 
 type ApiListUsersRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -2356,6 +2354,7 @@ func (r ApiListUsersRequest) Limit(limit int32) ApiListUsersRequest {
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListUsersRequest) NextToken(nextToken string) ApiListUsersRequest {
 	r.nextToken = &nextToken
@@ -2377,7 +2376,7 @@ List the users.
 func (a *UsersApiService) ListUsers(ctx _context.Context) ApiListUsersRequest {
 	return ApiListUsersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -2514,11 +2513,11 @@ func (a *UsersApiService) ListUsersExecute(r ApiListUsersRequest) (TypesListUser
 }
 
 type ApiSearchUsersRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
-	q *string
-	limit *int32
-	nextToken *string
+	q          *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Specify the search string.
@@ -2526,11 +2525,13 @@ func (r ApiSearchUsersRequest) Q(q string) ApiSearchUsersRequest {
 	r.q = &q
 	return r
 }
+
 // Pagination limit
 func (r ApiSearchUsersRequest) Limit(limit int32) ApiSearchUsersRequest {
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiSearchUsersRequest) NextToken(nextToken string) ApiSearchUsersRequest {
 	r.nextToken = &nextToken
@@ -2552,7 +2553,7 @@ Search users and lists the ones that meet the filter criteria.
 func (a *UsersApiService) SearchUsers(ctx _context.Context) ApiSearchUsersRequest {
 	return ApiSearchUsersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -2693,10 +2694,10 @@ func (a *UsersApiService) SearchUsersExecute(r ApiSearchUsersRequest) (TypesSear
 }
 
 type ApiUpdateUserRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
-	request *TypesUpdateUserRequest
+	request    *TypesUpdateUserRequest
 }
 
 // The request body for the user.
@@ -2721,7 +2722,7 @@ Updates the handle name, display name or the URl of the user.
 func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string) ApiUpdateUserRequest {
 	return ApiUpdateUserRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -2879,9 +2880,9 @@ func (a *UsersApiService) UpdateUserExecute(r ApiUpdateUserRequest) (TypesUser, 
 }
 
 type ApiUserLoginRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
-	request *TypesUserLoginRequest
+	request    *TypesUserLoginRequest
 }
 
 // The request body to login.
@@ -2905,7 +2906,7 @@ User login.
 func (a *UsersApiService) UserLogin(ctx _context.Context) ApiUserLoginRequest {
 	return ApiUserLoginRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -3020,9 +3021,9 @@ func (a *UsersApiService) UserLoginExecute(r ApiUserLoginRequest) (*_nethttp.Res
 }
 
 type ApiUserLoginConfirmRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
-	t *string
+	t          *string
 }
 
 // Specify the token.
@@ -3046,7 +3047,7 @@ Confirm user login.
 func (a *UsersApiService) UserLoginConfirm(ctx _context.Context) ApiUserLoginConfirmRequest {
 	return ApiUserLoginConfirmRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -3170,11 +3171,10 @@ func (a *UsersApiService) UserLoginConfirmExecute(r ApiUserLoginConfirmRequest) 
 }
 
 type ApiUserLogoutRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
-	provider string
+	provider   string
 }
-
 
 func (r ApiUserLogoutRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.UserLogoutExecute(r)
@@ -3192,8 +3192,8 @@ Removes the session that is associated with the user.
 func (a *UsersApiService) UserLogout(ctx _context.Context, provider string) ApiUserLogoutRequest {
 	return ApiUserLogoutRequest{
 		ApiService: a,
-		ctx: ctx,
-		provider: provider,
+		ctx:        ctx,
+		provider:   provider,
 	}
 }
 
@@ -3294,11 +3294,10 @@ func (a *UsersApiService) UserLogoutExecute(r ApiUserLogoutRequest) (*_nethttp.R
 }
 
 type ApiUserQuotaRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
 }
-
 
 func (r ApiUserQuotaRequest) Execute() (TypesUserQuota, *_nethttp.Response, error) {
 	return r.ApiService.UserQuotaExecute(r)
@@ -3316,7 +3315,7 @@ Returns the quota information for a user.
 func (a *UsersApiService) UserQuota(ctx _context.Context, userHandle string) ApiUserQuotaRequest {
 	return ApiUserQuotaRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -3449,9 +3448,9 @@ func (a *UsersApiService) UserQuotaExecute(r ApiUserQuotaRequest) (TypesUserQuot
 }
 
 type ApiUserSearchRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
-	q *string
+	q          *string
 }
 
 // Specify the search string.
@@ -3475,7 +3474,7 @@ Search identity handle name.
 func (a *UsersApiService) UserSearch(ctx _context.Context) ApiUserSearchRequest {
 	return ApiUserSearchRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -3610,9 +3609,9 @@ func (a *UsersApiService) UserSearchExecute(r ApiUserSearchRequest) (TypesSearch
 }
 
 type ApiUserSignupRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
-	request *TypesUserSignupRequest
+	request    *TypesUserSignupRequest
 }
 
 // The request body to signup.
@@ -3636,7 +3635,7 @@ New user signup.
 func (a *UsersApiService) UserSignup(ctx _context.Context) ApiUserSignupRequest {
 	return ApiUserSignupRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -3751,9 +3750,9 @@ func (a *UsersApiService) UserSignupExecute(r ApiUserSignupRequest) (*_nethttp.R
 }
 
 type ApiUserSignupConfirmRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersApiService
-	t *string
+	t          *string
 }
 
 // Specify the token.
@@ -3777,7 +3776,7 @@ Confirm user signup.
 func (a *UsersApiService) UserSignupConfirm(ctx _context.Context) ApiUserSignupConfirmRequest {
 	return ApiUserSignupConfirmRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 

@@ -29,11 +29,11 @@ var (
 type UserWorkspaceConnectionAssociationsApiService service
 
 type ApiCreateUserWorkspaceConnectionAssociationRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsApiService
+	userHandle      string
 	workspaceHandle string
-	request *TypesCreateWorkspaceConnRequest
+	request         *TypesCreateWorkspaceConnRequest
 }
 
 // The request body for the association to be created.
@@ -58,9 +58,9 @@ Associate a connection with the workspace. A workspace can have multiple assocai
 */
 func (a *UserWorkspaceConnectionAssociationsApiService) CreateUserWorkspaceConnectionAssociation(ctx _context.Context, userHandle string, workspaceHandle string) ApiCreateUserWorkspaceConnectionAssociationRequest {
 	return ApiCreateUserWorkspaceConnectionAssociationRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -219,13 +219,12 @@ func (a *UserWorkspaceConnectionAssociationsApiService) CreateUserWorkspaceConne
 }
 
 type ApiDeleteUserWorkspaceConnectionAssociationRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsApiService
+	userHandle      string
 	workspaceHandle string
-	connHandle string
+	connHandle      string
 }
-
 
 func (r ApiDeleteUserWorkspaceConnectionAssociationRequest) Execute() (TypesWorkspaceConn, *_nethttp.Response, error) {
 	return r.ApiService.DeleteUserWorkspaceConnectionAssociationExecute(r)
@@ -244,11 +243,11 @@ Deletes the workspace association with the connection.
 */
 func (a *UserWorkspaceConnectionAssociationsApiService) DeleteUserWorkspaceConnectionAssociation(ctx _context.Context, userHandle string, workspaceHandle string, connHandle string) ApiDeleteUserWorkspaceConnectionAssociationRequest {
 	return ApiDeleteUserWorkspaceConnectionAssociationRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
-		connHandle: connHandle,
+		connHandle:      connHandle,
 	}
 }
 
@@ -382,13 +381,12 @@ func (a *UserWorkspaceConnectionAssociationsApiService) DeleteUserWorkspaceConne
 }
 
 type ApiGetUserWorkspaceConnectionAssociationRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsApiService
+	userHandle      string
 	workspaceHandle string
-	connHandle string
+	connHandle      string
 }
-
 
 func (r ApiGetUserWorkspaceConnectionAssociationRequest) Execute() (TypesWorkspaceConn, *_nethttp.Response, error) {
 	return r.ApiService.GetUserWorkspaceConnectionAssociationExecute(r)
@@ -407,11 +405,11 @@ Get the details for a workspace and connection association.
 */
 func (a *UserWorkspaceConnectionAssociationsApiService) GetUserWorkspaceConnectionAssociation(ctx _context.Context, userHandle string, workspaceHandle string, connHandle string) ApiGetUserWorkspaceConnectionAssociationRequest {
 	return ApiGetUserWorkspaceConnectionAssociationRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
-		connHandle: connHandle,
+		connHandle:      connHandle,
 	}
 }
 
@@ -555,12 +553,12 @@ func (a *UserWorkspaceConnectionAssociationsApiService) GetUserWorkspaceConnecti
 }
 
 type ApiListUserWorkspaceConnectionAssociationsRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsApiService
+	userHandle      string
 	workspaceHandle string
-	limit *int32
-	nextToken *string
+	limit           *int32
+	nextToken       *string
 }
 
 // Pagination limit
@@ -568,6 +566,7 @@ func (r ApiListUserWorkspaceConnectionAssociationsRequest) Limit(limit int32) Ap
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListUserWorkspaceConnectionAssociationsRequest) NextToken(nextToken string) ApiListUserWorkspaceConnectionAssociationsRequest {
 	r.nextToken = &nextToken
@@ -590,9 +589,9 @@ List the connections associated with a workspace.
 */
 func (a *UserWorkspaceConnectionAssociationsApiService) ListUserWorkspaceConnectionAssociations(ctx _context.Context, userHandle string, workspaceHandle string) ApiListUserWorkspaceConnectionAssociationsRequest {
 	return ApiListUserWorkspaceConnectionAssociationsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -732,13 +731,12 @@ func (a *UserWorkspaceConnectionAssociationsApiService) ListUserWorkspaceConnect
 }
 
 type ApiTestUserWorkspaceConnectionAssociationRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsApiService
+	userHandle      string
 	workspaceHandle string
-	connHandle string
+	connHandle      string
 }
-
 
 func (r ApiTestUserWorkspaceConnectionAssociationRequest) Execute() (TypesConnectionTestResponse, *_nethttp.Response, error) {
 	return r.ApiService.TestUserWorkspaceConnectionAssociationExecute(r)
@@ -757,11 +755,11 @@ Test a user connection associated with a workspace to ensure that its config wor
 */
 func (a *UserWorkspaceConnectionAssociationsApiService) TestUserWorkspaceConnectionAssociation(ctx _context.Context, userHandle string, workspaceHandle string, connHandle string) ApiTestUserWorkspaceConnectionAssociationRequest {
 	return ApiTestUserWorkspaceConnectionAssociationRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
-		connHandle: connHandle,
+		connHandle:      connHandle,
 	}
 }
 

@@ -17,8 +17,8 @@ import (
 
 // TypesListOrgsResponse struct for TypesListOrgsResponse
 type TypesListOrgsResponse struct {
-	Items *[]TypesOrg `json:"items,omitempty"`
-	NextToken *string `json:"next_token,omitempty"`
+	Items     *[]TypesOrg `json:"items,omitempty"`
+	NextToken *string     `json:"next_token,omitempty"`
 }
 
 // NewTypesListOrgsResponse instantiates a new TypesListOrgsResponse object
@@ -148,5 +148,3 @@ func (v *NullableTypesListOrgsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

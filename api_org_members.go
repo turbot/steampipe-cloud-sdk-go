@@ -29,10 +29,10 @@ var (
 type OrgMembersApiService service
 
 type ApiConfirmOrgMemberInviteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
-	t *string
+	orgHandle  string
+	t          *string
 }
 
 // Specify the token.
@@ -57,8 +57,8 @@ Confirm org member invite.
 func (a *OrgMembersApiService) ConfirmOrgMemberInvite(ctx _context.Context, orgHandle string) ApiConfirmOrgMemberInviteRequest {
 	return ApiConfirmOrgMemberInviteRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -193,12 +193,11 @@ func (a *OrgMembersApiService) ConfirmOrgMemberInviteExecute(r ApiConfirmOrgMemb
 }
 
 type ApiDeleteOrgMemberRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
+	orgHandle  string
 	userHandle string
 }
-
 
 func (r ApiDeleteOrgMemberRequest) Execute() (TypesOrgUser, *_nethttp.Response, error) {
 	return r.ApiService.DeleteOrgMemberExecute(r)
@@ -217,8 +216,8 @@ Delete the user from the org.
 func (a *OrgMembersApiService) DeleteOrgMember(ctx _context.Context, orgHandle string, userHandle string) ApiDeleteOrgMemberRequest {
 	return ApiDeleteOrgMemberRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		userHandle: userHandle,
 	}
 }
@@ -372,10 +371,10 @@ func (a *OrgMembersApiService) DeleteOrgMemberExecute(r ApiDeleteOrgMemberReques
 }
 
 type ApiDeleteOrgMemberInviteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
-	t *string
+	orgHandle  string
+	t          *string
 }
 
 // Specify the token to be rejected.
@@ -400,8 +399,8 @@ Delete the org member invite.
 func (a *OrgMembersApiService) DeleteOrgMemberInvite(ctx _context.Context, orgHandle string) ApiDeleteOrgMemberInviteRequest {
 	return ApiDeleteOrgMemberInviteRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -526,12 +525,11 @@ func (a *OrgMembersApiService) DeleteOrgMemberInviteExecute(r ApiDeleteOrgMember
 }
 
 type ApiGetOrgMemberRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
+	orgHandle  string
 	userHandle string
 }
-
 
 func (r ApiGetOrgMemberRequest) Execute() (TypesOrgUser, *_nethttp.Response, error) {
 	return r.ApiService.GetOrgMemberExecute(r)
@@ -550,8 +548,8 @@ Get org member.
 func (a *OrgMembersApiService) GetOrgMember(ctx _context.Context, orgHandle string, userHandle string) ApiGetOrgMemberRequest {
 	return ApiGetOrgMemberRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		userHandle: userHandle,
 	}
 }
@@ -695,10 +693,10 @@ func (a *OrgMembersApiService) GetOrgMemberExecute(r ApiGetOrgMemberRequest) (Ty
 }
 
 type ApiInviteOrgMemberRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
-	request *TypesInviteOrgUserRequest
+	orgHandle  string
+	request    *TypesInviteOrgUserRequest
 }
 
 // The request body to invite a member to an organization.
@@ -723,8 +721,8 @@ Invite member to an org.
 func (a *OrgMembersApiService) InviteOrgMember(ctx _context.Context, orgHandle string) ApiInviteOrgMemberRequest {
 	return ApiInviteOrgMemberRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -861,11 +859,11 @@ func (a *OrgMembersApiService) InviteOrgMemberExecute(r ApiInviteOrgMemberReques
 }
 
 type ApiListAcceptedOrgMembersRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -873,6 +871,7 @@ func (r ApiListAcceptedOrgMembersRequest) Limit(limit int32) ApiListAcceptedOrgM
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListAcceptedOrgMembersRequest) NextToken(nextToken string) ApiListAcceptedOrgMembersRequest {
 	r.nextToken = &nextToken
@@ -895,8 +894,8 @@ List all the members who has accepted the request.
 func (a *OrgMembersApiService) ListAcceptedOrgMembers(ctx _context.Context, orgHandle string) ApiListAcceptedOrgMembersRequest {
 	return ApiListAcceptedOrgMembersRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -1034,11 +1033,11 @@ func (a *OrgMembersApiService) ListAcceptedOrgMembersExecute(r ApiListAcceptedOr
 }
 
 type ApiListInvitedOrgMembersRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1046,6 +1045,7 @@ func (r ApiListInvitedOrgMembersRequest) Limit(limit int32) ApiListInvitedOrgMem
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListInvitedOrgMembersRequest) NextToken(nextToken string) ApiListInvitedOrgMembersRequest {
 	r.nextToken = &nextToken
@@ -1068,8 +1068,8 @@ List all the members who has been invited to the org.
 func (a *OrgMembersApiService) ListInvitedOrgMembers(ctx _context.Context, orgHandle string) ApiListInvitedOrgMembersRequest {
 	return ApiListInvitedOrgMembersRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -1207,11 +1207,11 @@ func (a *OrgMembersApiService) ListInvitedOrgMembersExecute(r ApiListInvitedOrgM
 }
 
 type ApiUpdateOrgMemberRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersApiService
-	orgHandle string
+	orgHandle  string
 	userHandle string
-	request *TypesUpdateOrgUserRequest
+	request    *TypesUpdateOrgUserRequest
 }
 
 // The request body for the member.
@@ -1237,8 +1237,8 @@ Update the role of the member.
 func (a *OrgMembersApiService) UpdateOrgMember(ctx _context.Context, orgHandle string, userHandle string) ApiUpdateOrgMemberRequest {
 	return ApiUpdateOrgMemberRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		userHandle: userHandle,
 	}
 }

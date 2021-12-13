@@ -51,7 +51,7 @@ func (o *TypesCreateWorkspaceConnRequest) GetConnectionHandle() string {
 // GetConnectionHandleOk returns a tuple with the ConnectionHandle field value
 // and a boolean to check if the value has been set.
 func (o *TypesCreateWorkspaceConnRequest) GetConnectionHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ConnectionHandle, true
@@ -105,5 +105,3 @@ func (v *NullableTypesCreateWorkspaceConnRequest) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

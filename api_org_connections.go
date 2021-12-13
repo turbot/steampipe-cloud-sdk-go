@@ -29,10 +29,10 @@ var (
 type OrgConnectionsApiService service
 
 type ApiCreateOrgConnectionRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgConnectionsApiService
-	orgHandle string
-	request *TypesCreateConnectionRequest
+	orgHandle  string
+	request    *TypesCreateConnectionRequest
 }
 
 // The request body for the connection to be created.
@@ -57,8 +57,8 @@ Creates a new connection for an organization. The limit is 10 per organization. 
 func (a *OrgConnectionsApiService) CreateOrgConnection(ctx _context.Context, orgHandle string) ApiCreateOrgConnectionRequest {
 	return ApiCreateOrgConnectionRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -215,12 +215,11 @@ func (a *OrgConnectionsApiService) CreateOrgConnectionExecute(r ApiCreateOrgConn
 }
 
 type ApiDeleteOrgConnectionRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgConnectionsApiService
-	orgHandle string
+	orgHandle  string
 	connHandle string
 }
-
 
 func (r ApiDeleteOrgConnectionRequest) Execute() (TypesConnection, *_nethttp.Response, error) {
 	return r.ApiService.DeleteOrgConnectionExecute(r)
@@ -239,8 +238,8 @@ Deletes the connection specified in the request.
 func (a *OrgConnectionsApiService) DeleteOrgConnection(ctx _context.Context, orgHandle string, connHandle string) ApiDeleteOrgConnectionRequest {
 	return ApiDeleteOrgConnectionRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		connHandle: connHandle,
 	}
 }
@@ -374,12 +373,11 @@ func (a *OrgConnectionsApiService) DeleteOrgConnectionExecute(r ApiDeleteOrgConn
 }
 
 type ApiGetOrgConnectionRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgConnectionsApiService
-	orgHandle string
+	orgHandle  string
 	connHandle string
 }
-
 
 func (r ApiGetOrgConnectionRequest) Execute() (TypesConnection, *_nethttp.Response, error) {
 	return r.ApiService.GetOrgConnectionExecute(r)
@@ -398,8 +396,8 @@ Get the details for a connection.
 func (a *OrgConnectionsApiService) GetOrgConnection(ctx _context.Context, orgHandle string, connHandle string) ApiGetOrgConnectionRequest {
 	return ApiGetOrgConnectionRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		connHandle: connHandle,
 	}
 }
@@ -543,11 +541,11 @@ func (a *OrgConnectionsApiService) GetOrgConnectionExecute(r ApiGetOrgConnection
 }
 
 type ApiListOrgConnectionsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgConnectionsApiService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -555,6 +553,7 @@ func (r ApiListOrgConnectionsRequest) Limit(limit int32) ApiListOrgConnectionsRe
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListOrgConnectionsRequest) NextToken(nextToken string) ApiListOrgConnectionsRequest {
 	r.nextToken = &nextToken
@@ -577,8 +576,8 @@ List the connection for an organization. The action supports list pagination and
 func (a *OrgConnectionsApiService) ListOrgConnections(ctx _context.Context, orgHandle string) ApiListOrgConnectionsRequest {
 	return ApiListOrgConnectionsRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -716,12 +715,11 @@ func (a *OrgConnectionsApiService) ListOrgConnectionsExecute(r ApiListOrgConnect
 }
 
 type ApiTestOrgConnectionRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgConnectionsApiService
-	orgHandle string
+	orgHandle  string
 	connHandle string
 }
-
 
 func (r ApiTestOrgConnectionRequest) Execute() (TypesConnectionTestResult, *_nethttp.Response, error) {
 	return r.ApiService.TestOrgConnectionExecute(r)
@@ -740,8 +738,8 @@ Test the config for an org connection to check for basic connectivity before you
 func (a *OrgConnectionsApiService) TestOrgConnection(ctx _context.Context, orgHandle string, connHandle string) ApiTestOrgConnectionRequest {
 	return ApiTestOrgConnectionRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		connHandle: connHandle,
 	}
 }
@@ -865,11 +863,11 @@ func (a *OrgConnectionsApiService) TestOrgConnectionExecute(r ApiTestOrgConnecti
 }
 
 type ApiUpdateOrgConnectionRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgConnectionsApiService
-	orgHandle string
+	orgHandle  string
 	connHandle string
-	request *TypesUpdateConnectionRequest
+	request    *TypesUpdateConnectionRequest
 }
 
 // The request body of the connection which needs to be updated.
@@ -895,8 +893,8 @@ Update the connection in an organization.
 func (a *OrgConnectionsApiService) UpdateOrgConnection(ctx _context.Context, orgHandle string, connHandle string) ApiUpdateOrgConnectionRequest {
 	return ApiUpdateOrgConnectionRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		connHandle: connHandle,
 	}
 }

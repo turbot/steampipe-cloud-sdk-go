@@ -29,10 +29,10 @@ var (
 type UserConnectionsApiService service
 
 type ApiCreateUserConnectionRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsApiService
 	userHandle string
-	request *TypesCreateConnectionRequest
+	request    *TypesCreateConnectionRequest
 }
 
 // The request body for the connection to be created.
@@ -57,7 +57,7 @@ Creates a new connection for a user. The limit is 5 per user. If you require mor
 func (a *UserConnectionsApiService) CreateUserConnection(ctx _context.Context, userHandle string) ApiCreateUserConnectionRequest {
 	return ApiCreateUserConnectionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -215,12 +215,11 @@ func (a *UserConnectionsApiService) CreateUserConnectionExecute(r ApiCreateUserC
 }
 
 type ApiDeleteUserConnectionRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsApiService
 	userHandle string
 	connHandle string
 }
-
 
 func (r ApiDeleteUserConnectionRequest) Execute() (TypesConnection, *_nethttp.Response, error) {
 	return r.ApiService.DeleteUserConnectionExecute(r)
@@ -239,7 +238,7 @@ Deletes the connection specified in the request by the user.
 func (a *UserConnectionsApiService) DeleteUserConnection(ctx _context.Context, userHandle string, connHandle string) ApiDeleteUserConnectionRequest {
 	return ApiDeleteUserConnectionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 		connHandle: connHandle,
 	}
@@ -384,12 +383,11 @@ func (a *UserConnectionsApiService) DeleteUserConnectionExecute(r ApiDeleteUserC
 }
 
 type ApiGetUserConnectionRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsApiService
 	userHandle string
 	connHandle string
 }
-
 
 func (r ApiGetUserConnectionRequest) Execute() (TypesConnection, *_nethttp.Response, error) {
 	return r.ApiService.GetUserConnectionExecute(r)
@@ -408,7 +406,7 @@ Get the details for a connection.
 func (a *UserConnectionsApiService) GetUserConnection(ctx _context.Context, userHandle string, connHandle string) ApiGetUserConnectionRequest {
 	return ApiGetUserConnectionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 		connHandle: connHandle,
 	}
@@ -553,10 +551,10 @@ func (a *UserConnectionsApiService) GetUserConnectionExecute(r ApiGetUserConnect
 }
 
 type ApiListActorConnectionsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsApiService
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -564,6 +562,7 @@ func (r ApiListActorConnectionsRequest) Limit(limit int32) ApiListActorConnectio
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListActorConnectionsRequest) NextToken(nextToken string) ApiListActorConnectionsRequest {
 	r.nextToken = &nextToken
@@ -585,7 +584,7 @@ List the connections for an actor.
 func (a *UserConnectionsApiService) ListActorConnections(ctx _context.Context) ApiListActorConnectionsRequest {
 	return ApiListActorConnectionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -722,11 +721,11 @@ func (a *UserConnectionsApiService) ListActorConnectionsExecute(r ApiListActorCo
 }
 
 type ApiListUserConnectionsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsApiService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -734,6 +733,7 @@ func (r ApiListUserConnectionsRequest) Limit(limit int32) ApiListUserConnections
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListUserConnectionsRequest) NextToken(nextToken string) ApiListUserConnectionsRequest {
 	r.nextToken = &nextToken
@@ -756,7 +756,7 @@ List the connection for an user.
 func (a *UserConnectionsApiService) ListUserConnections(ctx _context.Context, userHandle string) ApiListUserConnectionsRequest {
 	return ApiListUserConnectionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -895,12 +895,11 @@ func (a *UserConnectionsApiService) ListUserConnectionsExecute(r ApiListUserConn
 }
 
 type ApiTestUserConnectionRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsApiService
 	userHandle string
 	connHandle string
 }
-
 
 func (r ApiTestUserConnectionRequest) Execute() (TypesConnectionTestResult, *_nethttp.Response, error) {
 	return r.ApiService.TestUserConnectionExecute(r)
@@ -919,7 +918,7 @@ Test the config for a user connection to check for basic connectivity before you
 func (a *UserConnectionsApiService) TestUserConnection(ctx _context.Context, userHandle string, connHandle string) ApiTestUserConnectionRequest {
 	return ApiTestUserConnectionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 		connHandle: connHandle,
 	}
@@ -1044,11 +1043,11 @@ func (a *UserConnectionsApiService) TestUserConnectionExecute(r ApiTestUserConne
 }
 
 type ApiUpdateUserConnectionRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsApiService
 	userHandle string
 	connHandle string
-	request *TypesUpdateConnectionRequest
+	request    *TypesUpdateConnectionRequest
 }
 
 // The request body for the connection which needs to be updated.
@@ -1074,7 +1073,7 @@ Update a connection for a user.
 func (a *UserConnectionsApiService) UpdateUserConnection(ctx _context.Context, userHandle string, connHandle string) ApiUpdateUserConnectionRequest {
 	return ApiUpdateUserConnectionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 		connHandle: connHandle,
 	}

@@ -29,10 +29,10 @@ var (
 type UserWorkspacesApiService service
 
 type ApiCreateUserWorkspaceRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserWorkspacesApiService
 	userHandle string
-	request *TypesCreateWorkspaceRequest
+	request    *TypesCreateWorkspaceRequest
 }
 
 // The request body for the workspace to be created.
@@ -57,7 +57,7 @@ Creates a new workspace for a user. The limit is 5 per user. If you require more
 func (a *UserWorkspacesApiService) CreateUserWorkspace(ctx _context.Context, userHandle string) ApiCreateUserWorkspaceRequest {
 	return ApiCreateUserWorkspaceRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -215,12 +215,11 @@ func (a *UserWorkspacesApiService) CreateUserWorkspaceExecute(r ApiCreateUserWor
 }
 
 type ApiDeleteUserWorkspaceRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesApiService
+	userHandle      string
 	workspaceHandle string
 }
-
 
 func (r ApiDeleteUserWorkspaceRequest) Execute() (TypesWorkspace, *_nethttp.Response, error) {
 	return r.ApiService.DeleteUserWorkspaceExecute(r)
@@ -238,9 +237,9 @@ Deletes the workspace specified in the request by the user.
 */
 func (a *UserWorkspacesApiService) DeleteUserWorkspace(ctx _context.Context, userHandle string, workspaceHandle string) ApiDeleteUserWorkspaceRequest {
 	return ApiDeleteUserWorkspaceRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -374,12 +373,11 @@ func (a *UserWorkspacesApiService) DeleteUserWorkspaceExecute(r ApiDeleteUserWor
 }
 
 type ApiGetUserWorkspaceRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesApiService
+	userHandle      string
 	workspaceHandle string
 }
-
 
 func (r ApiGetUserWorkspaceRequest) Execute() (TypesWorkspace, *_nethttp.Response, error) {
 	return r.ApiService.GetUserWorkspaceExecute(r)
@@ -397,9 +395,9 @@ Get the details for the workspace.
 */
 func (a *UserWorkspacesApiService) GetUserWorkspace(ctx _context.Context, userHandle string, workspaceHandle string) ApiGetUserWorkspaceRequest {
 	return ApiGetUserWorkspaceRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -543,10 +541,10 @@ func (a *UserWorkspacesApiService) GetUserWorkspaceExecute(r ApiGetUserWorkspace
 }
 
 type ApiListActorWorkspacesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserWorkspacesApiService
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -554,6 +552,7 @@ func (r ApiListActorWorkspacesRequest) Limit(limit int32) ApiListActorWorkspaces
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListActorWorkspacesRequest) NextToken(nextToken string) ApiListActorWorkspacesRequest {
 	r.nextToken = &nextToken
@@ -575,7 +574,7 @@ List the workspace for an actor.
 func (a *UserWorkspacesApiService) ListActorWorkspaces(ctx _context.Context) ApiListActorWorkspacesRequest {
 	return ApiListActorWorkspacesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -712,11 +711,11 @@ func (a *UserWorkspacesApiService) ListActorWorkspacesExecute(r ApiListActorWork
 }
 
 type ApiListUserWorkspacesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserWorkspacesApiService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -724,6 +723,7 @@ func (r ApiListUserWorkspacesRequest) Limit(limit int32) ApiListUserWorkspacesRe
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListUserWorkspacesRequest) NextToken(nextToken string) ApiListUserWorkspacesRequest {
 	r.nextToken = &nextToken
@@ -746,7 +746,7 @@ List the workspace for a user.
 func (a *UserWorkspacesApiService) ListUserWorkspaces(ctx _context.Context, userHandle string) ApiListUserWorkspacesRequest {
 	return ApiListUserWorkspacesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -885,11 +885,11 @@ func (a *UserWorkspacesApiService) ListUserWorkspacesExecute(r ApiListUserWorksp
 }
 
 type ApiUpdateUserWorkspaceRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesApiService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesApiService
+	userHandle      string
 	workspaceHandle string
-	request *TypesUpdateWorkspaceRequest
+	request         *TypesUpdateWorkspaceRequest
 }
 
 // The request body for the workspace which needs to be updated.
@@ -914,9 +914,9 @@ Update the workspace for a user.
 */
 func (a *UserWorkspacesApiService) UpdateUserWorkspace(ctx _context.Context, userHandle string, workspaceHandle string) ApiUpdateUserWorkspaceRequest {
 	return ApiUpdateUserWorkspaceRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }

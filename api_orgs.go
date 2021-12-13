@@ -29,9 +29,9 @@ var (
 type OrgsApiService service
 
 type ApiCreateOrgRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsApiService
-	request *TypesCreateOrgRequest
+	request    *TypesCreateOrgRequest
 }
 
 // The request body to create the organization.
@@ -55,7 +55,7 @@ Creates an organization.
 func (a *OrgsApiService) CreateOrg(ctx _context.Context) ApiCreateOrgRequest {
 	return ApiCreateOrgRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -211,11 +211,10 @@ func (a *OrgsApiService) CreateOrgExecute(r ApiCreateOrgRequest) (TypesOrg, *_ne
 }
 
 type ApiDeleteOrgRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsApiService
-	orgHandle string
+	orgHandle  string
 }
-
 
 func (r ApiDeleteOrgRequest) Execute() (TypesOrg, *_nethttp.Response, error) {
 	return r.ApiService.DeleteOrgExecute(r)
@@ -233,8 +232,8 @@ Deletes the specified organization if you have the appropriate access.
 func (a *OrgsApiService) DeleteOrg(ctx _context.Context, orgHandle string) ApiDeleteOrgRequest {
 	return ApiDeleteOrgRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -366,11 +365,10 @@ func (a *OrgsApiService) DeleteOrgExecute(r ApiDeleteOrgRequest) (TypesOrg, *_ne
 }
 
 type ApiGetOrgRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsApiService
-	orgHandle string
+	orgHandle  string
 }
-
 
 func (r ApiGetOrgRequest) Execute() (TypesOrg, *_nethttp.Response, error) {
 	return r.ApiService.GetOrgExecute(r)
@@ -388,8 +386,8 @@ Retrives the organization information.
 func (a *OrgsApiService) GetOrg(ctx _context.Context, orgHandle string) ApiGetOrgRequest {
 	return ApiGetOrgRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -531,11 +529,11 @@ func (a *OrgsApiService) GetOrgExecute(r ApiGetOrgRequest) (TypesOrg, *_nethttp.
 }
 
 type ApiListOrgAuditLogsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsApiService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -543,6 +541,7 @@ func (r ApiListOrgAuditLogsRequest) Limit(limit int32) ApiListOrgAuditLogsReques
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListOrgAuditLogsRequest) NextToken(nextToken string) ApiListOrgAuditLogsRequest {
 	r.nextToken = &nextToken
@@ -565,8 +564,8 @@ Returns the audit logs for an org.
 func (a *OrgsApiService) ListOrgAuditLogs(ctx _context.Context, orgHandle string) ApiListOrgAuditLogsRequest {
 	return ApiListOrgAuditLogsRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -704,12 +703,12 @@ func (a *OrgsApiService) ListOrgAuditLogsExecute(r ApiListOrgAuditLogsRequest) (
 }
 
 type ApiListOrgWorkspaceAuditLogsRequest struct {
-	ctx _context.Context
-	ApiService *OrgsApiService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgsApiService
+	orgHandle       string
 	workspaceHandle string
-	limit *int32
-	nextToken *string
+	limit           *int32
+	nextToken       *string
 }
 
 // Pagination limit
@@ -717,6 +716,7 @@ func (r ApiListOrgWorkspaceAuditLogsRequest) Limit(limit int32) ApiListOrgWorksp
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListOrgWorkspaceAuditLogsRequest) NextToken(nextToken string) ApiListOrgWorkspaceAuditLogsRequest {
 	r.nextToken = &nextToken
@@ -739,9 +739,9 @@ Returns the audit logs for an org workspace.
 */
 func (a *OrgsApiService) ListOrgWorkspaceAuditLogs(ctx _context.Context, orgHandle string, workspaceHandle string) ApiListOrgWorkspaceAuditLogsRequest {
 	return ApiListOrgWorkspaceAuditLogsRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -881,12 +881,11 @@ func (a *OrgsApiService) ListOrgWorkspaceAuditLogsExecute(r ApiListOrgWorkspaceA
 }
 
 type ApiListOrgWorkspaceLogsRequest struct {
-	ctx _context.Context
-	ApiService *OrgsApiService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgsApiService
+	orgHandle       string
 	workspaceHandle string
 }
-
 
 func (r ApiListOrgWorkspaceLogsRequest) Execute() (TypesListLogsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListOrgWorkspaceLogsExecute(r)
@@ -904,9 +903,9 @@ Returns the workspace logs for an org.
 */
 func (a *OrgsApiService) ListOrgWorkspaceLogs(ctx _context.Context, orgHandle string, workspaceHandle string) ApiListOrgWorkspaceLogsRequest {
 	return ApiListOrgWorkspaceLogsRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -1040,10 +1039,10 @@ func (a *OrgsApiService) ListOrgWorkspaceLogsExecute(r ApiListOrgWorkspaceLogsRe
 }
 
 type ApiListOrgsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsApiService
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1051,6 +1050,7 @@ func (r ApiListOrgsRequest) Limit(limit int32) ApiListOrgsRequest {
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ApiListOrgsRequest) NextToken(nextToken string) ApiListOrgsRequest {
 	r.nextToken = &nextToken
@@ -1072,7 +1072,7 @@ List all the organizations.
 func (a *OrgsApiService) ListOrgs(ctx _context.Context) ApiListOrgsRequest {
 	return ApiListOrgsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -1209,11 +1209,10 @@ func (a *OrgsApiService) ListOrgsExecute(r ApiListOrgsRequest) (TypesListOrgsRes
 }
 
 type ApiOrgQuotaRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsApiService
-	orgHandle string
+	orgHandle  string
 }
-
 
 func (r ApiOrgQuotaRequest) Execute() (TypesOrgQuota, *_nethttp.Response, error) {
 	return r.ApiService.OrgQuotaExecute(r)
@@ -1231,8 +1230,8 @@ Returns the quota information for an org.
 func (a *OrgsApiService) OrgQuota(ctx _context.Context, orgHandle string) ApiOrgQuotaRequest {
 	return ApiOrgQuotaRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -1364,10 +1363,10 @@ func (a *OrgsApiService) OrgQuotaExecute(r ApiOrgQuotaRequest) (TypesOrgQuota, *
 }
 
 type ApiUpdateOrgRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsApiService
-	orgHandle string
-	request *TypesUpdateOrgRequest
+	orgHandle  string
+	request    *TypesUpdateOrgRequest
 }
 
 // The request body for the organization.
@@ -1392,8 +1391,8 @@ Updates the handle name, display name or the URl of the organization.
 func (a *OrgsApiService) UpdateOrg(ctx _context.Context, orgHandle string) ApiUpdateOrgRequest {
 	return ApiUpdateOrgRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 

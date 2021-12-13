@@ -18,8 +18,8 @@ import (
 // SperrErrorDetailModel struct for SperrErrorDetailModel
 type SperrErrorDetailModel struct {
 	Location *string `json:"location,omitempty"`
-	Message *string `json:"message,omitempty"`
-	Value *string `json:"value,omitempty"`
+	Message  *string `json:"message,omitempty"`
+	Value    *string `json:"value,omitempty"`
 }
 
 // NewSperrErrorDetailModel instantiates a new SperrErrorDetailModel object
@@ -184,5 +184,3 @@ func (v *NullableSperrErrorDetailModel) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
