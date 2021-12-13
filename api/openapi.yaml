@@ -1799,7 +1799,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/types.ListOrgUsersResponse'
+                $ref: '#/components/schemas/types.OrgUser'
           description: OK
         "400":
           content:

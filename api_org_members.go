@@ -533,7 +533,7 @@ type ApiGetOrgMemberRequest struct {
 }
 
 
-func (r ApiGetOrgMemberRequest) Execute() (TypesListOrgUsersResponse, *_nethttp.Response, error) {
+func (r ApiGetOrgMemberRequest) Execute() (TypesOrgUser, *_nethttp.Response, error) {
 	return r.ApiService.GetOrgMemberExecute(r)
 }
 
@@ -557,15 +557,15 @@ func (a *OrgMembersApiService) GetOrgMember(ctx _context.Context, orgHandle stri
 }
 
 // Execute executes the request
-//  @return TypesListOrgUsersResponse
-func (a *OrgMembersApiService) GetOrgMemberExecute(r ApiGetOrgMemberRequest) (TypesListOrgUsersResponse, *_nethttp.Response, error) {
+//  @return TypesOrgUser
+func (a *OrgMembersApiService) GetOrgMemberExecute(r ApiGetOrgMemberRequest) (TypesOrgUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  TypesListOrgUsersResponse
+		localVarReturnValue  TypesOrgUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersApiService.GetOrgMember")

@@ -230,7 +230,7 @@ No authorization required
 
 ## GetOrgMember
 
-> TypesListOrgUsersResponse GetOrgMember(ctx, orgHandle, userHandle).Execute()
+> TypesOrgUser GetOrgMember(ctx, orgHandle, userHandle).Execute()
 
 Get org member
 
@@ -259,7 +259,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgMembersApi.GetOrgMember``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrgMember`: TypesListOrgUsersResponse
+    // response from `GetOrgMember`: TypesOrgUser
     fmt.Fprintf(os.Stdout, "Response from `OrgMembersApi.GetOrgMember`: %v\n", resp)
 }
 ```
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListOrgUsersResponse**](TypesListOrgUsersResponse.md)
+[**TypesOrgUser**](TypesOrgUser.md)
 
 ### Authorization
 

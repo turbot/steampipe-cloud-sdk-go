@@ -1592,7 +1592,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/types.ListOrgUsersResponse"
+                $ref: "#/components/schemas/types.OrgUser"
         "400":
           description: Bad Request
           content:
