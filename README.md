@@ -12,8 +12,11 @@ Here's an example of listing the workspaces for your user:
 package main
 
 import (
-	"context"
-	steampipecloud "github.com/turbot/steampipe-cloud-sdk-go"
+    "context"
+    "fmt"
+    "os"
+
+    steampipecloud "github.com/turbot/steampipe-cloud-sdk-go"
 )
 
 func main() {
@@ -21,7 +24,7 @@ func main() {
     configuration := steampipecloud.NewConfiguration()
 
     // Add your Steampipe Cloud user token as an auth header
-    configuration.AddDefaultHeader("Authorization", "Bearer spt_steampipe_token")
+    configuration.AddDefaultHeader("Authorization", fmt.Sprintf("Bearer %s", os.Getenv("STEAMPIPE_CLOUD_TOKEN")))
 
     // Create a client
     client := steampipecloud.NewAPIClient(configuration)
