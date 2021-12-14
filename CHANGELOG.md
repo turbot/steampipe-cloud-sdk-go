@@ -4,7 +4,7 @@
 
 - Updated: Removed the suffix types from the struct.
 - Updated: Removed the suffix sperr from the error struct.
-- Updated: Updated the function name user and org query APIs.
+- Fixed: Naming of workspace data APIs.
 
 ## 0.0.1 [2021-12-13]
 
