@@ -111,13 +111,13 @@ Class | Method | HTTP request | Description
 *OrgWorkspaces* | [**Create**](docs/OrgWorkspaces.md#create) | **Post** /org/{org_handle}/workspace | Create org workspace
 *OrgWorkspaces* | [**Delete**](docs/OrgWorkspaces.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle} | Delete org workspace
 *OrgWorkspaces* | [**Get**](docs/OrgWorkspaces.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle} | Get org workspace
+*OrgWorkspaces* | [**GetQuery**](docs/OrgWorkspaces.md#getquery) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
+*OrgWorkspaces* | [**GetQueryWithExtensions**](docs/OrgWorkspaces.md#getquerywithextensions) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
+*OrgWorkspaces* | [**GetSchema**](docs/OrgWorkspaces.md#getschema) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema | Get org workspace schemas
 *OrgWorkspaces* | [**List**](docs/OrgWorkspaces.md#list) | **Get** /org/{org_handle}/workspace | List org workspaces
 *OrgWorkspaces* | [**ListDBLogs**](docs/OrgWorkspaces.md#listdblogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/logs | Org workspace logs
-*OrgWorkspaces* | [**OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet**](docs/OrgWorkspaces.md#orgorghandleworkspaceworkspacehandlequerydataextensionsget) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
-*OrgWorkspaces* | [**OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost**](docs/OrgWorkspaces.md#orgorghandleworkspaceworkspacehandlequerydataextensionspost) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
-*OrgWorkspaces* | [**OrgOrgHandleWorkspaceWorkspaceHandleQueryGet**](docs/OrgWorkspaces.md#orgorghandleworkspaceworkspacehandlequeryget) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
-*OrgWorkspaces* | [**OrgOrgHandleWorkspaceWorkspaceHandleQueryPost**](docs/OrgWorkspaces.md#orgorghandleworkspaceworkspacehandlequerypost) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
-*OrgWorkspaces* | [**OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet**](docs/OrgWorkspaces.md#orgorghandleworkspaceworkspacehandleschemaget) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema | Get org workspace schemas
+*OrgWorkspaces* | [**PostQuery**](docs/OrgWorkspaces.md#postquery) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
+*OrgWorkspaces* | [**PostQueryWithExtensions**](docs/OrgWorkspaces.md#postquerywithextensions) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
 *OrgWorkspaces* | [**Update**](docs/OrgWorkspaces.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle} | Update org workspace
 *Orgs* | [**Create**](docs/Orgs.md#create) | **Post** /org | Create org
 *Orgs* | [**Delete**](docs/Orgs.md#delete) | **Delete** /org/{org_handle} | Delete org
@@ -145,14 +145,14 @@ Class | Method | HTTP request | Description
 *UserWorkspaces* | [**Create**](docs/UserWorkspaces.md#create) | **Post** /user/{user_handle}/workspace | Create user workspace
 *UserWorkspaces* | [**Delete**](docs/UserWorkspaces.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle} | Delete user workspace
 *UserWorkspaces* | [**Get**](docs/UserWorkspaces.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle} | Get user workspace
+*UserWorkspaces* | [**GetQuery**](docs/UserWorkspaces.md#getquery) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
+*UserWorkspaces* | [**GetQueryWithExtensions**](docs/UserWorkspaces.md#getquerywithextensions) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
+*UserWorkspaces* | [**GetSchema**](docs/UserWorkspaces.md#getschema) | **Get** /user/{user_handle}/workspace/{workspace_handle}/schema | Get user workspace schemas
 *UserWorkspaces* | [**List**](docs/UserWorkspaces.md#list) | **Get** /user/{user_handle}/workspace | List user workspaces
 *UserWorkspaces* | [**ListDBLogs**](docs/UserWorkspaces.md#listdblogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/logs | User workspace logs
+*UserWorkspaces* | [**PostQuery**](docs/UserWorkspaces.md#postquery) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
+*UserWorkspaces* | [**PostQueryWithExtensions**](docs/UserWorkspaces.md#postquerywithextensions) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
 *UserWorkspaces* | [**Update**](docs/UserWorkspaces.md#update) | **Patch** /user/{user_handle}/workspace/{workspace_handle} | Update user workspace
-*UserWorkspaces* | [**UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet**](docs/UserWorkspaces.md#useruserhandleworkspaceworkspacehandlequerydataextensionsget) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
-*UserWorkspaces* | [**UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost**](docs/UserWorkspaces.md#useruserhandleworkspaceworkspacehandlequerydataextensionspost) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
-*UserWorkspaces* | [**UserUserHandleWorkspaceWorkspaceHandleQueryGet**](docs/UserWorkspaces.md#useruserhandleworkspaceworkspacehandlequeryget) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
-*UserWorkspaces* | [**UserUserHandleWorkspaceWorkspaceHandleQueryPost**](docs/UserWorkspaces.md#useruserhandleworkspaceworkspacehandlequerypost) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
-*UserWorkspaces* | [**UserUserHandleWorkspaceWorkspaceHandleSchemaGet**](docs/UserWorkspaces.md#useruserhandleworkspaceworkspacehandleschemaget) | **Get** /user/{user_handle}/workspace/{workspace_handle}/schema | Get user workspace schemas
 *Users* | [**Create**](docs/Users.md#create) | **Post** /user | Create user
 *Users* | [**CreateDBPassword**](docs/Users.md#createdbpassword) | **Post** /user/{user_handle}/password | Create user password
 *Users* | [**Delete**](docs/Users.md#delete) | **Delete** /user/{user_handle} | Delete user

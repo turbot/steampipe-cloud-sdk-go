@@ -2821,6 +2821,7 @@ paths:
     get:
       description: Performs a query in an org workspace. Results are limited to 3000
         rows or 30 seconds of query execution.
+      operationId: orgWorkspace_getQuery
       parameters:
       - description: The handle of the org that the workspace belongs to.
         explode: false
@@ -2948,6 +2949,7 @@ paths:
     post:
       description: Performs a query in an org workspace. Results are limited to 3000
         rows or 30 seconds of query execution.
+      operationId: orgWorkspace_postQuery
       parameters:
       - description: The handle of the org that the workspace belongs to.
         explode: false
@@ -3083,6 +3085,7 @@ paths:
       description: Performs a query in an org workspace, with content type and content
         encoding forming part of the API path. Results are limited to 3000 rows or
         30 seconds of query execution.
+      operationId: orgWorkspace_getQueryWithExtensions
       parameters:
       - description: The handle of the org that the workspace belongs to.
         explode: false
@@ -3219,6 +3222,7 @@ paths:
       description: Performs a query in an org workspace, with content type and content
         encoding forming part of the API path. Results are limited to 3000 rows or
         30 seconds of query execution.
+      operationId: orgWorkspace_postQueryWithExtensions
       parameters:
       - description: The handle of the org that the workspace belongs to.
         explode: false
@@ -3357,6 +3361,7 @@ paths:
         of the connections associated with the workspace and any automatic aggregators
         prefixed with "all_", which are created for any connections where you have
         >=2 of that plugin type.
+      operationId: orgWorkspace_getSchema
       parameters:
       - description: The handle of the org that the workspace belongs to.
         explode: false
@@ -5953,6 +5958,7 @@ paths:
     get:
       description: Performs a query in a user workspace. Results are limited to 3000
         rows or 30 seconds of query execution.
+      operationId: userWorkspace_getQuery
       parameters:
       - description: The handle of the user that the workspace belongs to.
         explode: false
@@ -6080,6 +6086,7 @@ paths:
     post:
       description: Performs a query in a user workspace. Results are limited to 3000
         rows or 30 seconds of query execution.
+      operationId: userWorkspace_postQuery
       parameters:
       - description: The handle of the user that the workspace belongs to.
         explode: false
@@ -6215,6 +6222,7 @@ paths:
       description: Performs a query in a user workspace, with content type and content
         encoding forming part of the API path. Results are limited to 3000 rows or
         30 seconds of query execution.
+      operationId: userWorkspace_getQueryWithExtensions
       parameters:
       - description: The handle of the user that the workspace belongs to.
         explode: false
@@ -6351,6 +6359,7 @@ paths:
       description: Performs a query in a user workspace, with content type and content
         encoding forming part of the API path. Results are limited to 3000 rows or
         30 seconds of query execution.
+      operationId: userWorkspace_postQueryWithExtensions
       parameters:
       - description: The handle of the user that the workspace belongs to.
         explode: false
@@ -6489,6 +6498,7 @@ paths:
         of the connections associated with the workspace and any automatic aggregators
         prefixed with "all_", which are created for any connections where you have
         >=2 of that plugin type.
+      operationId: userWorkspace_getSchema
       parameters:
       - description: The handle of the user that the workspace belongs to.
         explode: false
