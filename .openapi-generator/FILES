@@ -33,9 +33,7 @@ docs/SperrErrorDetailModel.md
 docs/SperrErrorModel.md
 docs/TypesAuditRecord.md
 docs/TypesConnection.md
-docs/TypesConnectionTestResponse.md
 docs/TypesConnectionTestResult.md
-docs/TypesConnectionTestRow.md
 docs/TypesCreateConnectionRequest.md
 docs/TypesCreateOrgRequest.md
 docs/TypesCreateUserPasswordRequest.md
@@ -96,9 +94,7 @@ model_sperr_error_detail_model.go
 model_sperr_error_model.go
 model_types_audit_record.go
 model_types_connection.go
-model_types_connection_test_response.go
 model_types_connection_test_result.go
-model_types_connection_test_row.go
 model_types_create_connection_request.go
 model_types_create_org_request.go
 model_types_create_user_password_request.go

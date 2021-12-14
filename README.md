@@ -108,7 +108,6 @@ Class | Method | HTTP request | Description
 *OrgWorkspaceConnectionAssociations* | [**Delete**](docs/OrgWorkspaceConnectionAssociations.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Get**](docs/OrgWorkspaceConnectionAssociations.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**List**](docs/OrgWorkspaceConnectionAssociations.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn | List org workspace connection associations
-*OrgWorkspaceConnectionAssociations* | [**OrgOrgHandleWorkspaceWorkspaceHandleConnConnHandleTestGet**](docs/OrgWorkspaceConnectionAssociations.md#orgorghandleworkspaceworkspacehandleconnconnhandletestget) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle}/test | Test org workspace connection
 *OrgWorkspaces* | [**Create**](docs/OrgWorkspaces.md#create) | **Post** /org/{org_handle}/workspace | Create org workspace
 *OrgWorkspaces* | [**Delete**](docs/OrgWorkspaces.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle} | Delete org workspace
 *OrgWorkspaces* | [**Get**](docs/OrgWorkspaces.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle} | Get org workspace
@@ -143,7 +142,6 @@ Class | Method | HTTP request | Description
 *UserWorkspaceConnectionAssociations* | [**Delete**](docs/UserWorkspaceConnectionAssociations.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete user workspace connection association
 *UserWorkspaceConnectionAssociations* | [**Get**](docs/UserWorkspaceConnectionAssociations.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get user workspace connection association
 *UserWorkspaceConnectionAssociations* | [**List**](docs/UserWorkspaceConnectionAssociations.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn | List user workspace connection associations
-*UserWorkspaceConnectionAssociations* | [**UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet**](docs/UserWorkspaceConnectionAssociations.md#useruserhandleworkspaceworkspacehandleconnconnhandletestget) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle}/test | Test user workspace connection
 *UserWorkspaces* | [**Create**](docs/UserWorkspaces.md#create) | **Post** /user/{user_handle}/workspace | Create user workspace
 *UserWorkspaces* | [**Delete**](docs/UserWorkspaces.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle} | Delete user workspace
 *UserWorkspaces* | [**Get**](docs/UserWorkspaces.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle} | Get user workspace
@@ -180,9 +178,7 @@ Class | Method | HTTP request | Description
  - [SperrErrorModel](docs/SperrErrorModel.md)
  - [TypesAuditRecord](docs/TypesAuditRecord.md)
  - [TypesConnection](docs/TypesConnection.md)
- - [TypesConnectionTestResponse](docs/TypesConnectionTestResponse.md)
  - [TypesConnectionTestResult](docs/TypesConnectionTestResult.md)
- - [TypesConnectionTestRow](docs/TypesConnectionTestRow.md)
  - [TypesCreateConnectionRequest](docs/TypesCreateConnectionRequest.md)
  - [TypesCreateOrgRequest](docs/TypesCreateOrgRequest.md)
  - [TypesCreateUserPasswordRequest](docs/TypesCreateUserPasswordRequest.md)

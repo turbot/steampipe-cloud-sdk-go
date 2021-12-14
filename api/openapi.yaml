@@ -2754,72 +2754,6 @@ paths:
       summary: Get org workspace connection association
       tags:
       - OrgWorkspaceConnectionAssociations
-  /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle}/test:
-    get:
-      description: Test an org connection associated with a workspace to ensure that
-        its config works with common plugin queries.
-      parameters:
-      - description: The handle of an organization where we want to delete the association.
-        explode: false
-        in: path
-        name: org_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
-          type: string
-        style: simple
-      - description: The handle of the workspace whose association needs to be deleted.
-        explode: false
-        in: path
-        name: workspace_handle
-        required: true
-        schema:
-          format: ^[a-z0-9]{1,23}$
-          type: string
-        style: simple
-      - description: The handle of the conn whose association needs to be deleted.
-        explode: false
-        in: path
-        name: conn_handle
-        required: true
-        schema:
-          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/types.ConnectionTestResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Forbidden
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Internal Server Error
-      summary: Test org workspace connection
-      tags:
-      - OrgWorkspaceConnectionAssociations
   /org/{org_handle}/workspace/{workspace_handle}/logs:
     get:
       description: Returns the workspace logs for an org.
@@ -5952,75 +5886,6 @@ paths:
       summary: Get user workspace connection association
       tags:
       - UserWorkspaceConnectionAssociations
-  /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle}/test:
-    get:
-      description: Test a user connection associated with a workspace to ensure that
-        its config works with common plugin queries.
-      parameters:
-      - description: The handle of the user performing the action.
-        explode: false
-        in: path
-        name: user_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
-          type: string
-        style: simple
-      - description: The handle of the workspace to test the connection in. The connection
-          must already be associated with this workspace.
-        explode: false
-        in: path
-        name: workspace_handle
-        required: true
-        schema:
-          format: ^[a-z0-9]{1,23}$
-          type: string
-        style: simple
-      - description: The handle of the connection to test in this workspace. The connection
-          must already be associated with this workspace whose association needs to
-          be deleted.
-        explode: false
-        in: path
-        name: conn_handle
-        required: true
-        schema:
-          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/types.ConnectionTestResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Forbidden
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/sperr.ErrorModel'
-          description: Internal Server Error
-      summary: Test user workspace connection
-      tags:
-      - UserWorkspaceConnectionAssociations
   /user/{user_handle}/workspace/{workspace_handle}/logs:
     get:
       description: Returns the workspace logs for a user.
@@ -6965,26 +6830,6 @@ components:
       type: object
     types.ConnectionConfig:
       type: object
-    types.ConnectionTestResponse:
-      example:
-        next_token: next_token
-        items:
-        - reason: reason
-          test: test
-          id: id
-          status: status
-        - reason: reason
-          test: test
-          id: id
-          status: status
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/types.ConnectionTestRow'
-          type: array
-        next_token:
-          type: string
-      type: object
     types.ConnectionTestResult:
       example:
         reason: reason
@@ -6993,22 +6838,6 @@ components:
         reason:
           type: string
         status:
-          type: string
-      type: object
-    types.ConnectionTestRow:
-      example:
-        reason: reason
-        test: test
-        id: id
-        status: status
-      properties:
-        id:
-          type: string
-        reason:
-          type: string
-        status:
-          type: string
-        test:
           type: string
       type: object
     types.CreateConnectionRequest:

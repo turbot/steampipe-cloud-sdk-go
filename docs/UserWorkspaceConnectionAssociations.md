@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**Delete**](UserWorkspaceConnectionAssociations.md#Delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete user workspace connection association
 [**Get**](UserWorkspaceConnectionAssociations.md#Get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get user workspace connection association
 [**List**](UserWorkspaceConnectionAssociations.md#List) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn | List user workspace connection associations
-[**UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet**](UserWorkspaceConnectionAssociations.md#UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle}/test | Test user workspace connection
 
 
 
@@ -301,82 +300,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TypesListWorkspaceConnResponse**](TypesListWorkspaceConnResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet
-
-> TypesConnectionTestResponse UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet(ctx, userHandle, workspaceHandle, connHandle).Execute()
-
-Test user workspace connection
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    userHandle := "userHandle_example" // string | The handle of the user performing the action.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to test the connection in. The connection must already be associated with this workspace.
-    connHandle := "connHandle_example" // string | The handle of the connection to test in this workspace. The connection must already be associated with this workspace whose association needs to be deleted.
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaceConnectionAssociations.UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet(context.Background(), userHandle, workspaceHandle, connHandle).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceConnectionAssociations.UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet`: TypesConnectionTestResponse
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceConnectionAssociations.UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | **string** | The handle of the user performing the action. | 
-**workspaceHandle** | **string** | The handle of the workspace to test the connection in. The connection must already be associated with this workspace. | 
-**connHandle** | **string** | The handle of the connection to test in this workspace. The connection must already be associated with this workspace whose association needs to be deleted. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-
-### Return type
-
-[**TypesConnectionTestResponse**](TypesConnectionTestResponse.md)
 
 ### Authorization
 

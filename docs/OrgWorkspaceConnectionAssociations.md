@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**Delete**](OrgWorkspaceConnectionAssociations.md#Delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete org workspace connection association
 [**Get**](OrgWorkspaceConnectionAssociations.md#Get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get org workspace connection association
 [**List**](OrgWorkspaceConnectionAssociations.md#List) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn | List org workspace connection associations
-[**OrgOrgHandleWorkspaceWorkspaceHandleConnConnHandleTestGet**](OrgWorkspaceConnectionAssociations.md#OrgOrgHandleWorkspaceWorkspaceHandleConnConnHandleTestGet) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle}/test | Test org workspace connection
 
 
 
@@ -301,82 +300,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TypesListWorkspaceConnResponse**](TypesListWorkspaceConnResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## OrgOrgHandleWorkspaceWorkspaceHandleConnConnHandleTestGet
-
-> TypesConnectionTestResponse OrgOrgHandleWorkspaceWorkspaceHandleConnConnHandleTestGet(ctx, orgHandle, workspaceHandle, connHandle).Execute()
-
-Test org workspace connection
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    orgHandle := "orgHandle_example" // string | The handle of an organization where we want to delete the association.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace whose association needs to be deleted.
-    connHandle := "connHandle_example" // string | The handle of the conn whose association needs to be deleted.
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaceConnectionAssociations.OrgOrgHandleWorkspaceWorkspaceHandleConnConnHandleTestGet(context.Background(), orgHandle, workspaceHandle, connHandle).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceConnectionAssociations.OrgOrgHandleWorkspaceWorkspaceHandleConnConnHandleTestGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrgOrgHandleWorkspaceWorkspaceHandleConnConnHandleTestGet`: TypesConnectionTestResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceConnectionAssociations.OrgOrgHandleWorkspaceWorkspaceHandleConnConnHandleTestGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgHandle** | **string** | The handle of an organization where we want to delete the association. | 
-**workspaceHandle** | **string** | The handle of the workspace whose association needs to be deleted. | 
-**connHandle** | **string** | The handle of the conn whose association needs to be deleted. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiOrgOrgHandleWorkspaceWorkspaceHandleConnConnHandleTestGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-
-### Return type
-
-[**TypesConnectionTestResponse**](TypesConnectionTestResponse.md)
 
 ### Authorization
 
