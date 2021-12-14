@@ -18,8 +18,8 @@ import (
 // ErrorDetailModel struct for ErrorDetailModel
 type ErrorDetailModel struct {
 	Location *string `json:"location,omitempty"`
-	Message *string `json:"message,omitempty"`
-	Value *string `json:"value,omitempty"`
+	Message  *string `json:"message,omitempty"`
+	Value    *string `json:"value,omitempty"`
 }
 
 // NewErrorDetailModel instantiates a new ErrorDetailModel object
@@ -184,5 +184,3 @@ func (v *NullableErrorDetailModel) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -17,14 +17,14 @@ import (
 
 // Org struct for Org
 type Org struct {
-	AvatarUrl *string `json:"avatar_url,omitempty"`
-	CreatedAt string `json:"created_at"`
+	AvatarUrl   *string `json:"avatar_url,omitempty"`
+	CreatedAt   string  `json:"created_at"`
 	DisplayName *string `json:"display_name,omitempty"`
-	Handle string `json:"handle"`
-	Id string `json:"id"`
-	UpdatedAt *string `json:"updated_at,omitempty"`
-	Url *string `json:"url,omitempty"`
-	VersionId int32 `json:"version_id"`
+	Handle      string  `json:"handle"`
+	Id          string  `json:"id"`
+	UpdatedAt   *string `json:"updated_at,omitempty"`
+	Url         *string `json:"url,omitempty"`
+	VersionId   int32   `json:"version_id"`
 }
 
 // NewOrg instantiates a new Org object
@@ -93,7 +93,7 @@ func (o *Org) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *Org) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CreatedAt, true
@@ -149,7 +149,7 @@ func (o *Org) GetHandle() string {
 // GetHandleOk returns a tuple with the Handle field value
 // and a boolean to check if the value has been set.
 func (o *Org) GetHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Handle, true
@@ -173,7 +173,7 @@ func (o *Org) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Org) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -261,7 +261,7 @@ func (o *Org) GetVersionId() int32 {
 // GetVersionIdOk returns a tuple with the VersionId field value
 // and a boolean to check if the value has been set.
 func (o *Org) GetVersionIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.VersionId, true
@@ -336,5 +336,3 @@ func (v *NullableOrg) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

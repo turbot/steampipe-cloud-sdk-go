@@ -18,8 +18,8 @@ import (
 // Quota struct for Quota
 type Quota struct {
 	Available *int32 `json:"available,omitempty"`
-	Limit *int32 `json:"limit,omitempty"`
-	Used *int32 `json:"used,omitempty"`
+	Limit     *int32 `json:"limit,omitempty"`
+	Used      *int32 `json:"used,omitempty"`
 }
 
 // NewQuota instantiates a new Quota object
@@ -184,5 +184,3 @@ func (v *NullableQuota) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

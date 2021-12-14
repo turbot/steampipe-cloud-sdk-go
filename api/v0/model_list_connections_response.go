@@ -17,8 +17,8 @@ import (
 
 // ListConnectionsResponse struct for ListConnectionsResponse
 type ListConnectionsResponse struct {
-	Items *[]Connection `json:"items,omitempty"`
-	NextToken *string `json:"next_token,omitempty"`
+	Items     *[]Connection `json:"items,omitempty"`
+	NextToken *string       `json:"next_token,omitempty"`
 }
 
 // NewListConnectionsResponse instantiates a new ListConnectionsResponse object
@@ -148,5 +148,3 @@ func (v *NullableListConnectionsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

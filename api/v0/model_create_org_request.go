@@ -17,10 +17,10 @@ import (
 
 // CreateOrgRequest struct for CreateOrgRequest
 type CreateOrgRequest struct {
-	AvatarUrl *string `json:"avatar_url,omitempty"`
+	AvatarUrl   *string `json:"avatar_url,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`
-	Handle string `json:"handle"`
-	Url *string `json:"url,omitempty"`
+	Handle      string  `json:"handle"`
+	Url         *string `json:"url,omitempty"`
 }
 
 // NewCreateOrgRequest instantiates a new CreateOrgRequest object
@@ -118,7 +118,7 @@ func (o *CreateOrgRequest) GetHandle() string {
 // GetHandleOk returns a tuple with the Handle field value
 // and a boolean to check if the value has been set.
 func (o *CreateOrgRequest) GetHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Handle, true
@@ -213,5 +213,3 @@ func (v *NullableCreateOrgRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

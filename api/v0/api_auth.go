@@ -29,9 +29,9 @@ var (
 type AuthService service
 
 type AuthApiConfirmLoginRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *AuthService
-	t *string
+	t          *string
 }
 
 // Specify the token.
@@ -55,16 +55,16 @@ Confirm user login.
 func (a *AuthService) ConfirmLogin(ctx _context.Context) AuthApiConfirmLoginRequest {
 	return AuthApiConfirmLoginRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *AuthService) ConfirmLoginExecute(r AuthApiConfirmLoginRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = _nethttp.MethodGet
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthService.ConfirmLogin")
@@ -177,9 +177,9 @@ func (a *AuthService) ConfirmLoginExecute(r AuthApiConfirmLoginRequest) (*_netht
 }
 
 type AuthApiConfirmSignupRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *AuthService
-	t *string
+	t          *string
 }
 
 // Specify the token.
@@ -203,16 +203,16 @@ Confirm user signup.
 func (a *AuthService) ConfirmSignup(ctx _context.Context) AuthApiConfirmSignupRequest {
 	return AuthApiConfirmSignupRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *AuthService) ConfirmSignupExecute(r AuthApiConfirmSignupRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = _nethttp.MethodGet
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthService.ConfirmSignup")
@@ -325,9 +325,9 @@ func (a *AuthService) ConfirmSignupExecute(r AuthApiConfirmSignupRequest) (*_net
 }
 
 type AuthApiLoginRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *AuthService
-	request *UserLoginRequest
+	request    *UserLoginRequest
 }
 
 // The request body to login.
@@ -351,16 +351,16 @@ User login.
 func (a *AuthService) Login(ctx _context.Context) AuthApiLoginRequest {
 	return AuthApiLoginRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *AuthService) LoginExecute(r AuthApiLoginRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = _nethttp.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthService.Login")
@@ -464,11 +464,10 @@ func (a *AuthService) LoginExecute(r AuthApiLoginRequest) (*_nethttp.Response, e
 }
 
 type AuthApiLogoutRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *AuthService
-	provider string
+	provider   string
 }
-
 
 func (r AuthApiLogoutRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.LogoutExecute(r)
@@ -486,17 +485,17 @@ Removes the session that is associated with the user.
 func (a *AuthService) Logout(ctx _context.Context, provider string) AuthApiLogoutRequest {
 	return AuthApiLogoutRequest{
 		ApiService: a,
-		ctx: ctx,
-		provider: provider,
+		ctx:        ctx,
+		provider:   provider,
 	}
 }
 
 // Execute executes the request
 func (a *AuthService) LogoutExecute(r AuthApiLogoutRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = _nethttp.MethodGet
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthService.Logout")
@@ -586,11 +585,10 @@ func (a *AuthService) LogoutExecute(r AuthApiLogoutRequest) (*_nethttp.Response,
 }
 
 type AuthApiProviderRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *AuthService
-	provider string
+	provider   string
 }
-
 
 func (r AuthApiProviderRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.ProviderExecute(r)
@@ -608,17 +606,17 @@ With an authentication provider, users can access Steampipe Cloud with single si
 func (a *AuthService) Provider(ctx _context.Context, provider string) AuthApiProviderRequest {
 	return AuthApiProviderRequest{
 		ApiService: a,
-		ctx: ctx,
-		provider: provider,
+		ctx:        ctx,
+		provider:   provider,
 	}
 }
 
 // Execute executes the request
 func (a *AuthService) ProviderExecute(r AuthApiProviderRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = _nethttp.MethodGet
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthService.Provider")
@@ -708,11 +706,10 @@ func (a *AuthService) ProviderExecute(r AuthApiProviderRequest) (*_nethttp.Respo
 }
 
 type AuthApiProviderCallbackRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *AuthService
-	provider string
+	provider   string
 }
-
 
 func (r AuthApiProviderCallbackRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.ProviderCallbackExecute(r)
@@ -730,17 +727,17 @@ Auth provider callback.
 func (a *AuthService) ProviderCallback(ctx _context.Context, provider string) AuthApiProviderCallbackRequest {
 	return AuthApiProviderCallbackRequest{
 		ApiService: a,
-		ctx: ctx,
-		provider: provider,
+		ctx:        ctx,
+		provider:   provider,
 	}
 }
 
 // Execute executes the request
 func (a *AuthService) ProviderCallbackExecute(r AuthApiProviderCallbackRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = _nethttp.MethodGet
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthService.ProviderCallback")
@@ -850,9 +847,9 @@ func (a *AuthService) ProviderCallbackExecute(r AuthApiProviderCallbackRequest) 
 }
 
 type AuthApiSignupRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *AuthService
-	request *UserSignupRequest
+	request    *UserSignupRequest
 }
 
 // The request body to signup.
@@ -876,16 +873,16 @@ New user signup.
 func (a *AuthService) Signup(ctx _context.Context) AuthApiSignupRequest {
 	return AuthApiSignupRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *AuthService) SignupExecute(r AuthApiSignupRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = _nethttp.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthService.Signup")

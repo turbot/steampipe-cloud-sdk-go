@@ -17,9 +17,9 @@ import (
 
 // WorkspaceQueryResultColumn struct for WorkspaceQueryResultColumn
 type WorkspaceQueryResultColumn struct {
-	DataTypeName string `json:"data_type_name"`
+	DataTypeName  string `json:"data_type_name"`
 	MaxDataLength *int32 `json:"max_data_length,omitempty"`
-	Name string `json:"name"`
+	Name          string `json:"name"`
 }
 
 // NewWorkspaceQueryResultColumn instantiates a new WorkspaceQueryResultColumn object
@@ -54,7 +54,7 @@ func (o *WorkspaceQueryResultColumn) GetDataTypeName() string {
 // GetDataTypeNameOk returns a tuple with the DataTypeName field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceQueryResultColumn) GetDataTypeNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.DataTypeName, true
@@ -110,7 +110,7 @@ func (o *WorkspaceQueryResultColumn) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceQueryResultColumn) GetNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Name, true
@@ -170,5 +170,3 @@ func (v *NullableWorkspaceQueryResultColumn) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

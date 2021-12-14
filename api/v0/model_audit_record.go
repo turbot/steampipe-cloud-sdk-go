@@ -17,19 +17,19 @@ import (
 
 // AuditRecord struct for AuditRecord
 type AuditRecord struct {
-	ActionType string `json:"action_type"`
-	ActorAvatarUrl string `json:"actor_avatar_url"`
-	ActorDisplayName string `json:"actor_display_name"`
-	ActorHandle string `json:"actor_handle"`
-	ActorId string `json:"actor_id"`
-	ActorIp string `json:"actor_ip"`
-	CreatedAt string `json:"created_at"`
-	Data map[string]interface{} `json:"data"`
-	Id string `json:"id"`
-	IdentityHandle string `json:"identity_handle"`
-	IdentityId string `json:"identity_id"`
-	TargetHandle *string `json:"target_handle,omitempty"`
-	TargetId *string `json:"target_id,omitempty"`
+	ActionType       string                 `json:"action_type"`
+	ActorAvatarUrl   string                 `json:"actor_avatar_url"`
+	ActorDisplayName string                 `json:"actor_display_name"`
+	ActorHandle      string                 `json:"actor_handle"`
+	ActorId          string                 `json:"actor_id"`
+	ActorIp          string                 `json:"actor_ip"`
+	CreatedAt        string                 `json:"created_at"`
+	Data             map[string]interface{} `json:"data"`
+	Id               string                 `json:"id"`
+	IdentityHandle   string                 `json:"identity_handle"`
+	IdentityId       string                 `json:"identity_id"`
+	TargetHandle     *string                `json:"target_handle,omitempty"`
+	TargetId         *string                `json:"target_id,omitempty"`
 }
 
 // NewAuditRecord instantiates a new AuditRecord object
@@ -73,7 +73,7 @@ func (o *AuditRecord) GetActionType() string {
 // GetActionTypeOk returns a tuple with the ActionType field value
 // and a boolean to check if the value has been set.
 func (o *AuditRecord) GetActionTypeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ActionType, true
@@ -97,7 +97,7 @@ func (o *AuditRecord) GetActorAvatarUrl() string {
 // GetActorAvatarUrlOk returns a tuple with the ActorAvatarUrl field value
 // and a boolean to check if the value has been set.
 func (o *AuditRecord) GetActorAvatarUrlOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ActorAvatarUrl, true
@@ -121,7 +121,7 @@ func (o *AuditRecord) GetActorDisplayName() string {
 // GetActorDisplayNameOk returns a tuple with the ActorDisplayName field value
 // and a boolean to check if the value has been set.
 func (o *AuditRecord) GetActorDisplayNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ActorDisplayName, true
@@ -145,7 +145,7 @@ func (o *AuditRecord) GetActorHandle() string {
 // GetActorHandleOk returns a tuple with the ActorHandle field value
 // and a boolean to check if the value has been set.
 func (o *AuditRecord) GetActorHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ActorHandle, true
@@ -169,7 +169,7 @@ func (o *AuditRecord) GetActorId() string {
 // GetActorIdOk returns a tuple with the ActorId field value
 // and a boolean to check if the value has been set.
 func (o *AuditRecord) GetActorIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ActorId, true
@@ -193,7 +193,7 @@ func (o *AuditRecord) GetActorIp() string {
 // GetActorIpOk returns a tuple with the ActorIp field value
 // and a boolean to check if the value has been set.
 func (o *AuditRecord) GetActorIpOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ActorIp, true
@@ -217,7 +217,7 @@ func (o *AuditRecord) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *AuditRecord) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CreatedAt, true
@@ -241,7 +241,7 @@ func (o *AuditRecord) GetData() map[string]interface{} {
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *AuditRecord) GetDataOk() (*map[string]interface{}, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Data, true
@@ -265,7 +265,7 @@ func (o *AuditRecord) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *AuditRecord) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -289,7 +289,7 @@ func (o *AuditRecord) GetIdentityHandle() string {
 // GetIdentityHandleOk returns a tuple with the IdentityHandle field value
 // and a boolean to check if the value has been set.
 func (o *AuditRecord) GetIdentityHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.IdentityHandle, true
@@ -313,7 +313,7 @@ func (o *AuditRecord) GetIdentityId() string {
 // GetIdentityIdOk returns a tuple with the IdentityId field value
 // and a boolean to check if the value has been set.
 func (o *AuditRecord) GetIdentityIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.IdentityId, true
@@ -467,5 +467,3 @@ func (v *NullableAuditRecord) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

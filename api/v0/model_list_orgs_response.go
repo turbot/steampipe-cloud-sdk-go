@@ -17,7 +17,7 @@ import (
 
 // ListOrgsResponse struct for ListOrgsResponse
 type ListOrgsResponse struct {
-	Items *[]Org `json:"items,omitempty"`
+	Items     *[]Org  `json:"items,omitempty"`
 	NextToken *string `json:"next_token,omitempty"`
 }
 
@@ -148,5 +148,3 @@ func (v *NullableListOrgsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

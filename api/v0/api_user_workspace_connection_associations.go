@@ -29,11 +29,11 @@ var (
 type UserWorkspaceConnectionAssociationsService service
 
 type UserWorkspaceConnectionAssociationsApiCreateRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsService
+	userHandle      string
 	workspaceHandle string
-	request *CreateWorkspaceConnRequest
+	request         *CreateWorkspaceConnRequest
 }
 
 // The request body for the association to be created.
@@ -58,9 +58,9 @@ Associate a connection with the workspace. A workspace can have multiple associa
 */
 func (a *UserWorkspaceConnectionAssociationsService) Create(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspaceConnectionAssociationsApiCreateRequest {
 	return UserWorkspaceConnectionAssociationsApiCreateRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -69,10 +69,10 @@ func (a *UserWorkspaceConnectionAssociationsService) Create(ctx _context.Context
 //  @return WorkspaceConn
 func (a *UserWorkspaceConnectionAssociationsService) CreateExecute(r UserWorkspaceConnectionAssociationsApiCreateRequest) (WorkspaceConn, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceConn
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceConn
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsService.Create")
@@ -217,13 +217,12 @@ func (a *UserWorkspaceConnectionAssociationsService) CreateExecute(r UserWorkspa
 }
 
 type UserWorkspaceConnectionAssociationsApiDeleteRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsService
+	userHandle      string
 	workspaceHandle string
-	connHandle string
+	connHandle      string
 }
-
 
 func (r UserWorkspaceConnectionAssociationsApiDeleteRequest) Execute() (WorkspaceConn, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
@@ -242,11 +241,11 @@ Deletes the workspace association with the connection.
 */
 func (a *UserWorkspaceConnectionAssociationsService) Delete(ctx _context.Context, userHandle string, workspaceHandle string, connHandle string) UserWorkspaceConnectionAssociationsApiDeleteRequest {
 	return UserWorkspaceConnectionAssociationsApiDeleteRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
-		connHandle: connHandle,
+		connHandle:      connHandle,
 	}
 }
 
@@ -254,10 +253,10 @@ func (a *UserWorkspaceConnectionAssociationsService) Delete(ctx _context.Context
 //  @return WorkspaceConn
 func (a *UserWorkspaceConnectionAssociationsService) DeleteExecute(r UserWorkspaceConnectionAssociationsApiDeleteRequest) (WorkspaceConn, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceConn
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceConn
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsService.Delete")
@@ -378,13 +377,12 @@ func (a *UserWorkspaceConnectionAssociationsService) DeleteExecute(r UserWorkspa
 }
 
 type UserWorkspaceConnectionAssociationsApiGetRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsService
+	userHandle      string
 	workspaceHandle string
-	connHandle string
+	connHandle      string
 }
-
 
 func (r UserWorkspaceConnectionAssociationsApiGetRequest) Execute() (WorkspaceConn, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
@@ -403,11 +401,11 @@ Get the details for a workspace and connection association.
 */
 func (a *UserWorkspaceConnectionAssociationsService) Get(ctx _context.Context, userHandle string, workspaceHandle string, connHandle string) UserWorkspaceConnectionAssociationsApiGetRequest {
 	return UserWorkspaceConnectionAssociationsApiGetRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
-		connHandle: connHandle,
+		connHandle:      connHandle,
 	}
 }
 
@@ -415,10 +413,10 @@ func (a *UserWorkspaceConnectionAssociationsService) Get(ctx _context.Context, u
 //  @return WorkspaceConn
 func (a *UserWorkspaceConnectionAssociationsService) GetExecute(r UserWorkspaceConnectionAssociationsApiGetRequest) (WorkspaceConn, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceConn
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceConn
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsService.Get")
@@ -549,12 +547,12 @@ func (a *UserWorkspaceConnectionAssociationsService) GetExecute(r UserWorkspaceC
 }
 
 type UserWorkspaceConnectionAssociationsApiListRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspaceConnectionAssociationsService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspaceConnectionAssociationsService
+	userHandle      string
 	workspaceHandle string
-	limit *int32
-	nextToken *string
+	limit           *int32
+	nextToken       *string
 }
 
 // Pagination limit
@@ -562,6 +560,7 @@ func (r UserWorkspaceConnectionAssociationsApiListRequest) Limit(limit int32) Us
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r UserWorkspaceConnectionAssociationsApiListRequest) NextToken(nextToken string) UserWorkspaceConnectionAssociationsApiListRequest {
 	r.nextToken = &nextToken
@@ -584,9 +583,9 @@ List the connections associated with a workspace.
 */
 func (a *UserWorkspaceConnectionAssociationsService) List(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspaceConnectionAssociationsApiListRequest {
 	return UserWorkspaceConnectionAssociationsApiListRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -595,10 +594,10 @@ func (a *UserWorkspaceConnectionAssociationsService) List(ctx _context.Context, 
 //  @return ListWorkspaceConnResponse
 func (a *UserWorkspaceConnectionAssociationsService) ListExecute(r UserWorkspaceConnectionAssociationsApiListRequest) (ListWorkspaceConnResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListWorkspaceConnResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListWorkspaceConnResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsService.List")

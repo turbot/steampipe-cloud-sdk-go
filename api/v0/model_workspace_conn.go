@@ -17,15 +17,15 @@ import (
 
 // WorkspaceConn struct for WorkspaceConn
 type WorkspaceConn struct {
-	Connection *Connection `json:"connection,omitempty"`
-	ConnectionId string `json:"connection_id"`
-	CreatedAt string `json:"created_at"`
-	Id string `json:"id"`
-	IdentityId string `json:"identity_id"`
-	UpdatedAt *string `json:"updated_at,omitempty"`
-	VersionId int32 `json:"version_id"`
-	Workspace *Workspace `json:"workspace,omitempty"`
-	WorkspaceId string `json:"workspace_id"`
+	Connection   *Connection `json:"connection,omitempty"`
+	ConnectionId string      `json:"connection_id"`
+	CreatedAt    string      `json:"created_at"`
+	Id           string      `json:"id"`
+	IdentityId   string      `json:"identity_id"`
+	UpdatedAt    *string     `json:"updated_at,omitempty"`
+	VersionId    int32       `json:"version_id"`
+	Workspace    *Workspace  `json:"workspace,omitempty"`
+	WorkspaceId  string      `json:"workspace_id"`
 }
 
 // NewWorkspaceConn instantiates a new WorkspaceConn object
@@ -96,7 +96,7 @@ func (o *WorkspaceConn) GetConnectionId() string {
 // GetConnectionIdOk returns a tuple with the ConnectionId field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceConn) GetConnectionIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ConnectionId, true
@@ -120,7 +120,7 @@ func (o *WorkspaceConn) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceConn) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CreatedAt, true
@@ -144,7 +144,7 @@ func (o *WorkspaceConn) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceConn) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -168,7 +168,7 @@ func (o *WorkspaceConn) GetIdentityId() string {
 // GetIdentityIdOk returns a tuple with the IdentityId field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceConn) GetIdentityIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.IdentityId, true
@@ -224,7 +224,7 @@ func (o *WorkspaceConn) GetVersionId() int32 {
 // GetVersionIdOk returns a tuple with the VersionId field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceConn) GetVersionIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.VersionId, true
@@ -280,7 +280,7 @@ func (o *WorkspaceConn) GetWorkspaceId() string {
 // GetWorkspaceIdOk returns a tuple with the WorkspaceId field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceConn) GetWorkspaceIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.WorkspaceId, true
@@ -358,5 +358,3 @@ func (v *NullableWorkspaceConn) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

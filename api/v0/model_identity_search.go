@@ -17,10 +17,10 @@ import (
 
 // IdentitySearch struct for IdentitySearch
 type IdentitySearch struct {
-	AvatarUrl *string `json:"avatar_url,omitempty"`
+	AvatarUrl   *string `json:"avatar_url,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`
-	Handle string `json:"handle"`
-	Id string `json:"id"`
+	Handle      string  `json:"handle"`
+	Id          string  `json:"id"`
 }
 
 // NewIdentitySearch instantiates a new IdentitySearch object
@@ -119,7 +119,7 @@ func (o *IdentitySearch) GetHandle() string {
 // GetHandleOk returns a tuple with the Handle field value
 // and a boolean to check if the value has been set.
 func (o *IdentitySearch) GetHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Handle, true
@@ -143,7 +143,7 @@ func (o *IdentitySearch) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *IdentitySearch) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -206,5 +206,3 @@ func (v *NullableIdentitySearch) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

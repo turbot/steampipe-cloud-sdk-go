@@ -17,11 +17,11 @@ import (
 
 // UserQuota struct for UserQuota
 type UserQuota struct {
-	Association map[string]Quota `json:"association"`
-	Conn Quota `json:"conn"`
-	Organization Quota `json:"organization"`
-	Token Quota `json:"token"`
-	Workspace Quota `json:"workspace"`
+	Association  map[string]Quota `json:"association"`
+	Conn         Quota            `json:"conn"`
+	Organization Quota            `json:"organization"`
+	Token        Quota            `json:"token"`
+	Workspace    Quota            `json:"workspace"`
 }
 
 // NewUserQuota instantiates a new UserQuota object
@@ -59,7 +59,7 @@ func (o *UserQuota) GetAssociation() map[string]Quota {
 // GetAssociationOk returns a tuple with the Association field value
 // and a boolean to check if the value has been set.
 func (o *UserQuota) GetAssociationOk() (*map[string]Quota, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Association, true
@@ -83,7 +83,7 @@ func (o *UserQuota) GetConn() Quota {
 // GetConnOk returns a tuple with the Conn field value
 // and a boolean to check if the value has been set.
 func (o *UserQuota) GetConnOk() (*Quota, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Conn, true
@@ -107,7 +107,7 @@ func (o *UserQuota) GetOrganization() Quota {
 // GetOrganizationOk returns a tuple with the Organization field value
 // and a boolean to check if the value has been set.
 func (o *UserQuota) GetOrganizationOk() (*Quota, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Organization, true
@@ -131,7 +131,7 @@ func (o *UserQuota) GetToken() Quota {
 // GetTokenOk returns a tuple with the Token field value
 // and a boolean to check if the value has been set.
 func (o *UserQuota) GetTokenOk() (*Quota, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Token, true
@@ -155,7 +155,7 @@ func (o *UserQuota) GetWorkspace() Quota {
 // GetWorkspaceOk returns a tuple with the Workspace field value
 // and a boolean to check if the value has been set.
 func (o *UserQuota) GetWorkspaceOk() (*Quota, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Workspace, true
@@ -221,5 +221,3 @@ func (v *NullableUserQuota) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

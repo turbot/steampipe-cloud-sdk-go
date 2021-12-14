@@ -17,10 +17,10 @@ import (
 
 // UpdateUserRequest struct for UpdateUserRequest
 type UpdateUserRequest struct {
-	AvatarUrl *string `json:"avatar_url,omitempty"`
+	AvatarUrl   *string `json:"avatar_url,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`
-	Handle *string `json:"handle,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Handle      *string `json:"handle,omitempty"`
+	Url         *string `json:"url,omitempty"`
 }
 
 // NewUpdateUserRequest instantiates a new UpdateUserRequest object
@@ -220,5 +220,3 @@ func (v *NullableUpdateUserRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

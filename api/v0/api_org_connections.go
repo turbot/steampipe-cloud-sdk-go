@@ -29,10 +29,10 @@ var (
 type OrgConnectionsService service
 
 type OrgConnectionsApiCreateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgConnectionsService
-	orgHandle string
-	request *CreateConnectionRequest
+	orgHandle  string
+	request    *CreateConnectionRequest
 }
 
 // The request body for the connection to be created.
@@ -57,8 +57,8 @@ Creates a new connection for an organization. The limit is 10 per organization. 
 func (a *OrgConnectionsService) Create(ctx _context.Context, orgHandle string) OrgConnectionsApiCreateRequest {
 	return OrgConnectionsApiCreateRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -66,10 +66,10 @@ func (a *OrgConnectionsService) Create(ctx _context.Context, orgHandle string) O
 //  @return Connection
 func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) (Connection, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Connection
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Connection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.Create")
@@ -213,12 +213,11 @@ func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) 
 }
 
 type OrgConnectionsApiDeleteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgConnectionsService
-	orgHandle string
+	orgHandle  string
 	connHandle string
 }
-
 
 func (r OrgConnectionsApiDeleteRequest) Execute() (Connection, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
@@ -237,8 +236,8 @@ Deletes the connection specified in the request.
 func (a *OrgConnectionsService) Delete(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiDeleteRequest {
 	return OrgConnectionsApiDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		connHandle: connHandle,
 	}
 }
@@ -247,10 +246,10 @@ func (a *OrgConnectionsService) Delete(ctx _context.Context, orgHandle string, c
 //  @return Connection
 func (a *OrgConnectionsService) DeleteExecute(r OrgConnectionsApiDeleteRequest) (Connection, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Connection
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Connection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.Delete")
@@ -370,12 +369,11 @@ func (a *OrgConnectionsService) DeleteExecute(r OrgConnectionsApiDeleteRequest) 
 }
 
 type OrgConnectionsApiGetRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgConnectionsService
-	orgHandle string
+	orgHandle  string
 	connHandle string
 }
-
 
 func (r OrgConnectionsApiGetRequest) Execute() (Connection, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
@@ -394,8 +392,8 @@ Get the details for a connection.
 func (a *OrgConnectionsService) Get(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiGetRequest {
 	return OrgConnectionsApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		connHandle: connHandle,
 	}
 }
@@ -404,10 +402,10 @@ func (a *OrgConnectionsService) Get(ctx _context.Context, orgHandle string, conn
 //  @return Connection
 func (a *OrgConnectionsService) GetExecute(r OrgConnectionsApiGetRequest) (Connection, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Connection
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Connection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.Get")
@@ -537,11 +535,11 @@ func (a *OrgConnectionsService) GetExecute(r OrgConnectionsApiGetRequest) (Conne
 }
 
 type OrgConnectionsApiListRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgConnectionsService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -549,6 +547,7 @@ func (r OrgConnectionsApiListRequest) Limit(limit int32) OrgConnectionsApiListRe
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r OrgConnectionsApiListRequest) NextToken(nextToken string) OrgConnectionsApiListRequest {
 	r.nextToken = &nextToken
@@ -571,8 +570,8 @@ List the connection for an organization. The action supports list pagination and
 func (a *OrgConnectionsService) List(ctx _context.Context, orgHandle string) OrgConnectionsApiListRequest {
 	return OrgConnectionsApiListRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -580,10 +579,10 @@ func (a *OrgConnectionsService) List(ctx _context.Context, orgHandle string) Org
 //  @return ListConnectionsResponse
 func (a *OrgConnectionsService) ListExecute(r OrgConnectionsApiListRequest) (ListConnectionsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListConnectionsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListConnectionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.List")
@@ -708,12 +707,11 @@ func (a *OrgConnectionsService) ListExecute(r OrgConnectionsApiListRequest) (Lis
 }
 
 type OrgConnectionsApiTestRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgConnectionsService
-	orgHandle string
+	orgHandle  string
 	connHandle string
 }
-
 
 func (r OrgConnectionsApiTestRequest) Execute() (ConnectionTestResult, *_nethttp.Response, error) {
 	return r.ApiService.TestExecute(r)
@@ -732,8 +730,8 @@ Test the config for an org connection to check for basic connectivity before you
 func (a *OrgConnectionsService) Test(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiTestRequest {
 	return OrgConnectionsApiTestRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		connHandle: connHandle,
 	}
 }
@@ -742,10 +740,10 @@ func (a *OrgConnectionsService) Test(ctx _context.Context, orgHandle string, con
 //  @return ConnectionTestResult
 func (a *OrgConnectionsService) TestExecute(r OrgConnectionsApiTestRequest) (ConnectionTestResult, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ConnectionTestResult
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ConnectionTestResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.Test")
@@ -855,11 +853,11 @@ func (a *OrgConnectionsService) TestExecute(r OrgConnectionsApiTestRequest) (Con
 }
 
 type OrgConnectionsApiUpdateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgConnectionsService
-	orgHandle string
+	orgHandle  string
 	connHandle string
-	request *UpdateConnectionRequest
+	request    *UpdateConnectionRequest
 }
 
 // The request body of the connection which needs to be updated.
@@ -885,8 +883,8 @@ Update the connection in an organization.
 func (a *OrgConnectionsService) Update(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiUpdateRequest {
 	return OrgConnectionsApiUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		connHandle: connHandle,
 	}
 }
@@ -895,10 +893,10 @@ func (a *OrgConnectionsService) Update(ctx _context.Context, orgHandle string, c
 //  @return Connection
 func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) (Connection, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Connection
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Connection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.Update")

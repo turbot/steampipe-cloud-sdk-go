@@ -17,17 +17,17 @@ import (
 
 // LogRecord struct for LogRecord
 type LogRecord struct {
-	ActorAvatarUrl string `json:"actor_avatar_url"`
-	ActorDisplayName string `json:"actor_display_name"`
-	ActorHandle string `json:"actor_handle"`
-	ActorId string `json:"actor_id"`
-	CreatedAt string `json:"created_at"`
-	Duration *int32 `json:"duration,omitempty"`
-	Id string `json:"id"`
-	LogTimestamp *string `json:"log_timestamp,omitempty"`
-	Query *string `json:"query,omitempty"`
-	WorkspaceHandle string `json:"workspace_handle"`
-	WorkspaceId string `json:"workspace_id"`
+	ActorAvatarUrl   string  `json:"actor_avatar_url"`
+	ActorDisplayName string  `json:"actor_display_name"`
+	ActorHandle      string  `json:"actor_handle"`
+	ActorId          string  `json:"actor_id"`
+	CreatedAt        string  `json:"created_at"`
+	Duration         *int32  `json:"duration,omitempty"`
+	Id               string  `json:"id"`
+	LogTimestamp     *string `json:"log_timestamp,omitempty"`
+	Query            *string `json:"query,omitempty"`
+	WorkspaceHandle  string  `json:"workspace_handle"`
+	WorkspaceId      string  `json:"workspace_id"`
 }
 
 // NewLogRecord instantiates a new LogRecord object
@@ -68,7 +68,7 @@ func (o *LogRecord) GetActorAvatarUrl() string {
 // GetActorAvatarUrlOk returns a tuple with the ActorAvatarUrl field value
 // and a boolean to check if the value has been set.
 func (o *LogRecord) GetActorAvatarUrlOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ActorAvatarUrl, true
@@ -92,7 +92,7 @@ func (o *LogRecord) GetActorDisplayName() string {
 // GetActorDisplayNameOk returns a tuple with the ActorDisplayName field value
 // and a boolean to check if the value has been set.
 func (o *LogRecord) GetActorDisplayNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ActorDisplayName, true
@@ -116,7 +116,7 @@ func (o *LogRecord) GetActorHandle() string {
 // GetActorHandleOk returns a tuple with the ActorHandle field value
 // and a boolean to check if the value has been set.
 func (o *LogRecord) GetActorHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ActorHandle, true
@@ -140,7 +140,7 @@ func (o *LogRecord) GetActorId() string {
 // GetActorIdOk returns a tuple with the ActorId field value
 // and a boolean to check if the value has been set.
 func (o *LogRecord) GetActorIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ActorId, true
@@ -164,7 +164,7 @@ func (o *LogRecord) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *LogRecord) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CreatedAt, true
@@ -220,7 +220,7 @@ func (o *LogRecord) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *LogRecord) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -308,7 +308,7 @@ func (o *LogRecord) GetWorkspaceHandle() string {
 // GetWorkspaceHandleOk returns a tuple with the WorkspaceHandle field value
 // and a boolean to check if the value has been set.
 func (o *LogRecord) GetWorkspaceHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.WorkspaceHandle, true
@@ -332,7 +332,7 @@ func (o *LogRecord) GetWorkspaceId() string {
 // GetWorkspaceIdOk returns a tuple with the WorkspaceId field value
 // and a boolean to check if the value has been set.
 func (o *LogRecord) GetWorkspaceIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.WorkspaceId, true
@@ -416,5 +416,3 @@ func (v *NullableLogRecord) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

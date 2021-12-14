@@ -17,11 +17,11 @@ import (
 
 // UserDatabasePassword struct for UserDatabasePassword
 type UserDatabasePassword struct {
-	Password string `json:"$password"`
-	CreatedAt string `json:"created_at"`
+	Password  string  `json:"$password"`
+	CreatedAt string  `json:"created_at"`
 	ExpiresAt *string `json:"expires_at,omitempty"`
-	Id string `json:"id"`
-	UserId *string `json:"user_id,omitempty"`
+	Id        string  `json:"id"`
+	UserId    *string `json:"user_id,omitempty"`
 }
 
 // NewUserDatabasePassword instantiates a new UserDatabasePassword object
@@ -57,7 +57,7 @@ func (o *UserDatabasePassword) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value
 // and a boolean to check if the value has been set.
 func (o *UserDatabasePassword) GetPasswordOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Password, true
@@ -81,7 +81,7 @@ func (o *UserDatabasePassword) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *UserDatabasePassword) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CreatedAt, true
@@ -137,7 +137,7 @@ func (o *UserDatabasePassword) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *UserDatabasePassword) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -235,5 +235,3 @@ func (v *NullableUserDatabasePassword) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

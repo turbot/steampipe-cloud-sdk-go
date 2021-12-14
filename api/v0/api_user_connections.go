@@ -29,10 +29,10 @@ var (
 type UserConnectionsService service
 
 type UserConnectionsApiCreateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsService
 	userHandle string
-	request *CreateConnectionRequest
+	request    *CreateConnectionRequest
 }
 
 // The request body for the connection to be created.
@@ -57,7 +57,7 @@ Creates a new connection for a user. The limit is 5 per user. If you require mor
 func (a *UserConnectionsService) Create(ctx _context.Context, userHandle string) UserConnectionsApiCreateRequest {
 	return UserConnectionsApiCreateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -66,10 +66,10 @@ func (a *UserConnectionsService) Create(ctx _context.Context, userHandle string)
 //  @return Connection
 func (a *UserConnectionsService) CreateExecute(r UserConnectionsApiCreateRequest) (Connection, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Connection
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Connection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserConnectionsService.Create")
@@ -213,12 +213,11 @@ func (a *UserConnectionsService) CreateExecute(r UserConnectionsApiCreateRequest
 }
 
 type UserConnectionsApiDeleteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsService
 	userHandle string
 	connHandle string
 }
-
 
 func (r UserConnectionsApiDeleteRequest) Execute() (Connection, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
@@ -237,7 +236,7 @@ Deletes the connection specified in the request by the user.
 func (a *UserConnectionsService) Delete(ctx _context.Context, userHandle string, connHandle string) UserConnectionsApiDeleteRequest {
 	return UserConnectionsApiDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 		connHandle: connHandle,
 	}
@@ -247,10 +246,10 @@ func (a *UserConnectionsService) Delete(ctx _context.Context, userHandle string,
 //  @return Connection
 func (a *UserConnectionsService) DeleteExecute(r UserConnectionsApiDeleteRequest) (Connection, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Connection
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Connection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserConnectionsService.Delete")
@@ -380,12 +379,11 @@ func (a *UserConnectionsService) DeleteExecute(r UserConnectionsApiDeleteRequest
 }
 
 type UserConnectionsApiGetRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsService
 	userHandle string
 	connHandle string
 }
-
 
 func (r UserConnectionsApiGetRequest) Execute() (Connection, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
@@ -404,7 +402,7 @@ Get the details for a connection.
 func (a *UserConnectionsService) Get(ctx _context.Context, userHandle string, connHandle string) UserConnectionsApiGetRequest {
 	return UserConnectionsApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 		connHandle: connHandle,
 	}
@@ -414,10 +412,10 @@ func (a *UserConnectionsService) Get(ctx _context.Context, userHandle string, co
 //  @return Connection
 func (a *UserConnectionsService) GetExecute(r UserConnectionsApiGetRequest) (Connection, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Connection
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Connection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserConnectionsService.Get")
@@ -547,11 +545,11 @@ func (a *UserConnectionsService) GetExecute(r UserConnectionsApiGetRequest) (Con
 }
 
 type UserConnectionsApiListRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -559,6 +557,7 @@ func (r UserConnectionsApiListRequest) Limit(limit int32) UserConnectionsApiList
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r UserConnectionsApiListRequest) NextToken(nextToken string) UserConnectionsApiListRequest {
 	r.nextToken = &nextToken
@@ -581,7 +580,7 @@ List the connection for an user.
 func (a *UserConnectionsService) List(ctx _context.Context, userHandle string) UserConnectionsApiListRequest {
 	return UserConnectionsApiListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -590,10 +589,10 @@ func (a *UserConnectionsService) List(ctx _context.Context, userHandle string) U
 //  @return ListConnectionsResponse
 func (a *UserConnectionsService) ListExecute(r UserConnectionsApiListRequest) (ListConnectionsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListConnectionsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListConnectionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserConnectionsService.List")
@@ -718,12 +717,11 @@ func (a *UserConnectionsService) ListExecute(r UserConnectionsApiListRequest) (L
 }
 
 type UserConnectionsApiTestRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsService
 	userHandle string
 	connHandle string
 }
-
 
 func (r UserConnectionsApiTestRequest) Execute() (ConnectionTestResult, *_nethttp.Response, error) {
 	return r.ApiService.TestExecute(r)
@@ -742,7 +740,7 @@ Test the config for a user connection to check for basic connectivity before you
 func (a *UserConnectionsService) Test(ctx _context.Context, userHandle string, connHandle string) UserConnectionsApiTestRequest {
 	return UserConnectionsApiTestRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 		connHandle: connHandle,
 	}
@@ -752,10 +750,10 @@ func (a *UserConnectionsService) Test(ctx _context.Context, userHandle string, c
 //  @return ConnectionTestResult
 func (a *UserConnectionsService) TestExecute(r UserConnectionsApiTestRequest) (ConnectionTestResult, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ConnectionTestResult
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ConnectionTestResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserConnectionsService.Test")
@@ -865,11 +863,11 @@ func (a *UserConnectionsService) TestExecute(r UserConnectionsApiTestRequest) (C
 }
 
 type UserConnectionsApiUpdateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserConnectionsService
 	userHandle string
 	connHandle string
-	request *UpdateConnectionRequest
+	request    *UpdateConnectionRequest
 }
 
 // The request body for the connection which needs to be updated.
@@ -895,7 +893,7 @@ Update a connection for a user.
 func (a *UserConnectionsService) Update(ctx _context.Context, userHandle string, connHandle string) UserConnectionsApiUpdateRequest {
 	return UserConnectionsApiUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 		connHandle: connHandle,
 	}
@@ -905,10 +903,10 @@ func (a *UserConnectionsService) Update(ctx _context.Context, userHandle string,
 //  @return Connection
 func (a *UserConnectionsService) UpdateExecute(r UserConnectionsApiUpdateRequest) (Connection, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Connection
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Connection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserConnectionsService.Update")

@@ -18,7 +18,7 @@ import (
 // UpdateConnectionRequest struct for UpdateConnectionRequest
 type UpdateConnectionRequest struct {
 	Config *map[string]interface{} `json:"config,omitempty"`
-	Handle *string `json:"handle,omitempty"`
+	Handle *string                 `json:"handle,omitempty"`
 }
 
 // NewUpdateConnectionRequest instantiates a new UpdateConnectionRequest object
@@ -148,5 +148,3 @@ func (v *NullableUpdateConnectionRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

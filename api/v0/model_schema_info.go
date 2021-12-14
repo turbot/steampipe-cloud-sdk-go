@@ -17,9 +17,9 @@ import (
 
 // SchemaInfo struct for SchemaInfo
 type SchemaInfo struct {
-	Description *string `json:"description,omitempty"`
-	Name string `json:"name"`
-	Tables []SchemaTable `json:"tables"`
+	Description *string       `json:"description,omitempty"`
+	Name        string        `json:"name"`
+	Tables      []SchemaTable `json:"tables"`
 }
 
 // NewSchemaInfo instantiates a new SchemaInfo object
@@ -86,7 +86,7 @@ func (o *SchemaInfo) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SchemaInfo) GetNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Name, true
@@ -110,7 +110,7 @@ func (o *SchemaInfo) GetTables() []SchemaTable {
 // GetTablesOk returns a tuple with the Tables field value
 // and a boolean to check if the value has been set.
 func (o *SchemaInfo) GetTablesOk() (*[]SchemaTable, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Tables, true
@@ -170,5 +170,3 @@ func (v *NullableSchemaInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

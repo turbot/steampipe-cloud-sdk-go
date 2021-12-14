@@ -17,13 +17,13 @@ import (
 
 // Token struct for Token
 type Token struct {
-	CreatedAt string `json:"created_at"`
-	Id string `json:"id"`
-	Last4 *string `json:"last4,omitempty"`
-	Status string `json:"status"`
+	CreatedAt string  `json:"created_at"`
+	Id        string  `json:"id"`
+	Last4     *string `json:"last4,omitempty"`
+	Status    string  `json:"status"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
-	UserId string `json:"user_id"`
-	VersionId int32 `json:"version_id"`
+	UserId    string  `json:"user_id"`
+	VersionId int32   `json:"version_id"`
 }
 
 // NewToken instantiates a new Token object
@@ -61,7 +61,7 @@ func (o *Token) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *Token) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CreatedAt, true
@@ -85,7 +85,7 @@ func (o *Token) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Token) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -141,7 +141,7 @@ func (o *Token) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *Token) GetStatusOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Status, true
@@ -197,7 +197,7 @@ func (o *Token) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
 func (o *Token) GetUserIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.UserId, true
@@ -221,7 +221,7 @@ func (o *Token) GetVersionId() int32 {
 // GetVersionIdOk returns a tuple with the VersionId field value
 // and a boolean to check if the value has been set.
 func (o *Token) GetVersionIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.VersionId, true
@@ -293,5 +293,3 @@ func (v *NullableToken) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

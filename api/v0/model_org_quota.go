@@ -18,8 +18,8 @@ import (
 // OrgQuota struct for OrgQuota
 type OrgQuota struct {
 	Association map[string]Quota `json:"association"`
-	Conn Quota `json:"conn"`
-	Workspace Quota `json:"workspace"`
+	Conn        Quota            `json:"conn"`
+	Workspace   Quota            `json:"workspace"`
 }
 
 // NewOrgQuota instantiates a new OrgQuota object
@@ -55,7 +55,7 @@ func (o *OrgQuota) GetAssociation() map[string]Quota {
 // GetAssociationOk returns a tuple with the Association field value
 // and a boolean to check if the value has been set.
 func (o *OrgQuota) GetAssociationOk() (*map[string]Quota, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Association, true
@@ -79,7 +79,7 @@ func (o *OrgQuota) GetConn() Quota {
 // GetConnOk returns a tuple with the Conn field value
 // and a boolean to check if the value has been set.
 func (o *OrgQuota) GetConnOk() (*Quota, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Conn, true
@@ -103,7 +103,7 @@ func (o *OrgQuota) GetWorkspace() Quota {
 // GetWorkspaceOk returns a tuple with the Workspace field value
 // and a boolean to check if the value has been set.
 func (o *OrgQuota) GetWorkspaceOk() (*Quota, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Workspace, true
@@ -163,5 +163,3 @@ func (v *NullableOrgQuota) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

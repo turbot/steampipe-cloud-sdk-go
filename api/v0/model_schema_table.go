@@ -17,9 +17,9 @@ import (
 
 // SchemaTable struct for SchemaTable
 type SchemaTable struct {
-	Columns []SchemaTableColumn `json:"columns"`
-	Description *string `json:"description,omitempty"`
-	Name string `json:"name"`
+	Columns     []SchemaTableColumn `json:"columns"`
+	Description *string             `json:"description,omitempty"`
+	Name        string              `json:"name"`
 }
 
 // NewSchemaTable instantiates a new SchemaTable object
@@ -54,7 +54,7 @@ func (o *SchemaTable) GetColumns() []SchemaTableColumn {
 // GetColumnsOk returns a tuple with the Columns field value
 // and a boolean to check if the value has been set.
 func (o *SchemaTable) GetColumnsOk() (*[]SchemaTableColumn, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Columns, true
@@ -110,7 +110,7 @@ func (o *SchemaTable) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SchemaTable) GetNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Name, true
@@ -170,5 +170,3 @@ func (v *NullableSchemaTable) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -17,9 +17,9 @@ import (
 
 // InviteOrgUserRequest struct for InviteOrgUserRequest
 type InviteOrgUserRequest struct {
-	Email *string `json:"email,omitempty"`
+	Email  *string `json:"email,omitempty"`
 	Handle *string `json:"handle,omitempty"`
-	Role string `json:"role"`
+	Role   string  `json:"role"`
 }
 
 // NewInviteOrgUserRequest instantiates a new InviteOrgUserRequest object
@@ -117,7 +117,7 @@ func (o *InviteOrgUserRequest) GetRole() string {
 // GetRoleOk returns a tuple with the Role field value
 // and a boolean to check if the value has been set.
 func (o *InviteOrgUserRequest) GetRoleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Role, true
@@ -177,5 +177,3 @@ func (v *NullableInviteOrgUserRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

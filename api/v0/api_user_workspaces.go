@@ -29,10 +29,10 @@ var (
 type UserWorkspacesService service
 
 type UserWorkspacesApiCreateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserWorkspacesService
 	userHandle string
-	request *CreateWorkspaceRequest
+	request    *CreateWorkspaceRequest
 }
 
 // The request body for the workspace to be created.
@@ -57,7 +57,7 @@ Creates a new workspace for a user. The limit is 5 per user. If you require more
 func (a *UserWorkspacesService) Create(ctx _context.Context, userHandle string) UserWorkspacesApiCreateRequest {
 	return UserWorkspacesApiCreateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -66,10 +66,10 @@ func (a *UserWorkspacesService) Create(ctx _context.Context, userHandle string) 
 //  @return Workspace
 func (a *UserWorkspacesService) CreateExecute(r UserWorkspacesApiCreateRequest) (Workspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Workspace
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Workspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesService.Create")
@@ -213,12 +213,11 @@ func (a *UserWorkspacesService) CreateExecute(r UserWorkspacesApiCreateRequest) 
 }
 
 type UserWorkspacesApiDeleteRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesService
+	userHandle      string
 	workspaceHandle string
 }
-
 
 func (r UserWorkspacesApiDeleteRequest) Execute() (Workspace, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
@@ -236,9 +235,9 @@ Deletes the workspace specified in the request by the user.
 */
 func (a *UserWorkspacesService) Delete(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiDeleteRequest {
 	return UserWorkspacesApiDeleteRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -247,10 +246,10 @@ func (a *UserWorkspacesService) Delete(ctx _context.Context, userHandle string, 
 //  @return Workspace
 func (a *UserWorkspacesService) DeleteExecute(r UserWorkspacesApiDeleteRequest) (Workspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Workspace
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Workspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesService.Delete")
@@ -370,12 +369,11 @@ func (a *UserWorkspacesService) DeleteExecute(r UserWorkspacesApiDeleteRequest) 
 }
 
 type UserWorkspacesApiGetRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesService
+	userHandle      string
 	workspaceHandle string
 }
-
 
 func (r UserWorkspacesApiGetRequest) Execute() (Workspace, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
@@ -393,9 +391,9 @@ Get the details for the workspace.
 */
 func (a *UserWorkspacesService) Get(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiGetRequest {
 	return UserWorkspacesApiGetRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -404,10 +402,10 @@ func (a *UserWorkspacesService) Get(ctx _context.Context, userHandle string, wor
 //  @return Workspace
 func (a *UserWorkspacesService) GetExecute(r UserWorkspacesApiGetRequest) (Workspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Workspace
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Workspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesService.Get")
@@ -537,12 +535,12 @@ func (a *UserWorkspacesService) GetExecute(r UserWorkspacesApiGetRequest) (Works
 }
 
 type UserWorkspacesApiGetQueryRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesService
+	userHandle      string
 	workspaceHandle string
-	sql *string
-	contentType *string
+	sql             *string
+	contentType     *string
 }
 
 // The sql query to perform against the user workspace.
@@ -550,6 +548,7 @@ func (r UserWorkspacesApiGetQueryRequest) Sql(sql string) UserWorkspacesApiGetQu
 	r.sql = &sql
 	return r
 }
+
 // The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
 func (r UserWorkspacesApiGetQueryRequest) ContentType(contentType string) UserWorkspacesApiGetQueryRequest {
 	r.contentType = &contentType
@@ -572,9 +571,9 @@ Performs a query in a user workspace. Results are limited to 3000 rows or 30 sec
 */
 func (a *UserWorkspacesService) GetQuery(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiGetQueryRequest {
 	return UserWorkspacesApiGetQueryRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -583,10 +582,10 @@ func (a *UserWorkspacesService) GetQuery(ctx _context.Context, userHandle string
 //  @return WorkspaceQueryResult
 func (a *UserWorkspacesService) GetQueryExecute(r UserWorkspacesApiGetQueryRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceQueryResult
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceQueryResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesService.GetQuery")
@@ -723,13 +722,13 @@ func (a *UserWorkspacesService) GetQueryExecute(r UserWorkspacesApiGetQueryReque
 }
 
 type UserWorkspacesApiGetQueryWithExtensionsRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesService
+	userHandle      string
 	workspaceHandle string
-	extensions string
-	sql *string
-	contentType *string
+	extensions      string
+	sql             *string
+	contentType     *string
 }
 
 // The sql query to perform against the user workspace.
@@ -737,6 +736,7 @@ func (r UserWorkspacesApiGetQueryWithExtensionsRequest) Sql(sql string) UserWork
 	r.sql = &sql
 	return r
 }
+
 // The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
 func (r UserWorkspacesApiGetQueryWithExtensionsRequest) ContentType(contentType string) UserWorkspacesApiGetQueryWithExtensionsRequest {
 	r.contentType = &contentType
@@ -755,16 +755,16 @@ Performs a query in a user workspace, with content type and content encoding for
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user that the workspace belongs to.
  @param workspaceHandle The handle of the workspace to query.
- @param extensions The content type for the request. E.g. 
+ @param extensions The content type for the request. E.g.
  @return UserWorkspacesApiGetQueryWithExtensionsRequest
 */
 func (a *UserWorkspacesService) GetQueryWithExtensions(ctx _context.Context, userHandle string, workspaceHandle string, extensions string) UserWorkspacesApiGetQueryWithExtensionsRequest {
 	return UserWorkspacesApiGetQueryWithExtensionsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
-		extensions: extensions,
+		extensions:      extensions,
 	}
 }
 
@@ -772,10 +772,10 @@ func (a *UserWorkspacesService) GetQueryWithExtensions(ctx _context.Context, use
 //  @return WorkspaceQueryResult
 func (a *UserWorkspacesService) GetQueryWithExtensionsExecute(r UserWorkspacesApiGetQueryWithExtensionsRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceQueryResult
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceQueryResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesService.GetQueryWithExtensions")
@@ -913,12 +913,11 @@ func (a *UserWorkspacesService) GetQueryWithExtensionsExecute(r UserWorkspacesAp
 }
 
 type UserWorkspacesApiGetSchemaRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesService
+	userHandle      string
 	workspaceHandle string
 }
-
 
 func (r UserWorkspacesApiGetSchemaRequest) Execute() (WorkspaceSchema, *_nethttp.Response, error) {
 	return r.ApiService.GetSchemaExecute(r)
@@ -936,9 +935,9 @@ Returns the postgres schemas for a user workspace. This will consist of the conn
 */
 func (a *UserWorkspacesService) GetSchema(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiGetSchemaRequest {
 	return UserWorkspacesApiGetSchemaRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -947,10 +946,10 @@ func (a *UserWorkspacesService) GetSchema(ctx _context.Context, userHandle strin
 //  @return WorkspaceSchema
 func (a *UserWorkspacesService) GetSchemaExecute(r UserWorkspacesApiGetSchemaRequest) (WorkspaceSchema, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceSchema
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceSchema
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesService.GetSchema")
@@ -1080,11 +1079,11 @@ func (a *UserWorkspacesService) GetSchemaExecute(r UserWorkspacesApiGetSchemaReq
 }
 
 type UserWorkspacesApiListRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserWorkspacesService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1092,6 +1091,7 @@ func (r UserWorkspacesApiListRequest) Limit(limit int32) UserWorkspacesApiListRe
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r UserWorkspacesApiListRequest) NextToken(nextToken string) UserWorkspacesApiListRequest {
 	r.nextToken = &nextToken
@@ -1114,7 +1114,7 @@ List the workspace for a user.
 func (a *UserWorkspacesService) List(ctx _context.Context, userHandle string) UserWorkspacesApiListRequest {
 	return UserWorkspacesApiListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -1123,10 +1123,10 @@ func (a *UserWorkspacesService) List(ctx _context.Context, userHandle string) Us
 //  @return ListWorkspacesResponse
 func (a *UserWorkspacesService) ListExecute(r UserWorkspacesApiListRequest) (ListWorkspacesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListWorkspacesResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListWorkspacesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesService.List")
@@ -1251,12 +1251,11 @@ func (a *UserWorkspacesService) ListExecute(r UserWorkspacesApiListRequest) (Lis
 }
 
 type UserWorkspacesApiListDBLogsRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesService
+	userHandle      string
 	workspaceHandle string
 }
-
 
 func (r UserWorkspacesApiListDBLogsRequest) Execute() (ListLogsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListDBLogsExecute(r)
@@ -1274,9 +1273,9 @@ Returns the workspace logs for a user.
 */
 func (a *UserWorkspacesService) ListDBLogs(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiListDBLogsRequest {
 	return UserWorkspacesApiListDBLogsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -1285,10 +1284,10 @@ func (a *UserWorkspacesService) ListDBLogs(ctx _context.Context, userHandle stri
 //  @return ListLogsResponse
 func (a *UserWorkspacesService) ListDBLogsExecute(r UserWorkspacesApiListDBLogsRequest) (ListLogsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListLogsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesService.ListDBLogs")
@@ -1408,12 +1407,12 @@ func (a *UserWorkspacesService) ListDBLogsExecute(r UserWorkspacesApiListDBLogsR
 }
 
 type UserWorkspacesApiPostQueryRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesService
+	userHandle      string
 	workspaceHandle string
-	sql *string
-	contentType *string
+	sql             *string
+	contentType     *string
 }
 
 // The sql query to perform against the user workspace.
@@ -1421,6 +1420,7 @@ func (r UserWorkspacesApiPostQueryRequest) Sql(sql string) UserWorkspacesApiPost
 	r.sql = &sql
 	return r
 }
+
 // The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
 func (r UserWorkspacesApiPostQueryRequest) ContentType(contentType string) UserWorkspacesApiPostQueryRequest {
 	r.contentType = &contentType
@@ -1443,9 +1443,9 @@ Performs a query in a user workspace. Results are limited to 3000 rows or 30 sec
 */
 func (a *UserWorkspacesService) PostQuery(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiPostQueryRequest {
 	return UserWorkspacesApiPostQueryRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -1454,10 +1454,10 @@ func (a *UserWorkspacesService) PostQuery(ctx _context.Context, userHandle strin
 //  @return WorkspaceQueryResult
 func (a *UserWorkspacesService) PostQueryExecute(r UserWorkspacesApiPostQueryRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceQueryResult
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceQueryResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesService.PostQuery")
@@ -1595,13 +1595,13 @@ func (a *UserWorkspacesService) PostQueryExecute(r UserWorkspacesApiPostQueryReq
 }
 
 type UserWorkspacesApiPostQueryWithExtensionsRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesService
+	userHandle      string
 	workspaceHandle string
-	extensions string
-	sql *string
-	contentType *string
+	extensions      string
+	sql             *string
+	contentType     *string
 }
 
 // The sql query to perform against the user workspace.
@@ -1609,6 +1609,7 @@ func (r UserWorkspacesApiPostQueryWithExtensionsRequest) Sql(sql string) UserWor
 	r.sql = &sql
 	return r
 }
+
 // The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
 func (r UserWorkspacesApiPostQueryWithExtensionsRequest) ContentType(contentType string) UserWorkspacesApiPostQueryWithExtensionsRequest {
 	r.contentType = &contentType
@@ -1627,16 +1628,16 @@ Performs a query in a user workspace, with content type and content encoding for
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user that the workspace belongs to.
  @param workspaceHandle The handle of the workspace to query.
- @param extensions The content type for the request. E.g. 
+ @param extensions The content type for the request. E.g.
  @return UserWorkspacesApiPostQueryWithExtensionsRequest
 */
 func (a *UserWorkspacesService) PostQueryWithExtensions(ctx _context.Context, userHandle string, workspaceHandle string, extensions string) UserWorkspacesApiPostQueryWithExtensionsRequest {
 	return UserWorkspacesApiPostQueryWithExtensionsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
-		extensions: extensions,
+		extensions:      extensions,
 	}
 }
 
@@ -1644,10 +1645,10 @@ func (a *UserWorkspacesService) PostQueryWithExtensions(ctx _context.Context, us
 //  @return WorkspaceQueryResult
 func (a *UserWorkspacesService) PostQueryWithExtensionsExecute(r UserWorkspacesApiPostQueryWithExtensionsRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceQueryResult
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceQueryResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesService.PostQueryWithExtensions")
@@ -1785,11 +1786,11 @@ func (a *UserWorkspacesService) PostQueryWithExtensionsExecute(r UserWorkspacesA
 }
 
 type UserWorkspacesApiUpdateRequest struct {
-	ctx _context.Context
-	ApiService *UserWorkspacesService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UserWorkspacesService
+	userHandle      string
 	workspaceHandle string
-	request *UpdateWorkspaceRequest
+	request         *UpdateWorkspaceRequest
 }
 
 // The request body for the workspace which needs to be updated.
@@ -1814,9 +1815,9 @@ Update the workspace for a user.
 */
 func (a *UserWorkspacesService) Update(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiUpdateRequest {
 	return UserWorkspacesApiUpdateRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -1825,10 +1826,10 @@ func (a *UserWorkspacesService) Update(ctx _context.Context, userHandle string, 
 //  @return Workspace
 func (a *UserWorkspacesService) UpdateExecute(r UserWorkspacesApiUpdateRequest) (Workspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Workspace
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Workspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesService.Update")

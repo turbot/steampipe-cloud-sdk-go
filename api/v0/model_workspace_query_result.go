@@ -18,7 +18,7 @@ import (
 // WorkspaceQueryResult struct for WorkspaceQueryResult
 type WorkspaceQueryResult struct {
 	Columns []WorkspaceQueryResultColumn `json:"columns"`
-	Rows [][]map[string]interface{} `json:"rows"`
+	Rows    [][]map[string]interface{}   `json:"rows"`
 }
 
 // NewWorkspaceQueryResult instantiates a new WorkspaceQueryResult object
@@ -53,7 +53,7 @@ func (o *WorkspaceQueryResult) GetColumns() []WorkspaceQueryResultColumn {
 // GetColumnsOk returns a tuple with the Columns field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceQueryResult) GetColumnsOk() (*[]WorkspaceQueryResultColumn, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Columns, true
@@ -77,7 +77,7 @@ func (o *WorkspaceQueryResult) GetRows() [][]map[string]interface{} {
 // GetRowsOk returns a tuple with the Rows field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceQueryResult) GetRowsOk() (*[][]map[string]interface{}, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Rows, true
@@ -134,5 +134,3 @@ func (v *NullableWorkspaceQueryResult) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

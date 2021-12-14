@@ -17,16 +17,16 @@ import (
 
 // Connection struct for Connection
 type Connection struct {
-	Config *map[string]interface{} `json:"config,omitempty"`
-	CreatedAt string `json:"created_at"`
-	Handle string `json:"handle"`
-	Id string `json:"id"`
-	Identity *Identity `json:"identity,omitempty"`
-	IdentityId string `json:"identity_id"`
-	Plugin *string `json:"plugin,omitempty"`
-	Type *string `json:"type,omitempty"`
-	UpdatedAt *string `json:"updated_at,omitempty"`
-	VersionId int32 `json:"version_id"`
+	Config     *map[string]interface{} `json:"config,omitempty"`
+	CreatedAt  string                  `json:"created_at"`
+	Handle     string                  `json:"handle"`
+	Id         string                  `json:"id"`
+	Identity   *Identity               `json:"identity,omitempty"`
+	IdentityId string                  `json:"identity_id"`
+	Plugin     *string                 `json:"plugin,omitempty"`
+	Type       *string                 `json:"type,omitempty"`
+	UpdatedAt  *string                 `json:"updated_at,omitempty"`
+	VersionId  int32                   `json:"version_id"`
 }
 
 // NewConnection instantiates a new Connection object
@@ -96,7 +96,7 @@ func (o *Connection) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *Connection) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CreatedAt, true
@@ -120,7 +120,7 @@ func (o *Connection) GetHandle() string {
 // GetHandleOk returns a tuple with the Handle field value
 // and a boolean to check if the value has been set.
 func (o *Connection) GetHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Handle, true
@@ -144,7 +144,7 @@ func (o *Connection) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Connection) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -200,7 +200,7 @@ func (o *Connection) GetIdentityId() string {
 // GetIdentityIdOk returns a tuple with the IdentityId field value
 // and a boolean to check if the value has been set.
 func (o *Connection) GetIdentityIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.IdentityId, true
@@ -320,7 +320,7 @@ func (o *Connection) GetVersionId() int32 {
 // GetVersionIdOk returns a tuple with the VersionId field value
 // and a boolean to check if the value has been set.
 func (o *Connection) GetVersionIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.VersionId, true
@@ -401,5 +401,3 @@ func (v *NullableConnection) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -17,8 +17,8 @@ import (
 
 // ListLogsResponse struct for ListLogsResponse
 type ListLogsResponse struct {
-	Items *[]LogRecord `json:"items,omitempty"`
-	NextToken *string `json:"next_token,omitempty"`
+	Items     *[]LogRecord `json:"items,omitempty"`
+	NextToken *string      `json:"next_token,omitempty"`
 }
 
 // NewListLogsResponse instantiates a new ListLogsResponse object
@@ -148,5 +148,3 @@ func (v *NullableListLogsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

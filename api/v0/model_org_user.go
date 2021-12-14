@@ -17,17 +17,17 @@ import (
 
 // OrgUser struct for OrgUser
 type OrgUser struct {
-	CreatedAt *string `json:"created_at,omitempty"`
-	Email string `json:"email"`
-	Id string `json:"id"`
-	OrgId string `json:"org_id"`
-	Role *string `json:"role,omitempty"`
-	Status string `json:"status"`
-	UpdatedAt *string `json:"updated_at,omitempty"`
-	User *User `json:"user,omitempty"`
-	UserHandle string `json:"user_handle"`
-	UserId string `json:"user_id"`
-	VersionId *int32 `json:"version_id,omitempty"`
+	CreatedAt  *string `json:"created_at,omitempty"`
+	Email      string  `json:"email"`
+	Id         string  `json:"id"`
+	OrgId      string  `json:"org_id"`
+	Role       *string `json:"role,omitempty"`
+	Status     string  `json:"status"`
+	UpdatedAt  *string `json:"updated_at,omitempty"`
+	User       *User   `json:"user,omitempty"`
+	UserHandle string  `json:"user_handle"`
+	UserId     string  `json:"user_id"`
+	VersionId  *int32  `json:"version_id,omitempty"`
 }
 
 // NewOrgUser instantiates a new OrgUser object
@@ -98,7 +98,7 @@ func (o *OrgUser) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value
 // and a boolean to check if the value has been set.
 func (o *OrgUser) GetEmailOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Email, true
@@ -122,7 +122,7 @@ func (o *OrgUser) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *OrgUser) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -146,7 +146,7 @@ func (o *OrgUser) GetOrgId() string {
 // GetOrgIdOk returns a tuple with the OrgId field value
 // and a boolean to check if the value has been set.
 func (o *OrgUser) GetOrgIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.OrgId, true
@@ -202,7 +202,7 @@ func (o *OrgUser) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *OrgUser) GetStatusOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Status, true
@@ -290,7 +290,7 @@ func (o *OrgUser) GetUserHandle() string {
 // GetUserHandleOk returns a tuple with the UserHandle field value
 // and a boolean to check if the value has been set.
 func (o *OrgUser) GetUserHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.UserHandle, true
@@ -314,7 +314,7 @@ func (o *OrgUser) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
 func (o *OrgUser) GetUserIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.UserId, true
@@ -430,5 +430,3 @@ func (v *NullableOrgUser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

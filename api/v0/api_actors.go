@@ -28,10 +28,9 @@ var (
 type ActorsService service
 
 type ActorsApiGetRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *ActorsService
 }
-
 
 func (r ActorsApiGetRequest) Execute() (User, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
@@ -48,7 +47,7 @@ Returns the actor information.
 func (a *ActorsService) Get(ctx _context.Context) ActorsApiGetRequest {
 	return ActorsApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -56,10 +55,10 @@ func (a *ActorsService) Get(ctx _context.Context) ActorsApiGetRequest {
 //  @return User
 func (a *ActorsService) GetExecute(r ActorsApiGetRequest) (User, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  User
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActorsService.Get")
@@ -187,10 +186,10 @@ func (a *ActorsService) GetExecute(r ActorsApiGetRequest) (User, *_nethttp.Respo
 }
 
 type ActorsApiListActivityRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *ActorsService
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -198,6 +197,7 @@ func (r ActorsApiListActivityRequest) Limit(limit int32) ActorsApiListActivityRe
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ActorsApiListActivityRequest) NextToken(nextToken string) ActorsApiListActivityRequest {
 	r.nextToken = &nextToken
@@ -219,7 +219,7 @@ List the activity for an actor.
 func (a *ActorsService) ListActivity(ctx _context.Context) ActorsApiListActivityRequest {
 	return ActorsApiListActivityRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -227,10 +227,10 @@ func (a *ActorsService) ListActivity(ctx _context.Context) ActorsApiListActivity
 //  @return ListAuditLogsResponse
 func (a *ActorsService) ListActivityExecute(r ActorsApiListActivityRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListAuditLogsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListAuditLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActorsService.ListActivity")
@@ -354,10 +354,10 @@ func (a *ActorsService) ListActivityExecute(r ActorsApiListActivityRequest) (Lis
 }
 
 type ActorsApiListConnectionsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *ActorsService
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -365,6 +365,7 @@ func (r ActorsApiListConnectionsRequest) Limit(limit int32) ActorsApiListConnect
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ActorsApiListConnectionsRequest) NextToken(nextToken string) ActorsApiListConnectionsRequest {
 	r.nextToken = &nextToken
@@ -386,7 +387,7 @@ List the connections for an actor.
 func (a *ActorsService) ListConnections(ctx _context.Context) ActorsApiListConnectionsRequest {
 	return ActorsApiListConnectionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -394,10 +395,10 @@ func (a *ActorsService) ListConnections(ctx _context.Context) ActorsApiListConne
 //  @return ListConnectionsResponse
 func (a *ActorsService) ListConnectionsExecute(r ActorsApiListConnectionsRequest) (ListConnectionsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListConnectionsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListConnectionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActorsService.ListConnections")
@@ -521,10 +522,10 @@ func (a *ActorsService) ListConnectionsExecute(r ActorsApiListConnectionsRequest
 }
 
 type ActorsApiListWorkspacesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *ActorsService
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -532,6 +533,7 @@ func (r ActorsApiListWorkspacesRequest) Limit(limit int32) ActorsApiListWorkspac
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r ActorsApiListWorkspacesRequest) NextToken(nextToken string) ActorsApiListWorkspacesRequest {
 	r.nextToken = &nextToken
@@ -553,7 +555,7 @@ List the workspace for an actor.
 func (a *ActorsService) ListWorkspaces(ctx _context.Context) ActorsApiListWorkspacesRequest {
 	return ActorsApiListWorkspacesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -561,10 +563,10 @@ func (a *ActorsService) ListWorkspaces(ctx _context.Context) ActorsApiListWorksp
 //  @return ListWorkspacesResponse
 func (a *ActorsService) ListWorkspacesExecute(r ActorsApiListWorkspacesRequest) (ListWorkspacesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListWorkspacesResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListWorkspacesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActorsService.ListWorkspaces")

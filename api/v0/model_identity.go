@@ -18,9 +18,9 @@ import (
 // Identity struct for Identity
 type Identity struct {
 	DisplayName *string `json:"display_name,omitempty"`
-	Handle string `json:"handle"`
-	Id string `json:"id"`
-	Type string `json:"type"`
+	Handle      string  `json:"handle"`
+	Id          string  `json:"id"`
+	Type        string  `json:"type"`
 }
 
 // NewIdentity instantiates a new Identity object
@@ -88,7 +88,7 @@ func (o *Identity) GetHandle() string {
 // GetHandleOk returns a tuple with the Handle field value
 // and a boolean to check if the value has been set.
 func (o *Identity) GetHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Handle, true
@@ -112,7 +112,7 @@ func (o *Identity) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Identity) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -136,7 +136,7 @@ func (o *Identity) GetType() string {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *Identity) GetTypeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Type, true
@@ -199,5 +199,3 @@ func (v *NullableIdentity) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

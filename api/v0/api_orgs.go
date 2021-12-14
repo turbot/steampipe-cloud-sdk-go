@@ -29,9 +29,9 @@ var (
 type OrgsService service
 
 type OrgsApiCreateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsService
-	request *CreateOrgRequest
+	request    *CreateOrgRequest
 }
 
 // The request body to create the organization.
@@ -55,7 +55,7 @@ Creates an organization.
 func (a *OrgsService) Create(ctx _context.Context) OrgsApiCreateRequest {
 	return OrgsApiCreateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -63,10 +63,10 @@ func (a *OrgsService) Create(ctx _context.Context) OrgsApiCreateRequest {
 //  @return Org
 func (a *OrgsService) CreateExecute(r OrgsApiCreateRequest) (Org, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Org
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Org
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.Create")
@@ -209,11 +209,10 @@ func (a *OrgsService) CreateExecute(r OrgsApiCreateRequest) (Org, *_nethttp.Resp
 }
 
 type OrgsApiDeleteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsService
-	orgHandle string
+	orgHandle  string
 }
-
 
 func (r OrgsApiDeleteRequest) Execute() (Org, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
@@ -231,8 +230,8 @@ Deletes the specified organization if you have the appropriate access.
 func (a *OrgsService) Delete(ctx _context.Context, orgHandle string) OrgsApiDeleteRequest {
 	return OrgsApiDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -240,10 +239,10 @@ func (a *OrgsService) Delete(ctx _context.Context, orgHandle string) OrgsApiDele
 //  @return Org
 func (a *OrgsService) DeleteExecute(r OrgsApiDeleteRequest) (Org, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Org
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Org
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.Delete")
@@ -362,11 +361,10 @@ func (a *OrgsService) DeleteExecute(r OrgsApiDeleteRequest) (Org, *_nethttp.Resp
 }
 
 type OrgsApiGetRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsService
-	orgHandle string
+	orgHandle  string
 }
-
 
 func (r OrgsApiGetRequest) Execute() (Org, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
@@ -384,8 +382,8 @@ Retrieves the organization information.
 func (a *OrgsService) Get(ctx _context.Context, orgHandle string) OrgsApiGetRequest {
 	return OrgsApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -393,10 +391,10 @@ func (a *OrgsService) Get(ctx _context.Context, orgHandle string) OrgsApiGetRequ
 //  @return Org
 func (a *OrgsService) GetExecute(r OrgsApiGetRequest) (Org, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Org
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Org
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.Get")
@@ -525,11 +523,10 @@ func (a *OrgsService) GetExecute(r OrgsApiGetRequest) (Org, *_nethttp.Response, 
 }
 
 type OrgsApiGetQuotaRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsService
-	orgHandle string
+	orgHandle  string
 }
-
 
 func (r OrgsApiGetQuotaRequest) Execute() (OrgQuota, *_nethttp.Response, error) {
 	return r.ApiService.GetQuotaExecute(r)
@@ -547,8 +544,8 @@ Returns the quota information for an org.
 func (a *OrgsService) GetQuota(ctx _context.Context, orgHandle string) OrgsApiGetQuotaRequest {
 	return OrgsApiGetQuotaRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -556,10 +553,10 @@ func (a *OrgsService) GetQuota(ctx _context.Context, orgHandle string) OrgsApiGe
 //  @return OrgQuota
 func (a *OrgsService) GetQuotaExecute(r OrgsApiGetQuotaRequest) (OrgQuota, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  OrgQuota
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue OrgQuota
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.GetQuota")
@@ -678,10 +675,10 @@ func (a *OrgsService) GetQuotaExecute(r OrgsApiGetQuotaRequest) (OrgQuota, *_net
 }
 
 type OrgsApiListRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsService
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -689,6 +686,7 @@ func (r OrgsApiListRequest) Limit(limit int32) OrgsApiListRequest {
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r OrgsApiListRequest) NextToken(nextToken string) OrgsApiListRequest {
 	r.nextToken = &nextToken
@@ -710,7 +708,7 @@ List all the organizations.
 func (a *OrgsService) List(ctx _context.Context) OrgsApiListRequest {
 	return OrgsApiListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -718,10 +716,10 @@ func (a *OrgsService) List(ctx _context.Context) OrgsApiListRequest {
 //  @return ListOrgsResponse
 func (a *OrgsService) ListExecute(r OrgsApiListRequest) (ListOrgsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListOrgsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListOrgsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.List")
@@ -845,11 +843,11 @@ func (a *OrgsService) ListExecute(r OrgsApiListRequest) (ListOrgsResponse, *_net
 }
 
 type OrgsApiListAuditLogsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -857,6 +855,7 @@ func (r OrgsApiListAuditLogsRequest) Limit(limit int32) OrgsApiListAuditLogsRequ
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r OrgsApiListAuditLogsRequest) NextToken(nextToken string) OrgsApiListAuditLogsRequest {
 	r.nextToken = &nextToken
@@ -879,8 +878,8 @@ Returns the audit logs for an org.
 func (a *OrgsService) ListAuditLogs(ctx _context.Context, orgHandle string) OrgsApiListAuditLogsRequest {
 	return OrgsApiListAuditLogsRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -888,10 +887,10 @@ func (a *OrgsService) ListAuditLogs(ctx _context.Context, orgHandle string) Orgs
 //  @return ListAuditLogsResponse
 func (a *OrgsService) ListAuditLogsExecute(r OrgsApiListAuditLogsRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListAuditLogsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListAuditLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.ListAuditLogs")
@@ -1016,12 +1015,12 @@ func (a *OrgsService) ListAuditLogsExecute(r OrgsApiListAuditLogsRequest) (ListA
 }
 
 type OrgsApiListWorkspaceAuditLogsRequest struct {
-	ctx _context.Context
-	ApiService *OrgsService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgsService
+	orgHandle       string
 	workspaceHandle string
-	limit *int32
-	nextToken *string
+	limit           *int32
+	nextToken       *string
 }
 
 // Pagination limit
@@ -1029,6 +1028,7 @@ func (r OrgsApiListWorkspaceAuditLogsRequest) Limit(limit int32) OrgsApiListWork
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r OrgsApiListWorkspaceAuditLogsRequest) NextToken(nextToken string) OrgsApiListWorkspaceAuditLogsRequest {
 	r.nextToken = &nextToken
@@ -1051,9 +1051,9 @@ Returns the audit logs for an org workspace.
 */
 func (a *OrgsService) ListWorkspaceAuditLogs(ctx _context.Context, orgHandle string, workspaceHandle string) OrgsApiListWorkspaceAuditLogsRequest {
 	return OrgsApiListWorkspaceAuditLogsRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -1062,10 +1062,10 @@ func (a *OrgsService) ListWorkspaceAuditLogs(ctx _context.Context, orgHandle str
 //  @return ListAuditLogsResponse
 func (a *OrgsService) ListWorkspaceAuditLogsExecute(r OrgsApiListWorkspaceAuditLogsRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListAuditLogsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListAuditLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.ListWorkspaceAuditLogs")
@@ -1191,10 +1191,10 @@ func (a *OrgsService) ListWorkspaceAuditLogsExecute(r OrgsApiListWorkspaceAuditL
 }
 
 type OrgsApiUpdateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgsService
-	orgHandle string
-	request *UpdateOrgRequest
+	orgHandle  string
+	request    *UpdateOrgRequest
 }
 
 // The request body for the organization.
@@ -1219,8 +1219,8 @@ Updates the handle name, display name or the URl of the organization.
 func (a *OrgsService) Update(ctx _context.Context, orgHandle string) OrgsApiUpdateRequest {
 	return OrgsApiUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -1228,10 +1228,10 @@ func (a *OrgsService) Update(ctx _context.Context, orgHandle string) OrgsApiUpda
 //  @return Org
 func (a *OrgsService) UpdateExecute(r OrgsApiUpdateRequest) (Org, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Org
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Org
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.Update")

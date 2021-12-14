@@ -17,8 +17,8 @@ import (
 
 // ListWorkspaceConnResponse struct for ListWorkspaceConnResponse
 type ListWorkspaceConnResponse struct {
-	Items *[]WorkspaceConn `json:"items,omitempty"`
-	NextToken *string `json:"next_token,omitempty"`
+	Items     *[]WorkspaceConn `json:"items,omitempty"`
+	NextToken *string          `json:"next_token,omitempty"`
 }
 
 // NewListWorkspaceConnResponse instantiates a new ListWorkspaceConnResponse object
@@ -148,5 +148,3 @@ func (v *NullableListWorkspaceConnResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

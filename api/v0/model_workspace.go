@@ -17,18 +17,18 @@ import (
 
 // Workspace struct for Workspace
 type Workspace struct {
-	CreatedAt string `json:"created_at"`
-	DatabaseName *string `json:"database_name,omitempty"`
-	Handle string `json:"handle"`
-	Hive *string `json:"hive,omitempty"`
-	Host *string `json:"host,omitempty"`
-	Id string `json:"id"`
-	Identity *Identity `json:"identity,omitempty"`
-	IdentityId string `json:"identity_id"`
-	PublicKey *string `json:"public_key,omitempty"`
-	UpdatedAt *string `json:"updated_at,omitempty"`
-	VersionId int32 `json:"version_id"`
-	WorkspaceState *string `json:"workspace_state,omitempty"`
+	CreatedAt      string    `json:"created_at"`
+	DatabaseName   *string   `json:"database_name,omitempty"`
+	Handle         string    `json:"handle"`
+	Hive           *string   `json:"hive,omitempty"`
+	Host           *string   `json:"host,omitempty"`
+	Id             string    `json:"id"`
+	Identity       *Identity `json:"identity,omitempty"`
+	IdentityId     string    `json:"identity_id"`
+	PublicKey      *string   `json:"public_key,omitempty"`
+	UpdatedAt      *string   `json:"updated_at,omitempty"`
+	VersionId      int32     `json:"version_id"`
+	WorkspaceState *string   `json:"workspace_state,omitempty"`
 }
 
 // NewWorkspace instantiates a new Workspace object
@@ -66,7 +66,7 @@ func (o *Workspace) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *Workspace) GetCreatedAtOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.CreatedAt, true
@@ -122,7 +122,7 @@ func (o *Workspace) GetHandle() string {
 // GetHandleOk returns a tuple with the Handle field value
 // and a boolean to check if the value has been set.
 func (o *Workspace) GetHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Handle, true
@@ -210,7 +210,7 @@ func (o *Workspace) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Workspace) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -266,7 +266,7 @@ func (o *Workspace) GetIdentityId() string {
 // GetIdentityIdOk returns a tuple with the IdentityId field value
 // and a boolean to check if the value has been set.
 func (o *Workspace) GetIdentityIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.IdentityId, true
@@ -354,7 +354,7 @@ func (o *Workspace) GetVersionId() int32 {
 // GetVersionIdOk returns a tuple with the VersionId field value
 // and a boolean to check if the value has been set.
 func (o *Workspace) GetVersionIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.VersionId, true
@@ -473,5 +473,3 @@ func (v *NullableWorkspace) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

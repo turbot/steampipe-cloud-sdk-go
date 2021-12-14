@@ -28,9 +28,9 @@ var (
 type IdentitiesService service
 
 type IdentitiesApiSearchRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *IdentitiesService
-	q *string
+	q          *string
 }
 
 // Specify the search string.
@@ -54,7 +54,7 @@ Search identity handle name.
 func (a *IdentitiesService) Search(ctx _context.Context) IdentitiesApiSearchRequest {
 	return IdentitiesApiSearchRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -62,10 +62,10 @@ func (a *IdentitiesService) Search(ctx _context.Context) IdentitiesApiSearchRequ
 //  @return SearchIdentitiesResponse
 func (a *IdentitiesService) SearchExecute(r IdentitiesApiSearchRequest) (SearchIdentitiesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  SearchIdentitiesResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue SearchIdentitiesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentitiesService.Search")

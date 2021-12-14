@@ -29,9 +29,9 @@ var (
 type UsersService service
 
 type UsersApiCreateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersService
-	request *CreateUserRequest
+	request    *CreateUserRequest
 }
 
 // The request body to create the user.
@@ -55,7 +55,7 @@ Creates a new user.
 func (a *UsersService) Create(ctx _context.Context) UsersApiCreateRequest {
 	return UsersApiCreateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -63,10 +63,10 @@ func (a *UsersService) Create(ctx _context.Context) UsersApiCreateRequest {
 //  @return User
 func (a *UsersService) CreateExecute(r UsersApiCreateRequest) (User, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  User
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.Create")
@@ -209,10 +209,10 @@ func (a *UsersService) CreateExecute(r UsersApiCreateRequest) (User, *_nethttp.R
 }
 
 type UsersApiCreateDBPasswordRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersService
 	userHandle string
-	request *CreateUserPasswordRequest
+	request    *CreateUserPasswordRequest
 }
 
 // The request body to create or rotate the password.
@@ -237,7 +237,7 @@ Create or rotate user password.
 func (a *UsersService) CreateDBPassword(ctx _context.Context, userHandle string) UsersApiCreateDBPasswordRequest {
 	return UsersApiCreateDBPasswordRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -246,10 +246,10 @@ func (a *UsersService) CreateDBPassword(ctx _context.Context, userHandle string)
 //  @return UserDatabasePassword
 func (a *UsersService) CreateDBPasswordExecute(r UsersApiCreateDBPasswordRequest) (UserDatabasePassword, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  UserDatabasePassword
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue UserDatabasePassword
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.CreateDBPassword")
@@ -393,11 +393,10 @@ func (a *UsersService) CreateDBPasswordExecute(r UsersApiCreateDBPasswordRequest
 }
 
 type UsersApiDeleteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersService
 	userHandle string
 }
-
 
 func (r UsersApiDeleteRequest) Execute() (User, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
@@ -415,7 +414,7 @@ Deletes the specified user.
 func (a *UsersService) Delete(ctx _context.Context, userHandle string) UsersApiDeleteRequest {
 	return UsersApiDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -424,10 +423,10 @@ func (a *UsersService) Delete(ctx _context.Context, userHandle string) UsersApiD
 //  @return User
 func (a *UsersService) DeleteExecute(r UsersApiDeleteRequest) (User, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  User
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.Delete")
@@ -546,11 +545,10 @@ func (a *UsersService) DeleteExecute(r UsersApiDeleteRequest) (User, *_nethttp.R
 }
 
 type UsersApiGetRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersService
 	userHandle string
 }
-
 
 func (r UsersApiGetRequest) Execute() (User, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
@@ -568,7 +566,7 @@ Retrives information of the specified user.
 func (a *UsersService) Get(ctx _context.Context, userHandle string) UsersApiGetRequest {
 	return UsersApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -577,10 +575,10 @@ func (a *UsersService) Get(ctx _context.Context, userHandle string) UsersApiGetR
 //  @return User
 func (a *UsersService) GetExecute(r UsersApiGetRequest) (User, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  User
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.Get")
@@ -709,11 +707,10 @@ func (a *UsersService) GetExecute(r UsersApiGetRequest) (User, *_nethttp.Respons
 }
 
 type UsersApiGetDBPasswordRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersService
 	userHandle string
 }
-
 
 func (r UsersApiGetDBPasswordRequest) Execute() (UserDatabasePassword, *_nethttp.Response, error) {
 	return r.ApiService.GetDBPasswordExecute(r)
@@ -731,7 +728,7 @@ Get user password.
 func (a *UsersService) GetDBPassword(ctx _context.Context, userHandle string) UsersApiGetDBPasswordRequest {
 	return UsersApiGetDBPasswordRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -740,10 +737,10 @@ func (a *UsersService) GetDBPassword(ctx _context.Context, userHandle string) Us
 //  @return UserDatabasePassword
 func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (UserDatabasePassword, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  UserDatabasePassword
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue UserDatabasePassword
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.GetDBPassword")
@@ -882,11 +879,10 @@ func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (Use
 }
 
 type UsersApiGetQuotaRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersService
 	userHandle string
 }
-
 
 func (r UsersApiGetQuotaRequest) Execute() (UserQuota, *_nethttp.Response, error) {
 	return r.ApiService.GetQuotaExecute(r)
@@ -904,7 +900,7 @@ Returns the quota information for a user.
 func (a *UsersService) GetQuota(ctx _context.Context, userHandle string) UsersApiGetQuotaRequest {
 	return UsersApiGetQuotaRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -913,10 +909,10 @@ func (a *UsersService) GetQuota(ctx _context.Context, userHandle string) UsersAp
 //  @return UserQuota
 func (a *UsersService) GetQuotaExecute(r UsersApiGetQuotaRequest) (UserQuota, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  UserQuota
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue UserQuota
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.GetQuota")
@@ -1035,10 +1031,10 @@ func (a *UsersService) GetQuotaExecute(r UsersApiGetQuotaRequest) (UserQuota, *_
 }
 
 type UsersApiListRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersService
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1046,6 +1042,7 @@ func (r UsersApiListRequest) Limit(limit int32) UsersApiListRequest {
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r UsersApiListRequest) NextToken(nextToken string) UsersApiListRequest {
 	r.nextToken = &nextToken
@@ -1067,7 +1064,7 @@ List the users.
 func (a *UsersService) List(ctx _context.Context) UsersApiListRequest {
 	return UsersApiListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -1075,10 +1072,10 @@ func (a *UsersService) List(ctx _context.Context) UsersApiListRequest {
 //  @return ListUsersResponse
 func (a *UsersService) ListExecute(r UsersApiListRequest) (ListUsersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListUsersResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.List")
@@ -1202,11 +1199,11 @@ func (a *UsersService) ListExecute(r UsersApiListRequest) (ListUsersResponse, *_
 }
 
 type UsersApiListAuditLogsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1214,6 +1211,7 @@ func (r UsersApiListAuditLogsRequest) Limit(limit int32) UsersApiListAuditLogsRe
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r UsersApiListAuditLogsRequest) NextToken(nextToken string) UsersApiListAuditLogsRequest {
 	r.nextToken = &nextToken
@@ -1236,7 +1234,7 @@ Returns the audit logs for a user.
 func (a *UsersService) ListAuditLogs(ctx _context.Context, userHandle string) UsersApiListAuditLogsRequest {
 	return UsersApiListAuditLogsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -1245,10 +1243,10 @@ func (a *UsersService) ListAuditLogs(ctx _context.Context, userHandle string) Us
 //  @return ListAuditLogsResponse
 func (a *UsersService) ListAuditLogsExecute(r UsersApiListAuditLogsRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListAuditLogsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListAuditLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.ListAuditLogs")
@@ -1373,11 +1371,11 @@ func (a *UsersService) ListAuditLogsExecute(r UsersApiListAuditLogsRequest) (Lis
 }
 
 type UsersApiListOrgInvitesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1385,6 +1383,7 @@ func (r UsersApiListOrgInvitesRequest) Limit(limit int32) UsersApiListOrgInvites
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r UsersApiListOrgInvitesRequest) NextToken(nextToken string) UsersApiListOrgInvitesRequest {
 	r.nextToken = &nextToken
@@ -1407,7 +1406,7 @@ List the orgs on which the user has been invited.
 func (a *UsersService) ListOrgInvites(ctx _context.Context, userHandle string) UsersApiListOrgInvitesRequest {
 	return UsersApiListOrgInvitesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -1416,10 +1415,10 @@ func (a *UsersService) ListOrgInvites(ctx _context.Context, userHandle string) U
 //  @return ListUserOrgsResponse
 func (a *UsersService) ListOrgInvitesExecute(r UsersApiListOrgInvitesRequest) (ListUserOrgsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListUserOrgsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListUserOrgsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.ListOrgInvites")
@@ -1544,11 +1543,11 @@ func (a *UsersService) ListOrgInvitesExecute(r UsersApiListOrgInvitesRequest) (L
 }
 
 type UsersApiListOrgsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1556,6 +1555,7 @@ func (r UsersApiListOrgsRequest) Limit(limit int32) UsersApiListOrgsRequest {
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r UsersApiListOrgsRequest) NextToken(nextToken string) UsersApiListOrgsRequest {
 	r.nextToken = &nextToken
@@ -1578,7 +1578,7 @@ List the orgs which the user has access.
 func (a *UsersService) ListOrgs(ctx _context.Context, userHandle string) UsersApiListOrgsRequest {
 	return UsersApiListOrgsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -1587,10 +1587,10 @@ func (a *UsersService) ListOrgs(ctx _context.Context, userHandle string) UsersAp
 //  @return ListUserOrgsResponse
 func (a *UsersService) ListOrgsExecute(r UsersApiListOrgsRequest) (ListUserOrgsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListUserOrgsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListUserOrgsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.ListOrgs")
@@ -1715,12 +1715,12 @@ func (a *UsersService) ListOrgsExecute(r UsersApiListOrgsRequest) (ListUserOrgsR
 }
 
 type UsersApiListWorkspaceAuditLogsRequest struct {
-	ctx _context.Context
-	ApiService *UsersService
-	userHandle string
+	ctx             _context.Context
+	ApiService      *UsersService
+	userHandle      string
 	workspaceHandle string
-	limit *int32
-	nextToken *string
+	limit           *int32
+	nextToken       *string
 }
 
 // Pagination limit
@@ -1728,6 +1728,7 @@ func (r UsersApiListWorkspaceAuditLogsRequest) Limit(limit int32) UsersApiListWo
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r UsersApiListWorkspaceAuditLogsRequest) NextToken(nextToken string) UsersApiListWorkspaceAuditLogsRequest {
 	r.nextToken = &nextToken
@@ -1750,9 +1751,9 @@ Returns the audit logs for a user workspace.
 */
 func (a *UsersService) ListWorkspaceAuditLogs(ctx _context.Context, userHandle string, workspaceHandle string) UsersApiListWorkspaceAuditLogsRequest {
 	return UsersApiListWorkspaceAuditLogsRequest{
-		ApiService: a,
-		ctx: ctx,
-		userHandle: userHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -1761,10 +1762,10 @@ func (a *UsersService) ListWorkspaceAuditLogs(ctx _context.Context, userHandle s
 //  @return ListAuditLogsResponse
 func (a *UsersService) ListWorkspaceAuditLogsExecute(r UsersApiListWorkspaceAuditLogsRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListAuditLogsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListAuditLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.ListWorkspaceAuditLogs")
@@ -1890,11 +1891,11 @@ func (a *UsersService) ListWorkspaceAuditLogsExecute(r UsersApiListWorkspaceAudi
 }
 
 type UsersApiSearchRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersService
-	q *string
-	limit *int32
-	nextToken *string
+	q          *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Specify the search string.
@@ -1902,11 +1903,13 @@ func (r UsersApiSearchRequest) Q(q string) UsersApiSearchRequest {
 	r.q = &q
 	return r
 }
+
 // Pagination limit
 func (r UsersApiSearchRequest) Limit(limit int32) UsersApiSearchRequest {
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r UsersApiSearchRequest) NextToken(nextToken string) UsersApiSearchRequest {
 	r.nextToken = &nextToken
@@ -1928,7 +1931,7 @@ Search users and lists the ones that meet the filter criteria.
 func (a *UsersService) Search(ctx _context.Context) UsersApiSearchRequest {
 	return UsersApiSearchRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -1936,10 +1939,10 @@ func (a *UsersService) Search(ctx _context.Context) UsersApiSearchRequest {
 //  @return SearchUsersResponse
 func (a *UsersService) SearchExecute(r UsersApiSearchRequest) (SearchUsersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  SearchUsersResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue SearchUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.Search")
@@ -2067,10 +2070,10 @@ func (a *UsersService) SearchExecute(r UsersApiSearchRequest) (SearchUsersRespon
 }
 
 type UsersApiUpdateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UsersService
 	userHandle string
-	request *UpdateUserRequest
+	request    *UpdateUserRequest
 }
 
 // The request body for the user.
@@ -2095,7 +2098,7 @@ Updates the handle name, display name or the URl of the user.
 func (a *UsersService) Update(ctx _context.Context, userHandle string) UsersApiUpdateRequest {
 	return UsersApiUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -2104,10 +2107,10 @@ func (a *UsersService) Update(ctx _context.Context, userHandle string) UsersApiU
 //  @return User
 func (a *UsersService) UpdateExecute(r UsersApiUpdateRequest) (User, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  User
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.Update")

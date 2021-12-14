@@ -17,8 +17,8 @@ import (
 
 // WorkspaceSchema struct for WorkspaceSchema
 type WorkspaceSchema struct {
-	Duration int32 `json:"duration"`
-	Schemas []SchemaInfo `json:"schemas"`
+	Duration int32        `json:"duration"`
+	Schemas  []SchemaInfo `json:"schemas"`
 }
 
 // NewWorkspaceSchema instantiates a new WorkspaceSchema object
@@ -53,7 +53,7 @@ func (o *WorkspaceSchema) GetDuration() int32 {
 // GetDurationOk returns a tuple with the Duration field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSchema) GetDurationOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Duration, true
@@ -77,7 +77,7 @@ func (o *WorkspaceSchema) GetSchemas() []SchemaInfo {
 // GetSchemasOk returns a tuple with the Schemas field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSchema) GetSchemasOk() (*[]SchemaInfo, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Schemas, true
@@ -134,5 +134,3 @@ func (v *NullableWorkspaceSchema) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

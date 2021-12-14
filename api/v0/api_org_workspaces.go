@@ -29,10 +29,10 @@ var (
 type OrgWorkspacesService service
 
 type OrgWorkspacesApiCreateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgWorkspacesService
-	orgHandle string
-	request *CreateWorkspaceRequest
+	orgHandle  string
+	request    *CreateWorkspaceRequest
 }
 
 // The request body for the workspace to be created.
@@ -57,8 +57,8 @@ Creates a new workspace for an organization. The limit is 10 per organization. I
 func (a *OrgWorkspacesService) Create(ctx _context.Context, orgHandle string) OrgWorkspacesApiCreateRequest {
 	return OrgWorkspacesApiCreateRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -66,10 +66,10 @@ func (a *OrgWorkspacesService) Create(ctx _context.Context, orgHandle string) Or
 //  @return Workspace
 func (a *OrgWorkspacesService) CreateExecute(r OrgWorkspacesApiCreateRequest) (Workspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Workspace
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Workspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.Create")
@@ -213,12 +213,11 @@ func (a *OrgWorkspacesService) CreateExecute(r OrgWorkspacesApiCreateRequest) (W
 }
 
 type OrgWorkspacesApiDeleteRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
 	workspaceHandle string
 }
-
 
 func (r OrgWorkspacesApiDeleteRequest) Execute() (Workspace, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
@@ -236,9 +235,9 @@ Deletes the workspace specified in the request.
 */
 func (a *OrgWorkspacesService) Delete(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiDeleteRequest {
 	return OrgWorkspacesApiDeleteRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -247,10 +246,10 @@ func (a *OrgWorkspacesService) Delete(ctx _context.Context, orgHandle string, wo
 //  @return Workspace
 func (a *OrgWorkspacesService) DeleteExecute(r OrgWorkspacesApiDeleteRequest) (Workspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Workspace
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Workspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.Delete")
@@ -370,12 +369,11 @@ func (a *OrgWorkspacesService) DeleteExecute(r OrgWorkspacesApiDeleteRequest) (W
 }
 
 type OrgWorkspacesApiGetRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
 	workspaceHandle string
 }
-
 
 func (r OrgWorkspacesApiGetRequest) Execute() (Workspace, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
@@ -393,9 +391,9 @@ Get the details for a workspace in an organization.
 */
 func (a *OrgWorkspacesService) Get(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiGetRequest {
 	return OrgWorkspacesApiGetRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -404,10 +402,10 @@ func (a *OrgWorkspacesService) Get(ctx _context.Context, orgHandle string, works
 //  @return Workspace
 func (a *OrgWorkspacesService) GetExecute(r OrgWorkspacesApiGetRequest) (Workspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Workspace
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Workspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.Get")
@@ -537,12 +535,12 @@ func (a *OrgWorkspacesService) GetExecute(r OrgWorkspacesApiGetRequest) (Workspa
 }
 
 type OrgWorkspacesApiGetQueryRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
 	workspaceHandle string
-	sql *string
-	contentType *string
+	sql             *string
+	contentType     *string
 }
 
 // The sql query to perform against the org workspace.
@@ -550,6 +548,7 @@ func (r OrgWorkspacesApiGetQueryRequest) Sql(sql string) OrgWorkspacesApiGetQuer
 	r.sql = &sql
 	return r
 }
+
 // The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
 func (r OrgWorkspacesApiGetQueryRequest) ContentType(contentType string) OrgWorkspacesApiGetQueryRequest {
 	r.contentType = &contentType
@@ -572,9 +571,9 @@ Performs a query in an org workspace. Results are limited to 3000 rows or 30 sec
 */
 func (a *OrgWorkspacesService) GetQuery(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiGetQueryRequest {
 	return OrgWorkspacesApiGetQueryRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -583,10 +582,10 @@ func (a *OrgWorkspacesService) GetQuery(ctx _context.Context, orgHandle string, 
 //  @return WorkspaceQueryResult
 func (a *OrgWorkspacesService) GetQueryExecute(r OrgWorkspacesApiGetQueryRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceQueryResult
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceQueryResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.GetQuery")
@@ -723,13 +722,13 @@ func (a *OrgWorkspacesService) GetQueryExecute(r OrgWorkspacesApiGetQueryRequest
 }
 
 type OrgWorkspacesApiGetQueryWithExtensionsRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
 	workspaceHandle string
-	extensions string
-	sql *string
-	contentType *string
+	extensions      string
+	sql             *string
+	contentType     *string
 }
 
 // The sql query to perform against the org workspace.
@@ -737,6 +736,7 @@ func (r OrgWorkspacesApiGetQueryWithExtensionsRequest) Sql(sql string) OrgWorksp
 	r.sql = &sql
 	return r
 }
+
 // The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
 func (r OrgWorkspacesApiGetQueryWithExtensionsRequest) ContentType(contentType string) OrgWorkspacesApiGetQueryWithExtensionsRequest {
 	r.contentType = &contentType
@@ -755,16 +755,16 @@ Performs a query in an org workspace, with content type and content encoding for
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle The handle of the org that the workspace belongs to.
  @param workspaceHandle The handle of the workspace to query.
- @param extensions The content type for the request. E.g. 
+ @param extensions The content type for the request. E.g.
  @return OrgWorkspacesApiGetQueryWithExtensionsRequest
 */
 func (a *OrgWorkspacesService) GetQueryWithExtensions(ctx _context.Context, orgHandle string, workspaceHandle string, extensions string) OrgWorkspacesApiGetQueryWithExtensionsRequest {
 	return OrgWorkspacesApiGetQueryWithExtensionsRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
-		extensions: extensions,
+		extensions:      extensions,
 	}
 }
 
@@ -772,10 +772,10 @@ func (a *OrgWorkspacesService) GetQueryWithExtensions(ctx _context.Context, orgH
 //  @return WorkspaceQueryResult
 func (a *OrgWorkspacesService) GetQueryWithExtensionsExecute(r OrgWorkspacesApiGetQueryWithExtensionsRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceQueryResult
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceQueryResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.GetQueryWithExtensions")
@@ -913,12 +913,11 @@ func (a *OrgWorkspacesService) GetQueryWithExtensionsExecute(r OrgWorkspacesApiG
 }
 
 type OrgWorkspacesApiGetSchemaRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
 	workspaceHandle string
 }
-
 
 func (r OrgWorkspacesApiGetSchemaRequest) Execute() (WorkspaceSchema, *_nethttp.Response, error) {
 	return r.ApiService.GetSchemaExecute(r)
@@ -936,9 +935,9 @@ Returns the postgres schemas for an org workspace. This will consist of the conn
 */
 func (a *OrgWorkspacesService) GetSchema(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiGetSchemaRequest {
 	return OrgWorkspacesApiGetSchemaRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -947,10 +946,10 @@ func (a *OrgWorkspacesService) GetSchema(ctx _context.Context, orgHandle string,
 //  @return WorkspaceSchema
 func (a *OrgWorkspacesService) GetSchemaExecute(r OrgWorkspacesApiGetSchemaRequest) (WorkspaceSchema, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceSchema
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceSchema
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.GetSchema")
@@ -1080,11 +1079,11 @@ func (a *OrgWorkspacesService) GetSchemaExecute(r OrgWorkspacesApiGetSchemaReque
 }
 
 type OrgWorkspacesApiListRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgWorkspacesService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1092,6 +1091,7 @@ func (r OrgWorkspacesApiListRequest) Limit(limit int32) OrgWorkspacesApiListRequ
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r OrgWorkspacesApiListRequest) NextToken(nextToken string) OrgWorkspacesApiListRequest {
 	r.nextToken = &nextToken
@@ -1114,8 +1114,8 @@ List the workspace for an organization. The action supports list pagination and 
 func (a *OrgWorkspacesService) List(ctx _context.Context, orgHandle string) OrgWorkspacesApiListRequest {
 	return OrgWorkspacesApiListRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -1123,10 +1123,10 @@ func (a *OrgWorkspacesService) List(ctx _context.Context, orgHandle string) OrgW
 //  @return ListWorkspacesResponse
 func (a *OrgWorkspacesService) ListExecute(r OrgWorkspacesApiListRequest) (ListWorkspacesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListWorkspacesResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListWorkspacesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.List")
@@ -1251,12 +1251,11 @@ func (a *OrgWorkspacesService) ListExecute(r OrgWorkspacesApiListRequest) (ListW
 }
 
 type OrgWorkspacesApiListDBLogsRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
 	workspaceHandle string
 }
-
 
 func (r OrgWorkspacesApiListDBLogsRequest) Execute() (ListLogsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListDBLogsExecute(r)
@@ -1274,9 +1273,9 @@ Returns the workspace logs for an org.
 */
 func (a *OrgWorkspacesService) ListDBLogs(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiListDBLogsRequest {
 	return OrgWorkspacesApiListDBLogsRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -1285,10 +1284,10 @@ func (a *OrgWorkspacesService) ListDBLogs(ctx _context.Context, orgHandle string
 //  @return ListLogsResponse
 func (a *OrgWorkspacesService) ListDBLogsExecute(r OrgWorkspacesApiListDBLogsRequest) (ListLogsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListLogsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.ListDBLogs")
@@ -1408,12 +1407,12 @@ func (a *OrgWorkspacesService) ListDBLogsExecute(r OrgWorkspacesApiListDBLogsReq
 }
 
 type OrgWorkspacesApiPostQueryRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
 	workspaceHandle string
-	sql *string
-	contentType *string
+	sql             *string
+	contentType     *string
 }
 
 // The sql query to perform against the org workspace.
@@ -1421,6 +1420,7 @@ func (r OrgWorkspacesApiPostQueryRequest) Sql(sql string) OrgWorkspacesApiPostQu
 	r.sql = &sql
 	return r
 }
+
 // The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
 func (r OrgWorkspacesApiPostQueryRequest) ContentType(contentType string) OrgWorkspacesApiPostQueryRequest {
 	r.contentType = &contentType
@@ -1443,9 +1443,9 @@ Performs a query in an org workspace. Results are limited to 3000 rows or 30 sec
 */
 func (a *OrgWorkspacesService) PostQuery(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiPostQueryRequest {
 	return OrgWorkspacesApiPostQueryRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -1454,10 +1454,10 @@ func (a *OrgWorkspacesService) PostQuery(ctx _context.Context, orgHandle string,
 //  @return WorkspaceQueryResult
 func (a *OrgWorkspacesService) PostQueryExecute(r OrgWorkspacesApiPostQueryRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceQueryResult
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceQueryResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.PostQuery")
@@ -1595,13 +1595,13 @@ func (a *OrgWorkspacesService) PostQueryExecute(r OrgWorkspacesApiPostQueryReque
 }
 
 type OrgWorkspacesApiPostQueryWithExtensionsRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
 	workspaceHandle string
-	extensions string
-	sql *string
-	contentType *string
+	extensions      string
+	sql             *string
+	contentType     *string
 }
 
 // The sql query to perform against the org workspace.
@@ -1609,6 +1609,7 @@ func (r OrgWorkspacesApiPostQueryWithExtensionsRequest) Sql(sql string) OrgWorks
 	r.sql = &sql
 	return r
 }
+
 // The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
 func (r OrgWorkspacesApiPostQueryWithExtensionsRequest) ContentType(contentType string) OrgWorkspacesApiPostQueryWithExtensionsRequest {
 	r.contentType = &contentType
@@ -1627,16 +1628,16 @@ Performs a query in an org workspace, with content type and content encoding for
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle The handle of the org that the workspace belongs to.
  @param workspaceHandle The handle of the workspace to query.
- @param extensions The content type for the request. E.g. 
+ @param extensions The content type for the request. E.g.
  @return OrgWorkspacesApiPostQueryWithExtensionsRequest
 */
 func (a *OrgWorkspacesService) PostQueryWithExtensions(ctx _context.Context, orgHandle string, workspaceHandle string, extensions string) OrgWorkspacesApiPostQueryWithExtensionsRequest {
 	return OrgWorkspacesApiPostQueryWithExtensionsRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
-		extensions: extensions,
+		extensions:      extensions,
 	}
 }
 
@@ -1644,10 +1645,10 @@ func (a *OrgWorkspacesService) PostQueryWithExtensions(ctx _context.Context, org
 //  @return WorkspaceQueryResult
 func (a *OrgWorkspacesService) PostQueryWithExtensionsExecute(r OrgWorkspacesApiPostQueryWithExtensionsRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  WorkspaceQueryResult
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceQueryResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.PostQueryWithExtensions")
@@ -1785,11 +1786,11 @@ func (a *OrgWorkspacesService) PostQueryWithExtensionsExecute(r OrgWorkspacesApi
 }
 
 type OrgWorkspacesApiUpdateRequest struct {
-	ctx _context.Context
-	ApiService *OrgWorkspacesService
-	orgHandle string
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
 	workspaceHandle string
-	request *UpdateWorkspaceRequest
+	request         *UpdateWorkspaceRequest
 }
 
 // The request body of the workspace which needs to be updated.
@@ -1814,9 +1815,9 @@ Update a workspace in an organization.
 */
 func (a *OrgWorkspacesService) Update(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiUpdateRequest {
 	return OrgWorkspacesApiUpdateRequest{
-		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
 	}
 }
@@ -1825,10 +1826,10 @@ func (a *OrgWorkspacesService) Update(ctx _context.Context, orgHandle string, wo
 //  @return Workspace
 func (a *OrgWorkspacesService) UpdateExecute(r OrgWorkspacesApiUpdateRequest) (Workspace, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Workspace
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Workspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.Update")

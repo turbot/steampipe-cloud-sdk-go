@@ -18,7 +18,7 @@ import (
 // CreateConnectionRequest struct for CreateConnectionRequest
 type CreateConnectionRequest struct {
 	Config *map[string]interface{} `json:"config,omitempty"`
-	Handle string `json:"handle"`
+	Handle string                  `json:"handle"`
 	// Type   string                 `json:\"type\" binding:\"required,steampipe_connection_type\"`
 	Plugin string `json:"plugin"`
 }
@@ -87,7 +87,7 @@ func (o *CreateConnectionRequest) GetHandle() string {
 // GetHandleOk returns a tuple with the Handle field value
 // and a boolean to check if the value has been set.
 func (o *CreateConnectionRequest) GetHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Handle, true
@@ -111,7 +111,7 @@ func (o *CreateConnectionRequest) GetPlugin() string {
 // GetPluginOk returns a tuple with the Plugin field value
 // and a boolean to check if the value has been set.
 func (o *CreateConnectionRequest) GetPluginOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Plugin, true
@@ -171,5 +171,3 @@ func (v *NullableCreateConnectionRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -18,9 +18,9 @@ import (
 // CreateUserRequest struct for CreateUserRequest
 type CreateUserRequest struct {
 	DisplayName *string `json:"display_name,omitempty"`
-	Email string `json:"email"`
-	Handle string `json:"handle"`
-	Url *string `json:"url,omitempty"`
+	Email       string  `json:"email"`
+	Handle      string  `json:"handle"`
+	Url         *string `json:"url,omitempty"`
 }
 
 // NewCreateUserRequest instantiates a new CreateUserRequest object
@@ -87,7 +87,7 @@ func (o *CreateUserRequest) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetEmailOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Email, true
@@ -111,7 +111,7 @@ func (o *CreateUserRequest) GetHandle() string {
 // GetHandleOk returns a tuple with the Handle field value
 // and a boolean to check if the value has been set.
 func (o *CreateUserRequest) GetHandleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Handle, true
@@ -206,5 +206,3 @@ func (v *NullableCreateUserRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

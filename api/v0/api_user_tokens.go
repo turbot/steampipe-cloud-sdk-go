@@ -29,11 +29,10 @@ var (
 type UserTokensService service
 
 type UserTokensApiCreateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserTokensService
 	userHandle string
 }
-
 
 func (r UserTokensApiCreateRequest) Execute() (Token, *_nethttp.Response, error) {
 	return r.ApiService.CreateExecute(r)
@@ -51,7 +50,7 @@ Creates a new token for the specified user. The limit is 2 per user. If you requ
 func (a *UserTokensService) Create(ctx _context.Context, userHandle string) UserTokensApiCreateRequest {
 	return UserTokensApiCreateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -60,10 +59,10 @@ func (a *UserTokensService) Create(ctx _context.Context, userHandle string) User
 //  @return Token
 func (a *UserTokensService) CreateExecute(r UserTokensApiCreateRequest) (Token, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Token
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Token
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokensService.Create")
@@ -192,12 +191,11 @@ func (a *UserTokensService) CreateExecute(r UserTokensApiCreateRequest) (Token, 
 }
 
 type UserTokensApiDeleteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserTokensService
 	userHandle string
-	tokenId string
+	tokenId    string
 }
-
 
 func (r UserTokensApiDeleteRequest) Execute() (Token, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
@@ -216,9 +214,9 @@ Deletes the token associated with the specified user.
 func (a *UserTokensService) Delete(ctx _context.Context, userHandle string, tokenId string) UserTokensApiDeleteRequest {
 	return UserTokensApiDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
-		tokenId: tokenId,
+		tokenId:    tokenId,
 	}
 }
 
@@ -226,10 +224,10 @@ func (a *UserTokensService) Delete(ctx _context.Context, userHandle string, toke
 //  @return Token
 func (a *UserTokensService) DeleteExecute(r UserTokensApiDeleteRequest) (Token, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Token
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Token
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokensService.Delete")
@@ -349,12 +347,11 @@ func (a *UserTokensService) DeleteExecute(r UserTokensApiDeleteRequest) (Token, 
 }
 
 type UserTokensApiGetRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserTokensService
-	tokenId string
+	tokenId    string
 	userHandle string
 }
-
 
 func (r UserTokensApiGetRequest) Execute() (Token, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
@@ -373,8 +370,8 @@ Retrives the information of a specified token.
 func (a *UserTokensService) Get(ctx _context.Context, tokenId string, userHandle string) UserTokensApiGetRequest {
 	return UserTokensApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
-		tokenId: tokenId,
+		ctx:        ctx,
+		tokenId:    tokenId,
 		userHandle: userHandle,
 	}
 }
@@ -383,10 +380,10 @@ func (a *UserTokensService) Get(ctx _context.Context, tokenId string, userHandle
 //  @return Token
 func (a *UserTokensService) GetExecute(r UserTokensApiGetRequest) (Token, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Token
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Token
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokensService.Get")
@@ -516,11 +513,11 @@ func (a *UserTokensService) GetExecute(r UserTokensApiGetRequest) (Token, *_neth
 }
 
 type UserTokensApiListRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserTokensService
 	userHandle string
-	limit *int32
-	nextToken *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -528,6 +525,7 @@ func (r UserTokensApiListRequest) Limit(limit int32) UserTokensApiListRequest {
 	r.limit = &limit
 	return r
 }
+
 // When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r UserTokensApiListRequest) NextToken(nextToken string) UserTokensApiListRequest {
 	r.nextToken = &nextToken
@@ -550,7 +548,7 @@ List the token for a user. The action supports list pagination and does not retu
 func (a *UserTokensService) List(ctx _context.Context, userHandle string) UserTokensApiListRequest {
 	return UserTokensApiListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
 	}
 }
@@ -559,10 +557,10 @@ func (a *UserTokensService) List(ctx _context.Context, userHandle string) UserTo
 //  @return ListTokensResponse
 func (a *UserTokensService) ListExecute(r UserTokensApiListRequest) (ListTokensResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListTokensResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListTokensResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokensService.List")
@@ -687,11 +685,11 @@ func (a *UserTokensService) ListExecute(r UserTokensApiListRequest) (ListTokensR
 }
 
 type UserTokensApiUpdateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *UserTokensService
 	userHandle string
-	tokenId string
-	request *UpdateTokenRequest
+	tokenId    string
+	request    *UpdateTokenRequest
 }
 
 // The request body for the token which needs to be updated.
@@ -717,9 +715,9 @@ Changes the status of the specified token from Active to Inactive or vice versa.
 func (a *UserTokensService) Update(ctx _context.Context, userHandle string, tokenId string) UserTokensApiUpdateRequest {
 	return UserTokensApiUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		userHandle: userHandle,
-		tokenId: tokenId,
+		tokenId:    tokenId,
 	}
 }
 
@@ -727,10 +725,10 @@ func (a *UserTokensService) Update(ctx _context.Context, userHandle string, toke
 //  @return Token
 func (a *UserTokensService) UpdateExecute(r UserTokensApiUpdateRequest) (Token, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  Token
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Token
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserTokensService.Update")

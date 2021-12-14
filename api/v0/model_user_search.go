@@ -17,10 +17,10 @@ import (
 
 // UserSearch struct for UserSearch
 type UserSearch struct {
-	AvatarUrl *string `json:"avatar_url,omitempty"`
+	AvatarUrl   *string `json:"avatar_url,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`
-	Handle *string `json:"handle,omitempty"`
-	Id string `json:"id"`
+	Handle      *string `json:"handle,omitempty"`
+	Id          string  `json:"id"`
 }
 
 // NewUserSearch instantiates a new UserSearch object
@@ -150,7 +150,7 @@ func (o *UserSearch) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *UserSearch) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -213,5 +213,3 @@ func (v *NullableUserSearch) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

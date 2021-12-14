@@ -29,10 +29,10 @@ var (
 type OrgMembersService service
 
 type OrgMembersApiConfirmInviteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersService
-	orgHandle string
-	t *string
+	orgHandle  string
+	t          *string
 }
 
 // Specify the token.
@@ -57,17 +57,17 @@ Confirm org member invite.
 func (a *OrgMembersService) ConfirmInvite(ctx _context.Context, orgHandle string) OrgMembersApiConfirmInviteRequest {
 	return OrgMembersApiConfirmInviteRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
 // Execute executes the request
 func (a *OrgMembersService) ConfirmInviteExecute(r OrgMembersApiConfirmInviteRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = _nethttp.MethodGet
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersService.ConfirmInvite")
@@ -191,12 +191,11 @@ func (a *OrgMembersService) ConfirmInviteExecute(r OrgMembersApiConfirmInviteReq
 }
 
 type OrgMembersApiDeleteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersService
-	orgHandle string
+	orgHandle  string
 	userHandle string
 }
-
 
 func (r OrgMembersApiDeleteRequest) Execute() (OrgUser, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
@@ -215,8 +214,8 @@ Delete the user from the org.
 func (a *OrgMembersService) Delete(ctx _context.Context, orgHandle string, userHandle string) OrgMembersApiDeleteRequest {
 	return OrgMembersApiDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		userHandle: userHandle,
 	}
 }
@@ -225,10 +224,10 @@ func (a *OrgMembersService) Delete(ctx _context.Context, orgHandle string, userH
 //  @return OrgUser
 func (a *OrgMembersService) DeleteExecute(r OrgMembersApiDeleteRequest) (OrgUser, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  OrgUser
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue OrgUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersService.Delete")
@@ -368,10 +367,10 @@ func (a *OrgMembersService) DeleteExecute(r OrgMembersApiDeleteRequest) (OrgUser
 }
 
 type OrgMembersApiDeleteInviteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersService
-	orgHandle string
-	t *string
+	orgHandle  string
+	t          *string
 }
 
 // Specify the token to be rejected.
@@ -396,17 +395,17 @@ Delete the org member invite.
 func (a *OrgMembersService) DeleteInvite(ctx _context.Context, orgHandle string) OrgMembersApiDeleteInviteRequest {
 	return OrgMembersApiDeleteInviteRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
 // Execute executes the request
 func (a *OrgMembersService) DeleteInviteExecute(r OrgMembersApiDeleteInviteRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersService.DeleteInvite")
@@ -520,12 +519,11 @@ func (a *OrgMembersService) DeleteInviteExecute(r OrgMembersApiDeleteInviteReque
 }
 
 type OrgMembersApiGetRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersService
-	orgHandle string
+	orgHandle  string
 	userHandle string
 }
-
 
 func (r OrgMembersApiGetRequest) Execute() (OrgUser, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
@@ -544,8 +542,8 @@ Get org member.
 func (a *OrgMembersService) Get(ctx _context.Context, orgHandle string, userHandle string) OrgMembersApiGetRequest {
 	return OrgMembersApiGetRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		userHandle: userHandle,
 	}
 }
@@ -554,10 +552,10 @@ func (a *OrgMembersService) Get(ctx _context.Context, orgHandle string, userHand
 //  @return OrgUser
 func (a *OrgMembersService) GetExecute(r OrgMembersApiGetRequest) (OrgUser, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  OrgUser
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue OrgUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersService.Get")
@@ -687,10 +685,10 @@ func (a *OrgMembersService) GetExecute(r OrgMembersApiGetRequest) (OrgUser, *_ne
 }
 
 type OrgMembersApiInviteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersService
-	orgHandle string
-	request *InviteOrgUserRequest
+	orgHandle  string
+	request    *InviteOrgUserRequest
 }
 
 // The request body to invite a member to an organization.
@@ -715,8 +713,8 @@ Invite member to an org.
 func (a *OrgMembersService) Invite(ctx _context.Context, orgHandle string) OrgMembersApiInviteRequest {
 	return OrgMembersApiInviteRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -724,10 +722,10 @@ func (a *OrgMembersService) Invite(ctx _context.Context, orgHandle string) OrgMe
 //  @return OrgUser
 func (a *OrgMembersService) InviteExecute(r OrgMembersApiInviteRequest) (OrgUser, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  OrgUser
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue OrgUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersService.Invite")
@@ -851,11 +849,11 @@ func (a *OrgMembersService) InviteExecute(r OrgMembersApiInviteRequest) (OrgUser
 }
 
 type OrgMembersApiListAcceptedRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -863,6 +861,7 @@ func (r OrgMembersApiListAcceptedRequest) Limit(limit int32) OrgMembersApiListAc
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r OrgMembersApiListAcceptedRequest) NextToken(nextToken string) OrgMembersApiListAcceptedRequest {
 	r.nextToken = &nextToken
@@ -885,8 +884,8 @@ List all the members who has accepted the request.
 func (a *OrgMembersService) ListAccepted(ctx _context.Context, orgHandle string) OrgMembersApiListAcceptedRequest {
 	return OrgMembersApiListAcceptedRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -894,10 +893,10 @@ func (a *OrgMembersService) ListAccepted(ctx _context.Context, orgHandle string)
 //  @return ListOrgUsersResponse
 func (a *OrgMembersService) ListAcceptedExecute(r OrgMembersApiListAcceptedRequest) (ListOrgUsersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListOrgUsersResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListOrgUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersService.ListAccepted")
@@ -1022,11 +1021,11 @@ func (a *OrgMembersService) ListAcceptedExecute(r OrgMembersApiListAcceptedReque
 }
 
 type OrgMembersApiListInvitedRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersService
-	orgHandle string
-	limit *int32
-	nextToken *string
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
 }
 
 // Pagination limit
@@ -1034,6 +1033,7 @@ func (r OrgMembersApiListInvitedRequest) Limit(limit int32) OrgMembersApiListInv
 	r.limit = &limit
 	return r
 }
+
 // An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
 func (r OrgMembersApiListInvitedRequest) NextToken(nextToken string) OrgMembersApiListInvitedRequest {
 	r.nextToken = &nextToken
@@ -1056,8 +1056,8 @@ List all the members who has been invited to the org.
 func (a *OrgMembersService) ListInvited(ctx _context.Context, orgHandle string) OrgMembersApiListInvitedRequest {
 	return OrgMembersApiListInvitedRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 	}
 }
 
@@ -1065,10 +1065,10 @@ func (a *OrgMembersService) ListInvited(ctx _context.Context, orgHandle string) 
 //  @return ListOrgUsersResponse
 func (a *OrgMembersService) ListInvitedExecute(r OrgMembersApiListInvitedRequest) (ListOrgUsersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  ListOrgUsersResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListOrgUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersService.ListInvited")
@@ -1193,11 +1193,11 @@ func (a *OrgMembersService) ListInvitedExecute(r OrgMembersApiListInvitedRequest
 }
 
 type OrgMembersApiUpdateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *OrgMembersService
-	orgHandle string
+	orgHandle  string
 	userHandle string
-	request *UpdateOrgUserRequest
+	request    *UpdateOrgUserRequest
 }
 
 // The request body for the member.
@@ -1223,8 +1223,8 @@ Update the role of the member.
 func (a *OrgMembersService) Update(ctx _context.Context, orgHandle string, userHandle string) OrgMembersApiUpdateRequest {
 	return OrgMembersApiUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
-		orgHandle: orgHandle,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
 		userHandle: userHandle,
 	}
 }
@@ -1233,10 +1233,10 @@ func (a *OrgMembersService) Update(ctx _context.Context, orgHandle string, userH
 //  @return OrgUser
 func (a *OrgMembersService) UpdateExecute(r OrgMembersApiUpdateRequest) (OrgUser, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  OrgUser
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue OrgUser
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgMembersService.Update")

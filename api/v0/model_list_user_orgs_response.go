@@ -17,8 +17,8 @@ import (
 
 // ListUserOrgsResponse struct for ListUserOrgsResponse
 type ListUserOrgsResponse struct {
-	Items *[]UserOrg `json:"items,omitempty"`
-	NextToken *string `json:"next_token,omitempty"`
+	Items     *[]UserOrg `json:"items,omitempty"`
+	NextToken *string    `json:"next_token,omitempty"`
 }
 
 // NewListUserOrgsResponse instantiates a new ListUserOrgsResponse object
@@ -148,5 +148,3 @@ func (v *NullableListUserOrgsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
