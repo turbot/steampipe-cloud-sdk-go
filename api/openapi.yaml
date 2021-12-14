@@ -3,12 +3,13 @@ info:
   contact:
     email: help@steampipe.io
     name: Support
-  description: Interrogate your CloudOps data with the simplicity and power of SQL,
-    then share your discoveries using Steampipe Cloud.
+  description: Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io),
+    an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP
+    and more) with SQL. No DB required.
   title: Steampipe Cloud
   version: "1.0"
 servers:
-- url: https://cloud.steampipe.io/api/v1
+- url: https://cloud.steampipe.io/api/v0
 paths:
   /actor:
     get:
@@ -6566,172 +6567,6 @@ paths:
       - UserWorkspaces
 components:
   schemas:
-    SchemaInfo:
-      example:
-        tables:
-        - columns:
-          - data_type: data_type
-            name: name
-            description: description
-          - data_type: data_type
-            name: name
-            description: description
-          name: name
-          description: description
-        - columns:
-          - data_type: data_type
-            name: name
-            description: description
-          - data_type: data_type
-            name: name
-            description: description
-          name: name
-          description: description
-        name: name
-        description: description
-      properties:
-        description:
-          type: string
-        name:
-          type: string
-        tables:
-          items:
-            $ref: '#/components/schemas/SchemaTable'
-          type: array
-      required:
-      - name
-      - tables
-      type: object
-    SchemaTable:
-      example:
-        columns:
-        - data_type: data_type
-          name: name
-          description: description
-        - data_type: data_type
-          name: name
-          description: description
-        name: name
-        description: description
-      properties:
-        columns:
-          items:
-            $ref: '#/components/schemas/SchemaTableColumn'
-          type: array
-        description:
-          type: string
-        name:
-          type: string
-      required:
-      - columns
-      - name
-      type: object
-    SchemaTableColumn:
-      example:
-        data_type: data_type
-        name: name
-        description: description
-      properties:
-        data_type:
-          type: string
-        description:
-          type: string
-        name:
-          type: string
-      required:
-      - data_type
-      - name
-      type: object
-    WorkspaceSchema:
-      example:
-        duration: 0
-        schemas:
-        - tables:
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          name: name
-          description: description
-        - tables:
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          name: name
-          description: description
-      properties:
-        duration:
-          type: integer
-        schemas:
-          items:
-            $ref: '#/components/schemas/SchemaInfo'
-          type: array
-      required:
-      - duration
-      - schemas
-      type: object
-    ErrorDetailModel:
-      properties:
-        location:
-          type: string
-        message:
-          type: string
-        value:
-          type: string
-      type: object
-    ErrorModel:
-      properties:
-        detail:
-          type: string
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorDetailModel'
-          type: array
-        id:
-          type: string
-        instance:
-          type: string
-        status:
-          type: integer
-        title:
-          type: string
-        type:
-          type: string
-      required:
-      - id
-      - status
-      - title
-      - type
-      type: object
     AssociationQuota:
       additionalProperties:
         $ref: '#/components/schemas/Quota'
@@ -6934,6 +6769,39 @@ components:
           type: string
       required:
       - handle
+      type: object
+    ErrorDetailModel:
+      properties:
+        location:
+          type: string
+        message:
+          type: string
+        value:
+          type: string
+      type: object
+    ErrorModel:
+      properties:
+        detail:
+          type: string
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorDetailModel'
+          type: array
+        id:
+          type: string
+        instance:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+      required:
+      - id
+      - status
+      - title
+      - type
       type: object
     Identity:
       example:
@@ -7609,6 +7477,82 @@ components:
         used:
           type: integer
       type: object
+    SchemaInfo:
+      example:
+        tables:
+        - columns:
+          - data_type: data_type
+            name: name
+            description: description
+          - data_type: data_type
+            name: name
+            description: description
+          name: name
+          description: description
+        - columns:
+          - data_type: data_type
+            name: name
+            description: description
+          - data_type: data_type
+            name: name
+            description: description
+          name: name
+          description: description
+        name: name
+        description: description
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        tables:
+          items:
+            $ref: '#/components/schemas/SchemaTable'
+          type: array
+      required:
+      - name
+      - tables
+      type: object
+    SchemaTable:
+      example:
+        columns:
+        - data_type: data_type
+          name: name
+          description: description
+        - data_type: data_type
+          name: name
+          description: description
+        name: name
+        description: description
+      properties:
+        columns:
+          items:
+            $ref: '#/components/schemas/SchemaTableColumn'
+          type: array
+        description:
+          type: string
+        name:
+          type: string
+      required:
+      - columns
+      - name
+      type: object
+    SchemaTableColumn:
+      example:
+        data_type: data_type
+        name: name
+        description: description
+      properties:
+        data_type:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+      required:
+      - data_type
+      - name
+      type: object
     SearchIdentitiesResponse:
       example:
         items:
@@ -8118,6 +8062,63 @@ components:
       required:
       - data_type_name
       - name
+      type: object
+    WorkspaceSchema:
+      example:
+        duration: 0
+        schemas:
+        - tables:
+          - columns:
+            - data_type: data_type
+              name: name
+              description: description
+            - data_type: data_type
+              name: name
+              description: description
+            name: name
+            description: description
+          - columns:
+            - data_type: data_type
+              name: name
+              description: description
+            - data_type: data_type
+              name: name
+              description: description
+            name: name
+            description: description
+          name: name
+          description: description
+        - tables:
+          - columns:
+            - data_type: data_type
+              name: name
+              description: description
+            - data_type: data_type
+              name: name
+              description: description
+            name: name
+            description: description
+          - columns:
+            - data_type: data_type
+              name: name
+              description: description
+            - data_type: data_type
+              name: name
+              description: description
+            name: name
+            description: description
+          name: name
+          description: description
+      properties:
+        duration:
+          type: integer
+        schemas:
+          items:
+            $ref: '#/components/schemas/SchemaInfo'
+          type: array
+      required:
+      - duration
+      - schemas
       type: object
   securitySchemes:
     ApiKeyAuth:

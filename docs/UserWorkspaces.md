@@ -1,6 +1,6 @@
 # \UserWorkspaces
 
-All URIs are relative to *https://cloud.steampipe.io/api/v1*
+All URIs are relative to *https://cloud.steampipe.io/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
