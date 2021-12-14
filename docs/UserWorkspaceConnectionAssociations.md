@@ -8,13 +8,12 @@ Method | HTTP request | Description
 [**Delete**](UserWorkspaceConnectionAssociations.md#Delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete user workspace connection association
 [**Get**](UserWorkspaceConnectionAssociations.md#Get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get user workspace connection association
 [**List**](UserWorkspaceConnectionAssociations.md#List) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn | List user workspace connection associations
-[**UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet**](UserWorkspaceConnectionAssociations.md#UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle}/test | Test user workspace connection
 
 
 
 ## Create
 
-> TypesWorkspaceConn Create(ctx, userHandle, workspaceHandle).Request(request).Execute()
+> WorkspaceConn Create(ctx, userHandle, workspaceHandle).Request(request).Execute()
 
 Create user workspace connection association
 
@@ -35,7 +34,7 @@ import (
 func main() {
     userHandle := "userHandle_example" // string | The handle of the user where we want to create an association.
     workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace where the connection will be associated.
-    request := *openapiclient.NewTypesCreateWorkspaceConnRequest("ConnectionHandle_example") // TypesCreateWorkspaceConnRequest | The request body for the association to be created.
+    request := *openapiclient.NewCreateWorkspaceConnRequest("ConnectionHandle_example") // CreateWorkspaceConnRequest | The request body for the association to be created.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -44,7 +43,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceConnectionAssociations.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Create`: TypesWorkspaceConn
+    // response from `Create`: WorkspaceConn
     fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceConnectionAssociations.Create`: %v\n", resp)
 }
 ```
@@ -67,11 +66,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **request** | [**TypesCreateWorkspaceConnRequest**](TypesCreateWorkspaceConnRequest.md) | The request body for the association to be created. | 
+ **request** | [**CreateWorkspaceConnRequest**](CreateWorkspaceConnRequest.md) | The request body for the association to be created. | 
 
 ### Return type
 
-[**TypesWorkspaceConn**](TypesWorkspaceConn.md)
+[**WorkspaceConn**](WorkspaceConn.md)
 
 ### Authorization
 
@@ -89,7 +88,7 @@ No authorization required
 
 ## Delete
 
-> TypesWorkspaceConn Delete(ctx, userHandle, workspaceHandle, connHandle).Execute()
+> WorkspaceConn Delete(ctx, userHandle, workspaceHandle, connHandle).Execute()
 
 Delete user workspace connection association
 
@@ -119,7 +118,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceConnectionAssociations.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Delete`: TypesWorkspaceConn
+    // response from `Delete`: WorkspaceConn
     fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceConnectionAssociations.Delete`: %v\n", resp)
 }
 ```
@@ -147,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesWorkspaceConn**](TypesWorkspaceConn.md)
+[**WorkspaceConn**](WorkspaceConn.md)
 
 ### Authorization
 
@@ -165,7 +164,7 @@ No authorization required
 
 ## Get
 
-> TypesWorkspaceConn Get(ctx, userHandle, workspaceHandle, connHandle).Execute()
+> WorkspaceConn Get(ctx, userHandle, workspaceHandle, connHandle).Execute()
 
 Get user workspace connection association
 
@@ -195,7 +194,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceConnectionAssociations.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Get`: TypesWorkspaceConn
+    // response from `Get`: WorkspaceConn
     fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceConnectionAssociations.Get`: %v\n", resp)
 }
 ```
@@ -223,7 +222,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesWorkspaceConn**](TypesWorkspaceConn.md)
+[**WorkspaceConn**](WorkspaceConn.md)
 
 ### Authorization
 
@@ -241,7 +240,7 @@ No authorization required
 
 ## List
 
-> TypesListWorkspaceConnResponse List(ctx, userHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListWorkspaceConnResponse List(ctx, userHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
 
 List user workspace connection associations
 
@@ -272,7 +271,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceConnectionAssociations.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `List`: TypesListWorkspaceConnResponse
+    // response from `List`: ListWorkspaceConnResponse
     fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceConnectionAssociations.List`: %v\n", resp)
 }
 ```
@@ -300,83 +299,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListWorkspaceConnResponse**](TypesListWorkspaceConnResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet
-
-> TypesConnectionTestResponse UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet(ctx, userHandle, workspaceHandle, connHandle).Execute()
-
-Test user workspace connection
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    userHandle := "userHandle_example" // string | The handle of the user performing the action.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to test the connection in. The connection must already be associated with this workspace.
-    connHandle := "connHandle_example" // string | The handle of the connection to test in this workspace. The connection must already be associated with this workspace whose association needs to be deleted.
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaceConnectionAssociations.UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet(context.Background(), userHandle, workspaceHandle, connHandle).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceConnectionAssociations.UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet`: TypesConnectionTestResponse
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceConnectionAssociations.UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | **string** | The handle of the user performing the action. | 
-**workspaceHandle** | **string** | The handle of the workspace to test the connection in. The connection must already be associated with this workspace. | 
-**connHandle** | **string** | The handle of the connection to test in this workspace. The connection must already be associated with this workspace whose association needs to be deleted. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-
-### Return type
-
-[**TypesConnectionTestResponse**](TypesConnectionTestResponse.md)
+[**ListWorkspaceConnResponse**](ListWorkspaceConnResponse.md)
 
 ### Authorization
 

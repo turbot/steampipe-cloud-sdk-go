@@ -87,7 +87,7 @@ No authorization required
 
 ## Delete
 
-> TypesOrgUser Delete(ctx, orgHandle, userHandle).Execute()
+> OrgUser Delete(ctx, orgHandle, userHandle).Execute()
 
 Delete org member
 
@@ -116,7 +116,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgMembers.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Delete`: TypesOrgUser
+    // response from `Delete`: OrgUser
     fmt.Fprintf(os.Stdout, "Response from `OrgMembers.Delete`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesOrgUser**](TypesOrgUser.md)
+[**OrgUser**](OrgUser.md)
 
 ### Authorization
 
@@ -230,7 +230,7 @@ No authorization required
 
 ## Get
 
-> TypesOrgUser Get(ctx, orgHandle, userHandle).Execute()
+> OrgUser Get(ctx, orgHandle, userHandle).Execute()
 
 Get org member
 
@@ -259,7 +259,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgMembers.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Get`: TypesOrgUser
+    // response from `Get`: OrgUser
     fmt.Fprintf(os.Stdout, "Response from `OrgMembers.Get`: %v\n", resp)
 }
 ```
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesOrgUser**](TypesOrgUser.md)
+[**OrgUser**](OrgUser.md)
 
 ### Authorization
 
@@ -303,7 +303,7 @@ No authorization required
 
 ## Invite
 
-> TypesOrgUser Invite(ctx, orgHandle).Request(request).Execute()
+> OrgUser Invite(ctx, orgHandle).Request(request).Execute()
 
 Invite org member
 
@@ -323,7 +323,7 @@ import (
 
 func main() {
     orgHandle := "orgHandle_example" // string | Specify the handle of an organization where the member need to be invited.
-    request := *openapiclient.NewTypesInviteOrgUserRequest("Role_example") // TypesInviteOrgUserRequest | The request body to invite a member to an organization.
+    request := *openapiclient.NewInviteOrgUserRequest("Role_example") // InviteOrgUserRequest | The request body to invite a member to an organization.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -332,7 +332,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgMembers.Invite``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Invite`: TypesOrgUser
+    // response from `Invite`: OrgUser
     fmt.Fprintf(os.Stdout, "Response from `OrgMembers.Invite`: %v\n", resp)
 }
 ```
@@ -353,11 +353,11 @@ Other parameters are passed through a pointer to a apiInviteRequest struct via t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **request** | [**TypesInviteOrgUserRequest**](TypesInviteOrgUserRequest.md) | The request body to invite a member to an organization. | 
+ **request** | [**InviteOrgUserRequest**](InviteOrgUserRequest.md) | The request body to invite a member to an organization. | 
 
 ### Return type
 
-[**TypesOrgUser**](TypesOrgUser.md)
+[**OrgUser**](OrgUser.md)
 
 ### Authorization
 
@@ -375,7 +375,7 @@ No authorization required
 
 ## ListAccepted
 
-> TypesListOrgUsersResponse ListAccepted(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListOrgUsersResponse ListAccepted(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
 
 List accepted org members
 
@@ -405,7 +405,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgMembers.ListAccepted``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListAccepted`: TypesListOrgUsersResponse
+    // response from `ListAccepted`: ListOrgUsersResponse
     fmt.Fprintf(os.Stdout, "Response from `OrgMembers.ListAccepted`: %v\n", resp)
 }
 ```
@@ -431,7 +431,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListOrgUsersResponse**](TypesListOrgUsersResponse.md)
+[**ListOrgUsersResponse**](ListOrgUsersResponse.md)
 
 ### Authorization
 
@@ -449,7 +449,7 @@ No authorization required
 
 ## ListInvited
 
-> TypesListOrgUsersResponse ListInvited(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListOrgUsersResponse ListInvited(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
 
 List invited org members
 
@@ -479,7 +479,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgMembers.ListInvited``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListInvited`: TypesListOrgUsersResponse
+    // response from `ListInvited`: ListOrgUsersResponse
     fmt.Fprintf(os.Stdout, "Response from `OrgMembers.ListInvited`: %v\n", resp)
 }
 ```
@@ -505,7 +505,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListOrgUsersResponse**](TypesListOrgUsersResponse.md)
+[**ListOrgUsersResponse**](ListOrgUsersResponse.md)
 
 ### Authorization
 
@@ -523,7 +523,7 @@ No authorization required
 
 ## Update
 
-> TypesOrgUser Update(ctx, orgHandle, userHandle).Request(request).Execute()
+> OrgUser Update(ctx, orgHandle, userHandle).Request(request).Execute()
 
 Update org member
 
@@ -544,7 +544,7 @@ import (
 func main() {
     orgHandle := "orgHandle_example" // string | Specify the handle of the organization where the member exists.
     userHandle := "userHandle_example" // string | Specify the handle of the user whose role need to be updated.
-    request := *openapiclient.NewTypesUpdateOrgUserRequest("Role_example") // TypesUpdateOrgUserRequest | The request body for the member.
+    request := *openapiclient.NewUpdateOrgUserRequest("Role_example") // UpdateOrgUserRequest | The request body for the member.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -553,7 +553,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgMembers.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Update`: TypesOrgUser
+    // response from `Update`: OrgUser
     fmt.Fprintf(os.Stdout, "Response from `OrgMembers.Update`: %v\n", resp)
 }
 ```
@@ -576,11 +576,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **request** | [**TypesUpdateOrgUserRequest**](TypesUpdateOrgUserRequest.md) | The request body for the member. | 
+ **request** | [**UpdateOrgUserRequest**](UpdateOrgUserRequest.md) | The request body for the member. | 
 
 ### Return type
 
-[**TypesOrgUser**](TypesOrgUser.md)
+[**OrgUser**](OrgUser.md)
 
 ### Authorization
 

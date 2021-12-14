@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## Create
 
-> TypesOrg Create(ctx).Request(request).Execute()
+> Org Create(ctx).Request(request).Execute()
 
 Create org
 
@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-    request := *openapiclient.NewTypesCreateOrgRequest("Handle_example") // TypesCreateOrgRequest | The request body to create the organization.
+    request := *openapiclient.NewCreateOrgRequest("Handle_example") // CreateOrgRequest | The request body to create the organization.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -45,7 +45,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Orgs.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Create`: TypesOrg
+    // response from `Create`: Org
     fmt.Fprintf(os.Stdout, "Response from `Orgs.Create`: %v\n", resp)
 }
 ```
@@ -61,11 +61,11 @@ Other parameters are passed through a pointer to a apiCreateRequest struct via t
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | [**TypesCreateOrgRequest**](TypesCreateOrgRequest.md) | The request body to create the organization. | 
+ **request** | [**CreateOrgRequest**](CreateOrgRequest.md) | The request body to create the organization. | 
 
 ### Return type
 
-[**TypesOrg**](TypesOrg.md)
+[**Org**](Org.md)
 
 ### Authorization
 
@@ -83,7 +83,7 @@ No authorization required
 
 ## Delete
 
-> TypesOrg Delete(ctx, orgHandle).Execute()
+> Org Delete(ctx, orgHandle).Execute()
 
 Delete org
 
@@ -111,7 +111,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Orgs.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Delete`: TypesOrg
+    // response from `Delete`: Org
     fmt.Fprintf(os.Stdout, "Response from `Orgs.Delete`: %v\n", resp)
 }
 ```
@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesOrg**](TypesOrg.md)
+[**Org**](Org.md)
 
 ### Authorization
 
@@ -153,7 +153,7 @@ No authorization required
 
 ## Get
 
-> TypesOrg Get(ctx, orgHandle).Execute()
+> Org Get(ctx, orgHandle).Execute()
 
 Get org
 
@@ -181,7 +181,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Orgs.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Get`: TypesOrg
+    // response from `Get`: Org
     fmt.Fprintf(os.Stdout, "Response from `Orgs.Get`: %v\n", resp)
 }
 ```
@@ -205,7 +205,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesOrg**](TypesOrg.md)
+[**Org**](Org.md)
 
 ### Authorization
 
@@ -223,7 +223,7 @@ No authorization required
 
 ## GetQuota
 
-> TypesOrgQuota GetQuota(ctx, orgHandle).Execute()
+> OrgQuota GetQuota(ctx, orgHandle).Execute()
 
 Org quota
 
@@ -251,7 +251,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Orgs.GetQuota``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetQuota`: TypesOrgQuota
+    // response from `GetQuota`: OrgQuota
     fmt.Fprintf(os.Stdout, "Response from `Orgs.GetQuota`: %v\n", resp)
 }
 ```
@@ -275,7 +275,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesOrgQuota**](TypesOrgQuota.md)
+[**OrgQuota**](OrgQuota.md)
 
 ### Authorization
 
@@ -293,7 +293,7 @@ No authorization required
 
 ## List
 
-> TypesListOrgsResponse List(ctx).Limit(limit).NextToken(nextToken).Execute()
+> ListOrgsResponse List(ctx).Limit(limit).NextToken(nextToken).Execute()
 
 List orgs
 
@@ -322,7 +322,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Orgs.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `List`: TypesListOrgsResponse
+    // response from `List`: ListOrgsResponse
     fmt.Fprintf(os.Stdout, "Response from `Orgs.List`: %v\n", resp)
 }
 ```
@@ -343,7 +343,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListOrgsResponse**](TypesListOrgsResponse.md)
+[**ListOrgsResponse**](ListOrgsResponse.md)
 
 ### Authorization
 
@@ -361,7 +361,7 @@ No authorization required
 
 ## ListAuditLogs
 
-> TypesListAuditLogsResponse ListAuditLogs(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListAuditLogsResponse ListAuditLogs(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
 
 Org audit logs
 
@@ -391,7 +391,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Orgs.ListAuditLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListAuditLogs`: TypesListAuditLogsResponse
+    // response from `ListAuditLogs`: ListAuditLogsResponse
     fmt.Fprintf(os.Stdout, "Response from `Orgs.ListAuditLogs`: %v\n", resp)
 }
 ```
@@ -417,7 +417,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListAuditLogsResponse**](TypesListAuditLogsResponse.md)
+[**ListAuditLogsResponse**](ListAuditLogsResponse.md)
 
 ### Authorization
 
@@ -435,7 +435,7 @@ No authorization required
 
 ## ListWorkspaceAuditLogs
 
-> TypesListAuditLogsResponse ListWorkspaceAuditLogs(ctx, orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListAuditLogsResponse ListWorkspaceAuditLogs(ctx, orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
 
 Org workspace audit logs
 
@@ -466,7 +466,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Orgs.ListWorkspaceAuditLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListWorkspaceAuditLogs`: TypesListAuditLogsResponse
+    // response from `ListWorkspaceAuditLogs`: ListAuditLogsResponse
     fmt.Fprintf(os.Stdout, "Response from `Orgs.ListWorkspaceAuditLogs`: %v\n", resp)
 }
 ```
@@ -494,7 +494,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListAuditLogsResponse**](TypesListAuditLogsResponse.md)
+[**ListAuditLogsResponse**](ListAuditLogsResponse.md)
 
 ### Authorization
 
@@ -512,7 +512,7 @@ No authorization required
 
 ## Update
 
-> TypesOrg Update(ctx, orgHandle).Request(request).Execute()
+> Org Update(ctx, orgHandle).Request(request).Execute()
 
 Update org
 
@@ -532,7 +532,7 @@ import (
 
 func main() {
     orgHandle := "orgHandle_example" // string | Specify the handle of the organization which need to be updated.
-    request := *openapiclient.NewTypesUpdateOrgRequest() // TypesUpdateOrgRequest | The request body for the organization.
+    request := *openapiclient.NewUpdateOrgRequest() // UpdateOrgRequest | The request body for the organization.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -541,7 +541,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Orgs.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Update`: TypesOrg
+    // response from `Update`: Org
     fmt.Fprintf(os.Stdout, "Response from `Orgs.Update`: %v\n", resp)
 }
 ```
@@ -562,11 +562,11 @@ Other parameters are passed through a pointer to a apiUpdateRequest struct via t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **request** | [**TypesUpdateOrgRequest**](TypesUpdateOrgRequest.md) | The request body for the organization. | 
+ **request** | [**UpdateOrgRequest**](UpdateOrgRequest.md) | The request body for the organization. | 
 
 ### Return type
 
-[**TypesOrg**](TypesOrg.md)
+[**Org**](Org.md)
 
 ### Authorization
 

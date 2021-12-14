@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## Create
 
-> TypesConnection Create(ctx, orgHandle).Request(request).Execute()
+> Connection Create(ctx, orgHandle).Request(request).Execute()
 
 Create org connection
 
@@ -35,7 +35,7 @@ import (
 
 func main() {
     orgHandle := "orgHandle_example" // string | The handle of the organization where we want to create the connection.
-    request := *openapiclient.NewTypesCreateConnectionRequest("Handle_example", "Plugin_example") // TypesCreateConnectionRequest | The request body for the connection to be created.
+    request := *openapiclient.NewCreateConnectionRequest("Handle_example", "Plugin_example") // CreateConnectionRequest | The request body for the connection to be created.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -44,7 +44,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgConnections.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Create`: TypesConnection
+    // response from `Create`: Connection
     fmt.Fprintf(os.Stdout, "Response from `OrgConnections.Create`: %v\n", resp)
 }
 ```
@@ -65,11 +65,11 @@ Other parameters are passed through a pointer to a apiCreateRequest struct via t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **request** | [**TypesCreateConnectionRequest**](TypesCreateConnectionRequest.md) | The request body for the connection to be created. | 
+ **request** | [**CreateConnectionRequest**](CreateConnectionRequest.md) | The request body for the connection to be created. | 
 
 ### Return type
 
-[**TypesConnection**](TypesConnection.md)
+[**Connection**](Connection.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ No authorization required
 
 ## Delete
 
-> TypesConnection Delete(ctx, orgHandle, connHandle).Execute()
+> Connection Delete(ctx, orgHandle, connHandle).Execute()
 
 Delete org connection
 
@@ -116,7 +116,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgConnections.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Delete`: TypesConnection
+    // response from `Delete`: Connection
     fmt.Fprintf(os.Stdout, "Response from `OrgConnections.Delete`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesConnection**](TypesConnection.md)
+[**Connection**](Connection.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ No authorization required
 
 ## Get
 
-> TypesConnection Get(ctx, orgHandle, connHandle).Execute()
+> Connection Get(ctx, orgHandle, connHandle).Execute()
 
 Get org connection
 
@@ -189,7 +189,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgConnections.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Get`: TypesConnection
+    // response from `Get`: Connection
     fmt.Fprintf(os.Stdout, "Response from `OrgConnections.Get`: %v\n", resp)
 }
 ```
@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesConnection**](TypesConnection.md)
+[**Connection**](Connection.md)
 
 ### Authorization
 
@@ -233,7 +233,7 @@ No authorization required
 
 ## List
 
-> TypesListConnectionsResponse List(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListConnectionsResponse List(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
 
 List org connections
 
@@ -263,7 +263,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgConnections.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `List`: TypesListConnectionsResponse
+    // response from `List`: ListConnectionsResponse
     fmt.Fprintf(os.Stdout, "Response from `OrgConnections.List`: %v\n", resp)
 }
 ```
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListConnectionsResponse**](TypesListConnectionsResponse.md)
+[**ListConnectionsResponse**](ListConnectionsResponse.md)
 
 ### Authorization
 
@@ -307,7 +307,7 @@ No authorization required
 
 ## Test
 
-> TypesConnectionTestResult Test(ctx, orgHandle, connHandle).Execute()
+> ConnectionTestResult Test(ctx, orgHandle, connHandle).Execute()
 
 Test org connection
 
@@ -336,7 +336,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgConnections.Test``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Test`: TypesConnectionTestResult
+    // response from `Test`: ConnectionTestResult
     fmt.Fprintf(os.Stdout, "Response from `OrgConnections.Test`: %v\n", resp)
 }
 ```
@@ -362,7 +362,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesConnectionTestResult**](TypesConnectionTestResult.md)
+[**ConnectionTestResult**](ConnectionTestResult.md)
 
 ### Authorization
 
@@ -380,7 +380,7 @@ No authorization required
 
 ## Update
 
-> TypesConnection Update(ctx, orgHandle, connHandle).Request(request).Execute()
+> Connection Update(ctx, orgHandle, connHandle).Request(request).Execute()
 
 Update org connection
 
@@ -401,7 +401,7 @@ import (
 func main() {
     orgHandle := "orgHandle_example" // string | The handle of the organization where the connection exist.
     connHandle := "connHandle_example" // string | The handle of the connection which needs to be updated.
-    request := *openapiclient.NewTypesUpdateConnectionRequest() // TypesUpdateConnectionRequest | The request body of the connection which needs to be updated.
+    request := *openapiclient.NewUpdateConnectionRequest() // UpdateConnectionRequest | The request body of the connection which needs to be updated.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -410,7 +410,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgConnections.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Update`: TypesConnection
+    // response from `Update`: Connection
     fmt.Fprintf(os.Stdout, "Response from `OrgConnections.Update`: %v\n", resp)
 }
 ```
@@ -433,11 +433,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **request** | [**TypesUpdateConnectionRequest**](TypesUpdateConnectionRequest.md) | The request body of the connection which needs to be updated. | 
+ **request** | [**UpdateConnectionRequest**](UpdateConnectionRequest.md) | The request body of the connection which needs to be updated. | 
 
 ### Return type
 
-[**TypesConnection**](TypesConnection.md)
+[**Connection**](Connection.md)
 
 ### Authorization
 

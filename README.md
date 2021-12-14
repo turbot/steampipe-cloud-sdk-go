@@ -108,17 +108,16 @@ Class | Method | HTTP request | Description
 *OrgWorkspaceConnectionAssociations* | [**Delete**](docs/OrgWorkspaceConnectionAssociations.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Get**](docs/OrgWorkspaceConnectionAssociations.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**List**](docs/OrgWorkspaceConnectionAssociations.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn | List org workspace connection associations
-*OrgWorkspaceConnectionAssociations* | [**OrgOrgHandleWorkspaceWorkspaceHandleConnConnHandleTestGet**](docs/OrgWorkspaceConnectionAssociations.md#orgorghandleworkspaceworkspacehandleconnconnhandletestget) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle}/test | Test org workspace connection
 *OrgWorkspaces* | [**Create**](docs/OrgWorkspaces.md#create) | **Post** /org/{org_handle}/workspace | Create org workspace
 *OrgWorkspaces* | [**Delete**](docs/OrgWorkspaces.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle} | Delete org workspace
 *OrgWorkspaces* | [**Get**](docs/OrgWorkspaces.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle} | Get org workspace
+*OrgWorkspaces* | [**GetQuery**](docs/OrgWorkspaces.md#getquery) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
+*OrgWorkspaces* | [**GetQueryWithExtensions**](docs/OrgWorkspaces.md#getquerywithextensions) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
+*OrgWorkspaces* | [**GetSchema**](docs/OrgWorkspaces.md#getschema) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema | Get org workspace schemas
 *OrgWorkspaces* | [**List**](docs/OrgWorkspaces.md#list) | **Get** /org/{org_handle}/workspace | List org workspaces
 *OrgWorkspaces* | [**ListDBLogs**](docs/OrgWorkspaces.md#listdblogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/logs | Org workspace logs
-*OrgWorkspaces* | [**OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet**](docs/OrgWorkspaces.md#orgorghandleworkspaceworkspacehandlequerydataextensionsget) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
-*OrgWorkspaces* | [**OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost**](docs/OrgWorkspaces.md#orgorghandleworkspaceworkspacehandlequerydataextensionspost) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
-*OrgWorkspaces* | [**OrgOrgHandleWorkspaceWorkspaceHandleQueryGet**](docs/OrgWorkspaces.md#orgorghandleworkspaceworkspacehandlequeryget) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
-*OrgWorkspaces* | [**OrgOrgHandleWorkspaceWorkspaceHandleQueryPost**](docs/OrgWorkspaces.md#orgorghandleworkspaceworkspacehandlequerypost) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
-*OrgWorkspaces* | [**OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet**](docs/OrgWorkspaces.md#orgorghandleworkspaceworkspacehandleschemaget) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema | Get org workspace schemas
+*OrgWorkspaces* | [**PostQuery**](docs/OrgWorkspaces.md#postquery) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
+*OrgWorkspaces* | [**PostQueryWithExtensions**](docs/OrgWorkspaces.md#postquerywithextensions) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
 *OrgWorkspaces* | [**Update**](docs/OrgWorkspaces.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle} | Update org workspace
 *Orgs* | [**Create**](docs/Orgs.md#create) | **Post** /org | Create org
 *Orgs* | [**Delete**](docs/Orgs.md#delete) | **Delete** /org/{org_handle} | Delete org
@@ -143,18 +142,17 @@ Class | Method | HTTP request | Description
 *UserWorkspaceConnectionAssociations* | [**Delete**](docs/UserWorkspaceConnectionAssociations.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete user workspace connection association
 *UserWorkspaceConnectionAssociations* | [**Get**](docs/UserWorkspaceConnectionAssociations.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get user workspace connection association
 *UserWorkspaceConnectionAssociations* | [**List**](docs/UserWorkspaceConnectionAssociations.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn | List user workspace connection associations
-*UserWorkspaceConnectionAssociations* | [**UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet**](docs/UserWorkspaceConnectionAssociations.md#useruserhandleworkspaceworkspacehandleconnconnhandletestget) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle}/test | Test user workspace connection
 *UserWorkspaces* | [**Create**](docs/UserWorkspaces.md#create) | **Post** /user/{user_handle}/workspace | Create user workspace
 *UserWorkspaces* | [**Delete**](docs/UserWorkspaces.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle} | Delete user workspace
 *UserWorkspaces* | [**Get**](docs/UserWorkspaces.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle} | Get user workspace
+*UserWorkspaces* | [**GetQuery**](docs/UserWorkspaces.md#getquery) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
+*UserWorkspaces* | [**GetQueryWithExtensions**](docs/UserWorkspaces.md#getquerywithextensions) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
+*UserWorkspaces* | [**GetSchema**](docs/UserWorkspaces.md#getschema) | **Get** /user/{user_handle}/workspace/{workspace_handle}/schema | Get user workspace schemas
 *UserWorkspaces* | [**List**](docs/UserWorkspaces.md#list) | **Get** /user/{user_handle}/workspace | List user workspaces
 *UserWorkspaces* | [**ListDBLogs**](docs/UserWorkspaces.md#listdblogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/logs | User workspace logs
+*UserWorkspaces* | [**PostQuery**](docs/UserWorkspaces.md#postquery) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
+*UserWorkspaces* | [**PostQueryWithExtensions**](docs/UserWorkspaces.md#postquerywithextensions) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
 *UserWorkspaces* | [**Update**](docs/UserWorkspaces.md#update) | **Patch** /user/{user_handle}/workspace/{workspace_handle} | Update user workspace
-*UserWorkspaces* | [**UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet**](docs/UserWorkspaces.md#useruserhandleworkspaceworkspacehandlequerydataextensionsget) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
-*UserWorkspaces* | [**UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost**](docs/UserWorkspaces.md#useruserhandleworkspaceworkspacehandlequerydataextensionspost) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
-*UserWorkspaces* | [**UserUserHandleWorkspaceWorkspaceHandleQueryGet**](docs/UserWorkspaces.md#useruserhandleworkspaceworkspacehandlequeryget) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
-*UserWorkspaces* | [**UserUserHandleWorkspaceWorkspaceHandleQueryPost**](docs/UserWorkspaces.md#useruserhandleworkspaceworkspacehandlequerypost) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
-*UserWorkspaces* | [**UserUserHandleWorkspaceWorkspaceHandleSchemaGet**](docs/UserWorkspaces.md#useruserhandleworkspaceworkspacehandleschemaget) | **Get** /user/{user_handle}/workspace/{workspace_handle}/schema | Get user workspace schemas
 *Users* | [**Create**](docs/Users.md#create) | **Post** /user | Create user
 *Users* | [**CreateDBPassword**](docs/Users.md#createdbpassword) | **Post** /user/{user_handle}/password | Create user password
 *Users* | [**Delete**](docs/Users.md#delete) | **Delete** /user/{user_handle} | Delete user
@@ -172,61 +170,59 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [QuerySchemaInfo](docs/QuerySchemaInfo.md)
- - [QuerySchemaTable](docs/QuerySchemaTable.md)
- - [QuerySchemaTableColumn](docs/QuerySchemaTableColumn.md)
- - [QueryWorkspaceSchema](docs/QueryWorkspaceSchema.md)
- - [SperrErrorDetailModel](docs/SperrErrorDetailModel.md)
- - [SperrErrorModel](docs/SperrErrorModel.md)
- - [TypesAuditRecord](docs/TypesAuditRecord.md)
- - [TypesConnection](docs/TypesConnection.md)
- - [TypesConnectionTestResponse](docs/TypesConnectionTestResponse.md)
- - [TypesConnectionTestResult](docs/TypesConnectionTestResult.md)
- - [TypesConnectionTestRow](docs/TypesConnectionTestRow.md)
- - [TypesCreateConnectionRequest](docs/TypesCreateConnectionRequest.md)
- - [TypesCreateOrgRequest](docs/TypesCreateOrgRequest.md)
- - [TypesCreateUserPasswordRequest](docs/TypesCreateUserPasswordRequest.md)
- - [TypesCreateUserRequest](docs/TypesCreateUserRequest.md)
- - [TypesCreateWorkspaceConnRequest](docs/TypesCreateWorkspaceConnRequest.md)
- - [TypesCreateWorkspaceRequest](docs/TypesCreateWorkspaceRequest.md)
- - [TypesIdentity](docs/TypesIdentity.md)
- - [TypesIdentitySearch](docs/TypesIdentitySearch.md)
- - [TypesInviteOrgUserRequest](docs/TypesInviteOrgUserRequest.md)
- - [TypesListAuditLogsResponse](docs/TypesListAuditLogsResponse.md)
- - [TypesListConnectionsResponse](docs/TypesListConnectionsResponse.md)
- - [TypesListLogsResponse](docs/TypesListLogsResponse.md)
- - [TypesListOrgUsersResponse](docs/TypesListOrgUsersResponse.md)
- - [TypesListOrgsResponse](docs/TypesListOrgsResponse.md)
- - [TypesListTokensResponse](docs/TypesListTokensResponse.md)
- - [TypesListUserOrgsResponse](docs/TypesListUserOrgsResponse.md)
- - [TypesListUsersResponse](docs/TypesListUsersResponse.md)
- - [TypesListWorkspaceConnResponse](docs/TypesListWorkspaceConnResponse.md)
- - [TypesListWorkspacesResponse](docs/TypesListWorkspacesResponse.md)
- - [TypesLogRecord](docs/TypesLogRecord.md)
- - [TypesOrg](docs/TypesOrg.md)
- - [TypesOrgQuota](docs/TypesOrgQuota.md)
- - [TypesOrgUser](docs/TypesOrgUser.md)
- - [TypesQuota](docs/TypesQuota.md)
- - [TypesSearchIdentitiesResponse](docs/TypesSearchIdentitiesResponse.md)
- - [TypesSearchUsersResponse](docs/TypesSearchUsersResponse.md)
- - [TypesToken](docs/TypesToken.md)
- - [TypesUpdateConnectionRequest](docs/TypesUpdateConnectionRequest.md)
- - [TypesUpdateOrgRequest](docs/TypesUpdateOrgRequest.md)
- - [TypesUpdateOrgUserRequest](docs/TypesUpdateOrgUserRequest.md)
- - [TypesUpdateTokenRequest](docs/TypesUpdateTokenRequest.md)
- - [TypesUpdateUserRequest](docs/TypesUpdateUserRequest.md)
- - [TypesUpdateWorkspaceRequest](docs/TypesUpdateWorkspaceRequest.md)
- - [TypesUser](docs/TypesUser.md)
- - [TypesUserDatabasePassword](docs/TypesUserDatabasePassword.md)
- - [TypesUserLoginRequest](docs/TypesUserLoginRequest.md)
- - [TypesUserOrg](docs/TypesUserOrg.md)
- - [TypesUserQuota](docs/TypesUserQuota.md)
- - [TypesUserSearch](docs/TypesUserSearch.md)
- - [TypesUserSignupRequest](docs/TypesUserSignupRequest.md)
- - [TypesWorkspace](docs/TypesWorkspace.md)
- - [TypesWorkspaceConn](docs/TypesWorkspaceConn.md)
- - [TypesWorkspaceQueryResult](docs/TypesWorkspaceQueryResult.md)
- - [TypesWorkspaceQueryResultColumn](docs/TypesWorkspaceQueryResultColumn.md)
+ - [AuditRecord](docs/AuditRecord.md)
+ - [Connection](docs/Connection.md)
+ - [ConnectionTestResult](docs/ConnectionTestResult.md)
+ - [CreateConnectionRequest](docs/CreateConnectionRequest.md)
+ - [CreateOrgRequest](docs/CreateOrgRequest.md)
+ - [CreateUserPasswordRequest](docs/CreateUserPasswordRequest.md)
+ - [CreateUserRequest](docs/CreateUserRequest.md)
+ - [CreateWorkspaceConnRequest](docs/CreateWorkspaceConnRequest.md)
+ - [CreateWorkspaceRequest](docs/CreateWorkspaceRequest.md)
+ - [ErrorDetailModel](docs/ErrorDetailModel.md)
+ - [ErrorModel](docs/ErrorModel.md)
+ - [Identity](docs/Identity.md)
+ - [IdentitySearch](docs/IdentitySearch.md)
+ - [InviteOrgUserRequest](docs/InviteOrgUserRequest.md)
+ - [ListAuditLogsResponse](docs/ListAuditLogsResponse.md)
+ - [ListConnectionsResponse](docs/ListConnectionsResponse.md)
+ - [ListLogsResponse](docs/ListLogsResponse.md)
+ - [ListOrgUsersResponse](docs/ListOrgUsersResponse.md)
+ - [ListOrgsResponse](docs/ListOrgsResponse.md)
+ - [ListTokensResponse](docs/ListTokensResponse.md)
+ - [ListUserOrgsResponse](docs/ListUserOrgsResponse.md)
+ - [ListUsersResponse](docs/ListUsersResponse.md)
+ - [ListWorkspaceConnResponse](docs/ListWorkspaceConnResponse.md)
+ - [ListWorkspacesResponse](docs/ListWorkspacesResponse.md)
+ - [LogRecord](docs/LogRecord.md)
+ - [Org](docs/Org.md)
+ - [OrgQuota](docs/OrgQuota.md)
+ - [OrgUser](docs/OrgUser.md)
+ - [Quota](docs/Quota.md)
+ - [SchemaInfo](docs/SchemaInfo.md)
+ - [SchemaTable](docs/SchemaTable.md)
+ - [SchemaTableColumn](docs/SchemaTableColumn.md)
+ - [SearchIdentitiesResponse](docs/SearchIdentitiesResponse.md)
+ - [SearchUsersResponse](docs/SearchUsersResponse.md)
+ - [Token](docs/Token.md)
+ - [UpdateConnectionRequest](docs/UpdateConnectionRequest.md)
+ - [UpdateOrgRequest](docs/UpdateOrgRequest.md)
+ - [UpdateOrgUserRequest](docs/UpdateOrgUserRequest.md)
+ - [UpdateTokenRequest](docs/UpdateTokenRequest.md)
+ - [UpdateUserRequest](docs/UpdateUserRequest.md)
+ - [UpdateWorkspaceRequest](docs/UpdateWorkspaceRequest.md)
+ - [User](docs/User.md)
+ - [UserDatabasePassword](docs/UserDatabasePassword.md)
+ - [UserLoginRequest](docs/UserLoginRequest.md)
+ - [UserOrg](docs/UserOrg.md)
+ - [UserQuota](docs/UserQuota.md)
+ - [UserSearch](docs/UserSearch.md)
+ - [UserSignupRequest](docs/UserSignupRequest.md)
+ - [Workspace](docs/Workspace.md)
+ - [WorkspaceConn](docs/WorkspaceConn.md)
+ - [WorkspaceQueryResult](docs/WorkspaceQueryResult.md)
+ - [WorkspaceQueryResultColumn](docs/WorkspaceQueryResultColumn.md)
+ - [WorkspaceSchema](docs/WorkspaceSchema.md)
 
 
 ## Documentation For Authorization

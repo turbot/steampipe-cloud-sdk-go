@@ -32,7 +32,7 @@ type ActorsApiGetRequest struct {
 	ApiService *ActorsService
 }
 
-func (r ActorsApiGetRequest) Execute() (TypesUser, *_nethttp.Response, error) {
+func (r ActorsApiGetRequest) Execute() (User, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
 }
 
@@ -52,13 +52,13 @@ func (a *ActorsService) Get(ctx _context.Context) ActorsApiGetRequest {
 }
 
 // Execute executes the request
-//  @return TypesUser
-func (a *ActorsService) GetExecute(r ActorsApiGetRequest) (TypesUser, *_nethttp.Response, error) {
+//  @return User
+func (a *ActorsService) GetExecute(r ActorsApiGetRequest) (User, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesUser
+		localVarReturnValue User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActorsService.Get")
@@ -112,7 +112,7 @@ func (a *ActorsService) GetExecute(r ActorsApiGetRequest) (TypesUser, *_nethttp.
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -122,7 +122,7 @@ func (a *ActorsService) GetExecute(r ActorsApiGetRequest) (TypesUser, *_nethttp.
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -132,7 +132,7 @@ func (a *ActorsService) GetExecute(r ActorsApiGetRequest) (TypesUser, *_nethttp.
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -142,7 +142,7 @@ func (a *ActorsService) GetExecute(r ActorsApiGetRequest) (TypesUser, *_nethttp.
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -152,7 +152,7 @@ func (a *ActorsService) GetExecute(r ActorsApiGetRequest) (TypesUser, *_nethttp.
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -162,7 +162,7 @@ func (a *ActorsService) GetExecute(r ActorsApiGetRequest) (TypesUser, *_nethttp.
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -204,7 +204,7 @@ func (r ActorsApiListActivityRequest) NextToken(nextToken string) ActorsApiListA
 	return r
 }
 
-func (r ActorsApiListActivityRequest) Execute() (TypesListAuditLogsResponse, *_nethttp.Response, error) {
+func (r ActorsApiListActivityRequest) Execute() (ListAuditLogsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListActivityExecute(r)
 }
 
@@ -224,13 +224,13 @@ func (a *ActorsService) ListActivity(ctx _context.Context) ActorsApiListActivity
 }
 
 // Execute executes the request
-//  @return TypesListAuditLogsResponse
-func (a *ActorsService) ListActivityExecute(r ActorsApiListActivityRequest) (TypesListAuditLogsResponse, *_nethttp.Response, error) {
+//  @return ListAuditLogsResponse
+func (a *ActorsService) ListActivityExecute(r ActorsApiListActivityRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesListAuditLogsResponse
+		localVarReturnValue ListAuditLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActorsService.ListActivity")
@@ -290,7 +290,7 @@ func (a *ActorsService) ListActivityExecute(r ActorsApiListActivityRequest) (Typ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -300,7 +300,7 @@ func (a *ActorsService) ListActivityExecute(r ActorsApiListActivityRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -310,7 +310,7 @@ func (a *ActorsService) ListActivityExecute(r ActorsApiListActivityRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -320,7 +320,7 @@ func (a *ActorsService) ListActivityExecute(r ActorsApiListActivityRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -330,7 +330,7 @@ func (a *ActorsService) ListActivityExecute(r ActorsApiListActivityRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -372,7 +372,7 @@ func (r ActorsApiListConnectionsRequest) NextToken(nextToken string) ActorsApiLi
 	return r
 }
 
-func (r ActorsApiListConnectionsRequest) Execute() (TypesListConnectionsResponse, *_nethttp.Response, error) {
+func (r ActorsApiListConnectionsRequest) Execute() (ListConnectionsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListConnectionsExecute(r)
 }
 
@@ -392,13 +392,13 @@ func (a *ActorsService) ListConnections(ctx _context.Context) ActorsApiListConne
 }
 
 // Execute executes the request
-//  @return TypesListConnectionsResponse
-func (a *ActorsService) ListConnectionsExecute(r ActorsApiListConnectionsRequest) (TypesListConnectionsResponse, *_nethttp.Response, error) {
+//  @return ListConnectionsResponse
+func (a *ActorsService) ListConnectionsExecute(r ActorsApiListConnectionsRequest) (ListConnectionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesListConnectionsResponse
+		localVarReturnValue ListConnectionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActorsService.ListConnections")
@@ -458,7 +458,7 @@ func (a *ActorsService) ListConnectionsExecute(r ActorsApiListConnectionsRequest
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -468,7 +468,7 @@ func (a *ActorsService) ListConnectionsExecute(r ActorsApiListConnectionsRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -478,7 +478,7 @@ func (a *ActorsService) ListConnectionsExecute(r ActorsApiListConnectionsRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -488,7 +488,7 @@ func (a *ActorsService) ListConnectionsExecute(r ActorsApiListConnectionsRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -498,7 +498,7 @@ func (a *ActorsService) ListConnectionsExecute(r ActorsApiListConnectionsRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -540,7 +540,7 @@ func (r ActorsApiListWorkspacesRequest) NextToken(nextToken string) ActorsApiLis
 	return r
 }
 
-func (r ActorsApiListWorkspacesRequest) Execute() (TypesListWorkspacesResponse, *_nethttp.Response, error) {
+func (r ActorsApiListWorkspacesRequest) Execute() (ListWorkspacesResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListWorkspacesExecute(r)
 }
 
@@ -560,13 +560,13 @@ func (a *ActorsService) ListWorkspaces(ctx _context.Context) ActorsApiListWorksp
 }
 
 // Execute executes the request
-//  @return TypesListWorkspacesResponse
-func (a *ActorsService) ListWorkspacesExecute(r ActorsApiListWorkspacesRequest) (TypesListWorkspacesResponse, *_nethttp.Response, error) {
+//  @return ListWorkspacesResponse
+func (a *ActorsService) ListWorkspacesExecute(r ActorsApiListWorkspacesRequest) (ListWorkspacesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesListWorkspacesResponse
+		localVarReturnValue ListWorkspacesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActorsService.ListWorkspaces")
@@ -626,7 +626,7 @@ func (a *ActorsService) ListWorkspacesExecute(r ActorsApiListWorkspacesRequest) 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -636,7 +636,7 @@ func (a *ActorsService) ListWorkspacesExecute(r ActorsApiListWorkspacesRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -646,7 +646,7 @@ func (a *ActorsService) ListWorkspacesExecute(r ActorsApiListWorkspacesRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -656,7 +656,7 @@ func (a *ActorsService) ListWorkspacesExecute(r ActorsApiListWorkspacesRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -666,7 +666,7 @@ func (a *ActorsService) ListWorkspacesExecute(r ActorsApiListWorkspacesRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

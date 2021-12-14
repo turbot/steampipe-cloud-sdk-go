@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## Create
 
-> TypesUser Create(ctx).Request(request).Execute()
+> User Create(ctx).Request(request).Execute()
 
 Create user
 
@@ -41,7 +41,7 @@ import (
 )
 
 func main() {
-    request := *openapiclient.NewTypesCreateUserRequest("Email_example", "Handle_example") // TypesCreateUserRequest | The request body to create the user.
+    request := *openapiclient.NewCreateUserRequest("Email_example", "Handle_example") // CreateUserRequest | The request body to create the user.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -50,7 +50,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Create`: TypesUser
+    // response from `Create`: User
     fmt.Fprintf(os.Stdout, "Response from `Users.Create`: %v\n", resp)
 }
 ```
@@ -66,11 +66,11 @@ Other parameters are passed through a pointer to a apiCreateRequest struct via t
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | [**TypesCreateUserRequest**](TypesCreateUserRequest.md) | The request body to create the user. | 
+ **request** | [**CreateUserRequest**](CreateUserRequest.md) | The request body to create the user. | 
 
 ### Return type
 
-[**TypesUser**](TypesUser.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ No authorization required
 
 ## CreateDBPassword
 
-> TypesUserDatabasePassword CreateDBPassword(ctx, userHandle).Request(request).Execute()
+> UserDatabasePassword CreateDBPassword(ctx, userHandle).Request(request).Execute()
 
 Create user password
 
@@ -108,7 +108,7 @@ import (
 
 func main() {
     userHandle := "userHandle_example" // string | Specify the handle of the user whose password need to be created or rotated.
-    request := *openapiclient.NewTypesCreateUserPasswordRequest() // TypesCreateUserPasswordRequest | The request body to create or rotate the password.
+    request := *openapiclient.NewCreateUserPasswordRequest() // CreateUserPasswordRequest | The request body to create or rotate the password.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -117,7 +117,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.CreateDBPassword``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateDBPassword`: TypesUserDatabasePassword
+    // response from `CreateDBPassword`: UserDatabasePassword
     fmt.Fprintf(os.Stdout, "Response from `Users.CreateDBPassword`: %v\n", resp)
 }
 ```
@@ -138,11 +138,11 @@ Other parameters are passed through a pointer to a apiCreateDBPasswordRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **request** | [**TypesCreateUserPasswordRequest**](TypesCreateUserPasswordRequest.md) | The request body to create or rotate the password. | 
+ **request** | [**CreateUserPasswordRequest**](CreateUserPasswordRequest.md) | The request body to create or rotate the password. | 
 
 ### Return type
 
-[**TypesUserDatabasePassword**](TypesUserDatabasePassword.md)
+[**UserDatabasePassword**](UserDatabasePassword.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ No authorization required
 
 ## Delete
 
-> TypesUser Delete(ctx, userHandle).Execute()
+> User Delete(ctx, userHandle).Execute()
 
 Delete user
 
@@ -188,7 +188,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Delete`: TypesUser
+    // response from `Delete`: User
     fmt.Fprintf(os.Stdout, "Response from `Users.Delete`: %v\n", resp)
 }
 ```
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesUser**](TypesUser.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -230,7 +230,7 @@ No authorization required
 
 ## Get
 
-> TypesUser Get(ctx, userHandle).Execute()
+> User Get(ctx, userHandle).Execute()
 
 Get user
 
@@ -258,7 +258,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Get`: TypesUser
+    // response from `Get`: User
     fmt.Fprintf(os.Stdout, "Response from `Users.Get`: %v\n", resp)
 }
 ```
@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesUser**](TypesUser.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -300,7 +300,7 @@ No authorization required
 
 ## GetDBPassword
 
-> TypesUserDatabasePassword GetDBPassword(ctx, userHandle).Execute()
+> UserDatabasePassword GetDBPassword(ctx, userHandle).Execute()
 
 Get user password
 
@@ -328,7 +328,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.GetDBPassword``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDBPassword`: TypesUserDatabasePassword
+    // response from `GetDBPassword`: UserDatabasePassword
     fmt.Fprintf(os.Stdout, "Response from `Users.GetDBPassword`: %v\n", resp)
 }
 ```
@@ -352,7 +352,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesUserDatabasePassword**](TypesUserDatabasePassword.md)
+[**UserDatabasePassword**](UserDatabasePassword.md)
 
 ### Authorization
 
@@ -370,7 +370,7 @@ No authorization required
 
 ## GetQuota
 
-> TypesUserQuota GetQuota(ctx, userHandle).Execute()
+> UserQuota GetQuota(ctx, userHandle).Execute()
 
 User quota
 
@@ -398,7 +398,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.GetQuota``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetQuota`: TypesUserQuota
+    // response from `GetQuota`: UserQuota
     fmt.Fprintf(os.Stdout, "Response from `Users.GetQuota`: %v\n", resp)
 }
 ```
@@ -422,7 +422,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesUserQuota**](TypesUserQuota.md)
+[**UserQuota**](UserQuota.md)
 
 ### Authorization
 
@@ -440,7 +440,7 @@ No authorization required
 
 ## List
 
-> TypesListUsersResponse List(ctx).Limit(limit).NextToken(nextToken).Execute()
+> ListUsersResponse List(ctx).Limit(limit).NextToken(nextToken).Execute()
 
 List users
 
@@ -469,7 +469,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `List`: TypesListUsersResponse
+    // response from `List`: ListUsersResponse
     fmt.Fprintf(os.Stdout, "Response from `Users.List`: %v\n", resp)
 }
 ```
@@ -490,7 +490,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListUsersResponse**](TypesListUsersResponse.md)
+[**ListUsersResponse**](ListUsersResponse.md)
 
 ### Authorization
 
@@ -508,7 +508,7 @@ No authorization required
 
 ## ListAuditLogs
 
-> TypesListAuditLogsResponse ListAuditLogs(ctx, userHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListAuditLogsResponse ListAuditLogs(ctx, userHandle).Limit(limit).NextToken(nextToken).Execute()
 
 User audit logs
 
@@ -538,7 +538,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.ListAuditLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListAuditLogs`: TypesListAuditLogsResponse
+    // response from `ListAuditLogs`: ListAuditLogsResponse
     fmt.Fprintf(os.Stdout, "Response from `Users.ListAuditLogs`: %v\n", resp)
 }
 ```
@@ -564,7 +564,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListAuditLogsResponse**](TypesListAuditLogsResponse.md)
+[**ListAuditLogsResponse**](ListAuditLogsResponse.md)
 
 ### Authorization
 
@@ -582,7 +582,7 @@ No authorization required
 
 ## ListOrgInvites
 
-> TypesListUserOrgsResponse ListOrgInvites(ctx, userHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListUserOrgsResponse ListOrgInvites(ctx, userHandle).Limit(limit).NextToken(nextToken).Execute()
 
 List org invited users
 
@@ -612,7 +612,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.ListOrgInvites``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListOrgInvites`: TypesListUserOrgsResponse
+    // response from `ListOrgInvites`: ListUserOrgsResponse
     fmt.Fprintf(os.Stdout, "Response from `Users.ListOrgInvites`: %v\n", resp)
 }
 ```
@@ -638,7 +638,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListUserOrgsResponse**](TypesListUserOrgsResponse.md)
+[**ListUserOrgsResponse**](ListUserOrgsResponse.md)
 
 ### Authorization
 
@@ -656,7 +656,7 @@ No authorization required
 
 ## ListOrgs
 
-> TypesListUserOrgsResponse ListOrgs(ctx, userHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListUserOrgsResponse ListOrgs(ctx, userHandle).Limit(limit).NextToken(nextToken).Execute()
 
 List org users
 
@@ -686,7 +686,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.ListOrgs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListOrgs`: TypesListUserOrgsResponse
+    // response from `ListOrgs`: ListUserOrgsResponse
     fmt.Fprintf(os.Stdout, "Response from `Users.ListOrgs`: %v\n", resp)
 }
 ```
@@ -712,7 +712,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListUserOrgsResponse**](TypesListUserOrgsResponse.md)
+[**ListUserOrgsResponse**](ListUserOrgsResponse.md)
 
 ### Authorization
 
@@ -730,7 +730,7 @@ No authorization required
 
 ## ListWorkspaceAuditLogs
 
-> TypesListAuditLogsResponse ListWorkspaceAuditLogs(ctx, userHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListAuditLogsResponse ListWorkspaceAuditLogs(ctx, userHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
 
 User workspace audit logs
 
@@ -761,7 +761,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.ListWorkspaceAuditLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListWorkspaceAuditLogs`: TypesListAuditLogsResponse
+    // response from `ListWorkspaceAuditLogs`: ListAuditLogsResponse
     fmt.Fprintf(os.Stdout, "Response from `Users.ListWorkspaceAuditLogs`: %v\n", resp)
 }
 ```
@@ -789,7 +789,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListAuditLogsResponse**](TypesListAuditLogsResponse.md)
+[**ListAuditLogsResponse**](ListAuditLogsResponse.md)
 
 ### Authorization
 
@@ -807,7 +807,7 @@ No authorization required
 
 ## Search
 
-> TypesSearchUsersResponse Search(ctx).Q(q).Limit(limit).NextToken(nextToken).Execute()
+> SearchUsersResponse Search(ctx).Q(q).Limit(limit).NextToken(nextToken).Execute()
 
 Search users
 
@@ -837,7 +837,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.Search``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Search`: TypesSearchUsersResponse
+    // response from `Search`: SearchUsersResponse
     fmt.Fprintf(os.Stdout, "Response from `Users.Search`: %v\n", resp)
 }
 ```
@@ -859,7 +859,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesSearchUsersResponse**](TypesSearchUsersResponse.md)
+[**SearchUsersResponse**](SearchUsersResponse.md)
 
 ### Authorization
 
@@ -877,7 +877,7 @@ No authorization required
 
 ## Update
 
-> TypesUser Update(ctx, userHandle).Request(request).Execute()
+> User Update(ctx, userHandle).Request(request).Execute()
 
 Update user
 
@@ -897,7 +897,7 @@ import (
 
 func main() {
     userHandle := "userHandle_example" // string | Specify the handle of the user which need to be updated.
-    request := *openapiclient.NewTypesUpdateUserRequest() // TypesUpdateUserRequest | The request body for the user.
+    request := *openapiclient.NewUpdateUserRequest() // UpdateUserRequest | The request body for the user.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -906,7 +906,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Users.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Update`: TypesUser
+    // response from `Update`: User
     fmt.Fprintf(os.Stdout, "Response from `Users.Update`: %v\n", resp)
 }
 ```
@@ -927,11 +927,11 @@ Other parameters are passed through a pointer to a apiUpdateRequest struct via t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **request** | [**TypesUpdateUserRequest**](TypesUpdateUserRequest.md) | The request body for the user. | 
+ **request** | [**UpdateUserRequest**](UpdateUserRequest.md) | The request body for the user. | 
 
 ### Return type
 
-[**TypesUser**](TypesUser.md)
+[**User**](User.md)
 
 ### Authorization
 

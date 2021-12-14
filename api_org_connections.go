@@ -32,16 +32,16 @@ type OrgConnectionsApiCreateRequest struct {
 	ctx        _context.Context
 	ApiService *OrgConnectionsService
 	orgHandle  string
-	request    *TypesCreateConnectionRequest
+	request    *CreateConnectionRequest
 }
 
 // The request body for the connection to be created.
-func (r OrgConnectionsApiCreateRequest) Request(request TypesCreateConnectionRequest) OrgConnectionsApiCreateRequest {
+func (r OrgConnectionsApiCreateRequest) Request(request CreateConnectionRequest) OrgConnectionsApiCreateRequest {
 	r.request = &request
 	return r
 }
 
-func (r OrgConnectionsApiCreateRequest) Execute() (TypesConnection, *_nethttp.Response, error) {
+func (r OrgConnectionsApiCreateRequest) Execute() (Connection, *_nethttp.Response, error) {
 	return r.ApiService.CreateExecute(r)
 }
 
@@ -63,13 +63,13 @@ func (a *OrgConnectionsService) Create(ctx _context.Context, orgHandle string) O
 }
 
 // Execute executes the request
-//  @return TypesConnection
-func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) (TypesConnection, *_nethttp.Response, error) {
+//  @return Connection
+func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) (Connection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesConnection
+		localVarReturnValue Connection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.Create")
@@ -129,7 +129,7 @@ func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -139,7 +139,7 @@ func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -149,7 +149,7 @@ func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -159,7 +159,7 @@ func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -169,7 +169,7 @@ func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -179,7 +179,7 @@ func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -189,7 +189,7 @@ func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -219,7 +219,7 @@ type OrgConnectionsApiDeleteRequest struct {
 	connHandle string
 }
 
-func (r OrgConnectionsApiDeleteRequest) Execute() (TypesConnection, *_nethttp.Response, error) {
+func (r OrgConnectionsApiDeleteRequest) Execute() (Connection, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
 }
 
@@ -243,13 +243,13 @@ func (a *OrgConnectionsService) Delete(ctx _context.Context, orgHandle string, c
 }
 
 // Execute executes the request
-//  @return TypesConnection
-func (a *OrgConnectionsService) DeleteExecute(r OrgConnectionsApiDeleteRequest) (TypesConnection, *_nethttp.Response, error) {
+//  @return Connection
+func (a *OrgConnectionsService) DeleteExecute(r OrgConnectionsApiDeleteRequest) (Connection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesConnection
+		localVarReturnValue Connection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.Delete")
@@ -305,7 +305,7 @@ func (a *OrgConnectionsService) DeleteExecute(r OrgConnectionsApiDeleteRequest) 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -315,7 +315,7 @@ func (a *OrgConnectionsService) DeleteExecute(r OrgConnectionsApiDeleteRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -325,7 +325,7 @@ func (a *OrgConnectionsService) DeleteExecute(r OrgConnectionsApiDeleteRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -335,7 +335,7 @@ func (a *OrgConnectionsService) DeleteExecute(r OrgConnectionsApiDeleteRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -345,7 +345,7 @@ func (a *OrgConnectionsService) DeleteExecute(r OrgConnectionsApiDeleteRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -375,7 +375,7 @@ type OrgConnectionsApiGetRequest struct {
 	connHandle string
 }
 
-func (r OrgConnectionsApiGetRequest) Execute() (TypesConnection, *_nethttp.Response, error) {
+func (r OrgConnectionsApiGetRequest) Execute() (Connection, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
 }
 
@@ -399,13 +399,13 @@ func (a *OrgConnectionsService) Get(ctx _context.Context, orgHandle string, conn
 }
 
 // Execute executes the request
-//  @return TypesConnection
-func (a *OrgConnectionsService) GetExecute(r OrgConnectionsApiGetRequest) (TypesConnection, *_nethttp.Response, error) {
+//  @return Connection
+func (a *OrgConnectionsService) GetExecute(r OrgConnectionsApiGetRequest) (Connection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesConnection
+		localVarReturnValue Connection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.Get")
@@ -461,7 +461,7 @@ func (a *OrgConnectionsService) GetExecute(r OrgConnectionsApiGetRequest) (Types
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -471,7 +471,7 @@ func (a *OrgConnectionsService) GetExecute(r OrgConnectionsApiGetRequest) (Types
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -481,7 +481,7 @@ func (a *OrgConnectionsService) GetExecute(r OrgConnectionsApiGetRequest) (Types
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -491,7 +491,7 @@ func (a *OrgConnectionsService) GetExecute(r OrgConnectionsApiGetRequest) (Types
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -501,7 +501,7 @@ func (a *OrgConnectionsService) GetExecute(r OrgConnectionsApiGetRequest) (Types
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -511,7 +511,7 @@ func (a *OrgConnectionsService) GetExecute(r OrgConnectionsApiGetRequest) (Types
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -554,7 +554,7 @@ func (r OrgConnectionsApiListRequest) NextToken(nextToken string) OrgConnections
 	return r
 }
 
-func (r OrgConnectionsApiListRequest) Execute() (TypesListConnectionsResponse, *_nethttp.Response, error) {
+func (r OrgConnectionsApiListRequest) Execute() (ListConnectionsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListExecute(r)
 }
 
@@ -576,13 +576,13 @@ func (a *OrgConnectionsService) List(ctx _context.Context, orgHandle string) Org
 }
 
 // Execute executes the request
-//  @return TypesListConnectionsResponse
-func (a *OrgConnectionsService) ListExecute(r OrgConnectionsApiListRequest) (TypesListConnectionsResponse, *_nethttp.Response, error) {
+//  @return ListConnectionsResponse
+func (a *OrgConnectionsService) ListExecute(r OrgConnectionsApiListRequest) (ListConnectionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesListConnectionsResponse
+		localVarReturnValue ListConnectionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.List")
@@ -643,7 +643,7 @@ func (a *OrgConnectionsService) ListExecute(r OrgConnectionsApiListRequest) (Typ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -653,7 +653,7 @@ func (a *OrgConnectionsService) ListExecute(r OrgConnectionsApiListRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -663,7 +663,7 @@ func (a *OrgConnectionsService) ListExecute(r OrgConnectionsApiListRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -673,7 +673,7 @@ func (a *OrgConnectionsService) ListExecute(r OrgConnectionsApiListRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -683,7 +683,7 @@ func (a *OrgConnectionsService) ListExecute(r OrgConnectionsApiListRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -713,7 +713,7 @@ type OrgConnectionsApiTestRequest struct {
 	connHandle string
 }
 
-func (r OrgConnectionsApiTestRequest) Execute() (TypesConnectionTestResult, *_nethttp.Response, error) {
+func (r OrgConnectionsApiTestRequest) Execute() (ConnectionTestResult, *_nethttp.Response, error) {
 	return r.ApiService.TestExecute(r)
 }
 
@@ -737,13 +737,13 @@ func (a *OrgConnectionsService) Test(ctx _context.Context, orgHandle string, con
 }
 
 // Execute executes the request
-//  @return TypesConnectionTestResult
-func (a *OrgConnectionsService) TestExecute(r OrgConnectionsApiTestRequest) (TypesConnectionTestResult, *_nethttp.Response, error) {
+//  @return ConnectionTestResult
+func (a *OrgConnectionsService) TestExecute(r OrgConnectionsApiTestRequest) (ConnectionTestResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesConnectionTestResult
+		localVarReturnValue ConnectionTestResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.Test")
@@ -799,7 +799,7 @@ func (a *OrgConnectionsService) TestExecute(r OrgConnectionsApiTestRequest) (Typ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -809,7 +809,7 @@ func (a *OrgConnectionsService) TestExecute(r OrgConnectionsApiTestRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -819,7 +819,7 @@ func (a *OrgConnectionsService) TestExecute(r OrgConnectionsApiTestRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -829,7 +829,7 @@ func (a *OrgConnectionsService) TestExecute(r OrgConnectionsApiTestRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -857,16 +857,16 @@ type OrgConnectionsApiUpdateRequest struct {
 	ApiService *OrgConnectionsService
 	orgHandle  string
 	connHandle string
-	request    *TypesUpdateConnectionRequest
+	request    *UpdateConnectionRequest
 }
 
 // The request body of the connection which needs to be updated.
-func (r OrgConnectionsApiUpdateRequest) Request(request TypesUpdateConnectionRequest) OrgConnectionsApiUpdateRequest {
+func (r OrgConnectionsApiUpdateRequest) Request(request UpdateConnectionRequest) OrgConnectionsApiUpdateRequest {
 	r.request = &request
 	return r
 }
 
-func (r OrgConnectionsApiUpdateRequest) Execute() (TypesConnection, *_nethttp.Response, error) {
+func (r OrgConnectionsApiUpdateRequest) Execute() (Connection, *_nethttp.Response, error) {
 	return r.ApiService.UpdateExecute(r)
 }
 
@@ -890,13 +890,13 @@ func (a *OrgConnectionsService) Update(ctx _context.Context, orgHandle string, c
 }
 
 // Execute executes the request
-//  @return TypesConnection
-func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) (TypesConnection, *_nethttp.Response, error) {
+//  @return Connection
+func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) (Connection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesConnection
+		localVarReturnValue Connection
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.Update")
@@ -957,7 +957,7 @@ func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -967,7 +967,7 @@ func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -977,7 +977,7 @@ func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -987,7 +987,7 @@ func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -997,7 +997,7 @@ func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1007,7 +1007,7 @@ func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1017,7 +1017,7 @@ func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

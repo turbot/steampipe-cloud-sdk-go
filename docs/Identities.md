@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## Search
 
-> TypesSearchIdentitiesResponse Search(ctx).Q(q).Execute()
+> SearchIdentitiesResponse Search(ctx).Q(q).Execute()
 
 Search identity
 
@@ -38,7 +38,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Identities.Search``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Search`: TypesSearchIdentitiesResponse
+    // response from `Search`: SearchIdentitiesResponse
     fmt.Fprintf(os.Stdout, "Response from `Identities.Search`: %v\n", resp)
 }
 ```
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesSearchIdentitiesResponse**](TypesSearchIdentitiesResponse.md)
+[**SearchIdentitiesResponse**](SearchIdentitiesResponse.md)
 
 ### Authorization
 

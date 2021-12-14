@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## Get
 
-> TypesUser Get(ctx).Execute()
+> User Get(ctx).Execute()
 
 Actor information
 
@@ -40,7 +40,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Actors.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Get`: TypesUser
+    // response from `Get`: User
     fmt.Fprintf(os.Stdout, "Response from `Actors.Get`: %v\n", resp)
 }
 ```
@@ -56,7 +56,7 @@ Other parameters are passed through a pointer to a apiGetRequest struct via the 
 
 ### Return type
 
-[**TypesUser**](TypesUser.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -74,7 +74,7 @@ No authorization required
 
 ## ListActivity
 
-> TypesListAuditLogsResponse ListActivity(ctx).Limit(limit).NextToken(nextToken).Execute()
+> ListAuditLogsResponse ListActivity(ctx).Limit(limit).NextToken(nextToken).Execute()
 
 List actor activity
 
@@ -103,7 +103,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Actors.ListActivity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListActivity`: TypesListAuditLogsResponse
+    // response from `ListActivity`: ListAuditLogsResponse
     fmt.Fprintf(os.Stdout, "Response from `Actors.ListActivity`: %v\n", resp)
 }
 ```
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListAuditLogsResponse**](TypesListAuditLogsResponse.md)
+[**ListAuditLogsResponse**](ListAuditLogsResponse.md)
 
 ### Authorization
 
@@ -142,7 +142,7 @@ No authorization required
 
 ## ListConnections
 
-> TypesListConnectionsResponse ListConnections(ctx).Limit(limit).NextToken(nextToken).Execute()
+> ListConnectionsResponse ListConnections(ctx).Limit(limit).NextToken(nextToken).Execute()
 
 List actor connections
 
@@ -171,7 +171,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Actors.ListConnections``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListConnections`: TypesListConnectionsResponse
+    // response from `ListConnections`: ListConnectionsResponse
     fmt.Fprintf(os.Stdout, "Response from `Actors.ListConnections`: %v\n", resp)
 }
 ```
@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListConnectionsResponse**](TypesListConnectionsResponse.md)
+[**ListConnectionsResponse**](ListConnectionsResponse.md)
 
 ### Authorization
 
@@ -210,7 +210,7 @@ No authorization required
 
 ## ListWorkspaces
 
-> TypesListWorkspacesResponse ListWorkspaces(ctx).Limit(limit).NextToken(nextToken).Execute()
+> ListWorkspacesResponse ListWorkspaces(ctx).Limit(limit).NextToken(nextToken).Execute()
 
 List actor workspaces
 
@@ -239,7 +239,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Actors.ListWorkspaces``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListWorkspaces`: TypesListWorkspacesResponse
+    // response from `ListWorkspaces`: ListWorkspacesResponse
     fmt.Fprintf(os.Stdout, "Response from `Actors.ListWorkspaces`: %v\n", resp)
 }
 ```
@@ -260,7 +260,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListWorkspacesResponse**](TypesListWorkspacesResponse.md)
+[**ListWorkspacesResponse**](ListWorkspacesResponse.md)
 
 ### Authorization
 

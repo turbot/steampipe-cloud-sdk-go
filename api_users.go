@@ -31,16 +31,16 @@ type UsersService service
 type UsersApiCreateRequest struct {
 	ctx        _context.Context
 	ApiService *UsersService
-	request    *TypesCreateUserRequest
+	request    *CreateUserRequest
 }
 
 // The request body to create the user.
-func (r UsersApiCreateRequest) Request(request TypesCreateUserRequest) UsersApiCreateRequest {
+func (r UsersApiCreateRequest) Request(request CreateUserRequest) UsersApiCreateRequest {
 	r.request = &request
 	return r
 }
 
-func (r UsersApiCreateRequest) Execute() (TypesUser, *_nethttp.Response, error) {
+func (r UsersApiCreateRequest) Execute() (User, *_nethttp.Response, error) {
 	return r.ApiService.CreateExecute(r)
 }
 
@@ -60,13 +60,13 @@ func (a *UsersService) Create(ctx _context.Context) UsersApiCreateRequest {
 }
 
 // Execute executes the request
-//  @return TypesUser
-func (a *UsersService) CreateExecute(r UsersApiCreateRequest) (TypesUser, *_nethttp.Response, error) {
+//  @return User
+func (a *UsersService) CreateExecute(r UsersApiCreateRequest) (User, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesUser
+		localVarReturnValue User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.Create")
@@ -125,7 +125,7 @@ func (a *UsersService) CreateExecute(r UsersApiCreateRequest) (TypesUser, *_neth
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -135,7 +135,7 @@ func (a *UsersService) CreateExecute(r UsersApiCreateRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -145,7 +145,7 @@ func (a *UsersService) CreateExecute(r UsersApiCreateRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -155,7 +155,7 @@ func (a *UsersService) CreateExecute(r UsersApiCreateRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -165,7 +165,7 @@ func (a *UsersService) CreateExecute(r UsersApiCreateRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -175,7 +175,7 @@ func (a *UsersService) CreateExecute(r UsersApiCreateRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -185,7 +185,7 @@ func (a *UsersService) CreateExecute(r UsersApiCreateRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -212,16 +212,16 @@ type UsersApiCreateDBPasswordRequest struct {
 	ctx        _context.Context
 	ApiService *UsersService
 	userHandle string
-	request    *TypesCreateUserPasswordRequest
+	request    *CreateUserPasswordRequest
 }
 
 // The request body to create or rotate the password.
-func (r UsersApiCreateDBPasswordRequest) Request(request TypesCreateUserPasswordRequest) UsersApiCreateDBPasswordRequest {
+func (r UsersApiCreateDBPasswordRequest) Request(request CreateUserPasswordRequest) UsersApiCreateDBPasswordRequest {
 	r.request = &request
 	return r
 }
 
-func (r UsersApiCreateDBPasswordRequest) Execute() (TypesUserDatabasePassword, *_nethttp.Response, error) {
+func (r UsersApiCreateDBPasswordRequest) Execute() (UserDatabasePassword, *_nethttp.Response, error) {
 	return r.ApiService.CreateDBPasswordExecute(r)
 }
 
@@ -243,13 +243,13 @@ func (a *UsersService) CreateDBPassword(ctx _context.Context, userHandle string)
 }
 
 // Execute executes the request
-//  @return TypesUserDatabasePassword
-func (a *UsersService) CreateDBPasswordExecute(r UsersApiCreateDBPasswordRequest) (TypesUserDatabasePassword, *_nethttp.Response, error) {
+//  @return UserDatabasePassword
+func (a *UsersService) CreateDBPasswordExecute(r UsersApiCreateDBPasswordRequest) (UserDatabasePassword, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesUserDatabasePassword
+		localVarReturnValue UserDatabasePassword
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.CreateDBPassword")
@@ -309,7 +309,7 @@ func (a *UsersService) CreateDBPasswordExecute(r UsersApiCreateDBPasswordRequest
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -319,7 +319,7 @@ func (a *UsersService) CreateDBPasswordExecute(r UsersApiCreateDBPasswordRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -329,7 +329,7 @@ func (a *UsersService) CreateDBPasswordExecute(r UsersApiCreateDBPasswordRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -339,7 +339,7 @@ func (a *UsersService) CreateDBPasswordExecute(r UsersApiCreateDBPasswordRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -349,7 +349,7 @@ func (a *UsersService) CreateDBPasswordExecute(r UsersApiCreateDBPasswordRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -359,7 +359,7 @@ func (a *UsersService) CreateDBPasswordExecute(r UsersApiCreateDBPasswordRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -369,7 +369,7 @@ func (a *UsersService) CreateDBPasswordExecute(r UsersApiCreateDBPasswordRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -398,7 +398,7 @@ type UsersApiDeleteRequest struct {
 	userHandle string
 }
 
-func (r UsersApiDeleteRequest) Execute() (TypesUser, *_nethttp.Response, error) {
+func (r UsersApiDeleteRequest) Execute() (User, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
 }
 
@@ -420,13 +420,13 @@ func (a *UsersService) Delete(ctx _context.Context, userHandle string) UsersApiD
 }
 
 // Execute executes the request
-//  @return TypesUser
-func (a *UsersService) DeleteExecute(r UsersApiDeleteRequest) (TypesUser, *_nethttp.Response, error) {
+//  @return User
+func (a *UsersService) DeleteExecute(r UsersApiDeleteRequest) (User, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesUser
+		localVarReturnValue User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.Delete")
@@ -481,7 +481,7 @@ func (a *UsersService) DeleteExecute(r UsersApiDeleteRequest) (TypesUser, *_neth
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -491,7 +491,7 @@ func (a *UsersService) DeleteExecute(r UsersApiDeleteRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -501,7 +501,7 @@ func (a *UsersService) DeleteExecute(r UsersApiDeleteRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -511,7 +511,7 @@ func (a *UsersService) DeleteExecute(r UsersApiDeleteRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -521,7 +521,7 @@ func (a *UsersService) DeleteExecute(r UsersApiDeleteRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -550,7 +550,7 @@ type UsersApiGetRequest struct {
 	userHandle string
 }
 
-func (r UsersApiGetRequest) Execute() (TypesUser, *_nethttp.Response, error) {
+func (r UsersApiGetRequest) Execute() (User, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
 }
 
@@ -572,13 +572,13 @@ func (a *UsersService) Get(ctx _context.Context, userHandle string) UsersApiGetR
 }
 
 // Execute executes the request
-//  @return TypesUser
-func (a *UsersService) GetExecute(r UsersApiGetRequest) (TypesUser, *_nethttp.Response, error) {
+//  @return User
+func (a *UsersService) GetExecute(r UsersApiGetRequest) (User, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesUser
+		localVarReturnValue User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.Get")
@@ -633,7 +633,7 @@ func (a *UsersService) GetExecute(r UsersApiGetRequest) (TypesUser, *_nethttp.Re
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -643,7 +643,7 @@ func (a *UsersService) GetExecute(r UsersApiGetRequest) (TypesUser, *_nethttp.Re
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -653,7 +653,7 @@ func (a *UsersService) GetExecute(r UsersApiGetRequest) (TypesUser, *_nethttp.Re
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -663,7 +663,7 @@ func (a *UsersService) GetExecute(r UsersApiGetRequest) (TypesUser, *_nethttp.Re
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -673,7 +673,7 @@ func (a *UsersService) GetExecute(r UsersApiGetRequest) (TypesUser, *_nethttp.Re
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -683,7 +683,7 @@ func (a *UsersService) GetExecute(r UsersApiGetRequest) (TypesUser, *_nethttp.Re
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -712,7 +712,7 @@ type UsersApiGetDBPasswordRequest struct {
 	userHandle string
 }
 
-func (r UsersApiGetDBPasswordRequest) Execute() (TypesUserDatabasePassword, *_nethttp.Response, error) {
+func (r UsersApiGetDBPasswordRequest) Execute() (UserDatabasePassword, *_nethttp.Response, error) {
 	return r.ApiService.GetDBPasswordExecute(r)
 }
 
@@ -734,13 +734,13 @@ func (a *UsersService) GetDBPassword(ctx _context.Context, userHandle string) Us
 }
 
 // Execute executes the request
-//  @return TypesUserDatabasePassword
-func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (TypesUserDatabasePassword, *_nethttp.Response, error) {
+//  @return UserDatabasePassword
+func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (UserDatabasePassword, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesUserDatabasePassword
+		localVarReturnValue UserDatabasePassword
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.GetDBPassword")
@@ -795,7 +795,7 @@ func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (Typ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -805,7 +805,7 @@ func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -815,7 +815,7 @@ func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -825,7 +825,7 @@ func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -835,7 +835,7 @@ func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -845,7 +845,7 @@ func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -855,7 +855,7 @@ func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -884,7 +884,7 @@ type UsersApiGetQuotaRequest struct {
 	userHandle string
 }
 
-func (r UsersApiGetQuotaRequest) Execute() (TypesUserQuota, *_nethttp.Response, error) {
+func (r UsersApiGetQuotaRequest) Execute() (UserQuota, *_nethttp.Response, error) {
 	return r.ApiService.GetQuotaExecute(r)
 }
 
@@ -906,13 +906,13 @@ func (a *UsersService) GetQuota(ctx _context.Context, userHandle string) UsersAp
 }
 
 // Execute executes the request
-//  @return TypesUserQuota
-func (a *UsersService) GetQuotaExecute(r UsersApiGetQuotaRequest) (TypesUserQuota, *_nethttp.Response, error) {
+//  @return UserQuota
+func (a *UsersService) GetQuotaExecute(r UsersApiGetQuotaRequest) (UserQuota, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesUserQuota
+		localVarReturnValue UserQuota
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.GetQuota")
@@ -967,7 +967,7 @@ func (a *UsersService) GetQuotaExecute(r UsersApiGetQuotaRequest) (TypesUserQuot
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -977,7 +977,7 @@ func (a *UsersService) GetQuotaExecute(r UsersApiGetQuotaRequest) (TypesUserQuot
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -987,7 +987,7 @@ func (a *UsersService) GetQuotaExecute(r UsersApiGetQuotaRequest) (TypesUserQuot
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -997,7 +997,7 @@ func (a *UsersService) GetQuotaExecute(r UsersApiGetQuotaRequest) (TypesUserQuot
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1007,7 +1007,7 @@ func (a *UsersService) GetQuotaExecute(r UsersApiGetQuotaRequest) (TypesUserQuot
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1049,7 +1049,7 @@ func (r UsersApiListRequest) NextToken(nextToken string) UsersApiListRequest {
 	return r
 }
 
-func (r UsersApiListRequest) Execute() (TypesListUsersResponse, *_nethttp.Response, error) {
+func (r UsersApiListRequest) Execute() (ListUsersResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListExecute(r)
 }
 
@@ -1069,13 +1069,13 @@ func (a *UsersService) List(ctx _context.Context) UsersApiListRequest {
 }
 
 // Execute executes the request
-//  @return TypesListUsersResponse
-func (a *UsersService) ListExecute(r UsersApiListRequest) (TypesListUsersResponse, *_nethttp.Response, error) {
+//  @return ListUsersResponse
+func (a *UsersService) ListExecute(r UsersApiListRequest) (ListUsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesListUsersResponse
+		localVarReturnValue ListUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.List")
@@ -1135,7 +1135,7 @@ func (a *UsersService) ListExecute(r UsersApiListRequest) (TypesListUsersRespons
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1145,7 +1145,7 @@ func (a *UsersService) ListExecute(r UsersApiListRequest) (TypesListUsersRespons
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1155,7 +1155,7 @@ func (a *UsersService) ListExecute(r UsersApiListRequest) (TypesListUsersRespons
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1165,7 +1165,7 @@ func (a *UsersService) ListExecute(r UsersApiListRequest) (TypesListUsersRespons
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1175,7 +1175,7 @@ func (a *UsersService) ListExecute(r UsersApiListRequest) (TypesListUsersRespons
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1218,7 +1218,7 @@ func (r UsersApiListAuditLogsRequest) NextToken(nextToken string) UsersApiListAu
 	return r
 }
 
-func (r UsersApiListAuditLogsRequest) Execute() (TypesListAuditLogsResponse, *_nethttp.Response, error) {
+func (r UsersApiListAuditLogsRequest) Execute() (ListAuditLogsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListAuditLogsExecute(r)
 }
 
@@ -1240,13 +1240,13 @@ func (a *UsersService) ListAuditLogs(ctx _context.Context, userHandle string) Us
 }
 
 // Execute executes the request
-//  @return TypesListAuditLogsResponse
-func (a *UsersService) ListAuditLogsExecute(r UsersApiListAuditLogsRequest) (TypesListAuditLogsResponse, *_nethttp.Response, error) {
+//  @return ListAuditLogsResponse
+func (a *UsersService) ListAuditLogsExecute(r UsersApiListAuditLogsRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesListAuditLogsResponse
+		localVarReturnValue ListAuditLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.ListAuditLogs")
@@ -1307,7 +1307,7 @@ func (a *UsersService) ListAuditLogsExecute(r UsersApiListAuditLogsRequest) (Typ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1317,7 +1317,7 @@ func (a *UsersService) ListAuditLogsExecute(r UsersApiListAuditLogsRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1327,7 +1327,7 @@ func (a *UsersService) ListAuditLogsExecute(r UsersApiListAuditLogsRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1337,7 +1337,7 @@ func (a *UsersService) ListAuditLogsExecute(r UsersApiListAuditLogsRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1347,7 +1347,7 @@ func (a *UsersService) ListAuditLogsExecute(r UsersApiListAuditLogsRequest) (Typ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1390,7 +1390,7 @@ func (r UsersApiListOrgInvitesRequest) NextToken(nextToken string) UsersApiListO
 	return r
 }
 
-func (r UsersApiListOrgInvitesRequest) Execute() (TypesListUserOrgsResponse, *_nethttp.Response, error) {
+func (r UsersApiListOrgInvitesRequest) Execute() (ListUserOrgsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListOrgInvitesExecute(r)
 }
 
@@ -1412,13 +1412,13 @@ func (a *UsersService) ListOrgInvites(ctx _context.Context, userHandle string) U
 }
 
 // Execute executes the request
-//  @return TypesListUserOrgsResponse
-func (a *UsersService) ListOrgInvitesExecute(r UsersApiListOrgInvitesRequest) (TypesListUserOrgsResponse, *_nethttp.Response, error) {
+//  @return ListUserOrgsResponse
+func (a *UsersService) ListOrgInvitesExecute(r UsersApiListOrgInvitesRequest) (ListUserOrgsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesListUserOrgsResponse
+		localVarReturnValue ListUserOrgsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.ListOrgInvites")
@@ -1479,7 +1479,7 @@ func (a *UsersService) ListOrgInvitesExecute(r UsersApiListOrgInvitesRequest) (T
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1489,7 +1489,7 @@ func (a *UsersService) ListOrgInvitesExecute(r UsersApiListOrgInvitesRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1499,7 +1499,7 @@ func (a *UsersService) ListOrgInvitesExecute(r UsersApiListOrgInvitesRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1509,7 +1509,7 @@ func (a *UsersService) ListOrgInvitesExecute(r UsersApiListOrgInvitesRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1519,7 +1519,7 @@ func (a *UsersService) ListOrgInvitesExecute(r UsersApiListOrgInvitesRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1562,7 +1562,7 @@ func (r UsersApiListOrgsRequest) NextToken(nextToken string) UsersApiListOrgsReq
 	return r
 }
 
-func (r UsersApiListOrgsRequest) Execute() (TypesListUserOrgsResponse, *_nethttp.Response, error) {
+func (r UsersApiListOrgsRequest) Execute() (ListUserOrgsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListOrgsExecute(r)
 }
 
@@ -1584,13 +1584,13 @@ func (a *UsersService) ListOrgs(ctx _context.Context, userHandle string) UsersAp
 }
 
 // Execute executes the request
-//  @return TypesListUserOrgsResponse
-func (a *UsersService) ListOrgsExecute(r UsersApiListOrgsRequest) (TypesListUserOrgsResponse, *_nethttp.Response, error) {
+//  @return ListUserOrgsResponse
+func (a *UsersService) ListOrgsExecute(r UsersApiListOrgsRequest) (ListUserOrgsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesListUserOrgsResponse
+		localVarReturnValue ListUserOrgsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.ListOrgs")
@@ -1651,7 +1651,7 @@ func (a *UsersService) ListOrgsExecute(r UsersApiListOrgsRequest) (TypesListUser
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1661,7 +1661,7 @@ func (a *UsersService) ListOrgsExecute(r UsersApiListOrgsRequest) (TypesListUser
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1671,7 +1671,7 @@ func (a *UsersService) ListOrgsExecute(r UsersApiListOrgsRequest) (TypesListUser
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1681,7 +1681,7 @@ func (a *UsersService) ListOrgsExecute(r UsersApiListOrgsRequest) (TypesListUser
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1691,7 +1691,7 @@ func (a *UsersService) ListOrgsExecute(r UsersApiListOrgsRequest) (TypesListUser
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1735,7 +1735,7 @@ func (r UsersApiListWorkspaceAuditLogsRequest) NextToken(nextToken string) Users
 	return r
 }
 
-func (r UsersApiListWorkspaceAuditLogsRequest) Execute() (TypesListAuditLogsResponse, *_nethttp.Response, error) {
+func (r UsersApiListWorkspaceAuditLogsRequest) Execute() (ListAuditLogsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListWorkspaceAuditLogsExecute(r)
 }
 
@@ -1759,13 +1759,13 @@ func (a *UsersService) ListWorkspaceAuditLogs(ctx _context.Context, userHandle s
 }
 
 // Execute executes the request
-//  @return TypesListAuditLogsResponse
-func (a *UsersService) ListWorkspaceAuditLogsExecute(r UsersApiListWorkspaceAuditLogsRequest) (TypesListAuditLogsResponse, *_nethttp.Response, error) {
+//  @return ListAuditLogsResponse
+func (a *UsersService) ListWorkspaceAuditLogsExecute(r UsersApiListWorkspaceAuditLogsRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesListAuditLogsResponse
+		localVarReturnValue ListAuditLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.ListWorkspaceAuditLogs")
@@ -1827,7 +1827,7 @@ func (a *UsersService) ListWorkspaceAuditLogsExecute(r UsersApiListWorkspaceAudi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1837,7 +1837,7 @@ func (a *UsersService) ListWorkspaceAuditLogsExecute(r UsersApiListWorkspaceAudi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1847,7 +1847,7 @@ func (a *UsersService) ListWorkspaceAuditLogsExecute(r UsersApiListWorkspaceAudi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1857,7 +1857,7 @@ func (a *UsersService) ListWorkspaceAuditLogsExecute(r UsersApiListWorkspaceAudi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1867,7 +1867,7 @@ func (a *UsersService) ListWorkspaceAuditLogsExecute(r UsersApiListWorkspaceAudi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1916,7 +1916,7 @@ func (r UsersApiSearchRequest) NextToken(nextToken string) UsersApiSearchRequest
 	return r
 }
 
-func (r UsersApiSearchRequest) Execute() (TypesSearchUsersResponse, *_nethttp.Response, error) {
+func (r UsersApiSearchRequest) Execute() (SearchUsersResponse, *_nethttp.Response, error) {
 	return r.ApiService.SearchExecute(r)
 }
 
@@ -1936,13 +1936,13 @@ func (a *UsersService) Search(ctx _context.Context) UsersApiSearchRequest {
 }
 
 // Execute executes the request
-//  @return TypesSearchUsersResponse
-func (a *UsersService) SearchExecute(r UsersApiSearchRequest) (TypesSearchUsersResponse, *_nethttp.Response, error) {
+//  @return SearchUsersResponse
+func (a *UsersService) SearchExecute(r UsersApiSearchRequest) (SearchUsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesSearchUsersResponse
+		localVarReturnValue SearchUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.Search")
@@ -2006,7 +2006,7 @@ func (a *UsersService) SearchExecute(r UsersApiSearchRequest) (TypesSearchUsersR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2016,7 +2016,7 @@ func (a *UsersService) SearchExecute(r UsersApiSearchRequest) (TypesSearchUsersR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2026,7 +2026,7 @@ func (a *UsersService) SearchExecute(r UsersApiSearchRequest) (TypesSearchUsersR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2036,7 +2036,7 @@ func (a *UsersService) SearchExecute(r UsersApiSearchRequest) (TypesSearchUsersR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2046,7 +2046,7 @@ func (a *UsersService) SearchExecute(r UsersApiSearchRequest) (TypesSearchUsersR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2073,16 +2073,16 @@ type UsersApiUpdateRequest struct {
 	ctx        _context.Context
 	ApiService *UsersService
 	userHandle string
-	request    *TypesUpdateUserRequest
+	request    *UpdateUserRequest
 }
 
 // The request body for the user.
-func (r UsersApiUpdateRequest) Request(request TypesUpdateUserRequest) UsersApiUpdateRequest {
+func (r UsersApiUpdateRequest) Request(request UpdateUserRequest) UsersApiUpdateRequest {
 	r.request = &request
 	return r
 }
 
-func (r UsersApiUpdateRequest) Execute() (TypesUser, *_nethttp.Response, error) {
+func (r UsersApiUpdateRequest) Execute() (User, *_nethttp.Response, error) {
 	return r.ApiService.UpdateExecute(r)
 }
 
@@ -2104,13 +2104,13 @@ func (a *UsersService) Update(ctx _context.Context, userHandle string) UsersApiU
 }
 
 // Execute executes the request
-//  @return TypesUser
-func (a *UsersService) UpdateExecute(r UsersApiUpdateRequest) (TypesUser, *_nethttp.Response, error) {
+//  @return User
+func (a *UsersService) UpdateExecute(r UsersApiUpdateRequest) (User, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesUser
+		localVarReturnValue User
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.Update")
@@ -2170,7 +2170,7 @@ func (a *UsersService) UpdateExecute(r UsersApiUpdateRequest) (TypesUser, *_neth
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2180,7 +2180,7 @@ func (a *UsersService) UpdateExecute(r UsersApiUpdateRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2190,7 +2190,7 @@ func (a *UsersService) UpdateExecute(r UsersApiUpdateRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2200,7 +2200,7 @@ func (a *UsersService) UpdateExecute(r UsersApiUpdateRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2210,7 +2210,7 @@ func (a *UsersService) UpdateExecute(r UsersApiUpdateRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2220,7 +2220,7 @@ func (a *UsersService) UpdateExecute(r UsersApiUpdateRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2230,7 +2230,7 @@ func (a *UsersService) UpdateExecute(r UsersApiUpdateRequest) (TypesUser, *_neth
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

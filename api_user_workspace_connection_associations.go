@@ -33,16 +33,16 @@ type UserWorkspaceConnectionAssociationsApiCreateRequest struct {
 	ApiService      *UserWorkspaceConnectionAssociationsService
 	userHandle      string
 	workspaceHandle string
-	request         *TypesCreateWorkspaceConnRequest
+	request         *CreateWorkspaceConnRequest
 }
 
 // The request body for the association to be created.
-func (r UserWorkspaceConnectionAssociationsApiCreateRequest) Request(request TypesCreateWorkspaceConnRequest) UserWorkspaceConnectionAssociationsApiCreateRequest {
+func (r UserWorkspaceConnectionAssociationsApiCreateRequest) Request(request CreateWorkspaceConnRequest) UserWorkspaceConnectionAssociationsApiCreateRequest {
 	r.request = &request
 	return r
 }
 
-func (r UserWorkspaceConnectionAssociationsApiCreateRequest) Execute() (TypesWorkspaceConn, *_nethttp.Response, error) {
+func (r UserWorkspaceConnectionAssociationsApiCreateRequest) Execute() (WorkspaceConn, *_nethttp.Response, error) {
 	return r.ApiService.CreateExecute(r)
 }
 
@@ -66,13 +66,13 @@ func (a *UserWorkspaceConnectionAssociationsService) Create(ctx _context.Context
 }
 
 // Execute executes the request
-//  @return TypesWorkspaceConn
-func (a *UserWorkspaceConnectionAssociationsService) CreateExecute(r UserWorkspaceConnectionAssociationsApiCreateRequest) (TypesWorkspaceConn, *_nethttp.Response, error) {
+//  @return WorkspaceConn
+func (a *UserWorkspaceConnectionAssociationsService) CreateExecute(r UserWorkspaceConnectionAssociationsApiCreateRequest) (WorkspaceConn, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesWorkspaceConn
+		localVarReturnValue WorkspaceConn
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsService.Create")
@@ -133,7 +133,7 @@ func (a *UserWorkspaceConnectionAssociationsService) CreateExecute(r UserWorkspa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -143,7 +143,7 @@ func (a *UserWorkspaceConnectionAssociationsService) CreateExecute(r UserWorkspa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -153,7 +153,7 @@ func (a *UserWorkspaceConnectionAssociationsService) CreateExecute(r UserWorkspa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -163,7 +163,7 @@ func (a *UserWorkspaceConnectionAssociationsService) CreateExecute(r UserWorkspa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -173,7 +173,7 @@ func (a *UserWorkspaceConnectionAssociationsService) CreateExecute(r UserWorkspa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -183,7 +183,7 @@ func (a *UserWorkspaceConnectionAssociationsService) CreateExecute(r UserWorkspa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -193,7 +193,7 @@ func (a *UserWorkspaceConnectionAssociationsService) CreateExecute(r UserWorkspa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -224,7 +224,7 @@ type UserWorkspaceConnectionAssociationsApiDeleteRequest struct {
 	connHandle      string
 }
 
-func (r UserWorkspaceConnectionAssociationsApiDeleteRequest) Execute() (TypesWorkspaceConn, *_nethttp.Response, error) {
+func (r UserWorkspaceConnectionAssociationsApiDeleteRequest) Execute() (WorkspaceConn, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
 }
 
@@ -250,13 +250,13 @@ func (a *UserWorkspaceConnectionAssociationsService) Delete(ctx _context.Context
 }
 
 // Execute executes the request
-//  @return TypesWorkspaceConn
-func (a *UserWorkspaceConnectionAssociationsService) DeleteExecute(r UserWorkspaceConnectionAssociationsApiDeleteRequest) (TypesWorkspaceConn, *_nethttp.Response, error) {
+//  @return WorkspaceConn
+func (a *UserWorkspaceConnectionAssociationsService) DeleteExecute(r UserWorkspaceConnectionAssociationsApiDeleteRequest) (WorkspaceConn, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesWorkspaceConn
+		localVarReturnValue WorkspaceConn
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsService.Delete")
@@ -313,7 +313,7 @@ func (a *UserWorkspaceConnectionAssociationsService) DeleteExecute(r UserWorkspa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -323,7 +323,7 @@ func (a *UserWorkspaceConnectionAssociationsService) DeleteExecute(r UserWorkspa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -333,7 +333,7 @@ func (a *UserWorkspaceConnectionAssociationsService) DeleteExecute(r UserWorkspa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -343,7 +343,7 @@ func (a *UserWorkspaceConnectionAssociationsService) DeleteExecute(r UserWorkspa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -353,7 +353,7 @@ func (a *UserWorkspaceConnectionAssociationsService) DeleteExecute(r UserWorkspa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -384,7 +384,7 @@ type UserWorkspaceConnectionAssociationsApiGetRequest struct {
 	connHandle      string
 }
 
-func (r UserWorkspaceConnectionAssociationsApiGetRequest) Execute() (TypesWorkspaceConn, *_nethttp.Response, error) {
+func (r UserWorkspaceConnectionAssociationsApiGetRequest) Execute() (WorkspaceConn, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
 }
 
@@ -410,13 +410,13 @@ func (a *UserWorkspaceConnectionAssociationsService) Get(ctx _context.Context, u
 }
 
 // Execute executes the request
-//  @return TypesWorkspaceConn
-func (a *UserWorkspaceConnectionAssociationsService) GetExecute(r UserWorkspaceConnectionAssociationsApiGetRequest) (TypesWorkspaceConn, *_nethttp.Response, error) {
+//  @return WorkspaceConn
+func (a *UserWorkspaceConnectionAssociationsService) GetExecute(r UserWorkspaceConnectionAssociationsApiGetRequest) (WorkspaceConn, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesWorkspaceConn
+		localVarReturnValue WorkspaceConn
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsService.Get")
@@ -473,7 +473,7 @@ func (a *UserWorkspaceConnectionAssociationsService) GetExecute(r UserWorkspaceC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -483,7 +483,7 @@ func (a *UserWorkspaceConnectionAssociationsService) GetExecute(r UserWorkspaceC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -493,7 +493,7 @@ func (a *UserWorkspaceConnectionAssociationsService) GetExecute(r UserWorkspaceC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -503,7 +503,7 @@ func (a *UserWorkspaceConnectionAssociationsService) GetExecute(r UserWorkspaceC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -513,7 +513,7 @@ func (a *UserWorkspaceConnectionAssociationsService) GetExecute(r UserWorkspaceC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -523,7 +523,7 @@ func (a *UserWorkspaceConnectionAssociationsService) GetExecute(r UserWorkspaceC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -567,7 +567,7 @@ func (r UserWorkspaceConnectionAssociationsApiListRequest) NextToken(nextToken s
 	return r
 }
 
-func (r UserWorkspaceConnectionAssociationsApiListRequest) Execute() (TypesListWorkspaceConnResponse, *_nethttp.Response, error) {
+func (r UserWorkspaceConnectionAssociationsApiListRequest) Execute() (ListWorkspaceConnResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListExecute(r)
 }
 
@@ -591,13 +591,13 @@ func (a *UserWorkspaceConnectionAssociationsService) List(ctx _context.Context, 
 }
 
 // Execute executes the request
-//  @return TypesListWorkspaceConnResponse
-func (a *UserWorkspaceConnectionAssociationsService) ListExecute(r UserWorkspaceConnectionAssociationsApiListRequest) (TypesListWorkspaceConnResponse, *_nethttp.Response, error) {
+//  @return ListWorkspaceConnResponse
+func (a *UserWorkspaceConnectionAssociationsService) ListExecute(r UserWorkspaceConnectionAssociationsApiListRequest) (ListWorkspaceConnResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesListWorkspaceConnResponse
+		localVarReturnValue ListWorkspaceConnResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsService.List")
@@ -659,7 +659,7 @@ func (a *UserWorkspaceConnectionAssociationsService) ListExecute(r UserWorkspace
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -669,7 +669,7 @@ func (a *UserWorkspaceConnectionAssociationsService) ListExecute(r UserWorkspace
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -679,7 +679,7 @@ func (a *UserWorkspaceConnectionAssociationsService) ListExecute(r UserWorkspace
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -689,7 +689,7 @@ func (a *UserWorkspaceConnectionAssociationsService) ListExecute(r UserWorkspace
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -699,157 +699,7 @@ func (a *UserWorkspaceConnectionAssociationsService) ListExecute(r UserWorkspace
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type UserWorkspaceConnectionAssociationsApiUserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGetRequest struct {
-	ctx             _context.Context
-	ApiService      *UserWorkspaceConnectionAssociationsService
-	userHandle      string
-	workspaceHandle string
-	connHandle      string
-}
-
-func (r UserWorkspaceConnectionAssociationsApiUserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGetRequest) Execute() (TypesConnectionTestResponse, *_nethttp.Response, error) {
-	return r.ApiService.UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGetExecute(r)
-}
-
-/*
-UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet Test user workspace connection
-
-Test a user connection associated with a workspace to ensure that its config works with common plugin queries.
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user performing the action.
- @param workspaceHandle The handle of the workspace to test the connection in. The connection must already be associated with this workspace.
- @param connHandle The handle of the connection to test in this workspace. The connection must already be associated with this workspace whose association needs to be deleted.
- @return UserWorkspaceConnectionAssociationsApiUserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGetRequest
-*/
-func (a *UserWorkspaceConnectionAssociationsService) UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet(ctx _context.Context, userHandle string, workspaceHandle string, connHandle string) UserWorkspaceConnectionAssociationsApiUserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGetRequest {
-	return UserWorkspaceConnectionAssociationsApiUserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGetRequest{
-		ApiService:      a,
-		ctx:             ctx,
-		userHandle:      userHandle,
-		workspaceHandle: workspaceHandle,
-		connHandle:      connHandle,
-	}
-}
-
-// Execute executes the request
-//  @return TypesConnectionTestResponse
-func (a *UserWorkspaceConnectionAssociationsService) UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGetExecute(r UserWorkspaceConnectionAssociationsApiUserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGetRequest) (TypesConnectionTestResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue TypesConnectionTestResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceConnectionAssociationsService.UserUserHandleWorkspaceWorkspaceHandleConnConnHandleTestGet")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle}/test"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"conn_handle"+"}", _neturl.PathEscape(parameterToString(r.connHandle, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

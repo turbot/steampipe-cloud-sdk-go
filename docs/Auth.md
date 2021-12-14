@@ -163,7 +163,7 @@ import (
 )
 
 func main() {
-    request := *openapiclient.NewTypesUserLoginRequest("Email_example") // TypesUserLoginRequest | The request body to login.
+    request := *openapiclient.NewUserLoginRequest("Email_example") // UserLoginRequest | The request body to login.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -186,7 +186,7 @@ Other parameters are passed through a pointer to a apiLoginRequest struct via th
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | [**TypesUserLoginRequest**](TypesUserLoginRequest.md) | The request body to login. | 
+ **request** | [**UserLoginRequest**](UserLoginRequest.md) | The request body to login. | 
 
 ### Return type
 
@@ -431,7 +431,7 @@ import (
 )
 
 func main() {
-    request := *openapiclient.NewTypesUserSignupRequest("Email_example") // TypesUserSignupRequest | The request body to signup.
+    request := *openapiclient.NewUserSignupRequest("Email_example") // UserSignupRequest | The request body to signup.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -454,7 +454,7 @@ Other parameters are passed through a pointer to a apiSignupRequest struct via t
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | [**TypesUserSignupRequest**](TypesUserSignupRequest.md) | The request body to signup. | 
+ **request** | [**UserSignupRequest**](UserSignupRequest.md) | The request body to signup. | 
 
 ### Return type
 

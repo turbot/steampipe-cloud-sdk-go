@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## Create
 
-> TypesToken Create(ctx, userHandle).Execute()
+> Token Create(ctx, userHandle).Execute()
 
 Create token
 
@@ -42,7 +42,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserTokens.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Create`: TypesToken
+    // response from `Create`: Token
     fmt.Fprintf(os.Stdout, "Response from `UserTokens.Create`: %v\n", resp)
 }
 ```
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesToken**](TypesToken.md)
+[**Token**](Token.md)
 
 ### Authorization
 
@@ -84,7 +84,7 @@ No authorization required
 
 ## Delete
 
-> TypesToken Delete(ctx, userHandle, tokenId).Execute()
+> Token Delete(ctx, userHandle, tokenId).Execute()
 
 Delete token
 
@@ -113,7 +113,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserTokens.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Delete`: TypesToken
+    // response from `Delete`: Token
     fmt.Fprintf(os.Stdout, "Response from `UserTokens.Delete`: %v\n", resp)
 }
 ```
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesToken**](TypesToken.md)
+[**Token**](Token.md)
 
 ### Authorization
 
@@ -157,7 +157,7 @@ No authorization required
 
 ## Get
 
-> TypesToken Get(ctx, tokenId, userHandle).Execute()
+> Token Get(ctx, tokenId, userHandle).Execute()
 
 Get token
 
@@ -186,7 +186,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserTokens.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Get`: TypesToken
+    // response from `Get`: Token
     fmt.Fprintf(os.Stdout, "Response from `UserTokens.Get`: %v\n", resp)
 }
 ```
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesToken**](TypesToken.md)
+[**Token**](Token.md)
 
 ### Authorization
 
@@ -230,7 +230,7 @@ No authorization required
 
 ## List
 
-> TypesListTokensResponse List(ctx, userHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListTokensResponse List(ctx, userHandle).Limit(limit).NextToken(nextToken).Execute()
 
 List tokens
 
@@ -260,7 +260,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserTokens.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `List`: TypesListTokensResponse
+    // response from `List`: ListTokensResponse
     fmt.Fprintf(os.Stdout, "Response from `UserTokens.List`: %v\n", resp)
 }
 ```
@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListTokensResponse**](TypesListTokensResponse.md)
+[**ListTokensResponse**](ListTokensResponse.md)
 
 ### Authorization
 
@@ -304,7 +304,7 @@ No authorization required
 
 ## Update
 
-> TypesToken Update(ctx, userHandle, tokenId).Request(request).Execute()
+> Token Update(ctx, userHandle, tokenId).Request(request).Execute()
 
 Update token
 
@@ -325,7 +325,7 @@ import (
 func main() {
     userHandle := "userHandle_example" // string | The handle of the user where the token exist.
     tokenId := "tokenId_example" // string | The identifier of the token.
-    request := *openapiclient.NewTypesUpdateTokenRequest("Status_example") // TypesUpdateTokenRequest | The request body for the token which needs to be updated.
+    request := *openapiclient.NewUpdateTokenRequest("Status_example") // UpdateTokenRequest | The request body for the token which needs to be updated.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -334,7 +334,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserTokens.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Update`: TypesToken
+    // response from `Update`: Token
     fmt.Fprintf(os.Stdout, "Response from `UserTokens.Update`: %v\n", resp)
 }
 ```
@@ -357,11 +357,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **request** | [**TypesUpdateTokenRequest**](TypesUpdateTokenRequest.md) | The request body for the token which needs to be updated. | 
+ **request** | [**UpdateTokenRequest**](UpdateTokenRequest.md) | The request body for the token which needs to be updated. | 
 
 ### Return type
 
-[**TypesToken**](TypesToken.md)
+[**Token**](Token.md)
 
 ### Authorization
 

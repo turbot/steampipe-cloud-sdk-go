@@ -7,20 +7,20 @@ Method | HTTP request | Description
 [**Create**](OrgWorkspaces.md#Create) | **Post** /org/{org_handle}/workspace | Create org workspace
 [**Delete**](OrgWorkspaces.md#Delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle} | Delete org workspace
 [**Get**](OrgWorkspaces.md#Get) | **Get** /org/{org_handle}/workspace/{workspace_handle} | Get org workspace
+[**GetQuery**](OrgWorkspaces.md#GetQuery) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
+[**GetQueryWithExtensions**](OrgWorkspaces.md#GetQueryWithExtensions) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
+[**GetSchema**](OrgWorkspaces.md#GetSchema) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema | Get org workspace schemas
 [**List**](OrgWorkspaces.md#List) | **Get** /org/{org_handle}/workspace | List org workspaces
 [**ListDBLogs**](OrgWorkspaces.md#ListDBLogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/logs | Org workspace logs
-[**OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet**](OrgWorkspaces.md#OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
-[**OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost**](OrgWorkspaces.md#OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
-[**OrgOrgHandleWorkspaceWorkspaceHandleQueryGet**](OrgWorkspaces.md#OrgOrgHandleWorkspaceWorkspaceHandleQueryGet) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
-[**OrgOrgHandleWorkspaceWorkspaceHandleQueryPost**](OrgWorkspaces.md#OrgOrgHandleWorkspaceWorkspaceHandleQueryPost) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
-[**OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet**](OrgWorkspaces.md#OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema | Get org workspace schemas
+[**PostQuery**](OrgWorkspaces.md#PostQuery) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
+[**PostQueryWithExtensions**](OrgWorkspaces.md#PostQueryWithExtensions) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
 [**Update**](OrgWorkspaces.md#Update) | **Patch** /org/{org_handle}/workspace/{workspace_handle} | Update org workspace
 
 
 
 ## Create
 
-> TypesWorkspace Create(ctx, orgHandle).Request(request).Execute()
+> Workspace Create(ctx, orgHandle).Request(request).Execute()
 
 Create org workspace
 
@@ -40,7 +40,7 @@ import (
 
 func main() {
     orgHandle := "orgHandle_example" // string | The handle of the organization where we want to create the workspace.
-    request := *openapiclient.NewTypesCreateWorkspaceRequest("Handle_example") // TypesCreateWorkspaceRequest | The request body for the workspace to be created.
+    request := *openapiclient.NewCreateWorkspaceRequest("Handle_example") // CreateWorkspaceRequest | The request body for the workspace to be created.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -49,7 +49,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Create`: TypesWorkspace
+    // response from `Create`: Workspace
     fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.Create`: %v\n", resp)
 }
 ```
@@ -70,11 +70,11 @@ Other parameters are passed through a pointer to a apiCreateRequest struct via t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **request** | [**TypesCreateWorkspaceRequest**](TypesCreateWorkspaceRequest.md) | The request body for the workspace to be created. | 
+ **request** | [**CreateWorkspaceRequest**](CreateWorkspaceRequest.md) | The request body for the workspace to be created. | 
 
 ### Return type
 
-[**TypesWorkspace**](TypesWorkspace.md)
+[**Workspace**](Workspace.md)
 
 ### Authorization
 
@@ -92,7 +92,7 @@ No authorization required
 
 ## Delete
 
-> TypesWorkspace Delete(ctx, orgHandle, workspaceHandle).Execute()
+> Workspace Delete(ctx, orgHandle, workspaceHandle).Execute()
 
 Delete org workspace
 
@@ -121,7 +121,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Delete`: TypesWorkspace
+    // response from `Delete`: Workspace
     fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.Delete`: %v\n", resp)
 }
 ```
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesWorkspace**](TypesWorkspace.md)
+[**Workspace**](Workspace.md)
 
 ### Authorization
 
@@ -165,7 +165,7 @@ No authorization required
 
 ## Get
 
-> TypesWorkspace Get(ctx, orgHandle, workspaceHandle).Execute()
+> Workspace Get(ctx, orgHandle, workspaceHandle).Execute()
 
 Get org workspace
 
@@ -194,7 +194,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Get`: TypesWorkspace
+    // response from `Get`: Workspace
     fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.Get`: %v\n", resp)
 }
 ```
@@ -220,7 +220,237 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesWorkspace**](TypesWorkspace.md)
+[**Workspace**](Workspace.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetQuery
+
+> WorkspaceQueryResult GetQuery(ctx, orgHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
+
+Query org workspace
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    orgHandle := "orgHandle_example" // string | The handle of the org that the workspace belongs to.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
+    sql := "sql_example" // string | The sql query to perform against the org workspace.
+    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrgWorkspaces.GetQuery(context.Background(), orgHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.GetQuery``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetQuery`: WorkspaceQueryResult
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.GetQuery`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgHandle** | **string** | The handle of the org that the workspace belongs to. | 
+**workspaceHandle** | **string** | The handle of the workspace to query. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetQueryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **sql** | **string** | The sql query to perform against the org workspace. | 
+ **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
+
+### Return type
+
+[**WorkspaceQueryResult**](WorkspaceQueryResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv, text/markdown
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetQueryWithExtensions
+
+> WorkspaceQueryResult GetQueryWithExtensions(ctx, orgHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
+
+Query org workspace with extensions
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    orgHandle := "orgHandle_example" // string | The handle of the org that the workspace belongs to.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
+    extensions := "extensions_example" // string | The content type for the request. E.g. 
+    sql := "sql_example" // string | The sql query to perform against the org workspace.
+    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrgWorkspaces.GetQueryWithExtensions(context.Background(), orgHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.GetQueryWithExtensions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetQueryWithExtensions`: WorkspaceQueryResult
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.GetQueryWithExtensions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgHandle** | **string** | The handle of the org that the workspace belongs to. | 
+**workspaceHandle** | **string** | The handle of the workspace to query. | 
+**extensions** | **string** | The content type for the request. E.g.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetQueryWithExtensionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **sql** | **string** | The sql query to perform against the org workspace. | 
+ **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
+
+### Return type
+
+[**WorkspaceQueryResult**](WorkspaceQueryResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv, text/markdown
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSchema
+
+> WorkspaceSchema GetSchema(ctx, orgHandle, workspaceHandle).Execute()
+
+Get org workspace schemas
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    orgHandle := "orgHandle_example" // string | The handle of the org that the workspace belongs to.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to get the schemas for.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrgWorkspaces.GetSchema(context.Background(), orgHandle, workspaceHandle).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.GetSchema``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetSchema`: WorkspaceSchema
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.GetSchema`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgHandle** | **string** | The handle of the org that the workspace belongs to. | 
+**workspaceHandle** | **string** | The handle of the workspace to get the schemas for. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSchemaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**WorkspaceSchema**](WorkspaceSchema.md)
 
 ### Authorization
 
@@ -238,7 +468,7 @@ No authorization required
 
 ## List
 
-> TypesListWorkspacesResponse List(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListWorkspacesResponse List(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
 
 List org workspaces
 
@@ -268,7 +498,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `List`: TypesListWorkspacesResponse
+    // response from `List`: ListWorkspacesResponse
     fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.List`: %v\n", resp)
 }
 ```
@@ -294,7 +524,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListWorkspacesResponse**](TypesListWorkspacesResponse.md)
+[**ListWorkspacesResponse**](ListWorkspacesResponse.md)
 
 ### Authorization
 
@@ -312,7 +542,7 @@ No authorization required
 
 ## ListDBLogs
 
-> TypesListLogsResponse ListDBLogs(ctx, orgHandle, workspaceHandle).Execute()
+> ListLogsResponse ListDBLogs(ctx, orgHandle, workspaceHandle).Execute()
 
 Org workspace logs
 
@@ -341,7 +571,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.ListDBLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListDBLogs`: TypesListLogsResponse
+    // response from `ListDBLogs`: ListLogsResponse
     fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.ListDBLogs`: %v\n", resp)
 }
 ```
@@ -367,7 +597,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListLogsResponse**](TypesListLogsResponse.md)
+[**ListLogsResponse**](ListLogsResponse.md)
 
 ### Authorization
 
@@ -383,169 +613,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet
+## PostQuery
 
-> TypesWorkspaceQueryResult OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet(ctx, orgHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
-
-Query org workspace with extensions
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    orgHandle := "orgHandle_example" // string | The handle of the org that the workspace belongs to.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
-    extensions := "extensions_example" // string | The content type for the request. E.g. 
-    sql := "sql_example" // string | The sql query to perform against the org workspace.
-    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet(context.Background(), orgHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet`: TypesWorkspaceQueryResult
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgHandle** | **string** | The handle of the org that the workspace belongs to. | 
-**workspaceHandle** | **string** | The handle of the workspace to query. | 
-**extensions** | **string** | The content type for the request. E.g.  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
- **sql** | **string** | The sql query to perform against the org workspace. | 
- **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
-
-### Return type
-
-[**TypesWorkspaceQueryResult**](TypesWorkspaceQueryResult.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/csv, text/markdown
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost
-
-> TypesWorkspaceQueryResult OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost(ctx, orgHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
-
-Query org workspace with extensions
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    orgHandle := "orgHandle_example" // string | The handle of the org that the workspace belongs to.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
-    extensions := "extensions_example" // string | The content type for the request. E.g. 
-    sql := "sql_example" // string | The sql query to perform against the org workspace.
-    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost(context.Background(), orgHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost`: TypesWorkspaceQueryResult
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgHandle** | **string** | The handle of the org that the workspace belongs to. | 
-**workspaceHandle** | **string** | The handle of the workspace to query. | 
-**extensions** | **string** | The content type for the request. E.g.  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
- **sql** | **string** | The sql query to perform against the org workspace. | 
- **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
-
-### Return type
-
-[**TypesWorkspaceQueryResult**](TypesWorkspaceQueryResult.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/csv, text/markdown
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## OrgOrgHandleWorkspaceWorkspaceHandleQueryGet
-
-> TypesWorkspaceQueryResult OrgOrgHandleWorkspaceWorkspaceHandleQueryGet(ctx, orgHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
+> WorkspaceQueryResult PostQuery(ctx, orgHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
 
 Query org workspace
 
@@ -571,13 +641,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleQueryGet(context.Background(), orgHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
+    resp, r, err := api_client.OrgWorkspaces.PostQuery(context.Background(), orgHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleQueryGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.PostQuery``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrgOrgHandleWorkspaceWorkspaceHandleQueryGet`: TypesWorkspaceQueryResult
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleQueryGet`: %v\n", resp)
+    // response from `PostQuery`: WorkspaceQueryResult
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.PostQuery`: %v\n", resp)
 }
 ```
 
@@ -592,7 +662,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiOrgOrgHandleWorkspaceWorkspaceHandleQueryGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPostQueryRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -604,84 +674,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesWorkspaceQueryResult**](TypesWorkspaceQueryResult.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/csv, text/markdown
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## OrgOrgHandleWorkspaceWorkspaceHandleQueryPost
-
-> TypesWorkspaceQueryResult OrgOrgHandleWorkspaceWorkspaceHandleQueryPost(ctx, orgHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
-
-Query org workspace
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    orgHandle := "orgHandle_example" // string | The handle of the org that the workspace belongs to.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
-    sql := "sql_example" // string | The sql query to perform against the org workspace.
-    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleQueryPost(context.Background(), orgHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleQueryPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrgOrgHandleWorkspaceWorkspaceHandleQueryPost`: TypesWorkspaceQueryResult
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleQueryPost`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgHandle** | **string** | The handle of the org that the workspace belongs to. | 
-**workspaceHandle** | **string** | The handle of the workspace to query. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiOrgOrgHandleWorkspaceWorkspaceHandleQueryPostRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **sql** | **string** | The sql query to perform against the org workspace. | 
- **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
-
-### Return type
-
-[**TypesWorkspaceQueryResult**](TypesWorkspaceQueryResult.md)
+[**WorkspaceQueryResult**](WorkspaceQueryResult.md)
 
 ### Authorization
 
@@ -697,11 +690,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet
+## PostQueryWithExtensions
 
-> QueryWorkspaceSchema OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet(ctx, orgHandle, workspaceHandle).Execute()
+> WorkspaceQueryResult PostQueryWithExtensions(ctx, orgHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
 
-Get org workspace schemas
+Query org workspace with extensions
 
 
 
@@ -719,17 +712,20 @@ import (
 
 func main() {
     orgHandle := "orgHandle_example" // string | The handle of the org that the workspace belongs to.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to get the schemas for.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
+    extensions := "extensions_example" // string | The content type for the request. E.g. 
+    sql := "sql_example" // string | The sql query to perform against the org workspace.
+    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet(context.Background(), orgHandle, workspaceHandle).Execute()
+    resp, r, err := api_client.OrgWorkspaces.PostQueryWithExtensions(context.Background(), orgHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.PostQueryWithExtensions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet`: QueryWorkspaceSchema
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet`: %v\n", resp)
+    // response from `PostQueryWithExtensions`: WorkspaceQueryResult
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.PostQueryWithExtensions`: %v\n", resp)
 }
 ```
 
@@ -740,11 +736,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **orgHandle** | **string** | The handle of the org that the workspace belongs to. | 
-**workspaceHandle** | **string** | The handle of the workspace to get the schemas for. | 
+**workspaceHandle** | **string** | The handle of the workspace to query. | 
+**extensions** | **string** | The content type for the request. E.g.  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiOrgOrgHandleWorkspaceWorkspaceHandleSchemaGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPostQueryWithExtensionsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -752,9 +749,12 @@ Name | Type | Description  | Notes
 
 
 
+ **sql** | **string** | The sql query to perform against the org workspace. | 
+ **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
+
 ### Return type
 
-[**QueryWorkspaceSchema**](QueryWorkspaceSchema.md)
+[**WorkspaceQueryResult**](WorkspaceQueryResult.md)
 
 ### Authorization
 
@@ -763,7 +763,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, text/csv, text/markdown
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -772,7 +772,7 @@ No authorization required
 
 ## Update
 
-> TypesWorkspace Update(ctx, orgHandle, workspaceHandle).Request(request).Execute()
+> Workspace Update(ctx, orgHandle, workspaceHandle).Request(request).Execute()
 
 Update org workspace
 
@@ -793,7 +793,7 @@ import (
 func main() {
     orgHandle := "orgHandle_example" // string | The handle of the organization where the workspace exist.
     workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace which needs to be updated.
-    request := *openapiclient.NewTypesUpdateWorkspaceRequest() // TypesUpdateWorkspaceRequest | The request body of the workspace which needs to be updated.
+    request := *openapiclient.NewUpdateWorkspaceRequest() // UpdateWorkspaceRequest | The request body of the workspace which needs to be updated.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -802,7 +802,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Update`: TypesWorkspace
+    // response from `Update`: Workspace
     fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.Update`: %v\n", resp)
 }
 ```
@@ -825,11 +825,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **request** | [**TypesUpdateWorkspaceRequest**](TypesUpdateWorkspaceRequest.md) | The request body of the workspace which needs to be updated. | 
+ **request** | [**UpdateWorkspaceRequest**](UpdateWorkspaceRequest.md) | The request body of the workspace which needs to be updated. | 
 
 ### Return type
 
-[**TypesWorkspace**](TypesWorkspace.md)
+[**Workspace**](Workspace.md)
 
 ### Authorization
 

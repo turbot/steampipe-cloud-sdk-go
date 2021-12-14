@@ -7,20 +7,20 @@ Method | HTTP request | Description
 [**Create**](UserWorkspaces.md#Create) | **Post** /user/{user_handle}/workspace | Create user workspace
 [**Delete**](UserWorkspaces.md#Delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle} | Delete user workspace
 [**Get**](UserWorkspaces.md#Get) | **Get** /user/{user_handle}/workspace/{workspace_handle} | Get user workspace
+[**GetQuery**](UserWorkspaces.md#GetQuery) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
+[**GetQueryWithExtensions**](UserWorkspaces.md#GetQueryWithExtensions) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
+[**GetSchema**](UserWorkspaces.md#GetSchema) | **Get** /user/{user_handle}/workspace/{workspace_handle}/schema | Get user workspace schemas
 [**List**](UserWorkspaces.md#List) | **Get** /user/{user_handle}/workspace | List user workspaces
 [**ListDBLogs**](UserWorkspaces.md#ListDBLogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/logs | User workspace logs
+[**PostQuery**](UserWorkspaces.md#PostQuery) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
+[**PostQueryWithExtensions**](UserWorkspaces.md#PostQueryWithExtensions) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
 [**Update**](UserWorkspaces.md#Update) | **Patch** /user/{user_handle}/workspace/{workspace_handle} | Update user workspace
-[**UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet**](UserWorkspaces.md#UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
-[**UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost**](UserWorkspaces.md#UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
-[**UserUserHandleWorkspaceWorkspaceHandleQueryGet**](UserWorkspaces.md#UserUserHandleWorkspaceWorkspaceHandleQueryGet) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
-[**UserUserHandleWorkspaceWorkspaceHandleQueryPost**](UserWorkspaces.md#UserUserHandleWorkspaceWorkspaceHandleQueryPost) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
-[**UserUserHandleWorkspaceWorkspaceHandleSchemaGet**](UserWorkspaces.md#UserUserHandleWorkspaceWorkspaceHandleSchemaGet) | **Get** /user/{user_handle}/workspace/{workspace_handle}/schema | Get user workspace schemas
 
 
 
 ## Create
 
-> TypesWorkspace Create(ctx, userHandle).Request(request).Execute()
+> Workspace Create(ctx, userHandle).Request(request).Execute()
 
 Create user workspace
 
@@ -40,7 +40,7 @@ import (
 
 func main() {
     userHandle := "userHandle_example" // string | The handle of the user where we want to create the workspace.
-    request := *openapiclient.NewTypesCreateWorkspaceRequest("Handle_example") // TypesCreateWorkspaceRequest | The request body for the workspace to be created.
+    request := *openapiclient.NewCreateWorkspaceRequest("Handle_example") // CreateWorkspaceRequest | The request body for the workspace to be created.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -49,7 +49,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Create`: TypesWorkspace
+    // response from `Create`: Workspace
     fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.Create`: %v\n", resp)
 }
 ```
@@ -70,11 +70,11 @@ Other parameters are passed through a pointer to a apiCreateRequest struct via t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **request** | [**TypesCreateWorkspaceRequest**](TypesCreateWorkspaceRequest.md) | The request body for the workspace to be created. | 
+ **request** | [**CreateWorkspaceRequest**](CreateWorkspaceRequest.md) | The request body for the workspace to be created. | 
 
 ### Return type
 
-[**TypesWorkspace**](TypesWorkspace.md)
+[**Workspace**](Workspace.md)
 
 ### Authorization
 
@@ -92,7 +92,7 @@ No authorization required
 
 ## Delete
 
-> TypesWorkspace Delete(ctx, userHandle, workspaceHandle).Execute()
+> Workspace Delete(ctx, userHandle, workspaceHandle).Execute()
 
 Delete user workspace
 
@@ -121,7 +121,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Delete`: TypesWorkspace
+    // response from `Delete`: Workspace
     fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.Delete`: %v\n", resp)
 }
 ```
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesWorkspace**](TypesWorkspace.md)
+[**Workspace**](Workspace.md)
 
 ### Authorization
 
@@ -165,7 +165,7 @@ No authorization required
 
 ## Get
 
-> TypesWorkspace Get(ctx, userHandle, workspaceHandle).Execute()
+> Workspace Get(ctx, userHandle, workspaceHandle).Execute()
 
 Get user workspace
 
@@ -194,7 +194,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Get`: TypesWorkspace
+    // response from `Get`: Workspace
     fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.Get`: %v\n", resp)
 }
 ```
@@ -220,7 +220,237 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesWorkspace**](TypesWorkspace.md)
+[**Workspace**](Workspace.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetQuery
+
+> WorkspaceQueryResult GetQuery(ctx, userHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
+
+Query user workspace
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | The handle of the user that the workspace belongs to.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
+    sql := "sql_example" // string | The sql query to perform against the user workspace.
+    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserWorkspaces.GetQuery(context.Background(), userHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.GetQuery``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetQuery`: WorkspaceQueryResult
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.GetQuery`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | The handle of the user that the workspace belongs to. | 
+**workspaceHandle** | **string** | The handle of the workspace to query. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetQueryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **sql** | **string** | The sql query to perform against the user workspace. | 
+ **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
+
+### Return type
+
+[**WorkspaceQueryResult**](WorkspaceQueryResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv, text/markdown
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetQueryWithExtensions
+
+> WorkspaceQueryResult GetQueryWithExtensions(ctx, userHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
+
+Query user workspace with extensions
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | The handle of the user that the workspace belongs to.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
+    extensions := "extensions_example" // string | The content type for the request. E.g. 
+    sql := "sql_example" // string | The sql query to perform against the user workspace.
+    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserWorkspaces.GetQueryWithExtensions(context.Background(), userHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.GetQueryWithExtensions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetQueryWithExtensions`: WorkspaceQueryResult
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.GetQueryWithExtensions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | The handle of the user that the workspace belongs to. | 
+**workspaceHandle** | **string** | The handle of the workspace to query. | 
+**extensions** | **string** | The content type for the request. E.g.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetQueryWithExtensionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **sql** | **string** | The sql query to perform against the user workspace. | 
+ **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
+
+### Return type
+
+[**WorkspaceQueryResult**](WorkspaceQueryResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv, text/markdown
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSchema
+
+> WorkspaceSchema GetSchema(ctx, userHandle, workspaceHandle).Execute()
+
+Get user workspace schemas
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | The handle of the user that the workspace belongs to.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to get the schemas for.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserWorkspaces.GetSchema(context.Background(), userHandle, workspaceHandle).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.GetSchema``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetSchema`: WorkspaceSchema
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.GetSchema`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | The handle of the user that the workspace belongs to. | 
+**workspaceHandle** | **string** | The handle of the workspace to get the schemas for. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSchemaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**WorkspaceSchema**](WorkspaceSchema.md)
 
 ### Authorization
 
@@ -238,7 +468,7 @@ No authorization required
 
 ## List
 
-> TypesListWorkspacesResponse List(ctx, userHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListWorkspacesResponse List(ctx, userHandle).Limit(limit).NextToken(nextToken).Execute()
 
 List user workspaces
 
@@ -268,7 +498,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `List`: TypesListWorkspacesResponse
+    // response from `List`: ListWorkspacesResponse
     fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.List`: %v\n", resp)
 }
 ```
@@ -294,7 +524,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListWorkspacesResponse**](TypesListWorkspacesResponse.md)
+[**ListWorkspacesResponse**](ListWorkspacesResponse.md)
 
 ### Authorization
 
@@ -312,7 +542,7 @@ No authorization required
 
 ## ListDBLogs
 
-> TypesListLogsResponse ListDBLogs(ctx, userHandle, workspaceHandle).Execute()
+> ListLogsResponse ListDBLogs(ctx, userHandle, workspaceHandle).Execute()
 
 User workspace logs
 
@@ -341,7 +571,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.ListDBLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListDBLogs`: TypesListLogsResponse
+    // response from `ListDBLogs`: ListLogsResponse
     fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.ListDBLogs`: %v\n", resp)
 }
 ```
@@ -367,7 +597,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TypesListLogsResponse**](TypesListLogsResponse.md)
+[**ListLogsResponse**](ListLogsResponse.md)
 
 ### Authorization
 
@@ -383,9 +613,166 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## PostQuery
+
+> WorkspaceQueryResult PostQuery(ctx, userHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
+
+Query user workspace
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | The handle of the user that the workspace belongs to.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
+    sql := "sql_example" // string | The sql query to perform against the user workspace.
+    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserWorkspaces.PostQuery(context.Background(), userHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.PostQuery``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostQuery`: WorkspaceQueryResult
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.PostQuery`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | The handle of the user that the workspace belongs to. | 
+**workspaceHandle** | **string** | The handle of the workspace to query. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostQueryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **sql** | **string** | The sql query to perform against the user workspace. | 
+ **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
+
+### Return type
+
+[**WorkspaceQueryResult**](WorkspaceQueryResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/csv, text/markdown
+- **Accept**: application/json, text/csv, text/markdown
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostQueryWithExtensions
+
+> WorkspaceQueryResult PostQueryWithExtensions(ctx, userHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
+
+Query user workspace with extensions
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | The handle of the user that the workspace belongs to.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
+    extensions := "extensions_example" // string | The content type for the request. E.g. 
+    sql := "sql_example" // string | The sql query to perform against the user workspace.
+    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserWorkspaces.PostQueryWithExtensions(context.Background(), userHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.PostQueryWithExtensions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostQueryWithExtensions`: WorkspaceQueryResult
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.PostQueryWithExtensions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | The handle of the user that the workspace belongs to. | 
+**workspaceHandle** | **string** | The handle of the workspace to query. | 
+**extensions** | **string** | The content type for the request. E.g.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostQueryWithExtensionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **sql** | **string** | The sql query to perform against the user workspace. | 
+ **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
+
+### Return type
+
+[**WorkspaceQueryResult**](WorkspaceQueryResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/csv, text/markdown
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## Update
 
-> TypesWorkspace Update(ctx, userHandle, workspaceHandle).Request(request).Execute()
+> Workspace Update(ctx, userHandle, workspaceHandle).Request(request).Execute()
 
 Update user workspace
 
@@ -406,7 +793,7 @@ import (
 func main() {
     userHandle := "userHandle_example" // string | The handle of the user where the workspace exist.
     workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace which needs to be updated.
-    request := *openapiclient.NewTypesUpdateWorkspaceRequest() // TypesUpdateWorkspaceRequest | The request body for the workspace which needs to be updated.
+    request := *openapiclient.NewUpdateWorkspaceRequest() // UpdateWorkspaceRequest | The request body for the workspace which needs to be updated.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -415,7 +802,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Update`: TypesWorkspace
+    // response from `Update`: Workspace
     fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.Update`: %v\n", resp)
 }
 ```
@@ -438,11 +825,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **request** | [**TypesUpdateWorkspaceRequest**](TypesUpdateWorkspaceRequest.md) | The request body for the workspace which needs to be updated. | 
+ **request** | [**UpdateWorkspaceRequest**](UpdateWorkspaceRequest.md) | The request body for the workspace which needs to be updated. | 
 
 ### Return type
 
-[**TypesWorkspace**](TypesWorkspace.md)
+[**Workspace**](Workspace.md)
 
 ### Authorization
 
@@ -451,393 +838,6 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet
-
-> TypesWorkspaceQueryResult UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet(ctx, userHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
-
-Query user workspace with extensions
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    userHandle := "userHandle_example" // string | The handle of the user that the workspace belongs to.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
-    extensions := "extensions_example" // string | The content type for the request. E.g. 
-    sql := "sql_example" // string | The sql query to perform against the user workspace.
-    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet(context.Background(), userHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet`: TypesWorkspaceQueryResult
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | **string** | The handle of the user that the workspace belongs to. | 
-**workspaceHandle** | **string** | The handle of the workspace to query. | 
-**extensions** | **string** | The content type for the request. E.g.  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
- **sql** | **string** | The sql query to perform against the user workspace. | 
- **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
-
-### Return type
-
-[**TypesWorkspaceQueryResult**](TypesWorkspaceQueryResult.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/csv, text/markdown
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost
-
-> TypesWorkspaceQueryResult UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost(ctx, userHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
-
-Query user workspace with extensions
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    userHandle := "userHandle_example" // string | The handle of the user that the workspace belongs to.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
-    extensions := "extensions_example" // string | The content type for the request. E.g. 
-    sql := "sql_example" // string | The sql query to perform against the user workspace.
-    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost(context.Background(), userHandle, workspaceHandle, extensions).Sql(sql).ContentType(contentType).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost`: TypesWorkspaceQueryResult
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | **string** | The handle of the user that the workspace belongs to. | 
-**workspaceHandle** | **string** | The handle of the workspace to query. | 
-**extensions** | **string** | The content type for the request. E.g.  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUserUserHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
- **sql** | **string** | The sql query to perform against the user workspace. | 
- **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
-
-### Return type
-
-[**TypesWorkspaceQueryResult**](TypesWorkspaceQueryResult.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/csv, text/markdown
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UserUserHandleWorkspaceWorkspaceHandleQueryGet
-
-> TypesWorkspaceQueryResult UserUserHandleWorkspaceWorkspaceHandleQueryGet(ctx, userHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
-
-Query user workspace
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    userHandle := "userHandle_example" // string | The handle of the user that the workspace belongs to.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
-    sql := "sql_example" // string | The sql query to perform against the user workspace.
-    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleQueryGet(context.Background(), userHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleQueryGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UserUserHandleWorkspaceWorkspaceHandleQueryGet`: TypesWorkspaceQueryResult
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleQueryGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | **string** | The handle of the user that the workspace belongs to. | 
-**workspaceHandle** | **string** | The handle of the workspace to query. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUserUserHandleWorkspaceWorkspaceHandleQueryGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **sql** | **string** | The sql query to perform against the user workspace. | 
- **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
-
-### Return type
-
-[**TypesWorkspaceQueryResult**](TypesWorkspaceQueryResult.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json, text/csv, text/markdown
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UserUserHandleWorkspaceWorkspaceHandleQueryPost
-
-> TypesWorkspaceQueryResult UserUserHandleWorkspaceWorkspaceHandleQueryPost(ctx, userHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
-
-Query user workspace
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    userHandle := "userHandle_example" // string | The handle of the user that the workspace belongs to.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to query.
-    sql := "sql_example" // string | The sql query to perform against the user workspace.
-    contentType := "contentType_example" // string | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleQueryPost(context.Background(), userHandle, workspaceHandle).Sql(sql).ContentType(contentType).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleQueryPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UserUserHandleWorkspaceWorkspaceHandleQueryPost`: TypesWorkspaceQueryResult
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleQueryPost`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | **string** | The handle of the user that the workspace belongs to. | 
-**workspaceHandle** | **string** | The handle of the workspace to query. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUserUserHandleWorkspaceWorkspaceHandleQueryPostRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **sql** | **string** | The sql query to perform against the user workspace. | 
- **contentType** | **string** | The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown. | 
-
-### Return type
-
-[**TypesWorkspaceQueryResult**](TypesWorkspaceQueryResult.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json, text/csv, text/markdown
-- **Accept**: application/json, text/csv, text/markdown
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UserUserHandleWorkspaceWorkspaceHandleSchemaGet
-
-> QueryWorkspaceSchema UserUserHandleWorkspaceWorkspaceHandleSchemaGet(ctx, userHandle, workspaceHandle).Execute()
-
-Get user workspace schemas
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    userHandle := "userHandle_example" // string | The handle of the user that the workspace belongs to.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to get the schemas for.
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleSchemaGet(context.Background(), userHandle, workspaceHandle).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleSchemaGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UserUserHandleWorkspaceWorkspaceHandleSchemaGet`: QueryWorkspaceSchema
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.UserUserHandleWorkspaceWorkspaceHandleSchemaGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | **string** | The handle of the user that the workspace belongs to. | 
-**workspaceHandle** | **string** | The handle of the workspace to get the schemas for. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUserUserHandleWorkspaceWorkspaceHandleSchemaGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-### Return type
-
-[**QueryWorkspaceSchema**](QueryWorkspaceSchema.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

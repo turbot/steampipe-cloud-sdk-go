@@ -32,16 +32,16 @@ type OrgWorkspacesApiCreateRequest struct {
 	ctx        _context.Context
 	ApiService *OrgWorkspacesService
 	orgHandle  string
-	request    *TypesCreateWorkspaceRequest
+	request    *CreateWorkspaceRequest
 }
 
 // The request body for the workspace to be created.
-func (r OrgWorkspacesApiCreateRequest) Request(request TypesCreateWorkspaceRequest) OrgWorkspacesApiCreateRequest {
+func (r OrgWorkspacesApiCreateRequest) Request(request CreateWorkspaceRequest) OrgWorkspacesApiCreateRequest {
 	r.request = &request
 	return r
 }
 
-func (r OrgWorkspacesApiCreateRequest) Execute() (TypesWorkspace, *_nethttp.Response, error) {
+func (r OrgWorkspacesApiCreateRequest) Execute() (Workspace, *_nethttp.Response, error) {
 	return r.ApiService.CreateExecute(r)
 }
 
@@ -63,13 +63,13 @@ func (a *OrgWorkspacesService) Create(ctx _context.Context, orgHandle string) Or
 }
 
 // Execute executes the request
-//  @return TypesWorkspace
-func (a *OrgWorkspacesService) CreateExecute(r OrgWorkspacesApiCreateRequest) (TypesWorkspace, *_nethttp.Response, error) {
+//  @return Workspace
+func (a *OrgWorkspacesService) CreateExecute(r OrgWorkspacesApiCreateRequest) (Workspace, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesWorkspace
+		localVarReturnValue Workspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.Create")
@@ -129,7 +129,7 @@ func (a *OrgWorkspacesService) CreateExecute(r OrgWorkspacesApiCreateRequest) (T
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -139,7 +139,7 @@ func (a *OrgWorkspacesService) CreateExecute(r OrgWorkspacesApiCreateRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -149,7 +149,7 @@ func (a *OrgWorkspacesService) CreateExecute(r OrgWorkspacesApiCreateRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -159,7 +159,7 @@ func (a *OrgWorkspacesService) CreateExecute(r OrgWorkspacesApiCreateRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -169,7 +169,7 @@ func (a *OrgWorkspacesService) CreateExecute(r OrgWorkspacesApiCreateRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -179,7 +179,7 @@ func (a *OrgWorkspacesService) CreateExecute(r OrgWorkspacesApiCreateRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -189,7 +189,7 @@ func (a *OrgWorkspacesService) CreateExecute(r OrgWorkspacesApiCreateRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -219,7 +219,7 @@ type OrgWorkspacesApiDeleteRequest struct {
 	workspaceHandle string
 }
 
-func (r OrgWorkspacesApiDeleteRequest) Execute() (TypesWorkspace, *_nethttp.Response, error) {
+func (r OrgWorkspacesApiDeleteRequest) Execute() (Workspace, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
 }
 
@@ -243,13 +243,13 @@ func (a *OrgWorkspacesService) Delete(ctx _context.Context, orgHandle string, wo
 }
 
 // Execute executes the request
-//  @return TypesWorkspace
-func (a *OrgWorkspacesService) DeleteExecute(r OrgWorkspacesApiDeleteRequest) (TypesWorkspace, *_nethttp.Response, error) {
+//  @return Workspace
+func (a *OrgWorkspacesService) DeleteExecute(r OrgWorkspacesApiDeleteRequest) (Workspace, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesWorkspace
+		localVarReturnValue Workspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.Delete")
@@ -305,7 +305,7 @@ func (a *OrgWorkspacesService) DeleteExecute(r OrgWorkspacesApiDeleteRequest) (T
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -315,7 +315,7 @@ func (a *OrgWorkspacesService) DeleteExecute(r OrgWorkspacesApiDeleteRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -325,7 +325,7 @@ func (a *OrgWorkspacesService) DeleteExecute(r OrgWorkspacesApiDeleteRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -335,7 +335,7 @@ func (a *OrgWorkspacesService) DeleteExecute(r OrgWorkspacesApiDeleteRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -345,7 +345,7 @@ func (a *OrgWorkspacesService) DeleteExecute(r OrgWorkspacesApiDeleteRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -375,7 +375,7 @@ type OrgWorkspacesApiGetRequest struct {
 	workspaceHandle string
 }
 
-func (r OrgWorkspacesApiGetRequest) Execute() (TypesWorkspace, *_nethttp.Response, error) {
+func (r OrgWorkspacesApiGetRequest) Execute() (Workspace, *_nethttp.Response, error) {
 	return r.ApiService.GetExecute(r)
 }
 
@@ -399,13 +399,13 @@ func (a *OrgWorkspacesService) Get(ctx _context.Context, orgHandle string, works
 }
 
 // Execute executes the request
-//  @return TypesWorkspace
-func (a *OrgWorkspacesService) GetExecute(r OrgWorkspacesApiGetRequest) (TypesWorkspace, *_nethttp.Response, error) {
+//  @return Workspace
+func (a *OrgWorkspacesService) GetExecute(r OrgWorkspacesApiGetRequest) (Workspace, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesWorkspace
+		localVarReturnValue Workspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.Get")
@@ -461,7 +461,7 @@ func (a *OrgWorkspacesService) GetExecute(r OrgWorkspacesApiGetRequest) (TypesWo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -471,7 +471,7 @@ func (a *OrgWorkspacesService) GetExecute(r OrgWorkspacesApiGetRequest) (TypesWo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -481,7 +481,7 @@ func (a *OrgWorkspacesService) GetExecute(r OrgWorkspacesApiGetRequest) (TypesWo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -491,7 +491,7 @@ func (a *OrgWorkspacesService) GetExecute(r OrgWorkspacesApiGetRequest) (TypesWo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -501,7 +501,7 @@ func (a *OrgWorkspacesService) GetExecute(r OrgWorkspacesApiGetRequest) (TypesWo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -511,7 +511,551 @@ func (a *OrgWorkspacesService) GetExecute(r OrgWorkspacesApiGetRequest) (TypesWo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgWorkspacesApiGetQueryRequest struct {
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
+	workspaceHandle string
+	sql             *string
+	contentType     *string
+}
+
+// The sql query to perform against the org workspace.
+func (r OrgWorkspacesApiGetQueryRequest) Sql(sql string) OrgWorkspacesApiGetQueryRequest {
+	r.sql = &sql
+	return r
+}
+
+// The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
+func (r OrgWorkspacesApiGetQueryRequest) ContentType(contentType string) OrgWorkspacesApiGetQueryRequest {
+	r.contentType = &contentType
+	return r
+}
+
+func (r OrgWorkspacesApiGetQueryRequest) Execute() (WorkspaceQueryResult, *_nethttp.Response, error) {
+	return r.ApiService.GetQueryExecute(r)
+}
+
+/*
+GetQuery Query org workspace
+
+Performs a query in an org workspace. Results are limited to 3000 rows or 30 seconds of query execution.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgHandle The handle of the org that the workspace belongs to.
+ @param workspaceHandle The handle of the workspace to query.
+ @return OrgWorkspacesApiGetQueryRequest
+*/
+func (a *OrgWorkspacesService) GetQuery(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiGetQueryRequest {
+	return OrgWorkspacesApiGetQueryRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
+		workspaceHandle: workspaceHandle,
+	}
+}
+
+// Execute executes the request
+//  @return WorkspaceQueryResult
+func (a *OrgWorkspacesService) GetQueryExecute(r OrgWorkspacesApiGetQueryRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceQueryResult
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.GetQuery")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/query"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.sql == nil {
+		return localVarReturnValue, nil, reportError("sql is required and must be specified")
+	}
+
+	localVarQueryParams.Add("sql", parameterToString(*r.sql, ""))
+	if r.contentType != nil {
+		localVarQueryParams.Add("content_type", parameterToString(*r.contentType, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "text/markdown"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgWorkspacesApiGetQueryWithExtensionsRequest struct {
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
+	workspaceHandle string
+	extensions      string
+	sql             *string
+	contentType     *string
+}
+
+// The sql query to perform against the org workspace.
+func (r OrgWorkspacesApiGetQueryWithExtensionsRequest) Sql(sql string) OrgWorkspacesApiGetQueryWithExtensionsRequest {
+	r.sql = &sql
+	return r
+}
+
+// The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
+func (r OrgWorkspacesApiGetQueryWithExtensionsRequest) ContentType(contentType string) OrgWorkspacesApiGetQueryWithExtensionsRequest {
+	r.contentType = &contentType
+	return r
+}
+
+func (r OrgWorkspacesApiGetQueryWithExtensionsRequest) Execute() (WorkspaceQueryResult, *_nethttp.Response, error) {
+	return r.ApiService.GetQueryWithExtensionsExecute(r)
+}
+
+/*
+GetQueryWithExtensions Query org workspace with extensions
+
+Performs a query in an org workspace, with content type and content encoding forming part of the API path. Results are limited to 3000 rows or 30 seconds of query execution.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgHandle The handle of the org that the workspace belongs to.
+ @param workspaceHandle The handle of the workspace to query.
+ @param extensions The content type for the request. E.g.
+ @return OrgWorkspacesApiGetQueryWithExtensionsRequest
+*/
+func (a *OrgWorkspacesService) GetQueryWithExtensions(ctx _context.Context, orgHandle string, workspaceHandle string, extensions string) OrgWorkspacesApiGetQueryWithExtensionsRequest {
+	return OrgWorkspacesApiGetQueryWithExtensionsRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
+		workspaceHandle: workspaceHandle,
+		extensions:      extensions,
+	}
+}
+
+// Execute executes the request
+//  @return WorkspaceQueryResult
+func (a *OrgWorkspacesService) GetQueryWithExtensionsExecute(r OrgWorkspacesApiGetQueryWithExtensionsRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceQueryResult
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.GetQueryWithExtensions")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions}"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"extensions"+"}", _neturl.PathEscape(parameterToString(r.extensions, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.sql == nil {
+		return localVarReturnValue, nil, reportError("sql is required and must be specified")
+	}
+
+	localVarQueryParams.Add("sql", parameterToString(*r.sql, ""))
+	if r.contentType != nil {
+		localVarQueryParams.Add("content_type", parameterToString(*r.contentType, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "text/markdown"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgWorkspacesApiGetSchemaRequest struct {
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
+	workspaceHandle string
+}
+
+func (r OrgWorkspacesApiGetSchemaRequest) Execute() (WorkspaceSchema, *_nethttp.Response, error) {
+	return r.ApiService.GetSchemaExecute(r)
+}
+
+/*
+GetSchema Get org workspace schemas
+
+Returns the postgres schemas for an org workspace. This will consist of the connections associated with the workspace and any automatic aggregators prefixed with "all_", which are created for any connections where you have >=2 of that plugin type.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgHandle The handle of the org that the workspace belongs to.
+ @param workspaceHandle The handle of the workspace to get the schemas for.
+ @return OrgWorkspacesApiGetSchemaRequest
+*/
+func (a *OrgWorkspacesService) GetSchema(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiGetSchemaRequest {
+	return OrgWorkspacesApiGetSchemaRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
+		workspaceHandle: workspaceHandle,
+	}
+}
+
+// Execute executes the request
+//  @return WorkspaceSchema
+func (a *OrgWorkspacesService) GetSchemaExecute(r OrgWorkspacesApiGetSchemaRequest) (WorkspaceSchema, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceSchema
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.GetSchema")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/schema"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -554,7 +1098,7 @@ func (r OrgWorkspacesApiListRequest) NextToken(nextToken string) OrgWorkspacesAp
 	return r
 }
 
-func (r OrgWorkspacesApiListRequest) Execute() (TypesListWorkspacesResponse, *_nethttp.Response, error) {
+func (r OrgWorkspacesApiListRequest) Execute() (ListWorkspacesResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListExecute(r)
 }
 
@@ -576,13 +1120,13 @@ func (a *OrgWorkspacesService) List(ctx _context.Context, orgHandle string) OrgW
 }
 
 // Execute executes the request
-//  @return TypesListWorkspacesResponse
-func (a *OrgWorkspacesService) ListExecute(r OrgWorkspacesApiListRequest) (TypesListWorkspacesResponse, *_nethttp.Response, error) {
+//  @return ListWorkspacesResponse
+func (a *OrgWorkspacesService) ListExecute(r OrgWorkspacesApiListRequest) (ListWorkspacesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesListWorkspacesResponse
+		localVarReturnValue ListWorkspacesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.List")
@@ -643,7 +1187,7 @@ func (a *OrgWorkspacesService) ListExecute(r OrgWorkspacesApiListRequest) (Types
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -653,7 +1197,7 @@ func (a *OrgWorkspacesService) ListExecute(r OrgWorkspacesApiListRequest) (Types
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -663,7 +1207,7 @@ func (a *OrgWorkspacesService) ListExecute(r OrgWorkspacesApiListRequest) (Types
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -673,7 +1217,7 @@ func (a *OrgWorkspacesService) ListExecute(r OrgWorkspacesApiListRequest) (Types
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -683,7 +1227,7 @@ func (a *OrgWorkspacesService) ListExecute(r OrgWorkspacesApiListRequest) (Types
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -713,7 +1257,7 @@ type OrgWorkspacesApiListDBLogsRequest struct {
 	workspaceHandle string
 }
 
-func (r OrgWorkspacesApiListDBLogsRequest) Execute() (TypesListLogsResponse, *_nethttp.Response, error) {
+func (r OrgWorkspacesApiListDBLogsRequest) Execute() (ListLogsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListDBLogsExecute(r)
 }
 
@@ -737,13 +1281,13 @@ func (a *OrgWorkspacesService) ListDBLogs(ctx _context.Context, orgHandle string
 }
 
 // Execute executes the request
-//  @return TypesListLogsResponse
-func (a *OrgWorkspacesService) ListDBLogsExecute(r OrgWorkspacesApiListDBLogsRequest) (TypesListLogsResponse, *_nethttp.Response, error) {
+//  @return ListLogsResponse
+func (a *OrgWorkspacesService) ListDBLogsExecute(r OrgWorkspacesApiListDBLogsRequest) (ListLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesListLogsResponse
+		localVarReturnValue ListLogsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.ListDBLogs")
@@ -799,7 +1343,7 @@ func (a *OrgWorkspacesService) ListDBLogsExecute(r OrgWorkspacesApiListDBLogsReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -809,7 +1353,7 @@ func (a *OrgWorkspacesService) ListDBLogsExecute(r OrgWorkspacesApiListDBLogsReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -819,7 +1363,7 @@ func (a *OrgWorkspacesService) ListDBLogsExecute(r OrgWorkspacesApiListDBLogsReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -829,7 +1373,7 @@ func (a *OrgWorkspacesService) ListDBLogsExecute(r OrgWorkspacesApiListDBLogsReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -839,7 +1383,7 @@ func (a *OrgWorkspacesService) ListDBLogsExecute(r OrgWorkspacesApiListDBLogsReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -862,389 +1406,7 @@ func (a *OrgWorkspacesService) ListDBLogsExecute(r OrgWorkspacesApiListDBLogsReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetRequest struct {
-	ctx             _context.Context
-	ApiService      *OrgWorkspacesService
-	orgHandle       string
-	workspaceHandle string
-	extensions      string
-	sql             *string
-	contentType     *string
-}
-
-// The sql query to perform against the org workspace.
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetRequest) Sql(sql string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetRequest {
-	r.sql = &sql
-	return r
-}
-
-// The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetRequest) ContentType(contentType string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetRequest {
-	r.contentType = &contentType
-	return r
-}
-
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetRequest) Execute() (TypesWorkspaceQueryResult, *_nethttp.Response, error) {
-	return r.ApiService.OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetExecute(r)
-}
-
-/*
-OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet Query org workspace with extensions
-
-Performs a query in an org workspace, with content type and content encoding forming part of the API path. Results are limited to 3000 rows or 30 seconds of query execution.
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to query.
- @param extensions The content type for the request. E.g.
- @return OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetRequest
-*/
-func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet(ctx _context.Context, orgHandle string, workspaceHandle string, extensions string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetRequest {
-	return OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetRequest{
-		ApiService:      a,
-		ctx:             ctx,
-		orgHandle:       orgHandle,
-		workspaceHandle: workspaceHandle,
-		extensions:      extensions,
-	}
-}
-
-// Execute executes the request
-//  @return TypesWorkspaceQueryResult
-func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetExecute(r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGetRequest) (TypesWorkspaceQueryResult, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue TypesWorkspaceQueryResult
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsGet")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions}"
-	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"extensions"+"}", _neturl.PathEscape(parameterToString(r.extensions, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.sql == nil {
-		return localVarReturnValue, nil, reportError("sql is required and must be specified")
-	}
-
-	localVarQueryParams.Add("sql", parameterToString(*r.sql, ""))
-	if r.contentType != nil {
-		localVarQueryParams.Add("content_type", parameterToString(*r.contentType, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "text/markdown"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 402 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostRequest struct {
-	ctx             _context.Context
-	ApiService      *OrgWorkspacesService
-	orgHandle       string
-	workspaceHandle string
-	extensions      string
-	sql             *string
-	contentType     *string
-}
-
-// The sql query to perform against the org workspace.
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostRequest) Sql(sql string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostRequest {
-	r.sql = &sql
-	return r
-}
-
-// The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostRequest) ContentType(contentType string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostRequest {
-	r.contentType = &contentType
-	return r
-}
-
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostRequest) Execute() (TypesWorkspaceQueryResult, *_nethttp.Response, error) {
-	return r.ApiService.OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostExecute(r)
-}
-
-/*
-OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost Query org workspace with extensions
-
-Performs a query in an org workspace, with content type and content encoding forming part of the API path. Results are limited to 3000 rows or 30 seconds of query execution.
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to query.
- @param extensions The content type for the request. E.g.
- @return OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostRequest
-*/
-func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost(ctx _context.Context, orgHandle string, workspaceHandle string, extensions string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostRequest {
-	return OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostRequest{
-		ApiService:      a,
-		ctx:             ctx,
-		orgHandle:       orgHandle,
-		workspaceHandle: workspaceHandle,
-		extensions:      extensions,
-	}
-}
-
-// Execute executes the request
-//  @return TypesWorkspaceQueryResult
-func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostExecute(r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPostRequest) (TypesWorkspaceQueryResult, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue TypesWorkspaceQueryResult
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.OrgOrgHandleWorkspaceWorkspaceHandleQueryDataExtensionsPost")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions}"
-	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"extensions"+"}", _neturl.PathEscape(parameterToString(r.extensions, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.sql == nil {
-		return localVarReturnValue, nil, reportError("sql is required and must be specified")
-	}
-
-	localVarQueryParams.Add("sql", parameterToString(*r.sql, ""))
-	if r.contentType != nil {
-		localVarQueryParams.Add("content_type", parameterToString(*r.contentType, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "text/markdown"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 402 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryGetRequest struct {
+type OrgWorkspacesApiPostQueryRequest struct {
 	ctx             _context.Context
 	ApiService      *OrgWorkspacesService
 	orgHandle       string
@@ -1254,33 +1416,33 @@ type OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryGetRequest struct 
 }
 
 // The sql query to perform against the org workspace.
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryGetRequest) Sql(sql string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryGetRequest {
+func (r OrgWorkspacesApiPostQueryRequest) Sql(sql string) OrgWorkspacesApiPostQueryRequest {
 	r.sql = &sql
 	return r
 }
 
 // The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryGetRequest) ContentType(contentType string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryGetRequest {
+func (r OrgWorkspacesApiPostQueryRequest) ContentType(contentType string) OrgWorkspacesApiPostQueryRequest {
 	r.contentType = &contentType
 	return r
 }
 
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryGetRequest) Execute() (TypesWorkspaceQueryResult, *_nethttp.Response, error) {
-	return r.ApiService.OrgOrgHandleWorkspaceWorkspaceHandleQueryGetExecute(r)
+func (r OrgWorkspacesApiPostQueryRequest) Execute() (WorkspaceQueryResult, *_nethttp.Response, error) {
+	return r.ApiService.PostQueryExecute(r)
 }
 
 /*
-OrgOrgHandleWorkspaceWorkspaceHandleQueryGet Query org workspace
+PostQuery Query org workspace
 
 Performs a query in an org workspace. Results are limited to 3000 rows or 30 seconds of query execution.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle The handle of the org that the workspace belongs to.
  @param workspaceHandle The handle of the workspace to query.
- @return OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryGetRequest
+ @return OrgWorkspacesApiPostQueryRequest
 */
-func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryGet(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryGetRequest {
-	return OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryGetRequest{
+func (a *OrgWorkspacesService) PostQuery(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiPostQueryRequest {
+	return OrgWorkspacesApiPostQueryRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		orgHandle:       orgHandle,
@@ -1289,203 +1451,16 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryGet(ctx 
 }
 
 // Execute executes the request
-//  @return TypesWorkspaceQueryResult
-func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryGetExecute(r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryGetRequest) (TypesWorkspaceQueryResult, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue TypesWorkspaceQueryResult
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.OrgOrgHandleWorkspaceWorkspaceHandleQueryGet")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/query"
-	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.sql == nil {
-		return localVarReturnValue, nil, reportError("sql is required and must be specified")
-	}
-
-	localVarQueryParams.Add("sql", parameterToString(*r.sql, ""))
-	if r.contentType != nil {
-		localVarQueryParams.Add("content_type", parameterToString(*r.contentType, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "text/markdown"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 402 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryPostRequest struct {
-	ctx             _context.Context
-	ApiService      *OrgWorkspacesService
-	orgHandle       string
-	workspaceHandle string
-	sql             *string
-	contentType     *string
-}
-
-// The sql query to perform against the org workspace.
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryPostRequest) Sql(sql string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryPostRequest {
-	r.sql = &sql
-	return r
-}
-
-// The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryPostRequest) ContentType(contentType string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryPostRequest {
-	r.contentType = &contentType
-	return r
-}
-
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryPostRequest) Execute() (TypesWorkspaceQueryResult, *_nethttp.Response, error) {
-	return r.ApiService.OrgOrgHandleWorkspaceWorkspaceHandleQueryPostExecute(r)
-}
-
-/*
-OrgOrgHandleWorkspaceWorkspaceHandleQueryPost Query org workspace
-
-Performs a query in an org workspace. Results are limited to 3000 rows or 30 seconds of query execution.
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to query.
- @return OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryPostRequest
-*/
-func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryPost(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryPostRequest {
-	return OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryPostRequest{
-		ApiService:      a,
-		ctx:             ctx,
-		orgHandle:       orgHandle,
-		workspaceHandle: workspaceHandle,
-	}
-}
-
-// Execute executes the request
-//  @return TypesWorkspaceQueryResult
-func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryPostExecute(r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleQueryPostRequest) (TypesWorkspaceQueryResult, *_nethttp.Response, error) {
+//  @return WorkspaceQueryResult
+func (a *OrgWorkspacesService) PostQueryExecute(r OrgWorkspacesApiPostQueryRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesWorkspaceQueryResult
+		localVarReturnValue WorkspaceQueryResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.OrgOrgHandleWorkspaceWorkspaceHandleQueryPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.PostQuery")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1546,7 +1521,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryPostExec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1556,7 +1531,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryPostExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1566,7 +1541,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryPostExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1576,7 +1551,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryPostExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1586,7 +1561,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryPostExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1596,7 +1571,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryPostExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1619,59 +1594,84 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleQueryPostExec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleSchemaGetRequest struct {
+type OrgWorkspacesApiPostQueryWithExtensionsRequest struct {
 	ctx             _context.Context
 	ApiService      *OrgWorkspacesService
 	orgHandle       string
 	workspaceHandle string
+	extensions      string
+	sql             *string
+	contentType     *string
 }
 
-func (r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleSchemaGetRequest) Execute() (QueryWorkspaceSchema, *_nethttp.Response, error) {
-	return r.ApiService.OrgOrgHandleWorkspaceWorkspaceHandleSchemaGetExecute(r)
+// The sql query to perform against the org workspace.
+func (r OrgWorkspacesApiPostQueryWithExtensionsRequest) Sql(sql string) OrgWorkspacesApiPostQueryWithExtensionsRequest {
+	r.sql = &sql
+	return r
+}
+
+// The required content type for the response. Defaults to application/json. Supported values are json, application/json, csv, text/csv, md and text/markdown.
+func (r OrgWorkspacesApiPostQueryWithExtensionsRequest) ContentType(contentType string) OrgWorkspacesApiPostQueryWithExtensionsRequest {
+	r.contentType = &contentType
+	return r
+}
+
+func (r OrgWorkspacesApiPostQueryWithExtensionsRequest) Execute() (WorkspaceQueryResult, *_nethttp.Response, error) {
+	return r.ApiService.PostQueryWithExtensionsExecute(r)
 }
 
 /*
-OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet Get org workspace schemas
+PostQueryWithExtensions Query org workspace with extensions
 
-Returns the postgres schemas for an org workspace. This will consist of the connections associated with the workspace and any automatic aggregators prefixed with "all_", which are created for any connections where you have >=2 of that plugin type.
+Performs a query in an org workspace, with content type and content encoding forming part of the API path. Results are limited to 3000 rows or 30 seconds of query execution.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle The handle of the org that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to get the schemas for.
- @return OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleSchemaGetRequest
+ @param workspaceHandle The handle of the workspace to query.
+ @param extensions The content type for the request. E.g.
+ @return OrgWorkspacesApiPostQueryWithExtensionsRequest
 */
-func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleSchemaGetRequest {
-	return OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleSchemaGetRequest{
+func (a *OrgWorkspacesService) PostQueryWithExtensions(ctx _context.Context, orgHandle string, workspaceHandle string, extensions string) OrgWorkspacesApiPostQueryWithExtensionsRequest {
+	return OrgWorkspacesApiPostQueryWithExtensionsRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
+		extensions:      extensions,
 	}
 }
 
 // Execute executes the request
-//  @return QueryWorkspaceSchema
-func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleSchemaGetExecute(r OrgWorkspacesApiOrgOrgHandleWorkspaceWorkspaceHandleSchemaGetRequest) (QueryWorkspaceSchema, *_nethttp.Response, error) {
+//  @return WorkspaceQueryResult
+func (a *OrgWorkspacesService) PostQueryWithExtensionsExecute(r OrgWorkspacesApiPostQueryWithExtensionsRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue QueryWorkspaceSchema
+		localVarReturnValue WorkspaceQueryResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.OrgOrgHandleWorkspaceWorkspaceHandleSchemaGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.PostQueryWithExtensions")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/schema"
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions}"
 	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"extensions"+"}", _neturl.PathEscape(parameterToString(r.extensions, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.sql == nil {
+		return localVarReturnValue, nil, reportError("sql is required and must be specified")
+	}
 
+	localVarQueryParams.Add("sql", parameterToString(*r.sql, ""))
+	if r.contentType != nil {
+		localVarQueryParams.Add("content_type", parameterToString(*r.contentType, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1682,7 +1682,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleSchemaGetExec
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "text/markdown"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1712,7 +1712,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleSchemaGetExec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1722,7 +1722,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleSchemaGetExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1732,7 +1732,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleSchemaGetExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1742,7 +1742,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleSchemaGetExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1752,7 +1752,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleSchemaGetExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1762,7 +1762,7 @@ func (a *OrgWorkspacesService) OrgOrgHandleWorkspaceWorkspaceHandleSchemaGetExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1790,16 +1790,16 @@ type OrgWorkspacesApiUpdateRequest struct {
 	ApiService      *OrgWorkspacesService
 	orgHandle       string
 	workspaceHandle string
-	request         *TypesUpdateWorkspaceRequest
+	request         *UpdateWorkspaceRequest
 }
 
 // The request body of the workspace which needs to be updated.
-func (r OrgWorkspacesApiUpdateRequest) Request(request TypesUpdateWorkspaceRequest) OrgWorkspacesApiUpdateRequest {
+func (r OrgWorkspacesApiUpdateRequest) Request(request UpdateWorkspaceRequest) OrgWorkspacesApiUpdateRequest {
 	r.request = &request
 	return r
 }
 
-func (r OrgWorkspacesApiUpdateRequest) Execute() (TypesWorkspace, *_nethttp.Response, error) {
+func (r OrgWorkspacesApiUpdateRequest) Execute() (Workspace, *_nethttp.Response, error) {
 	return r.ApiService.UpdateExecute(r)
 }
 
@@ -1823,13 +1823,13 @@ func (a *OrgWorkspacesService) Update(ctx _context.Context, orgHandle string, wo
 }
 
 // Execute executes the request
-//  @return TypesWorkspace
-func (a *OrgWorkspacesService) UpdateExecute(r OrgWorkspacesApiUpdateRequest) (TypesWorkspace, *_nethttp.Response, error) {
+//  @return Workspace
+func (a *OrgWorkspacesService) UpdateExecute(r OrgWorkspacesApiUpdateRequest) (Workspace, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesWorkspace
+		localVarReturnValue Workspace
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.Update")
@@ -1890,7 +1890,7 @@ func (a *OrgWorkspacesService) UpdateExecute(r OrgWorkspacesApiUpdateRequest) (T
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1900,7 +1900,7 @@ func (a *OrgWorkspacesService) UpdateExecute(r OrgWorkspacesApiUpdateRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1910,7 +1910,7 @@ func (a *OrgWorkspacesService) UpdateExecute(r OrgWorkspacesApiUpdateRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1920,7 +1920,7 @@ func (a *OrgWorkspacesService) UpdateExecute(r OrgWorkspacesApiUpdateRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1930,7 +1930,7 @@ func (a *OrgWorkspacesService) UpdateExecute(r OrgWorkspacesApiUpdateRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1940,7 +1940,7 @@ func (a *OrgWorkspacesService) UpdateExecute(r OrgWorkspacesApiUpdateRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1950,7 +1950,7 @@ func (a *OrgWorkspacesService) UpdateExecute(r OrgWorkspacesApiUpdateRequest) (T
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

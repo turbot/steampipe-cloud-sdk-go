@@ -39,7 +39,7 @@ func (r IdentitiesApiSearchRequest) Q(q string) IdentitiesApiSearchRequest {
 	return r
 }
 
-func (r IdentitiesApiSearchRequest) Execute() (TypesSearchIdentitiesResponse, *_nethttp.Response, error) {
+func (r IdentitiesApiSearchRequest) Execute() (SearchIdentitiesResponse, *_nethttp.Response, error) {
 	return r.ApiService.SearchExecute(r)
 }
 
@@ -59,13 +59,13 @@ func (a *IdentitiesService) Search(ctx _context.Context) IdentitiesApiSearchRequ
 }
 
 // Execute executes the request
-//  @return TypesSearchIdentitiesResponse
-func (a *IdentitiesService) SearchExecute(r IdentitiesApiSearchRequest) (TypesSearchIdentitiesResponse, *_nethttp.Response, error) {
+//  @return SearchIdentitiesResponse
+func (a *IdentitiesService) SearchExecute(r IdentitiesApiSearchRequest) (SearchIdentitiesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue TypesSearchIdentitiesResponse
+		localVarReturnValue SearchIdentitiesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentitiesService.Search")
@@ -123,7 +123,7 @@ func (a *IdentitiesService) SearchExecute(r IdentitiesApiSearchRequest) (TypesSe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -133,7 +133,7 @@ func (a *IdentitiesService) SearchExecute(r IdentitiesApiSearchRequest) (TypesSe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -143,7 +143,7 @@ func (a *IdentitiesService) SearchExecute(r IdentitiesApiSearchRequest) (TypesSe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -153,7 +153,7 @@ func (a *IdentitiesService) SearchExecute(r IdentitiesApiSearchRequest) (TypesSe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -163,7 +163,7 @@ func (a *IdentitiesService) SearchExecute(r IdentitiesApiSearchRequest) (TypesSe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SperrErrorModel
+			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
