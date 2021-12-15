@@ -1,7 +1,7 @@
 /*
 Steampipe Cloud
 
-Interrogate your CloudOps data with the simplicity and power of SQL, then share your discoveries using Steampipe Cloud.
+Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
 API version: 1.0
 Contact: help@steampipe.io
@@ -46,7 +46,7 @@ func (r IdentitiesApiSearchRequest) Execute() (SearchIdentitiesResponse, *_netht
 /*
 Search Search identity
 
-Search identity handle name.
+Search an identity specified in the query string.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return IdentitiesApiSearchRequest

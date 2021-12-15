@@ -3,12 +3,13 @@ info:
   contact:
     email: help@steampipe.io
     name: Support
-  description: Interrogate your CloudOps data with the simplicity and power of SQL,
-    then share your discoveries using Steampipe Cloud.
+  description: Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io),
+    an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP
+    and more) with SQL. No DB required.
   title: Steampipe Cloud
   version: "1.0"
 servers:
-- url: https://cloud.steampipe.io/api/v1
+- url: https://cloud.steampipe.io/api/v0
 paths:
   /actor:
     get:
@@ -65,21 +66,22 @@ paths:
       description: List the activity for an actor.
       operationId: actor_listActivity
       parameters:
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: An optional token returned from a prior request. When a list
-          is truncated this element specifies the last part of the list, as well as
-          the value to use for the part-number-marker request parameter in a subsequent
-          request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -132,21 +134,22 @@ paths:
       description: List the connections for an actor.
       operationId: actor_listConnections
       parameters:
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: An optional token returned from a prior request. When a list
-          is truncated this element specifies the last part of the list, as well as
-          the value to use for the part-number-marker request parameter in a subsequent
-          request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -199,21 +202,22 @@ paths:
       description: List the workspace for an actor.
       operationId: actor_listWorkspaces
       parameters:
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: An optional token returned from a prior request. When a list
-          is truncated this element specifies the last part of the list, as well as
-          the value to use for the part-number-marker request parameter in a subsequent
-          request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -351,7 +355,7 @@ paths:
       - Auth
   /identity/search:
     get:
-      description: Search identity handle name.
+      description: Search an identity specified in the query string.
       operationId: identity_search
       parameters:
       - description: Specify the search string.
@@ -535,20 +539,22 @@ paths:
       description: List all the organizations.
       operationId: org_list
       parameters:
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: When a list is truncated this element specifies the last part
-          of the list, as well as the value to use for the part-number-marker request
-          parameter in a subsequent request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -778,7 +784,7 @@ paths:
       tags:
       - Orgs
     patch:
-      description: Updates the handle name, display name or the URl of the organization.
+      description: Updates the handle name, display name, or the URL of an organization.
       operationId: org_update
       parameters:
       - description: Specify the handle of the organization which need to be updated.
@@ -864,21 +870,22 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: An optional token returned from a prior request. When a list
-          is truncated this element specifies the last part of the list, as well as
-          the value to use for the part-number-marker request parameter in a subsequent
-          request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -928,11 +935,7 @@ paths:
       - Orgs
   /org/{org_handle}/conn:
     get:
-      description: List the connection for an organization. The action supports list
-        pagination and does not return more than 50 connections at a time.If there
-        are more connections to list, then there is a value in next_token. You can
-        use the next_token value to continue the pagination of the list by passing
-        the value in next_token in the request to get the next page.
+      description: List the connection for an organization.
       operationId: orgConnection_list
       parameters:
       - description: The handle of the organization for which we want to list the
@@ -945,20 +948,22 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: When a list is truncated this element specifies the last part
-          of the list, as well as the value to use for the part-number-marker request
-          parameter in a subsequent request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -1371,21 +1376,22 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: An optional token returned from a prior request. When a list
-          is truncated this element specifies the last part of the list, as well as
-          the value to use for the part-number-marker request parameter in a subsequent
-          request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -1507,21 +1513,22 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: An optional token returned from a prior request. When a list
-          is truncated this element specifies the last part of the list, as well as
-          the value to use for the part-number-marker request parameter in a subsequent
-          request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -1978,11 +1985,7 @@ paths:
       - Orgs
   /org/{org_handle}/workspace:
     get:
-      description: List the workspace for an organization. The action supports list
-        pagination and does not return more than 50 workspaces at a time.If there
-        are more workspaces to list, then there is a value in next_token. You can
-        use the next_token value to continue the pagination of the list by passing
-        the value in next_token in the request to get the next page.
+      description: List the workspace for an organization.
       operationId: orgWorkspace_list
       parameters:
       - description: The handle of the organization for which we want to list the
@@ -1995,20 +1998,22 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: When a list is truncated this element specifies the last part
-          of the list, as well as the value to use for the part-number-marker request
-          parameter in a subsequent request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -2370,21 +2375,22 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: An optional token returned from a prior request. When a list
-          is truncated this element specifies the last part of the list, as well as
-          the value to use for the part-number-marker request parameter in a subsequent
-          request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -2456,20 +2462,22 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: When a list is truncated this element specifies the last part
-          of the list, as well as the value to use for the part-number-marker request
-          parameter in a subsequent request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -2602,7 +2610,7 @@ paths:
       x-codegen-request-body-name: request
   /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle}:
     delete:
-      description: Deletes the workspace association with the connection.
+      description: Dissociates or delete the workspace and connection association.
       operationId: orgWorkspaceConnectionAssociation_delete
       parameters:
       - description: The handle of an organization where we want to delete the association.
@@ -3523,20 +3531,22 @@ paths:
       description: List the users.
       operationId: user_list
       parameters:
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: When a list is truncated this element specifies the last part
-          of the list, as well as the value to use for the part-number-marker request
-          parameter in a subsequent request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -3660,21 +3670,22 @@ paths:
         schema:
           type: string
         style: form
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: An optional token returned from a prior request. When a list
-          is truncated this element specifies the last part of the list, as well as
-          the value to use for the part-number-marker request parameter in a subsequent
-          request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -3840,7 +3851,7 @@ paths:
       tags:
       - Users
     patch:
-      description: Updates the handle name, display name or the URl of the user.
+      description: Updates the handle name, display name, or the URL of a user.
       operationId: user_update
       parameters:
       - description: Specify the handle of the user which need to be updated.
@@ -3926,21 +3937,22 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: An optional token returned from a prior request. When a list
-          is truncated this element specifies the last part of the list, as well as
-          the value to use for the part-number-marker request parameter in a subsequent
-          request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -3990,7 +4002,7 @@ paths:
       - Users
   /user/{user_handle}/conn:
     get:
-      description: List the connection for an user.
+      description: List the connection for a user.
       operationId: userConnection_list
       parameters:
       - description: The handle of the user for which we want to list the connection.
@@ -4002,20 +4014,22 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: When a list is truncated this element specifies the last part
-          of the list, as well as the value to use for the part-number-marker request
-          parameter in a subsequent request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -4064,8 +4078,7 @@ paths:
       tags:
       - UserConnections
     post:
-      description: Creates a new connection for a user. The limit is 5 per user. If
-        you require more than 5, you must contact support to request an increase.
+      description: Creates a new connection for a user.
       operationId: userConnection_create
       parameters:
       - description: The handle of the user where we want to create the connection.
@@ -4421,7 +4434,7 @@ paths:
       - UserConnections
   /user/{user_handle}/org:
     get:
-      description: List the orgs which the user has access.
+      description: List the orgs to which the user has access.
       operationId: user_listOrgs
       parameters:
       - description: The handle of the user for which we want to list the org.
@@ -4433,21 +4446,22 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: An optional token returned from a prior request. When a list
-          is truncated this element specifies the last part of the list, as well as
-          the value to use for the part-number-marker request parameter in a subsequent
-          request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -4497,7 +4511,7 @@ paths:
       - Users
   /user/{user_handle}/org/invite:
     get:
-      description: List the orgs on which the user has been invited.
+      description: List the orgs to which the user has been invited.
       operationId: user_listOrgInvites
       parameters:
       - description: Pass the handle of the user.
@@ -4509,21 +4523,22 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: An optional token returned from a prior request. When a list
-          is truncated this element specifies the last part of the list, as well as
-          the value to use for the part-number-marker request parameter in a subsequent
-          request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -4767,11 +4782,7 @@ paths:
       - Users
   /user/{user_handle}/token:
     get:
-      description: List the token for a user. The action supports list pagination
-        and does not return more than 50 tokens at a time.If there are more tokens
-        to list, then there is a value in next_token. You can use the next_token value
-        to continue the pagination of the list by passing the value in next_token
-        in the request to get the next page.
+      description: List the token for a user.
       operationId: userToken_list
       parameters:
       - description: The handle of the user.
@@ -4783,20 +4794,22 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: When a list is truncated this element specifies the last part
-          of the list, as well as the value to use for the part-number-marker request
-          parameter in a subsequent request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -4846,7 +4859,7 @@ paths:
       - UserTokens
     post:
       description: Creates a new token for the specified user. The limit is 2 per
-        user. If you require more than 5, you must contact support to request an increase.
+        user.
       operationId: userToken_create
       parameters:
       - description: The handle of the user where the token will be created.
@@ -5135,20 +5148,22 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: When a list is truncated this element specifies the last part
-          of the list, as well as the value to use for the part-number-marker request
-          parameter in a subsequent request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -5197,8 +5212,7 @@ paths:
       tags:
       - UserWorkspaces
     post:
-      description: Creates a new workspace for a user. The limit is 5 per user. If
-        you require more than 5, you must contact support to request an increase.
+      description: Creates a new workspace for a user.
       operationId: userWorkspace_create
       parameters:
       - description: The handle of the user where we want to create the workspace.
@@ -5509,21 +5523,22 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: An optional token returned from a prior request. When a list
-          is truncated this element specifies the last part of the list, as well as
-          the value to use for the part-number-marker request parameter in a subsequent
-          request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -5594,20 +5609,22 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
-      - description: Pagination limit
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          default: 20
+          default: 25
           maximum: 100
           minimum: 1
           type: integer
         style: form
-      - description: When a list is truncated this element specifies the last part
-          of the list, as well as the value to use for the part-number-marker request
-          parameter in a subsequent request.
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
         explode: true
         in: query
         name: next_token
@@ -5740,7 +5757,7 @@ paths:
       x-codegen-request-body-name: request
   /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle}:
     delete:
-      description: Deletes the workspace association with the connection.
+      description: Dissociates or delete the workspace and connection association.
       operationId: userWorkspaceConnectionAssociation_delete
       parameters:
       - description: The handle of the user performing the action.
@@ -6753,30 +6770,43 @@ components:
         actor_handle: actor_handle
       properties:
         action_type:
+          description: The action performed on the resource.
           type: string
         actor_avatar_url:
           type: string
         actor_display_name:
+          description: The display name of an actor.
           type: string
         actor_handle:
+          description: The handle name of an actor.
           type: string
         actor_id:
+          description: The unique identifier of an actor.
           type: string
         actor_ip:
           type: string
         created_at:
+          description: The time when the audit log was recorded.
           type: string
         data:
           type: object
         id:
+          description: The unique identifier for an audit log.
           type: string
         identity_handle:
+          description: The handle name for an identity where the action has been performed.
           type: string
         identity_id:
+          description: The unique identifier for an identity where the action has
+            been performed.
           type: string
         target_handle:
+          description: The handle name of the entity on which the action has been
+            performed.
           type: string
         target_id:
+          description: The unique identifier of the entity on which the action has
+            been performed.
           type: string
       required:
       - action_type
@@ -6811,25 +6841,34 @@ components:
         config:
           type: object
         created_at:
+          description: The connection created time.
           type: string
         handle:
+          description: The handle name of the  connection.
           format: ^[a-z](?:[a-z0-9]|_(?=[a-z0-9])){0,38}$
           type: string
         id:
+          description: The unique identifier for the connection.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         identity:
           $ref: '#/components/schemas/Identity'
         identity_id:
+          description: The unique identifier for an identity where the connection
+            has been created.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         plugin:
+          description: The plugin name for the connection.
           type: string
         type:
+          description: Type of connection i.e aggregator or connection.
           type: string
         updated_at:
+          description: The connection updated time.
           type: string
         version_id:
+          description: The current version ID for the connection.
           type: integer
       required:
       - created_at
@@ -6943,12 +6982,16 @@ components:
         type: type
       properties:
         display_name:
+          description: Display name of the identity.
           type: string
         handle:
+          description: The handle name of the identity.
           type: string
         id:
+          description: The unique identifier for the identity.
           type: string
         type:
+          description: The type of identity i.e user or org.
           type: string
       required:
       - handle
@@ -7443,26 +7486,37 @@ components:
         actor_handle: actor_handle
       properties:
         actor_avatar_url:
+          description: The avatar URL of the actor.
           type: string
         actor_display_name:
+          description: The display name of the actor.
           type: string
         actor_handle:
+          description: The actor handle who executed the query.
           type: string
         actor_id:
+          description: The actor ID who executed the query.
           type: string
         created_at:
+          description: The created time of the log.
           type: string
         duration:
+          description: The duration of the query.
           type: integer
         id:
+          description: The unique identifier of the DB log.
           type: string
         log_timestamp:
+          description: The time when the log got captured in the postgres.
           type: string
         query:
+          description: The query being executed in the workspace.
           type: string
         workspace_handle:
+          description: The workspace handle where the query was executed.
           type: string
         workspace_id:
+          description: The workspace ID where the query was executed.
           type: string
       required:
       - actor_avatar_url
@@ -7486,21 +7540,28 @@ components:
         url: url
       properties:
         avatar_url:
+          description: The avatar of an org.
           type: string
         created_at:
+          description: The org created time.
           type: string
         display_name:
+          description: The display name of an org.
           type: string
         handle:
+          description: The handle name for an org.
           type: string
         id:
+          description: The unique identifier for an org.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         updated_at:
+          description: The org updated time.
           type: string
         url:
           type: string
         version_id:
+          description: The current version ID for an org.
           type: integer
       required:
       - created_at
@@ -7563,30 +7624,40 @@ components:
         status: status
       properties:
         created_at:
+          description: The created time when the member was invited.
           type: string
         email:
+          description: The email address of the member.
           type: string
         id:
+          description: The unique identifier of the org member.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         org_id:
+          description: The identifier of an org.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         role:
+          description: The access privellage for the member.
           type: string
         status:
+          description: The status of the org member i.e pending or accepted.
           format: pending|accepted
           type: string
         updated_at:
+          description: The updated time  of the member.
           type: string
         user:
           $ref: '#/components/schemas/User'
         user_handle:
+          description: The user handle of the member.
           type: string
         user_id:
+          description: The identifier of a user.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         version_id:
+          description: The current version ID of the member.
           type: integer
       required:
       - email
@@ -7603,10 +7674,13 @@ components:
         used: 1
       properties:
         available:
+          description: Remaining limit
           type: integer
         limit:
+          description: Max limit
           type: integer
         used:
+          description: Exhausted limit
           type: integer
       type: object
     SearchIdentitiesResponse:
@@ -7768,25 +7842,32 @@ components:
         avatar_url:
           type: string
         created_at:
+          description: The user created time.
           type: string
         display_name:
           type: string
         email:
+          description: Email address of a user.
           type: string
         handle:
+          description: The handle name of a user.
           type: string
         id:
+          description: The unique identifier of a user.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         preview_access_mode:
           type: string
         status:
+          description: The status of the user i.e accepted or pending
           type: string
         updated_at:
+          description: The user updated time.
           type: string
         url:
           type: string
         version_id:
+          description: The current version of a user.
           type: integer
       required:
       - created_at
@@ -7969,32 +8050,42 @@ components:
         version_id: 0
       properties:
         created_at:
+          description: The workspace created time.
           type: string
         database_name:
+          description: The name of the database.
           type: string
         handle:
+          description: The handle name for the workspace.
           example: aaa
           format: ^[a-z0-9]{1,23}$
           type: string
         hive:
+          description: The database hive for this workspace.
           type: string
         host:
           type: string
         id:
+          description: The unique identifier for the workspace.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         identity:
           $ref: '#/components/schemas/Identity'
         identity_id:
+          description: The unique identifier for an identity where the workspace is
+            created.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         public_key:
           type: string
         updated_at:
+          description: The workspace updated time.
           type: string
         version_id:
+          description: The current version ID for the workspace.
           type: integer
         workspace_state:
+          description: The current state of the workspace.
           type: string
       required:
       - created_at
@@ -8048,22 +8139,29 @@ components:
         connection:
           $ref: '#/components/schemas/Connection'
         connection_id:
+          description: The unique identifier for the connection.
           type: string
         created_at:
+          description: Association created time.
           type: string
         id:
+          description: The unique identifier for the workspace connection association.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         identity_id:
+          description: The identity ID where the association exists.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         updated_at:
+          description: Association updated time.
           type: string
         version_id:
+          description: The current version ID for the association.
           type: integer
         workspace:
           $ref: '#/components/schemas/Workspace'
         workspace_id:
+          description: The unique identifier for the wokspace.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
       required:

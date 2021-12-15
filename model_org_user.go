@@ -1,7 +1,7 @@
 /*
 Steampipe Cloud
 
-Interrogate your CloudOps data with the simplicity and power of SQL, then share your discoveries using Steampipe Cloud.
+Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
 API version: 1.0
 Contact: help@steampipe.io
@@ -17,17 +17,27 @@ import (
 
 // OrgUser struct for OrgUser
 type OrgUser struct {
-	CreatedAt  *string `json:"created_at,omitempty"`
-	Email      string  `json:"email"`
-	Id         string  `json:"id"`
-	OrgId      string  `json:"org_id"`
-	Role       *string `json:"role,omitempty"`
-	Status     string  `json:"status"`
-	UpdatedAt  *string `json:"updated_at,omitempty"`
-	User       *User   `json:"user,omitempty"`
-	UserHandle string  `json:"user_handle"`
-	UserId     string  `json:"user_id"`
-	VersionId  *int32  `json:"version_id,omitempty"`
+	// The created time when the member was invited.
+	CreatedAt *string `json:"created_at,omitempty"`
+	// The email address of the member.
+	Email string `json:"email"`
+	// The unique identifier of the org member.
+	Id string `json:"id"`
+	// The identifier of an org.
+	OrgId string `json:"org_id"`
+	// The access privellage for the member.
+	Role *string `json:"role,omitempty"`
+	// The status of the org member i.e pending or accepted.
+	Status string `json:"status"`
+	// The updated time  of the member.
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	User      *User   `json:"user,omitempty"`
+	// The user handle of the member.
+	UserHandle string `json:"user_handle"`
+	// The identifier of a user.
+	UserId string `json:"user_id"`
+	// The current version ID of the member.
+	VersionId *int32 `json:"version_id,omitempty"`
 }
 
 // NewOrgUser instantiates a new OrgUser object

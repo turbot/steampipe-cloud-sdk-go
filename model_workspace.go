@@ -1,7 +1,7 @@
 /*
 Steampipe Cloud
 
-Interrogate your CloudOps data with the simplicity and power of SQL, then share your discoveries using Steampipe Cloud.
+Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
 API version: 1.0
 Contact: help@steampipe.io
@@ -17,18 +17,27 @@ import (
 
 // Workspace struct for Workspace
 type Workspace struct {
-	CreatedAt      string    `json:"created_at"`
-	DatabaseName   *string   `json:"database_name,omitempty"`
-	Handle         string    `json:"handle"`
-	Hive           *string   `json:"hive,omitempty"`
-	Host           *string   `json:"host,omitempty"`
-	Id             string    `json:"id"`
-	Identity       *Identity `json:"identity,omitempty"`
-	IdentityId     string    `json:"identity_id"`
-	PublicKey      *string   `json:"public_key,omitempty"`
-	UpdatedAt      *string   `json:"updated_at,omitempty"`
-	VersionId      int32     `json:"version_id"`
-	WorkspaceState *string   `json:"workspace_state,omitempty"`
+	// The workspace created time.
+	CreatedAt string `json:"created_at"`
+	// The name of the database.
+	DatabaseName *string `json:"database_name,omitempty"`
+	// The handle name for the workspace.
+	Handle string `json:"handle"`
+	// The database hive for this workspace.
+	Hive *string `json:"hive,omitempty"`
+	Host *string `json:"host,omitempty"`
+	// The unique identifier for the workspace.
+	Id       string    `json:"id"`
+	Identity *Identity `json:"identity,omitempty"`
+	// The unique identifier for an identity where the workspace is created.
+	IdentityId string  `json:"identity_id"`
+	PublicKey  *string `json:"public_key,omitempty"`
+	// The workspace updated time.
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	// The current version ID for the workspace.
+	VersionId int32 `json:"version_id"`
+	// The current state of the workspace.
+	WorkspaceState *string `json:"workspace_state,omitempty"`
 }
 
 // NewWorkspace instantiates a new Workspace object

@@ -1,7 +1,7 @@
 /*
 Steampipe Cloud
 
-Interrogate your CloudOps data with the simplicity and power of SQL, then share your discoveries using Steampipe Cloud.
+Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
 API version: 1.0
 Contact: help@steampipe.io
@@ -17,10 +17,14 @@ import (
 
 // Identity struct for Identity
 type Identity struct {
+	// Display name of the identity.
 	DisplayName *string `json:"display_name,omitempty"`
-	Handle      string  `json:"handle"`
-	Id          string  `json:"id"`
-	Type        string  `json:"type"`
+	// The handle name of the identity.
+	Handle string `json:"handle"`
+	// The unique identifier for the identity.
+	Id string `json:"id"`
+	// The type of identity i.e user or org.
+	Type string `json:"type"`
 }
 
 // NewIdentity instantiates a new Identity object

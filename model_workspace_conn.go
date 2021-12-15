@@ -1,7 +1,7 @@
 /*
 Steampipe Cloud
 
-Interrogate your CloudOps data with the simplicity and power of SQL, then share your discoveries using Steampipe Cloud.
+Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
 API version: 1.0
 Contact: help@steampipe.io
@@ -17,15 +17,22 @@ import (
 
 // WorkspaceConn struct for WorkspaceConn
 type WorkspaceConn struct {
-	Connection   *Connection `json:"connection,omitempty"`
-	ConnectionId string      `json:"connection_id"`
-	CreatedAt    string      `json:"created_at"`
-	Id           string      `json:"id"`
-	IdentityId   string      `json:"identity_id"`
-	UpdatedAt    *string     `json:"updated_at,omitempty"`
-	VersionId    int32       `json:"version_id"`
-	Workspace    *Workspace  `json:"workspace,omitempty"`
-	WorkspaceId  string      `json:"workspace_id"`
+	Connection *Connection `json:"connection,omitempty"`
+	// The unique identifier for the connection.
+	ConnectionId string `json:"connection_id"`
+	// Association created time.
+	CreatedAt string `json:"created_at"`
+	// The unique identifier for the workspace connection association.
+	Id string `json:"id"`
+	// The identity ID where the association exists.
+	IdentityId string `json:"identity_id"`
+	// Association updated time.
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	// The current version ID for the association.
+	VersionId int32      `json:"version_id"`
+	Workspace *Workspace `json:"workspace,omitempty"`
+	// The unique identifier for the wokspace.
+	WorkspaceId string `json:"workspace_id"`
 }
 
 // NewWorkspaceConn instantiates a new WorkspaceConn object

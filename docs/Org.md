@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AvatarUrl** | Pointer to **string** |  | [optional] 
-**CreatedAt** | **string** |  | 
-**DisplayName** | Pointer to **string** |  | [optional] 
-**Handle** | **string** |  | 
-**Id** | **string** |  | 
-**UpdatedAt** | Pointer to **string** |  | [optional] 
+**AvatarUrl** | Pointer to **string** | The avatar of an org. | [optional] 
+**CreatedAt** | **string** | The org created time. | 
+**DisplayName** | Pointer to **string** | The display name of an org. | [optional] 
+**Handle** | **string** | The handle name for an org. | 
+**Id** | **string** | The unique identifier for an org. | 
+**UpdatedAt** | Pointer to **string** | The org updated time. | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
-**VersionId** | **int32** |  | 
+**VersionId** | **int32** | The current version ID for an org. | 
 
 ## Methods
 

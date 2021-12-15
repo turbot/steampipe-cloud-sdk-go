@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActionType** | **string** |  | 
+**ActionType** | **string** | The action performed on the resource. | 
 **ActorAvatarUrl** | **string** |  | 
-**ActorDisplayName** | **string** |  | 
-**ActorHandle** | **string** |  | 
-**ActorId** | **string** |  | 
+**ActorDisplayName** | **string** | The display name of an actor. | 
+**ActorHandle** | **string** | The handle name of an actor. | 
+**ActorId** | **string** | The unique identifier of an actor. | 
 **ActorIp** | **string** |  | 
-**CreatedAt** | **string** |  | 
+**CreatedAt** | **string** | The time when the audit log was recorded. | 
 **Data** | **map[string]interface{}** |  | 
-**Id** | **string** |  | 
-**IdentityHandle** | **string** |  | 
-**IdentityId** | **string** |  | 
-**TargetHandle** | Pointer to **string** |  | [optional] 
-**TargetId** | Pointer to **string** |  | [optional] 
+**Id** | **string** | The unique identifier for an audit log. | 
+**IdentityHandle** | **string** | The handle name for an identity where the action has been performed. | 
+**IdentityId** | **string** | The unique identifier for an identity where the action has been performed. | 
+**TargetHandle** | Pointer to **string** | The handle name of the entity on which the action has been performed. | [optional] 
+**TargetId** | Pointer to **string** | The unique identifier of the entity on which the action has been performed. | [optional] 
 
 ## Methods
 

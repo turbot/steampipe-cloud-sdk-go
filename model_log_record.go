@@ -1,7 +1,7 @@
 /*
 Steampipe Cloud
 
-Interrogate your CloudOps data with the simplicity and power of SQL, then share your discoveries using Steampipe Cloud.
+Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
 API version: 1.0
 Contact: help@steampipe.io
@@ -17,17 +17,28 @@ import (
 
 // LogRecord struct for LogRecord
 type LogRecord struct {
-	ActorAvatarUrl   string  `json:"actor_avatar_url"`
-	ActorDisplayName string  `json:"actor_display_name"`
-	ActorHandle      string  `json:"actor_handle"`
-	ActorId          string  `json:"actor_id"`
-	CreatedAt        string  `json:"created_at"`
-	Duration         *int32  `json:"duration,omitempty"`
-	Id               string  `json:"id"`
-	LogTimestamp     *string `json:"log_timestamp,omitempty"`
-	Query            *string `json:"query,omitempty"`
-	WorkspaceHandle  string  `json:"workspace_handle"`
-	WorkspaceId      string  `json:"workspace_id"`
+	// The avatar URL of the actor.
+	ActorAvatarUrl string `json:"actor_avatar_url"`
+	// The display name of the actor.
+	ActorDisplayName string `json:"actor_display_name"`
+	// The actor handle who executed the query.
+	ActorHandle string `json:"actor_handle"`
+	// The actor ID who executed the query.
+	ActorId string `json:"actor_id"`
+	// The created time of the log.
+	CreatedAt string `json:"created_at"`
+	// The duration of the query.
+	Duration *int32 `json:"duration,omitempty"`
+	// The unique identifier of the DB log.
+	Id string `json:"id"`
+	// The time when the log got captured in the postgres.
+	LogTimestamp *string `json:"log_timestamp,omitempty"`
+	// The query being executed in the workspace.
+	Query *string `json:"query,omitempty"`
+	// The workspace handle where the query was executed.
+	WorkspaceHandle string `json:"workspace_handle"`
+	// The workspace ID where the query was executed.
+	WorkspaceId string `json:"workspace_id"`
 }
 
 // NewLogRecord instantiates a new LogRecord object

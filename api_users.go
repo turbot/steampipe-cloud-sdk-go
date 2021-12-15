@@ -1,7 +1,7 @@
 /*
 Steampipe Cloud
 
-Interrogate your CloudOps data with the simplicity and power of SQL, then share your discoveries using Steampipe Cloud.
+Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
 API version: 1.0
 Contact: help@steampipe.io
@@ -1037,13 +1037,13 @@ type UsersApiListRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r UsersApiListRequest) Limit(limit int32) UsersApiListRequest {
 	r.limit = &limit
 	return r
 }
 
-// When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r UsersApiListRequest) NextToken(nextToken string) UsersApiListRequest {
 	r.nextToken = &nextToken
 	return r
@@ -1206,13 +1206,13 @@ type UsersApiListAuditLogsRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r UsersApiListAuditLogsRequest) Limit(limit int32) UsersApiListAuditLogsRequest {
 	r.limit = &limit
 	return r
 }
 
-// An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r UsersApiListAuditLogsRequest) NextToken(nextToken string) UsersApiListAuditLogsRequest {
 	r.nextToken = &nextToken
 	return r
@@ -1378,13 +1378,13 @@ type UsersApiListOrgInvitesRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r UsersApiListOrgInvitesRequest) Limit(limit int32) UsersApiListOrgInvitesRequest {
 	r.limit = &limit
 	return r
 }
 
-// An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r UsersApiListOrgInvitesRequest) NextToken(nextToken string) UsersApiListOrgInvitesRequest {
 	r.nextToken = &nextToken
 	return r
@@ -1397,7 +1397,7 @@ func (r UsersApiListOrgInvitesRequest) Execute() (ListUserOrgsResponse, *_nethtt
 /*
 ListOrgInvites List org invited users
 
-List the orgs on which the user has been invited.
+List the orgs to which the user has been invited.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle Pass the handle of the user.
@@ -1550,13 +1550,13 @@ type UsersApiListOrgsRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r UsersApiListOrgsRequest) Limit(limit int32) UsersApiListOrgsRequest {
 	r.limit = &limit
 	return r
 }
 
-// An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r UsersApiListOrgsRequest) NextToken(nextToken string) UsersApiListOrgsRequest {
 	r.nextToken = &nextToken
 	return r
@@ -1569,7 +1569,7 @@ func (r UsersApiListOrgsRequest) Execute() (ListUserOrgsResponse, *_nethttp.Resp
 /*
 ListOrgs List org users
 
-List the orgs which the user has access.
+List the orgs to which the user has access.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user for which we want to list the org.
@@ -1723,13 +1723,13 @@ type UsersApiListWorkspaceAuditLogsRequest struct {
 	nextToken       *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r UsersApiListWorkspaceAuditLogsRequest) Limit(limit int32) UsersApiListWorkspaceAuditLogsRequest {
 	r.limit = &limit
 	return r
 }
 
-// An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r UsersApiListWorkspaceAuditLogsRequest) NextToken(nextToken string) UsersApiListWorkspaceAuditLogsRequest {
 	r.nextToken = &nextToken
 	return r
@@ -1904,13 +1904,13 @@ func (r UsersApiSearchRequest) Q(q string) UsersApiSearchRequest {
 	return r
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r UsersApiSearchRequest) Limit(limit int32) UsersApiSearchRequest {
 	r.limit = &limit
 	return r
 }
 
-// An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r UsersApiSearchRequest) NextToken(nextToken string) UsersApiSearchRequest {
 	r.nextToken = &nextToken
 	return r
@@ -2089,7 +2089,7 @@ func (r UsersApiUpdateRequest) Execute() (User, *_nethttp.Response, error) {
 /*
 Update Update user
 
-Updates the handle name, display name or the URl of the user.
+Updates the handle name, display name, or the URL of a user.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle Specify the handle of the user which need to be updated.

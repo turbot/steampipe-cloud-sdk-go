@@ -1,7 +1,7 @@
 /*
 Steampipe Cloud
 
-Interrogate your CloudOps data with the simplicity and power of SQL, then share your discoveries using Steampipe Cloud.
+Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
 API version: 1.0
 Contact: help@steampipe.io
@@ -41,7 +41,7 @@ func (r UserTokensApiCreateRequest) Execute() (Token, *_nethttp.Response, error)
 /*
 Create Create token
 
-Creates a new token for the specified user. The limit is 2 per user. If you require more than 5, you must contact support to request an increase.
+Creates a new token for the specified user. The limit is 2 per user.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user where the token will be created.
@@ -520,13 +520,13 @@ type UserTokensApiListRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r UserTokensApiListRequest) Limit(limit int32) UserTokensApiListRequest {
 	r.limit = &limit
 	return r
 }
 
-// When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r UserTokensApiListRequest) NextToken(nextToken string) UserTokensApiListRequest {
 	r.nextToken = &nextToken
 	return r
@@ -539,7 +539,7 @@ func (r UserTokensApiListRequest) Execute() (ListTokensResponse, *_nethttp.Respo
 /*
 List List tokens
 
-List the token for a user. The action supports list pagination and does not return more than 50 tokens at a time.If there are more tokens to list, then there is a value in next_token. You can use the next_token value to continue the pagination of the list by passing the value in next_token in the request to get the next page.
+List the token for a user.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user.

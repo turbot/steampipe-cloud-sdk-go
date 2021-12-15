@@ -1,7 +1,7 @@
 /*
 Steampipe Cloud
 
-Interrogate your CloudOps data with the simplicity and power of SQL, then share your discoveries using Steampipe Cloud.
+Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
 API version: 1.0
 Contact: help@steampipe.io
@@ -17,19 +17,29 @@ import (
 
 // AuditRecord struct for AuditRecord
 type AuditRecord struct {
-	ActionType       string                 `json:"action_type"`
-	ActorAvatarUrl   string                 `json:"actor_avatar_url"`
-	ActorDisplayName string                 `json:"actor_display_name"`
-	ActorHandle      string                 `json:"actor_handle"`
-	ActorId          string                 `json:"actor_id"`
-	ActorIp          string                 `json:"actor_ip"`
-	CreatedAt        string                 `json:"created_at"`
-	Data             map[string]interface{} `json:"data"`
-	Id               string                 `json:"id"`
-	IdentityHandle   string                 `json:"identity_handle"`
-	IdentityId       string                 `json:"identity_id"`
-	TargetHandle     *string                `json:"target_handle,omitempty"`
-	TargetId         *string                `json:"target_id,omitempty"`
+	// The action performed on the resource.
+	ActionType     string `json:"action_type"`
+	ActorAvatarUrl string `json:"actor_avatar_url"`
+	// The display name of an actor.
+	ActorDisplayName string `json:"actor_display_name"`
+	// The handle name of an actor.
+	ActorHandle string `json:"actor_handle"`
+	// The unique identifier of an actor.
+	ActorId string `json:"actor_id"`
+	ActorIp string `json:"actor_ip"`
+	// The time when the audit log was recorded.
+	CreatedAt string                 `json:"created_at"`
+	Data      map[string]interface{} `json:"data"`
+	// The unique identifier for an audit log.
+	Id string `json:"id"`
+	// The handle name for an identity where the action has been performed.
+	IdentityHandle string `json:"identity_handle"`
+	// The unique identifier for an identity where the action has been performed.
+	IdentityId string `json:"identity_id"`
+	// The handle name of the entity on which the action has been performed.
+	TargetHandle *string `json:"target_handle,omitempty"`
+	// The unique identifier of the entity on which the action has been performed.
+	TargetId *string `json:"target_id,omitempty"`
 }
 
 // NewAuditRecord instantiates a new AuditRecord object

@@ -1,7 +1,7 @@
 /*
 Steampipe Cloud
 
-Interrogate your CloudOps data with the simplicity and power of SQL, then share your discoveries using Steampipe Cloud.
+Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
 API version: 1.0
 Contact: help@steampipe.io
@@ -17,9 +17,12 @@ import (
 
 // Quota struct for Quota
 type Quota struct {
+	// Remaining limit
 	Available *int32 `json:"available,omitempty"`
-	Limit     *int32 `json:"limit,omitempty"`
-	Used      *int32 `json:"used,omitempty"`
+	// Max limit
+	Limit *int32 `json:"limit,omitempty"`
+	// Exhausted limit
+	Used *int32 `json:"used,omitempty"`
 }
 
 // NewQuota instantiates a new Quota object

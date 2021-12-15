@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActorAvatarUrl** | **string** |  | 
-**ActorDisplayName** | **string** |  | 
-**ActorHandle** | **string** |  | 
-**ActorId** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**Duration** | Pointer to **int32** |  | [optional] 
-**Id** | **string** |  | 
-**LogTimestamp** | Pointer to **string** |  | [optional] 
-**Query** | Pointer to **string** |  | [optional] 
-**WorkspaceHandle** | **string** |  | 
-**WorkspaceId** | **string** |  | 
+**ActorAvatarUrl** | **string** | The avatar URL of the actor. | 
+**ActorDisplayName** | **string** | The display name of the actor. | 
+**ActorHandle** | **string** | The actor handle who executed the query. | 
+**ActorId** | **string** | The actor ID who executed the query. | 
+**CreatedAt** | **string** | The created time of the log. | 
+**Duration** | Pointer to **int32** | The duration of the query. | [optional] 
+**Id** | **string** | The unique identifier of the DB log. | 
+**LogTimestamp** | Pointer to **string** | The time when the log got captured in the postgres. | [optional] 
+**Query** | Pointer to **string** | The query being executed in the workspace. | [optional] 
+**WorkspaceHandle** | **string** | The workspace handle where the query was executed. | 
+**WorkspaceId** | **string** | The workspace ID where the query was executed. | 
 
 ## Methods
 
