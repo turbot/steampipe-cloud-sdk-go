@@ -48,7 +48,7 @@ func (r UserConnectionsApiCreateRequest) Execute() (Connection, *_nethttp.Respon
 /*
 Create Create user connection
 
-Creates a new connection for a user. The limit is 5 per user. If you require more than 5, you must contact support to request an increase.
+Creates a new connection for a user.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user where we want to create the connection.
@@ -552,13 +552,13 @@ type UserConnectionsApiListRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r UserConnectionsApiListRequest) Limit(limit int32) UserConnectionsApiListRequest {
 	r.limit = &limit
 	return r
 }
 
-// When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r UserConnectionsApiListRequest) NextToken(nextToken string) UserConnectionsApiListRequest {
 	r.nextToken = &nextToken
 	return r
@@ -571,7 +571,7 @@ func (r UserConnectionsApiListRequest) Execute() (ListConnectionsResponse, *_net
 /*
 List List user connections
 
-List the connection for an user.
+List the connection for a user.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user for which we want to list the connection.

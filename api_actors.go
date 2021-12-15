@@ -192,13 +192,13 @@ type ActorsApiListActivityRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r ActorsApiListActivityRequest) Limit(limit int32) ActorsApiListActivityRequest {
 	r.limit = &limit
 	return r
 }
 
-// An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r ActorsApiListActivityRequest) NextToken(nextToken string) ActorsApiListActivityRequest {
 	r.nextToken = &nextToken
 	return r
@@ -360,13 +360,13 @@ type ActorsApiListConnectionsRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r ActorsApiListConnectionsRequest) Limit(limit int32) ActorsApiListConnectionsRequest {
 	r.limit = &limit
 	return r
 }
 
-// An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r ActorsApiListConnectionsRequest) NextToken(nextToken string) ActorsApiListConnectionsRequest {
 	r.nextToken = &nextToken
 	return r
@@ -528,13 +528,13 @@ type ActorsApiListWorkspacesRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r ActorsApiListWorkspacesRequest) Limit(limit int32) ActorsApiListWorkspacesRequest {
 	r.limit = &limit
 	return r
 }
 
-// An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r ActorsApiListWorkspacesRequest) NextToken(nextToken string) ActorsApiListWorkspacesRequest {
 	r.nextToken = &nextToken
 	return r

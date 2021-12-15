@@ -856,13 +856,13 @@ type OrgMembersApiListAcceptedRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r OrgMembersApiListAcceptedRequest) Limit(limit int32) OrgMembersApiListAcceptedRequest {
 	r.limit = &limit
 	return r
 }
 
-// An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r OrgMembersApiListAcceptedRequest) NextToken(nextToken string) OrgMembersApiListAcceptedRequest {
 	r.nextToken = &nextToken
 	return r
@@ -1028,13 +1028,13 @@ type OrgMembersApiListInvitedRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r OrgMembersApiListInvitedRequest) Limit(limit int32) OrgMembersApiListInvitedRequest {
 	r.limit = &limit
 	return r
 }
 
-// An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r OrgMembersApiListInvitedRequest) NextToken(nextToken string) OrgMembersApiListInvitedRequest {
 	r.nextToken = &nextToken
 	return r

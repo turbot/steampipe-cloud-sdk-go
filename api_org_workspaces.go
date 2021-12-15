@@ -1086,13 +1086,13 @@ type OrgWorkspacesApiListRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r OrgWorkspacesApiListRequest) Limit(limit int32) OrgWorkspacesApiListRequest {
 	r.limit = &limit
 	return r
 }
 
-// When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r OrgWorkspacesApiListRequest) NextToken(nextToken string) OrgWorkspacesApiListRequest {
 	r.nextToken = &nextToken
 	return r

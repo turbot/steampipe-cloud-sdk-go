@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ActionType** | **string** | The action performed on the resource. | 
-**ActorAvatarUrl** | **string** | The avatar of the actor. | 
-**ActorDisplayName** | **string** | The display name of the actor. | 
-**ActorHandle** | **string** | The handle name of the actor. | 
-**ActorId** | **string** | The unique identifier of the actor. | 
-**ActorIp** | **string** | The IP address of the actor. | 
+**ActorAvatarUrl** | **string** |  | 
+**ActorDisplayName** | **string** | The display name of an actor. | 
+**ActorHandle** | **string** | The handle name of an actor. | 
+**ActorId** | **string** | The unique identifier of an actor. | 
+**ActorIp** | **string** |  | 
 **CreatedAt** | **string** | The time when the audit log was recorded. | 
 **Data** | **map[string]interface{}** |  | 
 **Id** | **string** | The unique identifier for an audit log. | 

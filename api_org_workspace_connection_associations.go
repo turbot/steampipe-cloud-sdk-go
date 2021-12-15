@@ -231,7 +231,7 @@ func (r OrgWorkspaceConnectionAssociationsApiDeleteRequest) Execute() (Workspace
 /*
 Delete Delete org workspace connection association
 
-Deletes the workspace association with the connection.
+Dissociates or delete the workspace and connection association.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle The handle of an organization where we want to delete the association.
@@ -555,13 +555,13 @@ type OrgWorkspaceConnectionAssociationsApiListRequest struct {
 	nextToken       *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r OrgWorkspaceConnectionAssociationsApiListRequest) Limit(limit int32) OrgWorkspaceConnectionAssociationsApiListRequest {
 	r.limit = &limit
 	return r
 }
 
-// When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r OrgWorkspaceConnectionAssociationsApiListRequest) NextToken(nextToken string) OrgWorkspaceConnectionAssociationsApiListRequest {
 	r.nextToken = &nextToken
 	return r

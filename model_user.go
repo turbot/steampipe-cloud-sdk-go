@@ -17,11 +17,9 @@ import (
 
 // User struct for User
 type User struct {
-	// The avatar URL of a user.
 	AvatarUrl *string `json:"avatar_url,omitempty"`
 	// The user created time.
-	CreatedAt string `json:"created_at"`
-	// Display name of a user.
+	CreatedAt   string  `json:"created_at"`
 	DisplayName *string `json:"display_name,omitempty"`
 	// Email address of a user.
 	Email string `json:"email"`
@@ -30,7 +28,7 @@ type User struct {
 	// The unique identifier of a user.
 	Id                string  `json:"id"`
 	PreviewAccessMode *string `json:"preview_access_mode,omitempty"`
-	// The status of the user i.e accepted or invited
+	// The status of the user i.e accepted or pending
 	Status string `json:"status"`
 	// The user updated time.
 	UpdatedAt *string `json:"updated_at,omitempty"`

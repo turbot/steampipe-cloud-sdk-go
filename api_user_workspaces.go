@@ -48,7 +48,7 @@ func (r UserWorkspacesApiCreateRequest) Execute() (Workspace, *_nethttp.Response
 /*
 Create Create user workspace
 
-Creates a new workspace for a user. The limit is 5 per user. If you require more than 5, you must contact support to request an increase.
+Creates a new workspace for a user.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user where we want to create the workspace.
@@ -1086,13 +1086,13 @@ type UserWorkspacesApiListRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r UserWorkspacesApiListRequest) Limit(limit int32) UserWorkspacesApiListRequest {
 	r.limit = &limit
 	return r
 }
 
-// When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r UserWorkspacesApiListRequest) NextToken(nextToken string) UserWorkspacesApiListRequest {
 	r.nextToken = &nextToken
 	return r

@@ -46,7 +46,7 @@ func (r IdentitiesApiSearchRequest) Execute() (SearchIdentitiesResponse, *_netht
 /*
 Search Search identity
 
-Search identity handle name.
+Search an identity specified in the query string.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return IdentitiesApiSearchRequest

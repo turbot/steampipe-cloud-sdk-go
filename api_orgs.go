@@ -681,13 +681,13 @@ type OrgsApiListRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r OrgsApiListRequest) Limit(limit int32) OrgsApiListRequest {
 	r.limit = &limit
 	return r
 }
 
-// When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r OrgsApiListRequest) NextToken(nextToken string) OrgsApiListRequest {
 	r.nextToken = &nextToken
 	return r
@@ -850,13 +850,13 @@ type OrgsApiListAuditLogsRequest struct {
 	nextToken  *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r OrgsApiListAuditLogsRequest) Limit(limit int32) OrgsApiListAuditLogsRequest {
 	r.limit = &limit
 	return r
 }
 
-// An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r OrgsApiListAuditLogsRequest) NextToken(nextToken string) OrgsApiListAuditLogsRequest {
 	r.nextToken = &nextToken
 	return r
@@ -1023,13 +1023,13 @@ type OrgsApiListWorkspaceAuditLogsRequest struct {
 	nextToken       *string
 }
 
-// Pagination limit
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
 func (r OrgsApiListWorkspaceAuditLogsRequest) Limit(limit int32) OrgsApiListWorkspaceAuditLogsRequest {
 	r.limit = &limit
 	return r
 }
 
-// An optional token returned from a prior request. When a list is truncated this element specifies the last part of the list, as well as the value to use for the part-number-marker request parameter in a subsequent request.
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
 func (r OrgsApiListWorkspaceAuditLogsRequest) NextToken(nextToken string) OrgsApiListWorkspaceAuditLogsRequest {
 	r.nextToken = &nextToken
 	return r
@@ -1210,7 +1210,7 @@ func (r OrgsApiUpdateRequest) Execute() (Org, *_nethttp.Response, error) {
 /*
 Update Update org
 
-Updates the handle name, display name or the URl of the organization.
+Updates the handle name, display name, or the URL of an organization.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle Specify the handle of the organization which need to be updated.

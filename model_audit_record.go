@@ -18,16 +18,14 @@ import (
 // AuditRecord struct for AuditRecord
 type AuditRecord struct {
 	// The action performed on the resource.
-	ActionType string `json:"action_type"`
-	// The avatar of the actor.
+	ActionType     string `json:"action_type"`
 	ActorAvatarUrl string `json:"actor_avatar_url"`
-	// The display name of the actor.
+	// The display name of an actor.
 	ActorDisplayName string `json:"actor_display_name"`
-	// The handle name of the actor.
+	// The handle name of an actor.
 	ActorHandle string `json:"actor_handle"`
-	// The unique identifier of the actor.
+	// The unique identifier of an actor.
 	ActorId string `json:"actor_id"`
-	// The IP address of the actor.
 	ActorIp string `json:"actor_ip"`
 	// The time when the audit log was recorded.
 	CreatedAt string                 `json:"created_at"`
