@@ -1,5 +1,8 @@
 # Steampipe Cloud Go SDK
 
+## 0.0.3 [2021-12-15]
+
+- Update the struct docs.
 ## 0.0.2 [2021-12-14]
 
 - Updated: Removed the suffix types from the struct.
