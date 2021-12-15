@@ -17,9 +17,12 @@ import (
 
 // Quota struct for Quota
 type Quota struct {
+	// Remaining limit
 	Available *int32 `json:"available,omitempty"`
-	Limit     *int32 `json:"limit,omitempty"`
-	Used      *int32 `json:"used,omitempty"`
+	// Max limit
+	Limit *int32 `json:"limit,omitempty"`
+	// Exhausted limit
+	Used *int32 `json:"used,omitempty"`
 }
 
 // NewQuota instantiates a new Quota object

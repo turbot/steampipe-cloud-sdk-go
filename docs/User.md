@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AvatarUrl** | Pointer to **string** |  | [optional] 
-**CreatedAt** | **string** |  | 
-**DisplayName** | Pointer to **string** |  | [optional] 
-**Email** | **string** |  | 
-**Handle** | **string** |  | 
-**Id** | **string** |  | 
+**AvatarUrl** | Pointer to **string** | The avatar URL of a user. | [optional] 
+**CreatedAt** | **string** | The user created time. | 
+**DisplayName** | Pointer to **string** | Display name of a user. | [optional] 
+**Email** | **string** | Email address of a user. | 
+**Handle** | **string** | The handle name of a user. | 
+**Id** | **string** | The unique identifier of a user. | 
 **PreviewAccessMode** | Pointer to **string** |  | [optional] 
-**Status** | **string** |  | 
-**UpdatedAt** | Pointer to **string** |  | [optional] 
+**Status** | **string** | The status of the user i.e accepted or invited | 
+**UpdatedAt** | Pointer to **string** | The user updated time. | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
-**VersionId** | **int32** |  | 
+**VersionId** | **int32** | The current version of a user. | 
 
 ## Methods
 

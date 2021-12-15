@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DisplayName** | Pointer to **string** |  | [optional] 
-**Handle** | **string** |  | 
-**Id** | **string** |  | 
-**Type** | **string** |  | 
+**DisplayName** | Pointer to **string** | Display name of the identity. | [optional] 
+**Handle** | **string** | The handle name of the identity. | 
+**Id** | **string** | The unique identifier for the identity. | 
+**Type** | **string** | The type of identity i.e user or org. | 
 
 ## Methods
 

@@ -539,7 +539,7 @@ func (r UserTokensApiListRequest) Execute() (ListTokensResponse, *_nethttp.Respo
 /*
 List List tokens
 
-List the token for a user. The action supports list pagination and does not return more than 50 tokens at a time.If there are more tokens to list, then there is a value in next_token. You can use the next_token value to continue the pagination of the list by passing the value in next_token in the request to get the next page.
+List the token for a user.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user.

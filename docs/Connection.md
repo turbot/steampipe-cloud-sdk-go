@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Config** | Pointer to **map[string]interface{}** |  | [optional] 
-**CreatedAt** | **string** |  | 
-**Handle** | **string** |  | 
-**Id** | **string** |  | 
+**CreatedAt** | **string** | The connection created time. | 
+**Handle** | **string** | The handle name of the  connection. | 
+**Id** | **string** | The unique identifier for the connection. | 
 **Identity** | Pointer to [**Identity**](Identity.md) |  | [optional] 
-**IdentityId** | **string** |  | 
-**Plugin** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **string** |  | [optional] 
-**VersionId** | **int32** |  | 
+**IdentityId** | **string** | The unique identifier for an identity where the connection has been created. | 
+**Plugin** | Pointer to **string** | The plugin name for the connection. | [optional] 
+**Type** | Pointer to **string** | Type of connection i.e aggregator or connection. | [optional] 
+**UpdatedAt** | Pointer to **string** | The connection updated time. | [optional] 
+**VersionId** | **int32** | The current version ID for the connection. | 
 
 ## Methods
 

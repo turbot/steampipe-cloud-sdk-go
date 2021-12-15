@@ -17,14 +17,21 @@ import (
 
 // Org struct for Org
 type Org struct {
-	AvatarUrl   *string `json:"avatar_url,omitempty"`
-	CreatedAt   string  `json:"created_at"`
+	// The avatar of an org.
+	AvatarUrl *string `json:"avatar_url,omitempty"`
+	// The org created time.
+	CreatedAt string `json:"created_at"`
+	// The display name of an org.
 	DisplayName *string `json:"display_name,omitempty"`
-	Handle      string  `json:"handle"`
-	Id          string  `json:"id"`
-	UpdatedAt   *string `json:"updated_at,omitempty"`
-	Url         *string `json:"url,omitempty"`
-	VersionId   int32   `json:"version_id"`
+	// The handle name for an org.
+	Handle string `json:"handle"`
+	// The unique identifier for an org.
+	Id string `json:"id"`
+	// The org updated time.
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	Url       *string `json:"url,omitempty"`
+	// The current version ID for an org.
+	VersionId int32 `json:"version_id"`
 }
 
 // NewOrg instantiates a new Org object

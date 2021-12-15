@@ -17,16 +17,24 @@ import (
 
 // Connection struct for Connection
 type Connection struct {
-	Config     *map[string]interface{} `json:"config,omitempty"`
-	CreatedAt  string                  `json:"created_at"`
-	Handle     string                  `json:"handle"`
-	Id         string                  `json:"id"`
-	Identity   *Identity               `json:"identity,omitempty"`
-	IdentityId string                  `json:"identity_id"`
-	Plugin     *string                 `json:"plugin,omitempty"`
-	Type       *string                 `json:"type,omitempty"`
-	UpdatedAt  *string                 `json:"updated_at,omitempty"`
-	VersionId  int32                   `json:"version_id"`
+	Config *map[string]interface{} `json:"config,omitempty"`
+	// The connection created time.
+	CreatedAt string `json:"created_at"`
+	// The handle name of the  connection.
+	Handle string `json:"handle"`
+	// The unique identifier for the connection.
+	Id       string    `json:"id"`
+	Identity *Identity `json:"identity,omitempty"`
+	// The unique identifier for an identity where the connection has been created.
+	IdentityId string `json:"identity_id"`
+	// The plugin name for the connection.
+	Plugin *string `json:"plugin,omitempty"`
+	// Type of connection i.e aggregator or connection.
+	Type *string `json:"type,omitempty"`
+	// The connection updated time.
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	// The current version ID for the connection.
+	VersionId int32 `json:"version_id"`
 }
 
 // NewConnection instantiates a new Connection object

@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Connection** | Pointer to [**Connection**](Connection.md) |  | [optional] 
-**ConnectionId** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**Id** | **string** |  | 
-**IdentityId** | **string** |  | 
-**UpdatedAt** | Pointer to **string** |  | [optional] 
-**VersionId** | **int32** |  | 
+**ConnectionId** | **string** | The unique identifier for the connection. | 
+**CreatedAt** | **string** | Association created time. | 
+**Id** | **string** | The unique identifier for the workspace connection association. | 
+**IdentityId** | **string** | The identity ID where the association exists. | 
+**UpdatedAt** | Pointer to **string** | Association updated time. | [optional] 
+**VersionId** | **int32** | The current version ID for the association. | 
 **Workspace** | Pointer to [**Workspace**](Workspace.md) |  | [optional] 
-**WorkspaceId** | **string** |  | 
+**WorkspaceId** | **string** | The unique identifier for the wokspace. | 
 
 ## Methods
 

@@ -1105,7 +1105,7 @@ func (r OrgWorkspacesApiListRequest) Execute() (ListWorkspacesResponse, *_nethtt
 /*
 List List org workspaces
 
-List the workspace for an organization. The action supports list pagination and does not return more than 50 workspaces at a time.If there are more workspaces to list, then there is a value in next_token. You can use the next_token value to continue the pagination of the list by passing the value in next_token in the request to get the next page.
+List the workspace for an organization.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle The handle of the organization for which we want to list the workspace.

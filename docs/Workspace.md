@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **string** |  | 
-**DatabaseName** | Pointer to **string** |  | [optional] 
-**Handle** | **string** |  | 
-**Hive** | Pointer to **string** |  | [optional] 
+**CreatedAt** | **string** | The workspace created time. | 
+**DatabaseName** | Pointer to **string** | The name of the database. | [optional] 
+**Handle** | **string** | The handle name for the workspace. | 
+**Hive** | Pointer to **string** | The database hive for this workspace. | [optional] 
 **Host** | Pointer to **string** |  | [optional] 
-**Id** | **string** |  | 
+**Id** | **string** | The unique identifier for the workspace. | 
 **Identity** | Pointer to [**Identity**](Identity.md) |  | [optional] 
-**IdentityId** | **string** |  | 
+**IdentityId** | **string** | The unique identifier for an identity where the workspace is created. | 
 **PublicKey** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **string** |  | [optional] 
-**VersionId** | **int32** |  | 
-**WorkspaceState** | Pointer to **string** |  | [optional] 
+**UpdatedAt** | Pointer to **string** | The workspace updated time. | [optional] 
+**VersionId** | **int32** | The current version ID for the workspace. | 
+**WorkspaceState** | Pointer to **string** | The current state of the workspace. | [optional] 
 
 ## Methods
 

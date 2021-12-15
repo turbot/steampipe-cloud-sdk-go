@@ -17,17 +17,26 @@ import (
 
 // User struct for User
 type User struct {
-	AvatarUrl         *string `json:"avatar_url,omitempty"`
-	CreatedAt         string  `json:"created_at"`
-	DisplayName       *string `json:"display_name,omitempty"`
-	Email             string  `json:"email"`
-	Handle            string  `json:"handle"`
+	// The avatar URL of a user.
+	AvatarUrl *string `json:"avatar_url,omitempty"`
+	// The user created time.
+	CreatedAt string `json:"created_at"`
+	// Display name of a user.
+	DisplayName *string `json:"display_name,omitempty"`
+	// Email address of a user.
+	Email string `json:"email"`
+	// The handle name of a user.
+	Handle string `json:"handle"`
+	// The unique identifier of a user.
 	Id                string  `json:"id"`
 	PreviewAccessMode *string `json:"preview_access_mode,omitempty"`
-	Status            string  `json:"status"`
-	UpdatedAt         *string `json:"updated_at,omitempty"`
-	Url               *string `json:"url,omitempty"`
-	VersionId         int32   `json:"version_id"`
+	// The status of the user i.e accepted or invited
+	Status string `json:"status"`
+	// The user updated time.
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	Url       *string `json:"url,omitempty"`
+	// The current version of a user.
+	VersionId int32 `json:"version_id"`
 }
 
 // NewUser instantiates a new User object

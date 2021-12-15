@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **string** |  | [optional] 
-**Email** | **string** |  | 
-**Id** | **string** |  | 
-**OrgId** | **string** |  | 
-**Role** | Pointer to **string** |  | [optional] 
-**Status** | **string** |  | 
-**UpdatedAt** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** | The created time when the member was invited. | [optional] 
+**Email** | **string** | The email address of the member. | 
+**Id** | **string** | The unique identifier of the org member. | 
+**OrgId** | **string** | The identifier of an org. | 
+**Role** | Pointer to **string** | The access privellage for the member. | [optional] 
+**Status** | **string** | The status of the org member i.e pending or accepted. | 
+**UpdatedAt** | Pointer to **string** | The updated time  of the member. | [optional] 
 **User** | Pointer to [**User**](User.md) |  | [optional] 
-**UserHandle** | **string** |  | 
-**UserId** | **string** |  | 
-**VersionId** | Pointer to **int32** |  | [optional] 
+**UserHandle** | **string** | The user handle of the member. | 
+**UserId** | **string** | The identifier of a user. | 
+**VersionId** | Pointer to **int32** | The current version ID of the member. | [optional] 
 
 ## Methods
 

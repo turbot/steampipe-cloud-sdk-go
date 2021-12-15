@@ -929,11 +929,7 @@ paths:
       - Orgs
   /org/{org_handle}/conn:
     get:
-      description: List the connection for an organization. The action supports list
-        pagination and does not return more than 50 connections at a time.If there
-        are more connections to list, then there is a value in next_token. You can
-        use the next_token value to continue the pagination of the list by passing
-        the value in next_token in the request to get the next page.
+      description: List the connection for an organization.
       operationId: orgConnection_list
       parameters:
       - description: The handle of the organization for which we want to list the
@@ -1979,11 +1975,7 @@ paths:
       - Orgs
   /org/{org_handle}/workspace:
     get:
-      description: List the workspace for an organization. The action supports list
-        pagination and does not return more than 50 workspaces at a time.If there
-        are more workspaces to list, then there is a value in next_token. You can
-        use the next_token value to continue the pagination of the list by passing
-        the value in next_token in the request to get the next page.
+      description: List the workspace for an organization.
       operationId: orgWorkspace_list
       parameters:
       - description: The handle of the organization for which we want to list the
@@ -4768,11 +4760,7 @@ paths:
       - Users
   /user/{user_handle}/token:
     get:
-      description: List the token for a user. The action supports list pagination
-        and does not return more than 50 tokens at a time.If there are more tokens
-        to list, then there is a value in next_token. You can use the next_token value
-        to continue the pagination of the list by passing the value in next_token
-        in the request to get the next page.
+      description: List the token for a user.
       operationId: userToken_list
       parameters:
       - description: The handle of the user.
@@ -6567,6 +6555,172 @@ paths:
       - UserWorkspaces
 components:
   schemas:
+    SchemaInfo:
+      example:
+        tables:
+        - columns:
+          - data_type: data_type
+            name: name
+            description: description
+          - data_type: data_type
+            name: name
+            description: description
+          name: name
+          description: description
+        - columns:
+          - data_type: data_type
+            name: name
+            description: description
+          - data_type: data_type
+            name: name
+            description: description
+          name: name
+          description: description
+        name: name
+        description: description
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        tables:
+          items:
+            $ref: '#/components/schemas/SchemaTable'
+          type: array
+      required:
+      - name
+      - tables
+      type: object
+    SchemaTable:
+      example:
+        columns:
+        - data_type: data_type
+          name: name
+          description: description
+        - data_type: data_type
+          name: name
+          description: description
+        name: name
+        description: description
+      properties:
+        columns:
+          items:
+            $ref: '#/components/schemas/SchemaTableColumn'
+          type: array
+        description:
+          type: string
+        name:
+          type: string
+      required:
+      - columns
+      - name
+      type: object
+    SchemaTableColumn:
+      example:
+        data_type: data_type
+        name: name
+        description: description
+      properties:
+        data_type:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+      required:
+      - data_type
+      - name
+      type: object
+    WorkspaceSchema:
+      example:
+        duration: 0
+        schemas:
+        - tables:
+          - columns:
+            - data_type: data_type
+              name: name
+              description: description
+            - data_type: data_type
+              name: name
+              description: description
+            name: name
+            description: description
+          - columns:
+            - data_type: data_type
+              name: name
+              description: description
+            - data_type: data_type
+              name: name
+              description: description
+            name: name
+            description: description
+          name: name
+          description: description
+        - tables:
+          - columns:
+            - data_type: data_type
+              name: name
+              description: description
+            - data_type: data_type
+              name: name
+              description: description
+            name: name
+            description: description
+          - columns:
+            - data_type: data_type
+              name: name
+              description: description
+            - data_type: data_type
+              name: name
+              description: description
+            name: name
+            description: description
+          name: name
+          description: description
+      properties:
+        duration:
+          type: integer
+        schemas:
+          items:
+            $ref: '#/components/schemas/SchemaInfo'
+          type: array
+      required:
+      - duration
+      - schemas
+      type: object
+    ErrorDetailModel:
+      properties:
+        location:
+          type: string
+        message:
+          type: string
+        value:
+          type: string
+      type: object
+    ErrorModel:
+      properties:
+        detail:
+          type: string
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorDetailModel'
+          type: array
+        id:
+          type: string
+        instance:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+      required:
+      - id
+      - status
+      - title
+      - type
+      type: object
     AssociationQuota:
       additionalProperties:
         $ref: '#/components/schemas/Quota'
@@ -6588,30 +6742,45 @@ components:
         actor_handle: actor_handle
       properties:
         action_type:
+          description: The action performed on the resource.
           type: string
         actor_avatar_url:
+          description: The avatar of the actor.
           type: string
         actor_display_name:
+          description: The display name of the actor.
           type: string
         actor_handle:
+          description: The handle name of the actor.
           type: string
         actor_id:
+          description: The unique identifier of the actor.
           type: string
         actor_ip:
+          description: The IP address of the actor.
           type: string
         created_at:
+          description: The time when the audit log was recorded.
           type: string
         data:
           type: object
         id:
+          description: The unique identifier for an audit log.
           type: string
         identity_handle:
+          description: The handle name for an identity where the action has been performed.
           type: string
         identity_id:
+          description: The unique identifier for an identity where the action has
+            been performed.
           type: string
         target_handle:
+          description: The handle name of the entity on which the action has been
+            performed.
           type: string
         target_id:
+          description: The unique identifier of the entity on which the action has
+            been performed.
           type: string
       required:
       - action_type
@@ -6646,25 +6815,34 @@ components:
         config:
           type: object
         created_at:
+          description: The connection created time.
           type: string
         handle:
+          description: The handle name of the  connection.
           format: ^[a-z](?:[a-z0-9]|_(?=[a-z0-9])){0,38}$
           type: string
         id:
+          description: The unique identifier for the connection.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         identity:
           $ref: '#/components/schemas/Identity'
         identity_id:
+          description: The unique identifier for an identity where the connection
+            has been created.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         plugin:
+          description: The plugin name for the connection.
           type: string
         type:
+          description: Type of connection i.e aggregator or connection.
           type: string
         updated_at:
+          description: The connection updated time.
           type: string
         version_id:
+          description: The current version ID for the connection.
           type: integer
       required:
       - created_at
@@ -6770,39 +6948,6 @@ components:
       required:
       - handle
       type: object
-    ErrorDetailModel:
-      properties:
-        location:
-          type: string
-        message:
-          type: string
-        value:
-          type: string
-      type: object
-    ErrorModel:
-      properties:
-        detail:
-          type: string
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorDetailModel'
-          type: array
-        id:
-          type: string
-        instance:
-          type: string
-        status:
-          type: integer
-        title:
-          type: string
-        type:
-          type: string
-      required:
-      - id
-      - status
-      - title
-      - type
-      type: object
     Identity:
       example:
         handle: handle
@@ -6811,12 +6956,16 @@ components:
         type: type
       properties:
         display_name:
+          description: Display name of the identity.
           type: string
         handle:
+          description: The handle name of the identity.
           type: string
         id:
+          description: The unique identifier for the identity.
           type: string
         type:
+          description: The type of identity i.e user or org.
           type: string
       required:
       - handle
@@ -7311,26 +7460,37 @@ components:
         actor_handle: actor_handle
       properties:
         actor_avatar_url:
+          description: The avatar URL of the actor.
           type: string
         actor_display_name:
+          description: The display name of the actor.
           type: string
         actor_handle:
+          description: The actor handle who executed the query.
           type: string
         actor_id:
+          description: The actor ID who executed the query.
           type: string
         created_at:
+          description: The created time of the log.
           type: string
         duration:
+          description: The duration of the query.
           type: integer
         id:
+          description: The unique identifier of the DB log.
           type: string
         log_timestamp:
+          description: The time when the log got captured in the postgres.
           type: string
         query:
+          description: The query being executed in the workspace.
           type: string
         workspace_handle:
+          description: The workspace handle where the query was executed.
           type: string
         workspace_id:
+          description: The workspace ID where the query was executed.
           type: string
       required:
       - actor_avatar_url
@@ -7354,21 +7514,28 @@ components:
         url: url
       properties:
         avatar_url:
+          description: The avatar of an org.
           type: string
         created_at:
+          description: The org created time.
           type: string
         display_name:
+          description: The display name of an org.
           type: string
         handle:
+          description: The handle name for an org.
           type: string
         id:
+          description: The unique identifier for an org.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         updated_at:
+          description: The org updated time.
           type: string
         url:
           type: string
         version_id:
+          description: The current version ID for an org.
           type: integer
       required:
       - created_at
@@ -7431,30 +7598,40 @@ components:
         status: status
       properties:
         created_at:
+          description: The created time when the member was invited.
           type: string
         email:
+          description: The email address of the member.
           type: string
         id:
+          description: The unique identifier of the org member.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         org_id:
+          description: The identifier of an org.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         role:
+          description: The access privellage for the member.
           type: string
         status:
+          description: The status of the org member i.e pending or accepted.
           format: pending|accepted
           type: string
         updated_at:
+          description: The updated time  of the member.
           type: string
         user:
           $ref: '#/components/schemas/User'
         user_handle:
+          description: The user handle of the member.
           type: string
         user_id:
+          description: The identifier of a user.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         version_id:
+          description: The current version ID of the member.
           type: integer
       required:
       - email
@@ -7471,87 +7648,14 @@ components:
         used: 1
       properties:
         available:
+          description: Remaining limit
           type: integer
         limit:
+          description: Max limit
           type: integer
         used:
+          description: Exhausted limit
           type: integer
-      type: object
-    SchemaInfo:
-      example:
-        tables:
-        - columns:
-          - data_type: data_type
-            name: name
-            description: description
-          - data_type: data_type
-            name: name
-            description: description
-          name: name
-          description: description
-        - columns:
-          - data_type: data_type
-            name: name
-            description: description
-          - data_type: data_type
-            name: name
-            description: description
-          name: name
-          description: description
-        name: name
-        description: description
-      properties:
-        description:
-          type: string
-        name:
-          type: string
-        tables:
-          items:
-            $ref: '#/components/schemas/SchemaTable'
-          type: array
-      required:
-      - name
-      - tables
-      type: object
-    SchemaTable:
-      example:
-        columns:
-        - data_type: data_type
-          name: name
-          description: description
-        - data_type: data_type
-          name: name
-          description: description
-        name: name
-        description: description
-      properties:
-        columns:
-          items:
-            $ref: '#/components/schemas/SchemaTableColumn'
-          type: array
-        description:
-          type: string
-        name:
-          type: string
-      required:
-      - columns
-      - name
-      type: object
-    SchemaTableColumn:
-      example:
-        data_type: data_type
-        name: name
-        description: description
-      properties:
-        data_type:
-          type: string
-        description:
-          type: string
-        name:
-          type: string
-      required:
-      - data_type
-      - name
       type: object
     SearchIdentitiesResponse:
       example:
@@ -7710,27 +7814,36 @@ components:
         status: status
       properties:
         avatar_url:
+          description: The avatar URL of a user.
           type: string
         created_at:
+          description: The user created time.
           type: string
         display_name:
+          description: Display name of a user.
           type: string
         email:
+          description: Email address of a user.
           type: string
         handle:
+          description: The handle name of a user.
           type: string
         id:
+          description: The unique identifier of a user.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         preview_access_mode:
           type: string
         status:
+          description: The status of the user i.e accepted or invited
           type: string
         updated_at:
+          description: The user updated time.
           type: string
         url:
           type: string
         version_id:
+          description: The current version of a user.
           type: integer
       required:
       - created_at
@@ -7913,32 +8026,42 @@ components:
         version_id: 0
       properties:
         created_at:
+          description: The workspace created time.
           type: string
         database_name:
+          description: The name of the database.
           type: string
         handle:
+          description: The handle name for the workspace.
           example: aaa
           format: ^[a-z0-9]{1,23}$
           type: string
         hive:
+          description: The database hive for this workspace.
           type: string
         host:
           type: string
         id:
+          description: The unique identifier for the workspace.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         identity:
           $ref: '#/components/schemas/Identity'
         identity_id:
+          description: The unique identifier for an identity where the workspace is
+            created.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         public_key:
           type: string
         updated_at:
+          description: The workspace updated time.
           type: string
         version_id:
+          description: The current version ID for the workspace.
           type: integer
         workspace_state:
+          description: The current state of the workspace.
           type: string
       required:
       - created_at
@@ -7992,22 +8115,29 @@ components:
         connection:
           $ref: '#/components/schemas/Connection'
         connection_id:
+          description: The unique identifier for the connection.
           type: string
         created_at:
+          description: Association created time.
           type: string
         id:
+          description: The unique identifier for the workspace connection association.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         identity_id:
+          description: The identity ID where the association exists.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         updated_at:
+          description: Association updated time.
           type: string
         version_id:
+          description: The current version ID for the association.
           type: integer
         workspace:
           $ref: '#/components/schemas/Workspace'
         workspace_id:
+          description: The unique identifier for the wokspace.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
       required:
@@ -8062,63 +8192,6 @@ components:
       required:
       - data_type_name
       - name
-      type: object
-    WorkspaceSchema:
-      example:
-        duration: 0
-        schemas:
-        - tables:
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          name: name
-          description: description
-        - tables:
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          name: name
-          description: description
-      properties:
-        duration:
-          type: integer
-        schemas:
-          items:
-            $ref: '#/components/schemas/SchemaInfo'
-          type: array
-      required:
-      - duration
-      - schemas
       type: object
   securitySchemes:
     ApiKeyAuth:

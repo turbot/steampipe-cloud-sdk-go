@@ -17,19 +17,31 @@ import (
 
 // AuditRecord struct for AuditRecord
 type AuditRecord struct {
-	ActionType       string                 `json:"action_type"`
-	ActorAvatarUrl   string                 `json:"actor_avatar_url"`
-	ActorDisplayName string                 `json:"actor_display_name"`
-	ActorHandle      string                 `json:"actor_handle"`
-	ActorId          string                 `json:"actor_id"`
-	ActorIp          string                 `json:"actor_ip"`
-	CreatedAt        string                 `json:"created_at"`
-	Data             map[string]interface{} `json:"data"`
-	Id               string                 `json:"id"`
-	IdentityHandle   string                 `json:"identity_handle"`
-	IdentityId       string                 `json:"identity_id"`
-	TargetHandle     *string                `json:"target_handle,omitempty"`
-	TargetId         *string                `json:"target_id,omitempty"`
+	// The action performed on the resource.
+	ActionType string `json:"action_type"`
+	// The avatar of the actor.
+	ActorAvatarUrl string `json:"actor_avatar_url"`
+	// The display name of the actor.
+	ActorDisplayName string `json:"actor_display_name"`
+	// The handle name of the actor.
+	ActorHandle string `json:"actor_handle"`
+	// The unique identifier of the actor.
+	ActorId string `json:"actor_id"`
+	// The IP address of the actor.
+	ActorIp string `json:"actor_ip"`
+	// The time when the audit log was recorded.
+	CreatedAt string                 `json:"created_at"`
+	Data      map[string]interface{} `json:"data"`
+	// The unique identifier for an audit log.
+	Id string `json:"id"`
+	// The handle name for an identity where the action has been performed.
+	IdentityHandle string `json:"identity_handle"`
+	// The unique identifier for an identity where the action has been performed.
+	IdentityId string `json:"identity_id"`
+	// The handle name of the entity on which the action has been performed.
+	TargetHandle *string `json:"target_handle,omitempty"`
+	// The unique identifier of the entity on which the action has been performed.
+	TargetId *string `json:"target_id,omitempty"`
 }
 
 // NewAuditRecord instantiates a new AuditRecord object

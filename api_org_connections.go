@@ -561,7 +561,7 @@ func (r OrgConnectionsApiListRequest) Execute() (ListConnectionsResponse, *_neth
 /*
 List List org connections
 
-List the connection for an organization. The action supports list pagination and does not return more than 50 connections at a time.If there are more connections to list, then there is a value in next_token. You can use the next_token value to continue the pagination of the list by passing the value in next_token in the request to get the next page.
+List the connection for an organization.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle The handle of the organization for which we want to list the connections.

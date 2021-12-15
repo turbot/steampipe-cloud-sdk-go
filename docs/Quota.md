@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Available** | Pointer to **int32** |  | [optional] 
-**Limit** | Pointer to **int32** |  | [optional] 
-**Used** | Pointer to **int32** |  | [optional] 
+**Available** | Pointer to **int32** | Remaining limit | [optional] 
+**Limit** | Pointer to **int32** | Max limit | [optional] 
+**Used** | Pointer to **int32** | Exhausted limit | [optional] 
 
 ## Methods
 
