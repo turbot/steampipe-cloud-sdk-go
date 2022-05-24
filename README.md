@@ -88,10 +88,27 @@ Class | Method | HTTP request | Description
 *OrgMembers* | [**ListAccepted**](docs/OrgMembers.md#listaccepted) | **Get** /org/{org_handle}/member | List accepted org members
 *OrgMembers* | [**ListInvited**](docs/OrgMembers.md#listinvited) | **Get** /org/{org_handle}/member/invite | List invited org members
 *OrgMembers* | [**Update**](docs/OrgMembers.md#update) | **Patch** /org/{org_handle}/member/{user_handle} | Update org member
+*OrgNotifications* | [**CreateOrgNotificationRule**](docs/OrgNotifications.md#createorgnotificationrule) | **Post** /org/{org_handle}/notification_rule | Create organization notification rule
+*OrgNotifications* | [**DeleteOrgNotificationRule**](docs/OrgNotifications.md#deleteorgnotificationrule) | **Delete** /user/{org_handle}/notification_rule/{notification_rule_id} | Delete organization notification rule
+*OrgNotifications* | [**GetOrgNotificationRule**](docs/OrgNotifications.md#getorgnotificationrule) | **Get** /user/{org_handle}/notification_rule/{notification_rule_id} | Get organization notification rule
+*OrgNotifications* | [**ListOrgNotificationRules**](docs/OrgNotifications.md#listorgnotificationrules) | **Get** /user/{org_handle}/notification_rule | List organization notification rules
 *OrgWorkspaceConnectionAssociations* | [**Create**](docs/OrgWorkspaceConnectionAssociations.md#create) | **Post** /org/{org_handle}/workspace/{workspace_handle}/conn | Create org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Delete**](docs/OrgWorkspaceConnectionAssociations.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Get**](docs/OrgWorkspaceConnectionAssociations.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**List**](docs/OrgWorkspaceConnectionAssociations.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn | List org workspace connection associations
+*OrgWorkspaceModVariables* | [**CreateOrgWorkspaceModVariableSetting**](docs/OrgWorkspaceModVariables.md#createorgworkspacemodvariablesetting) | **Post** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | Create a setting for a mod variable in an organization workspace
+*OrgWorkspaceModVariables* | [**DeleteOrgWorkspaceModVariableSetting**](docs/OrgWorkspaceModVariables.md#deleteorgworkspacemodvariablesetting) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Delete setting for a mod variable in an organization workspace
+*OrgWorkspaceModVariables* | [**ListOrgWorkspaceModVariables**](docs/OrgWorkspaceModVariables.md#listorgworkspacemodvariables) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | List variables in an organization workspace mod
+*OrgWorkspaceModVariables* | [**UpdateOrgWorkspaceModVariableSetting**](docs/OrgWorkspaceModVariables.md#updateorgworkspacemodvariablesetting) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Update setting for a mod variable in an organization workspace
+*OrgWorkspaceMods* | [**GetOrgWorkspaceMod**](docs/OrgWorkspaceMods.md#getorgworkspacemod) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Get organization workspace installed mod
+*OrgWorkspaceMods* | [**InstallOrgWorkspaceMod**](docs/OrgWorkspaceMods.md#installorgworkspacemod) | **Post** /org/{org_handle}/workspace/{workspace_handle}/mod | Install a mod to an organization workspace
+*OrgWorkspaceMods* | [**ListOrgWorkspaceMods**](docs/OrgWorkspaceMods.md#listorgworkspacemods) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod | List organization workspace installed mods
+*OrgWorkspaceMods* | [**UninstallOrgWorkspaceMod**](docs/OrgWorkspaceMods.md#uninstallorgworkspacemod) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Uninstall mod from organization workspace.
+*OrgWorkspaceMods* | [**UpdateOrgWorkspaceMod**](docs/OrgWorkspaceMods.md#updateorgworkspacemod) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Update a mod in an organization workspace
+*OrgWorkspaceNotifications* | [**CreateOrgWorkspaceNotificationRule**](docs/OrgWorkspaceNotifications.md#createorgworkspacenotificationrule) | **Post** /org/{org_handle}/workspace/{workspace_handle}/notification_rule | Create organization workspace notification rule
+*OrgWorkspaceNotifications* | [**DeleteOrgWorkspaceNotificationRule**](docs/OrgWorkspaceNotifications.md#deleteorgworkspacenotificationrule) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/notification_rule/{notification_rule_id} | Delete organization workspace notification rule
+*OrgWorkspaceNotifications* | [**GetOrgWorkspaceNotificationRule**](docs/OrgWorkspaceNotifications.md#getorgworkspacenotificationrule) | **Get** /org/{org_handle}/workspace/{workspace_handle}/notification_rule/{notification_rule_id} | Get organization workspace notification rule
+*OrgWorkspaceNotifications* | [**ListOrgWorkspaceNotificationRules**](docs/OrgWorkspaceNotifications.md#listorgworkspacenotificationrules) | **Get** /org/{org_handle}/workspace/{workspace_handle}/notification_rule | List organization workspace notification rules
 *OrgWorkspaces* | [**Create**](docs/OrgWorkspaces.md#create) | **Post** /org/{org_handle}/workspace | Create org workspace
 *OrgWorkspaces* | [**Delete**](docs/OrgWorkspaces.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle} | Delete org workspace
 *OrgWorkspaces* | [**Get**](docs/OrgWorkspaces.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle} | Get org workspace
@@ -106,6 +123,7 @@ Class | Method | HTTP request | Description
 *Orgs* | [**Create**](docs/Orgs.md#create) | **Post** /org | Create org
 *Orgs* | [**Delete**](docs/Orgs.md#delete) | **Delete** /org/{org_handle} | Delete org
 *Orgs* | [**Get**](docs/Orgs.md#get) | **Get** /org/{org_handle} | Get org
+*Orgs* | [**GetFeatures**](docs/Orgs.md#getfeatures) | **Get** /org/{org_handle}/feature | Org features
 *Orgs* | [**GetQuota**](docs/Orgs.md#getquota) | **Get** /org/{org_handle}/quota | Org quota
 *Orgs* | [**List**](docs/Orgs.md#list) | **Get** /org | List orgs
 *Orgs* | [**ListAuditLogs**](docs/Orgs.md#listauditlogs) | **Get** /org/{org_handle}/audit | Org audit logs
@@ -117,6 +135,10 @@ Class | Method | HTTP request | Description
 *UserConnections* | [**List**](docs/UserConnections.md#list) | **Get** /user/{user_handle}/conn | List user connections
 *UserConnections* | [**Test**](docs/UserConnections.md#test) | **Post** /user/{user_handle}/conn/{conn_handle}/test | Test user connection
 *UserConnections* | [**Update**](docs/UserConnections.md#update) | **Patch** /user/{user_handle}/conn/{conn_handle} | Update user connection
+*UserNotifications* | [**CreateUserNotificationRule**](docs/UserNotifications.md#createusernotificationrule) | **Post** /user/{user_handle}/notification_rule | Create user notification rule
+*UserNotifications* | [**DeleteUserNotificationRule**](docs/UserNotifications.md#deleteusernotificationrule) | **Delete** /user/{user_handle}/notification_rule/{notification_rule_id} | Delete user notification rule
+*UserNotifications* | [**GetUserNotificationRule**](docs/UserNotifications.md#getusernotificationrule) | **Get** /user/{user_handle}/notification_rule/{notification_rule_id} | Get user notification rule
+*UserNotifications* | [**ListUserNotificationRules**](docs/UserNotifications.md#listusernotificationrules) | **Get** /user/{user_handle}/notification_rule | List user notification rules
 *UserTokens* | [**Create**](docs/UserTokens.md#create) | **Post** /user/{user_handle}/token | Create token
 *UserTokens* | [**Delete**](docs/UserTokens.md#delete) | **Delete** /user/{user_handle}/token/{token_id} | Delete token
 *UserTokens* | [**Get**](docs/UserTokens.md#get) | **Get** /user/{user_handle}/token/{token_id} | Get token
@@ -126,6 +148,19 @@ Class | Method | HTTP request | Description
 *UserWorkspaceConnectionAssociations* | [**Delete**](docs/UserWorkspaceConnectionAssociations.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete user workspace connection association
 *UserWorkspaceConnectionAssociations* | [**Get**](docs/UserWorkspaceConnectionAssociations.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get user workspace connection association
 *UserWorkspaceConnectionAssociations* | [**List**](docs/UserWorkspaceConnectionAssociations.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn | List user workspace connection associations
+*UserWorkspaceModVariables* | [**CreateUserWorkspaceModVariableSetting**](docs/UserWorkspaceModVariables.md#createuserworkspacemodvariablesetting) | **Post** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | Create a setting for a mod variable in a user workspace
+*UserWorkspaceModVariables* | [**DeleteUserWorkspaceModVariableSetting**](docs/UserWorkspaceModVariables.md#deleteuserworkspacemodvariablesetting) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Delete setting for a mod variable in a user workspace
+*UserWorkspaceModVariables* | [**ListUserWorkspaceModVariables**](docs/UserWorkspaceModVariables.md#listuserworkspacemodvariables) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | List variables for a user workspace mod
+*UserWorkspaceModVariables* | [**UpdateUserWorkspaceModVariableSetting**](docs/UserWorkspaceModVariables.md#updateuserworkspacemodvariablesetting) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Update setting for a mod variable in a user workspace
+*UserWorkspaceMods* | [**GetUserWorkspaceMod**](docs/UserWorkspaceMods.md#getuserworkspacemod) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Get user workspace installed mod
+*UserWorkspaceMods* | [**InstallUserWorkspaceMods**](docs/UserWorkspaceMods.md#installuserworkspacemods) | **Post** /user/{user_handle}/workspace/{workspace_handle}/mod | Install a mod to a user&#39;s workspace
+*UserWorkspaceMods* | [**ListUserWorkspaceMods**](docs/UserWorkspaceMods.md#listuserworkspacemods) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod | List user workspace installed mods
+*UserWorkspaceMods* | [**UninstallUserWorkspaceMod**](docs/UserWorkspaceMods.md#uninstalluserworkspacemod) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Uninstall mod from a user&#39;s workspace.
+*UserWorkspaceMods* | [**UpdateUserWorkspaceMod**](docs/UserWorkspaceMods.md#updateuserworkspacemod) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Update a mod in a user&#39;s workspace
+*UserWorkspaceNotifications* | [**CreateUserWorkspaceNotificationRule**](docs/UserWorkspaceNotifications.md#createuserworkspacenotificationrule) | **Post** /user/{user_handle}/workspace/{workspace_handle}/notification_rule | Create user workspace notification rule
+*UserWorkspaceNotifications* | [**DeleteUserWorkspaceNotificationRule**](docs/UserWorkspaceNotifications.md#deleteuserworkspacenotificationrule) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/notification_rule/{notification_rule_id} | Delete user workspace notification rule
+*UserWorkspaceNotifications* | [**GetUserWorkspaceNotificationRule**](docs/UserWorkspaceNotifications.md#getuserworkspacenotificationrule) | **Get** /user/{user_handle}/workspace/{workspace_handle}/notification_rule/{notification_rule_id} | Get user workspace notification rule
+*UserWorkspaceNotifications* | [**ListUserWorkspaceNotificationRules**](docs/UserWorkspaceNotifications.md#listuserworkspacenotificationrules) | **Get** /user/{user_handle}/workspace/{workspace_handle}/notification_rule | List user workspace notification rules
 *UserWorkspaces* | [**Create**](docs/UserWorkspaces.md#create) | **Post** /user/{user_handle}/workspace | Create user workspace
 *UserWorkspaces* | [**Delete**](docs/UserWorkspaces.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle} | Delete user workspace
 *UserWorkspaces* | [**Get**](docs/UserWorkspaces.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle} | Get user workspace
@@ -142,6 +177,7 @@ Class | Method | HTTP request | Description
 *Users* | [**Delete**](docs/Users.md#delete) | **Delete** /user/{user_handle} | Delete user
 *Users* | [**Get**](docs/Users.md#get) | **Get** /user/{user_handle} | Get user
 *Users* | [**GetDBPassword**](docs/Users.md#getdbpassword) | **Get** /user/{user_handle}/password | Get user password
+*Users* | [**GetFeatures**](docs/Users.md#getfeatures) | **Get** /user/{user_handle}/feature | User features
 *Users* | [**GetQuota**](docs/Users.md#getquota) | **Get** /user/{user_handle}/quota | User quota
 *Users* | [**List**](docs/Users.md#list) | **Get** /user | List users
 *Users* | [**ListAuditLogs**](docs/Users.md#listauditlogs) | **Get** /user/{user_handle}/audit | User audit logs
@@ -158,27 +194,42 @@ Class | Method | HTTP request | Description
  - [Connection](docs/Connection.md)
  - [ConnectionTestResult](docs/ConnectionTestResult.md)
  - [CreateConnectionRequest](docs/CreateConnectionRequest.md)
+ - [CreateOrgNotificationRequest](docs/CreateOrgNotificationRequest.md)
  - [CreateOrgRequest](docs/CreateOrgRequest.md)
+ - [CreateUserNotificationRequestNoSender](docs/CreateUserNotificationRequestNoSender.md)
  - [CreateUserPasswordRequest](docs/CreateUserPasswordRequest.md)
  - [CreateUserRequest](docs/CreateUserRequest.md)
  - [CreateWorkspaceConnRequest](docs/CreateWorkspaceConnRequest.md)
+ - [CreateWorkspaceModRequest](docs/CreateWorkspaceModRequest.md)
+ - [CreateWorkspaceModVariableSettingRequest](docs/CreateWorkspaceModVariableSettingRequest.md)
+ - [CreateWorkspaceNotificationRequest](docs/CreateWorkspaceNotificationRequest.md)
+ - [CreateWorkspaceNotificationRequestNoSender](docs/CreateWorkspaceNotificationRequestNoSender.md)
  - [CreateWorkspaceRequest](docs/CreateWorkspaceRequest.md)
  - [ErrorDetailModel](docs/ErrorDetailModel.md)
  - [ErrorModel](docs/ErrorModel.md)
+ - [Feature](docs/Feature.md)
+ - [Features](docs/Features.md)
  - [Identity](docs/Identity.md)
  - [IdentitySearch](docs/IdentitySearch.md)
  - [InviteOrgUserRequest](docs/InviteOrgUserRequest.md)
  - [ListAuditLogsResponse](docs/ListAuditLogsResponse.md)
  - [ListConnectionsResponse](docs/ListConnectionsResponse.md)
  - [ListLogsResponse](docs/ListLogsResponse.md)
+ - [ListNotificationRulesResponse](docs/ListNotificationRulesResponse.md)
  - [ListOrgUsersResponse](docs/ListOrgUsersResponse.md)
  - [ListOrgsResponse](docs/ListOrgsResponse.md)
  - [ListTokensResponse](docs/ListTokensResponse.md)
  - [ListUserOrgsResponse](docs/ListUserOrgsResponse.md)
  - [ListUsersResponse](docs/ListUsersResponse.md)
  - [ListWorkspaceConnResponse](docs/ListWorkspaceConnResponse.md)
+ - [ListWorkspaceModVariablesResponse](docs/ListWorkspaceModVariablesResponse.md)
+ - [ListWorkspaceModsResponse](docs/ListWorkspaceModsResponse.md)
  - [ListWorkspacesResponse](docs/ListWorkspacesResponse.md)
  - [LogRecord](docs/LogRecord.md)
+ - [NotificationRecipientRequest](docs/NotificationRecipientRequest.md)
+ - [NotificationRule](docs/NotificationRule.md)
+ - [NotificationRuleEvent](docs/NotificationRuleEvent.md)
+ - [NotificationRuleRecipient](docs/NotificationRuleRecipient.md)
  - [Org](docs/Org.md)
  - [OrgQuota](docs/OrgQuota.md)
  - [OrgUser](docs/OrgUser.md)
@@ -194,6 +245,8 @@ Class | Method | HTTP request | Description
  - [UpdateOrgUserRequest](docs/UpdateOrgUserRequest.md)
  - [UpdateTokenRequest](docs/UpdateTokenRequest.md)
  - [UpdateUserRequest](docs/UpdateUserRequest.md)
+ - [UpdateWorkspaceModRequest](docs/UpdateWorkspaceModRequest.md)
+ - [UpdateWorkspaceModVariableSettingRequest](docs/UpdateWorkspaceModVariableSettingRequest.md)
  - [UpdateWorkspaceRequest](docs/UpdateWorkspaceRequest.md)
  - [User](docs/User.md)
  - [UserDatabasePassword](docs/UserDatabasePassword.md)
@@ -204,6 +257,8 @@ Class | Method | HTTP request | Description
  - [UserSignupRequest](docs/UserSignupRequest.md)
  - [Workspace](docs/Workspace.md)
  - [WorkspaceConn](docs/WorkspaceConn.md)
+ - [WorkspaceMod](docs/WorkspaceMod.md)
+ - [WorkspaceModVariable](docs/WorkspaceModVariable.md)
  - [WorkspaceQueryResult](docs/WorkspaceQueryResult.md)
  - [WorkspaceQueryResultColumn](docs/WorkspaceQueryResultColumn.md)
  - [WorkspaceSchema](docs/WorkspaceSchema.md)

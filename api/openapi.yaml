@@ -1362,6 +1362,60 @@ paths:
       summary: Test org connection
       tags:
       - OrgConnections
+  /org/{org_handle}/feature:
+    get:
+      description: Returns the feature information for an org.
+      operationId: org_getFeatures
+      parameters:
+      - description: Specify the org handle to get the feature details.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Features'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Org features
+      tags:
+      - Orgs
   /org/{org_handle}/member:
     get:
       description: List all the members who has accepted the request.
@@ -1928,6 +1982,102 @@ paths:
       summary: Update org member
       tags:
       - OrgMembers
+      x-codegen-request-body-name: request
+  /org/{org_handle}/notification_rule:
+    post:
+      description: |-
+        Creates a new organization notification rule. Notification rule allows the recipients to be notified when a certain event has been raised.
+
+        Valid events:
+
+        connection.create
+
+        connection.update
+
+        connection.delete
+
+        org.member.add
+
+        org.member.update
+
+        org.member.delete
+
+        workspace.create
+
+        workspace.update
+
+        workspace.delete
+      operationId: org_createOrgNotificationRule
+      parameters:
+      - description: Specify the handle of an organization where the notification
+          rule to be created.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrgNotificationRequest'
+        description: The request body to create a notification rule for this organization.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRule'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Create organization notification rule
+      tags:
+      - OrgNotifications
       x-codegen-request-body-name: request
   /org/{org_handle}/quota:
     get:
@@ -2825,6 +2975,1148 @@ paths:
       summary: Org workspace logs
       tags:
       - OrgWorkspaces
+  /org/{org_handle}/workspace/{workspace_handle}/mod:
+    get:
+      description: List organization workspace installed mods
+      operationId: orgWorkspace_listOrgWorkspaceMods
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where mods were installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspaceModsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List organization workspace installed mods
+      tags:
+      - OrgWorkspaceMods
+    post:
+      description: Install a mod to an organization workspace
+      operationId: orgWorkspace_installOrgWorkspaceMod
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod will be installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceModRequest'
+        description: The request body to create a notification rule for this organization.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Install a mod to an organization workspace
+      tags:
+      - OrgWorkspaceMods
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}:
+    delete:
+      description: Uninstall mod from organization workspace.
+      operationId: orgWorkspace_uninstallOrgWorkspaceMod
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID to delete.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Uninstall mod from organization workspace.
+      tags:
+      - OrgWorkspaceMods
+    get:
+      description: Get organization workspace installed mod by mod alias
+      operationId: orgWorkspace_getOrgWorkspaceMod
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get organization workspace installed mod
+      tags:
+      - OrgWorkspaceMods
+    patch:
+      description: Update a mod in an organization workspace
+      operationId: orgWorkspace_updateOrgWorkspaceMod
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod will be updated.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID to update.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceModRequest'
+        description: The request body to update a mod for this workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Update a mod in an organization workspace
+      tags:
+      - OrgWorkspaceMods
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable:
+    get:
+      description: List all variables applicable for a mod in a workspace specific
+        to an organization
+      operationId: userWorkspace_listOrgWorkspaceModVariables
+      parameters:
+      - description: The handle of the organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID for which we want the variables to be
+          listed.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspaceModVariablesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List variables in an organization workspace mod
+      tags:
+      - OrgWorkspaceModVariables
+    post:
+      description: Create a setting for a mod variable in an organization workspace
+      operationId: userWorkspace_createOrgWorkspaceModVariableSetting
+      parameters:
+      - description: The handle of the organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID for which the variable setting is to
+          be created.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceModVariableSettingRequest'
+        description: The request body to create setting for mod variable in the organization
+          workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Create a setting for a mod variable in an organization workspace
+      tags:
+      - OrgWorkspaceModVariables
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name}:
+    delete:
+      description: Delete setting for a mod variable in an organization workspace
+      operationId: userWorkspace_deleteOrgWorkspaceModVariableSetting
+      parameters:
+      - description: The handle of the organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID which contains the variable.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The name of the variable for which setting is to be delete.
+        explode: false
+        in: path
+        name: variable_name
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Delete setting for a mod variable in an organization workspace
+      tags:
+      - OrgWorkspaceModVariables
+    patch:
+      description: Update setting for a mod variable in an organization workspace
+      operationId: userWorkspace_updateOrgWorkspaceModVariableSetting
+      parameters:
+      - description: The handle of the organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID which contains the variable.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The name of the variable for which setting is to be updated.
+        explode: false
+        in: path
+        name: variable_name
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceModVariableSettingRequest'
+        description: The request body to update setting for mod variable in the organization
+          workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Update setting for a mod variable in an organization workspace
+      tags:
+      - OrgWorkspaceModVariables
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/notification_rule:
+    get:
+      description: List organization workspace notification rules
+      operationId: orgWorkspace_listOrgWorkspaceNotificationRules
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the notification exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNotificationRulesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List organization workspace notification rules
+      tags:
+      - OrgWorkspaceNotifications
+    post:
+      description: |-
+        Creates a new organization workspace notification rule. Notification rule allows the recipients to be notified when a certain event has been raised.
+
+        Valid events:
+
+        workspace.connection.associate
+
+        workspace.connection.dissociate
+      operationId: orgWorkspace_createOrgWorkspaceNotificationRule
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the notification rule will
+          be created.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceNotificationRequest'
+        description: The request body to create a notification rule for this organization.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRule'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Create organization workspace notification rule
+      tags:
+      - OrgWorkspaceNotifications
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/notification_rule/{notification_rule_id}:
+    delete:
+      description: Deletes organization workspace notification rule
+      operationId: orgWorkspace_deleteOrgWorkspaceNotificationRule
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the notification exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The notification rule id to delete.
+        explode: false
+        in: path
+        name: notification_rule_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRule'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Delete organization workspace notification rule
+      tags:
+      - OrgWorkspaceNotifications
+    get:
+      description: Get organization workspace notification rule by notification rule
+        id
+      operationId: orgWorkspace_getOrgWorkspaceNotificationRule
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the notification exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The notification rule id.
+        explode: false
+        in: path
+        name: notification_rule_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRule'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get organization workspace notification rule
+      tags:
+      - OrgWorkspaceNotifications
   /org/{org_handle}/workspace/{workspace_handle}/query:
     get:
       description: Performs a query in an org workspace. Results are limited to 3000
@@ -3733,6 +5025,235 @@ paths:
       summary: Search users
       tags:
       - Users
+  /user/{org_handle}/notification_rule:
+    get:
+      description: List organization notification rules
+      operationId: org_listOrgNotificationRules
+      parameters:
+      - description: Specify the handle of an organization where the notification
+          rules exist.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNotificationRulesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List organization notification rules
+      tags:
+      - OrgNotifications
+  /user/{org_handle}/notification_rule/{notification_rule_id}:
+    delete:
+      description: Delete user organization rule by notification rule id
+      operationId: org_deleteOrgNotificationRule
+      parameters:
+      - description: Specify the handle of an organization where the notification
+          rule exists.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The notification rule id to delete.
+        explode: false
+        in: path
+        name: notification_rule_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRule'
+          description: Deleted notifcation rule.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Delete organization notification rule
+      tags:
+      - OrgNotifications
+    get:
+      description: Get user organization rule by notification rule id
+      operationId: org_getOrgNotificationRule
+      parameters:
+      - description: Specify the handle of an organization where the notification
+          rule exists.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The notification rule id.
+        explode: false
+        in: path
+        name: notification_rule_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRule'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get organization notification rule
+      tags:
+      - OrgNotifications
   /user/{user_handle}:
     delete:
       description: Deletes the specified user.
@@ -4432,6 +5953,383 @@ paths:
       summary: Test user connection
       tags:
       - UserConnections
+  /user/{user_handle}/feature:
+    get:
+      description: Returns the feature information for a user.
+      operationId: user_getFeatures
+      parameters:
+      - description: Specify the user handle to get the feature details.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Features'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: User features
+      tags:
+      - Users
+  /user/{user_handle}/notification_rule:
+    get:
+      description: List user notification rules
+      operationId: user_listUserNotificationRules
+      parameters:
+      - description: Specify the handle of the user where the notification exists
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNotificationRulesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List user notification rules
+      tags:
+      - UserNotifications
+    post:
+      description: |-
+        Creates a new user notification rule. Notification rule allows the recipient (in this particular instance, the user) to be notified when a certain event has been raised.
+
+        Valid events:
+
+        connection.create
+
+        connection.update
+
+        connection.delete
+
+        org.create
+
+        org.delete
+
+        token.create
+
+        token.delete
+
+        workspace.create
+
+        workspace.update
+
+        workspace.delete
+      operationId: user_createUserNotificationRule
+      parameters:
+      - description: Specify the handle of the user whose notification rule will be
+          created against.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserNotificationRequestNoSender'
+        description: The request body to create a notification rule for this user.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRule'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Create user notification rule
+      tags:
+      - UserNotifications
+      x-codegen-request-body-name: request
+  /user/{user_handle}/notification_rule/{notification_rule_id}:
+    delete:
+      description: Delete user notification rule by notification rule id
+      operationId: user_deleteUserNotificationRule
+      parameters:
+      - description: Specify the handle of the user where the notification exists
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The notification rule id to delete.
+        explode: false
+        in: path
+        name: notification_rule_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRule'
+          description: Deleted notifcation rule.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Delete user notification rule
+      tags:
+      - UserNotifications
+    get:
+      description: Get user notification rule by notification rule id
+      operationId: user_getUserNotificationRule
+      parameters:
+      - description: Specify the handle of the user where the notification exists
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The notification rule id.
+        explode: false
+        in: path
+        name: notification_rule_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRule'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get user notification rule
+      tags:
+      - UserNotifications
   /user/{user_handle}/org:
     get:
       description: List the orgs to which the user has access.
@@ -5971,6 +7869,1155 @@ paths:
       summary: User workspace logs
       tags:
       - UserWorkspaces
+  /user/{user_handle}/workspace/{workspace_handle}/mod:
+    get:
+      description: List user workspace installed mods
+      operationId: userWorkspace_listUserWorkspaceMods
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where mods were installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspaceModsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List user workspace installed mods
+      tags:
+      - UserWorkspaceMods
+    post:
+      description: Install a mod to a user's workspace
+      operationId: userWorkspace_installUserWorkspaceMods
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod will be installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceModRequest'
+        description: The request body to create a notification rule for this organization.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Install a mod to a user's workspace
+      tags:
+      - UserWorkspaceMods
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}:
+    delete:
+      description: Uninstall mod from a user's workspace
+      operationId: userWorkspace_uninstallUserWorkspaceMod
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID to delete.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Uninstall mod from a user's workspace.
+      tags:
+      - UserWorkspaceMods
+    get:
+      description: Get user workspace installed mod by mod alias
+      operationId: userWorkspace_getUserWorkspaceMod
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: Provide the handle of the workspace where mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get user workspace installed mod
+      tags:
+      - UserWorkspaceMods
+    patch:
+      description: Update a mod in a user's workspace
+      operationId: userWorkspace_updateUserWorkspaceMod
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod will be updated.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID to update.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceModRequest'
+        description: The request body to update a mod for this workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Update a mod in a user's workspace
+      tags:
+      - UserWorkspaceMods
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable:
+    get:
+      description: List all variables applicable for a mod in a workspace specific
+        to a user
+      operationId: userWorkspace_listUserWorkspaceModVariables
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where mods were installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID for which we want the variables to be
+          listed
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspaceModVariablesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List variables for a user workspace mod
+      tags:
+      - UserWorkspaceModVariables
+    post:
+      description: Create a setting for a mod variable in a user workspace
+      operationId: userWorkspace_createUserWorkspaceModVariableSetting
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID for which the variable setting is to
+          be created
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceModVariableSettingRequest'
+        description: The request body to create setting for mod variable in the user
+          workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Create a setting for a mod variable in a user workspace
+      tags:
+      - UserWorkspaceModVariables
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name}:
+    delete:
+      description: Delete setting for a mod variable in a user workspace
+      operationId: userWorkspace_deleteUserWorkspaceModVariableSetting
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID for which the variable setting is to
+          be deleted
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The name of the variable for which setting is to be deleted
+        explode: false
+        in: path
+        name: variable_name
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Delete setting for a mod variable in a user workspace
+      tags:
+      - UserWorkspaceModVariables
+    patch:
+      description: Update setting for a mod variable in a user workspace
+      operationId: userWorkspace_updateUserWorkspaceModVariableSetting
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID which contains the variable.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The name of the variable for which setting is to be updated
+        explode: false
+        in: path
+        name: variable_name
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceModVariableSettingRequest'
+        description: The request body to update setting for mod variable in the user
+          workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Update setting for a mod variable in a user workspace
+      tags:
+      - UserWorkspaceModVariables
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/notification_rule:
+    get:
+      description: List user workspace notification rules
+      operationId: userWorkspace_listUserWorkspaceNotificationRules
+      parameters:
+      - description: Specify the handle of the user who owns the workspace
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: Provide the handle of the workspace where the notification exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNotificationRulesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List user workspace notification rules
+      tags:
+      - UserWorkspaceNotifications
+    post:
+      description: |-
+        Creates a new user workspace notification rule. Notification rule allows the recipient (in this particular instance, the user) to be notified when a certain event has been raised.
+
+        Valid events:
+
+        workspace.connection.associate
+
+        workspace.connection.dissociate
+      operationId: userWorkspace_createUserWorkspaceNotificationRule
+      parameters:
+      - description: Specify the handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the notification rule will
+          be created.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceNotificationRequestNoSender'
+        description: The request body to create a notification rule for this user.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRule'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Create user workspace notification rule
+      tags:
+      - UserWorkspaceNotifications
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/notification_rule/{notification_rule_id}:
+    delete:
+      description: |-
+        Deletes a new user workspace notification rule. Notification rule allows the recipient (in this particular instance, the user) to be notified when a certain event has been raised.
+
+        Valid events:
+
+        workspace.connection.associate
+
+        workspace.connection.dissociate
+      operationId: userWorkspace_deleteUserWorkspaceNotificationRule
+      parameters:
+      - description: Specify the handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the notification exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The notification rule id to delete.
+        explode: false
+        in: path
+        name: notification_rule_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRule'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Delete user workspace notification rule
+      tags:
+      - UserWorkspaceNotifications
+    get:
+      description: Get user workspace notification rule by notification rule id
+      operationId: userWorkspace_getUserWorkspaceNotificationRule
+      parameters:
+      - description: Specify the handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: Provide the handle of the workspace where the notification exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The notification rule id.
+        explode: false
+        in: path
+        name: notification_rule_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRule'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get user workspace notification rule
+      tags:
+      - UserWorkspaceNotifications
   /user/{user_handle}/workspace/{workspace_handle}/query:
     get:
       description: Performs a query in a user workspace. Results are limited to 3000
@@ -6908,6 +9955,30 @@ components:
       - handle
       - plugin
       type: object
+    CreateOrgNotificationRequest:
+      example:
+        sender:
+          recipients:
+          - recipients
+          - recipients
+          type: type
+        title: title
+        events:
+        - events
+        - events
+      properties:
+        events:
+          items:
+            type: string
+          type: array
+        sender:
+          $ref: '#/components/schemas/NotificationRecipientRequest'
+        title:
+          type: string
+      required:
+      - events
+      - title
+      type: object
     CreateOrgRequest:
       example:
         avatar_url: avatar_url
@@ -6926,6 +9997,23 @@ components:
           type: string
       required:
       - handle
+      type: object
+    CreateUserNotificationRequestNoSender:
+      example:
+        title: title
+        events:
+        - events
+        - events
+      properties:
+        events:
+          items:
+            type: string
+          type: array
+        title:
+          type: string
+      required:
+      - events
+      - title
       type: object
     CreateUserPasswordRequest:
       example:
@@ -6964,6 +10052,73 @@ components:
       required:
       - connection_handle
       type: object
+    CreateWorkspaceModRequest:
+      example:
+        path: path
+        constraint: constraint
+      properties:
+        constraint:
+          type: string
+        path:
+          type: string
+      required:
+      - path
+      type: object
+    CreateWorkspaceModVariableSettingRequest:
+      example:
+        name: name
+        setting: '{}'
+      properties:
+        name:
+          type: string
+        setting:
+          properties: {}
+          type: object
+      required:
+      - name
+      - setting
+      type: object
+    CreateWorkspaceNotificationRequest:
+      example:
+        sender:
+          recipients:
+          - recipients
+          - recipients
+          type: type
+        title: title
+        events:
+        - events
+        - events
+      properties:
+        events:
+          items:
+            type: string
+          type: array
+        sender:
+          $ref: '#/components/schemas/NotificationRecipientRequest'
+        title:
+          type: string
+      required:
+      - events
+      - title
+      type: object
+    CreateWorkspaceNotificationRequestNoSender:
+      example:
+        title: title
+        events:
+        - events
+        - events
+      properties:
+        events:
+          items:
+            type: string
+          type: array
+        title:
+          type: string
+      required:
+      - events
+      - title
+      type: object
     CreateWorkspaceRequest:
       example:
         handle: handle
@@ -6973,6 +10128,28 @@ components:
           type: string
       required:
       - handle
+      type: object
+    Feature:
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      type: object
+    Features:
+      example:
+        features:
+          key:
+            value: value
+            key: key
+      properties:
+        features:
+          additionalProperties:
+            $ref: '#/components/schemas/Feature'
+          type: object
       type: object
     Identity:
       example:
@@ -7143,6 +10320,70 @@ components:
         items:
           items:
             $ref: '#/components/schemas/LogRecord'
+          type: array
+        next_token:
+          type: string
+      type: object
+    ListNotificationRulesResponse:
+      example:
+        next_token: next_token
+        items:
+        - recipient_type: recipient_type
+          updated_at: updated_at
+          identity_id: identity_id
+          recipients:
+          - notification_rule_id: notification_rule_id
+            recipient: recipient
+            detail: detail
+            id: id
+            state: state
+          - notification_rule_id: notification_rule_id
+            recipient: recipient
+            detail: detail
+            id: id
+            state: state
+          created_at: created_at
+          target_id: target_id
+          actor_id: actor_id
+          id: id
+          title: title
+          events:
+          - notification_rule_id: notification_rule_id
+            id: id
+            event: event
+          - notification_rule_id: notification_rule_id
+            id: id
+            event: event
+        - recipient_type: recipient_type
+          updated_at: updated_at
+          identity_id: identity_id
+          recipients:
+          - notification_rule_id: notification_rule_id
+            recipient: recipient
+            detail: detail
+            id: id
+            state: state
+          - notification_rule_id: notification_rule_id
+            recipient: recipient
+            detail: detail
+            id: id
+            state: state
+          created_at: created_at
+          target_id: target_id
+          actor_id: actor_id
+          id: id
+          title: title
+          events:
+          - notification_rule_id: notification_rule_id
+            id: id
+            event: event
+          - notification_rule_id: notification_rule_id
+            id: id
+            event: event
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/NotificationRule'
           type: array
         next_token:
           type: string
@@ -7427,6 +10668,160 @@ components:
         next_token:
           type: string
       type: object
+    ListWorkspaceModVariablesResponse:
+      example:
+        next_token: next_token
+        items:
+        - created_at: created_at
+          description: description
+          mod_alias: mod_alias
+          version_id: 0
+          type: type
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          value_setting: '{}'
+          updated_at: updated_at
+          value_default: '{}'
+          name: name
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          value: '{}'
+        - created_at: created_at
+          description: description
+          mod_alias: mod_alias
+          version_id: 0
+          type: type
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          value_setting: '{}'
+          updated_at: updated_at
+          value_default: '{}'
+          name: name
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          value: '{}'
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/WorkspaceModVariable'
+          type: array
+        next_token:
+          type: string
+      type: object
+    ListWorkspaceModsResponse:
+      example:
+        next_token: next_token
+        items:
+        - workspace_id: workspace_id
+          path: path
+          mod_constraint: mod_constraint
+          workspace:
+            hive: hive
+            public_key: public_key
+            database_name: database_name
+            updated_at: updated_at
+            identity_id: identity_id
+            identity:
+              handle: handle
+              id: id
+              display_name: display_name
+              type: type
+            host: host
+            created_at: created_at
+            workspace_state: workspace_state
+            handle: aaa
+            id: id
+            version_id: 0
+          updated_at: updated_at
+          identity_id: identity_id
+          installed_version: installed_version
+          alias: alias
+          created_at: created_at
+          details: details
+          id: id
+          state: state
+        - workspace_id: workspace_id
+          path: path
+          mod_constraint: mod_constraint
+          workspace:
+            hive: hive
+            public_key: public_key
+            database_name: database_name
+            updated_at: updated_at
+            identity_id: identity_id
+            identity:
+              handle: handle
+              id: id
+              display_name: display_name
+              type: type
+            host: host
+            created_at: created_at
+            workspace_state: workspace_state
+            handle: aaa
+            id: id
+            version_id: 0
+          updated_at: updated_at
+          identity_id: identity_id
+          installed_version: installed_version
+          alias: alias
+          created_at: created_at
+          details: details
+          id: id
+          state: state
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/WorkspaceMod'
+          type: array
+        next_token:
+          type: string
+      type: object
     ListWorkspacesResponse:
       example:
         next_token: next_token
@@ -7528,6 +10923,132 @@ components:
       - workspace_handle
       - workspace_id
       type: object
+    ModQuota:
+      additionalProperties:
+        $ref: '#/components/schemas/Quota'
+      type: object
+    NotificationRecipientRequest:
+      example:
+        recipients:
+        - recipients
+        - recipients
+        type: type
+      properties:
+        recipients:
+          items:
+            type: string
+          type: array
+        type:
+          type: string
+      type: object
+    NotificationRule:
+      example:
+        recipient_type: recipient_type
+        updated_at: updated_at
+        identity_id: identity_id
+        recipients:
+        - notification_rule_id: notification_rule_id
+          recipient: recipient
+          detail: detail
+          id: id
+          state: state
+        - notification_rule_id: notification_rule_id
+          recipient: recipient
+          detail: detail
+          id: id
+          state: state
+        created_at: created_at
+        target_id: target_id
+        actor_id: actor_id
+        id: id
+        title: title
+        events:
+        - notification_rule_id: notification_rule_id
+          id: id
+          event: event
+        - notification_rule_id: notification_rule_id
+          id: id
+          event: event
+      properties:
+        actor_id:
+          type: string
+        created_at:
+          type: string
+        events:
+          items:
+            $ref: '#/components/schemas/NotificationRuleEvent'
+          type: array
+        id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        identity_id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        recipient_type:
+          type: string
+        recipients:
+          items:
+            $ref: '#/components/schemas/NotificationRuleRecipient'
+          type: array
+        target_id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        title:
+          type: string
+        updated_at:
+          type: string
+      required:
+      - actor_id
+      - created_at
+      - id
+      - recipient_type
+      - title
+      type: object
+    NotificationRuleEvent:
+      example:
+        notification_rule_id: notification_rule_id
+        id: id
+        event: event
+      properties:
+        event:
+          type: string
+        id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        notification_rule_id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+      required:
+      - event
+      - id
+      - notification_rule_id
+      type: object
+    NotificationRuleRecipient:
+      example:
+        notification_rule_id: notification_rule_id
+        recipient: recipient
+        detail: detail
+        id: id
+        state: state
+      properties:
+        detail:
+          type: string
+        id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        notification_rule_id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        recipient:
+          type: string
+        state:
+          type: string
+      required:
+      - id
+      - notification_rule_id
+      - recipient
+      - state
+      type: object
     Org:
       example:
         avatar_url: avatar_url
@@ -7579,6 +11100,11 @@ components:
           available: 0
           limit: 6
           used: 1
+        mod:
+          key:
+            available: 0
+            limit: 6
+            used: 1
         association:
           key:
             available: 0
@@ -7591,11 +11117,16 @@ components:
           type: object
         conn:
           $ref: '#/components/schemas/Quota'
+        mod:
+          additionalProperties:
+            $ref: '#/components/schemas/Quota'
+          type: object
         workspace:
           $ref: '#/components/schemas/Quota'
       required:
       - association
       - conn
+      - mod
       - workspace
       type: object
     OrgUser:
@@ -7817,6 +11348,25 @@ components:
         url:
           type: string
       type: object
+    UpdateWorkspaceModRequest:
+      example:
+        constraint: constraint
+      properties:
+        constraint:
+          type: string
+      required:
+      - constraint
+      type: object
+    UpdateWorkspaceModVariableSettingRequest:
+      example:
+        setting: '{}'
+      properties:
+        setting:
+          properties: {}
+          type: object
+      required:
+      - setting
+      type: object
     UpdateWorkspaceRequest:
       example:
         handle: handle
@@ -7969,6 +11519,11 @@ components:
           available: 0
           limit: 6
           used: 1
+        mod:
+          key:
+            available: 0
+            limit: 6
+            used: 1
         organization:
           available: 0
           limit: 6
@@ -7989,6 +11544,10 @@ components:
           type: object
         conn:
           $ref: '#/components/schemas/Quota'
+        mod:
+          additionalProperties:
+            $ref: '#/components/schemas/Quota'
+          type: object
         organization:
           $ref: '#/components/schemas/Quota'
         token:
@@ -7998,6 +11557,7 @@ components:
       required:
       - association
       - conn
+      - mod
       - organization
       - token
       - workspace
@@ -8171,6 +11731,156 @@ components:
       - identity_id
       - version_id
       - workspace_id
+      type: object
+    WorkspaceMod:
+      example:
+        workspace_id: workspace_id
+        path: path
+        mod_constraint: mod_constraint
+        workspace:
+          hive: hive
+          public_key: public_key
+          database_name: database_name
+          updated_at: updated_at
+          identity_id: identity_id
+          identity:
+            handle: handle
+            id: id
+            display_name: display_name
+            type: type
+          host: host
+          created_at: created_at
+          workspace_state: workspace_state
+          handle: aaa
+          id: id
+          version_id: 0
+        updated_at: updated_at
+        identity_id: identity_id
+        installed_version: installed_version
+        alias: alias
+        created_at: created_at
+        details: details
+        id: id
+        state: state
+      properties:
+        alias:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        created_at:
+          type: string
+        details:
+          type: string
+        id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        identity_id:
+          description: The unique identifier for an identity where the workspace mod
+            has been install.
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        installed_version:
+          type: string
+        mod_constraint:
+          type: string
+        path:
+          type: string
+        state:
+          type: string
+        updated_at:
+          type: string
+        workspace:
+          $ref: '#/components/schemas/Workspace'
+        workspace_id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+      required:
+      - created_at
+      - id
+      - identity_id
+      - workspace_id
+      type: object
+    WorkspaceModVariable:
+      example:
+        created_at: created_at
+        description: description
+        mod_alias: mod_alias
+        version_id: 0
+        type: type
+        created_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          email: email
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        value_setting: '{}'
+        updated_at: updated_at
+        value_default: '{}'
+        name: name
+        updated_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          email: email
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        updated_by_id: updated_by_id
+        created_by_id: created_by_id
+        id: id
+        value: '{}'
+      properties:
+        created_at:
+          type: string
+        created_by:
+          $ref: '#/components/schemas/User'
+        created_by_id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        description:
+          type: string
+        id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        mod_alias:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        updated_at:
+          type: string
+        updated_by:
+          $ref: '#/components/schemas/User'
+        updated_by_id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        value:
+          properties: {}
+          type: object
+        value_default:
+          properties: {}
+          type: object
+        value_setting:
+          properties: {}
+          type: object
+        version_id:
+          type: integer
+      required:
+      - created_at
+      - created_by_id
+      - id
+      - updated_by_id
+      - version_id
       type: object
     WorkspaceQueryResult:
       example:

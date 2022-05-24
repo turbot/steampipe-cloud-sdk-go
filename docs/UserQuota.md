@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Association** | [**map[string]Quota**](Quota.md) |  | 
 **Conn** | [**Quota**](Quota.md) |  | 
+**Mod** | [**map[string]Quota**](Quota.md) |  | 
 **Organization** | [**Quota**](Quota.md) |  | 
 **Token** | [**Quota**](Quota.md) |  | 
 **Workspace** | [**Quota**](Quota.md) |  | 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewUserQuota
 
-`func NewUserQuota(association map[string]Quota, conn Quota, organization Quota, token Quota, workspace Quota, ) *UserQuota`
+`func NewUserQuota(association map[string]Quota, conn Quota, mod map[string]Quota, organization Quota, token Quota, workspace Quota, ) *UserQuota`
 
 NewUserQuota instantiates a new UserQuota object
 This constructor will assign default values to properties that have it defined,
@@ -67,6 +68,26 @@ and a boolean to check if the value has been set.
 `func (o *UserQuota) SetConn(v Quota)`
 
 SetConn sets Conn field to given value.
+
+
+### GetMod
+
+`func (o *UserQuota) GetMod() map[string]Quota`
+
+GetMod returns the Mod field if non-nil, zero value otherwise.
+
+### GetModOk
+
+`func (o *UserQuota) GetModOk() (*map[string]Quota, bool)`
+
+GetModOk returns a tuple with the Mod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMod
+
+`func (o *UserQuota) SetMod(v map[string]Quota)`
+
+SetMod sets Mod field to given value.
 
 
 ### GetOrganization

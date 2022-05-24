@@ -60,7 +60,15 @@ type APIClient struct {
 
 	OrgMembers *OrgMembersService
 
+	OrgNotifications *OrgNotificationsService
+
 	OrgWorkspaceConnectionAssociations *OrgWorkspaceConnectionAssociationsService
+
+	OrgWorkspaceModVariables *OrgWorkspaceModVariablesService
+
+	OrgWorkspaceMods *OrgWorkspaceModsService
+
+	OrgWorkspaceNotifications *OrgWorkspaceNotificationsService
 
 	OrgWorkspaces *OrgWorkspacesService
 
@@ -68,9 +76,17 @@ type APIClient struct {
 
 	UserConnections *UserConnectionsService
 
+	UserNotifications *UserNotificationsService
+
 	UserTokens *UserTokensService
 
 	UserWorkspaceConnectionAssociations *UserWorkspaceConnectionAssociationsService
+
+	UserWorkspaceModVariables *UserWorkspaceModVariablesService
+
+	UserWorkspaceMods *UserWorkspaceModsService
+
+	UserWorkspaceNotifications *UserWorkspaceNotificationsService
 
 	UserWorkspaces *UserWorkspacesService
 
@@ -98,12 +114,20 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.Identities = (*IdentitiesService)(&c.common)
 	c.OrgConnections = (*OrgConnectionsService)(&c.common)
 	c.OrgMembers = (*OrgMembersService)(&c.common)
+	c.OrgNotifications = (*OrgNotificationsService)(&c.common)
 	c.OrgWorkspaceConnectionAssociations = (*OrgWorkspaceConnectionAssociationsService)(&c.common)
+	c.OrgWorkspaceModVariables = (*OrgWorkspaceModVariablesService)(&c.common)
+	c.OrgWorkspaceMods = (*OrgWorkspaceModsService)(&c.common)
+	c.OrgWorkspaceNotifications = (*OrgWorkspaceNotificationsService)(&c.common)
 	c.OrgWorkspaces = (*OrgWorkspacesService)(&c.common)
 	c.Orgs = (*OrgsService)(&c.common)
 	c.UserConnections = (*UserConnectionsService)(&c.common)
+	c.UserNotifications = (*UserNotificationsService)(&c.common)
 	c.UserTokens = (*UserTokensService)(&c.common)
 	c.UserWorkspaceConnectionAssociations = (*UserWorkspaceConnectionAssociationsService)(&c.common)
+	c.UserWorkspaceModVariables = (*UserWorkspaceModVariablesService)(&c.common)
+	c.UserWorkspaceMods = (*UserWorkspaceModsService)(&c.common)
+	c.UserWorkspaceNotifications = (*UserWorkspaceNotificationsService)(&c.common)
 	c.UserWorkspaces = (*UserWorkspacesService)(&c.common)
 	c.Users = (*UsersService)(&c.common)
 

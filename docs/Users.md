@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**Delete**](Users.md#Delete) | **Delete** /user/{user_handle} | Delete user
 [**Get**](Users.md#Get) | **Get** /user/{user_handle} | Get user
 [**GetDBPassword**](Users.md#GetDBPassword) | **Get** /user/{user_handle}/password | Get user password
+[**GetFeatures**](Users.md#GetFeatures) | **Get** /user/{user_handle}/feature | User features
 [**GetQuota**](Users.md#GetQuota) | **Get** /user/{user_handle}/quota | User quota
 [**List**](Users.md#List) | **Get** /user | List users
 [**ListAuditLogs**](Users.md#ListAuditLogs) | **Get** /user/{user_handle}/audit | User audit logs
@@ -353,6 +354,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserDatabasePassword**](UserDatabasePassword.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFeatures
+
+> Features GetFeatures(ctx, userHandle).Execute()
+
+User features
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | Specify the user handle to get the feature details.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.Users.GetFeatures(context.Background(), userHandle).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Users.GetFeatures``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetFeatures`: Features
+    fmt.Fprintf(os.Stdout, "Response from `Users.GetFeatures`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | Specify the user handle to get the feature details. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFeaturesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**Features**](Features.md)
 
 ### Authorization
 

@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**Create**](Orgs.md#Create) | **Post** /org | Create org
 [**Delete**](Orgs.md#Delete) | **Delete** /org/{org_handle} | Delete org
 [**Get**](Orgs.md#Get) | **Get** /org/{org_handle} | Get org
+[**GetFeatures**](Orgs.md#GetFeatures) | **Get** /org/{org_handle}/feature | Org features
 [**GetQuota**](Orgs.md#GetQuota) | **Get** /org/{org_handle}/quota | Org quota
 [**List**](Orgs.md#List) | **Get** /org | List orgs
 [**ListAuditLogs**](Orgs.md#ListAuditLogs) | **Get** /org/{org_handle}/audit | Org audit logs
@@ -206,6 +207,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Org**](Org.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFeatures
+
+> Features GetFeatures(ctx, orgHandle).Execute()
+
+Org features
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    orgHandle := "orgHandle_example" // string | Specify the org handle to get the feature details.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.Orgs.GetFeatures(context.Background(), orgHandle).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Orgs.GetFeatures``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetFeatures`: Features
+    fmt.Fprintf(os.Stdout, "Response from `Orgs.GetFeatures`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgHandle** | **string** | Specify the org handle to get the feature details. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFeaturesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**Features**](Features.md)
 
 ### Authorization
 
