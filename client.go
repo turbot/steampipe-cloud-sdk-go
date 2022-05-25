@@ -68,7 +68,7 @@ type APIClient struct {
 
 	OrgWorkspaceMods *OrgWorkspaceModsService
 
-	OrgWorkspaceNotifications *OrgWorkspaceNotificationsService
+	OrgWorkspaceNotificationRules *OrgWorkspaceNotificationRulesService
 
 	OrgWorkspaces *OrgWorkspacesService
 
@@ -86,7 +86,7 @@ type APIClient struct {
 
 	UserWorkspaceMods *UserWorkspaceModsService
 
-	UserWorkspaceNotifications *UserWorkspaceNotificationsService
+	UserWorkspaceNotificationRules *UserWorkspaceNotificationRulesService
 
 	UserWorkspaces *UserWorkspacesService
 
@@ -118,7 +118,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.OrgWorkspaceConnectionAssociations = (*OrgWorkspaceConnectionAssociationsService)(&c.common)
 	c.OrgWorkspaceModVariables = (*OrgWorkspaceModVariablesService)(&c.common)
 	c.OrgWorkspaceMods = (*OrgWorkspaceModsService)(&c.common)
-	c.OrgWorkspaceNotifications = (*OrgWorkspaceNotificationsService)(&c.common)
+	c.OrgWorkspaceNotificationRules = (*OrgWorkspaceNotificationRulesService)(&c.common)
 	c.OrgWorkspaces = (*OrgWorkspacesService)(&c.common)
 	c.Orgs = (*OrgsService)(&c.common)
 	c.UserConnections = (*UserConnectionsService)(&c.common)
@@ -127,7 +127,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.UserWorkspaceConnectionAssociations = (*UserWorkspaceConnectionAssociationsService)(&c.common)
 	c.UserWorkspaceModVariables = (*UserWorkspaceModVariablesService)(&c.common)
 	c.UserWorkspaceMods = (*UserWorkspaceModsService)(&c.common)
-	c.UserWorkspaceNotifications = (*UserWorkspaceNotificationsService)(&c.common)
+	c.UserWorkspaceNotificationRules = (*UserWorkspaceNotificationRulesService)(&c.common)
 	c.UserWorkspaces = (*UserWorkspacesService)(&c.common)
 	c.Users = (*UsersService)(&c.common)
 

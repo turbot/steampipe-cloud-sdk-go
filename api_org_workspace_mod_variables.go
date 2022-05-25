@@ -28,7 +28,7 @@ var (
 // OrgWorkspaceModVariablesService OrgWorkspaceModVariables service
 type OrgWorkspaceModVariablesService service
 
-type OrgWorkspaceModVariablesApiCreateOrgWorkspaceModVariableSettingRequest struct {
+type OrgWorkspaceModVariablesApiCreateSettingRequest struct {
 	ctx             _context.Context
 	ApiService      *OrgWorkspaceModVariablesService
 	orgHandle       string
@@ -38,17 +38,17 @@ type OrgWorkspaceModVariablesApiCreateOrgWorkspaceModVariableSettingRequest stru
 }
 
 // The request body to create setting for mod variable in the organization workspace.
-func (r OrgWorkspaceModVariablesApiCreateOrgWorkspaceModVariableSettingRequest) Request(request CreateWorkspaceModVariableSettingRequest) OrgWorkspaceModVariablesApiCreateOrgWorkspaceModVariableSettingRequest {
+func (r OrgWorkspaceModVariablesApiCreateSettingRequest) Request(request CreateWorkspaceModVariableSettingRequest) OrgWorkspaceModVariablesApiCreateSettingRequest {
 	r.request = &request
 	return r
 }
 
-func (r OrgWorkspaceModVariablesApiCreateOrgWorkspaceModVariableSettingRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
-	return r.ApiService.CreateOrgWorkspaceModVariableSettingExecute(r)
+func (r OrgWorkspaceModVariablesApiCreateSettingRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
+	return r.ApiService.CreateSettingExecute(r)
 }
 
 /*
-CreateOrgWorkspaceModVariableSetting Create a setting for a mod variable in an organization workspace
+CreateSetting Create a setting for a mod variable in an organization workspace
 
 Create a setting for a mod variable in an organization workspace
 
@@ -56,10 +56,10 @@ Create a setting for a mod variable in an organization workspace
  @param orgHandle The handle of the organization that owns the workspace.
  @param workspaceHandle The handle of the workspace where the mod was installed.
  @param modAlias The mod alias or mod ID for which the variable setting is to be created.
- @return OrgWorkspaceModVariablesApiCreateOrgWorkspaceModVariableSettingRequest
+ @return OrgWorkspaceModVariablesApiCreateSettingRequest
 */
-func (a *OrgWorkspaceModVariablesService) CreateOrgWorkspaceModVariableSetting(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string) OrgWorkspaceModVariablesApiCreateOrgWorkspaceModVariableSettingRequest {
-	return OrgWorkspaceModVariablesApiCreateOrgWorkspaceModVariableSettingRequest{
+func (a *OrgWorkspaceModVariablesService) CreateSetting(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string) OrgWorkspaceModVariablesApiCreateSettingRequest {
+	return OrgWorkspaceModVariablesApiCreateSettingRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		orgHandle:       orgHandle,
@@ -70,7 +70,7 @@ func (a *OrgWorkspaceModVariablesService) CreateOrgWorkspaceModVariableSetting(c
 
 // Execute executes the request
 //  @return WorkspaceModVariable
-func (a *OrgWorkspaceModVariablesService) CreateOrgWorkspaceModVariableSettingExecute(r OrgWorkspaceModVariablesApiCreateOrgWorkspaceModVariableSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
+func (a *OrgWorkspaceModVariablesService) CreateSettingExecute(r OrgWorkspaceModVariablesApiCreateSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -78,7 +78,7 @@ func (a *OrgWorkspaceModVariablesService) CreateOrgWorkspaceModVariableSettingEx
 		localVarReturnValue WorkspaceModVariable
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceModVariablesService.CreateOrgWorkspaceModVariableSetting")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceModVariablesService.CreateSetting")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -210,7 +210,7 @@ func (a *OrgWorkspaceModVariablesService) CreateOrgWorkspaceModVariableSettingEx
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OrgWorkspaceModVariablesApiDeleteOrgWorkspaceModVariableSettingRequest struct {
+type OrgWorkspaceModVariablesApiDeleteSettingRequest struct {
 	ctx             _context.Context
 	ApiService      *OrgWorkspaceModVariablesService
 	orgHandle       string
@@ -219,12 +219,12 @@ type OrgWorkspaceModVariablesApiDeleteOrgWorkspaceModVariableSettingRequest stru
 	variableName    string
 }
 
-func (r OrgWorkspaceModVariablesApiDeleteOrgWorkspaceModVariableSettingRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
-	return r.ApiService.DeleteOrgWorkspaceModVariableSettingExecute(r)
+func (r OrgWorkspaceModVariablesApiDeleteSettingRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
+	return r.ApiService.DeleteSettingExecute(r)
 }
 
 /*
-DeleteOrgWorkspaceModVariableSetting Delete setting for a mod variable in an organization workspace
+DeleteSetting Delete setting for a mod variable in an organization workspace
 
 Delete setting for a mod variable in an organization workspace
 
@@ -233,10 +233,10 @@ Delete setting for a mod variable in an organization workspace
  @param workspaceHandle The handle of the workspace where the mod was installed.
  @param modAlias The mod alias or mod ID which contains the variable.
  @param variableName The name of the variable for which setting is to be delete.
- @return OrgWorkspaceModVariablesApiDeleteOrgWorkspaceModVariableSettingRequest
+ @return OrgWorkspaceModVariablesApiDeleteSettingRequest
 */
-func (a *OrgWorkspaceModVariablesService) DeleteOrgWorkspaceModVariableSetting(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string, variableName string) OrgWorkspaceModVariablesApiDeleteOrgWorkspaceModVariableSettingRequest {
-	return OrgWorkspaceModVariablesApiDeleteOrgWorkspaceModVariableSettingRequest{
+func (a *OrgWorkspaceModVariablesService) DeleteSetting(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string, variableName string) OrgWorkspaceModVariablesApiDeleteSettingRequest {
+	return OrgWorkspaceModVariablesApiDeleteSettingRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		orgHandle:       orgHandle,
@@ -248,7 +248,7 @@ func (a *OrgWorkspaceModVariablesService) DeleteOrgWorkspaceModVariableSetting(c
 
 // Execute executes the request
 //  @return WorkspaceModVariable
-func (a *OrgWorkspaceModVariablesService) DeleteOrgWorkspaceModVariableSettingExecute(r OrgWorkspaceModVariablesApiDeleteOrgWorkspaceModVariableSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
+func (a *OrgWorkspaceModVariablesService) DeleteSettingExecute(r OrgWorkspaceModVariablesApiDeleteSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
@@ -256,7 +256,7 @@ func (a *OrgWorkspaceModVariablesService) DeleteOrgWorkspaceModVariableSettingEx
 		localVarReturnValue WorkspaceModVariable
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceModVariablesService.DeleteOrgWorkspaceModVariableSetting")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceModVariablesService.DeleteSetting")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -384,7 +384,7 @@ func (a *OrgWorkspaceModVariablesService) DeleteOrgWorkspaceModVariableSettingEx
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OrgWorkspaceModVariablesApiListOrgWorkspaceModVariablesRequest struct {
+type OrgWorkspaceModVariablesApiListRequest struct {
 	ctx             _context.Context
 	ApiService      *OrgWorkspaceModVariablesService
 	orgHandle       string
@@ -395,23 +395,23 @@ type OrgWorkspaceModVariablesApiListOrgWorkspaceModVariablesRequest struct {
 }
 
 // The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
-func (r OrgWorkspaceModVariablesApiListOrgWorkspaceModVariablesRequest) Limit(limit int32) OrgWorkspaceModVariablesApiListOrgWorkspaceModVariablesRequest {
+func (r OrgWorkspaceModVariablesApiListRequest) Limit(limit int32) OrgWorkspaceModVariablesApiListRequest {
 	r.limit = &limit
 	return r
 }
 
 // When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
-func (r OrgWorkspaceModVariablesApiListOrgWorkspaceModVariablesRequest) NextToken(nextToken string) OrgWorkspaceModVariablesApiListOrgWorkspaceModVariablesRequest {
+func (r OrgWorkspaceModVariablesApiListRequest) NextToken(nextToken string) OrgWorkspaceModVariablesApiListRequest {
 	r.nextToken = &nextToken
 	return r
 }
 
-func (r OrgWorkspaceModVariablesApiListOrgWorkspaceModVariablesRequest) Execute() (ListWorkspaceModVariablesResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListOrgWorkspaceModVariablesExecute(r)
+func (r OrgWorkspaceModVariablesApiListRequest) Execute() (ListWorkspaceModVariablesResponse, *_nethttp.Response, error) {
+	return r.ApiService.ListExecute(r)
 }
 
 /*
-ListOrgWorkspaceModVariables List variables in an organization workspace mod
+List List variables in an organization workspace mod
 
 List all variables applicable for a mod in a workspace specific to an organization
 
@@ -419,10 +419,10 @@ List all variables applicable for a mod in a workspace specific to an organizati
  @param orgHandle The handle of the organization that owns the workspace.
  @param workspaceHandle The handle of the workspace where the mod was installed.
  @param modAlias The mod alias or mod ID for which we want the variables to be listed.
- @return OrgWorkspaceModVariablesApiListOrgWorkspaceModVariablesRequest
+ @return OrgWorkspaceModVariablesApiListRequest
 */
-func (a *OrgWorkspaceModVariablesService) ListOrgWorkspaceModVariables(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string) OrgWorkspaceModVariablesApiListOrgWorkspaceModVariablesRequest {
-	return OrgWorkspaceModVariablesApiListOrgWorkspaceModVariablesRequest{
+func (a *OrgWorkspaceModVariablesService) List(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string) OrgWorkspaceModVariablesApiListRequest {
+	return OrgWorkspaceModVariablesApiListRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		orgHandle:       orgHandle,
@@ -433,7 +433,7 @@ func (a *OrgWorkspaceModVariablesService) ListOrgWorkspaceModVariables(ctx _cont
 
 // Execute executes the request
 //  @return ListWorkspaceModVariablesResponse
-func (a *OrgWorkspaceModVariablesService) ListOrgWorkspaceModVariablesExecute(r OrgWorkspaceModVariablesApiListOrgWorkspaceModVariablesRequest) (ListWorkspaceModVariablesResponse, *_nethttp.Response, error) {
+func (a *OrgWorkspaceModVariablesService) ListExecute(r OrgWorkspaceModVariablesApiListRequest) (ListWorkspaceModVariablesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -441,7 +441,7 @@ func (a *OrgWorkspaceModVariablesService) ListOrgWorkspaceModVariablesExecute(r 
 		localVarReturnValue ListWorkspaceModVariablesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceModVariablesService.ListOrgWorkspaceModVariables")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceModVariablesService.List")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -574,7 +574,7 @@ func (a *OrgWorkspaceModVariablesService) ListOrgWorkspaceModVariablesExecute(r 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OrgWorkspaceModVariablesApiUpdateOrgWorkspaceModVariableSettingRequest struct {
+type OrgWorkspaceModVariablesApiUpdateSettingRequest struct {
 	ctx             _context.Context
 	ApiService      *OrgWorkspaceModVariablesService
 	orgHandle       string
@@ -585,17 +585,17 @@ type OrgWorkspaceModVariablesApiUpdateOrgWorkspaceModVariableSettingRequest stru
 }
 
 // The request body to update setting for mod variable in the organization workspace.
-func (r OrgWorkspaceModVariablesApiUpdateOrgWorkspaceModVariableSettingRequest) Request(request UpdateWorkspaceModVariableSettingRequest) OrgWorkspaceModVariablesApiUpdateOrgWorkspaceModVariableSettingRequest {
+func (r OrgWorkspaceModVariablesApiUpdateSettingRequest) Request(request UpdateWorkspaceModVariableSettingRequest) OrgWorkspaceModVariablesApiUpdateSettingRequest {
 	r.request = &request
 	return r
 }
 
-func (r OrgWorkspaceModVariablesApiUpdateOrgWorkspaceModVariableSettingRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
-	return r.ApiService.UpdateOrgWorkspaceModVariableSettingExecute(r)
+func (r OrgWorkspaceModVariablesApiUpdateSettingRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
+	return r.ApiService.UpdateSettingExecute(r)
 }
 
 /*
-UpdateOrgWorkspaceModVariableSetting Update setting for a mod variable in an organization workspace
+UpdateSetting Update setting for a mod variable in an organization workspace
 
 Update setting for a mod variable in an organization workspace
 
@@ -604,10 +604,10 @@ Update setting for a mod variable in an organization workspace
  @param workspaceHandle The handle of the workspace where the mod was installed.
  @param modAlias The mod alias or mod ID which contains the variable.
  @param variableName The name of the variable for which setting is to be updated.
- @return OrgWorkspaceModVariablesApiUpdateOrgWorkspaceModVariableSettingRequest
+ @return OrgWorkspaceModVariablesApiUpdateSettingRequest
 */
-func (a *OrgWorkspaceModVariablesService) UpdateOrgWorkspaceModVariableSetting(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string, variableName string) OrgWorkspaceModVariablesApiUpdateOrgWorkspaceModVariableSettingRequest {
-	return OrgWorkspaceModVariablesApiUpdateOrgWorkspaceModVariableSettingRequest{
+func (a *OrgWorkspaceModVariablesService) UpdateSetting(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string, variableName string) OrgWorkspaceModVariablesApiUpdateSettingRequest {
+	return OrgWorkspaceModVariablesApiUpdateSettingRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		orgHandle:       orgHandle,
@@ -619,7 +619,7 @@ func (a *OrgWorkspaceModVariablesService) UpdateOrgWorkspaceModVariableSetting(c
 
 // Execute executes the request
 //  @return WorkspaceModVariable
-func (a *OrgWorkspaceModVariablesService) UpdateOrgWorkspaceModVariableSettingExecute(r OrgWorkspaceModVariablesApiUpdateOrgWorkspaceModVariableSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
+func (a *OrgWorkspaceModVariablesService) UpdateSettingExecute(r OrgWorkspaceModVariablesApiUpdateSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -627,7 +627,7 @@ func (a *OrgWorkspaceModVariablesService) UpdateOrgWorkspaceModVariableSettingEx
 		localVarReturnValue WorkspaceModVariable
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceModVariablesService.UpdateOrgWorkspaceModVariableSetting")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceModVariablesService.UpdateSetting")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

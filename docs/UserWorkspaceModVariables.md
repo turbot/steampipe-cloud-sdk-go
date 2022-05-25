@@ -4,16 +4,16 @@ All URIs are relative to *https://cloud.steampipe.io/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateUserWorkspaceModVariableSetting**](UserWorkspaceModVariables.md#CreateUserWorkspaceModVariableSetting) | **Post** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | Create a setting for a mod variable in a user workspace
-[**DeleteUserWorkspaceModVariableSetting**](UserWorkspaceModVariables.md#DeleteUserWorkspaceModVariableSetting) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Delete setting for a mod variable in a user workspace
-[**ListUserWorkspaceModVariables**](UserWorkspaceModVariables.md#ListUserWorkspaceModVariables) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | List variables for a user workspace mod
-[**UpdateUserWorkspaceModVariableSetting**](UserWorkspaceModVariables.md#UpdateUserWorkspaceModVariableSetting) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Update setting for a mod variable in a user workspace
+[**CreateSetting**](UserWorkspaceModVariables.md#CreateSetting) | **Post** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | Create a setting for a mod variable in a user workspace
+[**DeleteSetting**](UserWorkspaceModVariables.md#DeleteSetting) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Delete setting for a mod variable in a user workspace
+[**List**](UserWorkspaceModVariables.md#List) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | List variables for a user workspace mod
+[**UpdateSetting**](UserWorkspaceModVariables.md#UpdateSetting) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Update setting for a mod variable in a user workspace
 
 
 
-## CreateUserWorkspaceModVariableSetting
+## CreateSetting
 
-> WorkspaceModVariable CreateUserWorkspaceModVariableSetting(ctx, userHandle, workspaceHandle, modAlias).Request(request).Execute()
+> WorkspaceModVariable CreateSetting(ctx, userHandle, workspaceHandle, modAlias).Request(request).Execute()
 
 Create a setting for a mod variable in a user workspace
 
@@ -39,13 +39,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaceModVariables.CreateUserWorkspaceModVariableSetting(context.Background(), userHandle, workspaceHandle, modAlias).Request(request).Execute()
+    resp, r, err := api_client.UserWorkspaceModVariables.CreateSetting(context.Background(), userHandle, workspaceHandle, modAlias).Request(request).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceModVariables.CreateUserWorkspaceModVariableSetting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceModVariables.CreateSetting``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateUserWorkspaceModVariableSetting`: WorkspaceModVariable
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceModVariables.CreateUserWorkspaceModVariableSetting`: %v\n", resp)
+    // response from `CreateSetting`: WorkspaceModVariable
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceModVariables.CreateSetting`: %v\n", resp)
 }
 ```
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateUserWorkspaceModVariableSettingRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateSettingRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -89,9 +89,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## DeleteUserWorkspaceModVariableSetting
+## DeleteSetting
 
-> WorkspaceModVariable DeleteUserWorkspaceModVariableSetting(ctx, userHandle, workspaceHandle, modAlias, variableName).Execute()
+> WorkspaceModVariable DeleteSetting(ctx, userHandle, workspaceHandle, modAlias, variableName).Execute()
 
 Delete setting for a mod variable in a user workspace
 
@@ -117,13 +117,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaceModVariables.DeleteUserWorkspaceModVariableSetting(context.Background(), userHandle, workspaceHandle, modAlias, variableName).Execute()
+    resp, r, err := api_client.UserWorkspaceModVariables.DeleteSetting(context.Background(), userHandle, workspaceHandle, modAlias, variableName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceModVariables.DeleteUserWorkspaceModVariableSetting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceModVariables.DeleteSetting``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteUserWorkspaceModVariableSetting`: WorkspaceModVariable
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceModVariables.DeleteUserWorkspaceModVariableSetting`: %v\n", resp)
+    // response from `DeleteSetting`: WorkspaceModVariable
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceModVariables.DeleteSetting`: %v\n", resp)
 }
 ```
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteUserWorkspaceModVariableSettingRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteSettingRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -168,9 +168,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## ListUserWorkspaceModVariables
+## List
 
-> ListWorkspaceModVariablesResponse ListUserWorkspaceModVariables(ctx, userHandle, workspaceHandle, modAlias).Limit(limit).NextToken(nextToken).Execute()
+> ListWorkspaceModVariablesResponse List(ctx, userHandle, workspaceHandle, modAlias).Limit(limit).NextToken(nextToken).Execute()
 
 List variables for a user workspace mod
 
@@ -197,13 +197,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaceModVariables.ListUserWorkspaceModVariables(context.Background(), userHandle, workspaceHandle, modAlias).Limit(limit).NextToken(nextToken).Execute()
+    resp, r, err := api_client.UserWorkspaceModVariables.List(context.Background(), userHandle, workspaceHandle, modAlias).Limit(limit).NextToken(nextToken).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceModVariables.ListUserWorkspaceModVariables``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceModVariables.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListUserWorkspaceModVariables`: ListWorkspaceModVariablesResponse
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceModVariables.ListUserWorkspaceModVariables`: %v\n", resp)
+    // response from `List`: ListWorkspaceModVariablesResponse
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceModVariables.List`: %v\n", resp)
 }
 ```
 
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListUserWorkspaceModVariablesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -248,9 +248,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## UpdateUserWorkspaceModVariableSetting
+## UpdateSetting
 
-> WorkspaceModVariable UpdateUserWorkspaceModVariableSetting(ctx, userHandle, workspaceHandle, modAlias, variableName).Request(request).Execute()
+> WorkspaceModVariable UpdateSetting(ctx, userHandle, workspaceHandle, modAlias, variableName).Request(request).Execute()
 
 Update setting for a mod variable in a user workspace
 
@@ -277,13 +277,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaceModVariables.UpdateUserWorkspaceModVariableSetting(context.Background(), userHandle, workspaceHandle, modAlias, variableName).Request(request).Execute()
+    resp, r, err := api_client.UserWorkspaceModVariables.UpdateSetting(context.Background(), userHandle, workspaceHandle, modAlias, variableName).Request(request).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceModVariables.UpdateUserWorkspaceModVariableSetting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceModVariables.UpdateSetting``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateUserWorkspaceModVariableSetting`: WorkspaceModVariable
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceModVariables.UpdateUserWorkspaceModVariableSetting`: %v\n", resp)
+    // response from `UpdateSetting`: WorkspaceModVariable
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceModVariables.UpdateSetting`: %v\n", resp)
 }
 ```
 
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateUserWorkspaceModVariableSettingRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateSettingRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

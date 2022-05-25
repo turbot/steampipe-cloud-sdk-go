@@ -4,17 +4,17 @@ All URIs are relative to *https://cloud.steampipe.io/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetUserWorkspaceMod**](UserWorkspaceMods.md#GetUserWorkspaceMod) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Get user workspace installed mod
-[**InstallUserWorkspaceMods**](UserWorkspaceMods.md#InstallUserWorkspaceMods) | **Post** /user/{user_handle}/workspace/{workspace_handle}/mod | Install a mod to a user&#39;s workspace
-[**ListUserWorkspaceMods**](UserWorkspaceMods.md#ListUserWorkspaceMods) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod | List user workspace installed mods
-[**UninstallUserWorkspaceMod**](UserWorkspaceMods.md#UninstallUserWorkspaceMod) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Uninstall mod from a user&#39;s workspace.
-[**UpdateUserWorkspaceMod**](UserWorkspaceMods.md#UpdateUserWorkspaceMod) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Update a mod in a user&#39;s workspace
+[**Get**](UserWorkspaceMods.md#Get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Get user workspace installed mod
+[**Install**](UserWorkspaceMods.md#Install) | **Post** /user/{user_handle}/workspace/{workspace_handle}/mod | Install a mod to a user&#39;s workspace
+[**List**](UserWorkspaceMods.md#List) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod | List user workspace installed mods
+[**Uninstall**](UserWorkspaceMods.md#Uninstall) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Uninstall mod from a user&#39;s workspace.
+[**Update**](UserWorkspaceMods.md#Update) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Update a mod in a user&#39;s workspace
 
 
 
-## GetUserWorkspaceMod
+## Get
 
-> WorkspaceMod GetUserWorkspaceMod(ctx, userHandle, workspaceHandle, modAlias).Execute()
+> WorkspaceMod Get(ctx, userHandle, workspaceHandle, modAlias).Execute()
 
 Get user workspace installed mod
 
@@ -39,13 +39,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaceMods.GetUserWorkspaceMod(context.Background(), userHandle, workspaceHandle, modAlias).Execute()
+    resp, r, err := api_client.UserWorkspaceMods.Get(context.Background(), userHandle, workspaceHandle, modAlias).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceMods.GetUserWorkspaceMod``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceMods.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetUserWorkspaceMod`: WorkspaceMod
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceMods.GetUserWorkspaceMod`: %v\n", resp)
+    // response from `Get`: WorkspaceMod
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceMods.Get`: %v\n", resp)
 }
 ```
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetUserWorkspaceModRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -88,9 +88,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## InstallUserWorkspaceMods
+## Install
 
-> WorkspaceMod InstallUserWorkspaceMods(ctx, userHandle, workspaceHandle).Request(request).Execute()
+> WorkspaceMod Install(ctx, userHandle, workspaceHandle).Request(request).Execute()
 
 Install a mod to a user's workspace
 
@@ -115,13 +115,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaceMods.InstallUserWorkspaceMods(context.Background(), userHandle, workspaceHandle).Request(request).Execute()
+    resp, r, err := api_client.UserWorkspaceMods.Install(context.Background(), userHandle, workspaceHandle).Request(request).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceMods.InstallUserWorkspaceMods``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceMods.Install``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `InstallUserWorkspaceMods`: WorkspaceMod
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceMods.InstallUserWorkspaceMods`: %v\n", resp)
+    // response from `Install`: WorkspaceMod
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceMods.Install`: %v\n", resp)
 }
 ```
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInstallUserWorkspaceModsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiInstallRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -163,9 +163,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## ListUserWorkspaceMods
+## List
 
-> ListWorkspaceModsResponse ListUserWorkspaceMods(ctx, userHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListWorkspaceModsResponse List(ctx, userHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
 
 List user workspace installed mods
 
@@ -191,13 +191,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaceMods.ListUserWorkspaceMods(context.Background(), userHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+    resp, r, err := api_client.UserWorkspaceMods.List(context.Background(), userHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceMods.ListUserWorkspaceMods``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceMods.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListUserWorkspaceMods`: ListWorkspaceModsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceMods.ListUserWorkspaceMods`: %v\n", resp)
+    // response from `List`: ListWorkspaceModsResponse
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceMods.List`: %v\n", resp)
 }
 ```
 
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListUserWorkspaceModsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -240,9 +240,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## UninstallUserWorkspaceMod
+## Uninstall
 
-> WorkspaceMod UninstallUserWorkspaceMod(ctx, userHandle, workspaceHandle, modAlias).Execute()
+> WorkspaceMod Uninstall(ctx, userHandle, workspaceHandle, modAlias).Execute()
 
 Uninstall mod from a user's workspace.
 
@@ -267,13 +267,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaceMods.UninstallUserWorkspaceMod(context.Background(), userHandle, workspaceHandle, modAlias).Execute()
+    resp, r, err := api_client.UserWorkspaceMods.Uninstall(context.Background(), userHandle, workspaceHandle, modAlias).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceMods.UninstallUserWorkspaceMod``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceMods.Uninstall``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UninstallUserWorkspaceMod`: WorkspaceMod
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceMods.UninstallUserWorkspaceMod`: %v\n", resp)
+    // response from `Uninstall`: WorkspaceMod
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceMods.Uninstall`: %v\n", resp)
 }
 ```
 
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUninstallUserWorkspaceModRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUninstallRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -316,9 +316,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## UpdateUserWorkspaceMod
+## Update
 
-> WorkspaceMod UpdateUserWorkspaceMod(ctx, userHandle, workspaceHandle, modAlias).Request(request).Execute()
+> WorkspaceMod Update(ctx, userHandle, workspaceHandle, modAlias).Request(request).Execute()
 
 Update a mod in a user's workspace
 
@@ -344,13 +344,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspaceMods.UpdateUserWorkspaceMod(context.Background(), userHandle, workspaceHandle, modAlias).Request(request).Execute()
+    resp, r, err := api_client.UserWorkspaceMods.Update(context.Background(), userHandle, workspaceHandle, modAlias).Request(request).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceMods.UpdateUserWorkspaceMod``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaceMods.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateUserWorkspaceMod`: WorkspaceMod
-    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceMods.UpdateUserWorkspaceMod`: %v\n", resp)
+    // response from `Update`: WorkspaceMod
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaceMods.Update`: %v\n", resp)
 }
 ```
 
@@ -366,7 +366,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateUserWorkspaceModRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

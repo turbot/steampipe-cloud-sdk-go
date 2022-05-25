@@ -28,7 +28,7 @@ var (
 // UserWorkspaceModsService UserWorkspaceMods service
 type UserWorkspaceModsService service
 
-type UserWorkspaceModsApiGetUserWorkspaceModRequest struct {
+type UserWorkspaceModsApiGetRequest struct {
 	ctx             _context.Context
 	ApiService      *UserWorkspaceModsService
 	userHandle      string
@@ -36,12 +36,12 @@ type UserWorkspaceModsApiGetUserWorkspaceModRequest struct {
 	modAlias        string
 }
 
-func (r UserWorkspaceModsApiGetUserWorkspaceModRequest) Execute() (WorkspaceMod, *_nethttp.Response, error) {
-	return r.ApiService.GetUserWorkspaceModExecute(r)
+func (r UserWorkspaceModsApiGetRequest) Execute() (WorkspaceMod, *_nethttp.Response, error) {
+	return r.ApiService.GetExecute(r)
 }
 
 /*
-GetUserWorkspaceMod Get user workspace installed mod
+Get Get user workspace installed mod
 
 Get user workspace installed mod by mod alias
 
@@ -49,10 +49,10 @@ Get user workspace installed mod by mod alias
  @param userHandle The handle of the user who owns the workspace.
  @param workspaceHandle Provide the handle of the workspace where mod was installed.
  @param modAlias The mod alias or mod ID
- @return UserWorkspaceModsApiGetUserWorkspaceModRequest
+ @return UserWorkspaceModsApiGetRequest
 */
-func (a *UserWorkspaceModsService) GetUserWorkspaceMod(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModsApiGetUserWorkspaceModRequest {
-	return UserWorkspaceModsApiGetUserWorkspaceModRequest{
+func (a *UserWorkspaceModsService) Get(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModsApiGetRequest {
+	return UserWorkspaceModsApiGetRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		userHandle:      userHandle,
@@ -63,7 +63,7 @@ func (a *UserWorkspaceModsService) GetUserWorkspaceMod(ctx _context.Context, use
 
 // Execute executes the request
 //  @return WorkspaceMod
-func (a *UserWorkspaceModsService) GetUserWorkspaceModExecute(r UserWorkspaceModsApiGetUserWorkspaceModRequest) (WorkspaceMod, *_nethttp.Response, error) {
+func (a *UserWorkspaceModsService) GetExecute(r UserWorkspaceModsApiGetRequest) (WorkspaceMod, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -71,7 +71,7 @@ func (a *UserWorkspaceModsService) GetUserWorkspaceModExecute(r UserWorkspaceMod
 		localVarReturnValue WorkspaceMod
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModsService.GetUserWorkspaceMod")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModsService.Get")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -208,7 +208,7 @@ func (a *UserWorkspaceModsService) GetUserWorkspaceModExecute(r UserWorkspaceMod
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type UserWorkspaceModsApiInstallUserWorkspaceModsRequest struct {
+type UserWorkspaceModsApiInstallRequest struct {
 	ctx             _context.Context
 	ApiService      *UserWorkspaceModsService
 	userHandle      string
@@ -217,27 +217,27 @@ type UserWorkspaceModsApiInstallUserWorkspaceModsRequest struct {
 }
 
 // The request body to create a notification rule for this organization.
-func (r UserWorkspaceModsApiInstallUserWorkspaceModsRequest) Request(request CreateWorkspaceModRequest) UserWorkspaceModsApiInstallUserWorkspaceModsRequest {
+func (r UserWorkspaceModsApiInstallRequest) Request(request CreateWorkspaceModRequest) UserWorkspaceModsApiInstallRequest {
 	r.request = &request
 	return r
 }
 
-func (r UserWorkspaceModsApiInstallUserWorkspaceModsRequest) Execute() (WorkspaceMod, *_nethttp.Response, error) {
-	return r.ApiService.InstallUserWorkspaceModsExecute(r)
+func (r UserWorkspaceModsApiInstallRequest) Execute() (WorkspaceMod, *_nethttp.Response, error) {
+	return r.ApiService.InstallExecute(r)
 }
 
 /*
-InstallUserWorkspaceMods Install a mod to a user's workspace
+Install Install a mod to a user's workspace
 
 Install a mod to a user's workspace
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user who owns the workspace.
  @param workspaceHandle The handle of the workspace where the mod will be installed.
- @return UserWorkspaceModsApiInstallUserWorkspaceModsRequest
+ @return UserWorkspaceModsApiInstallRequest
 */
-func (a *UserWorkspaceModsService) InstallUserWorkspaceMods(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspaceModsApiInstallUserWorkspaceModsRequest {
-	return UserWorkspaceModsApiInstallUserWorkspaceModsRequest{
+func (a *UserWorkspaceModsService) Install(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspaceModsApiInstallRequest {
+	return UserWorkspaceModsApiInstallRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		userHandle:      userHandle,
@@ -247,7 +247,7 @@ func (a *UserWorkspaceModsService) InstallUserWorkspaceMods(ctx _context.Context
 
 // Execute executes the request
 //  @return WorkspaceMod
-func (a *UserWorkspaceModsService) InstallUserWorkspaceModsExecute(r UserWorkspaceModsApiInstallUserWorkspaceModsRequest) (WorkspaceMod, *_nethttp.Response, error) {
+func (a *UserWorkspaceModsService) InstallExecute(r UserWorkspaceModsApiInstallRequest) (WorkspaceMod, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -255,7 +255,7 @@ func (a *UserWorkspaceModsService) InstallUserWorkspaceModsExecute(r UserWorkspa
 		localVarReturnValue WorkspaceMod
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModsService.InstallUserWorkspaceMods")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModsService.Install")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -396,7 +396,7 @@ func (a *UserWorkspaceModsService) InstallUserWorkspaceModsExecute(r UserWorkspa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type UserWorkspaceModsApiListUserWorkspaceModsRequest struct {
+type UserWorkspaceModsApiListRequest struct {
 	ctx             _context.Context
 	ApiService      *UserWorkspaceModsService
 	userHandle      string
@@ -406,33 +406,33 @@ type UserWorkspaceModsApiListUserWorkspaceModsRequest struct {
 }
 
 // The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
-func (r UserWorkspaceModsApiListUserWorkspaceModsRequest) Limit(limit int32) UserWorkspaceModsApiListUserWorkspaceModsRequest {
+func (r UserWorkspaceModsApiListRequest) Limit(limit int32) UserWorkspaceModsApiListRequest {
 	r.limit = &limit
 	return r
 }
 
 // When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
-func (r UserWorkspaceModsApiListUserWorkspaceModsRequest) NextToken(nextToken string) UserWorkspaceModsApiListUserWorkspaceModsRequest {
+func (r UserWorkspaceModsApiListRequest) NextToken(nextToken string) UserWorkspaceModsApiListRequest {
 	r.nextToken = &nextToken
 	return r
 }
 
-func (r UserWorkspaceModsApiListUserWorkspaceModsRequest) Execute() (ListWorkspaceModsResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListUserWorkspaceModsExecute(r)
+func (r UserWorkspaceModsApiListRequest) Execute() (ListWorkspaceModsResponse, *_nethttp.Response, error) {
+	return r.ApiService.ListExecute(r)
 }
 
 /*
-ListUserWorkspaceMods List user workspace installed mods
+List List user workspace installed mods
 
 List user workspace installed mods
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user who owns the workspace.
  @param workspaceHandle The handle of the workspace where mods were installed
- @return UserWorkspaceModsApiListUserWorkspaceModsRequest
+ @return UserWorkspaceModsApiListRequest
 */
-func (a *UserWorkspaceModsService) ListUserWorkspaceMods(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspaceModsApiListUserWorkspaceModsRequest {
-	return UserWorkspaceModsApiListUserWorkspaceModsRequest{
+func (a *UserWorkspaceModsService) List(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspaceModsApiListRequest {
+	return UserWorkspaceModsApiListRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		userHandle:      userHandle,
@@ -442,7 +442,7 @@ func (a *UserWorkspaceModsService) ListUserWorkspaceMods(ctx _context.Context, u
 
 // Execute executes the request
 //  @return ListWorkspaceModsResponse
-func (a *UserWorkspaceModsService) ListUserWorkspaceModsExecute(r UserWorkspaceModsApiListUserWorkspaceModsRequest) (ListWorkspaceModsResponse, *_nethttp.Response, error) {
+func (a *UserWorkspaceModsService) ListExecute(r UserWorkspaceModsApiListRequest) (ListWorkspaceModsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -450,7 +450,7 @@ func (a *UserWorkspaceModsService) ListUserWorkspaceModsExecute(r UserWorkspaceM
 		localVarReturnValue ListWorkspaceModsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModsService.ListUserWorkspaceMods")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModsService.List")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -582,7 +582,7 @@ func (a *UserWorkspaceModsService) ListUserWorkspaceModsExecute(r UserWorkspaceM
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type UserWorkspaceModsApiUninstallUserWorkspaceModRequest struct {
+type UserWorkspaceModsApiUninstallRequest struct {
 	ctx             _context.Context
 	ApiService      *UserWorkspaceModsService
 	userHandle      string
@@ -590,12 +590,12 @@ type UserWorkspaceModsApiUninstallUserWorkspaceModRequest struct {
 	modAlias        string
 }
 
-func (r UserWorkspaceModsApiUninstallUserWorkspaceModRequest) Execute() (WorkspaceMod, *_nethttp.Response, error) {
-	return r.ApiService.UninstallUserWorkspaceModExecute(r)
+func (r UserWorkspaceModsApiUninstallRequest) Execute() (WorkspaceMod, *_nethttp.Response, error) {
+	return r.ApiService.UninstallExecute(r)
 }
 
 /*
-UninstallUserWorkspaceMod Uninstall mod from a user's workspace.
+Uninstall Uninstall mod from a user's workspace.
 
 Uninstall mod from a user's workspace
 
@@ -603,10 +603,10 @@ Uninstall mod from a user's workspace
  @param userHandle The handle of the user who owns the workspace.
  @param workspaceHandle The handle of the workspace where the mod was installed.
  @param modAlias The mod alias or mod ID to delete.
- @return UserWorkspaceModsApiUninstallUserWorkspaceModRequest
+ @return UserWorkspaceModsApiUninstallRequest
 */
-func (a *UserWorkspaceModsService) UninstallUserWorkspaceMod(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModsApiUninstallUserWorkspaceModRequest {
-	return UserWorkspaceModsApiUninstallUserWorkspaceModRequest{
+func (a *UserWorkspaceModsService) Uninstall(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModsApiUninstallRequest {
+	return UserWorkspaceModsApiUninstallRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		userHandle:      userHandle,
@@ -617,7 +617,7 @@ func (a *UserWorkspaceModsService) UninstallUserWorkspaceMod(ctx _context.Contex
 
 // Execute executes the request
 //  @return WorkspaceMod
-func (a *UserWorkspaceModsService) UninstallUserWorkspaceModExecute(r UserWorkspaceModsApiUninstallUserWorkspaceModRequest) (WorkspaceMod, *_nethttp.Response, error) {
+func (a *UserWorkspaceModsService) UninstallExecute(r UserWorkspaceModsApiUninstallRequest) (WorkspaceMod, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
@@ -625,7 +625,7 @@ func (a *UserWorkspaceModsService) UninstallUserWorkspaceModExecute(r UserWorksp
 		localVarReturnValue WorkspaceMod
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModsService.UninstallUserWorkspaceMod")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModsService.Uninstall")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -752,7 +752,7 @@ func (a *UserWorkspaceModsService) UninstallUserWorkspaceModExecute(r UserWorksp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type UserWorkspaceModsApiUpdateUserWorkspaceModRequest struct {
+type UserWorkspaceModsApiUpdateRequest struct {
 	ctx             _context.Context
 	ApiService      *UserWorkspaceModsService
 	userHandle      string
@@ -762,17 +762,17 @@ type UserWorkspaceModsApiUpdateUserWorkspaceModRequest struct {
 }
 
 // The request body to update a mod for this workspace.
-func (r UserWorkspaceModsApiUpdateUserWorkspaceModRequest) Request(request UpdateWorkspaceModRequest) UserWorkspaceModsApiUpdateUserWorkspaceModRequest {
+func (r UserWorkspaceModsApiUpdateRequest) Request(request UpdateWorkspaceModRequest) UserWorkspaceModsApiUpdateRequest {
 	r.request = &request
 	return r
 }
 
-func (r UserWorkspaceModsApiUpdateUserWorkspaceModRequest) Execute() (WorkspaceMod, *_nethttp.Response, error) {
-	return r.ApiService.UpdateUserWorkspaceModExecute(r)
+func (r UserWorkspaceModsApiUpdateRequest) Execute() (WorkspaceMod, *_nethttp.Response, error) {
+	return r.ApiService.UpdateExecute(r)
 }
 
 /*
-UpdateUserWorkspaceMod Update a mod in a user's workspace
+Update Update a mod in a user's workspace
 
 Update a mod in a user's workspace
 
@@ -780,10 +780,10 @@ Update a mod in a user's workspace
  @param userHandle The handle of the user who owns the workspace.
  @param workspaceHandle The handle of the workspace where the mod will be updated.
  @param modAlias The mod alias or mod ID to update.
- @return UserWorkspaceModsApiUpdateUserWorkspaceModRequest
+ @return UserWorkspaceModsApiUpdateRequest
 */
-func (a *UserWorkspaceModsService) UpdateUserWorkspaceMod(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModsApiUpdateUserWorkspaceModRequest {
-	return UserWorkspaceModsApiUpdateUserWorkspaceModRequest{
+func (a *UserWorkspaceModsService) Update(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModsApiUpdateRequest {
+	return UserWorkspaceModsApiUpdateRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		userHandle:      userHandle,
@@ -794,7 +794,7 @@ func (a *UserWorkspaceModsService) UpdateUserWorkspaceMod(ctx _context.Context, 
 
 // Execute executes the request
 //  @return WorkspaceMod
-func (a *UserWorkspaceModsService) UpdateUserWorkspaceModExecute(r UserWorkspaceModsApiUpdateUserWorkspaceModRequest) (WorkspaceMod, *_nethttp.Response, error) {
+func (a *UserWorkspaceModsService) UpdateExecute(r UserWorkspaceModsApiUpdateRequest) (WorkspaceMod, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -802,7 +802,7 @@ func (a *UserWorkspaceModsService) UpdateUserWorkspaceModExecute(r UserWorkspace
 		localVarReturnValue WorkspaceMod
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModsService.UpdateUserWorkspaceMod")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModsService.Update")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

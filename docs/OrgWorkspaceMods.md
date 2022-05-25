@@ -4,17 +4,17 @@ All URIs are relative to *https://cloud.steampipe.io/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetOrgWorkspaceMod**](OrgWorkspaceMods.md#GetOrgWorkspaceMod) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Get organization workspace installed mod
-[**InstallOrgWorkspaceMod**](OrgWorkspaceMods.md#InstallOrgWorkspaceMod) | **Post** /org/{org_handle}/workspace/{workspace_handle}/mod | Install a mod to an organization workspace
-[**ListOrgWorkspaceMods**](OrgWorkspaceMods.md#ListOrgWorkspaceMods) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod | List organization workspace installed mods
-[**UninstallOrgWorkspaceMod**](OrgWorkspaceMods.md#UninstallOrgWorkspaceMod) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Uninstall mod from organization workspace.
-[**UpdateOrgWorkspaceMod**](OrgWorkspaceMods.md#UpdateOrgWorkspaceMod) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Update a mod in an organization workspace
+[**Get**](OrgWorkspaceMods.md#Get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Get organization workspace installed mod
+[**Install**](OrgWorkspaceMods.md#Install) | **Post** /org/{org_handle}/workspace/{workspace_handle}/mod | Install a mod to an organization workspace
+[**List**](OrgWorkspaceMods.md#List) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod | List organization workspace installed mods
+[**Uninstall**](OrgWorkspaceMods.md#Uninstall) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Uninstall mod from organization workspace.
+[**Update**](OrgWorkspaceMods.md#Update) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Update a mod in an organization workspace
 
 
 
-## GetOrgWorkspaceMod
+## Get
 
-> WorkspaceMod GetOrgWorkspaceMod(ctx, orgHandle, workspaceHandle, modAlias).Execute()
+> WorkspaceMod Get(ctx, orgHandle, workspaceHandle, modAlias).Execute()
 
 Get organization workspace installed mod
 
@@ -39,13 +39,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaceMods.GetOrgWorkspaceMod(context.Background(), orgHandle, workspaceHandle, modAlias).Execute()
+    resp, r, err := api_client.OrgWorkspaceMods.Get(context.Background(), orgHandle, workspaceHandle, modAlias).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMods.GetOrgWorkspaceMod``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMods.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetOrgWorkspaceMod`: WorkspaceMod
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMods.GetOrgWorkspaceMod`: %v\n", resp)
+    // response from `Get`: WorkspaceMod
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMods.Get`: %v\n", resp)
 }
 ```
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetOrgWorkspaceModRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -88,9 +88,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## InstallOrgWorkspaceMod
+## Install
 
-> WorkspaceMod InstallOrgWorkspaceMod(ctx, orgHandle, workspaceHandle).Request(request).Execute()
+> WorkspaceMod Install(ctx, orgHandle, workspaceHandle).Request(request).Execute()
 
 Install a mod to an organization workspace
 
@@ -115,13 +115,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaceMods.InstallOrgWorkspaceMod(context.Background(), orgHandle, workspaceHandle).Request(request).Execute()
+    resp, r, err := api_client.OrgWorkspaceMods.Install(context.Background(), orgHandle, workspaceHandle).Request(request).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMods.InstallOrgWorkspaceMod``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMods.Install``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `InstallOrgWorkspaceMod`: WorkspaceMod
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMods.InstallOrgWorkspaceMod`: %v\n", resp)
+    // response from `Install`: WorkspaceMod
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMods.Install`: %v\n", resp)
 }
 ```
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInstallOrgWorkspaceModRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiInstallRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -163,9 +163,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## ListOrgWorkspaceMods
+## List
 
-> ListWorkspaceModsResponse ListOrgWorkspaceMods(ctx, orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListWorkspaceModsResponse List(ctx, orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
 
 List organization workspace installed mods
 
@@ -191,13 +191,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaceMods.ListOrgWorkspaceMods(context.Background(), orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+    resp, r, err := api_client.OrgWorkspaceMods.List(context.Background(), orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMods.ListOrgWorkspaceMods``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMods.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListOrgWorkspaceMods`: ListWorkspaceModsResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMods.ListOrgWorkspaceMods`: %v\n", resp)
+    // response from `List`: ListWorkspaceModsResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMods.List`: %v\n", resp)
 }
 ```
 
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListOrgWorkspaceModsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -240,9 +240,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## UninstallOrgWorkspaceMod
+## Uninstall
 
-> WorkspaceMod UninstallOrgWorkspaceMod(ctx, orgHandle, workspaceHandle, modAlias).Execute()
+> WorkspaceMod Uninstall(ctx, orgHandle, workspaceHandle, modAlias).Execute()
 
 Uninstall mod from organization workspace.
 
@@ -267,13 +267,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaceMods.UninstallOrgWorkspaceMod(context.Background(), orgHandle, workspaceHandle, modAlias).Execute()
+    resp, r, err := api_client.OrgWorkspaceMods.Uninstall(context.Background(), orgHandle, workspaceHandle, modAlias).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMods.UninstallOrgWorkspaceMod``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMods.Uninstall``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UninstallOrgWorkspaceMod`: WorkspaceMod
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMods.UninstallOrgWorkspaceMod`: %v\n", resp)
+    // response from `Uninstall`: WorkspaceMod
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMods.Uninstall`: %v\n", resp)
 }
 ```
 
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUninstallOrgWorkspaceModRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUninstallRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -316,9 +316,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## UpdateOrgWorkspaceMod
+## Update
 
-> WorkspaceMod UpdateOrgWorkspaceMod(ctx, orgHandle, workspaceHandle, modAlias).Request(request).Execute()
+> WorkspaceMod Update(ctx, orgHandle, workspaceHandle, modAlias).Request(request).Execute()
 
 Update a mod in an organization workspace
 
@@ -344,13 +344,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaceMods.UpdateOrgWorkspaceMod(context.Background(), orgHandle, workspaceHandle, modAlias).Request(request).Execute()
+    resp, r, err := api_client.OrgWorkspaceMods.Update(context.Background(), orgHandle, workspaceHandle, modAlias).Request(request).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMods.UpdateOrgWorkspaceMod``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMods.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateOrgWorkspaceMod`: WorkspaceMod
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMods.UpdateOrgWorkspaceMod`: %v\n", resp)
+    // response from `Update`: WorkspaceMod
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMods.Update`: %v\n", resp)
 }
 ```
 
@@ -366,7 +366,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateOrgWorkspaceModRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -11,7 +11,7 @@ api_org_notifications.go
 api_org_workspace_connection_associations.go
 api_org_workspace_mod_variables.go
 api_org_workspace_mods.go
-api_org_workspace_notifications.go
+api_org_workspace_notification_rules.go
 api_org_workspaces.go
 api_orgs.go
 api_user_connections.go
@@ -20,7 +20,7 @@ api_user_tokens.go
 api_user_workspace_connection_associations.go
 api_user_workspace_mod_variables.go
 api_user_workspace_mods.go
-api_user_workspace_notifications.go
+api_user_workspace_notification_rules.go
 api_user_workspaces.go
 api_users.go
 client.go
@@ -77,7 +77,7 @@ docs/OrgUser.md
 docs/OrgWorkspaceConnectionAssociations.md
 docs/OrgWorkspaceModVariables.md
 docs/OrgWorkspaceMods.md
-docs/OrgWorkspaceNotifications.md
+docs/OrgWorkspaceNotificationRules.md
 docs/OrgWorkspaces.md
 docs/Orgs.md
 docs/Quota.md
@@ -108,7 +108,7 @@ docs/UserTokens.md
 docs/UserWorkspaceConnectionAssociations.md
 docs/UserWorkspaceModVariables.md
 docs/UserWorkspaceMods.md
-docs/UserWorkspaceNotifications.md
+docs/UserWorkspaceNotificationRules.md
 docs/UserWorkspaces.md
 docs/Users.md
 docs/Workspace.md

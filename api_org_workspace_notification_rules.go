@@ -25,68 +25,64 @@ var (
 	_ _context.Context
 )
 
-// UserWorkspaceModVariablesService UserWorkspaceModVariables service
-type UserWorkspaceModVariablesService service
+// OrgWorkspaceNotificationRulesService OrgWorkspaceNotificationRules service
+type OrgWorkspaceNotificationRulesService service
 
-type UserWorkspaceModVariablesApiCreateSettingRequest struct {
+type OrgWorkspaceNotificationRulesApiCreateRequest struct {
 	ctx             _context.Context
-	ApiService      *UserWorkspaceModVariablesService
-	userHandle      string
+	ApiService      *OrgWorkspaceNotificationRulesService
+	orgHandle       string
 	workspaceHandle string
-	modAlias        string
-	request         *CreateWorkspaceModVariableSettingRequest
+	request         *CreateWorkspaceNotificationRequest
 }
 
-// The request body to create setting for mod variable in the user workspace.
-func (r UserWorkspaceModVariablesApiCreateSettingRequest) Request(request CreateWorkspaceModVariableSettingRequest) UserWorkspaceModVariablesApiCreateSettingRequest {
+// The request body to create a notification rule for this organization.
+func (r OrgWorkspaceNotificationRulesApiCreateRequest) Request(request CreateWorkspaceNotificationRequest) OrgWorkspaceNotificationRulesApiCreateRequest {
 	r.request = &request
 	return r
 }
 
-func (r UserWorkspaceModVariablesApiCreateSettingRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
-	return r.ApiService.CreateSettingExecute(r)
+func (r OrgWorkspaceNotificationRulesApiCreateRequest) Execute() (NotificationRule, *_nethttp.Response, error) {
+	return r.ApiService.CreateExecute(r)
 }
 
 /*
-CreateSetting Create a setting for a mod variable in a user workspace
+Create Create organization workspace notification rule
 
-Create a setting for a mod variable in a user workspace
+Creates a new organization workspace notification rule. Notification rule allows the recipients to be notified when a certain event has been raised.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed
- @param modAlias The mod alias or mod ID for which the variable setting is to be created
- @return UserWorkspaceModVariablesApiCreateSettingRequest
+ @param orgHandle The handle of an organization that owns the workspace.
+ @param workspaceHandle The handle of the workspace where the notification rule will be created.
+ @return OrgWorkspaceNotificationRulesApiCreateRequest
 */
-func (a *UserWorkspaceModVariablesService) CreateSetting(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModVariablesApiCreateSettingRequest {
-	return UserWorkspaceModVariablesApiCreateSettingRequest{
+func (a *OrgWorkspaceNotificationRulesService) Create(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceNotificationRulesApiCreateRequest {
+	return OrgWorkspaceNotificationRulesApiCreateRequest{
 		ApiService:      a,
 		ctx:             ctx,
-		userHandle:      userHandle,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
-		modAlias:        modAlias,
 	}
 }
 
 // Execute executes the request
-//  @return WorkspaceModVariable
-func (a *UserWorkspaceModVariablesService) CreateSettingExecute(r UserWorkspaceModVariablesApiCreateSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
+//  @return NotificationRule
+func (a *OrgWorkspaceNotificationRulesService) CreateExecute(r OrgWorkspaceNotificationRulesApiCreateRequest) (NotificationRule, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue WorkspaceModVariable
+		localVarReturnValue NotificationRule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModVariablesService.CreateSetting")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceNotificationRulesService.Create")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/notification_rule"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mod_alias"+"}", _neturl.PathEscape(parameterToString(r.modAlias, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -176,6 +172,16 @@ func (a *UserWorkspaceModVariablesService) CreateSettingExecute(r UserWorkspaceM
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -210,62 +216,58 @@ func (a *UserWorkspaceModVariablesService) CreateSettingExecute(r UserWorkspaceM
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type UserWorkspaceModVariablesApiDeleteSettingRequest struct {
-	ctx             _context.Context
-	ApiService      *UserWorkspaceModVariablesService
-	userHandle      string
-	workspaceHandle string
-	modAlias        string
-	variableName    string
+type OrgWorkspaceNotificationRulesApiDeleteRequest struct {
+	ctx                _context.Context
+	ApiService         *OrgWorkspaceNotificationRulesService
+	orgHandle          string
+	workspaceHandle    string
+	notificationRuleId string
 }
 
-func (r UserWorkspaceModVariablesApiDeleteSettingRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
-	return r.ApiService.DeleteSettingExecute(r)
+func (r OrgWorkspaceNotificationRulesApiDeleteRequest) Execute() (NotificationRule, *_nethttp.Response, error) {
+	return r.ApiService.DeleteExecute(r)
 }
 
 /*
-DeleteSetting Delete setting for a mod variable in a user workspace
+Delete Delete organization workspace notification rule
 
-Delete setting for a mod variable in a user workspace
+Deletes organization workspace notification rule
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed
- @param modAlias The mod alias or mod ID for which the variable setting is to be deleted
- @param variableName The name of the variable for which setting is to be deleted
- @return UserWorkspaceModVariablesApiDeleteSettingRequest
+ @param orgHandle The handle of an organization that owns the workspace.
+ @param workspaceHandle The handle of the workspace where the notification exists.
+ @param notificationRuleId The notification rule id to delete.
+ @return OrgWorkspaceNotificationRulesApiDeleteRequest
 */
-func (a *UserWorkspaceModVariablesService) DeleteSetting(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string, variableName string) UserWorkspaceModVariablesApiDeleteSettingRequest {
-	return UserWorkspaceModVariablesApiDeleteSettingRequest{
-		ApiService:      a,
-		ctx:             ctx,
-		userHandle:      userHandle,
-		workspaceHandle: workspaceHandle,
-		modAlias:        modAlias,
-		variableName:    variableName,
+func (a *OrgWorkspaceNotificationRulesService) Delete(ctx _context.Context, orgHandle string, workspaceHandle string, notificationRuleId string) OrgWorkspaceNotificationRulesApiDeleteRequest {
+	return OrgWorkspaceNotificationRulesApiDeleteRequest{
+		ApiService:         a,
+		ctx:                ctx,
+		orgHandle:          orgHandle,
+		workspaceHandle:    workspaceHandle,
+		notificationRuleId: notificationRuleId,
 	}
 }
 
 // Execute executes the request
-//  @return WorkspaceModVariable
-func (a *UserWorkspaceModVariablesService) DeleteSettingExecute(r UserWorkspaceModVariablesApiDeleteSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
+//  @return NotificationRule
+func (a *OrgWorkspaceNotificationRulesService) DeleteExecute(r OrgWorkspaceNotificationRulesApiDeleteRequest) (NotificationRule, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue WorkspaceModVariable
+		localVarReturnValue NotificationRule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModVariablesService.DeleteSetting")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceNotificationRulesService.Delete")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/notification_rule/{notification_rule_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mod_alias"+"}", _neturl.PathEscape(parameterToString(r.modAlias, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"variable_name"+"}", _neturl.PathEscape(parameterToString(r.variableName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"notification_rule_id"+"}", _neturl.PathEscape(parameterToString(r.notificationRuleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -384,72 +386,248 @@ func (a *UserWorkspaceModVariablesService) DeleteSettingExecute(r UserWorkspaceM
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type UserWorkspaceModVariablesApiListRequest struct {
+type OrgWorkspaceNotificationRulesApiGetRequest struct {
+	ctx                _context.Context
+	ApiService         *OrgWorkspaceNotificationRulesService
+	orgHandle          string
+	workspaceHandle    string
+	notificationRuleId string
+}
+
+func (r OrgWorkspaceNotificationRulesApiGetRequest) Execute() (NotificationRule, *_nethttp.Response, error) {
+	return r.ApiService.GetExecute(r)
+}
+
+/*
+Get Get organization workspace notification rule
+
+Get organization workspace notification rule by notification rule id
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgHandle The handle of an organization that owns the workspace.
+ @param workspaceHandle The handle of the workspace where the notification exists.
+ @param notificationRuleId The notification rule id.
+ @return OrgWorkspaceNotificationRulesApiGetRequest
+*/
+func (a *OrgWorkspaceNotificationRulesService) Get(ctx _context.Context, orgHandle string, workspaceHandle string, notificationRuleId string) OrgWorkspaceNotificationRulesApiGetRequest {
+	return OrgWorkspaceNotificationRulesApiGetRequest{
+		ApiService:         a,
+		ctx:                ctx,
+		orgHandle:          orgHandle,
+		workspaceHandle:    workspaceHandle,
+		notificationRuleId: notificationRuleId,
+	}
+}
+
+// Execute executes the request
+//  @return NotificationRule
+func (a *OrgWorkspaceNotificationRulesService) GetExecute(r OrgWorkspaceNotificationRulesApiGetRequest) (NotificationRule, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue NotificationRule
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceNotificationRulesService.Get")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/notification_rule/{notification_rule_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"notification_rule_id"+"}", _neturl.PathEscape(parameterToString(r.notificationRuleId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgWorkspaceNotificationRulesApiListRequest struct {
 	ctx             _context.Context
-	ApiService      *UserWorkspaceModVariablesService
-	userHandle      string
+	ApiService      *OrgWorkspaceNotificationRulesService
+	orgHandle       string
 	workspaceHandle string
-	modAlias        string
 	limit           *int32
 	nextToken       *string
 }
 
 // The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
-func (r UserWorkspaceModVariablesApiListRequest) Limit(limit int32) UserWorkspaceModVariablesApiListRequest {
+func (r OrgWorkspaceNotificationRulesApiListRequest) Limit(limit int32) OrgWorkspaceNotificationRulesApiListRequest {
 	r.limit = &limit
 	return r
 }
 
 // When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
-func (r UserWorkspaceModVariablesApiListRequest) NextToken(nextToken string) UserWorkspaceModVariablesApiListRequest {
+func (r OrgWorkspaceNotificationRulesApiListRequest) NextToken(nextToken string) OrgWorkspaceNotificationRulesApiListRequest {
 	r.nextToken = &nextToken
 	return r
 }
 
-func (r UserWorkspaceModVariablesApiListRequest) Execute() (ListWorkspaceModVariablesResponse, *_nethttp.Response, error) {
+func (r OrgWorkspaceNotificationRulesApiListRequest) Execute() (ListNotificationRulesResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListExecute(r)
 }
 
 /*
-List List variables for a user workspace mod
+List List organization workspace notification rules
 
-List all variables applicable for a mod in a workspace specific to a user
+List organization workspace notification rules
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where mods were installed
- @param modAlias The mod alias or mod ID for which we want the variables to be listed
- @return UserWorkspaceModVariablesApiListRequest
+ @param orgHandle The handle of an organization that owns the workspace.
+ @param workspaceHandle The handle of the workspace where the notification exists.
+ @return OrgWorkspaceNotificationRulesApiListRequest
 */
-func (a *UserWorkspaceModVariablesService) List(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModVariablesApiListRequest {
-	return UserWorkspaceModVariablesApiListRequest{
+func (a *OrgWorkspaceNotificationRulesService) List(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceNotificationRulesApiListRequest {
+	return OrgWorkspaceNotificationRulesApiListRequest{
 		ApiService:      a,
 		ctx:             ctx,
-		userHandle:      userHandle,
+		orgHandle:       orgHandle,
 		workspaceHandle: workspaceHandle,
-		modAlias:        modAlias,
 	}
 }
 
 // Execute executes the request
-//  @return ListWorkspaceModVariablesResponse
-func (a *UserWorkspaceModVariablesService) ListExecute(r UserWorkspaceModVariablesApiListRequest) (ListWorkspaceModVariablesResponse, *_nethttp.Response, error) {
+//  @return ListNotificationRulesResponse
+func (a *OrgWorkspaceNotificationRulesService) ListExecute(r OrgWorkspaceNotificationRulesApiListRequest) (ListNotificationRulesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue ListWorkspaceModVariablesResponse
+		localVarReturnValue ListNotificationRulesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModVariablesService.List")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceNotificationRulesService.List")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/notification_rule"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mod_alias"+"}", _neturl.PathEscape(parameterToString(r.modAlias, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -478,192 +656,6 @@ func (a *UserWorkspaceModVariablesService) ListExecute(r UserWorkspaceModVariabl
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type UserWorkspaceModVariablesApiUpdateSettingRequest struct {
-	ctx             _context.Context
-	ApiService      *UserWorkspaceModVariablesService
-	userHandle      string
-	workspaceHandle string
-	modAlias        string
-	variableName    string
-	request         *UpdateWorkspaceModVariableSettingRequest
-}
-
-// The request body to update setting for mod variable in the user workspace.
-func (r UserWorkspaceModVariablesApiUpdateSettingRequest) Request(request UpdateWorkspaceModVariableSettingRequest) UserWorkspaceModVariablesApiUpdateSettingRequest {
-	r.request = &request
-	return r
-}
-
-func (r UserWorkspaceModVariablesApiUpdateSettingRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
-	return r.ApiService.UpdateSettingExecute(r)
-}
-
-/*
-UpdateSetting Update setting for a mod variable in a user workspace
-
-Update setting for a mod variable in a user workspace
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed
- @param modAlias The mod alias or mod ID which contains the variable.
- @param variableName The name of the variable for which setting is to be updated
- @return UserWorkspaceModVariablesApiUpdateSettingRequest
-*/
-func (a *UserWorkspaceModVariablesService) UpdateSetting(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string, variableName string) UserWorkspaceModVariablesApiUpdateSettingRequest {
-	return UserWorkspaceModVariablesApiUpdateSettingRequest{
-		ApiService:      a,
-		ctx:             ctx,
-		userHandle:      userHandle,
-		workspaceHandle: workspaceHandle,
-		modAlias:        modAlias,
-		variableName:    variableName,
-	}
-}
-
-// Execute executes the request
-//  @return WorkspaceModVariable
-func (a *UserWorkspaceModVariablesService) UpdateSettingExecute(r UserWorkspaceModVariablesApiUpdateSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod  = _nethttp.MethodPatch
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue WorkspaceModVariable
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModVariablesService.UpdateSetting")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"mod_alias"+"}", _neturl.PathEscape(parameterToString(r.modAlias, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"variable_name"+"}", _neturl.PathEscape(parameterToString(r.variableName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.request == nil {
-		return localVarReturnValue, nil, reportError("request is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.request
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

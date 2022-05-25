@@ -2978,7 +2978,7 @@ paths:
   /org/{org_handle}/workspace/{workspace_handle}/mod:
     get:
       description: List organization workspace installed mods
-      operationId: orgWorkspace_listOrgWorkspaceMods
+      operationId: orgWorkspaceMod_list
       parameters:
       - description: The handle of an organization that owns the workspace.
         explode: false
@@ -3069,7 +3069,7 @@ paths:
       - OrgWorkspaceMods
     post:
       description: Install a mod to an organization workspace
-      operationId: orgWorkspace_installOrgWorkspaceMod
+      operationId: orgWorkspaceMod_install
       parameters:
       - description: The handle of an organization that owns the workspace.
         explode: false
@@ -3152,7 +3152,7 @@ paths:
   /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}:
     delete:
       description: Uninstall mod from organization workspace.
-      operationId: orgWorkspace_uninstallOrgWorkspaceMod
+      operationId: orgWorkspaceMod_uninstall
       parameters:
       - description: The handle of an organization that owns the workspace.
         explode: false
@@ -3229,7 +3229,7 @@ paths:
       - OrgWorkspaceMods
     get:
       description: Get organization workspace installed mod by mod alias
-      operationId: orgWorkspace_getOrgWorkspaceMod
+      operationId: orgWorkspaceMod_get
       parameters:
       - description: The handle of an organization that owns the workspace.
         explode: false
@@ -3312,7 +3312,7 @@ paths:
       - OrgWorkspaceMods
     patch:
       description: Update a mod in an organization workspace
-      operationId: orgWorkspace_updateOrgWorkspaceMod
+      operationId: orgWorkspaceMod_update
       parameters:
       - description: The handle of an organization that owns the workspace.
         explode: false
@@ -3405,7 +3405,7 @@ paths:
     get:
       description: List all variables applicable for a mod in a workspace specific
         to an organization
-      operationId: userWorkspace_listOrgWorkspaceModVariables
+      operationId: orgWorkspaceModVariable_list
       parameters:
       - description: The handle of the organization that owns the workspace.
         explode: false
@@ -3506,7 +3506,7 @@ paths:
       - OrgWorkspaceModVariables
     post:
       description: Create a setting for a mod variable in an organization workspace
-      operationId: userWorkspace_createOrgWorkspaceModVariableSetting
+      operationId: orgWorkspaceModVariable_createSetting
       parameters:
       - description: The handle of the organization that owns the workspace.
         explode: false
@@ -3594,7 +3594,7 @@ paths:
   /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name}:
     delete:
       description: Delete setting for a mod variable in an organization workspace
-      operationId: userWorkspace_deleteOrgWorkspaceModVariableSetting
+      operationId: orgWorkspaceModVariable_deleteSetting
       parameters:
       - description: The handle of the organization that owns the workspace.
         explode: false
@@ -3680,7 +3680,7 @@ paths:
       - OrgWorkspaceModVariables
     patch:
       description: Update setting for a mod variable in an organization workspace
-      operationId: userWorkspace_updateOrgWorkspaceModVariableSetting
+      operationId: orgWorkspaceModVariable_updateSetting
       parameters:
       - description: The handle of the organization that owns the workspace.
         explode: false
@@ -3776,7 +3776,7 @@ paths:
   /org/{org_handle}/workspace/{workspace_handle}/notification_rule:
     get:
       description: List organization workspace notification rules
-      operationId: orgWorkspace_listOrgWorkspaceNotificationRules
+      operationId: orgWorkspaceNotificationRule_list
       parameters:
       - description: The handle of an organization that owns the workspace.
         explode: false
@@ -3864,17 +3864,11 @@ paths:
           description: Internal Server Error
       summary: List organization workspace notification rules
       tags:
-      - OrgWorkspaceNotifications
+      - OrgWorkspaceNotificationRules
     post:
-      description: |-
-        Creates a new organization workspace notification rule. Notification rule allows the recipients to be notified when a certain event has been raised.
-
-        Valid events:
-
-        workspace.connection.associate
-
-        workspace.connection.dissociate
-      operationId: orgWorkspace_createOrgWorkspaceNotificationRule
+      description: Creates a new organization workspace notification rule. Notification
+        rule allows the recipients to be notified when a certain event has been raised.
+      operationId: orgWorkspaceNotificationRule_create
       parameters:
       - description: The handle of an organization that owns the workspace.
         explode: false
@@ -3953,12 +3947,12 @@ paths:
           description: Internal Server Error
       summary: Create organization workspace notification rule
       tags:
-      - OrgWorkspaceNotifications
+      - OrgWorkspaceNotificationRules
       x-codegen-request-body-name: request
   /org/{org_handle}/workspace/{workspace_handle}/notification_rule/{notification_rule_id}:
     delete:
       description: Deletes organization workspace notification rule
-      operationId: orgWorkspace_deleteOrgWorkspaceNotificationRule
+      operationId: orgWorkspaceNotificationRule_delete
       parameters:
       - description: The handle of an organization that owns the workspace.
         explode: false
@@ -4032,11 +4026,11 @@ paths:
           description: Internal Server Error
       summary: Delete organization workspace notification rule
       tags:
-      - OrgWorkspaceNotifications
+      - OrgWorkspaceNotificationRules
     get:
       description: Get organization workspace notification rule by notification rule
         id
-      operationId: orgWorkspace_getOrgWorkspaceNotificationRule
+      operationId: orgWorkspaceNotificationRule_get
       parameters:
       - description: The handle of an organization that owns the workspace.
         explode: false
@@ -4116,7 +4110,7 @@ paths:
           description: Internal Server Error
       summary: Get organization workspace notification rule
       tags:
-      - OrgWorkspaceNotifications
+      - OrgWorkspaceNotificationRules
   /org/{org_handle}/workspace/{workspace_handle}/query:
     get:
       description: Performs a query in an org workspace. Results are limited to 3000
@@ -7872,7 +7866,7 @@ paths:
   /user/{user_handle}/workspace/{workspace_handle}/mod:
     get:
       description: List user workspace installed mods
-      operationId: userWorkspace_listUserWorkspaceMods
+      operationId: userWorkspaceMod_list
       parameters:
       - description: The handle of the user who owns the workspace.
         explode: false
@@ -7963,7 +7957,7 @@ paths:
       - UserWorkspaceMods
     post:
       description: Install a mod to a user's workspace
-      operationId: userWorkspace_installUserWorkspaceMods
+      operationId: userWorkspaceMod_install
       parameters:
       - description: The handle of the user who owns the workspace.
         explode: false
@@ -8046,7 +8040,7 @@ paths:
   /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}:
     delete:
       description: Uninstall mod from a user's workspace
-      operationId: userWorkspace_uninstallUserWorkspaceMod
+      operationId: userWorkspaceMod_uninstall
       parameters:
       - description: The handle of the user who owns the workspace.
         explode: false
@@ -8123,7 +8117,7 @@ paths:
       - UserWorkspaceMods
     get:
       description: Get user workspace installed mod by mod alias
-      operationId: userWorkspace_getUserWorkspaceMod
+      operationId: userWorkspaceMod_get
       parameters:
       - description: The handle of the user who owns the workspace.
         explode: false
@@ -8206,7 +8200,7 @@ paths:
       - UserWorkspaceMods
     patch:
       description: Update a mod in a user's workspace
-      operationId: userWorkspace_updateUserWorkspaceMod
+      operationId: userWorkspaceMod_update
       parameters:
       - description: The handle of the user who owns the workspace.
         explode: false
@@ -8299,7 +8293,7 @@ paths:
     get:
       description: List all variables applicable for a mod in a workspace specific
         to a user
-      operationId: userWorkspace_listUserWorkspaceModVariables
+      operationId: userWorkspaceModVariable_list
       parameters:
       - description: The handle of the user who owns the workspace.
         explode: false
@@ -8400,7 +8394,7 @@ paths:
       - UserWorkspaceModVariables
     post:
       description: Create a setting for a mod variable in a user workspace
-      operationId: userWorkspace_createUserWorkspaceModVariableSetting
+      operationId: userWorkspaceModVariable_createSetting
       parameters:
       - description: The handle of the user who owns the workspace.
         explode: false
@@ -8488,7 +8482,7 @@ paths:
   /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name}:
     delete:
       description: Delete setting for a mod variable in a user workspace
-      operationId: userWorkspace_deleteUserWorkspaceModVariableSetting
+      operationId: userWorkspaceModVariable_deleteSetting
       parameters:
       - description: The handle of the user who owns the workspace.
         explode: false
@@ -8575,7 +8569,7 @@ paths:
       - UserWorkspaceModVariables
     patch:
       description: Update setting for a mod variable in a user workspace
-      operationId: userWorkspace_updateUserWorkspaceModVariableSetting
+      operationId: userWorkspaceModVariable_updateSetting
       parameters:
       - description: The handle of the user who owns the workspace.
         explode: false
@@ -8671,7 +8665,7 @@ paths:
   /user/{user_handle}/workspace/{workspace_handle}/notification_rule:
     get:
       description: List user workspace notification rules
-      operationId: userWorkspace_listUserWorkspaceNotificationRules
+      operationId: userWorkspaceNotificationRule_list
       parameters:
       - description: Specify the handle of the user who owns the workspace
         explode: false
@@ -8759,17 +8753,12 @@ paths:
           description: Internal Server Error
       summary: List user workspace notification rules
       tags:
-      - UserWorkspaceNotifications
+      - UserWorkspaceNotificationRules
     post:
-      description: |-
-        Creates a new user workspace notification rule. Notification rule allows the recipient (in this particular instance, the user) to be notified when a certain event has been raised.
-
-        Valid events:
-
-        workspace.connection.associate
-
-        workspace.connection.dissociate
-      operationId: userWorkspace_createUserWorkspaceNotificationRule
+      description: Creates a new user workspace notification rule. Notification rule
+        allows the recipient (in this particular instance, the user) to be notified
+        when a certain event has been raised.
+      operationId: userWorkspaceNotificationRule_create
       parameters:
       - description: Specify the handle of the user who owns the workspace.
         explode: false
@@ -8848,19 +8837,14 @@ paths:
           description: Internal Server Error
       summary: Create user workspace notification rule
       tags:
-      - UserWorkspaceNotifications
+      - UserWorkspaceNotificationRules
       x-codegen-request-body-name: request
   /user/{user_handle}/workspace/{workspace_handle}/notification_rule/{notification_rule_id}:
     delete:
-      description: |-
-        Deletes a new user workspace notification rule. Notification rule allows the recipient (in this particular instance, the user) to be notified when a certain event has been raised.
-
-        Valid events:
-
-        workspace.connection.associate
-
-        workspace.connection.dissociate
-      operationId: userWorkspace_deleteUserWorkspaceNotificationRule
+      description: Deletes a new user workspace notification rule. Notification rule
+        allows the recipient (in this particular instance, the user) to be notified
+        when a certain event has been raised.
+      operationId: userWorkspaceNotificationRule_delete
       parameters:
       - description: Specify the handle of the user who owns the workspace.
         explode: false
@@ -8934,10 +8918,10 @@ paths:
           description: Internal Server Error
       summary: Delete user workspace notification rule
       tags:
-      - UserWorkspaceNotifications
+      - UserWorkspaceNotificationRules
     get:
       description: Get user workspace notification rule by notification rule id
-      operationId: userWorkspace_getUserWorkspaceNotificationRule
+      operationId: userWorkspaceNotificationRule_get
       parameters:
       - description: Specify the handle of the user who owns the workspace.
         explode: false
@@ -9017,7 +9001,7 @@ paths:
           description: Internal Server Error
       summary: Get user workspace notification rule
       tags:
-      - UserWorkspaceNotifications
+      - UserWorkspaceNotificationRules
   /user/{user_handle}/workspace/{workspace_handle}/query:
     get:
       description: Performs a query in a user workspace. Results are limited to 3000
