@@ -3583,6 +3583,93 @@ paths:
       summary: Delete setting for a mod variable in an organization workspace
       tags:
       - OrgWorkspaceModVariables
+    get:
+      description: Get variable for a mod in a workspace specific to an organization
+      operationId: orgWorkspaceModVariable_get
+      parameters:
+      - description: The handle of the organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where mods were installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID for which we want the variables to be
+          listed
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The name of the variable for which setting is to be updated
+        explode: false
+        in: path
+        name: variable_name
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get variable for an organization workspace mod
+      tags:
+      - OrgWorkspaceModVariables
     patch:
       description: Update setting for a mod variable in an organization workspace
       operationId: orgWorkspaceModVariable_updateSetting
@@ -7581,6 +7668,93 @@ paths:
                 $ref: '#/components/schemas/ErrorModel'
           description: Internal Server Error
       summary: Delete setting for a mod variable in a user workspace
+      tags:
+      - UserWorkspaceModVariables
+    get:
+      description: Get variable for a mod in a workspace specific to a user
+      operationId: userWorkspaceModVariable_get
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where mods were installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID for which we want the variables to be
+          listed
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The name of the variable for which setting is to be updated
+        explode: false
+        in: path
+        name: variable_name
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get variable for a user workspace mod
       tags:
       - UserWorkspaceModVariables
     patch:
