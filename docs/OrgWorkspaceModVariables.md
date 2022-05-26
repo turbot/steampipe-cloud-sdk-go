@@ -35,7 +35,7 @@ func main() {
     orgHandle := "orgHandle_example" // string | The handle of the organization that owns the workspace.
     workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace where the mod was installed.
     modAlias := "modAlias_example" // string | The mod alias or mod ID for which the variable setting is to be created.
-    request := *openapiclient.NewCreateWorkspaceModVariableSettingRequest("Name_example", map[string]interface{}(123)) // CreateWorkspaceModVariableSettingRequest | The request body to create setting for mod variable in the organization workspace.
+    request := *openapiclient.NewCreateWorkspaceModVariableSettingRequest("Name_example", "Setting_example") // CreateWorkspaceModVariableSettingRequest | The request body to create setting for mod variable in the organization workspace.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -273,7 +273,7 @@ func main() {
     workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace where the mod was installed.
     modAlias := "modAlias_example" // string | The mod alias or mod ID which contains the variable.
     variableName := "variableName_example" // string | The name of the variable for which setting is to be updated.
-    request := *openapiclient.NewUpdateWorkspaceModVariableSettingRequest(map[string]interface{}(123)) // UpdateWorkspaceModVariableSettingRequest | The request body to update setting for mod variable in the organization workspace.
+    request := *openapiclient.NewUpdateWorkspaceModVariableSettingRequest("Setting_example") // UpdateWorkspaceModVariableSettingRequest | The request body to update setting for mod variable in the organization workspace.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

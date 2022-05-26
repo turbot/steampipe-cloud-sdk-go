@@ -17,15 +17,15 @@ import (
 
 // CreateWorkspaceModVariableSettingRequest struct for CreateWorkspaceModVariableSettingRequest
 type CreateWorkspaceModVariableSettingRequest struct {
-	Name    string                 `json:"name"`
-	Setting map[string]interface{} `json:"setting"`
+	Name    string `json:"name"`
+	Setting string `json:"setting"`
 }
 
 // NewCreateWorkspaceModVariableSettingRequest instantiates a new CreateWorkspaceModVariableSettingRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateWorkspaceModVariableSettingRequest(name string, setting map[string]interface{}) *CreateWorkspaceModVariableSettingRequest {
+func NewCreateWorkspaceModVariableSettingRequest(name string, setting string) *CreateWorkspaceModVariableSettingRequest {
 	this := CreateWorkspaceModVariableSettingRequest{}
 	this.Name = name
 	this.Setting = setting
@@ -65,9 +65,9 @@ func (o *CreateWorkspaceModVariableSettingRequest) SetName(v string) {
 }
 
 // GetSetting returns the Setting field value
-func (o *CreateWorkspaceModVariableSettingRequest) GetSetting() map[string]interface{} {
+func (o *CreateWorkspaceModVariableSettingRequest) GetSetting() string {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
 
@@ -76,7 +76,7 @@ func (o *CreateWorkspaceModVariableSettingRequest) GetSetting() map[string]inter
 
 // GetSettingOk returns a tuple with the Setting field value
 // and a boolean to check if the value has been set.
-func (o *CreateWorkspaceModVariableSettingRequest) GetSettingOk() (*map[string]interface{}, bool) {
+func (o *CreateWorkspaceModVariableSettingRequest) GetSettingOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,7 +84,7 @@ func (o *CreateWorkspaceModVariableSettingRequest) GetSettingOk() (*map[string]i
 }
 
 // SetSetting sets field value
-func (o *CreateWorkspaceModVariableSettingRequest) SetSetting(v map[string]interface{}) {
+func (o *CreateWorkspaceModVariableSettingRequest) SetSetting(v string) {
 	o.Setting = v
 }
 

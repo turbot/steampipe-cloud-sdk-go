@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**Setting** | **map[string]interface{}** |  | 
+**Setting** | **string** |  | 
 
 ## Methods
 
 ### NewCreateWorkspaceModVariableSettingRequest
 
-`func NewCreateWorkspaceModVariableSettingRequest(name string, setting map[string]interface{}, ) *CreateWorkspaceModVariableSettingRequest`
+`func NewCreateWorkspaceModVariableSettingRequest(name string, setting string, ) *CreateWorkspaceModVariableSettingRequest`
 
 NewCreateWorkspaceModVariableSettingRequest instantiates a new CreateWorkspaceModVariableSettingRequest object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetName sets Name field to given value.
 
 ### GetSetting
 
-`func (o *CreateWorkspaceModVariableSettingRequest) GetSetting() map[string]interface{}`
+`func (o *CreateWorkspaceModVariableSettingRequest) GetSetting() string`
 
 GetSetting returns the Setting field if non-nil, zero value otherwise.
 
 ### GetSettingOk
 
-`func (o *CreateWorkspaceModVariableSettingRequest) GetSettingOk() (*map[string]interface{}, bool)`
+`func (o *CreateWorkspaceModVariableSettingRequest) GetSettingOk() (*string, bool)`
 
 GetSettingOk returns a tuple with the Setting field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSetting
 
-`func (o *CreateWorkspaceModVariableSettingRequest) SetSetting(v map[string]interface{})`
+`func (o *CreateWorkspaceModVariableSettingRequest) SetSetting(v string)`
 
 SetSetting sets Setting field to given value.
 

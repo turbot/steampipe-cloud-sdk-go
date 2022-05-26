@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **UpdatedById** | **string** |  | 
-**Value** | Pointer to **map[string]interface{}** |  | [optional] 
-**ValueDefault** | Pointer to **map[string]interface{}** |  | [optional] 
-**ValueSetting** | Pointer to **map[string]interface{}** |  | [optional] 
+**Value** | Pointer to **string** |  | [optional] 
+**ValueDefault** | Pointer to **string** |  | [optional] 
+**ValueSetting** | Pointer to **string** |  | [optional] 
 **VersionId** | **int32** |  | 
 
 ## Methods
@@ -296,20 +296,20 @@ SetUpdatedById sets UpdatedById field to given value.
 
 ### GetValue
 
-`func (o *WorkspaceModVariable) GetValue() map[string]interface{}`
+`func (o *WorkspaceModVariable) GetValue() string`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *WorkspaceModVariable) GetValueOk() (*map[string]interface{}, bool)`
+`func (o *WorkspaceModVariable) GetValueOk() (*string, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *WorkspaceModVariable) SetValue(v map[string]interface{})`
+`func (o *WorkspaceModVariable) SetValue(v string)`
 
 SetValue sets Value field to given value.
 
@@ -321,20 +321,20 @@ HasValue returns a boolean if a field has been set.
 
 ### GetValueDefault
 
-`func (o *WorkspaceModVariable) GetValueDefault() map[string]interface{}`
+`func (o *WorkspaceModVariable) GetValueDefault() string`
 
 GetValueDefault returns the ValueDefault field if non-nil, zero value otherwise.
 
 ### GetValueDefaultOk
 
-`func (o *WorkspaceModVariable) GetValueDefaultOk() (*map[string]interface{}, bool)`
+`func (o *WorkspaceModVariable) GetValueDefaultOk() (*string, bool)`
 
 GetValueDefaultOk returns a tuple with the ValueDefault field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValueDefault
 
-`func (o *WorkspaceModVariable) SetValueDefault(v map[string]interface{})`
+`func (o *WorkspaceModVariable) SetValueDefault(v string)`
 
 SetValueDefault sets ValueDefault field to given value.
 
@@ -346,20 +346,20 @@ HasValueDefault returns a boolean if a field has been set.
 
 ### GetValueSetting
 
-`func (o *WorkspaceModVariable) GetValueSetting() map[string]interface{}`
+`func (o *WorkspaceModVariable) GetValueSetting() string`
 
 GetValueSetting returns the ValueSetting field if non-nil, zero value otherwise.
 
 ### GetValueSettingOk
 
-`func (o *WorkspaceModVariable) GetValueSettingOk() (*map[string]interface{}, bool)`
+`func (o *WorkspaceModVariable) GetValueSettingOk() (*string, bool)`
 
 GetValueSettingOk returns a tuple with the ValueSetting field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValueSetting
 
-`func (o *WorkspaceModVariable) SetValueSetting(v map[string]interface{})`
+`func (o *WorkspaceModVariable) SetValueSetting(v string)`
 
 SetValueSetting sets ValueSetting field to given value.
 

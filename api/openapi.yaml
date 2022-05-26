@@ -8686,13 +8686,12 @@ components:
     CreateWorkspaceModVariableSettingRequest:
       example:
         name: name
-        setting: '{}'
+        setting: setting
       properties:
         name:
           type: string
         setting:
-          properties: {}
-          type: object
+          type: string
       required:
       - name
       - setting
@@ -9227,9 +9226,9 @@ components:
             preview_access_mode: preview_access_mode
             url: url
             status: status
-          value_setting: '{}'
+          value_setting: value_setting
           updated_at: updated_at
-          value_default: '{}'
+          value_default: value_default
           name: name
           updated_by:
             avatar_url: avatar_url
@@ -9246,7 +9245,7 @@ components:
           updated_by_id: updated_by_id
           created_by_id: created_by_id
           id: id
-          value: '{}'
+          value: value
         - created_at: created_at
           description: description
           mod_alias: mod_alias
@@ -9264,9 +9263,9 @@ components:
             preview_access_mode: preview_access_mode
             url: url
             status: status
-          value_setting: '{}'
+          value_setting: value_setting
           updated_at: updated_at
-          value_default: '{}'
+          value_default: value_default
           name: name
           updated_by:
             avatar_url: avatar_url
@@ -9283,7 +9282,7 @@ components:
           updated_by_id: updated_by_id
           created_by_id: created_by_id
           id: id
-          value: '{}'
+          value: value
       properties:
         items:
           items:
@@ -9775,11 +9774,10 @@ components:
       type: object
     UpdateWorkspaceModVariableSettingRequest:
       example:
-        setting: '{}'
+        setting: setting
       properties:
         setting:
-          properties: {}
-          type: object
+          type: string
       required:
       - setting
       type: object
@@ -10234,9 +10232,9 @@ components:
           preview_access_mode: preview_access_mode
           url: url
           status: status
-        value_setting: '{}'
+        value_setting: value_setting
         updated_at: updated_at
-        value_default: '{}'
+        value_default: value_default
         name: name
         updated_by:
           avatar_url: avatar_url
@@ -10253,7 +10251,7 @@ components:
         updated_by_id: updated_by_id
         created_by_id: created_by_id
         id: id
-        value: '{}'
+        value: value
       properties:
         created_at:
           type: string
@@ -10281,14 +10279,11 @@ components:
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         value:
-          properties: {}
-          type: object
+          type: string
         value_default:
-          properties: {}
-          type: object
+          type: string
         value_setting:
-          properties: {}
-          type: object
+          type: string
         version_id:
           type: integer
       required:

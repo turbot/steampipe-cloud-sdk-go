@@ -17,21 +17,21 @@ import (
 
 // WorkspaceModVariable struct for WorkspaceModVariable
 type WorkspaceModVariable struct {
-	CreatedAt    string                  `json:"created_at"`
-	CreatedBy    *User                   `json:"created_by,omitempty"`
-	CreatedById  string                  `json:"created_by_id"`
-	Description  *string                 `json:"description,omitempty"`
-	Id           string                  `json:"id"`
-	ModAlias     *string                 `json:"mod_alias,omitempty"`
-	Name         *string                 `json:"name,omitempty"`
-	Type         *string                 `json:"type,omitempty"`
-	UpdatedAt    *string                 `json:"updated_at,omitempty"`
-	UpdatedBy    *User                   `json:"updated_by,omitempty"`
-	UpdatedById  string                  `json:"updated_by_id"`
-	Value        *map[string]interface{} `json:"value,omitempty"`
-	ValueDefault *map[string]interface{} `json:"value_default,omitempty"`
-	ValueSetting *map[string]interface{} `json:"value_setting,omitempty"`
-	VersionId    int32                   `json:"version_id"`
+	CreatedAt    string  `json:"created_at"`
+	CreatedBy    *User   `json:"created_by,omitempty"`
+	CreatedById  string  `json:"created_by_id"`
+	Description  *string `json:"description,omitempty"`
+	Id           string  `json:"id"`
+	ModAlias     *string `json:"mod_alias,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	Type         *string `json:"type,omitempty"`
+	UpdatedAt    *string `json:"updated_at,omitempty"`
+	UpdatedBy    *User   `json:"updated_by,omitempty"`
+	UpdatedById  string  `json:"updated_by_id"`
+	Value        *string `json:"value,omitempty"`
+	ValueDefault *string `json:"value_default,omitempty"`
+	ValueSetting *string `json:"value_setting,omitempty"`
+	VersionId    int32   `json:"version_id"`
 }
 
 // NewWorkspaceModVariable instantiates a new WorkspaceModVariable object
@@ -377,9 +377,9 @@ func (o *WorkspaceModVariable) SetUpdatedById(v string) {
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *WorkspaceModVariable) GetValue() map[string]interface{} {
+func (o *WorkspaceModVariable) GetValue() string {
 	if o == nil || o.Value == nil {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
 	return *o.Value
@@ -387,7 +387,7 @@ func (o *WorkspaceModVariable) GetValue() map[string]interface{} {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WorkspaceModVariable) GetValueOk() (*map[string]interface{}, bool) {
+func (o *WorkspaceModVariable) GetValueOk() (*string, bool) {
 	if o == nil || o.Value == nil {
 		return nil, false
 	}
@@ -403,15 +403,15 @@ func (o *WorkspaceModVariable) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given map[string]interface{} and assigns it to the Value field.
-func (o *WorkspaceModVariable) SetValue(v map[string]interface{}) {
+// SetValue gets a reference to the given string and assigns it to the Value field.
+func (o *WorkspaceModVariable) SetValue(v string) {
 	o.Value = &v
 }
 
 // GetValueDefault returns the ValueDefault field value if set, zero value otherwise.
-func (o *WorkspaceModVariable) GetValueDefault() map[string]interface{} {
+func (o *WorkspaceModVariable) GetValueDefault() string {
 	if o == nil || o.ValueDefault == nil {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
 	return *o.ValueDefault
@@ -419,7 +419,7 @@ func (o *WorkspaceModVariable) GetValueDefault() map[string]interface{} {
 
 // GetValueDefaultOk returns a tuple with the ValueDefault field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WorkspaceModVariable) GetValueDefaultOk() (*map[string]interface{}, bool) {
+func (o *WorkspaceModVariable) GetValueDefaultOk() (*string, bool) {
 	if o == nil || o.ValueDefault == nil {
 		return nil, false
 	}
@@ -435,15 +435,15 @@ func (o *WorkspaceModVariable) HasValueDefault() bool {
 	return false
 }
 
-// SetValueDefault gets a reference to the given map[string]interface{} and assigns it to the ValueDefault field.
-func (o *WorkspaceModVariable) SetValueDefault(v map[string]interface{}) {
+// SetValueDefault gets a reference to the given string and assigns it to the ValueDefault field.
+func (o *WorkspaceModVariable) SetValueDefault(v string) {
 	o.ValueDefault = &v
 }
 
 // GetValueSetting returns the ValueSetting field value if set, zero value otherwise.
-func (o *WorkspaceModVariable) GetValueSetting() map[string]interface{} {
+func (o *WorkspaceModVariable) GetValueSetting() string {
 	if o == nil || o.ValueSetting == nil {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
 	return *o.ValueSetting
@@ -451,7 +451,7 @@ func (o *WorkspaceModVariable) GetValueSetting() map[string]interface{} {
 
 // GetValueSettingOk returns a tuple with the ValueSetting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WorkspaceModVariable) GetValueSettingOk() (*map[string]interface{}, bool) {
+func (o *WorkspaceModVariable) GetValueSettingOk() (*string, bool) {
 	if o == nil || o.ValueSetting == nil {
 		return nil, false
 	}
@@ -467,8 +467,8 @@ func (o *WorkspaceModVariable) HasValueSetting() bool {
 	return false
 }
 
-// SetValueSetting gets a reference to the given map[string]interface{} and assigns it to the ValueSetting field.
-func (o *WorkspaceModVariable) SetValueSetting(v map[string]interface{}) {
+// SetValueSetting gets a reference to the given string and assigns it to the ValueSetting field.
+func (o *WorkspaceModVariable) SetValueSetting(v string) {
 	o.ValueSetting = &v
 }
 

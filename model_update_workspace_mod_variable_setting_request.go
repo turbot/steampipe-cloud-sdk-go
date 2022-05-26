@@ -17,14 +17,14 @@ import (
 
 // UpdateWorkspaceModVariableSettingRequest struct for UpdateWorkspaceModVariableSettingRequest
 type UpdateWorkspaceModVariableSettingRequest struct {
-	Setting map[string]interface{} `json:"setting"`
+	Setting string `json:"setting"`
 }
 
 // NewUpdateWorkspaceModVariableSettingRequest instantiates a new UpdateWorkspaceModVariableSettingRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateWorkspaceModVariableSettingRequest(setting map[string]interface{}) *UpdateWorkspaceModVariableSettingRequest {
+func NewUpdateWorkspaceModVariableSettingRequest(setting string) *UpdateWorkspaceModVariableSettingRequest {
 	this := UpdateWorkspaceModVariableSettingRequest{}
 	this.Setting = setting
 	return &this
@@ -39,9 +39,9 @@ func NewUpdateWorkspaceModVariableSettingRequestWithDefaults() *UpdateWorkspaceM
 }
 
 // GetSetting returns the Setting field value
-func (o *UpdateWorkspaceModVariableSettingRequest) GetSetting() map[string]interface{} {
+func (o *UpdateWorkspaceModVariableSettingRequest) GetSetting() string {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
 
@@ -50,7 +50,7 @@ func (o *UpdateWorkspaceModVariableSettingRequest) GetSetting() map[string]inter
 
 // GetSettingOk returns a tuple with the Setting field value
 // and a boolean to check if the value has been set.
-func (o *UpdateWorkspaceModVariableSettingRequest) GetSettingOk() (*map[string]interface{}, bool) {
+func (o *UpdateWorkspaceModVariableSettingRequest) GetSettingOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *UpdateWorkspaceModVariableSettingRequest) GetSettingOk() (*map[string]i
 }
 
 // SetSetting sets field value
-func (o *UpdateWorkspaceModVariableSettingRequest) SetSetting(v map[string]interface{}) {
+func (o *UpdateWorkspaceModVariableSettingRequest) SetSetting(v string) {
 	o.Setting = v
 }
 

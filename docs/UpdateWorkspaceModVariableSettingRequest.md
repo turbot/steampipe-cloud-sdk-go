@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Setting** | **map[string]interface{}** |  | 
+**Setting** | **string** |  | 
 
 ## Methods
 
 ### NewUpdateWorkspaceModVariableSettingRequest
 
-`func NewUpdateWorkspaceModVariableSettingRequest(setting map[string]interface{}, ) *UpdateWorkspaceModVariableSettingRequest`
+`func NewUpdateWorkspaceModVariableSettingRequest(setting string, ) *UpdateWorkspaceModVariableSettingRequest`
 
 NewUpdateWorkspaceModVariableSettingRequest instantiates a new UpdateWorkspaceModVariableSettingRequest object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSetting
 
-`func (o *UpdateWorkspaceModVariableSettingRequest) GetSetting() map[string]interface{}`
+`func (o *UpdateWorkspaceModVariableSettingRequest) GetSetting() string`
 
 GetSetting returns the Setting field if non-nil, zero value otherwise.
 
 ### GetSettingOk
 
-`func (o *UpdateWorkspaceModVariableSettingRequest) GetSettingOk() (*map[string]interface{}, bool)`
+`func (o *UpdateWorkspaceModVariableSettingRequest) GetSettingOk() (*string, bool)`
 
 GetSettingOk returns a tuple with the Setting field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSetting
 
-`func (o *UpdateWorkspaceModVariableSettingRequest) SetSetting(v map[string]interface{})`
+`func (o *UpdateWorkspaceModVariableSettingRequest) SetSetting(v string)`
 
 SetSetting sets Setting field to given value.
 
