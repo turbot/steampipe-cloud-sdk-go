@@ -1,5 +1,9 @@
 # Steampipe Cloud Go SDK
 
+## 0.0.4 [2022-05-26]
+
+- Add Mod, Mod Variables APIs
+
 ## 0.0.3 [2021-12-15]
 
 - Update the types docs.
