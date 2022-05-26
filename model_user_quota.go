@@ -19,6 +19,7 @@ import (
 type UserQuota struct {
 	Association  map[string]Quota `json:"association"`
 	Conn         Quota            `json:"conn"`
+	Mod          map[string]Quota `json:"mod"`
 	Organization Quota            `json:"organization"`
 	Token        Quota            `json:"token"`
 	Workspace    Quota            `json:"workspace"`
@@ -28,10 +29,11 @@ type UserQuota struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserQuota(association map[string]Quota, conn Quota, organization Quota, token Quota, workspace Quota) *UserQuota {
+func NewUserQuota(association map[string]Quota, conn Quota, mod map[string]Quota, organization Quota, token Quota, workspace Quota) *UserQuota {
 	this := UserQuota{}
 	this.Association = association
 	this.Conn = conn
+	this.Mod = mod
 	this.Organization = organization
 	this.Token = token
 	this.Workspace = workspace
@@ -92,6 +94,30 @@ func (o *UserQuota) GetConnOk() (*Quota, bool) {
 // SetConn sets field value
 func (o *UserQuota) SetConn(v Quota) {
 	o.Conn = v
+}
+
+// GetMod returns the Mod field value
+func (o *UserQuota) GetMod() map[string]Quota {
+	if o == nil {
+		var ret map[string]Quota
+		return ret
+	}
+
+	return o.Mod
+}
+
+// GetModOk returns a tuple with the Mod field value
+// and a boolean to check if the value has been set.
+func (o *UserQuota) GetModOk() (*map[string]Quota, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Mod, true
+}
+
+// SetMod sets field value
+func (o *UserQuota) SetMod(v map[string]Quota) {
+	o.Mod = v
 }
 
 // GetOrganization returns the Organization field value
@@ -173,6 +199,9 @@ func (o UserQuota) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["conn"] = o.Conn
+	}
+	if true {
+		toSerialize["mod"] = o.Mod
 	}
 	if true {
 		toSerialize["organization"] = o.Organization

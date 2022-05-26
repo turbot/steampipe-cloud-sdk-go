@@ -1362,6 +1362,60 @@ paths:
       summary: Test org connection
       tags:
       - OrgConnections
+  /org/{org_handle}/feature:
+    get:
+      description: Returns the feature information for an org.
+      operationId: org_listFeatures
+      parameters:
+      - description: Specify the org handle to get the feature details.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFeaturesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Org features
+      tags:
+      - Orgs
   /org/{org_handle}/member:
     get:
       description: List all the members who has accepted the request.
@@ -2825,6 +2879,805 @@ paths:
       summary: Org workspace logs
       tags:
       - OrgWorkspaces
+  /org/{org_handle}/workspace/{workspace_handle}/mod:
+    get:
+      description: List organization workspace installed mods
+      operationId: orgWorkspaceMod_list
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where mods were installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspaceModsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List organization workspace installed mods
+      tags:
+      - OrgWorkspaceMods
+    post:
+      description: Install a mod to an organization workspace
+      operationId: orgWorkspaceMod_install
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod will be installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceModRequest'
+        description: The request body to install a mod in the mentioned workspace
+          for this organization.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Install a mod to an organization workspace
+      tags:
+      - OrgWorkspaceMods
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}:
+    delete:
+      description: Uninstall mod from organization workspace.
+      operationId: orgWorkspaceMod_uninstall
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID to delete.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Uninstall mod from organization workspace.
+      tags:
+      - OrgWorkspaceMods
+    get:
+      description: Get organization workspace installed mod by mod alias
+      operationId: orgWorkspaceMod_get
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get organization workspace installed mod
+      tags:
+      - OrgWorkspaceMods
+    patch:
+      description: Update a mod in an organization workspace
+      operationId: orgWorkspaceMod_update
+      parameters:
+      - description: The handle of an organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod will be updated.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID to update.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceModRequest'
+        description: The request body to update a mod for this workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Update a mod in an organization workspace
+      tags:
+      - OrgWorkspaceMods
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable:
+    get:
+      description: List all variables applicable for a mod in a workspace specific
+        to an organization
+      operationId: orgWorkspaceModVariable_list
+      parameters:
+      - description: The handle of the organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID for which we want the variables to be
+          listed.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspaceModVariablesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List variables in an organization workspace mod
+      tags:
+      - OrgWorkspaceModVariables
+    post:
+      description: Create a setting for a mod variable in an organization workspace
+      operationId: orgWorkspaceModVariable_createSetting
+      parameters:
+      - description: The handle of the organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID for which the variable setting is to
+          be created.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceModVariableSettingRequest'
+        description: The request body to create setting for mod variable in the organization
+          workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Create a setting for a mod variable in an organization workspace
+      tags:
+      - OrgWorkspaceModVariables
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name}:
+    delete:
+      description: Delete setting for a mod variable in an organization workspace
+      operationId: orgWorkspaceModVariable_deleteSetting
+      parameters:
+      - description: The handle of the organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID which contains the variable.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The name of the variable for which setting is to be delete.
+        explode: false
+        in: path
+        name: variable_name
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Delete setting for a mod variable in an organization workspace
+      tags:
+      - OrgWorkspaceModVariables
+    patch:
+      description: Update setting for a mod variable in an organization workspace
+      operationId: orgWorkspaceModVariable_updateSetting
+      parameters:
+      - description: The handle of the organization that owns the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID which contains the variable.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The name of the variable for which setting is to be updated.
+        explode: false
+        in: path
+        name: variable_name
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceModVariableSettingRequest'
+        description: The request body to update setting for mod variable in the organization
+          workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Update setting for a mod variable in an organization workspace
+      tags:
+      - OrgWorkspaceModVariables
+      x-codegen-request-body-name: request
   /org/{org_handle}/workspace/{workspace_handle}/query:
     get:
       description: Performs a query in an org workspace. Results are limited to 3000
@@ -4432,6 +5285,60 @@ paths:
       summary: Test user connection
       tags:
       - UserConnections
+  /user/{user_handle}/feature:
+    get:
+      description: Returns the feature information for a user.
+      operationId: user_listFeatures
+      parameters:
+      - description: Specify the user handle to get the feature details.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFeaturesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: User features
+      tags:
+      - Users
   /user/{user_handle}/org:
     get:
       description: List the orgs to which the user has access.
@@ -5971,6 +6878,806 @@ paths:
       summary: User workspace logs
       tags:
       - UserWorkspaces
+  /user/{user_handle}/workspace/{workspace_handle}/mod:
+    get:
+      description: List user workspace installed mods
+      operationId: userWorkspaceMod_list
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where mods were installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspaceModsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List user workspace installed mods
+      tags:
+      - UserWorkspaceMods
+    post:
+      description: Install a mod to a user's workspace
+      operationId: userWorkspaceMod_install
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod will be installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceModRequest'
+        description: The request body to install a mod in the mentioned workspace
+          for this user.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Install a mod to a user's workspace
+      tags:
+      - UserWorkspaceMods
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}:
+    delete:
+      description: Uninstall mod from a user's workspace
+      operationId: userWorkspaceMod_uninstall
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID to delete.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Uninstall mod from a user's workspace.
+      tags:
+      - UserWorkspaceMods
+    get:
+      description: Get user workspace installed mod by mod alias
+      operationId: userWorkspaceMod_get
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: Provide the handle of the workspace where mod was installed.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get user workspace installed mod
+      tags:
+      - UserWorkspaceMods
+    patch:
+      description: Update a mod in a user's workspace
+      operationId: userWorkspaceMod_update
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod will be updated.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID to update.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceModRequest'
+        description: The request body to update a mod for this workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMod'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Update a mod in a user's workspace
+      tags:
+      - UserWorkspaceMods
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable:
+    get:
+      description: List all variables applicable for a mod in a workspace specific
+        to a user
+      operationId: userWorkspaceModVariable_list
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where mods were installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID for which we want the variables to be
+          listed
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspaceModVariablesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List variables for a user workspace mod
+      tags:
+      - UserWorkspaceModVariables
+    post:
+      description: Create a setting for a mod variable in a user workspace
+      operationId: userWorkspaceModVariable_createSetting
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID for which the variable setting is to
+          be created
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceModVariableSettingRequest'
+        description: The request body to create setting for mod variable in the user
+          workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Create a setting for a mod variable in a user workspace
+      tags:
+      - UserWorkspaceModVariables
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name}:
+    delete:
+      description: Delete setting for a mod variable in a user workspace
+      operationId: userWorkspaceModVariable_deleteSetting
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID for which the variable setting is to
+          be deleted
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The name of the variable for which setting is to be deleted
+        explode: false
+        in: path
+        name: variable_name
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Delete setting for a mod variable in a user workspace
+      tags:
+      - UserWorkspaceModVariables
+    patch:
+      description: Update setting for a mod variable in a user workspace
+      operationId: userWorkspaceModVariable_updateSetting
+      parameters:
+      - description: The handle of the user who owns the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where the mod was installed
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The mod alias or mod ID which contains the variable.
+        explode: false
+        in: path
+        name: mod_alias
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      - description: The name of the variable for which setting is to be updated
+        explode: false
+        in: path
+        name: variable_name
+        required: true
+        schema:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceModVariableSettingRequest'
+        description: The request body to update setting for mod variable in the user
+          workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceModVariable'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Update setting for a mod variable in a user workspace
+      tags:
+      - UserWorkspaceModVariables
+      x-codegen-request-body-name: request
   /user/{user_handle}/workspace/{workspace_handle}/query:
     get:
       description: Performs a query in a user workspace. Results are limited to 3000
@@ -6964,6 +8671,32 @@ components:
       required:
       - connection_handle
       type: object
+    CreateWorkspaceModRequest:
+      example:
+        path: path
+        constraint: constraint
+      properties:
+        constraint:
+          type: string
+        path:
+          type: string
+      required:
+      - path
+      type: object
+    CreateWorkspaceModVariableSettingRequest:
+      example:
+        name: name
+        setting: '{}'
+      properties:
+        name:
+          type: string
+        setting:
+          properties: {}
+          type: object
+      required:
+      - name
+      - setting
+      type: object
     CreateWorkspaceRequest:
       example:
         handle: handle
@@ -6973,6 +8706,33 @@ components:
           type: string
       required:
       - handle
+      type: object
+    Feature:
+      example:
+        updated_at: updated_at
+        created_at: created_at
+        version_id: 0
+        value: value
+        key: key
+      properties:
+        created_at:
+          description: The creation time of the feature.
+          type: string
+        key:
+          description: The key of the feature
+          type: string
+        updated_at:
+          description: The update time of the feature.
+          type: string
+        value:
+          description: The value of the feature
+          type: string
+        version_id:
+          description: The current version of the feature.
+          type: integer
+      required:
+      - created_at
+      - version_id
       type: object
     Identity:
       example:
@@ -7112,6 +8872,25 @@ components:
           type: array
         next_token:
           type: string
+      type: object
+    ListFeaturesResponse:
+      example:
+        items:
+        - updated_at: updated_at
+          created_at: created_at
+          version_id: 0
+          value: value
+          key: key
+        - updated_at: updated_at
+          created_at: created_at
+          version_id: 0
+          value: value
+          key: key
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Feature'
+          type: array
       type: object
     ListLogsResponse:
       example:
@@ -7427,6 +9206,160 @@ components:
         next_token:
           type: string
       type: object
+    ListWorkspaceModVariablesResponse:
+      example:
+        next_token: next_token
+        items:
+        - created_at: created_at
+          description: description
+          mod_alias: mod_alias
+          version_id: 0
+          type: type
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          value_setting: '{}'
+          updated_at: updated_at
+          value_default: '{}'
+          name: name
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          value: '{}'
+        - created_at: created_at
+          description: description
+          mod_alias: mod_alias
+          version_id: 0
+          type: type
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          value_setting: '{}'
+          updated_at: updated_at
+          value_default: '{}'
+          name: name
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          value: '{}'
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/WorkspaceModVariable'
+          type: array
+        next_token:
+          type: string
+      type: object
+    ListWorkspaceModsResponse:
+      example:
+        next_token: next_token
+        items:
+        - workspace_id: workspace_id
+          path: path
+          mod_constraint: mod_constraint
+          workspace:
+            hive: hive
+            public_key: public_key
+            database_name: database_name
+            updated_at: updated_at
+            identity_id: identity_id
+            identity:
+              handle: handle
+              id: id
+              display_name: display_name
+              type: type
+            host: host
+            created_at: created_at
+            workspace_state: workspace_state
+            handle: aaa
+            id: id
+            version_id: 0
+          updated_at: updated_at
+          identity_id: identity_id
+          installed_version: installed_version
+          alias: alias
+          created_at: created_at
+          details: details
+          id: id
+          state: state
+        - workspace_id: workspace_id
+          path: path
+          mod_constraint: mod_constraint
+          workspace:
+            hive: hive
+            public_key: public_key
+            database_name: database_name
+            updated_at: updated_at
+            identity_id: identity_id
+            identity:
+              handle: handle
+              id: id
+              display_name: display_name
+              type: type
+            host: host
+            created_at: created_at
+            workspace_state: workspace_state
+            handle: aaa
+            id: id
+            version_id: 0
+          updated_at: updated_at
+          identity_id: identity_id
+          installed_version: installed_version
+          alias: alias
+          created_at: created_at
+          details: details
+          id: id
+          state: state
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/WorkspaceMod'
+          type: array
+        next_token:
+          type: string
+      type: object
     ListWorkspacesResponse:
       example:
         next_token: next_token
@@ -7528,6 +9461,10 @@ components:
       - workspace_handle
       - workspace_id
       type: object
+    ModQuota:
+      additionalProperties:
+        $ref: '#/components/schemas/Quota'
+      type: object
     Org:
       example:
         avatar_url: avatar_url
@@ -7579,6 +9516,11 @@ components:
           available: 0
           limit: 6
           used: 1
+        mod:
+          key:
+            available: 0
+            limit: 6
+            used: 1
         association:
           key:
             available: 0
@@ -7591,11 +9533,16 @@ components:
           type: object
         conn:
           $ref: '#/components/schemas/Quota'
+        mod:
+          additionalProperties:
+            $ref: '#/components/schemas/Quota'
+          type: object
         workspace:
           $ref: '#/components/schemas/Quota'
       required:
       - association
       - conn
+      - mod
       - workspace
       type: object
     OrgUser:
@@ -7817,6 +9764,25 @@ components:
         url:
           type: string
       type: object
+    UpdateWorkspaceModRequest:
+      example:
+        constraint: constraint
+      properties:
+        constraint:
+          type: string
+      required:
+      - constraint
+      type: object
+    UpdateWorkspaceModVariableSettingRequest:
+      example:
+        setting: '{}'
+      properties:
+        setting:
+          properties: {}
+          type: object
+      required:
+      - setting
+      type: object
     UpdateWorkspaceRequest:
       example:
         handle: handle
@@ -7969,6 +9935,11 @@ components:
           available: 0
           limit: 6
           used: 1
+        mod:
+          key:
+            available: 0
+            limit: 6
+            used: 1
         organization:
           available: 0
           limit: 6
@@ -7989,6 +9960,10 @@ components:
           type: object
         conn:
           $ref: '#/components/schemas/Quota'
+        mod:
+          additionalProperties:
+            $ref: '#/components/schemas/Quota'
+          type: object
         organization:
           $ref: '#/components/schemas/Quota'
         token:
@@ -7998,6 +9973,7 @@ components:
       required:
       - association
       - conn
+      - mod
       - organization
       - token
       - workspace
@@ -8171,6 +10147,156 @@ components:
       - identity_id
       - version_id
       - workspace_id
+      type: object
+    WorkspaceMod:
+      example:
+        workspace_id: workspace_id
+        path: path
+        mod_constraint: mod_constraint
+        workspace:
+          hive: hive
+          public_key: public_key
+          database_name: database_name
+          updated_at: updated_at
+          identity_id: identity_id
+          identity:
+            handle: handle
+            id: id
+            display_name: display_name
+            type: type
+          host: host
+          created_at: created_at
+          workspace_state: workspace_state
+          handle: aaa
+          id: id
+          version_id: 0
+        updated_at: updated_at
+        identity_id: identity_id
+        installed_version: installed_version
+        alias: alias
+        created_at: created_at
+        details: details
+        id: id
+        state: state
+      properties:
+        alias:
+          format: ^[a-z0-9-_]{1,40}$
+          type: string
+        created_at:
+          type: string
+        details:
+          type: string
+        id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        identity_id:
+          description: The unique identifier for an identity where the workspace mod
+            has been install.
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        installed_version:
+          type: string
+        mod_constraint:
+          type: string
+        path:
+          type: string
+        state:
+          type: string
+        updated_at:
+          type: string
+        workspace:
+          $ref: '#/components/schemas/Workspace'
+        workspace_id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+      required:
+      - created_at
+      - id
+      - identity_id
+      - workspace_id
+      type: object
+    WorkspaceModVariable:
+      example:
+        created_at: created_at
+        description: description
+        mod_alias: mod_alias
+        version_id: 0
+        type: type
+        created_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          email: email
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        value_setting: '{}'
+        updated_at: updated_at
+        value_default: '{}'
+        name: name
+        updated_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          email: email
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        updated_by_id: updated_by_id
+        created_by_id: created_by_id
+        id: id
+        value: '{}'
+      properties:
+        created_at:
+          type: string
+        created_by:
+          $ref: '#/components/schemas/User'
+        created_by_id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        description:
+          type: string
+        id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        mod_alias:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        updated_at:
+          type: string
+        updated_by:
+          $ref: '#/components/schemas/User'
+        updated_by_id:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        value:
+          properties: {}
+          type: object
+        value_default:
+          properties: {}
+          type: object
+        value_setting:
+          properties: {}
+          type: object
+        version_id:
+          type: integer
+      required:
+      - created_at
+      - created_by_id
+      - id
+      - updated_by_id
+      - version_id
       type: object
     WorkspaceQueryResult:
       example:
