@@ -17,8 +17,8 @@ import (
 
 // CreateWorkspaceModVariableSettingRequest struct for CreateWorkspaceModVariableSettingRequest
 type CreateWorkspaceModVariableSettingRequest struct {
-	Name    string `json:"name"`
-	Setting string `json:"setting"`
+	Name    string      `json:"name"`
+	Setting interface{} `json:"setting"`
 }
 
 // NewCreateWorkspaceModVariableSettingRequest instantiates a new CreateWorkspaceModVariableSettingRequest object
@@ -65,7 +65,7 @@ func (o *CreateWorkspaceModVariableSettingRequest) SetName(v string) {
 }
 
 // GetSetting returns the Setting field value
-func (o *CreateWorkspaceModVariableSettingRequest) GetSetting() string {
+func (o *CreateWorkspaceModVariableSettingRequest) GetSetting() interface{} {
 	if o == nil {
 		var ret string
 		return ret
@@ -76,7 +76,7 @@ func (o *CreateWorkspaceModVariableSettingRequest) GetSetting() string {
 
 // GetSettingOk returns a tuple with the Setting field value
 // and a boolean to check if the value has been set.
-func (o *CreateWorkspaceModVariableSettingRequest) GetSettingOk() (*string, bool) {
+func (o *CreateWorkspaceModVariableSettingRequest) GetSettingOk() (*interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}

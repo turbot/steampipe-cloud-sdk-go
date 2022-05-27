@@ -17,21 +17,21 @@ import (
 
 // WorkspaceModVariable struct for WorkspaceModVariable
 type WorkspaceModVariable struct {
-	CreatedAt    string  `json:"created_at"`
-	CreatedBy    *User   `json:"created_by,omitempty"`
-	CreatedById  string  `json:"created_by_id"`
-	Description  *string `json:"description,omitempty"`
-	Id           string  `json:"id"`
-	ModAlias     *string `json:"mod_alias,omitempty"`
-	Name         *string `json:"name,omitempty"`
-	Type         *string `json:"type,omitempty"`
-	UpdatedAt    *string `json:"updated_at,omitempty"`
-	UpdatedBy    *User   `json:"updated_by,omitempty"`
-	UpdatedById  string  `json:"updated_by_id"`
-	Value        *string `json:"value,omitempty"`
-	ValueDefault *string `json:"value_default,omitempty"`
-	ValueSetting *string `json:"value_setting,omitempty"`
-	VersionId    int32   `json:"version_id"`
+	CreatedAt    string      `json:"created_at"`
+	CreatedBy    *User       `json:"created_by,omitempty"`
+	CreatedById  string      `json:"created_by_id"`
+	Description  *string     `json:"description,omitempty"`
+	Id           string      `json:"id"`
+	ModAlias     *string     `json:"mod_alias,omitempty"`
+	Name         *string     `json:"name,omitempty"`
+	Type         *string     `json:"type,omitempty"`
+	UpdatedAt    *string     `json:"updated_at,omitempty"`
+	UpdatedBy    *User       `json:"updated_by,omitempty"`
+	UpdatedById  string      `json:"updated_by_id"`
+	Value        interface{} `json:"value,omitempty"`
+	ValueDefault interface{} `json:"value_default,omitempty"`
+	ValueSetting interface{} `json:"value_setting,omitempty"`
+	VersionId    int32       `json:"version_id"`
 }
 
 // NewWorkspaceModVariable instantiates a new WorkspaceModVariable object
@@ -377,21 +377,21 @@ func (o *WorkspaceModVariable) SetUpdatedById(v string) {
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *WorkspaceModVariable) GetValue() string {
+func (o *WorkspaceModVariable) GetValue() interface{} {
 	if o == nil || o.Value == nil {
 		var ret string
 		return ret
 	}
-	return *o.Value
+	return o.Value
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WorkspaceModVariable) GetValueOk() (*string, bool) {
+func (o *WorkspaceModVariable) GetValueOk() (*interface{}, bool) {
 	if o == nil || o.Value == nil {
 		return nil, false
 	}
-	return o.Value, true
+	return &o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
@@ -409,21 +409,21 @@ func (o *WorkspaceModVariable) SetValue(v string) {
 }
 
 // GetValueDefault returns the ValueDefault field value if set, zero value otherwise.
-func (o *WorkspaceModVariable) GetValueDefault() string {
+func (o *WorkspaceModVariable) GetValueDefault() interface{} {
 	if o == nil || o.ValueDefault == nil {
 		var ret string
 		return ret
 	}
-	return *o.ValueDefault
+	return o.ValueDefault
 }
 
 // GetValueDefaultOk returns a tuple with the ValueDefault field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WorkspaceModVariable) GetValueDefaultOk() (*string, bool) {
+func (o *WorkspaceModVariable) GetValueDefaultOk() (*interface{}, bool) {
 	if o == nil || o.ValueDefault == nil {
 		return nil, false
 	}
-	return o.ValueDefault, true
+	return &o.ValueDefault, true
 }
 
 // HasValueDefault returns a boolean if a field has been set.
@@ -441,21 +441,21 @@ func (o *WorkspaceModVariable) SetValueDefault(v string) {
 }
 
 // GetValueSetting returns the ValueSetting field value if set, zero value otherwise.
-func (o *WorkspaceModVariable) GetValueSetting() string {
+func (o *WorkspaceModVariable) GetValueSetting() interface{} {
 	if o == nil || o.ValueSetting == nil {
 		var ret string
 		return ret
 	}
-	return *o.ValueSetting
+	return o.ValueSetting
 }
 
 // GetValueSettingOk returns a tuple with the ValueSetting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WorkspaceModVariable) GetValueSettingOk() (*string, bool) {
+func (o *WorkspaceModVariable) GetValueSettingOk() (*interface{}, bool) {
 	if o == nil || o.ValueSetting == nil {
 		return nil, false
 	}
-	return o.ValueSetting, true
+	return &o.ValueSetting, true
 }
 
 // HasValueSetting returns a boolean if a field has been set.
