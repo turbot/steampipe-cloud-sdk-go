@@ -232,7 +232,7 @@ Delete setting for a mod variable in an organization workspace
  @param orgHandle The handle of the organization that owns the workspace.
  @param workspaceHandle The handle of the workspace where the mod was installed.
  @param modAlias The mod alias or mod ID which contains the variable.
- @param variableName The name of the variable for which setting is to be delete.
+ @param variableName The name of the variable to delete the setting for.
  @return OrgWorkspaceModVariablesApiDeleteSettingRequest
 */
 func (a *OrgWorkspaceModVariablesService) DeleteSetting(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string, variableName string) OrgWorkspaceModVariablesApiDeleteSettingRequest {
@@ -384,7 +384,7 @@ func (a *OrgWorkspaceModVariablesService) DeleteSettingExecute(r OrgWorkspaceMod
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OrgWorkspaceModVariablesApiGetRequest struct {
+type OrgWorkspaceModVariablesApiGetSettingRequest struct {
 	ctx             _context.Context
 	ApiService      *OrgWorkspaceModVariablesService
 	orgHandle       string
@@ -393,24 +393,24 @@ type OrgWorkspaceModVariablesApiGetRequest struct {
 	variableName    string
 }
 
-func (r OrgWorkspaceModVariablesApiGetRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
-	return r.ApiService.GetExecute(r)
+func (r OrgWorkspaceModVariablesApiGetSettingRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
+	return r.ApiService.GetSettingExecute(r)
 }
 
 /*
-Get Get variable for an organization workspace mod
+GetSetting Get setting for a mod variable in an organization workspace
 
-Get variable for a mod in a workspace specific to an organization
+Get setting for a mod variable in an organization workspace
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle The handle of the organization that owns the workspace.
- @param workspaceHandle The handle of the workspace where mods were installed
- @param modAlias The mod alias or mod ID for which we want the variables to be listed
- @param variableName The name of the variable for which setting is to be updated
- @return OrgWorkspaceModVariablesApiGetRequest
+ @param workspaceHandle The handle of the workspace where the mod was installed.
+ @param modAlias The mod alias or mod ID for which the variable setting belongs to.
+ @param variableName The name of the variable to get the setting for.
+ @return OrgWorkspaceModVariablesApiGetSettingRequest
 */
-func (a *OrgWorkspaceModVariablesService) Get(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string, variableName string) OrgWorkspaceModVariablesApiGetRequest {
-	return OrgWorkspaceModVariablesApiGetRequest{
+func (a *OrgWorkspaceModVariablesService) GetSetting(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string, variableName string) OrgWorkspaceModVariablesApiGetSettingRequest {
+	return OrgWorkspaceModVariablesApiGetSettingRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		orgHandle:       orgHandle,
@@ -422,7 +422,7 @@ func (a *OrgWorkspaceModVariablesService) Get(ctx _context.Context, orgHandle st
 
 // Execute executes the request
 //  @return WorkspaceModVariable
-func (a *OrgWorkspaceModVariablesService) GetExecute(r OrgWorkspaceModVariablesApiGetRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
+func (a *OrgWorkspaceModVariablesService) GetSettingExecute(r OrgWorkspaceModVariablesApiGetSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -430,7 +430,7 @@ func (a *OrgWorkspaceModVariablesService) GetExecute(r OrgWorkspaceModVariablesA
 		localVarReturnValue WorkspaceModVariable
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceModVariablesService.Get")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceModVariablesService.GetSetting")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

@@ -54,8 +54,8 @@ Create a setting for a mod variable in a user workspace
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed
- @param modAlias The mod alias or mod ID for which the variable setting is to be created
+ @param workspaceHandle The handle of the workspace where the mod was installed.
+ @param modAlias The mod alias or mod ID for which the variable setting is to be created.
  @return UserWorkspaceModVariablesApiCreateSettingRequest
 */
 func (a *UserWorkspaceModVariablesService) CreateSetting(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModVariablesApiCreateSettingRequest {
@@ -230,9 +230,9 @@ Delete setting for a mod variable in a user workspace
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed
- @param modAlias The mod alias or mod ID for which the variable setting is to be deleted
- @param variableName The name of the variable for which setting is to be deleted
+ @param workspaceHandle The handle of the workspace where the mod was installed.
+ @param modAlias The mod alias or mod ID for which the variable setting is to be deleted.
+ @param variableName The name of the variable to delete the setting for.
  @return UserWorkspaceModVariablesApiDeleteSettingRequest
 */
 func (a *UserWorkspaceModVariablesService) DeleteSetting(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string, variableName string) UserWorkspaceModVariablesApiDeleteSettingRequest {
@@ -384,7 +384,7 @@ func (a *UserWorkspaceModVariablesService) DeleteSettingExecute(r UserWorkspaceM
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type UserWorkspaceModVariablesApiGetRequest struct {
+type UserWorkspaceModVariablesApiGetSettingRequest struct {
 	ctx             _context.Context
 	ApiService      *UserWorkspaceModVariablesService
 	userHandle      string
@@ -393,24 +393,24 @@ type UserWorkspaceModVariablesApiGetRequest struct {
 	variableName    string
 }
 
-func (r UserWorkspaceModVariablesApiGetRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
-	return r.ApiService.GetExecute(r)
+func (r UserWorkspaceModVariablesApiGetSettingRequest) Execute() (WorkspaceModVariable, *_nethttp.Response, error) {
+	return r.ApiService.GetSettingExecute(r)
 }
 
 /*
-Get Get variable for a user workspace mod
+GetSetting Get setting for a mod variable in a user workspace
 
-Get variable for a mod in a workspace specific to a user
+Get setting for a mod variable in a user workspace
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where mods were installed
- @param modAlias The mod alias or mod ID for which we want the variables to be listed
- @param variableName The name of the variable for which setting is to be updated
- @return UserWorkspaceModVariablesApiGetRequest
+ @param workspaceHandle The handle of the workspace where the mod was installed.
+ @param modAlias The mod alias or mod ID for which the variable setting belongs to.
+ @param variableName The name of the variable to get the setting for.
+ @return UserWorkspaceModVariablesApiGetSettingRequest
 */
-func (a *UserWorkspaceModVariablesService) Get(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string, variableName string) UserWorkspaceModVariablesApiGetRequest {
-	return UserWorkspaceModVariablesApiGetRequest{
+func (a *UserWorkspaceModVariablesService) GetSetting(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string, variableName string) UserWorkspaceModVariablesApiGetSettingRequest {
+	return UserWorkspaceModVariablesApiGetSettingRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		userHandle:      userHandle,
@@ -422,7 +422,7 @@ func (a *UserWorkspaceModVariablesService) Get(ctx _context.Context, userHandle 
 
 // Execute executes the request
 //  @return WorkspaceModVariable
-func (a *UserWorkspaceModVariablesService) GetExecute(r UserWorkspaceModVariablesApiGetRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
+func (a *UserWorkspaceModVariablesService) GetSettingExecute(r UserWorkspaceModVariablesApiGetSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -430,7 +430,7 @@ func (a *UserWorkspaceModVariablesService) GetExecute(r UserWorkspaceModVariable
 		localVarReturnValue WorkspaceModVariable
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModVariablesService.Get")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspaceModVariablesService.GetSetting")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -591,8 +591,8 @@ List all variables applicable for a mod in a workspace specific to a user
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where mods were installed
- @param modAlias The mod alias or mod ID for which we want the variables to be listed
+ @param workspaceHandle The handle of the workspace where mods were installed.
+ @param modAlias The mod alias or mod ID for which we want the variables to be listed.
  @return UserWorkspaceModVariablesApiListRequest
 */
 func (a *UserWorkspaceModVariablesService) List(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModVariablesApiListRequest {
@@ -775,9 +775,9 @@ Update setting for a mod variable in a user workspace
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed
+ @param workspaceHandle The handle of the workspace where the mod was installed.
  @param modAlias The mod alias or mod ID which contains the variable.
- @param variableName The name of the variable for which setting is to be updated
+ @param variableName The name of the variable for which setting is to be updated.
  @return UserWorkspaceModVariablesApiUpdateSettingRequest
 */
 func (a *UserWorkspaceModVariablesService) UpdateSetting(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string, variableName string) UserWorkspaceModVariablesApiUpdateSettingRequest {

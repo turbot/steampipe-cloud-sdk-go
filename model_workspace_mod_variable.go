@@ -376,10 +376,10 @@ func (o *WorkspaceModVariable) SetUpdatedById(v string) {
 	o.UpdatedById = v
 }
 
-// GetValue returns the Value field value if set, zero value otherwise.
+// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WorkspaceModVariable) GetValue() interface{} {
-	if o == nil || o.Value == nil {
-		var ret string
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Value
@@ -387,6 +387,7 @@ func (o *WorkspaceModVariable) GetValue() interface{} {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceModVariable) GetValueOk() (*interface{}, bool) {
 	if o == nil || o.Value == nil {
 		return nil, false
@@ -403,15 +404,15 @@ func (o *WorkspaceModVariable) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given string and assigns it to the Value field.
-func (o *WorkspaceModVariable) SetValue(v string) {
-	o.Value = &v
+// SetValue gets a reference to the given interface{} and assigns it to the Value field.
+func (o *WorkspaceModVariable) SetValue(v interface{}) {
+	o.Value = v
 }
 
-// GetValueDefault returns the ValueDefault field value if set, zero value otherwise.
+// GetValueDefault returns the ValueDefault field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WorkspaceModVariable) GetValueDefault() interface{} {
-	if o == nil || o.ValueDefault == nil {
-		var ret string
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.ValueDefault
@@ -419,6 +420,7 @@ func (o *WorkspaceModVariable) GetValueDefault() interface{} {
 
 // GetValueDefaultOk returns a tuple with the ValueDefault field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceModVariable) GetValueDefaultOk() (*interface{}, bool) {
 	if o == nil || o.ValueDefault == nil {
 		return nil, false
@@ -435,15 +437,15 @@ func (o *WorkspaceModVariable) HasValueDefault() bool {
 	return false
 }
 
-// SetValueDefault gets a reference to the given string and assigns it to the ValueDefault field.
-func (o *WorkspaceModVariable) SetValueDefault(v string) {
-	o.ValueDefault = &v
+// SetValueDefault gets a reference to the given interface{} and assigns it to the ValueDefault field.
+func (o *WorkspaceModVariable) SetValueDefault(v interface{}) {
+	o.ValueDefault = v
 }
 
-// GetValueSetting returns the ValueSetting field value if set, zero value otherwise.
+// GetValueSetting returns the ValueSetting field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WorkspaceModVariable) GetValueSetting() interface{} {
-	if o == nil || o.ValueSetting == nil {
-		var ret string
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.ValueSetting
@@ -451,6 +453,7 @@ func (o *WorkspaceModVariable) GetValueSetting() interface{} {
 
 // GetValueSettingOk returns a tuple with the ValueSetting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WorkspaceModVariable) GetValueSettingOk() (*interface{}, bool) {
 	if o == nil || o.ValueSetting == nil {
 		return nil, false
@@ -467,9 +470,9 @@ func (o *WorkspaceModVariable) HasValueSetting() bool {
 	return false
 }
 
-// SetValueSetting gets a reference to the given string and assigns it to the ValueSetting field.
-func (o *WorkspaceModVariable) SetValueSetting(v string) {
-	o.ValueSetting = &v
+// SetValueSetting gets a reference to the given interface{} and assigns it to the ValueSetting field.
+func (o *WorkspaceModVariable) SetValueSetting(v interface{}) {
+	o.ValueSetting = v
 }
 
 // GetVersionId returns the VersionId field value

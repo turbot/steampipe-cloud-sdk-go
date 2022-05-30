@@ -3528,7 +3528,7 @@ paths:
           format: ^[a-z0-9-_]{1,40}$
           type: string
         style: simple
-      - description: The name of the variable for which setting is to be delete.
+      - description: The name of the variable to delete the setting for.
         explode: false
         in: path
         name: variable_name
@@ -3584,8 +3584,8 @@ paths:
       tags:
       - OrgWorkspaceModVariables
     get:
-      description: Get variable for a mod in a workspace specific to an organization
-      operationId: orgWorkspaceModVariable_get
+      description: Get setting for a mod variable in an organization workspace
+      operationId: orgWorkspaceModVariable_getSetting
       parameters:
       - description: The handle of the organization that owns the workspace.
         explode: false
@@ -3596,7 +3596,7 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: The handle of the workspace where mods were installed
+      - description: The handle of the workspace where the mod was installed.
         explode: false
         in: path
         name: workspace_handle
@@ -3605,8 +3605,8 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
-      - description: The mod alias or mod ID for which we want the variables to be
-          listed
+      - description: The mod alias or mod ID for which the variable setting belongs
+          to.
         explode: false
         in: path
         name: mod_alias
@@ -3615,7 +3615,7 @@ paths:
           format: ^[a-z0-9-_]{1,40}$
           type: string
         style: simple
-      - description: The name of the variable for which setting is to be updated
+      - description: The name of the variable to get the setting for.
         explode: false
         in: path
         name: variable_name
@@ -3667,7 +3667,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Internal Server Error
-      summary: Get variable for an organization workspace mod
+      summary: Get setting for a mod variable in an organization workspace
       tags:
       - OrgWorkspaceModVariables
     patch:
@@ -7407,7 +7407,7 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: The handle of the workspace where mods were installed
+      - description: The handle of the workspace where mods were installed.
         explode: false
         in: path
         name: workspace_handle
@@ -7417,7 +7417,7 @@ paths:
           type: string
         style: simple
       - description: The mod alias or mod ID for which we want the variables to be
-          listed
+          listed.
         explode: false
         in: path
         name: mod_alias
@@ -7508,7 +7508,7 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: The handle of the workspace where the mod was installed
+      - description: The handle of the workspace where the mod was installed.
         explode: false
         in: path
         name: workspace_handle
@@ -7518,7 +7518,7 @@ paths:
           type: string
         style: simple
       - description: The mod alias or mod ID for which the variable setting is to
-          be created
+          be created.
         explode: false
         in: path
         name: mod_alias
@@ -7596,7 +7596,7 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: The handle of the workspace where the mod was installed
+      - description: The handle of the workspace where the mod was installed.
         explode: false
         in: path
         name: workspace_handle
@@ -7606,7 +7606,7 @@ paths:
           type: string
         style: simple
       - description: The mod alias or mod ID for which the variable setting is to
-          be deleted
+          be deleted.
         explode: false
         in: path
         name: mod_alias
@@ -7615,7 +7615,7 @@ paths:
           format: ^[a-z0-9-_]{1,40}$
           type: string
         style: simple
-      - description: The name of the variable for which setting is to be deleted
+      - description: The name of the variable to delete the setting for.
         explode: false
         in: path
         name: variable_name
@@ -7671,8 +7671,8 @@ paths:
       tags:
       - UserWorkspaceModVariables
     get:
-      description: Get variable for a mod in a workspace specific to a user
-      operationId: userWorkspaceModVariable_get
+      description: Get setting for a mod variable in a user workspace
+      operationId: userWorkspaceModVariable_getSetting
       parameters:
       - description: The handle of the user who owns the workspace.
         explode: false
@@ -7683,7 +7683,7 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: The handle of the workspace where mods were installed
+      - description: The handle of the workspace where the mod was installed.
         explode: false
         in: path
         name: workspace_handle
@@ -7692,8 +7692,8 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
-      - description: The mod alias or mod ID for which we want the variables to be
-          listed
+      - description: The mod alias or mod ID for which the variable setting belongs
+          to.
         explode: false
         in: path
         name: mod_alias
@@ -7702,7 +7702,7 @@ paths:
           format: ^[a-z0-9-_]{1,40}$
           type: string
         style: simple
-      - description: The name of the variable for which setting is to be updated
+      - description: The name of the variable to get the setting for.
         explode: false
         in: path
         name: variable_name
@@ -7754,7 +7754,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Internal Server Error
-      summary: Get variable for a user workspace mod
+      summary: Get setting for a mod variable in a user workspace
       tags:
       - UserWorkspaceModVariables
     patch:
@@ -7770,7 +7770,7 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
-      - description: The handle of the workspace where the mod was installed
+      - description: The handle of the workspace where the mod was installed.
         explode: false
         in: path
         name: workspace_handle
@@ -7788,7 +7788,7 @@ paths:
           format: ^[a-z0-9-_]{1,40}$
           type: string
         style: simple
-      - description: The name of the variable for which setting is to be updated
+      - description: The name of the variable for which setting is to be updated.
         explode: false
         in: path
         name: variable_name
@@ -8464,172 +8464,6 @@ paths:
       - UserWorkspaces
 components:
   schemas:
-    SchemaInfo:
-      example:
-        tables:
-        - columns:
-          - data_type: data_type
-            name: name
-            description: description
-          - data_type: data_type
-            name: name
-            description: description
-          name: name
-          description: description
-        - columns:
-          - data_type: data_type
-            name: name
-            description: description
-          - data_type: data_type
-            name: name
-            description: description
-          name: name
-          description: description
-        name: name
-        description: description
-      properties:
-        description:
-          type: string
-        name:
-          type: string
-        tables:
-          items:
-            $ref: '#/components/schemas/SchemaTable'
-          type: array
-      required:
-      - name
-      - tables
-      type: object
-    SchemaTable:
-      example:
-        columns:
-        - data_type: data_type
-          name: name
-          description: description
-        - data_type: data_type
-          name: name
-          description: description
-        name: name
-        description: description
-      properties:
-        columns:
-          items:
-            $ref: '#/components/schemas/SchemaTableColumn'
-          type: array
-        description:
-          type: string
-        name:
-          type: string
-      required:
-      - columns
-      - name
-      type: object
-    SchemaTableColumn:
-      example:
-        data_type: data_type
-        name: name
-        description: description
-      properties:
-        data_type:
-          type: string
-        description:
-          type: string
-        name:
-          type: string
-      required:
-      - data_type
-      - name
-      type: object
-    WorkspaceSchema:
-      example:
-        duration: 0
-        schemas:
-        - tables:
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          name: name
-          description: description
-        - tables:
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          name: name
-          description: description
-      properties:
-        duration:
-          type: integer
-        schemas:
-          items:
-            $ref: '#/components/schemas/SchemaInfo'
-          type: array
-      required:
-      - duration
-      - schemas
-      type: object
-    ErrorDetailModel:
-      properties:
-        location:
-          type: string
-        message:
-          type: string
-        value:
-          type: string
-      type: object
-    ErrorModel:
-      properties:
-        detail:
-          type: string
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorDetailModel'
-          type: array
-        id:
-          type: string
-        instance:
-          type: string
-        status:
-          type: integer
-        title:
-          type: string
-        type:
-          type: string
-      required:
-      - id
-      - status
-      - title
-      - type
-      type: object
     AssociationQuota:
       additionalProperties:
         $ref: '#/components/schemas/Quota'
@@ -8860,12 +8694,11 @@ components:
     CreateWorkspaceModVariableSettingRequest:
       example:
         name: name
-        setting: setting
+        setting: ""
       properties:
         name:
           type: string
-        setting:
-          type: string
+        setting: {}
       required:
       - name
       - setting
@@ -8879,6 +8712,39 @@ components:
           type: string
       required:
       - handle
+      type: object
+    ErrorDetailModel:
+      properties:
+        location:
+          type: string
+        message:
+          type: string
+        value:
+          type: string
+      type: object
+    ErrorModel:
+      properties:
+        detail:
+          type: string
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorDetailModel'
+          type: array
+        id:
+          type: string
+        instance:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+      required:
+      - id
+      - status
+      - title
+      - type
       type: object
     Feature:
       example:
@@ -9400,9 +9266,9 @@ components:
             preview_access_mode: preview_access_mode
             url: url
             status: status
-          value_setting: value_setting
+          value_setting: ""
           updated_at: updated_at
-          value_default: value_default
+          value_default: ""
           name: name
           updated_by:
             avatar_url: avatar_url
@@ -9419,7 +9285,7 @@ components:
           updated_by_id: updated_by_id
           created_by_id: created_by_id
           id: id
-          value: value
+          value: ""
         - created_at: created_at
           description: description
           mod_alias: mod_alias
@@ -9437,9 +9303,9 @@ components:
             preview_access_mode: preview_access_mode
             url: url
             status: status
-          value_setting: value_setting
+          value_setting: ""
           updated_at: updated_at
-          value_default: value_default
+          value_default: ""
           name: name
           updated_by:
             avatar_url: avatar_url
@@ -9456,7 +9322,7 @@ components:
           updated_by_id: updated_by_id
           created_by_id: created_by_id
           id: id
-          value: value
+          value: ""
       properties:
         items:
           items:
@@ -9803,6 +9669,82 @@ components:
           description: Exhausted limit
           type: integer
       type: object
+    SchemaInfo:
+      example:
+        tables:
+        - columns:
+          - data_type: data_type
+            name: name
+            description: description
+          - data_type: data_type
+            name: name
+            description: description
+          name: name
+          description: description
+        - columns:
+          - data_type: data_type
+            name: name
+            description: description
+          - data_type: data_type
+            name: name
+            description: description
+          name: name
+          description: description
+        name: name
+        description: description
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        tables:
+          items:
+            $ref: '#/components/schemas/SchemaTable'
+          type: array
+      required:
+      - name
+      - tables
+      type: object
+    SchemaTable:
+      example:
+        columns:
+        - data_type: data_type
+          name: name
+          description: description
+        - data_type: data_type
+          name: name
+          description: description
+        name: name
+        description: description
+      properties:
+        columns:
+          items:
+            $ref: '#/components/schemas/SchemaTableColumn'
+          type: array
+        description:
+          type: string
+        name:
+          type: string
+      required:
+      - columns
+      - name
+      type: object
+    SchemaTableColumn:
+      example:
+        data_type: data_type
+        name: name
+        description: description
+      properties:
+        data_type:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+      required:
+      - data_type
+      - name
+      type: object
     SearchIdentitiesResponse:
       example:
         items:
@@ -9948,10 +9890,9 @@ components:
       type: object
     UpdateWorkspaceModVariableSettingRequest:
       example:
-        setting: setting
+        setting: ""
       properties:
-        setting:
-          type: string
+        setting: {}
       required:
       - setting
       type: object
@@ -10406,9 +10347,9 @@ components:
           preview_access_mode: preview_access_mode
           url: url
           status: status
-        value_setting: value_setting
+        value_setting: ""
         updated_at: updated_at
-        value_default: value_default
+        value_default: ""
         name: name
         updated_by:
           avatar_url: avatar_url
@@ -10425,7 +10366,7 @@ components:
         updated_by_id: updated_by_id
         created_by_id: created_by_id
         id: id
-        value: value
+        value: ""
       properties:
         created_at:
           type: string
@@ -10453,11 +10394,11 @@ components:
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         value:
-          type: string
+          nullable: true
         value_default:
-          type: string
+          nullable: true
         value_setting:
-          type: string
+          nullable: true
         version_id:
           type: integer
       required:
@@ -10511,6 +10452,63 @@ components:
       required:
       - data_type_name
       - name
+      type: object
+    WorkspaceSchema:
+      example:
+        duration: 0
+        schemas:
+        - tables:
+          - columns:
+            - data_type: data_type
+              name: name
+              description: description
+            - data_type: data_type
+              name: name
+              description: description
+            name: name
+            description: description
+          - columns:
+            - data_type: data_type
+              name: name
+              description: description
+            - data_type: data_type
+              name: name
+              description: description
+            name: name
+            description: description
+          name: name
+          description: description
+        - tables:
+          - columns:
+            - data_type: data_type
+              name: name
+              description: description
+            - data_type: data_type
+              name: name
+              description: description
+            name: name
+            description: description
+          - columns:
+            - data_type: data_type
+              name: name
+              description: description
+            - data_type: data_type
+              name: name
+              description: description
+            name: name
+            description: description
+          name: name
+          description: description
+      properties:
+        duration:
+          type: integer
+        schemas:
+          items:
+            $ref: '#/components/schemas/SchemaInfo'
+          type: array
+      required:
+      - duration
+      - schemas
       type: object
   securitySchemes:
     ApiKeyAuth:

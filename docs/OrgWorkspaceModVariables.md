@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateSetting**](OrgWorkspaceModVariables.md#CreateSetting) | **Post** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | Create a setting for a mod variable in an organization workspace
 [**DeleteSetting**](OrgWorkspaceModVariables.md#DeleteSetting) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Delete setting for a mod variable in an organization workspace
-[**Get**](OrgWorkspaceModVariables.md#Get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Get variable for an organization workspace mod
+[**GetSetting**](OrgWorkspaceModVariables.md#GetSetting) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Get setting for a mod variable in an organization workspace
 [**List**](OrgWorkspaceModVariables.md#List) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | List variables in an organization workspace mod
 [**UpdateSetting**](OrgWorkspaceModVariables.md#UpdateSetting) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Update setting for a mod variable in an organization workspace
 
@@ -36,7 +36,7 @@ func main() {
     orgHandle := "orgHandle_example" // string | The handle of the organization that owns the workspace.
     workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace where the mod was installed.
     modAlias := "modAlias_example" // string | The mod alias or mod ID for which the variable setting is to be created.
-    request := *openapiclient.NewCreateWorkspaceModVariableSettingRequest("Name_example", "Setting_example") // CreateWorkspaceModVariableSettingRequest | The request body to create setting for mod variable in the organization workspace.
+    request := *openapiclient.NewCreateWorkspaceModVariableSettingRequest("Name_example", interface{}(123)) // CreateWorkspaceModVariableSettingRequest | The request body to create setting for mod variable in the organization workspace.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -114,7 +114,7 @@ func main() {
     orgHandle := "orgHandle_example" // string | The handle of the organization that owns the workspace.
     workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace where the mod was installed.
     modAlias := "modAlias_example" // string | The mod alias or mod ID which contains the variable.
-    variableName := "variableName_example" // string | The name of the variable for which setting is to be delete.
+    variableName := "variableName_example" // string | The name of the variable to delete the setting for.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 **orgHandle** | **string** | The handle of the organization that owns the workspace. | 
 **workspaceHandle** | **string** | The handle of the workspace where the mod was installed. | 
 **modAlias** | **string** | The mod alias or mod ID which contains the variable. | 
-**variableName** | **string** | The name of the variable for which setting is to be delete. | 
+**variableName** | **string** | The name of the variable to delete the setting for. | 
 
 ### Other Parameters
 
@@ -169,11 +169,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## Get
+## GetSetting
 
-> WorkspaceModVariable Get(ctx, orgHandle, workspaceHandle, modAlias, variableName).Execute()
+> WorkspaceModVariable GetSetting(ctx, orgHandle, workspaceHandle, modAlias, variableName).Execute()
 
-Get variable for an organization workspace mod
+Get setting for a mod variable in an organization workspace
 
 
 
@@ -191,19 +191,19 @@ import (
 
 func main() {
     orgHandle := "orgHandle_example" // string | The handle of the organization that owns the workspace.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace where mods were installed
-    modAlias := "modAlias_example" // string | The mod alias or mod ID for which we want the variables to be listed
-    variableName := "variableName_example" // string | The name of the variable for which setting is to be updated
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace where the mod was installed.
+    modAlias := "modAlias_example" // string | The mod alias or mod ID for which the variable setting belongs to.
+    variableName := "variableName_example" // string | The name of the variable to get the setting for.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaceModVariables.Get(context.Background(), orgHandle, workspaceHandle, modAlias, variableName).Execute()
+    resp, r, err := api_client.OrgWorkspaceModVariables.GetSetting(context.Background(), orgHandle, workspaceHandle, modAlias, variableName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceModVariables.Get``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceModVariables.GetSetting``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Get`: WorkspaceModVariable
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceModVariables.Get`: %v\n", resp)
+    // response from `GetSetting`: WorkspaceModVariable
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceModVariables.GetSetting`: %v\n", resp)
 }
 ```
 
@@ -214,13 +214,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **orgHandle** | **string** | The handle of the organization that owns the workspace. | 
-**workspaceHandle** | **string** | The handle of the workspace where mods were installed | 
-**modAlias** | **string** | The mod alias or mod ID for which we want the variables to be listed | 
-**variableName** | **string** | The name of the variable for which setting is to be updated | 
+**workspaceHandle** | **string** | The handle of the workspace where the mod was installed. | 
+**modAlias** | **string** | The mod alias or mod ID for which the variable setting belongs to. | 
+**variableName** | **string** | The name of the variable to get the setting for. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetSettingRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -353,7 +353,7 @@ func main() {
     workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace where the mod was installed.
     modAlias := "modAlias_example" // string | The mod alias or mod ID which contains the variable.
     variableName := "variableName_example" // string | The name of the variable for which setting is to be updated.
-    request := *openapiclient.NewUpdateWorkspaceModVariableSettingRequest("Setting_example") // UpdateWorkspaceModVariableSettingRequest | The request body to update setting for mod variable in the organization workspace.
+    request := *openapiclient.NewUpdateWorkspaceModVariableSettingRequest(interface{}(123)) // UpdateWorkspaceModVariableSettingRequest | The request body to update setting for mod variable in the organization workspace.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

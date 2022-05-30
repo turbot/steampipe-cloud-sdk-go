@@ -24,7 +24,7 @@ type UpdateWorkspaceModVariableSettingRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateWorkspaceModVariableSettingRequest(setting string) *UpdateWorkspaceModVariableSettingRequest {
+func NewUpdateWorkspaceModVariableSettingRequest(setting interface{}) *UpdateWorkspaceModVariableSettingRequest {
 	this := UpdateWorkspaceModVariableSettingRequest{}
 	this.Setting = setting
 	return &this
@@ -39,9 +39,10 @@ func NewUpdateWorkspaceModVariableSettingRequestWithDefaults() *UpdateWorkspaceM
 }
 
 // GetSetting returns the Setting field value
+// If the value is explicit nil, the zero value for interface{} will be returned
 func (o *UpdateWorkspaceModVariableSettingRequest) GetSetting() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -50,21 +51,22 @@ func (o *UpdateWorkspaceModVariableSettingRequest) GetSetting() interface{} {
 
 // GetSettingOk returns a tuple with the Setting field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateWorkspaceModVariableSettingRequest) GetSettingOk() (*interface{}, bool) {
-	if o == nil {
+	if o == nil || o.Setting == nil {
 		return nil, false
 	}
 	return &o.Setting, true
 }
 
 // SetSetting sets field value
-func (o *UpdateWorkspaceModVariableSettingRequest) SetSetting(v string) {
+func (o *UpdateWorkspaceModVariableSettingRequest) SetSetting(v interface{}) {
 	o.Setting = v
 }
 
 func (o UpdateWorkspaceModVariableSettingRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.Setting != nil {
 		toSerialize["setting"] = o.Setting
 	}
 	return json.Marshal(toSerialize)
