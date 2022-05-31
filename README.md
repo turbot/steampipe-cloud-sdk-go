@@ -92,6 +92,16 @@ Class | Method | HTTP request | Description
 *OrgWorkspaceConnectionAssociations* | [**Delete**](docs/OrgWorkspaceConnectionAssociations.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Get**](docs/OrgWorkspaceConnectionAssociations.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**List**](docs/OrgWorkspaceConnectionAssociations.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn | List org workspace connection associations
+*OrgWorkspaceModVariables* | [**CreateSetting**](docs/OrgWorkspaceModVariables.md#createsetting) | **Post** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | Create a setting for a mod variable in an organization workspace
+*OrgWorkspaceModVariables* | [**DeleteSetting**](docs/OrgWorkspaceModVariables.md#deletesetting) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Delete setting for a mod variable in an organization workspace
+*OrgWorkspaceModVariables* | [**GetSetting**](docs/OrgWorkspaceModVariables.md#getsetting) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Get setting for a mod variable in an organization workspace
+*OrgWorkspaceModVariables* | [**List**](docs/OrgWorkspaceModVariables.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | List variables in an organization workspace mod
+*OrgWorkspaceModVariables* | [**UpdateSetting**](docs/OrgWorkspaceModVariables.md#updatesetting) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Update setting for a mod variable in an organization workspace
+*OrgWorkspaceMods* | [**Get**](docs/OrgWorkspaceMods.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Get organization workspace installed mod
+*OrgWorkspaceMods* | [**Install**](docs/OrgWorkspaceMods.md#install) | **Post** /org/{org_handle}/workspace/{workspace_handle}/mod | Install a mod to an organization workspace
+*OrgWorkspaceMods* | [**List**](docs/OrgWorkspaceMods.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod | List organization workspace installed mods
+*OrgWorkspaceMods* | [**Uninstall**](docs/OrgWorkspaceMods.md#uninstall) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Uninstall mod from organization workspace.
+*OrgWorkspaceMods* | [**Update**](docs/OrgWorkspaceMods.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Update a mod in an organization workspace
 *OrgWorkspaces* | [**Create**](docs/OrgWorkspaces.md#create) | **Post** /org/{org_handle}/workspace | Create org workspace
 *OrgWorkspaces* | [**Delete**](docs/OrgWorkspaces.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle} | Delete org workspace
 *OrgWorkspaces* | [**Get**](docs/OrgWorkspaces.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle} | Get org workspace
@@ -109,6 +119,7 @@ Class | Method | HTTP request | Description
 *Orgs* | [**GetQuota**](docs/Orgs.md#getquota) | **Get** /org/{org_handle}/quota | Org quota
 *Orgs* | [**List**](docs/Orgs.md#list) | **Get** /org | List orgs
 *Orgs* | [**ListAuditLogs**](docs/Orgs.md#listauditlogs) | **Get** /org/{org_handle}/audit | Org audit logs
+*Orgs* | [**ListFeatures**](docs/Orgs.md#listfeatures) | **Get** /org/{org_handle}/feature | Org features
 *Orgs* | [**ListWorkspaceAuditLogs**](docs/Orgs.md#listworkspaceauditlogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/audit | Org workspace audit logs
 *Orgs* | [**Update**](docs/Orgs.md#update) | **Patch** /org/{org_handle} | Update org
 *UserConnections* | [**Create**](docs/UserConnections.md#create) | **Post** /user/{user_handle}/conn | Create user connection
@@ -126,6 +137,16 @@ Class | Method | HTTP request | Description
 *UserWorkspaceConnectionAssociations* | [**Delete**](docs/UserWorkspaceConnectionAssociations.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete user workspace connection association
 *UserWorkspaceConnectionAssociations* | [**Get**](docs/UserWorkspaceConnectionAssociations.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get user workspace connection association
 *UserWorkspaceConnectionAssociations* | [**List**](docs/UserWorkspaceConnectionAssociations.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn | List user workspace connection associations
+*UserWorkspaceModVariables* | [**CreateSetting**](docs/UserWorkspaceModVariables.md#createsetting) | **Post** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | Create a setting for a mod variable in a user workspace
+*UserWorkspaceModVariables* | [**DeleteSetting**](docs/UserWorkspaceModVariables.md#deletesetting) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Delete setting for a mod variable in a user workspace
+*UserWorkspaceModVariables* | [**GetSetting**](docs/UserWorkspaceModVariables.md#getsetting) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Get setting for a mod variable in a user workspace
+*UserWorkspaceModVariables* | [**List**](docs/UserWorkspaceModVariables.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | List variables for a user workspace mod
+*UserWorkspaceModVariables* | [**UpdateSetting**](docs/UserWorkspaceModVariables.md#updatesetting) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Update setting for a mod variable in a user workspace
+*UserWorkspaceMods* | [**Get**](docs/UserWorkspaceMods.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Get user workspace installed mod
+*UserWorkspaceMods* | [**Install**](docs/UserWorkspaceMods.md#install) | **Post** /user/{user_handle}/workspace/{workspace_handle}/mod | Install a mod to a user&#39;s workspace
+*UserWorkspaceMods* | [**List**](docs/UserWorkspaceMods.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod | List user workspace installed mods
+*UserWorkspaceMods* | [**Uninstall**](docs/UserWorkspaceMods.md#uninstall) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Uninstall mod from a user&#39;s workspace.
+*UserWorkspaceMods* | [**Update**](docs/UserWorkspaceMods.md#update) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Update a mod in a user&#39;s workspace
 *UserWorkspaces* | [**Create**](docs/UserWorkspaces.md#create) | **Post** /user/{user_handle}/workspace | Create user workspace
 *UserWorkspaces* | [**Delete**](docs/UserWorkspaces.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle} | Delete user workspace
 *UserWorkspaces* | [**Get**](docs/UserWorkspaces.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle} | Get user workspace
@@ -145,6 +166,7 @@ Class | Method | HTTP request | Description
 *Users* | [**GetQuota**](docs/Users.md#getquota) | **Get** /user/{user_handle}/quota | User quota
 *Users* | [**List**](docs/Users.md#list) | **Get** /user | List users
 *Users* | [**ListAuditLogs**](docs/Users.md#listauditlogs) | **Get** /user/{user_handle}/audit | User audit logs
+*Users* | [**ListFeatures**](docs/Users.md#listfeatures) | **Get** /user/{user_handle}/feature | User features
 *Users* | [**ListOrgInvites**](docs/Users.md#listorginvites) | **Get** /user/{user_handle}/org/invite | List org invited users
 *Users* | [**ListOrgs**](docs/Users.md#listorgs) | **Get** /user/{user_handle}/org | List org users
 *Users* | [**ListWorkspaceAuditLogs**](docs/Users.md#listworkspaceauditlogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/audit | User workspace audit logs
@@ -162,14 +184,18 @@ Class | Method | HTTP request | Description
  - [CreateUserPasswordRequest](docs/CreateUserPasswordRequest.md)
  - [CreateUserRequest](docs/CreateUserRequest.md)
  - [CreateWorkspaceConnRequest](docs/CreateWorkspaceConnRequest.md)
+ - [CreateWorkspaceModRequest](docs/CreateWorkspaceModRequest.md)
+ - [CreateWorkspaceModVariableSettingRequest](docs/CreateWorkspaceModVariableSettingRequest.md)
  - [CreateWorkspaceRequest](docs/CreateWorkspaceRequest.md)
  - [ErrorDetailModel](docs/ErrorDetailModel.md)
  - [ErrorModel](docs/ErrorModel.md)
+ - [Feature](docs/Feature.md)
  - [Identity](docs/Identity.md)
  - [IdentitySearch](docs/IdentitySearch.md)
  - [InviteOrgUserRequest](docs/InviteOrgUserRequest.md)
  - [ListAuditLogsResponse](docs/ListAuditLogsResponse.md)
  - [ListConnectionsResponse](docs/ListConnectionsResponse.md)
+ - [ListFeaturesResponse](docs/ListFeaturesResponse.md)
  - [ListLogsResponse](docs/ListLogsResponse.md)
  - [ListOrgUsersResponse](docs/ListOrgUsersResponse.md)
  - [ListOrgsResponse](docs/ListOrgsResponse.md)
@@ -177,6 +203,8 @@ Class | Method | HTTP request | Description
  - [ListUserOrgsResponse](docs/ListUserOrgsResponse.md)
  - [ListUsersResponse](docs/ListUsersResponse.md)
  - [ListWorkspaceConnResponse](docs/ListWorkspaceConnResponse.md)
+ - [ListWorkspaceModVariablesResponse](docs/ListWorkspaceModVariablesResponse.md)
+ - [ListWorkspaceModsResponse](docs/ListWorkspaceModsResponse.md)
  - [ListWorkspacesResponse](docs/ListWorkspacesResponse.md)
  - [LogRecord](docs/LogRecord.md)
  - [Org](docs/Org.md)
@@ -194,6 +222,8 @@ Class | Method | HTTP request | Description
  - [UpdateOrgUserRequest](docs/UpdateOrgUserRequest.md)
  - [UpdateTokenRequest](docs/UpdateTokenRequest.md)
  - [UpdateUserRequest](docs/UpdateUserRequest.md)
+ - [UpdateWorkspaceModRequest](docs/UpdateWorkspaceModRequest.md)
+ - [UpdateWorkspaceModVariableSettingRequest](docs/UpdateWorkspaceModVariableSettingRequest.md)
  - [UpdateWorkspaceRequest](docs/UpdateWorkspaceRequest.md)
  - [User](docs/User.md)
  - [UserDatabasePassword](docs/UserDatabasePassword.md)
@@ -204,6 +234,8 @@ Class | Method | HTTP request | Description
  - [UserSignupRequest](docs/UserSignupRequest.md)
  - [Workspace](docs/Workspace.md)
  - [WorkspaceConn](docs/WorkspaceConn.md)
+ - [WorkspaceMod](docs/WorkspaceMod.md)
+ - [WorkspaceModVariable](docs/WorkspaceModVariable.md)
  - [WorkspaceQueryResult](docs/WorkspaceQueryResult.md)
  - [WorkspaceQueryResultColumn](docs/WorkspaceQueryResultColumn.md)
  - [WorkspaceSchema](docs/WorkspaceSchema.md)

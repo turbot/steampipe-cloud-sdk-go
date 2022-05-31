@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**GetQuota**](Users.md#GetQuota) | **Get** /user/{user_handle}/quota | User quota
 [**List**](Users.md#List) | **Get** /user | List users
 [**ListAuditLogs**](Users.md#ListAuditLogs) | **Get** /user/{user_handle}/audit | User audit logs
+[**ListFeatures**](Users.md#ListFeatures) | **Get** /user/{user_handle}/feature | User features
 [**ListOrgInvites**](Users.md#ListOrgInvites) | **Get** /user/{user_handle}/org/invite | List org invited users
 [**ListOrgs**](Users.md#ListOrgs) | **Get** /user/{user_handle}/org | List org users
 [**ListWorkspaceAuditLogs**](Users.md#ListWorkspaceAuditLogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/audit | User workspace audit logs
@@ -565,6 +566,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListAuditLogsResponse**](ListAuditLogsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListFeatures
+
+> ListFeaturesResponse ListFeatures(ctx, userHandle).Execute()
+
+User features
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | Specify the user handle to get the feature details.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.Users.ListFeatures(context.Background(), userHandle).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Users.ListFeatures``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListFeatures`: ListFeaturesResponse
+    fmt.Fprintf(os.Stdout, "Response from `Users.ListFeatures`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | Specify the user handle to get the feature details. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListFeaturesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**ListFeaturesResponse**](ListFeaturesResponse.md)
 
 ### Authorization
 

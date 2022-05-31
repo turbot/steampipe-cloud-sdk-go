@@ -6,13 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Association** | [**map[string]Quota**](Quota.md) |  | 
 **Conn** | [**Quota**](Quota.md) |  | 
+**Mod** | [**map[string]Quota**](Quota.md) |  | 
 **Workspace** | [**Quota**](Quota.md) |  | 
 
 ## Methods
 
 ### NewOrgQuota
 
-`func NewOrgQuota(association map[string]Quota, conn Quota, workspace Quota, ) *OrgQuota`
+`func NewOrgQuota(association map[string]Quota, conn Quota, mod map[string]Quota, workspace Quota, ) *OrgQuota`
 
 NewOrgQuota instantiates a new OrgQuota object
 This constructor will assign default values to properties that have it defined,
@@ -65,6 +66,26 @@ and a boolean to check if the value has been set.
 `func (o *OrgQuota) SetConn(v Quota)`
 
 SetConn sets Conn field to given value.
+
+
+### GetMod
+
+`func (o *OrgQuota) GetMod() map[string]Quota`
+
+GetMod returns the Mod field if non-nil, zero value otherwise.
+
+### GetModOk
+
+`func (o *OrgQuota) GetModOk() (*map[string]Quota, bool)`
+
+GetModOk returns a tuple with the Mod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMod
+
+`func (o *OrgQuota) SetMod(v map[string]Quota)`
+
+SetMod sets Mod field to given value.
 
 
 ### GetWorkspace
