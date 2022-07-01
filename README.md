@@ -73,7 +73,8 @@ Class | Method | HTTP request | Description
 *Auth* | [**Provider**](docs/Auth.md#provider) | **Get** /auth/{provider} | Auth Provider
 *Auth* | [**ProviderCallback**](docs/Auth.md#providercallback) | **Get** /auth/{provider}/callback | Auth provider callback
 *Auth* | [**Signup**](docs/Auth.md#signup) | **Post** /signup | User signup
-*Identities* | [**Get**](docs/Identities.md#get) | **Get** /identity/search | Get identity
+*Identities* | [**Get**](docs/Identities.md#get) | **Get** /identity/{identity_handle} | Get identity
+*Identities* | [**List**](docs/Identities.md#list) | **Get** /identity | List identities
 *OrgConnections* | [**Create**](docs/OrgConnections.md#create) | **Post** /org/{org_handle}/conn | Create org connection
 *OrgConnections* | [**Delete**](docs/OrgConnections.md#delete) | **Delete** /org/{org_handle}/conn/{conn_handle} | Delete org connection
 *OrgConnections* | [**Get**](docs/OrgConnections.md#get) | **Get** /org/{org_handle}/conn/{conn_handle} | Get org connection

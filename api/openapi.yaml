@@ -353,7 +353,48 @@ paths:
       summary: Auth provider callback
       tags:
       - Auth
-  /identity/search:
+  /identity:
+    get:
+      description: List identities with their public information.
+      operationId: identity_list
+      parameters:
+      - description: Optional free-text search to filter the identities.
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListIdentitiesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List identities
+      tags:
+      - Identities
+  /identity/{identity_handle}:
     get:
       description: Get public information for an identity.
       operationId: identity_get
@@ -9755,6 +9796,19 @@ components:
           type: array
       type: object
     ListIdentitiesResponse:
+      example:
+        next_token: next_token
+        items:
+        - avatar_url: avatar_url
+          handle: handle
+          id: id
+          display_name: display_name
+          type: type
+        - avatar_url: avatar_url
+          handle: handle
+          id: id
+          display_name: display_name
+          type: type
       properties:
         items:
           items:
