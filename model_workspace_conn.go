@@ -20,15 +20,21 @@ type WorkspaceConn struct {
 	Connection *Connection `json:"connection,omitempty"`
 	// The unique identifier for the connection.
 	ConnectionId string `json:"connection_id"`
-	// Association created time.
+	// The time of creation in ISO 8601 UTC.
 	CreatedAt string `json:"created_at"`
+	CreatedBy *User  `json:"created_by,omitempty"`
+	// The ID of the user that created this.
+	CreatedById string `json:"created_by_id"`
 	// The unique identifier for the workspace connection association.
 	Id string `json:"id"`
 	// The identity ID where the association exists.
 	IdentityId string `json:"identity_id"`
-	// Association updated time.
+	// The time of the last update in ISO 8601 UTC.
 	UpdatedAt *string `json:"updated_at,omitempty"`
-	// The current version ID for the association.
+	UpdatedBy *User   `json:"updated_by,omitempty"`
+	// The ID of the user that performed the last update.
+	UpdatedById string `json:"updated_by_id"`
+	// The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item.
 	VersionId int32      `json:"version_id"`
 	Workspace *Workspace `json:"workspace,omitempty"`
 	// The unique identifier for the wokspace.
@@ -39,12 +45,14 @@ type WorkspaceConn struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspaceConn(connectionId string, createdAt string, id string, identityId string, versionId int32, workspaceId string) *WorkspaceConn {
+func NewWorkspaceConn(connectionId string, createdAt string, createdById string, id string, identityId string, updatedById string, versionId int32, workspaceId string) *WorkspaceConn {
 	this := WorkspaceConn{}
 	this.ConnectionId = connectionId
 	this.CreatedAt = createdAt
+	this.CreatedById = createdById
 	this.Id = id
 	this.IdentityId = identityId
+	this.UpdatedById = updatedById
 	this.VersionId = versionId
 	this.WorkspaceId = workspaceId
 	return &this
@@ -138,6 +146,62 @@ func (o *WorkspaceConn) SetCreatedAt(v string) {
 	o.CreatedAt = v
 }
 
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+func (o *WorkspaceConn) GetCreatedBy() User {
+	if o == nil || o.CreatedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceConn) GetCreatedByOk() (*User, bool) {
+	if o == nil || o.CreatedBy == nil {
+		return nil, false
+	}
+	return o.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (o *WorkspaceConn) HasCreatedBy() bool {
+	if o != nil && o.CreatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy gets a reference to the given User and assigns it to the CreatedBy field.
+func (o *WorkspaceConn) SetCreatedBy(v User) {
+	o.CreatedBy = &v
+}
+
+// GetCreatedById returns the CreatedById field value
+func (o *WorkspaceConn) GetCreatedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedById
+}
+
+// GetCreatedByIdOk returns a tuple with the CreatedById field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceConn) GetCreatedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedById, true
+}
+
+// SetCreatedById sets field value
+func (o *WorkspaceConn) SetCreatedById(v string) {
+	o.CreatedById = v
+}
+
 // GetId returns the Id field value
 func (o *WorkspaceConn) GetId() string {
 	if o == nil {
@@ -216,6 +280,62 @@ func (o *WorkspaceConn) HasUpdatedAt() bool {
 // SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *WorkspaceConn) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
+}
+
+// GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
+func (o *WorkspaceConn) GetUpdatedBy() User {
+	if o == nil || o.UpdatedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.UpdatedBy
+}
+
+// GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceConn) GetUpdatedByOk() (*User, bool) {
+	if o == nil || o.UpdatedBy == nil {
+		return nil, false
+	}
+	return o.UpdatedBy, true
+}
+
+// HasUpdatedBy returns a boolean if a field has been set.
+func (o *WorkspaceConn) HasUpdatedBy() bool {
+	if o != nil && o.UpdatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedBy gets a reference to the given User and assigns it to the UpdatedBy field.
+func (o *WorkspaceConn) SetUpdatedBy(v User) {
+	o.UpdatedBy = &v
+}
+
+// GetUpdatedById returns the UpdatedById field value
+func (o *WorkspaceConn) GetUpdatedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedById
+}
+
+// GetUpdatedByIdOk returns a tuple with the UpdatedById field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceConn) GetUpdatedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdatedById, true
+}
+
+// SetUpdatedById sets field value
+func (o *WorkspaceConn) SetUpdatedById(v string) {
+	o.UpdatedById = v
 }
 
 // GetVersionId returns the VersionId field value
@@ -309,6 +429,12 @@ func (o WorkspaceConn) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if o.CreatedBy != nil {
+		toSerialize["created_by"] = o.CreatedBy
+	}
+	if true {
+		toSerialize["created_by_id"] = o.CreatedById
+	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
@@ -317,6 +443,12 @@ func (o WorkspaceConn) MarshalJSON() ([]byte, error) {
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if o.UpdatedBy != nil {
+		toSerialize["updated_by"] = o.UpdatedBy
+	}
+	if true {
+		toSerialize["updated_by_id"] = o.UpdatedById
 	}
 	if true {
 		toSerialize["version_id"] = o.VersionId

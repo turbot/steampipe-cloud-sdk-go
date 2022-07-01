@@ -15,8 +15,8 @@ import (
 	"encoding/json"
 )
 
-// OrgUser struct for OrgUser
-type OrgUser struct {
+// OrgWorkspaceUser struct for OrgWorkspaceUser
+type OrgWorkspaceUser struct {
 	// The time of creation in ISO 8601 UTC.
 	CreatedAt string `json:"created_at"`
 	CreatedBy *User  `json:"created_by,omitempty"`
@@ -44,14 +44,18 @@ type OrgUser struct {
 	UserId string `json:"user_id"`
 	// The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item.
 	VersionId int32 `json:"version_id"`
+	// The handle of the workspace with identifier WorkspaceID.
+	WorkspaceHandle string `json:"workspace_handle"`
+	// The identifier of a workspace belonging to the organization.
+	WorkspaceId string `json:"workspace_id"`
 }
 
-// NewOrgUser instantiates a new OrgUser object
+// NewOrgWorkspaceUser instantiates a new OrgWorkspaceUser object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgUser(createdAt string, createdById string, email string, id string, orgId string, status string, updatedById string, userHandle string, userId string, versionId int32) *OrgUser {
-	this := OrgUser{}
+func NewOrgWorkspaceUser(createdAt string, createdById string, email string, id string, orgId string, status string, updatedById string, userHandle string, userId string, versionId int32, workspaceHandle string, workspaceId string) *OrgWorkspaceUser {
+	this := OrgWorkspaceUser{}
 	this.CreatedAt = createdAt
 	this.CreatedById = createdById
 	this.Email = email
@@ -62,19 +66,21 @@ func NewOrgUser(createdAt string, createdById string, email string, id string, o
 	this.UserHandle = userHandle
 	this.UserId = userId
 	this.VersionId = versionId
+	this.WorkspaceHandle = workspaceHandle
+	this.WorkspaceId = workspaceId
 	return &this
 }
 
-// NewOrgUserWithDefaults instantiates a new OrgUser object
+// NewOrgWorkspaceUserWithDefaults instantiates a new OrgWorkspaceUser object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewOrgUserWithDefaults() *OrgUser {
-	this := OrgUser{}
+func NewOrgWorkspaceUserWithDefaults() *OrgWorkspaceUser {
+	this := OrgWorkspaceUser{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *OrgUser) GetCreatedAt() string {
+func (o *OrgWorkspaceUser) GetCreatedAt() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -85,7 +91,7 @@ func (o *OrgUser) GetCreatedAt() string {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetCreatedAtOk() (*string, bool) {
+func (o *OrgWorkspaceUser) GetCreatedAtOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,12 +99,12 @@ func (o *OrgUser) GetCreatedAtOk() (*string, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *OrgUser) SetCreatedAt(v string) {
+func (o *OrgWorkspaceUser) SetCreatedAt(v string) {
 	o.CreatedAt = v
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *OrgUser) GetCreatedBy() User {
+func (o *OrgWorkspaceUser) GetCreatedBy() User {
 	if o == nil || o.CreatedBy == nil {
 		var ret User
 		return ret
@@ -108,7 +114,7 @@ func (o *OrgUser) GetCreatedBy() User {
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetCreatedByOk() (*User, bool) {
+func (o *OrgWorkspaceUser) GetCreatedByOk() (*User, bool) {
 	if o == nil || o.CreatedBy == nil {
 		return nil, false
 	}
@@ -116,7 +122,7 @@ func (o *OrgUser) GetCreatedByOk() (*User, bool) {
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
-func (o *OrgUser) HasCreatedBy() bool {
+func (o *OrgWorkspaceUser) HasCreatedBy() bool {
 	if o != nil && o.CreatedBy != nil {
 		return true
 	}
@@ -125,12 +131,12 @@ func (o *OrgUser) HasCreatedBy() bool {
 }
 
 // SetCreatedBy gets a reference to the given User and assigns it to the CreatedBy field.
-func (o *OrgUser) SetCreatedBy(v User) {
+func (o *OrgWorkspaceUser) SetCreatedBy(v User) {
 	o.CreatedBy = &v
 }
 
 // GetCreatedById returns the CreatedById field value
-func (o *OrgUser) GetCreatedById() string {
+func (o *OrgWorkspaceUser) GetCreatedById() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -141,7 +147,7 @@ func (o *OrgUser) GetCreatedById() string {
 
 // GetCreatedByIdOk returns a tuple with the CreatedById field value
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetCreatedByIdOk() (*string, bool) {
+func (o *OrgWorkspaceUser) GetCreatedByIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -149,12 +155,12 @@ func (o *OrgUser) GetCreatedByIdOk() (*string, bool) {
 }
 
 // SetCreatedById sets field value
-func (o *OrgUser) SetCreatedById(v string) {
+func (o *OrgWorkspaceUser) SetCreatedById(v string) {
 	o.CreatedById = v
 }
 
 // GetEmail returns the Email field value
-func (o *OrgUser) GetEmail() string {
+func (o *OrgWorkspaceUser) GetEmail() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -165,7 +171,7 @@ func (o *OrgUser) GetEmail() string {
 
 // GetEmailOk returns a tuple with the Email field value
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetEmailOk() (*string, bool) {
+func (o *OrgWorkspaceUser) GetEmailOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -173,12 +179,12 @@ func (o *OrgUser) GetEmailOk() (*string, bool) {
 }
 
 // SetEmail sets field value
-func (o *OrgUser) SetEmail(v string) {
+func (o *OrgWorkspaceUser) SetEmail(v string) {
 	o.Email = v
 }
 
 // GetId returns the Id field value
-func (o *OrgUser) GetId() string {
+func (o *OrgWorkspaceUser) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -189,7 +195,7 @@ func (o *OrgUser) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetIdOk() (*string, bool) {
+func (o *OrgWorkspaceUser) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -197,12 +203,12 @@ func (o *OrgUser) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *OrgUser) SetId(v string) {
+func (o *OrgWorkspaceUser) SetId(v string) {
 	o.Id = v
 }
 
 // GetOrgId returns the OrgId field value
-func (o *OrgUser) GetOrgId() string {
+func (o *OrgWorkspaceUser) GetOrgId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -213,7 +219,7 @@ func (o *OrgUser) GetOrgId() string {
 
 // GetOrgIdOk returns a tuple with the OrgId field value
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetOrgIdOk() (*string, bool) {
+func (o *OrgWorkspaceUser) GetOrgIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -221,12 +227,12 @@ func (o *OrgUser) GetOrgIdOk() (*string, bool) {
 }
 
 // SetOrgId sets field value
-func (o *OrgUser) SetOrgId(v string) {
+func (o *OrgWorkspaceUser) SetOrgId(v string) {
 	o.OrgId = v
 }
 
 // GetRole returns the Role field value if set, zero value otherwise.
-func (o *OrgUser) GetRole() string {
+func (o *OrgWorkspaceUser) GetRole() string {
 	if o == nil || o.Role == nil {
 		var ret string
 		return ret
@@ -236,7 +242,7 @@ func (o *OrgUser) GetRole() string {
 
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetRoleOk() (*string, bool) {
+func (o *OrgWorkspaceUser) GetRoleOk() (*string, bool) {
 	if o == nil || o.Role == nil {
 		return nil, false
 	}
@@ -244,7 +250,7 @@ func (o *OrgUser) GetRoleOk() (*string, bool) {
 }
 
 // HasRole returns a boolean if a field has been set.
-func (o *OrgUser) HasRole() bool {
+func (o *OrgWorkspaceUser) HasRole() bool {
 	if o != nil && o.Role != nil {
 		return true
 	}
@@ -253,12 +259,12 @@ func (o *OrgUser) HasRole() bool {
 }
 
 // SetRole gets a reference to the given string and assigns it to the Role field.
-func (o *OrgUser) SetRole(v string) {
+func (o *OrgWorkspaceUser) SetRole(v string) {
 	o.Role = &v
 }
 
 // GetStatus returns the Status field value
-func (o *OrgUser) GetStatus() string {
+func (o *OrgWorkspaceUser) GetStatus() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -269,7 +275,7 @@ func (o *OrgUser) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetStatusOk() (*string, bool) {
+func (o *OrgWorkspaceUser) GetStatusOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -277,12 +283,12 @@ func (o *OrgUser) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *OrgUser) SetStatus(v string) {
+func (o *OrgWorkspaceUser) SetStatus(v string) {
 	o.Status = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *OrgUser) GetUpdatedAt() string {
+func (o *OrgWorkspaceUser) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
 		var ret string
 		return ret
@@ -292,7 +298,7 @@ func (o *OrgUser) GetUpdatedAt() string {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetUpdatedAtOk() (*string, bool) {
+func (o *OrgWorkspaceUser) GetUpdatedAtOk() (*string, bool) {
 	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
@@ -300,7 +306,7 @@ func (o *OrgUser) GetUpdatedAtOk() (*string, bool) {
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *OrgUser) HasUpdatedAt() bool {
+func (o *OrgWorkspaceUser) HasUpdatedAt() bool {
 	if o != nil && o.UpdatedAt != nil {
 		return true
 	}
@@ -309,12 +315,12 @@ func (o *OrgUser) HasUpdatedAt() bool {
 }
 
 // SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
-func (o *OrgUser) SetUpdatedAt(v string) {
+func (o *OrgWorkspaceUser) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
 // GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
-func (o *OrgUser) GetUpdatedBy() User {
+func (o *OrgWorkspaceUser) GetUpdatedBy() User {
 	if o == nil || o.UpdatedBy == nil {
 		var ret User
 		return ret
@@ -324,7 +330,7 @@ func (o *OrgUser) GetUpdatedBy() User {
 
 // GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetUpdatedByOk() (*User, bool) {
+func (o *OrgWorkspaceUser) GetUpdatedByOk() (*User, bool) {
 	if o == nil || o.UpdatedBy == nil {
 		return nil, false
 	}
@@ -332,7 +338,7 @@ func (o *OrgUser) GetUpdatedByOk() (*User, bool) {
 }
 
 // HasUpdatedBy returns a boolean if a field has been set.
-func (o *OrgUser) HasUpdatedBy() bool {
+func (o *OrgWorkspaceUser) HasUpdatedBy() bool {
 	if o != nil && o.UpdatedBy != nil {
 		return true
 	}
@@ -341,12 +347,12 @@ func (o *OrgUser) HasUpdatedBy() bool {
 }
 
 // SetUpdatedBy gets a reference to the given User and assigns it to the UpdatedBy field.
-func (o *OrgUser) SetUpdatedBy(v User) {
+func (o *OrgWorkspaceUser) SetUpdatedBy(v User) {
 	o.UpdatedBy = &v
 }
 
 // GetUpdatedById returns the UpdatedById field value
-func (o *OrgUser) GetUpdatedById() string {
+func (o *OrgWorkspaceUser) GetUpdatedById() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -357,7 +363,7 @@ func (o *OrgUser) GetUpdatedById() string {
 
 // GetUpdatedByIdOk returns a tuple with the UpdatedById field value
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetUpdatedByIdOk() (*string, bool) {
+func (o *OrgWorkspaceUser) GetUpdatedByIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -365,12 +371,12 @@ func (o *OrgUser) GetUpdatedByIdOk() (*string, bool) {
 }
 
 // SetUpdatedById sets field value
-func (o *OrgUser) SetUpdatedById(v string) {
+func (o *OrgWorkspaceUser) SetUpdatedById(v string) {
 	o.UpdatedById = v
 }
 
 // GetUser returns the User field value if set, zero value otherwise.
-func (o *OrgUser) GetUser() User {
+func (o *OrgWorkspaceUser) GetUser() User {
 	if o == nil || o.User == nil {
 		var ret User
 		return ret
@@ -380,7 +386,7 @@ func (o *OrgUser) GetUser() User {
 
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetUserOk() (*User, bool) {
+func (o *OrgWorkspaceUser) GetUserOk() (*User, bool) {
 	if o == nil || o.User == nil {
 		return nil, false
 	}
@@ -388,7 +394,7 @@ func (o *OrgUser) GetUserOk() (*User, bool) {
 }
 
 // HasUser returns a boolean if a field has been set.
-func (o *OrgUser) HasUser() bool {
+func (o *OrgWorkspaceUser) HasUser() bool {
 	if o != nil && o.User != nil {
 		return true
 	}
@@ -397,12 +403,12 @@ func (o *OrgUser) HasUser() bool {
 }
 
 // SetUser gets a reference to the given User and assigns it to the User field.
-func (o *OrgUser) SetUser(v User) {
+func (o *OrgWorkspaceUser) SetUser(v User) {
 	o.User = &v
 }
 
 // GetUserHandle returns the UserHandle field value
-func (o *OrgUser) GetUserHandle() string {
+func (o *OrgWorkspaceUser) GetUserHandle() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -413,7 +419,7 @@ func (o *OrgUser) GetUserHandle() string {
 
 // GetUserHandleOk returns a tuple with the UserHandle field value
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetUserHandleOk() (*string, bool) {
+func (o *OrgWorkspaceUser) GetUserHandleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -421,12 +427,12 @@ func (o *OrgUser) GetUserHandleOk() (*string, bool) {
 }
 
 // SetUserHandle sets field value
-func (o *OrgUser) SetUserHandle(v string) {
+func (o *OrgWorkspaceUser) SetUserHandle(v string) {
 	o.UserHandle = v
 }
 
 // GetUserId returns the UserId field value
-func (o *OrgUser) GetUserId() string {
+func (o *OrgWorkspaceUser) GetUserId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -437,7 +443,7 @@ func (o *OrgUser) GetUserId() string {
 
 // GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetUserIdOk() (*string, bool) {
+func (o *OrgWorkspaceUser) GetUserIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -445,12 +451,12 @@ func (o *OrgUser) GetUserIdOk() (*string, bool) {
 }
 
 // SetUserId sets field value
-func (o *OrgUser) SetUserId(v string) {
+func (o *OrgWorkspaceUser) SetUserId(v string) {
 	o.UserId = v
 }
 
 // GetVersionId returns the VersionId field value
-func (o *OrgUser) GetVersionId() int32 {
+func (o *OrgWorkspaceUser) GetVersionId() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -461,7 +467,7 @@ func (o *OrgUser) GetVersionId() int32 {
 
 // GetVersionIdOk returns a tuple with the VersionId field value
 // and a boolean to check if the value has been set.
-func (o *OrgUser) GetVersionIdOk() (*int32, bool) {
+func (o *OrgWorkspaceUser) GetVersionIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -469,11 +475,59 @@ func (o *OrgUser) GetVersionIdOk() (*int32, bool) {
 }
 
 // SetVersionId sets field value
-func (o *OrgUser) SetVersionId(v int32) {
+func (o *OrgWorkspaceUser) SetVersionId(v int32) {
 	o.VersionId = v
 }
 
-func (o OrgUser) MarshalJSON() ([]byte, error) {
+// GetWorkspaceHandle returns the WorkspaceHandle field value
+func (o *OrgWorkspaceUser) GetWorkspaceHandle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.WorkspaceHandle
+}
+
+// GetWorkspaceHandleOk returns a tuple with the WorkspaceHandle field value
+// and a boolean to check if the value has been set.
+func (o *OrgWorkspaceUser) GetWorkspaceHandleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.WorkspaceHandle, true
+}
+
+// SetWorkspaceHandle sets field value
+func (o *OrgWorkspaceUser) SetWorkspaceHandle(v string) {
+	o.WorkspaceHandle = v
+}
+
+// GetWorkspaceId returns the WorkspaceId field value
+func (o *OrgWorkspaceUser) GetWorkspaceId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.WorkspaceId
+}
+
+// GetWorkspaceIdOk returns a tuple with the WorkspaceId field value
+// and a boolean to check if the value has been set.
+func (o *OrgWorkspaceUser) GetWorkspaceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.WorkspaceId, true
+}
+
+// SetWorkspaceId sets field value
+func (o *OrgWorkspaceUser) SetWorkspaceId(v string) {
+	o.WorkspaceId = v
+}
+
+func (o OrgWorkspaceUser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
@@ -520,41 +574,47 @@ func (o OrgUser) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["version_id"] = o.VersionId
 	}
+	if true {
+		toSerialize["workspace_handle"] = o.WorkspaceHandle
+	}
+	if true {
+		toSerialize["workspace_id"] = o.WorkspaceId
+	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableOrgUser struct {
-	value *OrgUser
+type NullableOrgWorkspaceUser struct {
+	value *OrgWorkspaceUser
 	isSet bool
 }
 
-func (v NullableOrgUser) Get() *OrgUser {
+func (v NullableOrgWorkspaceUser) Get() *OrgWorkspaceUser {
 	return v.value
 }
 
-func (v *NullableOrgUser) Set(val *OrgUser) {
+func (v *NullableOrgWorkspaceUser) Set(val *OrgWorkspaceUser) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableOrgUser) IsSet() bool {
+func (v NullableOrgWorkspaceUser) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableOrgUser) Unset() {
+func (v *NullableOrgWorkspaceUser) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableOrgUser(val *OrgUser) *NullableOrgUser {
-	return &NullableOrgUser{value: val, isSet: true}
+func NewNullableOrgWorkspaceUser(val *OrgWorkspaceUser) *NullableOrgWorkspaceUser {
+	return &NullableOrgWorkspaceUser{value: val, isSet: true}
 }
 
-func (v NullableOrgUser) MarshalJSON() ([]byte, error) {
+func (v NullableOrgWorkspaceUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableOrgUser) UnmarshalJSON(src []byte) error {
+func (v *NullableOrgWorkspaceUser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

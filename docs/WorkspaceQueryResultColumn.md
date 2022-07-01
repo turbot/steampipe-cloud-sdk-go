@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DataTypeName** | **string** |  | 
+**DataType** | **string** |  | 
 **MaxDataLength** | Pointer to **int32** |  | [optional] 
 **Name** | **string** |  | 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewWorkspaceQueryResultColumn
 
-`func NewWorkspaceQueryResultColumn(dataTypeName string, name string, ) *WorkspaceQueryResultColumn`
+`func NewWorkspaceQueryResultColumn(dataType string, name string, ) *WorkspaceQueryResultColumn`
 
 NewWorkspaceQueryResultColumn instantiates a new WorkspaceQueryResultColumn object
 This constructor will assign default values to properties that have it defined,
@@ -27,24 +27,24 @@ NewWorkspaceQueryResultColumnWithDefaults instantiates a new WorkspaceQueryResul
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDataTypeName
+### GetDataType
 
-`func (o *WorkspaceQueryResultColumn) GetDataTypeName() string`
+`func (o *WorkspaceQueryResultColumn) GetDataType() string`
 
-GetDataTypeName returns the DataTypeName field if non-nil, zero value otherwise.
+GetDataType returns the DataType field if non-nil, zero value otherwise.
 
-### GetDataTypeNameOk
+### GetDataTypeOk
 
-`func (o *WorkspaceQueryResultColumn) GetDataTypeNameOk() (*string, bool)`
+`func (o *WorkspaceQueryResultColumn) GetDataTypeOk() (*string, bool)`
 
-GetDataTypeNameOk returns a tuple with the DataTypeName field if it's non-nil, zero value otherwise
+GetDataTypeOk returns a tuple with the DataType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDataTypeName
+### SetDataType
 
-`func (o *WorkspaceQueryResultColumn) SetDataTypeName(v string)`
+`func (o *WorkspaceQueryResultColumn) SetDataType(v string)`
 
-SetDataTypeName sets DataTypeName field to given value.
+SetDataType sets DataType field to given value.
 
 
 ### GetMaxDataLength

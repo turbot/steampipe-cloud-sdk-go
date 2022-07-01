@@ -1,5 +1,10 @@
 # Steampipe Cloud Go SDK
 
+## 0.1.0 [2022-07-01]
+
+- Add Org Workspace Member APIs.
+- Modify various existing APIs to include metadata information such as created_by etc. 
+
 ## 0.0.4 [2022-05-31]
 
 - Add Mod, Mod Variables APIs

@@ -4,24 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **string** | The workspace created time. | 
+**CreatedAt** | **string** | The time of creation in ISO 8601 UTC. | 
+**CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
+**CreatedById** | **string** | The ID of the user that created this. | 
 **DatabaseName** | Pointer to **string** | The name of the database. | [optional] 
 **Handle** | **string** | The handle name for the workspace. | 
 **Hive** | Pointer to **string** | The database hive for this workspace. | [optional] 
 **Host** | Pointer to **string** |  | [optional] 
 **Id** | **string** | The unique identifier for the workspace. | 
-**Identity** | Pointer to [**Identity**](Identity.md) |  | [optional] 
 **IdentityId** | **string** | The unique identifier for an identity where the workspace is created. | 
 **PublicKey** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **string** | The workspace updated time. | [optional] 
-**VersionId** | **int32** | The current version ID for the workspace. | 
-**WorkspaceState** | Pointer to **string** | The current state of the workspace. | [optional] 
+**State** | Pointer to **string** | The current state of the workspace. | [optional] 
+**UpdatedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
+**UpdatedBy** | Pointer to [**User**](User.md) |  | [optional] 
+**UpdatedById** | **string** | The ID of the user that performed the last update. | 
+**VersionId** | **int32** | The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item. | 
 
 ## Methods
 
 ### NewWorkspace
 
-`func NewWorkspace(createdAt string, handle string, id string, identityId string, versionId int32, ) *Workspace`
+`func NewWorkspace(createdAt string, createdById string, handle string, id string, identityId string, updatedById string, versionId int32, ) *Workspace`
 
 NewWorkspace instantiates a new Workspace object
 This constructor will assign default values to properties that have it defined,
@@ -54,6 +57,51 @@ and a boolean to check if the value has been set.
 `func (o *Workspace) SetCreatedAt(v string)`
 
 SetCreatedAt sets CreatedAt field to given value.
+
+
+### GetCreatedBy
+
+`func (o *Workspace) GetCreatedBy() User`
+
+GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+
+### GetCreatedByOk
+
+`func (o *Workspace) GetCreatedByOk() (*User, bool)`
+
+GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedBy
+
+`func (o *Workspace) SetCreatedBy(v User)`
+
+SetCreatedBy sets CreatedBy field to given value.
+
+### HasCreatedBy
+
+`func (o *Workspace) HasCreatedBy() bool`
+
+HasCreatedBy returns a boolean if a field has been set.
+
+### GetCreatedById
+
+`func (o *Workspace) GetCreatedById() string`
+
+GetCreatedById returns the CreatedById field if non-nil, zero value otherwise.
+
+### GetCreatedByIdOk
+
+`func (o *Workspace) GetCreatedByIdOk() (*string, bool)`
+
+GetCreatedByIdOk returns a tuple with the CreatedById field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedById
+
+`func (o *Workspace) SetCreatedById(v string)`
+
+SetCreatedById sets CreatedById field to given value.
 
 
 ### GetDatabaseName
@@ -171,31 +219,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetIdentity
-
-`func (o *Workspace) GetIdentity() Identity`
-
-GetIdentity returns the Identity field if non-nil, zero value otherwise.
-
-### GetIdentityOk
-
-`func (o *Workspace) GetIdentityOk() (*Identity, bool)`
-
-GetIdentityOk returns a tuple with the Identity field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIdentity
-
-`func (o *Workspace) SetIdentity(v Identity)`
-
-SetIdentity sets Identity field to given value.
-
-### HasIdentity
-
-`func (o *Workspace) HasIdentity() bool`
-
-HasIdentity returns a boolean if a field has been set.
-
 ### GetIdentityId
 
 `func (o *Workspace) GetIdentityId() string`
@@ -241,6 +264,31 @@ SetPublicKey sets PublicKey field to given value.
 
 HasPublicKey returns a boolean if a field has been set.
 
+### GetState
+
+`func (o *Workspace) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *Workspace) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *Workspace) SetState(v string)`
+
+SetState sets State field to given value.
+
+### HasState
+
+`func (o *Workspace) HasState() bool`
+
+HasState returns a boolean if a field has been set.
+
 ### GetUpdatedAt
 
 `func (o *Workspace) GetUpdatedAt() string`
@@ -266,6 +314,51 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 HasUpdatedAt returns a boolean if a field has been set.
 
+### GetUpdatedBy
+
+`func (o *Workspace) GetUpdatedBy() User`
+
+GetUpdatedBy returns the UpdatedBy field if non-nil, zero value otherwise.
+
+### GetUpdatedByOk
+
+`func (o *Workspace) GetUpdatedByOk() (*User, bool)`
+
+GetUpdatedByOk returns a tuple with the UpdatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedBy
+
+`func (o *Workspace) SetUpdatedBy(v User)`
+
+SetUpdatedBy sets UpdatedBy field to given value.
+
+### HasUpdatedBy
+
+`func (o *Workspace) HasUpdatedBy() bool`
+
+HasUpdatedBy returns a boolean if a field has been set.
+
+### GetUpdatedById
+
+`func (o *Workspace) GetUpdatedById() string`
+
+GetUpdatedById returns the UpdatedById field if non-nil, zero value otherwise.
+
+### GetUpdatedByIdOk
+
+`func (o *Workspace) GetUpdatedByIdOk() (*string, bool)`
+
+GetUpdatedByIdOk returns a tuple with the UpdatedById field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedById
+
+`func (o *Workspace) SetUpdatedById(v string)`
+
+SetUpdatedById sets UpdatedById field to given value.
+
+
 ### GetVersionId
 
 `func (o *Workspace) GetVersionId() int32`
@@ -285,31 +378,6 @@ and a boolean to check if the value has been set.
 
 SetVersionId sets VersionId field to given value.
 
-
-### GetWorkspaceState
-
-`func (o *Workspace) GetWorkspaceState() string`
-
-GetWorkspaceState returns the WorkspaceState field if non-nil, zero value otherwise.
-
-### GetWorkspaceStateOk
-
-`func (o *Workspace) GetWorkspaceStateOk() (*string, bool)`
-
-GetWorkspaceStateOk returns a tuple with the WorkspaceState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkspaceState
-
-`func (o *Workspace) SetWorkspaceState(v string)`
-
-SetWorkspaceState sets WorkspaceState field to given value.
-
-### HasWorkspaceState
-
-`func (o *Workspace) HasWorkspaceState() bool`
-
-HasWorkspaceState returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

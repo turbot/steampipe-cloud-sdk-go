@@ -536,7 +536,7 @@ Get org member.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle Specify the organization handle where the member is associated.
- @param userHandle Specify the handle of the user whose information you want to retrive.
+ @param userHandle Specify the handle of the user whose information you want to retrieve.
  @return OrgMembersApiGetRequest
 */
 func (a *OrgMembersService) Get(ctx _context.Context, orgHandle string, userHandle string) OrgMembersApiGetRequest {

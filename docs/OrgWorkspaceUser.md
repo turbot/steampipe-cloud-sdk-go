@@ -1,4 +1,4 @@
-# OrgUser
+# OrgWorkspaceUser
 
 ## Properties
 
@@ -19,349 +19,391 @@ Name | Type | Description | Notes
 **UserHandle** | **string** | The user handle of the member. | 
 **UserId** | **string** | The identifier of a user. | 
 **VersionId** | **int32** | The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item. | 
+**WorkspaceHandle** | **string** | The handle of the workspace with identifier WorkspaceID. | 
+**WorkspaceId** | **string** | The identifier of a workspace belonging to the organization. | 
 
 ## Methods
 
-### NewOrgUser
+### NewOrgWorkspaceUser
 
-`func NewOrgUser(createdAt string, createdById string, email string, id string, orgId string, status string, updatedById string, userHandle string, userId string, versionId int32, ) *OrgUser`
+`func NewOrgWorkspaceUser(createdAt string, createdById string, email string, id string, orgId string, status string, updatedById string, userHandle string, userId string, versionId int32, workspaceHandle string, workspaceId string, ) *OrgWorkspaceUser`
 
-NewOrgUser instantiates a new OrgUser object
+NewOrgWorkspaceUser instantiates a new OrgWorkspaceUser object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewOrgUserWithDefaults
+### NewOrgWorkspaceUserWithDefaults
 
-`func NewOrgUserWithDefaults() *OrgUser`
+`func NewOrgWorkspaceUserWithDefaults() *OrgWorkspaceUser`
 
-NewOrgUserWithDefaults instantiates a new OrgUser object
+NewOrgWorkspaceUserWithDefaults instantiates a new OrgWorkspaceUser object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetCreatedAt
 
-`func (o *OrgUser) GetCreatedAt() string`
+`func (o *OrgWorkspaceUser) GetCreatedAt() string`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *OrgUser) GetCreatedAtOk() (*string, bool)`
+`func (o *OrgWorkspaceUser) GetCreatedAtOk() (*string, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *OrgUser) SetCreatedAt(v string)`
+`func (o *OrgWorkspaceUser) SetCreatedAt(v string)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetCreatedBy
 
-`func (o *OrgUser) GetCreatedBy() User`
+`func (o *OrgWorkspaceUser) GetCreatedBy() User`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *OrgUser) GetCreatedByOk() (*User, bool)`
+`func (o *OrgWorkspaceUser) GetCreatedByOk() (*User, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedBy
 
-`func (o *OrgUser) SetCreatedBy(v User)`
+`func (o *OrgWorkspaceUser) SetCreatedBy(v User)`
 
 SetCreatedBy sets CreatedBy field to given value.
 
 ### HasCreatedBy
 
-`func (o *OrgUser) HasCreatedBy() bool`
+`func (o *OrgWorkspaceUser) HasCreatedBy() bool`
 
 HasCreatedBy returns a boolean if a field has been set.
 
 ### GetCreatedById
 
-`func (o *OrgUser) GetCreatedById() string`
+`func (o *OrgWorkspaceUser) GetCreatedById() string`
 
 GetCreatedById returns the CreatedById field if non-nil, zero value otherwise.
 
 ### GetCreatedByIdOk
 
-`func (o *OrgUser) GetCreatedByIdOk() (*string, bool)`
+`func (o *OrgWorkspaceUser) GetCreatedByIdOk() (*string, bool)`
 
 GetCreatedByIdOk returns a tuple with the CreatedById field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedById
 
-`func (o *OrgUser) SetCreatedById(v string)`
+`func (o *OrgWorkspaceUser) SetCreatedById(v string)`
 
 SetCreatedById sets CreatedById field to given value.
 
 
 ### GetEmail
 
-`func (o *OrgUser) GetEmail() string`
+`func (o *OrgWorkspaceUser) GetEmail() string`
 
 GetEmail returns the Email field if non-nil, zero value otherwise.
 
 ### GetEmailOk
 
-`func (o *OrgUser) GetEmailOk() (*string, bool)`
+`func (o *OrgWorkspaceUser) GetEmailOk() (*string, bool)`
 
 GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmail
 
-`func (o *OrgUser) SetEmail(v string)`
+`func (o *OrgWorkspaceUser) SetEmail(v string)`
 
 SetEmail sets Email field to given value.
 
 
 ### GetId
 
-`func (o *OrgUser) GetId() string`
+`func (o *OrgWorkspaceUser) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *OrgUser) GetIdOk() (*string, bool)`
+`func (o *OrgWorkspaceUser) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *OrgUser) SetId(v string)`
+`func (o *OrgWorkspaceUser) SetId(v string)`
 
 SetId sets Id field to given value.
 
 
 ### GetOrgId
 
-`func (o *OrgUser) GetOrgId() string`
+`func (o *OrgWorkspaceUser) GetOrgId() string`
 
 GetOrgId returns the OrgId field if non-nil, zero value otherwise.
 
 ### GetOrgIdOk
 
-`func (o *OrgUser) GetOrgIdOk() (*string, bool)`
+`func (o *OrgWorkspaceUser) GetOrgIdOk() (*string, bool)`
 
 GetOrgIdOk returns a tuple with the OrgId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrgId
 
-`func (o *OrgUser) SetOrgId(v string)`
+`func (o *OrgWorkspaceUser) SetOrgId(v string)`
 
 SetOrgId sets OrgId field to given value.
 
 
 ### GetRole
 
-`func (o *OrgUser) GetRole() string`
+`func (o *OrgWorkspaceUser) GetRole() string`
 
 GetRole returns the Role field if non-nil, zero value otherwise.
 
 ### GetRoleOk
 
-`func (o *OrgUser) GetRoleOk() (*string, bool)`
+`func (o *OrgWorkspaceUser) GetRoleOk() (*string, bool)`
 
 GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRole
 
-`func (o *OrgUser) SetRole(v string)`
+`func (o *OrgWorkspaceUser) SetRole(v string)`
 
 SetRole sets Role field to given value.
 
 ### HasRole
 
-`func (o *OrgUser) HasRole() bool`
+`func (o *OrgWorkspaceUser) HasRole() bool`
 
 HasRole returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *OrgUser) GetStatus() string`
+`func (o *OrgWorkspaceUser) GetStatus() string`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *OrgUser) GetStatusOk() (*string, bool)`
+`func (o *OrgWorkspaceUser) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *OrgUser) SetStatus(v string)`
+`func (o *OrgWorkspaceUser) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
 
 
 ### GetUpdatedAt
 
-`func (o *OrgUser) GetUpdatedAt() string`
+`func (o *OrgWorkspaceUser) GetUpdatedAt() string`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *OrgUser) GetUpdatedAtOk() (*string, bool)`
+`func (o *OrgWorkspaceUser) GetUpdatedAtOk() (*string, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *OrgUser) SetUpdatedAt(v string)`
+`func (o *OrgWorkspaceUser) SetUpdatedAt(v string)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
 ### HasUpdatedAt
 
-`func (o *OrgUser) HasUpdatedAt() bool`
+`func (o *OrgWorkspaceUser) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetUpdatedBy
 
-`func (o *OrgUser) GetUpdatedBy() User`
+`func (o *OrgWorkspaceUser) GetUpdatedBy() User`
 
 GetUpdatedBy returns the UpdatedBy field if non-nil, zero value otherwise.
 
 ### GetUpdatedByOk
 
-`func (o *OrgUser) GetUpdatedByOk() (*User, bool)`
+`func (o *OrgWorkspaceUser) GetUpdatedByOk() (*User, bool)`
 
 GetUpdatedByOk returns a tuple with the UpdatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedBy
 
-`func (o *OrgUser) SetUpdatedBy(v User)`
+`func (o *OrgWorkspaceUser) SetUpdatedBy(v User)`
 
 SetUpdatedBy sets UpdatedBy field to given value.
 
 ### HasUpdatedBy
 
-`func (o *OrgUser) HasUpdatedBy() bool`
+`func (o *OrgWorkspaceUser) HasUpdatedBy() bool`
 
 HasUpdatedBy returns a boolean if a field has been set.
 
 ### GetUpdatedById
 
-`func (o *OrgUser) GetUpdatedById() string`
+`func (o *OrgWorkspaceUser) GetUpdatedById() string`
 
 GetUpdatedById returns the UpdatedById field if non-nil, zero value otherwise.
 
 ### GetUpdatedByIdOk
 
-`func (o *OrgUser) GetUpdatedByIdOk() (*string, bool)`
+`func (o *OrgWorkspaceUser) GetUpdatedByIdOk() (*string, bool)`
 
 GetUpdatedByIdOk returns a tuple with the UpdatedById field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedById
 
-`func (o *OrgUser) SetUpdatedById(v string)`
+`func (o *OrgWorkspaceUser) SetUpdatedById(v string)`
 
 SetUpdatedById sets UpdatedById field to given value.
 
 
 ### GetUser
 
-`func (o *OrgUser) GetUser() User`
+`func (o *OrgWorkspaceUser) GetUser() User`
 
 GetUser returns the User field if non-nil, zero value otherwise.
 
 ### GetUserOk
 
-`func (o *OrgUser) GetUserOk() (*User, bool)`
+`func (o *OrgWorkspaceUser) GetUserOk() (*User, bool)`
 
 GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUser
 
-`func (o *OrgUser) SetUser(v User)`
+`func (o *OrgWorkspaceUser) SetUser(v User)`
 
 SetUser sets User field to given value.
 
 ### HasUser
 
-`func (o *OrgUser) HasUser() bool`
+`func (o *OrgWorkspaceUser) HasUser() bool`
 
 HasUser returns a boolean if a field has been set.
 
 ### GetUserHandle
 
-`func (o *OrgUser) GetUserHandle() string`
+`func (o *OrgWorkspaceUser) GetUserHandle() string`
 
 GetUserHandle returns the UserHandle field if non-nil, zero value otherwise.
 
 ### GetUserHandleOk
 
-`func (o *OrgUser) GetUserHandleOk() (*string, bool)`
+`func (o *OrgWorkspaceUser) GetUserHandleOk() (*string, bool)`
 
 GetUserHandleOk returns a tuple with the UserHandle field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserHandle
 
-`func (o *OrgUser) SetUserHandle(v string)`
+`func (o *OrgWorkspaceUser) SetUserHandle(v string)`
 
 SetUserHandle sets UserHandle field to given value.
 
 
 ### GetUserId
 
-`func (o *OrgUser) GetUserId() string`
+`func (o *OrgWorkspaceUser) GetUserId() string`
 
 GetUserId returns the UserId field if non-nil, zero value otherwise.
 
 ### GetUserIdOk
 
-`func (o *OrgUser) GetUserIdOk() (*string, bool)`
+`func (o *OrgWorkspaceUser) GetUserIdOk() (*string, bool)`
 
 GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserId
 
-`func (o *OrgUser) SetUserId(v string)`
+`func (o *OrgWorkspaceUser) SetUserId(v string)`
 
 SetUserId sets UserId field to given value.
 
 
 ### GetVersionId
 
-`func (o *OrgUser) GetVersionId() int32`
+`func (o *OrgWorkspaceUser) GetVersionId() int32`
 
 GetVersionId returns the VersionId field if non-nil, zero value otherwise.
 
 ### GetVersionIdOk
 
-`func (o *OrgUser) GetVersionIdOk() (*int32, bool)`
+`func (o *OrgWorkspaceUser) GetVersionIdOk() (*int32, bool)`
 
 GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVersionId
 
-`func (o *OrgUser) SetVersionId(v int32)`
+`func (o *OrgWorkspaceUser) SetVersionId(v int32)`
 
 SetVersionId sets VersionId field to given value.
+
+
+### GetWorkspaceHandle
+
+`func (o *OrgWorkspaceUser) GetWorkspaceHandle() string`
+
+GetWorkspaceHandle returns the WorkspaceHandle field if non-nil, zero value otherwise.
+
+### GetWorkspaceHandleOk
+
+`func (o *OrgWorkspaceUser) GetWorkspaceHandleOk() (*string, bool)`
+
+GetWorkspaceHandleOk returns a tuple with the WorkspaceHandle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspaceHandle
+
+`func (o *OrgWorkspaceUser) SetWorkspaceHandle(v string)`
+
+SetWorkspaceHandle sets WorkspaceHandle field to given value.
+
+
+### GetWorkspaceId
+
+`func (o *OrgWorkspaceUser) GetWorkspaceId() string`
+
+GetWorkspaceId returns the WorkspaceId field if non-nil, zero value otherwise.
+
+### GetWorkspaceIdOk
+
+`func (o *OrgWorkspaceUser) GetWorkspaceIdOk() (*string, bool)`
+
+GetWorkspaceIdOk returns a tuple with the WorkspaceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspaceId
+
+`func (o *OrgWorkspaceUser) SetWorkspaceId(v string)`
+
+SetWorkspaceId sets WorkspaceId field to given value.
 
 
 

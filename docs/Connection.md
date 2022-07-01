@@ -5,21 +5,24 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Config** | Pointer to **map[string]interface{}** |  | [optional] 
-**CreatedAt** | **string** | The connection created time. | 
+**CreatedAt** | **string** | The time of creation in ISO 8601 UTC. | 
+**CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
+**CreatedById** | **string** | The ID of the user that created this. | 
 **Handle** | **string** | The handle name of the  connection. | 
 **Id** | **string** | The unique identifier for the connection. | 
-**Identity** | Pointer to [**Identity**](Identity.md) |  | [optional] 
 **IdentityId** | **string** | The unique identifier for an identity where the connection has been created. | 
 **Plugin** | Pointer to **string** | The plugin name for the connection. | [optional] 
 **Type** | Pointer to **string** | Type of connection i.e aggregator or connection. | [optional] 
-**UpdatedAt** | Pointer to **string** | The connection updated time. | [optional] 
-**VersionId** | **int32** | The current version ID for the connection. | 
+**UpdatedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
+**UpdatedBy** | Pointer to [**User**](User.md) |  | [optional] 
+**UpdatedById** | **string** | The ID of the user that performed the last update. | 
+**VersionId** | **int32** | The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item. | 
 
 ## Methods
 
 ### NewConnection
 
-`func NewConnection(createdAt string, handle string, id string, identityId string, versionId int32, ) *Connection`
+`func NewConnection(createdAt string, createdById string, handle string, id string, identityId string, updatedById string, versionId int32, ) *Connection`
 
 NewConnection instantiates a new Connection object
 This constructor will assign default values to properties that have it defined,
@@ -79,6 +82,51 @@ and a boolean to check if the value has been set.
 SetCreatedAt sets CreatedAt field to given value.
 
 
+### GetCreatedBy
+
+`func (o *Connection) GetCreatedBy() User`
+
+GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+
+### GetCreatedByOk
+
+`func (o *Connection) GetCreatedByOk() (*User, bool)`
+
+GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedBy
+
+`func (o *Connection) SetCreatedBy(v User)`
+
+SetCreatedBy sets CreatedBy field to given value.
+
+### HasCreatedBy
+
+`func (o *Connection) HasCreatedBy() bool`
+
+HasCreatedBy returns a boolean if a field has been set.
+
+### GetCreatedById
+
+`func (o *Connection) GetCreatedById() string`
+
+GetCreatedById returns the CreatedById field if non-nil, zero value otherwise.
+
+### GetCreatedByIdOk
+
+`func (o *Connection) GetCreatedByIdOk() (*string, bool)`
+
+GetCreatedByIdOk returns a tuple with the CreatedById field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedById
+
+`func (o *Connection) SetCreatedById(v string)`
+
+SetCreatedById sets CreatedById field to given value.
+
+
 ### GetHandle
 
 `func (o *Connection) GetHandle() string`
@@ -118,31 +166,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-
-### GetIdentity
-
-`func (o *Connection) GetIdentity() Identity`
-
-GetIdentity returns the Identity field if non-nil, zero value otherwise.
-
-### GetIdentityOk
-
-`func (o *Connection) GetIdentityOk() (*Identity, bool)`
-
-GetIdentityOk returns a tuple with the Identity field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIdentity
-
-`func (o *Connection) SetIdentity(v Identity)`
-
-SetIdentity sets Identity field to given value.
-
-### HasIdentity
-
-`func (o *Connection) HasIdentity() bool`
-
-HasIdentity returns a boolean if a field has been set.
 
 ### GetIdentityId
 
@@ -238,6 +261,51 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *Connection) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetUpdatedBy
+
+`func (o *Connection) GetUpdatedBy() User`
+
+GetUpdatedBy returns the UpdatedBy field if non-nil, zero value otherwise.
+
+### GetUpdatedByOk
+
+`func (o *Connection) GetUpdatedByOk() (*User, bool)`
+
+GetUpdatedByOk returns a tuple with the UpdatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedBy
+
+`func (o *Connection) SetUpdatedBy(v User)`
+
+SetUpdatedBy sets UpdatedBy field to given value.
+
+### HasUpdatedBy
+
+`func (o *Connection) HasUpdatedBy() bool`
+
+HasUpdatedBy returns a boolean if a field has been set.
+
+### GetUpdatedById
+
+`func (o *Connection) GetUpdatedById() string`
+
+GetUpdatedById returns the UpdatedById field if non-nil, zero value otherwise.
+
+### GetUpdatedByIdOk
+
+`func (o *Connection) GetUpdatedByIdOk() (*string, bool)`
+
+GetUpdatedByIdOk returns a tuple with the UpdatedById field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedById
+
+`func (o *Connection) SetUpdatedById(v string)`
+
+SetUpdatedById sets UpdatedById field to given value.
+
 
 ### GetVersionId
 

@@ -250,7 +250,7 @@ import (
 )
 
 func main() {
-    userHandle := "userHandle_example" // string | Specify the handle of the user whose information you want to retrive.
+    userHandle := "userHandle_example" // string | Specify the handle of the user whose information you want to retrieve.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -270,7 +270,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | **string** | Specify the handle of the user whose information you want to retrive. | 
+**userHandle** | **string** | Specify the handle of the user whose information you want to retrieve. | 
 
 ### Other Parameters
 

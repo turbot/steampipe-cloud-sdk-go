@@ -18,22 +18,27 @@ import (
 // Connection struct for Connection
 type Connection struct {
 	Config *map[string]interface{} `json:"config,omitempty"`
-	// The connection created time.
+	// The time of creation in ISO 8601 UTC.
 	CreatedAt string `json:"created_at"`
+	CreatedBy *User  `json:"created_by,omitempty"`
+	// The ID of the user that created this.
+	CreatedById string `json:"created_by_id"`
 	// The handle name of the  connection.
 	Handle string `json:"handle"`
 	// The unique identifier for the connection.
-	Id       string    `json:"id"`
-	Identity *Identity `json:"identity,omitempty"`
+	Id string `json:"id"`
 	// The unique identifier for an identity where the connection has been created.
 	IdentityId string `json:"identity_id"`
 	// The plugin name for the connection.
 	Plugin *string `json:"plugin,omitempty"`
 	// Type of connection i.e aggregator or connection.
 	Type *string `json:"type,omitempty"`
-	// The connection updated time.
+	// The time of the last update in ISO 8601 UTC.
 	UpdatedAt *string `json:"updated_at,omitempty"`
-	// The current version ID for the connection.
+	UpdatedBy *User   `json:"updated_by,omitempty"`
+	// The ID of the user that performed the last update.
+	UpdatedById string `json:"updated_by_id"`
+	// The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item.
 	VersionId int32 `json:"version_id"`
 }
 
@@ -41,12 +46,14 @@ type Connection struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnection(createdAt string, handle string, id string, identityId string, versionId int32) *Connection {
+func NewConnection(createdAt string, createdById string, handle string, id string, identityId string, updatedById string, versionId int32) *Connection {
 	this := Connection{}
 	this.CreatedAt = createdAt
+	this.CreatedById = createdById
 	this.Handle = handle
 	this.Id = id
 	this.IdentityId = identityId
+	this.UpdatedById = updatedById
 	this.VersionId = versionId
 	return &this
 }
@@ -115,6 +122,62 @@ func (o *Connection) SetCreatedAt(v string) {
 	o.CreatedAt = v
 }
 
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+func (o *Connection) GetCreatedBy() User {
+	if o == nil || o.CreatedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Connection) GetCreatedByOk() (*User, bool) {
+	if o == nil || o.CreatedBy == nil {
+		return nil, false
+	}
+	return o.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (o *Connection) HasCreatedBy() bool {
+	if o != nil && o.CreatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy gets a reference to the given User and assigns it to the CreatedBy field.
+func (o *Connection) SetCreatedBy(v User) {
+	o.CreatedBy = &v
+}
+
+// GetCreatedById returns the CreatedById field value
+func (o *Connection) GetCreatedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedById
+}
+
+// GetCreatedByIdOk returns a tuple with the CreatedById field value
+// and a boolean to check if the value has been set.
+func (o *Connection) GetCreatedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedById, true
+}
+
+// SetCreatedById sets field value
+func (o *Connection) SetCreatedById(v string) {
+	o.CreatedById = v
+}
+
 // GetHandle returns the Handle field value
 func (o *Connection) GetHandle() string {
 	if o == nil {
@@ -161,38 +224,6 @@ func (o *Connection) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *Connection) SetId(v string) {
 	o.Id = v
-}
-
-// GetIdentity returns the Identity field value if set, zero value otherwise.
-func (o *Connection) GetIdentity() Identity {
-	if o == nil || o.Identity == nil {
-		var ret Identity
-		return ret
-	}
-	return *o.Identity
-}
-
-// GetIdentityOk returns a tuple with the Identity field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Connection) GetIdentityOk() (*Identity, bool) {
-	if o == nil || o.Identity == nil {
-		return nil, false
-	}
-	return o.Identity, true
-}
-
-// HasIdentity returns a boolean if a field has been set.
-func (o *Connection) HasIdentity() bool {
-	if o != nil && o.Identity != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIdentity gets a reference to the given Identity and assigns it to the Identity field.
-func (o *Connection) SetIdentity(v Identity) {
-	o.Identity = &v
 }
 
 // GetIdentityId returns the IdentityId field value
@@ -315,6 +346,62 @@ func (o *Connection) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
+// GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
+func (o *Connection) GetUpdatedBy() User {
+	if o == nil || o.UpdatedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.UpdatedBy
+}
+
+// GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Connection) GetUpdatedByOk() (*User, bool) {
+	if o == nil || o.UpdatedBy == nil {
+		return nil, false
+	}
+	return o.UpdatedBy, true
+}
+
+// HasUpdatedBy returns a boolean if a field has been set.
+func (o *Connection) HasUpdatedBy() bool {
+	if o != nil && o.UpdatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedBy gets a reference to the given User and assigns it to the UpdatedBy field.
+func (o *Connection) SetUpdatedBy(v User) {
+	o.UpdatedBy = &v
+}
+
+// GetUpdatedById returns the UpdatedById field value
+func (o *Connection) GetUpdatedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedById
+}
+
+// GetUpdatedByIdOk returns a tuple with the UpdatedById field value
+// and a boolean to check if the value has been set.
+func (o *Connection) GetUpdatedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdatedById, true
+}
+
+// SetUpdatedById sets field value
+func (o *Connection) SetUpdatedById(v string) {
+	o.UpdatedById = v
+}
+
 // GetVersionId returns the VersionId field value
 func (o *Connection) GetVersionId() int32 {
 	if o == nil {
@@ -347,14 +434,17 @@ func (o Connection) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if o.CreatedBy != nil {
+		toSerialize["created_by"] = o.CreatedBy
+	}
+	if true {
+		toSerialize["created_by_id"] = o.CreatedById
+	}
 	if true {
 		toSerialize["handle"] = o.Handle
 	}
 	if true {
 		toSerialize["id"] = o.Id
-	}
-	if o.Identity != nil {
-		toSerialize["identity"] = o.Identity
 	}
 	if true {
 		toSerialize["identity_id"] = o.IdentityId
@@ -367,6 +457,12 @@ func (o Connection) MarshalJSON() ([]byte, error) {
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if o.UpdatedBy != nil {
+		toSerialize["updated_by"] = o.UpdatedBy
+	}
+	if true {
+		toSerialize["updated_by_id"] = o.UpdatedById
 	}
 	if true {
 		toSerialize["version_id"] = o.VersionId
