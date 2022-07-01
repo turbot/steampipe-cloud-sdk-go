@@ -557,10 +557,10 @@ func (r UsersApiGetRequest) Execute() (User, *_nethttp.Response, error) {
 /*
 Get Get user
 
-Retrives information of the specified user.
+Retrieves information of the specified user.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle Specify the handle of the user whose information you want to retrive.
+ @param userHandle Specify the handle of the user whose information you want to retrieve.
  @return UsersApiGetRequest
 */
 func (a *UsersService) Get(ctx _context.Context, userHandle string) UsersApiGetRequest {

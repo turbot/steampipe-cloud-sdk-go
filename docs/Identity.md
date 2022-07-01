@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DisplayName** | Pointer to **string** | Display name of the identity. | [optional] 
+**AvatarUrl** | Pointer to **string** | The avatar URL of the identity. | [optional] 
+**DisplayName** | Pointer to **string** | The display name of the identity. | [optional] 
 **Handle** | **string** | The handle name of the identity. | 
-**Id** | **string** | The unique identifier for the identity. | 
-**Type** | **string** | The type of identity i.e user or org. | 
+**Id** | **string** | The unique identifier of the identity. | 
+**Type** | **string** | The type of identity e.g. user or org. | 
 
 ## Methods
 
@@ -27,6 +28,31 @@ will change when the set of required properties is changed
 NewIdentityWithDefaults instantiates a new Identity object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAvatarUrl
+
+`func (o *Identity) GetAvatarUrl() string`
+
+GetAvatarUrl returns the AvatarUrl field if non-nil, zero value otherwise.
+
+### GetAvatarUrlOk
+
+`func (o *Identity) GetAvatarUrlOk() (*string, bool)`
+
+GetAvatarUrlOk returns a tuple with the AvatarUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvatarUrl
+
+`func (o *Identity) SetAvatarUrl(v string)`
+
+SetAvatarUrl sets AvatarUrl field to given value.
+
+### HasAvatarUrl
+
+`func (o *Identity) HasAvatarUrl() bool`
+
+HasAvatarUrl returns a boolean if a field has been set.
 
 ### GetDisplayName
 

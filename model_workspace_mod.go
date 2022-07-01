@@ -17,30 +17,43 @@ import (
 
 // WorkspaceMod struct for WorkspaceMod
 type WorkspaceMod struct {
-	Alias     *string `json:"alias,omitempty"`
-	CreatedAt string  `json:"created_at"`
-	Details   *string `json:"details,omitempty"`
-	Id        string  `json:"id"`
+	Alias      *string `json:"alias,omitempty"`
+	Constraint *string `json:"constraint,omitempty"`
+	// The time of creation in ISO 8601 UTC.
+	CreatedAt string `json:"created_at"`
+	CreatedBy *User  `json:"created_by,omitempty"`
+	// The ID of the user that created this.
+	CreatedById string  `json:"created_by_id"`
+	Details     *string `json:"details,omitempty"`
+	Id          string  `json:"id"`
 	// The unique identifier for an identity where the workspace mod has been install.
-	IdentityId       string     `json:"identity_id"`
-	InstalledVersion *string    `json:"installed_version,omitempty"`
-	ModConstraint    *string    `json:"mod_constraint,omitempty"`
-	Path             *string    `json:"path,omitempty"`
-	State            *string    `json:"state,omitempty"`
-	UpdatedAt        *string    `json:"updated_at,omitempty"`
-	Workspace        *Workspace `json:"workspace,omitempty"`
-	WorkspaceId      string     `json:"workspace_id"`
+	IdentityId       string  `json:"identity_id"`
+	InstalledVersion *string `json:"installed_version,omitempty"`
+	Path             *string `json:"path,omitempty"`
+	State            *string `json:"state,omitempty"`
+	// The time of the last update in ISO 8601 UTC.
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	UpdatedBy *User   `json:"updated_by,omitempty"`
+	// The ID of the user that performed the last update.
+	UpdatedById string `json:"updated_by_id"`
+	// The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item.
+	VersionId   int32      `json:"version_id"`
+	Workspace   *Workspace `json:"workspace,omitempty"`
+	WorkspaceId string     `json:"workspace_id"`
 }
 
 // NewWorkspaceMod instantiates a new WorkspaceMod object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspaceMod(createdAt string, id string, identityId string, workspaceId string) *WorkspaceMod {
+func NewWorkspaceMod(createdAt string, createdById string, id string, identityId string, updatedById string, versionId int32, workspaceId string) *WorkspaceMod {
 	this := WorkspaceMod{}
 	this.CreatedAt = createdAt
+	this.CreatedById = createdById
 	this.Id = id
 	this.IdentityId = identityId
+	this.UpdatedById = updatedById
+	this.VersionId = versionId
 	this.WorkspaceId = workspaceId
 	return &this
 }
@@ -85,6 +98,38 @@ func (o *WorkspaceMod) SetAlias(v string) {
 	o.Alias = &v
 }
 
+// GetConstraint returns the Constraint field value if set, zero value otherwise.
+func (o *WorkspaceMod) GetConstraint() string {
+	if o == nil || o.Constraint == nil {
+		var ret string
+		return ret
+	}
+	return *o.Constraint
+}
+
+// GetConstraintOk returns a tuple with the Constraint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceMod) GetConstraintOk() (*string, bool) {
+	if o == nil || o.Constraint == nil {
+		return nil, false
+	}
+	return o.Constraint, true
+}
+
+// HasConstraint returns a boolean if a field has been set.
+func (o *WorkspaceMod) HasConstraint() bool {
+	if o != nil && o.Constraint != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetConstraint gets a reference to the given string and assigns it to the Constraint field.
+func (o *WorkspaceMod) SetConstraint(v string) {
+	o.Constraint = &v
+}
+
 // GetCreatedAt returns the CreatedAt field value
 func (o *WorkspaceMod) GetCreatedAt() string {
 	if o == nil {
@@ -107,6 +152,62 @@ func (o *WorkspaceMod) GetCreatedAtOk() (*string, bool) {
 // SetCreatedAt sets field value
 func (o *WorkspaceMod) SetCreatedAt(v string) {
 	o.CreatedAt = v
+}
+
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+func (o *WorkspaceMod) GetCreatedBy() User {
+	if o == nil || o.CreatedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceMod) GetCreatedByOk() (*User, bool) {
+	if o == nil || o.CreatedBy == nil {
+		return nil, false
+	}
+	return o.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (o *WorkspaceMod) HasCreatedBy() bool {
+	if o != nil && o.CreatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy gets a reference to the given User and assigns it to the CreatedBy field.
+func (o *WorkspaceMod) SetCreatedBy(v User) {
+	o.CreatedBy = &v
+}
+
+// GetCreatedById returns the CreatedById field value
+func (o *WorkspaceMod) GetCreatedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedById
+}
+
+// GetCreatedByIdOk returns a tuple with the CreatedById field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceMod) GetCreatedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedById, true
+}
+
+// SetCreatedById sets field value
+func (o *WorkspaceMod) SetCreatedById(v string) {
+	o.CreatedById = v
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.
@@ -221,38 +322,6 @@ func (o *WorkspaceMod) SetInstalledVersion(v string) {
 	o.InstalledVersion = &v
 }
 
-// GetModConstraint returns the ModConstraint field value if set, zero value otherwise.
-func (o *WorkspaceMod) GetModConstraint() string {
-	if o == nil || o.ModConstraint == nil {
-		var ret string
-		return ret
-	}
-	return *o.ModConstraint
-}
-
-// GetModConstraintOk returns a tuple with the ModConstraint field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WorkspaceMod) GetModConstraintOk() (*string, bool) {
-	if o == nil || o.ModConstraint == nil {
-		return nil, false
-	}
-	return o.ModConstraint, true
-}
-
-// HasModConstraint returns a boolean if a field has been set.
-func (o *WorkspaceMod) HasModConstraint() bool {
-	if o != nil && o.ModConstraint != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetModConstraint gets a reference to the given string and assigns it to the ModConstraint field.
-func (o *WorkspaceMod) SetModConstraint(v string) {
-	o.ModConstraint = &v
-}
-
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *WorkspaceMod) GetPath() string {
 	if o == nil || o.Path == nil {
@@ -349,6 +418,86 @@ func (o *WorkspaceMod) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
+// GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
+func (o *WorkspaceMod) GetUpdatedBy() User {
+	if o == nil || o.UpdatedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.UpdatedBy
+}
+
+// GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceMod) GetUpdatedByOk() (*User, bool) {
+	if o == nil || o.UpdatedBy == nil {
+		return nil, false
+	}
+	return o.UpdatedBy, true
+}
+
+// HasUpdatedBy returns a boolean if a field has been set.
+func (o *WorkspaceMod) HasUpdatedBy() bool {
+	if o != nil && o.UpdatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedBy gets a reference to the given User and assigns it to the UpdatedBy field.
+func (o *WorkspaceMod) SetUpdatedBy(v User) {
+	o.UpdatedBy = &v
+}
+
+// GetUpdatedById returns the UpdatedById field value
+func (o *WorkspaceMod) GetUpdatedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedById
+}
+
+// GetUpdatedByIdOk returns a tuple with the UpdatedById field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceMod) GetUpdatedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdatedById, true
+}
+
+// SetUpdatedById sets field value
+func (o *WorkspaceMod) SetUpdatedById(v string) {
+	o.UpdatedById = v
+}
+
+// GetVersionId returns the VersionId field value
+func (o *WorkspaceMod) GetVersionId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.VersionId
+}
+
+// GetVersionIdOk returns a tuple with the VersionId field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceMod) GetVersionIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VersionId, true
+}
+
+// SetVersionId sets field value
+func (o *WorkspaceMod) SetVersionId(v int32) {
+	o.VersionId = v
+}
+
 // GetWorkspace returns the Workspace field value if set, zero value otherwise.
 func (o *WorkspaceMod) GetWorkspace() Workspace {
 	if o == nil || o.Workspace == nil {
@@ -410,8 +559,17 @@ func (o WorkspaceMod) MarshalJSON() ([]byte, error) {
 	if o.Alias != nil {
 		toSerialize["alias"] = o.Alias
 	}
+	if o.Constraint != nil {
+		toSerialize["constraint"] = o.Constraint
+	}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.CreatedBy != nil {
+		toSerialize["created_by"] = o.CreatedBy
+	}
+	if true {
+		toSerialize["created_by_id"] = o.CreatedById
 	}
 	if o.Details != nil {
 		toSerialize["details"] = o.Details
@@ -425,9 +583,6 @@ func (o WorkspaceMod) MarshalJSON() ([]byte, error) {
 	if o.InstalledVersion != nil {
 		toSerialize["installed_version"] = o.InstalledVersion
 	}
-	if o.ModConstraint != nil {
-		toSerialize["mod_constraint"] = o.ModConstraint
-	}
 	if o.Path != nil {
 		toSerialize["path"] = o.Path
 	}
@@ -436,6 +591,15 @@ func (o WorkspaceMod) MarshalJSON() ([]byte, error) {
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if o.UpdatedBy != nil {
+		toSerialize["updated_by"] = o.UpdatedBy
+	}
+	if true {
+		toSerialize["updated_by_id"] = o.UpdatedById
+	}
+	if true {
+		toSerialize["version_id"] = o.VersionId
 	}
 	if o.Workspace != nil {
 		toSerialize["workspace"] = o.Workspace

@@ -73,7 +73,7 @@ Class | Method | HTTP request | Description
 *Auth* | [**Provider**](docs/Auth.md#provider) | **Get** /auth/{provider} | Auth Provider
 *Auth* | [**ProviderCallback**](docs/Auth.md#providercallback) | **Get** /auth/{provider}/callback | Auth provider callback
 *Auth* | [**Signup**](docs/Auth.md#signup) | **Post** /signup | User signup
-*Identities* | [**Search**](docs/Identities.md#search) | **Get** /identity/search | Search identity
+*Identities* | [**Get**](docs/Identities.md#get) | **Get** /identity/search | Get identity
 *OrgConnections* | [**Create**](docs/OrgConnections.md#create) | **Post** /org/{org_handle}/conn | Create org connection
 *OrgConnections* | [**Delete**](docs/OrgConnections.md#delete) | **Delete** /org/{org_handle}/conn/{conn_handle} | Delete org connection
 *OrgConnections* | [**Get**](docs/OrgConnections.md#get) | **Get** /org/{org_handle}/conn/{conn_handle} | Get org connection
@@ -92,6 +92,14 @@ Class | Method | HTTP request | Description
 *OrgWorkspaceConnectionAssociations* | [**Delete**](docs/OrgWorkspaceConnectionAssociations.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Get**](docs/OrgWorkspaceConnectionAssociations.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**List**](docs/OrgWorkspaceConnectionAssociations.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn | List org workspace connection associations
+*OrgWorkspaceMembers* | [**ConfirmInvite**](docs/OrgWorkspaceMembers.md#confirminvite) | **Get** /org/{org_handle}/workspace/{workspace_handle}/member/invite/confirm | Confirm Org Workspace Member Invite
+*OrgWorkspaceMembers* | [**Delete**](docs/OrgWorkspaceMembers.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/member/{user_handle} | Delete Org Workspace Member
+*OrgWorkspaceMembers* | [**Get**](docs/OrgWorkspaceMembers.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/member/{user_handle} | Get Org Workspace Member
+*OrgWorkspaceMembers* | [**Invite**](docs/OrgWorkspaceMembers.md#invite) | **Post** /org/{org_handle}/workspace/{workspace_handle}/member/invite | Invite Org Workspace Member
+*OrgWorkspaceMembers* | [**ListAccepted**](docs/OrgWorkspaceMembers.md#listaccepted) | **Get** /org/{org_handle}/workspace/{workspace_handle}/member | List accepted Org Workspace Members
+*OrgWorkspaceMembers* | [**ListInvited**](docs/OrgWorkspaceMembers.md#listinvited) | **Get** /org/{org_handle}/workspace/{workspace_handle}/member/invite | List invited Org Workspace Members
+*OrgWorkspaceMembers* | [**RejectInvite**](docs/OrgWorkspaceMembers.md#rejectinvite) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/member/invite | Reject Org Workspace Member Invite
+*OrgWorkspaceMembers* | [**Update**](docs/OrgWorkspaceMembers.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/member/{user_handle} | Update Org Workspace Member
 *OrgWorkspaceModVariables* | [**CreateSetting**](docs/OrgWorkspaceModVariables.md#createsetting) | **Post** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | Create a setting for a mod variable in an organization workspace
 *OrgWorkspaceModVariables* | [**DeleteSetting**](docs/OrgWorkspaceModVariables.md#deletesetting) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Delete setting for a mod variable in an organization workspace
 *OrgWorkspaceModVariables* | [**GetSetting**](docs/OrgWorkspaceModVariables.md#getsetting) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable/{variable_name} | Get setting for a mod variable in an organization workspace
@@ -191,13 +199,15 @@ Class | Method | HTTP request | Description
  - [ErrorModel](docs/ErrorModel.md)
  - [Feature](docs/Feature.md)
  - [Identity](docs/Identity.md)
- - [IdentitySearch](docs/IdentitySearch.md)
  - [InviteOrgUserRequest](docs/InviteOrgUserRequest.md)
+ - [InviteOrgWorkspaceUserRequest](docs/InviteOrgWorkspaceUserRequest.md)
  - [ListAuditLogsResponse](docs/ListAuditLogsResponse.md)
  - [ListConnectionsResponse](docs/ListConnectionsResponse.md)
  - [ListFeaturesResponse](docs/ListFeaturesResponse.md)
+ - [ListIdentitiesResponse](docs/ListIdentitiesResponse.md)
  - [ListLogsResponse](docs/ListLogsResponse.md)
  - [ListOrgUsersResponse](docs/ListOrgUsersResponse.md)
+ - [ListOrgWorkspaceUsersResponse](docs/ListOrgWorkspaceUsersResponse.md)
  - [ListOrgsResponse](docs/ListOrgsResponse.md)
  - [ListTokensResponse](docs/ListTokensResponse.md)
  - [ListUserOrgsResponse](docs/ListUserOrgsResponse.md)
@@ -210,16 +220,17 @@ Class | Method | HTTP request | Description
  - [Org](docs/Org.md)
  - [OrgQuota](docs/OrgQuota.md)
  - [OrgUser](docs/OrgUser.md)
+ - [OrgWorkspaceUser](docs/OrgWorkspaceUser.md)
  - [Quota](docs/Quota.md)
  - [SchemaInfo](docs/SchemaInfo.md)
  - [SchemaTable](docs/SchemaTable.md)
  - [SchemaTableColumn](docs/SchemaTableColumn.md)
- - [SearchIdentitiesResponse](docs/SearchIdentitiesResponse.md)
  - [SearchUsersResponse](docs/SearchUsersResponse.md)
  - [Token](docs/Token.md)
  - [UpdateConnectionRequest](docs/UpdateConnectionRequest.md)
  - [UpdateOrgRequest](docs/UpdateOrgRequest.md)
  - [UpdateOrgUserRequest](docs/UpdateOrgUserRequest.md)
+ - [UpdateOrgWorkspaceUserRequest](docs/UpdateOrgWorkspaceUserRequest.md)
  - [UpdateTokenRequest](docs/UpdateTokenRequest.md)
  - [UpdateUserRequest](docs/UpdateUserRequest.md)
  - [UpdateWorkspaceModRequest](docs/UpdateWorkspaceModRequest.md)

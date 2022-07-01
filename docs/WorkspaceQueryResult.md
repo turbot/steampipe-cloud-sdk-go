@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Columns** | [**[]WorkspaceQueryResultColumn**](WorkspaceQueryResultColumn.md) |  | 
-**Rows** | **[][]map[string]interface{}** |  | 
+**Rows** | **[]map[string]interface{}** |  | 
 
 ## Methods
 
 ### NewWorkspaceQueryResult
 
-`func NewWorkspaceQueryResult(columns []WorkspaceQueryResultColumn, rows [][]map[string]interface{}, ) *WorkspaceQueryResult`
+`func NewWorkspaceQueryResult(columns []WorkspaceQueryResultColumn, rows []map[string]interface{}, ) *WorkspaceQueryResult`
 
 NewWorkspaceQueryResult instantiates a new WorkspaceQueryResult object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetColumns sets Columns field to given value.
 
 ### GetRows
 
-`func (o *WorkspaceQueryResult) GetRows() [][]map[string]interface{}`
+`func (o *WorkspaceQueryResult) GetRows() []map[string]interface{}`
 
 GetRows returns the Rows field if non-nil, zero value otherwise.
 
 ### GetRowsOk
 
-`func (o *WorkspaceQueryResult) GetRowsOk() (*[][]map[string]interface{}, bool)`
+`func (o *WorkspaceQueryResult) GetRowsOk() (*[]map[string]interface{}, bool)`
 
 GetRowsOk returns a tuple with the Rows field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRows
 
-`func (o *WorkspaceQueryResult) SetRows(v [][]map[string]interface{})`
+`func (o *WorkspaceQueryResult) SetRows(v []map[string]interface{})`
 
 SetRows sets Rows field to given value.
 

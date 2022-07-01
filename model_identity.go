@@ -17,13 +17,15 @@ import (
 
 // Identity struct for Identity
 type Identity struct {
-	// Display name of the identity.
+	// The avatar URL of the identity.
+	AvatarUrl *string `json:"avatar_url,omitempty"`
+	// The display name of the identity.
 	DisplayName *string `json:"display_name,omitempty"`
 	// The handle name of the identity.
 	Handle string `json:"handle"`
-	// The unique identifier for the identity.
+	// The unique identifier of the identity.
 	Id string `json:"id"`
-	// The type of identity i.e user or org.
+	// The type of identity e.g. user or org.
 	Type string `json:"type"`
 }
 
@@ -45,6 +47,38 @@ func NewIdentity(handle string, id string, type_ string) *Identity {
 func NewIdentityWithDefaults() *Identity {
 	this := Identity{}
 	return &this
+}
+
+// GetAvatarUrl returns the AvatarUrl field value if set, zero value otherwise.
+func (o *Identity) GetAvatarUrl() string {
+	if o == nil || o.AvatarUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.AvatarUrl
+}
+
+// GetAvatarUrlOk returns a tuple with the AvatarUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Identity) GetAvatarUrlOk() (*string, bool) {
+	if o == nil || o.AvatarUrl == nil {
+		return nil, false
+	}
+	return o.AvatarUrl, true
+}
+
+// HasAvatarUrl returns a boolean if a field has been set.
+func (o *Identity) HasAvatarUrl() bool {
+	if o != nil && o.AvatarUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAvatarUrl gets a reference to the given string and assigns it to the AvatarUrl field.
+func (o *Identity) SetAvatarUrl(v string) {
+	o.AvatarUrl = &v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
@@ -153,6 +187,9 @@ func (o *Identity) SetType(v string) {
 
 func (o Identity) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AvatarUrl != nil {
+		toSerialize["avatar_url"] = o.AvatarUrl
+	}
 	if o.DisplayName != nil {
 		toSerialize["display_name"] = o.DisplayName
 	}

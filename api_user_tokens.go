@@ -360,7 +360,7 @@ func (r UserTokensApiGetRequest) Execute() (Token, *_nethttp.Response, error) {
 /*
 Get Get token
 
-Retrives the information of a specified token.
+Retrieves the information of a specified token.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param tokenId The identifier of the token.

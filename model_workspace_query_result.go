@@ -18,14 +18,14 @@ import (
 // WorkspaceQueryResult struct for WorkspaceQueryResult
 type WorkspaceQueryResult struct {
 	Columns []WorkspaceQueryResultColumn `json:"columns"`
-	Rows    [][]map[string]interface{}   `json:"rows"`
+	Rows    []map[string]interface{}     `json:"rows"`
 }
 
 // NewWorkspaceQueryResult instantiates a new WorkspaceQueryResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspaceQueryResult(columns []WorkspaceQueryResultColumn, rows [][]map[string]interface{}) *WorkspaceQueryResult {
+func NewWorkspaceQueryResult(columns []WorkspaceQueryResultColumn, rows []map[string]interface{}) *WorkspaceQueryResult {
 	this := WorkspaceQueryResult{}
 	this.Columns = columns
 	this.Rows = rows
@@ -65,9 +65,9 @@ func (o *WorkspaceQueryResult) SetColumns(v []WorkspaceQueryResultColumn) {
 }
 
 // GetRows returns the Rows field value
-func (o *WorkspaceQueryResult) GetRows() [][]map[string]interface{} {
+func (o *WorkspaceQueryResult) GetRows() []map[string]interface{} {
 	if o == nil {
-		var ret [][]map[string]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 
@@ -76,7 +76,7 @@ func (o *WorkspaceQueryResult) GetRows() [][]map[string]interface{} {
 
 // GetRowsOk returns a tuple with the Rows field value
 // and a boolean to check if the value has been set.
-func (o *WorkspaceQueryResult) GetRowsOk() (*[][]map[string]interface{}, bool) {
+func (o *WorkspaceQueryResult) GetRowsOk() (*[]map[string]interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,7 +84,7 @@ func (o *WorkspaceQueryResult) GetRowsOk() (*[][]map[string]interface{}, bool) {
 }
 
 // SetRows sets field value
-func (o *WorkspaceQueryResult) SetRows(v [][]map[string]interface{}) {
+func (o *WorkspaceQueryResult) SetRows(v []map[string]interface{}) {
 	o.Rows = v
 }
 

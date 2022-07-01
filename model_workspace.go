@@ -17,8 +17,11 @@ import (
 
 // Workspace struct for Workspace
 type Workspace struct {
-	// The workspace created time.
+	// The time of creation in ISO 8601 UTC.
 	CreatedAt string `json:"created_at"`
+	CreatedBy *User  `json:"created_by,omitempty"`
+	// The ID of the user that created this.
+	CreatedById string `json:"created_by_id"`
 	// The name of the database.
 	DatabaseName *string `json:"database_name,omitempty"`
 	// The handle name for the workspace.
@@ -27,29 +30,33 @@ type Workspace struct {
 	Hive *string `json:"hive,omitempty"`
 	Host *string `json:"host,omitempty"`
 	// The unique identifier for the workspace.
-	Id       string    `json:"id"`
-	Identity *Identity `json:"identity,omitempty"`
+	Id string `json:"id"`
 	// The unique identifier for an identity where the workspace is created.
 	IdentityId string  `json:"identity_id"`
 	PublicKey  *string `json:"public_key,omitempty"`
-	// The workspace updated time.
-	UpdatedAt *string `json:"updated_at,omitempty"`
-	// The current version ID for the workspace.
-	VersionId int32 `json:"version_id"`
 	// The current state of the workspace.
-	WorkspaceState *string `json:"workspace_state,omitempty"`
+	State *string `json:"state,omitempty"`
+	// The time of the last update in ISO 8601 UTC.
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	UpdatedBy *User   `json:"updated_by,omitempty"`
+	// The ID of the user that performed the last update.
+	UpdatedById string `json:"updated_by_id"`
+	// The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item.
+	VersionId int32 `json:"version_id"`
 }
 
 // NewWorkspace instantiates a new Workspace object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspace(createdAt string, handle string, id string, identityId string, versionId int32) *Workspace {
+func NewWorkspace(createdAt string, createdById string, handle string, id string, identityId string, updatedById string, versionId int32) *Workspace {
 	this := Workspace{}
 	this.CreatedAt = createdAt
+	this.CreatedById = createdById
 	this.Handle = handle
 	this.Id = id
 	this.IdentityId = identityId
+	this.UpdatedById = updatedById
 	this.VersionId = versionId
 	return &this
 }
@@ -84,6 +91,62 @@ func (o *Workspace) GetCreatedAtOk() (*string, bool) {
 // SetCreatedAt sets field value
 func (o *Workspace) SetCreatedAt(v string) {
 	o.CreatedAt = v
+}
+
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+func (o *Workspace) GetCreatedBy() User {
+	if o == nil || o.CreatedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetCreatedByOk() (*User, bool) {
+	if o == nil || o.CreatedBy == nil {
+		return nil, false
+	}
+	return o.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (o *Workspace) HasCreatedBy() bool {
+	if o != nil && o.CreatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy gets a reference to the given User and assigns it to the CreatedBy field.
+func (o *Workspace) SetCreatedBy(v User) {
+	o.CreatedBy = &v
+}
+
+// GetCreatedById returns the CreatedById field value
+func (o *Workspace) GetCreatedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedById
+}
+
+// GetCreatedByIdOk returns a tuple with the CreatedById field value
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetCreatedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedById, true
+}
+
+// SetCreatedById sets field value
+func (o *Workspace) SetCreatedById(v string) {
+	o.CreatedById = v
 }
 
 // GetDatabaseName returns the DatabaseName field value if set, zero value otherwise.
@@ -230,38 +293,6 @@ func (o *Workspace) SetId(v string) {
 	o.Id = v
 }
 
-// GetIdentity returns the Identity field value if set, zero value otherwise.
-func (o *Workspace) GetIdentity() Identity {
-	if o == nil || o.Identity == nil {
-		var ret Identity
-		return ret
-	}
-	return *o.Identity
-}
-
-// GetIdentityOk returns a tuple with the Identity field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Workspace) GetIdentityOk() (*Identity, bool) {
-	if o == nil || o.Identity == nil {
-		return nil, false
-	}
-	return o.Identity, true
-}
-
-// HasIdentity returns a boolean if a field has been set.
-func (o *Workspace) HasIdentity() bool {
-	if o != nil && o.Identity != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIdentity gets a reference to the given Identity and assigns it to the Identity field.
-func (o *Workspace) SetIdentity(v Identity) {
-	o.Identity = &v
-}
-
 // GetIdentityId returns the IdentityId field value
 func (o *Workspace) GetIdentityId() string {
 	if o == nil {
@@ -318,6 +349,38 @@ func (o *Workspace) SetPublicKey(v string) {
 	o.PublicKey = &v
 }
 
+// GetState returns the State field value if set, zero value otherwise.
+func (o *Workspace) GetState() string {
+	if o == nil || o.State == nil {
+		var ret string
+		return ret
+	}
+	return *o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetStateOk() (*string, bool) {
+	if o == nil || o.State == nil {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *Workspace) HasState() bool {
+	if o != nil && o.State != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given string and assigns it to the State field.
+func (o *Workspace) SetState(v string) {
+	o.State = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Workspace) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
@@ -350,6 +413,62 @@ func (o *Workspace) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
+// GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
+func (o *Workspace) GetUpdatedBy() User {
+	if o == nil || o.UpdatedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.UpdatedBy
+}
+
+// GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetUpdatedByOk() (*User, bool) {
+	if o == nil || o.UpdatedBy == nil {
+		return nil, false
+	}
+	return o.UpdatedBy, true
+}
+
+// HasUpdatedBy returns a boolean if a field has been set.
+func (o *Workspace) HasUpdatedBy() bool {
+	if o != nil && o.UpdatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedBy gets a reference to the given User and assigns it to the UpdatedBy field.
+func (o *Workspace) SetUpdatedBy(v User) {
+	o.UpdatedBy = &v
+}
+
+// GetUpdatedById returns the UpdatedById field value
+func (o *Workspace) GetUpdatedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedById
+}
+
+// GetUpdatedByIdOk returns a tuple with the UpdatedById field value
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetUpdatedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdatedById, true
+}
+
+// SetUpdatedById sets field value
+func (o *Workspace) SetUpdatedById(v string) {
+	o.UpdatedById = v
+}
+
 // GetVersionId returns the VersionId field value
 func (o *Workspace) GetVersionId() int32 {
 	if o == nil {
@@ -374,42 +493,16 @@ func (o *Workspace) SetVersionId(v int32) {
 	o.VersionId = v
 }
 
-// GetWorkspaceState returns the WorkspaceState field value if set, zero value otherwise.
-func (o *Workspace) GetWorkspaceState() string {
-	if o == nil || o.WorkspaceState == nil {
-		var ret string
-		return ret
-	}
-	return *o.WorkspaceState
-}
-
-// GetWorkspaceStateOk returns a tuple with the WorkspaceState field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Workspace) GetWorkspaceStateOk() (*string, bool) {
-	if o == nil || o.WorkspaceState == nil {
-		return nil, false
-	}
-	return o.WorkspaceState, true
-}
-
-// HasWorkspaceState returns a boolean if a field has been set.
-func (o *Workspace) HasWorkspaceState() bool {
-	if o != nil && o.WorkspaceState != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetWorkspaceState gets a reference to the given string and assigns it to the WorkspaceState field.
-func (o *Workspace) SetWorkspaceState(v string) {
-	o.WorkspaceState = &v
-}
-
 func (o Workspace) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.CreatedBy != nil {
+		toSerialize["created_by"] = o.CreatedBy
+	}
+	if true {
+		toSerialize["created_by_id"] = o.CreatedById
 	}
 	if o.DatabaseName != nil {
 		toSerialize["database_name"] = o.DatabaseName
@@ -426,23 +519,26 @@ func (o Workspace) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["id"] = o.Id
 	}
-	if o.Identity != nil {
-		toSerialize["identity"] = o.Identity
-	}
 	if true {
 		toSerialize["identity_id"] = o.IdentityId
 	}
 	if o.PublicKey != nil {
 		toSerialize["public_key"] = o.PublicKey
 	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
+	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+	if o.UpdatedBy != nil {
+		toSerialize["updated_by"] = o.UpdatedBy
+	}
+	if true {
+		toSerialize["updated_by_id"] = o.UpdatedById
+	}
 	if true {
 		toSerialize["version_id"] = o.VersionId
-	}
-	if o.WorkspaceState != nil {
-		toSerialize["workspace_state"] = o.WorkspaceState
 	}
 	return json.Marshal(toSerialize)
 }

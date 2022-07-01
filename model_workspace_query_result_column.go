@@ -17,7 +17,7 @@ import (
 
 // WorkspaceQueryResultColumn struct for WorkspaceQueryResultColumn
 type WorkspaceQueryResultColumn struct {
-	DataTypeName  string `json:"data_type_name"`
+	DataType      string `json:"data_type"`
 	MaxDataLength *int32 `json:"max_data_length,omitempty"`
 	Name          string `json:"name"`
 }
@@ -26,9 +26,9 @@ type WorkspaceQueryResultColumn struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspaceQueryResultColumn(dataTypeName string, name string) *WorkspaceQueryResultColumn {
+func NewWorkspaceQueryResultColumn(dataType string, name string) *WorkspaceQueryResultColumn {
 	this := WorkspaceQueryResultColumn{}
-	this.DataTypeName = dataTypeName
+	this.DataType = dataType
 	this.Name = name
 	return &this
 }
@@ -41,28 +41,28 @@ func NewWorkspaceQueryResultColumnWithDefaults() *WorkspaceQueryResultColumn {
 	return &this
 }
 
-// GetDataTypeName returns the DataTypeName field value
-func (o *WorkspaceQueryResultColumn) GetDataTypeName() string {
+// GetDataType returns the DataType field value
+func (o *WorkspaceQueryResultColumn) GetDataType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.DataTypeName
+	return o.DataType
 }
 
-// GetDataTypeNameOk returns a tuple with the DataTypeName field value
+// GetDataTypeOk returns a tuple with the DataType field value
 // and a boolean to check if the value has been set.
-func (o *WorkspaceQueryResultColumn) GetDataTypeNameOk() (*string, bool) {
+func (o *WorkspaceQueryResultColumn) GetDataTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DataTypeName, true
+	return &o.DataType, true
 }
 
-// SetDataTypeName sets field value
-func (o *WorkspaceQueryResultColumn) SetDataTypeName(v string) {
-	o.DataTypeName = v
+// SetDataType sets field value
+func (o *WorkspaceQueryResultColumn) SetDataType(v string) {
+	o.DataType = v
 }
 
 // GetMaxDataLength returns the MaxDataLength field value if set, zero value otherwise.
@@ -124,7 +124,7 @@ func (o *WorkspaceQueryResultColumn) SetName(v string) {
 func (o WorkspaceQueryResultColumn) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["data_type_name"] = o.DataTypeName
+		toSerialize["data_type"] = o.DataType
 	}
 	if o.MaxDataLength != nil {
 		toSerialize["max_data_length"] = o.MaxDataLength

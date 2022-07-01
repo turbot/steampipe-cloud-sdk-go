@@ -17,6 +17,7 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 )
 
 // Linger please
@@ -27,62 +28,55 @@ var (
 // IdentitiesService Identities service
 type IdentitiesService service
 
-type IdentitiesApiSearchRequest struct {
-	ctx        _context.Context
-	ApiService *IdentitiesService
-	q          *string
+type IdentitiesApiGetRequest struct {
+	ctx            _context.Context
+	ApiService     *IdentitiesService
+	identityHandle string
 }
 
-// Specify the search string.
-func (r IdentitiesApiSearchRequest) Q(q string) IdentitiesApiSearchRequest {
-	r.q = &q
-	return r
-}
-
-func (r IdentitiesApiSearchRequest) Execute() (SearchIdentitiesResponse, *_nethttp.Response, error) {
-	return r.ApiService.SearchExecute(r)
+func (r IdentitiesApiGetRequest) Execute() (Identity, *_nethttp.Response, error) {
+	return r.ApiService.GetExecute(r)
 }
 
 /*
-Search Search identity
+Get Get identity
 
-Search an identity specified in the query string.
+Get public information for an identity.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return IdentitiesApiSearchRequest
+ @param identityHandle Specify the handle of the identity whose information you want to retrieve.
+ @return IdentitiesApiGetRequest
 */
-func (a *IdentitiesService) Search(ctx _context.Context) IdentitiesApiSearchRequest {
-	return IdentitiesApiSearchRequest{
-		ApiService: a,
-		ctx:        ctx,
+func (a *IdentitiesService) Get(ctx _context.Context, identityHandle string) IdentitiesApiGetRequest {
+	return IdentitiesApiGetRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		identityHandle: identityHandle,
 	}
 }
 
 // Execute executes the request
-//  @return SearchIdentitiesResponse
-func (a *IdentitiesService) SearchExecute(r IdentitiesApiSearchRequest) (SearchIdentitiesResponse, *_nethttp.Response, error) {
+//  @return Identity
+func (a *IdentitiesService) GetExecute(r IdentitiesApiGetRequest) (Identity, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue SearchIdentitiesResponse
+		localVarReturnValue Identity
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentitiesService.Search")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IdentitiesService.Get")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/identity/search"
+	localVarPath = strings.Replace(localVarPath, "{"+"identity_handle"+"}", _neturl.PathEscape(parameterToString(r.identityHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.q == nil {
-		return localVarReturnValue, nil, reportError("q is required and must be specified")
-	}
 
-	localVarQueryParams.Add("q", parameterToString(*r.q, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -132,17 +126,7 @@ func (a *IdentitiesService) SearchExecute(r IdentitiesApiSearchRequest) (SearchI
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

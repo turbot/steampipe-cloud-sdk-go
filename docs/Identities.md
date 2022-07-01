@@ -4,15 +4,15 @@ All URIs are relative to *https://cloud.steampipe.io/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Search**](Identities.md#Search) | **Get** /identity/search | Search identity
+[**Get**](Identities.md#Get) | **Get** /identity/search | Get identity
 
 
 
-## Search
+## Get
 
-> SearchIdentitiesResponse Search(ctx).Q(q).Execute()
+> Identity Get(ctx, identityHandle).Execute()
 
-Search identity
+Get identity
 
 
 
@@ -29,36 +29,40 @@ import (
 )
 
 func main() {
-    q := "q_example" // string | Specify the search string.
+    identityHandle := "identityHandle_example" // string | Specify the handle of the identity whose information you want to retrieve.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.Identities.Search(context.Background()).Q(q).Execute()
+    resp, r, err := api_client.Identities.Get(context.Background(), identityHandle).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Identities.Search``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `Identities.Get``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Search`: SearchIdentitiesResponse
-    fmt.Fprintf(os.Stdout, "Response from `Identities.Search`: %v\n", resp)
+    // response from `Get`: Identity
+    fmt.Fprintf(os.Stdout, "Response from `Identities.Get`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**identityHandle** | **string** | Specify the handle of the identity whose information you want to retrieve. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSearchRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **string** | Specify the search string. | 
+
 
 ### Return type
 
-[**SearchIdentitiesResponse**](SearchIdentitiesResponse.md)
+[**Identity**](Identity.md)
 
 ### Authorization
 

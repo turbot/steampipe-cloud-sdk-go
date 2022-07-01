@@ -250,7 +250,7 @@ import (
 
 func main() {
     orgHandle := "orgHandle_example" // string | Specify the organization handle where the member is associated.
-    userHandle := "userHandle_example" // string | Specify the handle of the user whose information you want to retrive.
+    userHandle := "userHandle_example" // string | Specify the handle of the user whose information you want to retrieve.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -271,7 +271,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **orgHandle** | **string** | Specify the organization handle where the member is associated. | 
-**userHandle** | **string** | Specify the handle of the user whose information you want to retrive. | 
+**userHandle** | **string** | Specify the handle of the user whose information you want to retrieve. | 
 
 ### Other Parameters
 

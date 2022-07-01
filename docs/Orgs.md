@@ -173,7 +173,7 @@ import (
 )
 
 func main() {
-    orgHandle := "orgHandle_example" // string | Specify the handle of an organization whose information you want to retrive.
+    orgHandle := "orgHandle_example" // string | Specify the handle of an organization whose information you want to retrieve.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -193,7 +193,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgHandle** | **string** | Specify the handle of an organization whose information you want to retrive. | 
+**orgHandle** | **string** | Specify the handle of an organization whose information you want to retrieve. | 
 
 ### Other Parameters
 
