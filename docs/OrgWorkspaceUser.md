@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **UserHandle** | **string** | The user handle of the member. | 
 **UserId** | **string** | The identifier of a user. | 
 **VersionId** | **int32** | The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item. | 
+**Workspace** | Pointer to [**Workspace**](Workspace.md) |  | [optional] 
 **WorkspaceHandle** | **string** | The handle of the workspace with identifier WorkspaceID. | 
 **WorkspaceId** | **string** | The identifier of a workspace belonging to the organization. | 
 
@@ -365,6 +366,31 @@ and a boolean to check if the value has been set.
 
 SetVersionId sets VersionId field to given value.
 
+
+### GetWorkspace
+
+`func (o *OrgWorkspaceUser) GetWorkspace() Workspace`
+
+GetWorkspace returns the Workspace field if non-nil, zero value otherwise.
+
+### GetWorkspaceOk
+
+`func (o *OrgWorkspaceUser) GetWorkspaceOk() (*Workspace, bool)`
+
+GetWorkspaceOk returns a tuple with the Workspace field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkspace
+
+`func (o *OrgWorkspaceUser) SetWorkspace(v Workspace)`
+
+SetWorkspace sets Workspace field to given value.
+
+### HasWorkspace
+
+`func (o *OrgWorkspaceUser) HasWorkspace() bool`
+
+HasWorkspace returns a boolean if a field has been set.
 
 ### GetWorkspaceHandle
 

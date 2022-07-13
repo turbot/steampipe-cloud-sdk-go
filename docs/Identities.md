@@ -81,7 +81,7 @@ No authorization required
 
 ## List
 
-> ListIdentitiesResponse List(ctx).Q(q).Execute()
+> ListIdentitiesResponse List(ctx).Q(q).Limit(limit).NextToken(nextToken).Execute()
 
 List identities
 
@@ -101,10 +101,12 @@ import (
 
 func main() {
     q := "q_example" // string | Optional free-text search to filter the identities. (optional)
+    limit := int32(56) // int32 | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. (optional) (default to 25)
+    nextToken := "nextToken_example" // string | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.Identities.List(context.Background()).Q(q).Execute()
+    resp, r, err := api_client.Identities.List(context.Background()).Q(q).Limit(limit).NextToken(nextToken).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Identities.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -126,6 +128,8 @@ Other parameters are passed through a pointer to a apiListRequest struct via the
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **q** | **string** | Optional free-text search to filter the identities. | 
+ **limit** | **int32** | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. | [default to 25]
+ **nextToken** | **string** | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. | 
 
 ### Return type
 

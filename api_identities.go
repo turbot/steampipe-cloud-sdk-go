@@ -174,11 +174,25 @@ type IdentitiesApiListRequest struct {
 	ctx        _context.Context
 	ApiService *IdentitiesService
 	q          *string
+	limit      *int32
+	nextToken  *string
 }
 
 // Optional free-text search to filter the identities.
 func (r IdentitiesApiListRequest) Q(q string) IdentitiesApiListRequest {
 	r.q = &q
+	return r
+}
+
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
+func (r IdentitiesApiListRequest) Limit(limit int32) IdentitiesApiListRequest {
+	r.limit = &limit
+	return r
+}
+
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
+func (r IdentitiesApiListRequest) NextToken(nextToken string) IdentitiesApiListRequest {
+	r.nextToken = &nextToken
 	return r
 }
 
@@ -224,6 +238,12 @@ func (a *IdentitiesService) ListExecute(r IdentitiesApiListRequest) (ListIdentit
 
 	if r.q != nil {
 		localVarQueryParams.Add("q", parameterToString(*r.q, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.nextToken != nil {
+		localVarQueryParams.Add("next_token", parameterToString(*r.nextToken, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

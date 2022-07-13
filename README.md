@@ -65,6 +65,8 @@ Class | Method | HTTP request | Description
 *Actors* | [**Get**](docs/Actors.md#get) | **Get** /actor | Actor information
 *Actors* | [**ListActivity**](docs/Actors.md#listactivity) | **Get** /actor/activity | List actor activity
 *Actors* | [**ListConnections**](docs/Actors.md#listconnections) | **Get** /actor/conn | List actor connections
+*Actors* | [**ListOrgInvites**](docs/Actors.md#listorginvites) | **Get** /actor/org/invite | List org invites for actor
+*Actors* | [**ListOrgs**](docs/Actors.md#listorgs) | **Get** /actor/org | List actor orgs
 *Actors* | [**ListWorkspaces**](docs/Actors.md#listworkspaces) | **Get** /actor/workspace | List actor workspaces
 *Auth* | [**ConfirmLogin**](docs/Auth.md#confirmlogin) | **Get** /login/confirm | Confirm user login
 *Auth* | [**ConfirmSignup**](docs/Auth.md#confirmsignup) | **Get** /signup/confirm | Confirm user signup
@@ -86,8 +88,7 @@ Class | Method | HTTP request | Description
 *OrgMembers* | [**DeleteInvite**](docs/OrgMembers.md#deleteinvite) | **Delete** /org/{org_handle}/member/invite | Delete org member invite
 *OrgMembers* | [**Get**](docs/OrgMembers.md#get) | **Get** /org/{org_handle}/member/{user_handle} | Get org member
 *OrgMembers* | [**Invite**](docs/OrgMembers.md#invite) | **Post** /org/{org_handle}/member/invite | Invite org member
-*OrgMembers* | [**ListAccepted**](docs/OrgMembers.md#listaccepted) | **Get** /org/{org_handle}/member | List accepted org members
-*OrgMembers* | [**ListInvited**](docs/OrgMembers.md#listinvited) | **Get** /org/{org_handle}/member/invite | List invited org members
+*OrgMembers* | [**List**](docs/OrgMembers.md#list) | **Get** /org/{org_handle}/member | List Organization Members
 *OrgMembers* | [**Update**](docs/OrgMembers.md#update) | **Patch** /org/{org_handle}/member/{user_handle} | Update org member
 *OrgWorkspaceConnectionAssociations* | [**Create**](docs/OrgWorkspaceConnectionAssociations.md#create) | **Post** /org/{org_handle}/workspace/{workspace_handle}/conn | Create org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Delete**](docs/OrgWorkspaceConnectionAssociations.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete org workspace connection association
@@ -97,8 +98,7 @@ Class | Method | HTTP request | Description
 *OrgWorkspaceMembers* | [**Delete**](docs/OrgWorkspaceMembers.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/member/{user_handle} | Delete Org Workspace Member
 *OrgWorkspaceMembers* | [**Get**](docs/OrgWorkspaceMembers.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/member/{user_handle} | Get Org Workspace Member
 *OrgWorkspaceMembers* | [**Invite**](docs/OrgWorkspaceMembers.md#invite) | **Post** /org/{org_handle}/workspace/{workspace_handle}/member/invite | Invite Org Workspace Member
-*OrgWorkspaceMembers* | [**ListAccepted**](docs/OrgWorkspaceMembers.md#listaccepted) | **Get** /org/{org_handle}/workspace/{workspace_handle}/member | List accepted Org Workspace Members
-*OrgWorkspaceMembers* | [**ListInvited**](docs/OrgWorkspaceMembers.md#listinvited) | **Get** /org/{org_handle}/workspace/{workspace_handle}/member/invite | List invited Org Workspace Members
+*OrgWorkspaceMembers* | [**List**](docs/OrgWorkspaceMembers.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/member | List Organization Workspace Members
 *OrgWorkspaceMembers* | [**RejectInvite**](docs/OrgWorkspaceMembers.md#rejectinvite) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/member/invite | Reject Org Workspace Member Invite
 *OrgWorkspaceMembers* | [**Update**](docs/OrgWorkspaceMembers.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/member/{user_handle} | Update Org Workspace Member
 *OrgWorkspaceModVariables* | [**CreateSetting**](docs/OrgWorkspaceModVariables.md#createsetting) | **Post** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias}/variable | Create a setting for a mod variable in an organization workspace
@@ -176,8 +176,6 @@ Class | Method | HTTP request | Description
 *Users* | [**List**](docs/Users.md#list) | **Get** /user | List users
 *Users* | [**ListAuditLogs**](docs/Users.md#listauditlogs) | **Get** /user/{user_handle}/audit | User audit logs
 *Users* | [**ListFeatures**](docs/Users.md#listfeatures) | **Get** /user/{user_handle}/feature | User features
-*Users* | [**ListOrgInvites**](docs/Users.md#listorginvites) | **Get** /user/{user_handle}/org/invite | List org invited users
-*Users* | [**ListOrgs**](docs/Users.md#listorgs) | **Get** /user/{user_handle}/org | List org users
 *Users* | [**ListWorkspaceAuditLogs**](docs/Users.md#listworkspaceauditlogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/audit | User workspace audit logs
 *Users* | [**Search**](docs/Users.md#search) | **Get** /user/search | Search users
 *Users* | [**Update**](docs/Users.md#update) | **Patch** /user/{user_handle} | Update user
@@ -185,6 +183,9 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [ActorOrg](docs/ActorOrg.md)
+ - [ActorOrgWorkspace](docs/ActorOrgWorkspace.md)
+ - [ActorWorkspace](docs/ActorWorkspace.md)
  - [AuditRecord](docs/AuditRecord.md)
  - [Connection](docs/Connection.md)
  - [ConnectionTestResult](docs/ConnectionTestResult.md)
@@ -202,6 +203,8 @@ Class | Method | HTTP request | Description
  - [Identity](docs/Identity.md)
  - [InviteOrgUserRequest](docs/InviteOrgUserRequest.md)
  - [InviteOrgWorkspaceUserRequest](docs/InviteOrgWorkspaceUserRequest.md)
+ - [ListActorOrgsResponse](docs/ListActorOrgsResponse.md)
+ - [ListActorWorkspacesResponse](docs/ListActorWorkspacesResponse.md)
  - [ListAuditLogsResponse](docs/ListAuditLogsResponse.md)
  - [ListConnectionsResponse](docs/ListConnectionsResponse.md)
  - [ListFeaturesResponse](docs/ListFeaturesResponse.md)

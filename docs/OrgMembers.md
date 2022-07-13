@@ -9,8 +9,7 @@ Method | HTTP request | Description
 [**DeleteInvite**](OrgMembers.md#DeleteInvite) | **Delete** /org/{org_handle}/member/invite | Delete org member invite
 [**Get**](OrgMembers.md#Get) | **Get** /org/{org_handle}/member/{user_handle} | Get org member
 [**Invite**](OrgMembers.md#Invite) | **Post** /org/{org_handle}/member/invite | Invite org member
-[**ListAccepted**](OrgMembers.md#ListAccepted) | **Get** /org/{org_handle}/member | List accepted org members
-[**ListInvited**](OrgMembers.md#ListInvited) | **Get** /org/{org_handle}/member/invite | List invited org members
+[**List**](OrgMembers.md#List) | **Get** /org/{org_handle}/member | List Organization Members
 [**Update**](OrgMembers.md#Update) | **Patch** /org/{org_handle}/member/{user_handle} | Update org member
 
 
@@ -373,85 +372,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## ListAccepted
+## List
 
-> ListOrgUsersResponse ListAccepted(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListOrgUsersResponse List(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
 
-List accepted org members
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    orgHandle := "orgHandle_example" // string | Specify the organization handle.
-    limit := int32(56) // int32 | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. (optional) (default to 25)
-    nextToken := "nextToken_example" // string | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgMembers.ListAccepted(context.Background(), orgHandle).Limit(limit).NextToken(nextToken).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgMembers.ListAccepted``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListAccepted`: ListOrgUsersResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrgMembers.ListAccepted`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgHandle** | **string** | Specify the organization handle. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListAcceptedRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **limit** | **int32** | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. | [default to 25]
- **nextToken** | **string** | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. | 
-
-### Return type
-
-[**ListOrgUsersResponse**](ListOrgUsersResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ListInvited
-
-> ListOrgUsersResponse ListInvited(ctx, orgHandle).Limit(limit).NextToken(nextToken).Execute()
-
-List invited org members
+List Organization Members
 
 
 
@@ -474,13 +399,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgMembers.ListInvited(context.Background(), orgHandle).Limit(limit).NextToken(nextToken).Execute()
+    resp, r, err := api_client.OrgMembers.List(context.Background(), orgHandle).Limit(limit).NextToken(nextToken).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgMembers.ListInvited``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgMembers.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListInvited`: ListOrgUsersResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrgMembers.ListInvited`: %v\n", resp)
+    // response from `List`: ListOrgUsersResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrgMembers.List`: %v\n", resp)
 }
 ```
 
@@ -494,7 +419,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListInvitedRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
