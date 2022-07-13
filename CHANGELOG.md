@@ -1,5 +1,11 @@
 # Steampipe Cloud Go SDK
 
+## 0.1.1 [2022-07-13]
+
+- Move Orgs for a user under actor orgs.
+- Modify response structure for workspaces of an actor.
+- Org and Workspace members to be listed via a unified method rather than separate methods for invites and members.
+
 ## 0.1.0 [2022-07-01]
 
 - Add Org Workspace Member APIs.

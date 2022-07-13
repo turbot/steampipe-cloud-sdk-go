@@ -8,8 +8,7 @@ Method | HTTP request | Description
 [**Delete**](OrgWorkspaceMembers.md#Delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/member/{user_handle} | Delete Org Workspace Member
 [**Get**](OrgWorkspaceMembers.md#Get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/member/{user_handle} | Get Org Workspace Member
 [**Invite**](OrgWorkspaceMembers.md#Invite) | **Post** /org/{org_handle}/workspace/{workspace_handle}/member/invite | Invite Org Workspace Member
-[**ListAccepted**](OrgWorkspaceMembers.md#ListAccepted) | **Get** /org/{org_handle}/workspace/{workspace_handle}/member | List accepted Org Workspace Members
-[**ListInvited**](OrgWorkspaceMembers.md#ListInvited) | **Get** /org/{org_handle}/workspace/{workspace_handle}/member/invite | List invited Org Workspace Members
+[**List**](OrgWorkspaceMembers.md#List) | **Get** /org/{org_handle}/workspace/{workspace_handle}/member | List Organization Workspace Members
 [**RejectInvite**](OrgWorkspaceMembers.md#RejectInvite) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/member/invite | Reject Org Workspace Member Invite
 [**Update**](OrgWorkspaceMembers.md#Update) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/member/{user_handle} | Update Org Workspace Member
 
@@ -315,88 +314,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## ListAccepted
+## List
 
-> ListOrgWorkspaceUsersResponse ListAccepted(ctx, orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListOrgWorkspaceUsersResponse List(ctx, orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
 
-List accepted Org Workspace Members
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    orgHandle := "orgHandle_example" // string | Specify the handle of the organization where the member need to be invited.
-    workspaceHandle := "workspaceHandle_example" // string | Specify the handle of the workspace where the member need to be invited.
-    limit := int32(56) // int32 | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. (optional) (default to 25)
-    nextToken := "nextToken_example" // string | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaceMembers.ListAccepted(context.Background(), orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMembers.ListAccepted``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListAccepted`: ListOrgWorkspaceUsersResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMembers.ListAccepted`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgHandle** | **string** | Specify the handle of the organization where the member need to be invited. | 
-**workspaceHandle** | **string** | Specify the handle of the workspace where the member need to be invited. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListAcceptedRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **limit** | **int32** | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. | [default to 25]
- **nextToken** | **string** | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. | 
-
-### Return type
-
-[**ListOrgWorkspaceUsersResponse**](ListOrgWorkspaceUsersResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ListInvited
-
-> ListOrgWorkspaceUsersResponse ListInvited(ctx, orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
-
-List invited Org Workspace Members
+List Organization Workspace Members
 
 
 
@@ -420,13 +342,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaceMembers.ListInvited(context.Background(), orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+    resp, r, err := api_client.OrgWorkspaceMembers.List(context.Background(), orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMembers.ListInvited``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaceMembers.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListInvited`: ListOrgWorkspaceUsersResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMembers.ListInvited`: %v\n", resp)
+    // response from `List`: ListOrgWorkspaceUsersResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaceMembers.List`: %v\n", resp)
 }
 ```
 
@@ -441,7 +363,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListInvitedRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

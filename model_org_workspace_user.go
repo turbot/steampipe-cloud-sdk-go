@@ -43,7 +43,8 @@ type OrgWorkspaceUser struct {
 	// The identifier of a user.
 	UserId string `json:"user_id"`
 	// The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item.
-	VersionId int32 `json:"version_id"`
+	VersionId int32      `json:"version_id"`
+	Workspace *Workspace `json:"workspace,omitempty"`
 	// The handle of the workspace with identifier WorkspaceID.
 	WorkspaceHandle string `json:"workspace_handle"`
 	// The identifier of a workspace belonging to the organization.
@@ -479,6 +480,38 @@ func (o *OrgWorkspaceUser) SetVersionId(v int32) {
 	o.VersionId = v
 }
 
+// GetWorkspace returns the Workspace field value if set, zero value otherwise.
+func (o *OrgWorkspaceUser) GetWorkspace() Workspace {
+	if o == nil || o.Workspace == nil {
+		var ret Workspace
+		return ret
+	}
+	return *o.Workspace
+}
+
+// GetWorkspaceOk returns a tuple with the Workspace field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrgWorkspaceUser) GetWorkspaceOk() (*Workspace, bool) {
+	if o == nil || o.Workspace == nil {
+		return nil, false
+	}
+	return o.Workspace, true
+}
+
+// HasWorkspace returns a boolean if a field has been set.
+func (o *OrgWorkspaceUser) HasWorkspace() bool {
+	if o != nil && o.Workspace != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkspace gets a reference to the given Workspace and assigns it to the Workspace field.
+func (o *OrgWorkspaceUser) SetWorkspace(v Workspace) {
+	o.Workspace = &v
+}
+
 // GetWorkspaceHandle returns the WorkspaceHandle field value
 func (o *OrgWorkspaceUser) GetWorkspaceHandle() string {
 	if o == nil {
@@ -573,6 +606,9 @@ func (o OrgWorkspaceUser) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["version_id"] = o.VersionId
+	}
+	if o.Workspace != nil {
+		toSerialize["workspace"] = o.Workspace
 	}
 	if true {
 		toSerialize["workspace_handle"] = o.WorkspaceHandle

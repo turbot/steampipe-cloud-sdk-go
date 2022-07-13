@@ -34,18 +34,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Not Found
         "429":
           content:
             application/json:
@@ -108,12 +96,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Forbidden
         "429":
           content:
             application/json:
@@ -176,12 +158,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Forbidden
         "429":
           content:
             application/json:
@@ -197,9 +173,134 @@ paths:
       summary: List actor connections
       tags:
       - Actors
+  /actor/org:
+    get:
+      description: List the orgs and org workspaces for an actor, along with role
+        within each.
+      operationId: actor_listOrgs
+      parameters:
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListActorOrgsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List actor orgs
+      tags:
+      - Actors
+  /actor/org/invite:
+    get:
+      description: List the orgs to which the actor has been invited.
+      operationId: actor_listOrgInvites
+      parameters:
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListUserOrgsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List org invites for actor
+      tags:
+      - Actors
   /actor/workspace:
     get:
-      description: List the workspace for an actor.
+      description: List the workspaces for an actor.
       operationId: actor_listWorkspaces
       parameters:
       - description: The max number of items to fetch per page of data, subject to
@@ -230,7 +331,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListWorkspacesResponse'
+                $ref: '#/components/schemas/ListActorWorkspacesResponse'
           description: OK
         "400":
           content:
@@ -244,12 +345,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Forbidden
         "429":
           content:
             application/json:
@@ -362,6 +457,29 @@ paths:
         explode: true
         in: query
         name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
         required: false
         schema:
           type: string
@@ -650,12 +768,12 @@ paths:
         description: The request body to create the organization.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Org'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -1071,12 +1189,12 @@ paths:
         description: The request body for the connection to be created.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Connection'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -1455,8 +1573,8 @@ paths:
       - Orgs
   /org/{org_handle}/member:
     get:
-      description: List all the members who has accepted the request.
-      operationId: orgMember_listAccepted
+      description: List all members of an organization who are invited / accepted.
+      operationId: orgMember_list
       parameters:
       - description: Specify the organization handle.
         explode: false
@@ -1527,7 +1645,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Internal Server Error
-      summary: List accepted org members
+      summary: List Organization Members
       tags:
       - OrgMembers
   /org/{org_handle}/member/invite:
@@ -1591,82 +1709,6 @@ paths:
       summary: Delete org member invite
       tags:
       - OrgMembers
-    get:
-      description: List all the members who has been invited to the org.
-      operationId: orgMember_listInvited
-      parameters:
-      - description: Specify the organization handle.
-        explode: false
-        in: path
-        name: org_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
-          type: string
-        style: simple
-      - description: The max number of items to fetch per page of data, subject to
-          a min and max of 1 and 100 respectively. If not specified will default to
-          25.
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: 25
-          maximum: 100
-          minimum: 1
-          type: integer
-        style: form
-      - description: When list results are truncated, next_token will be returned,
-          which is a cursor to fetch the next page of data. Pass next_token to the
-          subsequent list request to fetch the next page of data.
-        explode: true
-        in: query
-        name: next_token
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListOrgUsersResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Forbidden
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Internal Server Error
-      summary: List invited org members
-      tags:
-      - OrgMembers
     post:
       description: Invite member to an org.
       operationId: orgMember_invite
@@ -1689,12 +1731,12 @@ paths:
         description: The request body to invite a member to an organization.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrgUser'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -2175,12 +2217,12 @@ paths:
         description: The request body for the workspace to be created.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workspace'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -2647,12 +2689,12 @@ paths:
         description: The request body for the association to be created.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkspaceConn'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -2919,8 +2961,8 @@ paths:
   /org/{org_handle}/workspace/{workspace_handle}/member:
     get:
       description: List all members of a workspace in an organization who has accepted
-        the request.
-      operationId: orgWorkspaceMember_listAccepted
+        / invited.
+      operationId: orgWorkspaceMember_list
       parameters:
       - description: Specify the handle of the organization where the member need
           to be invited.
@@ -3002,7 +3044,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Internal Server Error
-      summary: List accepted Org Workspace Members
+      summary: List Organization Workspace Members
       tags:
       - OrgWorkspaceMembers
   /org/{org_handle}/workspace/{workspace_handle}/member/invite:
@@ -3074,93 +3116,6 @@ paths:
       summary: Reject Org Workspace Member Invite
       tags:
       - OrgWorkspaceMembers
-    get:
-      description: List all members that have been invited to a workspace of an organization.
-      operationId: orgWorkspaceMember_listInvited
-      parameters:
-      - description: Specify the handle of the organization where the member need
-          to be invited.
-        explode: false
-        in: path
-        name: org_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
-          type: string
-        style: simple
-      - description: Specify the handle of the workspace where the member need to
-          be invited.
-        explode: false
-        in: path
-        name: workspace_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
-          type: string
-        style: simple
-      - description: The max number of items to fetch per page of data, subject to
-          a min and max of 1 and 100 respectively. If not specified will default to
-          25.
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: 25
-          maximum: 100
-          minimum: 1
-          type: integer
-        style: form
-      - description: When list results are truncated, next_token will be returned,
-          which is a cursor to fetch the next page of data. Pass next_token to the
-          subsequent list request to fetch the next page of data.
-        explode: true
-        in: query
-        name: next_token
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListOrgWorkspaceUsersResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Forbidden
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Internal Server Error
-      summary: List invited Org Workspace Members
-      tags:
-      - OrgWorkspaceMembers
     post:
       description: Invite an individual to a workspace of an organization.
       operationId: orgWorkspaceMember_invite
@@ -3193,12 +3148,12 @@ paths:
         description: The request body to invite a member to an organization.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrgWorkspaceUser'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -3656,12 +3611,12 @@ paths:
           for this organization.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkspaceMod'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -4104,12 +4059,12 @@ paths:
           workspace.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkspaceModVariable'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -5199,12 +5154,12 @@ paths:
         description: The request body to create the user.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -5692,12 +5647,12 @@ paths:
         description: The request body for the connection to be created.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Connection'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -6080,160 +6035,6 @@ paths:
       summary: User features
       tags:
       - Users
-  /user/{user_handle}/org:
-    get:
-      description: List the orgs to which the user has access.
-      operationId: user_listOrgs
-      parameters:
-      - description: The handle of the user for which we want to list the org.
-        explode: false
-        in: path
-        name: user_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
-          type: string
-        style: simple
-      - description: The max number of items to fetch per page of data, subject to
-          a min and max of 1 and 100 respectively. If not specified will default to
-          25.
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: 25
-          maximum: 100
-          minimum: 1
-          type: integer
-        style: form
-      - description: When list results are truncated, next_token will be returned,
-          which is a cursor to fetch the next page of data. Pass next_token to the
-          subsequent list request to fetch the next page of data.
-        explode: true
-        in: query
-        name: next_token
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListUserOrgsResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Forbidden
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Internal Server Error
-      summary: List org users
-      tags:
-      - Users
-  /user/{user_handle}/org/invite:
-    get:
-      description: List the orgs to which the user has been invited.
-      operationId: user_listOrgInvites
-      parameters:
-      - description: Pass the handle of the user.
-        explode: false
-        in: path
-        name: user_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
-          type: string
-        style: simple
-      - description: The max number of items to fetch per page of data, subject to
-          a min and max of 1 and 100 respectively. If not specified will default to
-          25.
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: 25
-          maximum: 100
-          minimum: 1
-          type: integer
-        style: form
-      - description: When list results are truncated, next_token will be returned,
-          which is a cursor to fetch the next page of data. Pass next_token to the
-          subsequent list request to fetch the next page of data.
-        explode: true
-        in: query
-        name: next_token
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListUserOrgsResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Forbidden
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Internal Server Error
-      summary: List org invited users
-      tags:
-      - Users
   /user/{user_handle}/password:
     get:
       description: Get user password.
@@ -6322,12 +6123,12 @@ paths:
         description: The request body to create or rotate the password.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserDatabasePassword'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -6520,12 +6321,12 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Token'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -6880,12 +6681,12 @@ paths:
         description: The request body for the workspace to be created.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workspace'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -7351,12 +7152,12 @@ paths:
         description: The request body for the association to be created.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkspaceConn'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -7742,12 +7543,12 @@ paths:
           for this user.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkspaceMod'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -8190,12 +7991,12 @@ paths:
           workspace.
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkspaceModVariable'
-          description: OK
+          description: Created
         "400":
           content:
             application/json:
@@ -9284,6 +9085,251 @@ components:
       - title
       - type
       type: object
+    ActorOrg:
+      example:
+        role: role
+        org:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          created_at: created_at
+          handle: handle
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          version_id: 0
+          display_name: display_name
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          url: url
+        workspaces:
+        - workspace:
+            hive: hive
+            public_key: public_key
+            database_name: database_name
+            identity_id: identity_id
+            created_at: created_at
+            handle: aaa
+            version_id: 6
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_at: updated_at
+            host: host
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            state: state
+          role: role
+        - workspace:
+            hive: hive
+            public_key: public_key
+            database_name: database_name
+            identity_id: identity_id
+            created_at: created_at
+            handle: aaa
+            version_id: 6
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_at: updated_at
+            host: host
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            state: state
+          role: role
+      properties:
+        org:
+          $ref: '#/components/schemas/Org'
+        role:
+          description: The role of the actor in the org.
+          type: string
+        workspaces:
+          description: Any workspaces the actor has explicit permission to within
+            the org. Any org owner will have implicit owner roles over all workspaces,
+            so they will not be listed here.
+          items:
+            $ref: '#/components/schemas/ActorOrgWorkspace'
+          type: array
+      required:
+      - org
+      - role
+      type: object
+    ActorOrgWorkspace:
+      example:
+        workspace:
+          hive: hive
+          public_key: public_key
+          database_name: database_name
+          identity_id: identity_id
+          created_at: created_at
+          handle: aaa
+          version_id: 6
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_at: updated_at
+          host: host
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          state: state
+        role: role
+      properties:
+        role:
+          description: The role of the actor in the workspace.
+          type: string
+        workspace:
+          $ref: '#/components/schemas/Workspace'
+      required:
+      - role
+      type: object
+    ActorWorkspace:
+      example:
+        workspace_id: workspace_id
+        workspace:
+          hive: hive
+          public_key: public_key
+          database_name: database_name
+          identity_id: identity_id
+          created_at: created_at
+          handle: aaa
+          version_id: 6
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_at: updated_at
+          host: host
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          state: state
+        role: role
+        identity_id: identity_id
+        identity:
+          avatar_url: avatar_url
+          handle: handle
+          id: id
+          display_name: display_name
+          type: type
+      properties:
+        identity:
+          $ref: '#/components/schemas/Identity'
+        identity_id:
+          type: string
+        role:
+          type: string
+        workspace:
+          $ref: '#/components/schemas/Workspace'
+        workspace_id:
+          type: string
+      type: object
     AssociationQuota:
       additionalProperties:
         $ref: '#/components/schemas/Quota'
@@ -9656,6 +9702,354 @@ components:
       type: object
     JSONB:
       type: object
+    ListActorOrgsResponse:
+      example:
+        next_token: next_token
+        items:
+        - role: role
+          org:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            created_at: created_at
+            handle: handle
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            version_id: 0
+            display_name: display_name
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            url: url
+          workspaces:
+          - workspace:
+              hive: hive
+              public_key: public_key
+              database_name: database_name
+              identity_id: identity_id
+              created_at: created_at
+              handle: aaa
+              version_id: 6
+              created_by:
+                avatar_url: avatar_url
+                updated_at: updated_at
+                created_at: created_at
+                handle: handle
+                id: id
+                version_id: 0
+                display_name: display_name
+                email: email
+                preview_access_mode: preview_access_mode
+                url: url
+                status: status
+              updated_at: updated_at
+              host: host
+              updated_by:
+                avatar_url: avatar_url
+                updated_at: updated_at
+                created_at: created_at
+                handle: handle
+                id: id
+                version_id: 0
+                display_name: display_name
+                email: email
+                preview_access_mode: preview_access_mode
+                url: url
+                status: status
+              updated_by_id: updated_by_id
+              created_by_id: created_by_id
+              id: id
+              state: state
+            role: role
+          - workspace:
+              hive: hive
+              public_key: public_key
+              database_name: database_name
+              identity_id: identity_id
+              created_at: created_at
+              handle: aaa
+              version_id: 6
+              created_by:
+                avatar_url: avatar_url
+                updated_at: updated_at
+                created_at: created_at
+                handle: handle
+                id: id
+                version_id: 0
+                display_name: display_name
+                email: email
+                preview_access_mode: preview_access_mode
+                url: url
+                status: status
+              updated_at: updated_at
+              host: host
+              updated_by:
+                avatar_url: avatar_url
+                updated_at: updated_at
+                created_at: created_at
+                handle: handle
+                id: id
+                version_id: 0
+                display_name: display_name
+                email: email
+                preview_access_mode: preview_access_mode
+                url: url
+                status: status
+              updated_by_id: updated_by_id
+              created_by_id: created_by_id
+              id: id
+              state: state
+            role: role
+        - role: role
+          org:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            created_at: created_at
+            handle: handle
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            version_id: 0
+            display_name: display_name
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            url: url
+          workspaces:
+          - workspace:
+              hive: hive
+              public_key: public_key
+              database_name: database_name
+              identity_id: identity_id
+              created_at: created_at
+              handle: aaa
+              version_id: 6
+              created_by:
+                avatar_url: avatar_url
+                updated_at: updated_at
+                created_at: created_at
+                handle: handle
+                id: id
+                version_id: 0
+                display_name: display_name
+                email: email
+                preview_access_mode: preview_access_mode
+                url: url
+                status: status
+              updated_at: updated_at
+              host: host
+              updated_by:
+                avatar_url: avatar_url
+                updated_at: updated_at
+                created_at: created_at
+                handle: handle
+                id: id
+                version_id: 0
+                display_name: display_name
+                email: email
+                preview_access_mode: preview_access_mode
+                url: url
+                status: status
+              updated_by_id: updated_by_id
+              created_by_id: created_by_id
+              id: id
+              state: state
+            role: role
+          - workspace:
+              hive: hive
+              public_key: public_key
+              database_name: database_name
+              identity_id: identity_id
+              created_at: created_at
+              handle: aaa
+              version_id: 6
+              created_by:
+                avatar_url: avatar_url
+                updated_at: updated_at
+                created_at: created_at
+                handle: handle
+                id: id
+                version_id: 0
+                display_name: display_name
+                email: email
+                preview_access_mode: preview_access_mode
+                url: url
+                status: status
+              updated_at: updated_at
+              host: host
+              updated_by:
+                avatar_url: avatar_url
+                updated_at: updated_at
+                created_at: created_at
+                handle: handle
+                id: id
+                version_id: 0
+                display_name: display_name
+                email: email
+                preview_access_mode: preview_access_mode
+                url: url
+                status: status
+              updated_by_id: updated_by_id
+              created_by_id: created_by_id
+              id: id
+              state: state
+            role: role
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ActorOrg'
+          type: array
+        next_token:
+          type: string
+      type: object
+    ListActorWorkspacesResponse:
+      example:
+        next_token: next_token
+        items:
+        - workspace_id: workspace_id
+          workspace:
+            hive: hive
+            public_key: public_key
+            database_name: database_name
+            identity_id: identity_id
+            created_at: created_at
+            handle: aaa
+            version_id: 6
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_at: updated_at
+            host: host
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            state: state
+          role: role
+          identity_id: identity_id
+          identity:
+            avatar_url: avatar_url
+            handle: handle
+            id: id
+            display_name: display_name
+            type: type
+        - workspace_id: workspace_id
+          workspace:
+            hive: hive
+            public_key: public_key
+            database_name: database_name
+            identity_id: identity_id
+            created_at: created_at
+            handle: aaa
+            version_id: 6
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_at: updated_at
+            host: host
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            state: state
+          role: role
+          identity_id: identity_id
+          identity:
+            avatar_url: avatar_url
+            handle: handle
+            id: id
+            display_name: display_name
+            type: type
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ActorWorkspace'
+          type: array
+        next_token:
+          type: string
+      type: object
     ListAuditLogsResponse:
       example:
         next_token: next_token
@@ -9963,7 +10357,45 @@ components:
       example:
         next_token: next_token
         items:
-        - role: role
+        - workspace:
+            hive: hive
+            public_key: public_key
+            database_name: database_name
+            identity_id: identity_id
+            created_at: created_at
+            handle: aaa
+            version_id: 6
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_at: updated_at
+            host: host
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            state: state
+          role: role
           user_handle: user_handle
           created_at: created_at
           version_id: 0
@@ -10013,7 +10445,45 @@ components:
             status: status
           email: email
           status: status
-        - role: role
+        - workspace:
+            hive: hive
+            public_key: public_key
+            database_name: database_name
+            identity_id: identity_id
+            created_at: created_at
+            handle: aaa
+            version_id: 6
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_at: updated_at
+            host: host
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              email: email
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            state: state
+          role: role
           user_handle: user_handle
           created_at: created_at
           version_id: 0
@@ -10320,7 +10790,7 @@ components:
             identity_id: identity_id
             created_at: created_at
             handle: aaa
-            version_id: 0
+            version_id: 6
             created_by:
               avatar_url: avatar_url
               updated_at: updated_at
@@ -10427,7 +10897,7 @@ components:
             identity_id: identity_id
             created_at: created_at
             handle: aaa
-            version_id: 0
+            version_id: 6
             created_by:
               avatar_url: avatar_url
               updated_at: updated_at
@@ -10632,7 +11102,7 @@ components:
             identity_id: identity_id
             created_at: created_at
             handle: aaa
-            version_id: 0
+            version_id: 6
             created_by:
               avatar_url: avatar_url
               updated_at: updated_at
@@ -10708,7 +11178,7 @@ components:
             identity_id: identity_id
             created_at: created_at
             handle: aaa
-            version_id: 0
+            version_id: 6
             created_by:
               avatar_url: avatar_url
               updated_at: updated_at
@@ -10795,7 +11265,7 @@ components:
           identity_id: identity_id
           created_at: created_at
           handle: aaa
-          version_id: 0
+          version_id: 6
           created_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -10832,7 +11302,7 @@ components:
           identity_id: identity_id
           created_at: created_at
           handle: aaa
-          version_id: 0
+          version_id: 6
           created_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -11167,6 +11637,44 @@ components:
       type: object
     OrgWorkspaceUser:
       example:
+        workspace:
+          hive: hive
+          public_key: public_key
+          database_name: database_name
+          identity_id: identity_id
+          created_at: created_at
+          handle: aaa
+          version_id: 6
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_at: updated_at
+          host: host
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            email: email
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          state: state
         role: role
         user_handle: user_handle
         created_at: created_at
@@ -11267,6 +11775,8 @@ components:
           description: The version ID of this item. Pass this version ID via an If-Match
             header when performing mutation operations on the item.
           type: integer
+        workspace:
+          $ref: '#/components/schemas/Workspace'
         workspace_handle:
           description: The handle of the workspace with identifier WorkspaceID.
           type: string
@@ -11704,7 +12214,7 @@ components:
         identity_id: identity_id
         created_at: created_at
         handle: aaa
-        version_id: 0
+        version_id: 6
         created_by:
           avatar_url: avatar_url
           updated_at: updated_at
@@ -11803,7 +12313,7 @@ components:
           identity_id: identity_id
           created_at: created_at
           handle: aaa
-          version_id: 0
+          version_id: 6
           created_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -11964,7 +12474,7 @@ components:
           identity_id: identity_id
           created_at: created_at
           handle: aaa
-          version_id: 0
+          version_id: 6
           created_by:
             avatar_url: avatar_url
             updated_at: updated_at

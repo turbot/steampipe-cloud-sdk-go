@@ -22,6 +22,9 @@ api_user_workspaces.go
 api_users.go
 client.go
 configuration.go
+docs/ActorOrg.md
+docs/ActorOrgWorkspace.md
+docs/ActorWorkspace.md
 docs/Actors.md
 docs/AuditRecord.md
 docs/Auth.md
@@ -42,6 +45,8 @@ docs/Identities.md
 docs/Identity.md
 docs/InviteOrgUserRequest.md
 docs/InviteOrgWorkspaceUserRequest.md
+docs/ListActorOrgsResponse.md
+docs/ListActorWorkspacesResponse.md
 docs/ListAuditLogsResponse.md
 docs/ListConnectionsResponse.md
 docs/ListFeaturesResponse.md
@@ -109,6 +114,9 @@ docs/WorkspaceSchema.md
 git_push.sh
 go.mod
 go.sum
+model_actor_org.go
+model_actor_org_workspace.go
+model_actor_workspace.go
 model_audit_record.go
 model_connection.go
 model_connection_test_result.go
@@ -126,6 +134,8 @@ model_feature.go
 model_identity.go
 model_invite_org_user_request.go
 model_invite_org_workspace_user_request.go
+model_list_actor_orgs_response.go
+model_list_actor_workspaces_response.go
 model_list_audit_logs_response.go
 model_list_connections_response.go
 model_list_features_response.go
