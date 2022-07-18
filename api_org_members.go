@@ -852,8 +852,15 @@ type OrgMembersApiListRequest struct {
 	ctx        _context.Context
 	ApiService *OrgMembersService
 	orgHandle  string
+	q          *string
 	limit      *int32
 	nextToken  *string
+}
+
+// Optional free-text search to filter the org members.
+func (r OrgMembersApiListRequest) Q(q string) OrgMembersApiListRequest {
+	r.q = &q
+	return r
 }
 
 // The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
@@ -911,6 +918,9 @@ func (a *OrgMembersService) ListExecute(r OrgMembersApiListRequest) (ListOrgUser
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.q != nil {
+		localVarQueryParams.Add("q", parameterToString(*r.q, ""))
+	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}

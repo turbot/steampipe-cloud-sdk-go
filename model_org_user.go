@@ -28,8 +28,10 @@ type OrgUser struct {
 	Id string `json:"id"`
 	// The identifier of an org.
 	OrgId string `json:"org_id"`
-	// The access privellage for the member.
+	// The role of the org user.
 	Role *string `json:"role,omitempty"`
+	// The scope of the role. Can be either of org / workspace
+	Scope *string `json:"scope,omitempty"`
 	// The status of the org member i.e pending or accepted.
 	Status string `json:"status"`
 	// The time of the last update in ISO 8601 UTC.
@@ -255,6 +257,38 @@ func (o *OrgUser) HasRole() bool {
 // SetRole gets a reference to the given string and assigns it to the Role field.
 func (o *OrgUser) SetRole(v string) {
 	o.Role = &v
+}
+
+// GetScope returns the Scope field value if set, zero value otherwise.
+func (o *OrgUser) GetScope() string {
+	if o == nil || o.Scope == nil {
+		var ret string
+		return ret
+	}
+	return *o.Scope
+}
+
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrgUser) GetScopeOk() (*string, bool) {
+	if o == nil || o.Scope == nil {
+		return nil, false
+	}
+	return o.Scope, true
+}
+
+// HasScope returns a boolean if a field has been set.
+func (o *OrgUser) HasScope() bool {
+	if o != nil && o.Scope != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetScope gets a reference to the given string and assigns it to the Scope field.
+func (o *OrgUser) SetScope(v string) {
+	o.Scope = &v
 }
 
 // GetStatus returns the Status field value
@@ -495,6 +529,9 @@ func (o OrgUser) MarshalJSON() ([]byte, error) {
 	}
 	if o.Role != nil {
 		toSerialize["role"] = o.Role
+	}
+	if o.Scope != nil {
+		toSerialize["scope"] = o.Scope
 	}
 	if true {
 		toSerialize["status"] = o.Status
