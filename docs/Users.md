@@ -14,7 +14,6 @@ Method | HTTP request | Description
 [**ListAuditLogs**](Users.md#ListAuditLogs) | **Get** /user/{user_handle}/audit | User audit logs
 [**ListFeatures**](Users.md#ListFeatures) | **Get** /user/{user_handle}/feature | User features
 [**ListWorkspaceAuditLogs**](Users.md#ListWorkspaceAuditLogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/audit | User workspace audit logs
-[**Search**](Users.md#Search) | **Get** /user/search | Search users
 [**Update**](Users.md#Update) | **Patch** /user/{user_handle} | Update user
 
 
@@ -711,76 +710,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListAuditLogsResponse**](ListAuditLogsResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## Search
-
-> SearchUsersResponse Search(ctx).Q(q).Limit(limit).NextToken(nextToken).Execute()
-
-Search users
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    q := "q_example" // string | Specify the search string.
-    limit := int32(56) // int32 | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. (optional) (default to 25)
-    nextToken := "nextToken_example" // string | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.Users.Search(context.Background()).Q(q).Limit(limit).NextToken(nextToken).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Users.Search``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `Search`: SearchUsersResponse
-    fmt.Fprintf(os.Stdout, "Response from `Users.Search`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSearchRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **q** | **string** | Specify the search string. | 
- **limit** | **int32** | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. | [default to 25]
- **nextToken** | **string** | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. | 
-
-### Return type
-
-[**SearchUsersResponse**](SearchUsersResponse.md)
 
 ### Authorization
 

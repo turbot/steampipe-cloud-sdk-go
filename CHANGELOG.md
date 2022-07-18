@@ -1,5 +1,10 @@
 # Steampipe Cloud Go SDK
 
+## 0.1.2 [2022-07-19]
+
+- Allow users to be added to workspaces directly, bypassing the invite process.
+- Add search capability for org members.
+
 ## 0.1.1 [2022-07-13]
 
 - Move Orgs for a user under actor orgs.

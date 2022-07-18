@@ -28,36 +28,36 @@ var (
 // OrgWorkspaceMembersService OrgWorkspaceMembers service
 type OrgWorkspaceMembersService service
 
-type OrgWorkspaceMembersApiConfirmInviteRequest struct {
+type OrgWorkspaceMembersApiCreateRequest struct {
 	ctx             _context.Context
 	ApiService      *OrgWorkspaceMembersService
 	orgHandle       string
 	workspaceHandle string
-	t               *string
+	request         *CreateOrgWorkspaceUserRequest
 }
 
-// Specify the token.
-func (r OrgWorkspaceMembersApiConfirmInviteRequest) T(t string) OrgWorkspaceMembersApiConfirmInviteRequest {
-	r.t = &t
+// The request body to invite a member to an organization.
+func (r OrgWorkspaceMembersApiCreateRequest) Request(request CreateOrgWorkspaceUserRequest) OrgWorkspaceMembersApiCreateRequest {
+	r.request = &request
 	return r
 }
 
-func (r OrgWorkspaceMembersApiConfirmInviteRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.ConfirmInviteExecute(r)
+func (r OrgWorkspaceMembersApiCreateRequest) Execute() (OrgWorkspaceUser, *_nethttp.Response, error) {
+	return r.ApiService.CreateExecute(r)
 }
 
 /*
-ConfirmInvite Confirm Org Workspace Member Invite
+Create Create Org Workspace Member
 
-Confirm invite to a workspace of an organization.
+Add an individual as a member of a workspace in an organization.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orgHandle Specify the handle of the organization where the member need to be invited.
  @param workspaceHandle Specify the handle of the workspace where the member need to be invited.
- @return OrgWorkspaceMembersApiConfirmInviteRequest
+ @return OrgWorkspaceMembersApiCreateRequest
 */
-func (a *OrgWorkspaceMembersService) ConfirmInvite(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceMembersApiConfirmInviteRequest {
-	return OrgWorkspaceMembersApiConfirmInviteRequest{
+func (a *OrgWorkspaceMembersService) Create(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceMembersApiCreateRequest {
+	return OrgWorkspaceMembersApiCreateRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		orgHandle:       orgHandle,
@@ -66,32 +66,33 @@ func (a *OrgWorkspaceMembersService) ConfirmInvite(ctx _context.Context, orgHand
 }
 
 // Execute executes the request
-func (a *OrgWorkspaceMembersService) ConfirmInviteExecute(r OrgWorkspaceMembersApiConfirmInviteRequest) (*_nethttp.Response, error) {
+//  @return OrgWorkspaceUser
+func (a *OrgWorkspaceMembersService) CreateExecute(r OrgWorkspaceMembersApiCreateRequest) (OrgWorkspaceUser, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodGet
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue OrgWorkspaceUser
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceMembersService.ConfirmInvite")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceMembersService.Create")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/member/invite/confirm"
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/member"
 	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.t == nil {
-		return nil, reportError("t is required and must be specified")
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
 	}
 
-	localVarQueryParams.Add("t", parameterToString(*r.t, ""))
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -107,21 +108,23 @@ func (a *OrgWorkspaceMembersService) ConfirmInviteExecute(r OrgWorkspaceMembersA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.request
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -134,54 +137,63 @@ func (a *OrgWorkspaceMembersService) ConfirmInviteExecute(r OrgWorkspaceMembersA
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type OrgWorkspaceMembersApiDeleteRequest struct {
@@ -504,181 +516,20 @@ func (a *OrgWorkspaceMembersService) GetExecute(r OrgWorkspaceMembersApiGetReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OrgWorkspaceMembersApiInviteRequest struct {
-	ctx             _context.Context
-	ApiService      *OrgWorkspaceMembersService
-	orgHandle       string
-	workspaceHandle string
-	request         *InviteOrgWorkspaceUserRequest
-}
-
-// The request body to invite a member to an organization.
-func (r OrgWorkspaceMembersApiInviteRequest) Request(request InviteOrgWorkspaceUserRequest) OrgWorkspaceMembersApiInviteRequest {
-	r.request = &request
-	return r
-}
-
-func (r OrgWorkspaceMembersApiInviteRequest) Execute() (OrgWorkspaceUser, *_nethttp.Response, error) {
-	return r.ApiService.InviteExecute(r)
-}
-
-/*
-Invite Invite Org Workspace Member
-
-Invite an individual to a workspace of an organization.
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization where the member need to be invited.
- @param workspaceHandle Specify the handle of the workspace where the member need to be invited.
- @return OrgWorkspaceMembersApiInviteRequest
-*/
-func (a *OrgWorkspaceMembersService) Invite(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceMembersApiInviteRequest {
-	return OrgWorkspaceMembersApiInviteRequest{
-		ApiService:      a,
-		ctx:             ctx,
-		orgHandle:       orgHandle,
-		workspaceHandle: workspaceHandle,
-	}
-}
-
-// Execute executes the request
-//  @return OrgWorkspaceUser
-func (a *OrgWorkspaceMembersService) InviteExecute(r OrgWorkspaceMembersApiInviteRequest) (OrgWorkspaceUser, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue OrgWorkspaceUser
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceMembersService.Invite")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/member/invite"
-	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.request == nil {
-		return localVarReturnValue, nil, reportError("request is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.request
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type OrgWorkspaceMembersApiListRequest struct {
 	ctx             _context.Context
 	ApiService      *OrgWorkspaceMembersService
 	orgHandle       string
 	workspaceHandle string
+	q               *string
 	limit           *int32
 	nextToken       *string
+}
+
+// Optional free-text search to filter the org workspace members.
+func (r OrgWorkspaceMembersApiListRequest) Q(q string) OrgWorkspaceMembersApiListRequest {
+	r.q = &q
+	return r
 }
 
 // The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
@@ -739,6 +590,9 @@ func (a *OrgWorkspaceMembersService) ListExecute(r OrgWorkspaceMembersApiListReq
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.q != nil {
+		localVarQueryParams.Add("q", parameterToString(*r.q, ""))
+	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
@@ -846,162 +700,6 @@ func (a *OrgWorkspaceMembersService) ListExecute(r OrgWorkspaceMembersApiListReq
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type OrgWorkspaceMembersApiRejectInviteRequest struct {
-	ctx             _context.Context
-	ApiService      *OrgWorkspaceMembersService
-	orgHandle       string
-	workspaceHandle string
-	t               *string
-}
-
-// Specify the token to be rejected.
-func (r OrgWorkspaceMembersApiRejectInviteRequest) T(t string) OrgWorkspaceMembersApiRejectInviteRequest {
-	r.t = &t
-	return r
-}
-
-func (r OrgWorkspaceMembersApiRejectInviteRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.RejectInviteExecute(r)
-}
-
-/*
-RejectInvite Reject Org Workspace Member Invite
-
-Reject invite to a workspace of an organization.
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization where the member need to be invited.
- @param workspaceHandle Specify the handle of the workspace where the member need to be invited.
- @return OrgWorkspaceMembersApiRejectInviteRequest
-*/
-func (a *OrgWorkspaceMembersService) RejectInvite(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceMembersApiRejectInviteRequest {
-	return OrgWorkspaceMembersApiRejectInviteRequest{
-		ApiService:      a,
-		ctx:             ctx,
-		orgHandle:       orgHandle,
-		workspaceHandle: workspaceHandle,
-	}
-}
-
-// Execute executes the request
-func (a *OrgWorkspaceMembersService) RejectInviteExecute(r OrgWorkspaceMembersApiRejectInviteRequest) (*_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceMembersService.RejectInvite")
-	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/member/invite"
-	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.t == nil {
-		return nil, reportError("t is required and must be specified")
-	}
-
-	localVarQueryParams.Add("t", parameterToString(*r.t, ""))
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
 }
 
 type OrgWorkspaceMembersApiUpdateRequest struct {

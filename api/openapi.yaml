@@ -1585,6 +1585,14 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
+      - description: Optional free-text search to filter the org members.
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The max number of items to fetch per page of data, subject to
           a min and max of 1 and 100 respectively. If not specified will default to
           25.
@@ -2984,6 +2992,14 @@ paths:
           format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
           type: string
         style: simple
+      - description: Optional free-text search to filter the org workspace members.
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The max number of items to fetch per page of data, subject to
           a min and max of 1 and 100 respectively. If not specified will default to
           25.
@@ -3047,78 +3063,9 @@ paths:
       summary: List Organization Workspace Members
       tags:
       - OrgWorkspaceMembers
-  /org/{org_handle}/workspace/{workspace_handle}/member/invite:
-    delete:
-      description: Reject invite to a workspace of an organization.
-      operationId: orgWorkspaceMember_rejectInvite
-      parameters:
-      - description: Specify the handle of the organization where the member need
-          to be invited.
-        explode: false
-        in: path
-        name: org_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
-          type: string
-        style: simple
-      - description: Specify the handle of the workspace where the member need to
-          be invited.
-        explode: false
-        in: path
-        name: workspace_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
-          type: string
-        style: simple
-      - description: Specify the token to be rejected.
-        explode: true
-        in: query
-        name: t
-        required: true
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content: {}
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Forbidden
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Internal Server Error
-      summary: Reject Org Workspace Member Invite
-      tags:
-      - OrgWorkspaceMembers
     post:
-      description: Invite an individual to a workspace of an organization.
-      operationId: orgWorkspaceMember_invite
+      description: Add an individual as a member of a workspace in an organization.
+      operationId: orgWorkspaceMember_create
       parameters:
       - description: Specify the handle of the organization where the member need
           to be invited.
@@ -3144,7 +3091,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InviteOrgWorkspaceUserRequest'
+              $ref: '#/components/schemas/CreateOrgWorkspaceUserRequest'
         description: The request body to invite a member to an organization.
         required: true
       responses:
@@ -3184,79 +3131,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Internal Server Error
-      summary: Invite Org Workspace Member
+      summary: Create Org Workspace Member
       tags:
       - OrgWorkspaceMembers
       x-codegen-request-body-name: request
-  /org/{org_handle}/workspace/{workspace_handle}/member/invite/confirm:
-    get:
-      description: Confirm invite to a workspace of an organization.
-      operationId: orgWorkspaceMember_confirmInvite
-      parameters:
-      - description: Specify the handle of the organization where the member need
-          to be invited.
-        explode: false
-        in: path
-        name: org_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
-          type: string
-        style: simple
-      - description: Specify the handle of the workspace where the member need to
-          be invited.
-        explode: false
-        in: path
-        name: workspace_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
-          type: string
-        style: simple
-      - description: Specify the token.
-        explode: true
-        in: query
-        name: t
-        required: true
-        schema:
-          type: string
-        style: form
-      responses:
-        "201":
-          content: {}
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Forbidden
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Internal Server Error
-      summary: Confirm Org Workspace Member Invite
-      tags:
-      - OrgWorkspaceMembers
   /org/{org_handle}/workspace/{workspace_handle}/member/{user_handle}:
     delete:
       description: Remove a member from a workspace of an organization.
@@ -5206,82 +5084,6 @@ paths:
       tags:
       - Users
       x-codegen-request-body-name: request
-  /user/search:
-    get:
-      description: Search users and lists the ones that meet the filter criteria.
-      operationId: user_search
-      parameters:
-      - description: Specify the search string.
-        explode: true
-        in: query
-        name: q
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: The max number of items to fetch per page of data, subject to
-          a min and max of 1 and 100 respectively. If not specified will default to
-          25.
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: 25
-          maximum: 100
-          minimum: 1
-          type: integer
-        style: form
-      - description: When list results are truncated, next_token will be returned,
-          which is a cursor to fetch the next page of data. Pass next_token to the
-          subsequent list request to fetch the next page of data.
-        explode: true
-        in: query
-        name: next_token
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SearchUsersResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Forbidden
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Internal Server Error
-      summary: Search users
-      tags:
-      - Users
   /user/{user_handle}:
     delete:
       description: Deletes the specified user.
@@ -9542,6 +9344,20 @@ components:
       required:
       - handle
       type: object
+    CreateOrgWorkspaceUserRequest:
+      example:
+        role: role
+        handle: handle
+      properties:
+        handle:
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        role:
+          type: string
+      required:
+      - handle
+      - role
+      type: object
     CreateUserPasswordRequest:
       example:
         expires_in_minutes: 0
@@ -9669,22 +9485,6 @@ components:
       - type
       type: object
     InviteOrgUserRequest:
-      example:
-        role: role
-        handle: handle
-        email: email
-      properties:
-        email:
-          type: string
-        handle:
-          format: ^[a-z]_[0-9a-v]{20}$
-          type: string
-        role:
-          type: string
-      required:
-      - role
-      type: object
-    InviteOrgWorkspaceUserRequest:
       example:
         role: role
         handle: handle
@@ -10268,6 +10068,7 @@ components:
           updated_at: updated_at
           user_id: user_id
           org_id: org_id
+          scope: scope
           updated_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -10316,6 +10117,7 @@ components:
           updated_at: updated_at
           user_id: user_id
           org_id: org_id
+          scope: scope
           updated_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -10415,6 +10217,7 @@ components:
           updated_at: updated_at
           user_id: user_id
           org_id: org_id
+          scope: scope
           updated_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -10503,6 +10306,7 @@ components:
           updated_at: updated_at
           user_id: user_id
           org_id: org_id
+          scope: scope
           updated_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -11544,6 +11348,7 @@ components:
         updated_at: updated_at
         user_id: user_id
         org_id: org_id
+        scope: scope
         updated_by:
           avatar_url: avatar_url
           updated_at: updated_at
@@ -11595,7 +11400,10 @@ components:
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         role:
-          description: The access privellage for the member.
+          description: The role of the org user.
+          type: string
+        scope:
+          description: The scope of the role. Can be either of org / workspace
           type: string
         status:
           description: The status of the org member i.e pending or accepted.
@@ -11695,6 +11503,7 @@ components:
         updated_at: updated_at
         user_id: user_id
         org_id: org_id
+        scope: scope
         updated_by:
           avatar_url: avatar_url
           updated_at: updated_at
@@ -11747,7 +11556,10 @@ components:
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
         role:
-          description: The access privellage for the member.
+          description: The role of the workspace user.
+          type: string
+        scope:
+          description: The scope of the role. Can be either of org / workspace
           type: string
         status:
           description: The status of the org member i.e pending or accepted.
@@ -11813,26 +11625,6 @@ components:
         used:
           description: Exhausted limit
           type: integer
-      type: object
-    SearchUsersResponse:
-      example:
-        next_token: next_token
-        items:
-        - avatar_url: avatar_url
-          handle: handle
-          id: id
-          display_name: display_name
-        - avatar_url: avatar_url
-          handle: handle
-          id: id
-          display_name: display_name
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/UserSearch'
-          type: array
-        next_token:
-          type: string
       type: object
     Token:
       example:
@@ -12177,25 +11969,6 @@ components:
       - organization
       - token
       - workspace
-      type: object
-    UserSearch:
-      example:
-        avatar_url: avatar_url
-        handle: handle
-        id: id
-        display_name: display_name
-      properties:
-        avatar_url:
-          type: string
-        display_name:
-          type: string
-        handle:
-          format: ^[a-z](?:[a-z0-9]|_(?=[a-z0-9])){0,38}$
-          type: string
-        id:
-          type: string
-      required:
-      - id
       type: object
     UserSignupRequest:
       example:

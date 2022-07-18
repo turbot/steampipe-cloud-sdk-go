@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **Email** | **string** | The email address of the member. | 
 **Id** | **string** | The unique identifier of the org member. | 
 **OrgId** | **string** | The identifier of an org. | 
-**Role** | Pointer to **string** | The access privellage for the member. | [optional] 
+**Role** | Pointer to **string** | The role of the workspace user. | [optional] 
+**Scope** | Pointer to **string** | The scope of the role. Can be either of org / workspace | [optional] 
 **Status** | **string** | The status of the org member i.e pending or accepted. | 
 **UpdatedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
 **UpdatedBy** | Pointer to [**User**](User.md) |  | [optional] 
@@ -191,6 +192,31 @@ SetRole sets Role field to given value.
 `func (o *OrgWorkspaceUser) HasRole() bool`
 
 HasRole returns a boolean if a field has been set.
+
+### GetScope
+
+`func (o *OrgWorkspaceUser) GetScope() string`
+
+GetScope returns the Scope field if non-nil, zero value otherwise.
+
+### GetScopeOk
+
+`func (o *OrgWorkspaceUser) GetScopeOk() (*string, bool)`
+
+GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScope
+
+`func (o *OrgWorkspaceUser) SetScope(v string)`
+
+SetScope sets Scope field to given value.
+
+### HasScope
+
+`func (o *OrgWorkspaceUser) HasScope() bool`
+
+HasScope returns a boolean if a field has been set.
 
 ### GetStatus
 
