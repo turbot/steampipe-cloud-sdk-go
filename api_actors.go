@@ -658,7 +658,7 @@ func (r ActorsApiListOrgsRequest) NextToken(nextToken string) ActorsApiListOrgsR
 	return r
 }
 
-func (r ActorsApiListOrgsRequest) Execute() (ListActorOrgsResponse, *_nethttp.Response, error) {
+func (r ActorsApiListOrgsRequest) Execute() (ListUserOrgsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListOrgsExecute(r)
 }
 
@@ -678,13 +678,13 @@ func (a *ActorsService) ListOrgs(ctx _context.Context) ActorsApiListOrgsRequest 
 }
 
 // Execute executes the request
-//  @return ListActorOrgsResponse
-func (a *ActorsService) ListOrgsExecute(r ActorsApiListOrgsRequest) (ListActorOrgsResponse, *_nethttp.Response, error) {
+//  @return ListUserOrgsResponse
+func (a *ActorsService) ListOrgsExecute(r ActorsApiListOrgsRequest) (ListUserOrgsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue ListActorOrgsResponse
+		localVarReturnValue ListUserOrgsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActorsService.ListOrgs")

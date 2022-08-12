@@ -35,7 +35,8 @@ type AuditRecord struct {
 	// The handle name for an identity where the action has been performed.
 	IdentityHandle string `json:"identity_handle"`
 	// The unique identifier for an identity where the action has been performed.
-	IdentityId string `json:"identity_id"`
+	IdentityId string  `json:"identity_id"`
+	ProcessId  *string `json:"process_id,omitempty"`
 	// The handle name of the entity on which the action has been performed.
 	TargetHandle *string `json:"target_handle,omitempty"`
 	// The unique identifier of the entity on which the action has been performed.
@@ -334,6 +335,38 @@ func (o *AuditRecord) SetIdentityId(v string) {
 	o.IdentityId = v
 }
 
+// GetProcessId returns the ProcessId field value if set, zero value otherwise.
+func (o *AuditRecord) GetProcessId() string {
+	if o == nil || o.ProcessId == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProcessId
+}
+
+// GetProcessIdOk returns a tuple with the ProcessId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuditRecord) GetProcessIdOk() (*string, bool) {
+	if o == nil || o.ProcessId == nil {
+		return nil, false
+	}
+	return o.ProcessId, true
+}
+
+// HasProcessId returns a boolean if a field has been set.
+func (o *AuditRecord) HasProcessId() bool {
+	if o != nil && o.ProcessId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProcessId gets a reference to the given string and assigns it to the ProcessId field.
+func (o *AuditRecord) SetProcessId(v string) {
+	o.ProcessId = &v
+}
+
 // GetTargetHandle returns the TargetHandle field value if set, zero value otherwise.
 func (o *AuditRecord) GetTargetHandle() string {
 	if o == nil || o.TargetHandle == nil {
@@ -432,6 +465,9 @@ func (o AuditRecord) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["identity_id"] = o.IdentityId
+	}
+	if o.ProcessId != nil {
+		toSerialize["process_id"] = o.ProcessId
 	}
 	if o.TargetHandle != nil {
 		toSerialize["target_handle"] = o.TargetHandle

@@ -17,11 +17,15 @@ import (
 
 // ActorWorkspace struct for ActorWorkspace
 type ActorWorkspace struct {
-	Identity    *Identity  `json:"identity,omitempty"`
-	IdentityId  *string    `json:"identity_id,omitempty"`
-	Role        *string    `json:"role,omitempty"`
-	Workspace   *Workspace `json:"workspace,omitempty"`
-	WorkspaceId *string    `json:"workspace_id,omitempty"`
+	DatabaseName *string    `json:"database_name,omitempty"`
+	Handle       *string    `json:"handle,omitempty"`
+	Host         *string    `json:"host,omitempty"`
+	Id           *string    `json:"id,omitempty"`
+	Identity     *Identity  `json:"identity,omitempty"`
+	IdentityId   *string    `json:"identity_id,omitempty"`
+	Role         *string    `json:"role,omitempty"`
+	Workspace    *Workspace `json:"workspace,omitempty"`
+	WorkspaceId  *string    `json:"workspace_id,omitempty"`
 }
 
 // NewActorWorkspace instantiates a new ActorWorkspace object
@@ -39,6 +43,134 @@ func NewActorWorkspace() *ActorWorkspace {
 func NewActorWorkspaceWithDefaults() *ActorWorkspace {
 	this := ActorWorkspace{}
 	return &this
+}
+
+// GetDatabaseName returns the DatabaseName field value if set, zero value otherwise.
+func (o *ActorWorkspace) GetDatabaseName() string {
+	if o == nil || o.DatabaseName == nil {
+		var ret string
+		return ret
+	}
+	return *o.DatabaseName
+}
+
+// GetDatabaseNameOk returns a tuple with the DatabaseName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ActorWorkspace) GetDatabaseNameOk() (*string, bool) {
+	if o == nil || o.DatabaseName == nil {
+		return nil, false
+	}
+	return o.DatabaseName, true
+}
+
+// HasDatabaseName returns a boolean if a field has been set.
+func (o *ActorWorkspace) HasDatabaseName() bool {
+	if o != nil && o.DatabaseName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDatabaseName gets a reference to the given string and assigns it to the DatabaseName field.
+func (o *ActorWorkspace) SetDatabaseName(v string) {
+	o.DatabaseName = &v
+}
+
+// GetHandle returns the Handle field value if set, zero value otherwise.
+func (o *ActorWorkspace) GetHandle() string {
+	if o == nil || o.Handle == nil {
+		var ret string
+		return ret
+	}
+	return *o.Handle
+}
+
+// GetHandleOk returns a tuple with the Handle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ActorWorkspace) GetHandleOk() (*string, bool) {
+	if o == nil || o.Handle == nil {
+		return nil, false
+	}
+	return o.Handle, true
+}
+
+// HasHandle returns a boolean if a field has been set.
+func (o *ActorWorkspace) HasHandle() bool {
+	if o != nil && o.Handle != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHandle gets a reference to the given string and assigns it to the Handle field.
+func (o *ActorWorkspace) SetHandle(v string) {
+	o.Handle = &v
+}
+
+// GetHost returns the Host field value if set, zero value otherwise.
+func (o *ActorWorkspace) GetHost() string {
+	if o == nil || o.Host == nil {
+		var ret string
+		return ret
+	}
+	return *o.Host
+}
+
+// GetHostOk returns a tuple with the Host field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ActorWorkspace) GetHostOk() (*string, bool) {
+	if o == nil || o.Host == nil {
+		return nil, false
+	}
+	return o.Host, true
+}
+
+// HasHost returns a boolean if a field has been set.
+func (o *ActorWorkspace) HasHost() bool {
+	if o != nil && o.Host != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHost gets a reference to the given string and assigns it to the Host field.
+func (o *ActorWorkspace) SetHost(v string) {
+	o.Host = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *ActorWorkspace) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ActorWorkspace) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *ActorWorkspace) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *ActorWorkspace) SetId(v string) {
+	o.Id = &v
 }
 
 // GetIdentity returns the Identity field value if set, zero value otherwise.
@@ -203,6 +335,18 @@ func (o *ActorWorkspace) SetWorkspaceId(v string) {
 
 func (o ActorWorkspace) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.DatabaseName != nil {
+		toSerialize["database_name"] = o.DatabaseName
+	}
+	if o.Handle != nil {
+		toSerialize["handle"] = o.Handle
+	}
+	if o.Host != nil {
+		toSerialize["host"] = o.Host
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	if o.Identity != nil {
 		toSerialize["identity"] = o.Identity
 	}

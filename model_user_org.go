@@ -17,29 +17,41 @@ import (
 
 // UserOrg struct for UserOrg
 type UserOrg struct {
-	CreatedAt string  `json:"created_at"`
-	Id        string  `json:"id"`
-	Org       *Org    `json:"org,omitempty"`
-	OrgId     string  `json:"org_id"`
-	Role      string  `json:"role"`
-	Status    string  `json:"status"`
+	// The time of creation in ISO 8601 UTC.
+	CreatedAt string `json:"created_at"`
+	CreatedBy *User  `json:"created_by,omitempty"`
+	// The ID of the user that created this.
+	CreatedById string `json:"created_by_id"`
+	Id          string `json:"id"`
+	Org         *Org   `json:"org,omitempty"`
+	OrgId       string `json:"org_id"`
+	Role        string `json:"role"`
+	Status      string `json:"status"`
+	// The time of the last update in ISO 8601 UTC.
 	UpdatedAt *string `json:"updated_at,omitempty"`
-	UserId    string  `json:"user_id"`
-	VersionId *int32  `json:"version_id,omitempty"`
+	UpdatedBy *User   `json:"updated_by,omitempty"`
+	// The ID of the user that performed the last update.
+	UpdatedById string `json:"updated_by_id"`
+	UserId      string `json:"user_id"`
+	// The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item.
+	VersionId int32 `json:"version_id"`
 }
 
 // NewUserOrg instantiates a new UserOrg object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserOrg(createdAt string, id string, orgId string, role string, status string, userId string) *UserOrg {
+func NewUserOrg(createdAt string, createdById string, id string, orgId string, role string, status string, updatedById string, userId string, versionId int32) *UserOrg {
 	this := UserOrg{}
 	this.CreatedAt = createdAt
+	this.CreatedById = createdById
 	this.Id = id
 	this.OrgId = orgId
 	this.Role = role
 	this.Status = status
+	this.UpdatedById = updatedById
 	this.UserId = userId
+	this.VersionId = versionId
 	return &this
 }
 
@@ -73,6 +85,62 @@ func (o *UserOrg) GetCreatedAtOk() (*string, bool) {
 // SetCreatedAt sets field value
 func (o *UserOrg) SetCreatedAt(v string) {
 	o.CreatedAt = v
+}
+
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+func (o *UserOrg) GetCreatedBy() User {
+	if o == nil || o.CreatedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserOrg) GetCreatedByOk() (*User, bool) {
+	if o == nil || o.CreatedBy == nil {
+		return nil, false
+	}
+	return o.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (o *UserOrg) HasCreatedBy() bool {
+	if o != nil && o.CreatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy gets a reference to the given User and assigns it to the CreatedBy field.
+func (o *UserOrg) SetCreatedBy(v User) {
+	o.CreatedBy = &v
+}
+
+// GetCreatedById returns the CreatedById field value
+func (o *UserOrg) GetCreatedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedById
+}
+
+// GetCreatedByIdOk returns a tuple with the CreatedById field value
+// and a boolean to check if the value has been set.
+func (o *UserOrg) GetCreatedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedById, true
+}
+
+// SetCreatedById sets field value
+func (o *UserOrg) SetCreatedById(v string) {
+	o.CreatedById = v
 }
 
 // GetId returns the Id field value
@@ -235,6 +303,62 @@ func (o *UserOrg) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
+// GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
+func (o *UserOrg) GetUpdatedBy() User {
+	if o == nil || o.UpdatedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.UpdatedBy
+}
+
+// GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserOrg) GetUpdatedByOk() (*User, bool) {
+	if o == nil || o.UpdatedBy == nil {
+		return nil, false
+	}
+	return o.UpdatedBy, true
+}
+
+// HasUpdatedBy returns a boolean if a field has been set.
+func (o *UserOrg) HasUpdatedBy() bool {
+	if o != nil && o.UpdatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedBy gets a reference to the given User and assigns it to the UpdatedBy field.
+func (o *UserOrg) SetUpdatedBy(v User) {
+	o.UpdatedBy = &v
+}
+
+// GetUpdatedById returns the UpdatedById field value
+func (o *UserOrg) GetUpdatedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedById
+}
+
+// GetUpdatedByIdOk returns a tuple with the UpdatedById field value
+// and a boolean to check if the value has been set.
+func (o *UserOrg) GetUpdatedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdatedById, true
+}
+
+// SetUpdatedById sets field value
+func (o *UserOrg) SetUpdatedById(v string) {
+	o.UpdatedById = v
+}
+
 // GetUserId returns the UserId field value
 func (o *UserOrg) GetUserId() string {
 	if o == nil {
@@ -259,42 +383,40 @@ func (o *UserOrg) SetUserId(v string) {
 	o.UserId = v
 }
 
-// GetVersionId returns the VersionId field value if set, zero value otherwise.
+// GetVersionId returns the VersionId field value
 func (o *UserOrg) GetVersionId() int32 {
-	if o == nil || o.VersionId == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.VersionId
+
+	return o.VersionId
 }
 
-// GetVersionIdOk returns a tuple with the VersionId field value if set, nil otherwise
+// GetVersionIdOk returns a tuple with the VersionId field value
 // and a boolean to check if the value has been set.
 func (o *UserOrg) GetVersionIdOk() (*int32, bool) {
-	if o == nil || o.VersionId == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.VersionId, true
+	return &o.VersionId, true
 }
 
-// HasVersionId returns a boolean if a field has been set.
-func (o *UserOrg) HasVersionId() bool {
-	if o != nil && o.VersionId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionId gets a reference to the given int32 and assigns it to the VersionId field.
+// SetVersionId sets field value
 func (o *UserOrg) SetVersionId(v int32) {
-	o.VersionId = &v
+	o.VersionId = v
 }
 
 func (o UserOrg) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.CreatedBy != nil {
+		toSerialize["created_by"] = o.CreatedBy
+	}
+	if true {
+		toSerialize["created_by_id"] = o.CreatedById
 	}
 	if true {
 		toSerialize["id"] = o.Id
@@ -314,10 +436,16 @@ func (o UserOrg) MarshalJSON() ([]byte, error) {
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+	if o.UpdatedBy != nil {
+		toSerialize["updated_by"] = o.UpdatedBy
+	}
+	if true {
+		toSerialize["updated_by_id"] = o.UpdatedById
+	}
 	if true {
 		toSerialize["user_id"] = o.UserId
 	}
-	if o.VersionId != nil {
+	if true {
 		toSerialize["version_id"] = o.VersionId
 	}
 	return json.Marshal(toSerialize)

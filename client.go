@@ -68,6 +68,8 @@ type APIClient struct {
 
 	OrgWorkspaceMods *OrgWorkspaceModsService
 
+	OrgWorkspaceSnapshots *OrgWorkspaceSnapshotsService
+
 	OrgWorkspaces *OrgWorkspacesService
 
 	Orgs *OrgsService
@@ -81,6 +83,8 @@ type APIClient struct {
 	UserWorkspaceModVariables *UserWorkspaceModVariablesService
 
 	UserWorkspaceMods *UserWorkspaceModsService
+
+	UserWorkspaceSnapshots *UserWorkspaceSnapshotsService
 
 	UserWorkspaces *UserWorkspacesService
 
@@ -112,6 +116,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.OrgWorkspaceMembers = (*OrgWorkspaceMembersService)(&c.common)
 	c.OrgWorkspaceModVariables = (*OrgWorkspaceModVariablesService)(&c.common)
 	c.OrgWorkspaceMods = (*OrgWorkspaceModsService)(&c.common)
+	c.OrgWorkspaceSnapshots = (*OrgWorkspaceSnapshotsService)(&c.common)
 	c.OrgWorkspaces = (*OrgWorkspacesService)(&c.common)
 	c.Orgs = (*OrgsService)(&c.common)
 	c.UserConnections = (*UserConnectionsService)(&c.common)
@@ -119,6 +124,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.UserWorkspaceConnectionAssociations = (*UserWorkspaceConnectionAssociationsService)(&c.common)
 	c.UserWorkspaceModVariables = (*UserWorkspaceModVariablesService)(&c.common)
 	c.UserWorkspaceMods = (*UserWorkspaceModsService)(&c.common)
+	c.UserWorkspaceSnapshots = (*UserWorkspaceSnapshotsService)(&c.common)
 	c.UserWorkspaces = (*UserWorkspacesService)(&c.common)
 	c.Users = (*UsersService)(&c.common)
 

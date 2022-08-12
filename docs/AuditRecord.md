@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The unique identifier for an audit log. | 
 **IdentityHandle** | **string** | The handle name for an identity where the action has been performed. | 
 **IdentityId** | **string** | The unique identifier for an identity where the action has been performed. | 
+**ProcessId** | Pointer to **string** |  | [optional] 
 **TargetHandle** | Pointer to **string** | The handle name of the entity on which the action has been performed. | [optional] 
 **TargetId** | Pointer to **string** | The unique identifier of the entity on which the action has been performed. | [optional] 
 
@@ -256,6 +257,31 @@ and a boolean to check if the value has been set.
 
 SetIdentityId sets IdentityId field to given value.
 
+
+### GetProcessId
+
+`func (o *AuditRecord) GetProcessId() string`
+
+GetProcessId returns the ProcessId field if non-nil, zero value otherwise.
+
+### GetProcessIdOk
+
+`func (o *AuditRecord) GetProcessIdOk() (*string, bool)`
+
+GetProcessIdOk returns a tuple with the ProcessId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProcessId
+
+`func (o *AuditRecord) SetProcessId(v string)`
+
+SetProcessId sets ProcessId field to given value.
+
+### HasProcessId
+
+`func (o *AuditRecord) HasProcessId() bool`
+
+HasProcessId returns a boolean if a field has been set.
 
 ### GetTargetHandle
 

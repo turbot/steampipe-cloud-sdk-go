@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ApiVersion** | Pointer to **string** |  | [optional] 
+**CliVersion** | Pointer to **string** |  | [optional] 
 **CreatedAt** | **string** | The time of creation in ISO 8601 UTC. | 
 **CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **CreatedById** | **string** | The ID of the user that created this. | 
@@ -38,6 +40,56 @@ will change when the set of required properties is changed
 NewWorkspaceWithDefaults instantiates a new Workspace object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetApiVersion
+
+`func (o *Workspace) GetApiVersion() string`
+
+GetApiVersion returns the ApiVersion field if non-nil, zero value otherwise.
+
+### GetApiVersionOk
+
+`func (o *Workspace) GetApiVersionOk() (*string, bool)`
+
+GetApiVersionOk returns a tuple with the ApiVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApiVersion
+
+`func (o *Workspace) SetApiVersion(v string)`
+
+SetApiVersion sets ApiVersion field to given value.
+
+### HasApiVersion
+
+`func (o *Workspace) HasApiVersion() bool`
+
+HasApiVersion returns a boolean if a field has been set.
+
+### GetCliVersion
+
+`func (o *Workspace) GetCliVersion() string`
+
+GetCliVersion returns the CliVersion field if non-nil, zero value otherwise.
+
+### GetCliVersionOk
+
+`func (o *Workspace) GetCliVersionOk() (*string, bool)`
+
+GetCliVersionOk returns a tuple with the CliVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCliVersion
+
+`func (o *Workspace) SetCliVersion(v string)`
+
+SetCliVersion sets CliVersion field to given value.
+
+### HasCliVersion
+
+`func (o *Workspace) HasCliVersion() bool`
+
+HasCliVersion returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

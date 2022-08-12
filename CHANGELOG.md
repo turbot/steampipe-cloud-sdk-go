@@ -1,5 +1,11 @@
 # Steampipe Cloud Go SDK
 
+## 0.1.3 [2022-08-12]
+
+- Add Snapshot APIs.
+- Remove email from all responses where users are returned.
+- Various enhancements related to APIs returning redundant data.
+
 ## 0.1.2 [2022-07-19]
 
 - Allow users to be added to workspaces directly, bypassing the invite process.

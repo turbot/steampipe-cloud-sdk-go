@@ -109,6 +109,12 @@ Class | Method | HTTP request | Description
 *OrgWorkspaceMods* | [**List**](docs/OrgWorkspaceMods.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod | List organization workspace installed mods
 *OrgWorkspaceMods* | [**Uninstall**](docs/OrgWorkspaceMods.md#uninstall) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Uninstall mod from organization workspace.
 *OrgWorkspaceMods* | [**Update**](docs/OrgWorkspaceMods.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Update a mod in an organization workspace
+*OrgWorkspaceSnapshots* | [**Create**](docs/OrgWorkspaceSnapshots.md#create) | **Post** /org/{org_handle}/workspace/{workspace_handle}/snapshot | Create org workspace snapshot
+*OrgWorkspaceSnapshots* | [**Delete**](docs/OrgWorkspaceSnapshots.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Delete org workspace snapshot
+*OrgWorkspaceSnapshots* | [**Download**](docs/OrgWorkspaceSnapshots.md#download) | **Get** /org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}.{content_type} | Download org workspace snapshot
+*OrgWorkspaceSnapshots* | [**Get**](docs/OrgWorkspaceSnapshots.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Get org workspace snapshot
+*OrgWorkspaceSnapshots* | [**List**](docs/OrgWorkspaceSnapshots.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/snapshot | List org workspace snapshots
+*OrgWorkspaceSnapshots* | [**Update**](docs/OrgWorkspaceSnapshots.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Update org workspace snapshot
 *OrgWorkspaces* | [**Create**](docs/OrgWorkspaces.md#create) | **Post** /org/{org_handle}/workspace | Create org workspace
 *OrgWorkspaces* | [**Delete**](docs/OrgWorkspaces.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle} | Delete org workspace
 *OrgWorkspaces* | [**Get**](docs/OrgWorkspaces.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle} | Get org workspace
@@ -116,7 +122,8 @@ Class | Method | HTTP request | Description
 *OrgWorkspaces* | [**GetQueryWithExtensions**](docs/OrgWorkspaces.md#getquerywithextensions) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
 *OrgWorkspaces* | [**GetSchema**](docs/OrgWorkspaces.md#getschema) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema | Get org workspace schemas
 *OrgWorkspaces* | [**List**](docs/OrgWorkspaces.md#list) | **Get** /org/{org_handle}/workspace | List org workspaces
-*OrgWorkspaces* | [**ListDBLogs**](docs/OrgWorkspaces.md#listdblogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/logs | Org workspace logs
+*OrgWorkspaces* | [**ListAuditLogs**](docs/OrgWorkspaces.md#listauditlogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/audit_log | Org workspace audit logs
+*OrgWorkspaces* | [**ListDBLogs**](docs/OrgWorkspaces.md#listdblogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/db_log | Org workspace logs
 *OrgWorkspaces* | [**PostQuery**](docs/OrgWorkspaces.md#postquery) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
 *OrgWorkspaces* | [**PostQueryWithExtensions**](docs/OrgWorkspaces.md#postquerywithextensions) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
 *OrgWorkspaces* | [**Update**](docs/OrgWorkspaces.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle} | Update org workspace
@@ -125,9 +132,8 @@ Class | Method | HTTP request | Description
 *Orgs* | [**Get**](docs/Orgs.md#get) | **Get** /org/{org_handle} | Get org
 *Orgs* | [**GetQuota**](docs/Orgs.md#getquota) | **Get** /org/{org_handle}/quota | Org quota
 *Orgs* | [**List**](docs/Orgs.md#list) | **Get** /org | List orgs
-*Orgs* | [**ListAuditLogs**](docs/Orgs.md#listauditlogs) | **Get** /org/{org_handle}/audit | Org audit logs
+*Orgs* | [**ListAuditLogs**](docs/Orgs.md#listauditlogs) | **Get** /org/{org_handle}/audit_log | Org audit logs
 *Orgs* | [**ListFeatures**](docs/Orgs.md#listfeatures) | **Get** /org/{org_handle}/feature | Org features
-*Orgs* | [**ListWorkspaceAuditLogs**](docs/Orgs.md#listworkspaceauditlogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/audit | Org workspace audit logs
 *Orgs* | [**Update**](docs/Orgs.md#update) | **Patch** /org/{org_handle} | Update org
 *UserConnections* | [**Create**](docs/UserConnections.md#create) | **Post** /user/{user_handle}/conn | Create user connection
 *UserConnections* | [**Delete**](docs/UserConnections.md#delete) | **Delete** /user/{user_handle}/conn/{conn_handle} | Delete user connection
@@ -154,6 +160,12 @@ Class | Method | HTTP request | Description
 *UserWorkspaceMods* | [**List**](docs/UserWorkspaceMods.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod | List user workspace installed mods
 *UserWorkspaceMods* | [**Uninstall**](docs/UserWorkspaceMods.md#uninstall) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Uninstall mod from a user&#39;s workspace.
 *UserWorkspaceMods* | [**Update**](docs/UserWorkspaceMods.md#update) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Update a mod in a user&#39;s workspace
+*UserWorkspaceSnapshots* | [**Create**](docs/UserWorkspaceSnapshots.md#create) | **Post** /user/{user_handle}/workspace/{workspace_handle}/snapshot | Create user workspace snapshot
+*UserWorkspaceSnapshots* | [**Delete**](docs/UserWorkspaceSnapshots.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Delete user workspace snapshot
+*UserWorkspaceSnapshots* | [**Download**](docs/UserWorkspaceSnapshots.md#download) | **Get** /user/{user_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}.{content_type} | Download user workspace snapshot
+*UserWorkspaceSnapshots* | [**Get**](docs/UserWorkspaceSnapshots.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Get user workspace snapshot
+*UserWorkspaceSnapshots* | [**List**](docs/UserWorkspaceSnapshots.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/snapshot | List user workspace snapshots
+*UserWorkspaceSnapshots* | [**Update**](docs/UserWorkspaceSnapshots.md#update) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Update user workspace snapshot
 *UserWorkspaces* | [**Create**](docs/UserWorkspaces.md#create) | **Post** /user/{user_handle}/workspace | Create user workspace
 *UserWorkspaces* | [**Delete**](docs/UserWorkspaces.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle} | Delete user workspace
 *UserWorkspaces* | [**Get**](docs/UserWorkspaces.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle} | Get user workspace
@@ -161,7 +173,8 @@ Class | Method | HTTP request | Description
 *UserWorkspaces* | [**GetQueryWithExtensions**](docs/UserWorkspaces.md#getquerywithextensions) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
 *UserWorkspaces* | [**GetSchema**](docs/UserWorkspaces.md#getschema) | **Get** /user/{user_handle}/workspace/{workspace_handle}/schema | Get user workspace schemas
 *UserWorkspaces* | [**List**](docs/UserWorkspaces.md#list) | **Get** /user/{user_handle}/workspace | List user workspaces
-*UserWorkspaces* | [**ListDBLogs**](docs/UserWorkspaces.md#listdblogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/logs | User workspace logs
+*UserWorkspaces* | [**ListAuditLogs**](docs/UserWorkspaces.md#listauditlogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/audit_log | User workspace audit logs
+*UserWorkspaces* | [**ListDBLogs**](docs/UserWorkspaces.md#listdblogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/db_log | User workspace logs
 *UserWorkspaces* | [**PostQuery**](docs/UserWorkspaces.md#postquery) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
 *UserWorkspaces* | [**PostQueryWithExtensions**](docs/UserWorkspaces.md#postquerywithextensions) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
 *UserWorkspaces* | [**Update**](docs/UserWorkspaces.md#update) | **Patch** /user/{user_handle}/workspace/{workspace_handle} | Update user workspace
@@ -172,16 +185,13 @@ Class | Method | HTTP request | Description
 *Users* | [**GetDBPassword**](docs/Users.md#getdbpassword) | **Get** /user/{user_handle}/password | Get user password
 *Users* | [**GetQuota**](docs/Users.md#getquota) | **Get** /user/{user_handle}/quota | User quota
 *Users* | [**List**](docs/Users.md#list) | **Get** /user | List users
-*Users* | [**ListAuditLogs**](docs/Users.md#listauditlogs) | **Get** /user/{user_handle}/audit | User audit logs
+*Users* | [**ListAuditLogs**](docs/Users.md#listauditlogs) | **Get** /user/{user_handle}/audit_log | User audit logs
 *Users* | [**ListFeatures**](docs/Users.md#listfeatures) | **Get** /user/{user_handle}/feature | User features
-*Users* | [**ListWorkspaceAuditLogs**](docs/Users.md#listworkspaceauditlogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/audit | User workspace audit logs
 *Users* | [**Update**](docs/Users.md#update) | **Patch** /user/{user_handle} | Update user
 
 
 ## Documentation For Models
 
- - [ActorOrg](docs/ActorOrg.md)
- - [ActorOrgWorkspace](docs/ActorOrgWorkspace.md)
  - [ActorWorkspace](docs/ActorWorkspace.md)
  - [AuditRecord](docs/AuditRecord.md)
  - [Connection](docs/Connection.md)
@@ -195,12 +205,12 @@ Class | Method | HTTP request | Description
  - [CreateWorkspaceModRequest](docs/CreateWorkspaceModRequest.md)
  - [CreateWorkspaceModVariableSettingRequest](docs/CreateWorkspaceModVariableSettingRequest.md)
  - [CreateWorkspaceRequest](docs/CreateWorkspaceRequest.md)
+ - [CreateWorkspaceSnapshotRequest](docs/CreateWorkspaceSnapshotRequest.md)
  - [ErrorDetailModel](docs/ErrorDetailModel.md)
  - [ErrorModel](docs/ErrorModel.md)
  - [Feature](docs/Feature.md)
  - [Identity](docs/Identity.md)
  - [InviteOrgUserRequest](docs/InviteOrgUserRequest.md)
- - [ListActorOrgsResponse](docs/ListActorOrgsResponse.md)
  - [ListActorWorkspacesResponse](docs/ListActorWorkspacesResponse.md)
  - [ListAuditLogsResponse](docs/ListAuditLogsResponse.md)
  - [ListConnectionsResponse](docs/ListConnectionsResponse.md)
@@ -216,6 +226,7 @@ Class | Method | HTTP request | Description
  - [ListWorkspaceConnResponse](docs/ListWorkspaceConnResponse.md)
  - [ListWorkspaceModVariablesResponse](docs/ListWorkspaceModVariablesResponse.md)
  - [ListWorkspaceModsResponse](docs/ListWorkspaceModsResponse.md)
+ - [ListWorkspaceSnapshotsResponse](docs/ListWorkspaceSnapshotsResponse.md)
  - [ListWorkspacesResponse](docs/ListWorkspacesResponse.md)
  - [LogRecord](docs/LogRecord.md)
  - [Org](docs/Org.md)
@@ -236,6 +247,7 @@ Class | Method | HTTP request | Description
  - [UpdateWorkspaceModRequest](docs/UpdateWorkspaceModRequest.md)
  - [UpdateWorkspaceModVariableSettingRequest](docs/UpdateWorkspaceModVariableSettingRequest.md)
  - [UpdateWorkspaceRequest](docs/UpdateWorkspaceRequest.md)
+ - [UpdateWorkspaceSnapshotRequest](docs/UpdateWorkspaceSnapshotRequest.md)
  - [User](docs/User.md)
  - [UserDatabasePassword](docs/UserDatabasePassword.md)
  - [UserLoginRequest](docs/UserLoginRequest.md)
@@ -249,6 +261,8 @@ Class | Method | HTTP request | Description
  - [WorkspaceQueryResult](docs/WorkspaceQueryResult.md)
  - [WorkspaceQueryResultColumn](docs/WorkspaceQueryResultColumn.md)
  - [WorkspaceSchema](docs/WorkspaceSchema.md)
+ - [WorkspaceSnapshot](docs/WorkspaceSnapshot.md)
+ - [WorkspaceSnapshotData](docs/WorkspaceSnapshotData.md)
 
 
 ## Documentation For Authorization

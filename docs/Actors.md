@@ -280,7 +280,7 @@ No authorization required
 
 ## ListOrgs
 
-> ListActorOrgsResponse ListOrgs(ctx).Limit(limit).NextToken(nextToken).Execute()
+> ListUserOrgsResponse ListOrgs(ctx).Limit(limit).NextToken(nextToken).Execute()
 
 List actor orgs
 
@@ -309,7 +309,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `Actors.ListOrgs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListOrgs`: ListActorOrgsResponse
+    // response from `ListOrgs`: ListUserOrgsResponse
     fmt.Fprintf(os.Stdout, "Response from `Actors.ListOrgs`: %v\n", resp)
 }
 ```
@@ -330,7 +330,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListActorOrgsResponse**](ListActorOrgsResponse.md)
+[**ListUserOrgsResponse**](ListUserOrgsResponse.md)
 
 ### Authorization
 

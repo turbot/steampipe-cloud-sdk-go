@@ -207,7 +207,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListActorOrgsResponse'
+                $ref: '#/components/schemas/ListUserOrgsResponse'
           description: OK
         "400":
           content:
@@ -1011,10 +1011,10 @@ paths:
       tags:
       - Orgs
       x-codegen-request-body-name: request
-  /org/{org_handle}/audit:
+  /org/{org_handle}/audit_log:
     get:
       description: Returns the audit logs for an org.
-      operationId: orgAudit_listAuditLogs
+      operationId: org_listAuditLogs
       parameters:
       - description: Specify the org handle to get the audit logs.
         explode: false
@@ -2493,10 +2493,10 @@ paths:
       tags:
       - OrgWorkspaces
       x-codegen-request-body-name: request
-  /org/{org_handle}/workspace/{workspace_handle}/audit:
+  /org/{org_handle}/workspace/{workspace_handle}/audit_log:
     get:
       description: Returns the audit logs for an org workspace.
-      operationId: orgAudit_listWorkspaceAuditLogs
+      operationId: orgWorkspace_listAuditLogs
       parameters:
       - description: Specify the org handle to get the audit logs.
         explode: false
@@ -2578,7 +2578,7 @@ paths:
           description: Internal Server Error
       summary: Org workspace audit logs
       tags:
-      - Orgs
+      - OrgWorkspaces
   /org/{org_handle}/workspace/{workspace_handle}/conn:
     get:
       description: List the connections associated with a workspace.
@@ -2903,7 +2903,7 @@ paths:
       summary: Get org workspace connection association
       tags:
       - OrgWorkspaceConnectionAssociations
-  /org/{org_handle}/workspace/{workspace_handle}/logs:
+  /org/{org_handle}/workspace/{workspace_handle}/db_log:
     get:
       description: Returns the workspace logs for an org.
       operationId: orgWorkspace_listDBLogs
@@ -2926,6 +2926,29 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -4862,6 +4885,498 @@ paths:
       summary: Get org workspace schemas
       tags:
       - OrgWorkspaces
+  /org/{org_handle}/workspace/{workspace_handle}/snapshot:
+    get:
+      description: List the workspace snapshots for an org.
+      operationId: orgWorkspaceSnapshot_list
+      parameters:
+      - description: The handle of the org to list the workspace snapshots for.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the org workspace to list snapshots for.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspaceSnapshotsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List org workspace snapshots
+      tags:
+      - OrgWorkspaceSnapshots
+    post:
+      description: Creates a new workspace snapshot for an org.
+      operationId: orgWorkspaceSnapshot_create
+      parameters:
+      - description: The handle of the org to create the workspace snapshot for.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the org workspace to create the snapshot for.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceSnapshotRequest'
+        description: The request body for the org workspace snapshot to be created.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSnapshot'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Payment Required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Create org workspace snapshot
+      tags:
+      - OrgWorkspaceSnapshots
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}:
+    delete:
+      description: Deletes an org workspace snapshot.
+      operationId: orgWorkspaceSnapshot_delete
+      parameters:
+      - description: The handle of the org that the workspace snapshot belongs to.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the org workspace that the snapshot belongs to.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The handle of the snapshot which needs to be deleted.
+        explode: false
+        in: path
+        name: snapshot_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSnapshot'
+          description: OK
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Delete org workspace snapshot
+      tags:
+      - OrgWorkspaceSnapshots
+    get:
+      description: Get the details for an org workspace snapshot.
+      operationId: orgWorkspaceSnapshot_get
+      parameters:
+      - description: The handle of the org that the workspace snapshot belongs to.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the org workspace that the snapshot belongs to.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The handle of the snapshot whose detail needs to be fetched.
+        explode: false
+        in: path
+        name: snapshot_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSnapshot'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get org workspace snapshot
+      tags:
+      - OrgWorkspaceSnapshots
+    patch:
+      description: Updates an org workspace snapshot.
+      operationId: orgWorkspaceSnapshot_update
+      parameters:
+      - description: The handle of the org that the workspace snapshot belongs to.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the org workspace that the snapshot belongs to.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The handle of the snapshot to update.
+        explode: false
+        in: path
+        name: snapshot_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceSnapshotRequest'
+        description: The request body for the org workspace snapshot to be updated.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSnapshot'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Update org workspace snapshot
+      tags:
+      - OrgWorkspaceSnapshots
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}.{content_type}:
+    get:
+      description: Downloads the full data for an org workspace snapshot.
+      operationId: orgWorkspaceSnapshot_download
+      parameters:
+      - description: The handle of the org that the workspace snapshot belongs to.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the org workspace that the snapshot belongs to.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The Id of the snapshot to be downloaded.
+        explode: false
+        in: path
+        name: snapshot_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The type of content to the downloaded.
+        explode: false
+        in: path
+        name: content_type
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSnapshotData'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Download org workspace snapshot
+      tags:
+      - OrgWorkspaceSnapshots
+    servers:
+    - url: https://cloud.steampipe.io/download
   /signup:
     post:
       description: New user signup.
@@ -5274,10 +5789,10 @@ paths:
       tags:
       - Users
       x-codegen-request-body-name: request
-  /user/{user_handle}/audit:
+  /user/{user_handle}/audit_log:
     get:
       description: Returns the audit logs for a user.
-      operationId: userAudit_listAuditLogs
+      operationId: user_listAuditLogs
       parameters:
       - description: Specify the user handle to get the audit logs.
         explode: false
@@ -6751,10 +7266,10 @@ paths:
       tags:
       - UserWorkspaces
       x-codegen-request-body-name: request
-  /user/{user_handle}/workspace/{workspace_handle}/audit:
+  /user/{user_handle}/workspace/{workspace_handle}/audit_log:
     get:
       description: Returns the audit logs for a user workspace.
-      operationId: userAudit_listWorkspaceAuditLogs
+      operationId: userWorkspace_listAuditLogs
       parameters:
       - description: Specify the user handle to get the audit logs.
         explode: false
@@ -6836,7 +7351,7 @@ paths:
           description: Internal Server Error
       summary: User workspace audit logs
       tags:
-      - Users
+      - UserWorkspaces
   /user/{user_handle}/workspace/{workspace_handle}/conn:
     get:
       description: List the connections associated with a workspace.
@@ -7159,7 +7674,7 @@ paths:
       summary: Get user workspace connection association
       tags:
       - UserWorkspaceConnectionAssociations
-  /user/{user_handle}/workspace/{workspace_handle}/logs:
+  /user/{user_handle}/workspace/{workspace_handle}/db_log:
     get:
       description: Returns the workspace logs for a user.
       operationId: userWorkspace_listDBLogs
@@ -7182,6 +7697,29 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -8719,6 +9257,508 @@ paths:
       summary: Get user workspace schemas
       tags:
       - UserWorkspaces
+  /user/{user_handle}/workspace/{workspace_handle}/snapshot:
+    get:
+      description: List the workspace snapshots for a user.
+      operationId: userWorkspaceSnapshot_list
+      parameters:
+      - description: The handle of the user to list the workspace snapshots for.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace to list snapshots for.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspaceSnapshotsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List user workspace snapshots
+      tags:
+      - UserWorkspaceSnapshots
+    post:
+      description: Creates a new workspace snapshot for a user.
+      operationId: userWorkspaceSnapshot_create
+      parameters:
+      - description: The handle of the user to create the workspace snapshot for.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the user workspace to create the snapshot for.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceSnapshotRequest'
+        description: The request body for the user workspace snapshot to be created.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSnapshot'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Payment Required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Create user workspace snapshot
+      tags:
+      - UserWorkspaceSnapshots
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}:
+    delete:
+      description: Deletes a user workspace snapshot.
+      operationId: userWorkspaceSnapshot_delete
+      parameters:
+      - description: The handle of the user that the workspace snapshot belongs to.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the user workspace that the snapshot belongs to.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The handle of the snapshot which needs to be deleted.
+        explode: false
+        in: path
+        name: snapshot_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSnapshot'
+          description: OK
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Delete user workspace snapshot
+      tags:
+      - UserWorkspaceSnapshots
+    get:
+      description: Get the details for a user workspace snapshot.
+      operationId: userWorkspaceSnapshot_get
+      parameters:
+      - description: The handle of the user that the workspace snapshot belongs to.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the user workspace that the snapshot belongs to.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The handle of the snapshot whose detail needs to be fetched.
+        explode: false
+        in: path
+        name: snapshot_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSnapshot'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get user workspace snapshot
+      tags:
+      - UserWorkspaceSnapshots
+    patch:
+      description: Updates a user workspace snapshot.
+      operationId: userWorkspaceSnapshot_update
+      parameters:
+      - description: The handle of the user that the workspace snapshot belongs to.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the user workspace that the snapshot belongs to.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The handle of the snapshot to update.
+        explode: false
+        in: path
+        name: snapshot_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceSnapshotRequest'
+        description: The request body for the user workspace snapshot to be updated.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSnapshot'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Update user workspace snapshot
+      tags:
+      - UserWorkspaceSnapshots
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}.{content_type}:
+    get:
+      description: Downloads the full data for a user workspace snapshot.
+      operationId: userWorkspaceSnapshot_download
+      parameters:
+      - description: The handle of the user that the workspace snapshot belongs to.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the user workspace that the snapshot belongs to.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The Id of the snapshot to be downloaded.
+        explode: false
+        in: path
+        name: snapshot_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The type of content to the downloaded.
+        explode: false
+        in: path
+        name: content_type
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSnapshotData'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Download user workspace snapshot
+      tags:
+      - UserWorkspaceSnapshots
+    servers:
+    - url: https://cloud.steampipe.io/download
 components:
   schemas:
     SchemaInfo:
@@ -8887,190 +9927,6 @@ components:
       - title
       - type
       type: object
-    ActorOrg:
-      example:
-        role: role
-        org:
-          avatar_url: avatar_url
-          updated_at: updated_at
-          updated_by:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            created_at: created_at
-            handle: handle
-            id: id
-            version_id: 0
-            display_name: display_name
-            email: email
-            preview_access_mode: preview_access_mode
-            url: url
-            status: status
-          created_at: created_at
-          handle: handle
-          updated_by_id: updated_by_id
-          created_by_id: created_by_id
-          id: id
-          version_id: 0
-          display_name: display_name
-          created_by:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            created_at: created_at
-            handle: handle
-            id: id
-            version_id: 0
-            display_name: display_name
-            email: email
-            preview_access_mode: preview_access_mode
-            url: url
-            status: status
-          url: url
-        workspaces:
-        - workspace:
-            hive: hive
-            public_key: public_key
-            database_name: database_name
-            identity_id: identity_id
-            created_at: created_at
-            handle: aaa
-            version_id: 6
-            created_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_at: updated_at
-            host: host
-            updated_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_by_id: updated_by_id
-            created_by_id: created_by_id
-            id: id
-            state: state
-          role: role
-        - workspace:
-            hive: hive
-            public_key: public_key
-            database_name: database_name
-            identity_id: identity_id
-            created_at: created_at
-            handle: aaa
-            version_id: 6
-            created_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_at: updated_at
-            host: host
-            updated_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_by_id: updated_by_id
-            created_by_id: created_by_id
-            id: id
-            state: state
-          role: role
-      properties:
-        org:
-          $ref: '#/components/schemas/Org'
-        role:
-          description: The role of the actor in the org.
-          type: string
-        workspaces:
-          description: Any workspaces the actor has explicit permission to within
-            the org. Any org owner will have implicit owner roles over all workspaces,
-            so they will not be listed here.
-          items:
-            $ref: '#/components/schemas/ActorOrgWorkspace'
-          type: array
-      required:
-      - org
-      - role
-      type: object
-    ActorOrgWorkspace:
-      example:
-        workspace:
-          hive: hive
-          public_key: public_key
-          database_name: database_name
-          identity_id: identity_id
-          created_at: created_at
-          handle: aaa
-          version_id: 6
-          created_by:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            created_at: created_at
-            handle: handle
-            id: id
-            version_id: 0
-            display_name: display_name
-            email: email
-            preview_access_mode: preview_access_mode
-            url: url
-            status: status
-          updated_at: updated_at
-          host: host
-          updated_by:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            created_at: created_at
-            handle: handle
-            id: id
-            version_id: 0
-            display_name: display_name
-            email: email
-            preview_access_mode: preview_access_mode
-            url: url
-            status: status
-          updated_by_id: updated_by_id
-          created_by_id: created_by_id
-          id: id
-          state: state
-        role: role
-      properties:
-        role:
-          description: The role of the actor in the workspace.
-          type: string
-        workspace:
-          $ref: '#/components/schemas/Workspace'
-      required:
-      - role
-      type: object
     ActorWorkspace:
       example:
         workspace_id: workspace_id
@@ -9081,7 +9937,8 @@ components:
           identity_id: identity_id
           created_at: created_at
           handle: aaa
-          version_id: 6
+          version_id: 0
+          api_version: api_version
           created_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -9090,7 +9947,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -9104,15 +9960,16 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
+          cli_version: cli_version
           updated_by_id: updated_by_id
           created_by_id: created_by_id
           id: id
           state: state
         role: role
+        database_name: database_name
         identity_id: identity_id
         identity:
           avatar_url: avatar_url
@@ -9120,7 +9977,18 @@ components:
           id: id
           display_name: display_name
           type: type
+        host: host
+        handle: handle
+        id: id
       properties:
+        database_name:
+          type: string
+        handle:
+          type: string
+        host:
+          type: string
+        id:
+          type: string
         identity:
           $ref: '#/components/schemas/Identity'
         identity_id:
@@ -9138,6 +10006,7 @@ components:
       type: object
     AuditRecord:
       example:
+        process_id: process_id
         identity_handle: identity_handle
         data: '{}'
         action_type: action_type
@@ -9183,6 +10052,8 @@ components:
           description: The unique identifier for an identity where the action has
             been performed.
           type: string
+        process_id:
+          type: string
         target_handle:
           description: The handle name of the entity on which the action has been
             performed.
@@ -9219,7 +10090,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -9233,7 +10103,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -9429,6 +10298,34 @@ components:
       required:
       - handle
       type: object
+    CreateWorkspaceSnapshotRequest:
+      example:
+        data:
+          layout: '{}'
+          schema_version: schema_version
+          start_time: start_time
+          variables: '{}'
+          inputs: '{}'
+          panels: '{}'
+          search_path:
+          - search_path
+          - search_path
+          end_time: end_time
+          action: action
+          dashboard_node: '{}'
+        visibility: visibility
+        tags: ""
+      properties:
+        data:
+          $ref: '#/components/schemas/WorkspaceSnapshotData'
+        tags:
+          nullable: true
+        visibility:
+          description: The visibility of the snapshot to create.
+          type: string
+      required:
+      - data
+      type: object
     Feature:
       example:
         updated_at: updated_at
@@ -9502,248 +10399,6 @@ components:
       type: object
     JSONB:
       type: object
-    ListActorOrgsResponse:
-      example:
-        next_token: next_token
-        items:
-        - role: role
-          org:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            updated_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            created_at: created_at
-            handle: handle
-            updated_by_id: updated_by_id
-            created_by_id: created_by_id
-            id: id
-            version_id: 0
-            display_name: display_name
-            created_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            url: url
-          workspaces:
-          - workspace:
-              hive: hive
-              public_key: public_key
-              database_name: database_name
-              identity_id: identity_id
-              created_at: created_at
-              handle: aaa
-              version_id: 6
-              created_by:
-                avatar_url: avatar_url
-                updated_at: updated_at
-                created_at: created_at
-                handle: handle
-                id: id
-                version_id: 0
-                display_name: display_name
-                email: email
-                preview_access_mode: preview_access_mode
-                url: url
-                status: status
-              updated_at: updated_at
-              host: host
-              updated_by:
-                avatar_url: avatar_url
-                updated_at: updated_at
-                created_at: created_at
-                handle: handle
-                id: id
-                version_id: 0
-                display_name: display_name
-                email: email
-                preview_access_mode: preview_access_mode
-                url: url
-                status: status
-              updated_by_id: updated_by_id
-              created_by_id: created_by_id
-              id: id
-              state: state
-            role: role
-          - workspace:
-              hive: hive
-              public_key: public_key
-              database_name: database_name
-              identity_id: identity_id
-              created_at: created_at
-              handle: aaa
-              version_id: 6
-              created_by:
-                avatar_url: avatar_url
-                updated_at: updated_at
-                created_at: created_at
-                handle: handle
-                id: id
-                version_id: 0
-                display_name: display_name
-                email: email
-                preview_access_mode: preview_access_mode
-                url: url
-                status: status
-              updated_at: updated_at
-              host: host
-              updated_by:
-                avatar_url: avatar_url
-                updated_at: updated_at
-                created_at: created_at
-                handle: handle
-                id: id
-                version_id: 0
-                display_name: display_name
-                email: email
-                preview_access_mode: preview_access_mode
-                url: url
-                status: status
-              updated_by_id: updated_by_id
-              created_by_id: created_by_id
-              id: id
-              state: state
-            role: role
-        - role: role
-          org:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            updated_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            created_at: created_at
-            handle: handle
-            updated_by_id: updated_by_id
-            created_by_id: created_by_id
-            id: id
-            version_id: 0
-            display_name: display_name
-            created_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            url: url
-          workspaces:
-          - workspace:
-              hive: hive
-              public_key: public_key
-              database_name: database_name
-              identity_id: identity_id
-              created_at: created_at
-              handle: aaa
-              version_id: 6
-              created_by:
-                avatar_url: avatar_url
-                updated_at: updated_at
-                created_at: created_at
-                handle: handle
-                id: id
-                version_id: 0
-                display_name: display_name
-                email: email
-                preview_access_mode: preview_access_mode
-                url: url
-                status: status
-              updated_at: updated_at
-              host: host
-              updated_by:
-                avatar_url: avatar_url
-                updated_at: updated_at
-                created_at: created_at
-                handle: handle
-                id: id
-                version_id: 0
-                display_name: display_name
-                email: email
-                preview_access_mode: preview_access_mode
-                url: url
-                status: status
-              updated_by_id: updated_by_id
-              created_by_id: created_by_id
-              id: id
-              state: state
-            role: role
-          - workspace:
-              hive: hive
-              public_key: public_key
-              database_name: database_name
-              identity_id: identity_id
-              created_at: created_at
-              handle: aaa
-              version_id: 6
-              created_by:
-                avatar_url: avatar_url
-                updated_at: updated_at
-                created_at: created_at
-                handle: handle
-                id: id
-                version_id: 0
-                display_name: display_name
-                email: email
-                preview_access_mode: preview_access_mode
-                url: url
-                status: status
-              updated_at: updated_at
-              host: host
-              updated_by:
-                avatar_url: avatar_url
-                updated_at: updated_at
-                created_at: created_at
-                handle: handle
-                id: id
-                version_id: 0
-                display_name: display_name
-                email: email
-                preview_access_mode: preview_access_mode
-                url: url
-                status: status
-              updated_by_id: updated_by_id
-              created_by_id: created_by_id
-              id: id
-              state: state
-            role: role
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ActorOrg'
-          type: array
-        next_token:
-          type: string
-      type: object
     ListActorWorkspacesResponse:
       example:
         next_token: next_token
@@ -9756,7 +10411,8 @@ components:
             identity_id: identity_id
             created_at: created_at
             handle: aaa
-            version_id: 6
+            version_id: 0
+            api_version: api_version
             created_by:
               avatar_url: avatar_url
               updated_at: updated_at
@@ -9765,7 +10421,6 @@ components:
               id: id
               version_id: 0
               display_name: display_name
-              email: email
               preview_access_mode: preview_access_mode
               url: url
               status: status
@@ -9779,15 +10434,16 @@ components:
               id: id
               version_id: 0
               display_name: display_name
-              email: email
               preview_access_mode: preview_access_mode
               url: url
               status: status
+            cli_version: cli_version
             updated_by_id: updated_by_id
             created_by_id: created_by_id
             id: id
             state: state
           role: role
+          database_name: database_name
           identity_id: identity_id
           identity:
             avatar_url: avatar_url
@@ -9795,6 +10451,9 @@ components:
             id: id
             display_name: display_name
             type: type
+          host: host
+          handle: handle
+          id: id
         - workspace_id: workspace_id
           workspace:
             hive: hive
@@ -9803,7 +10462,8 @@ components:
             identity_id: identity_id
             created_at: created_at
             handle: aaa
-            version_id: 6
+            version_id: 0
+            api_version: api_version
             created_by:
               avatar_url: avatar_url
               updated_at: updated_at
@@ -9812,7 +10472,6 @@ components:
               id: id
               version_id: 0
               display_name: display_name
-              email: email
               preview_access_mode: preview_access_mode
               url: url
               status: status
@@ -9826,15 +10485,16 @@ components:
               id: id
               version_id: 0
               display_name: display_name
-              email: email
               preview_access_mode: preview_access_mode
               url: url
               status: status
+            cli_version: cli_version
             updated_by_id: updated_by_id
             created_by_id: created_by_id
             id: id
             state: state
           role: role
+          database_name: database_name
           identity_id: identity_id
           identity:
             avatar_url: avatar_url
@@ -9842,6 +10502,9 @@ components:
             id: id
             display_name: display_name
             type: type
+          host: host
+          handle: handle
+          id: id
       properties:
         items:
           items:
@@ -9854,7 +10517,8 @@ components:
       example:
         next_token: next_token
         items:
-        - identity_handle: identity_handle
+        - process_id: process_id
+          identity_handle: identity_handle
           data: '{}'
           action_type: action_type
           identity_id: identity_id
@@ -9867,7 +10531,8 @@ components:
           id: id
           target_handle: target_handle
           actor_handle: actor_handle
-        - identity_handle: identity_handle
+        - process_id: process_id
+          identity_handle: identity_handle
           data: '{}'
           action_type: action_type
           identity_id: identity_id
@@ -9905,7 +10570,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -9919,7 +10583,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -9940,7 +10603,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -9954,7 +10616,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10061,7 +10722,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10077,7 +10737,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10092,11 +10751,9 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
-          email: email
           status: status
         - role: role
           user_handle: user_handle
@@ -10110,7 +10767,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10126,7 +10782,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10141,11 +10796,9 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
-          email: email
           status: status
       properties:
         items:
@@ -10159,45 +10812,7 @@ components:
       example:
         next_token: next_token
         items:
-        - workspace:
-            hive: hive
-            public_key: public_key
-            database_name: database_name
-            identity_id: identity_id
-            created_at: created_at
-            handle: aaa
-            version_id: 6
-            created_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_at: updated_at
-            host: host
-            updated_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_by_id: updated_by_id
-            created_by_id: created_by_id
-            id: id
-            state: state
-          role: role
+        - role: role
           user_handle: user_handle
           created_at: created_at
           version_id: 0
@@ -10209,7 +10824,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10226,7 +10840,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10242,51 +10855,11 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
-          email: email
           status: status
-        - workspace:
-            hive: hive
-            public_key: public_key
-            database_name: database_name
-            identity_id: identity_id
-            created_at: created_at
-            handle: aaa
-            version_id: 6
-            created_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_at: updated_at
-            host: host
-            updated_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_by_id: updated_by_id
-            created_by_id: created_by_id
-            id: id
-            state: state
-          role: role
+        - role: role
           user_handle: user_handle
           created_at: created_at
           version_id: 0
@@ -10298,7 +10871,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10315,7 +10887,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10331,11 +10902,9 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
-          email: email
           status: status
       properties:
         items:
@@ -10359,7 +10928,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10378,7 +10946,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10393,7 +10960,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10412,7 +10978,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10456,7 +11021,6 @@ components:
         next_token: next_token
         items:
         - role: role
-          updated_at: updated_at
           org:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -10468,7 +11032,6 @@ components:
               id: id
               version_id: 0
               display_name: display_name
-              email: email
               preview_access_mode: preview_access_mode
               url: url
               status: status
@@ -10487,19 +11050,42 @@ components:
               id: id
               version_id: 0
               display_name: display_name
-              email: email
               preview_access_mode: preview_access_mode
               url: url
               status: status
             url: url
+          created_at: created_at
+          version_id: 6
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_at: updated_at
           user_id: user_id
           org_id: org_id
-          created_at: created_at
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
           id: id
-          version_id: 0
           status: status
         - role: role
-          updated_at: updated_at
           org:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -10511,7 +11097,6 @@ components:
               id: id
               version_id: 0
               display_name: display_name
-              email: email
               preview_access_mode: preview_access_mode
               url: url
               status: status
@@ -10530,16 +11115,40 @@ components:
               id: id
               version_id: 0
               display_name: display_name
-              email: email
               preview_access_mode: preview_access_mode
               url: url
               status: status
             url: url
+          created_at: created_at
+          version_id: 6
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_at: updated_at
           user_id: user_id
           org_id: org_id
-          created_at: created_at
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
           id: id
-          version_id: 0
           status: status
       properties:
         items:
@@ -10560,7 +11169,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -10571,7 +11179,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -10587,62 +11194,10 @@ components:
       example:
         next_token: next_token
         items:
-        - workspace:
-            hive: hive
-            public_key: public_key
-            database_name: database_name
-            identity_id: identity_id
-            created_at: created_at
-            handle: aaa
-            version_id: 6
-            created_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_at: updated_at
-            host: host
-            updated_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_by_id: updated_by_id
-            created_by_id: created_by_id
-            id: id
-            state: state
-          identity_id: identity_id
-          created_at: created_at
-          version_id: 0
-          created_by:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            created_at: created_at
-            handle: handle
-            id: id
-            version_id: 0
-            display_name: display_name
-            email: email
-            preview_access_mode: preview_access_mode
-            url: url
-            status: status
-          workspace_id: workspace_id
+        - workspace_id: workspace_id
           updated_at: updated_at
           connection_id: connection_id
+          identity_id: identity_id
           updated_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -10651,10 +11206,10 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
+          created_at: created_at
           connection:
             identity_id: identity_id
             created_at: created_at
@@ -10669,7 +11224,6 @@ components:
               id: id
               version_id: 0
               display_name: display_name
-              email: email
               preview_access_mode: preview_access_mode
               url: url
               status: status
@@ -10683,7 +11237,6 @@ components:
               id: id
               version_id: 0
               display_name: display_name
-              email: email
               preview_access_mode: preview_access_mode
               url: url
               status: status
@@ -10694,46 +11247,6 @@ components:
           updated_by_id: updated_by_id
           created_by_id: created_by_id
           id: id
-        - workspace:
-            hive: hive
-            public_key: public_key
-            database_name: database_name
-            identity_id: identity_id
-            created_at: created_at
-            handle: aaa
-            version_id: 6
-            created_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_at: updated_at
-            host: host
-            updated_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_by_id: updated_by_id
-            created_by_id: created_by_id
-            id: id
-            state: state
-          identity_id: identity_id
-          created_at: created_at
           version_id: 0
           created_by:
             avatar_url: avatar_url
@@ -10743,13 +11256,13 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
-          workspace_id: workspace_id
+        - workspace_id: workspace_id
           updated_at: updated_at
           connection_id: connection_id
+          identity_id: identity_id
           updated_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -10758,10 +11271,10 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
+          created_at: created_at
           connection:
             identity_id: identity_id
             created_at: created_at
@@ -10776,7 +11289,6 @@ components:
               id: id
               version_id: 0
               display_name: display_name
-              email: email
               preview_access_mode: preview_access_mode
               url: url
               status: status
@@ -10790,7 +11302,6 @@ components:
               id: id
               version_id: 0
               display_name: display_name
-              email: email
               preview_access_mode: preview_access_mode
               url: url
               status: status
@@ -10801,6 +11312,18 @@ components:
           updated_by_id: updated_by_id
           created_by_id: created_by_id
           id: id
+          version_id: 0
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
       properties:
         items:
           items:
@@ -10826,7 +11349,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10842,7 +11364,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10863,7 +11384,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10879,7 +11399,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10899,45 +11418,7 @@ components:
       example:
         next_token: next_token
         items:
-        - workspace:
-            hive: hive
-            public_key: public_key
-            database_name: database_name
-            identity_id: identity_id
-            created_at: created_at
-            handle: aaa
-            version_id: 6
-            created_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_at: updated_at
-            host: host
-            updated_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_by_id: updated_by_id
-            created_by_id: created_by_id
-            id: id
-            state: state
-          identity_id: identity_id
+        - identity_id: identity_id
           installed_version: installed_version
           created_at: created_at
           version_id: 0
@@ -10949,7 +11430,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10964,7 +11444,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -10975,45 +11454,7 @@ components:
           created_by_id: created_by_id
           id: id
           state: state
-        - workspace:
-            hive: hive
-            public_key: public_key
-            database_name: database_name
-            identity_id: identity_id
-            created_at: created_at
-            handle: aaa
-            version_id: 6
-            created_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_at: updated_at
-            host: host
-            updated_by:
-              avatar_url: avatar_url
-              updated_at: updated_at
-              created_at: created_at
-              handle: handle
-              id: id
-              version_id: 0
-              display_name: display_name
-              email: email
-              preview_access_mode: preview_access_mode
-              url: url
-              status: status
-            updated_by_id: updated_by_id
-            created_by_id: created_by_id
-            id: id
-            state: state
-          identity_id: identity_id
+        - identity_id: identity_id
           installed_version: installed_version
           created_at: created_at
           version_id: 0
@@ -11025,7 +11466,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -11040,7 +11480,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -11059,6 +11498,93 @@ components:
         next_token:
           type: string
       type: object
+    ListWorkspaceSnapshotsResponse:
+      example:
+        next_token: next_token
+        items:
+        - dashboard_name: dashboard_name
+          visibility: visibility
+          identity_id: identity_id
+          inputs: ""
+          created_at: created_at
+          version_id: 0
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          tags: ""
+          schema_version: schema_version
+          workspace_id: workspace_id
+          dashboard_title: dashboard_title
+          updated_at: updated_at
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          state: state
+        - dashboard_name: dashboard_name
+          visibility: visibility
+          identity_id: identity_id
+          inputs: ""
+          created_at: created_at
+          version_id: 0
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          tags: ""
+          schema_version: schema_version
+          workspace_id: workspace_id
+          dashboard_title: dashboard_title
+          updated_at: updated_at
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          state: state
+      properties:
+        items:
+          description: Metadata  ListResponseMetadata `json:"metadata"`
+          items:
+            $ref: '#/components/schemas/WorkspaceSnapshot'
+          type: array
+        next_token:
+          type: string
+      type: object
     ListWorkspacesResponse:
       example:
         next_token: next_token
@@ -11069,7 +11595,8 @@ components:
           identity_id: identity_id
           created_at: created_at
           handle: aaa
-          version_id: 6
+          version_id: 0
+          api_version: api_version
           created_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -11078,7 +11605,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -11092,10 +11618,10 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
+          cli_version: cli_version
           updated_by_id: updated_by_id
           created_by_id: created_by_id
           id: id
@@ -11106,7 +11632,8 @@ components:
           identity_id: identity_id
           created_at: created_at
           handle: aaa
-          version_id: 6
+          version_id: 0
+          api_version: api_version
           created_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -11115,7 +11642,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -11129,10 +11655,10 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
+          cli_version: cli_version
           updated_by_id: updated_by_id
           created_by_id: created_by_id
           id: id
@@ -11218,7 +11744,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -11237,7 +11762,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -11341,7 +11865,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -11357,7 +11880,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -11372,11 +11894,9 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
-        email: email
         status: status
       properties:
         created_at:
@@ -11387,9 +11907,6 @@ components:
         created_by_id:
           description: The ID of the user that created this.
           format: ^[a-z]_[0-9a-v]{20}$
-          type: string
-        email:
-          description: The email address of the member.
           type: string
         id:
           description: The unique identifier of the org member.
@@ -11434,7 +11951,6 @@ components:
       required:
       - created_at
       - created_by_id
-      - email
       - id
       - org_id
       - status
@@ -11445,44 +11961,6 @@ components:
       type: object
     OrgWorkspaceUser:
       example:
-        workspace:
-          hive: hive
-          public_key: public_key
-          database_name: database_name
-          identity_id: identity_id
-          created_at: created_at
-          handle: aaa
-          version_id: 6
-          created_by:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            created_at: created_at
-            handle: handle
-            id: id
-            version_id: 0
-            display_name: display_name
-            email: email
-            preview_access_mode: preview_access_mode
-            url: url
-            status: status
-          updated_at: updated_at
-          host: host
-          updated_by:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            created_at: created_at
-            handle: handle
-            id: id
-            version_id: 0
-            display_name: display_name
-            email: email
-            preview_access_mode: preview_access_mode
-            url: url
-            status: status
-          updated_by_id: updated_by_id
-          created_by_id: created_by_id
-          id: id
-          state: state
         role: role
         user_handle: user_handle
         created_at: created_at
@@ -11495,7 +11973,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -11512,7 +11989,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -11528,11 +12004,9 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
-        email: email
         status: status
       properties:
         created_at:
@@ -11543,9 +12017,6 @@ components:
         created_by_id:
           description: The ID of the user that created this.
           format: ^[a-z]_[0-9a-v]{20}$
-          type: string
-        email:
-          description: The email address of the member.
           type: string
         id:
           description: The unique identifier of the org member.
@@ -11587,8 +12058,6 @@ components:
           description: The version ID of this item. Pass this version ID via an If-Match
             header when performing mutation operations on the item.
           type: integer
-        workspace:
-          $ref: '#/components/schemas/Workspace'
         workspace_handle:
           description: The handle of the workspace with identifier WorkspaceID.
           type: string
@@ -11599,7 +12068,6 @@ components:
       required:
       - created_at
       - created_by_id
-      - email
       - id
       - org_id
       - status
@@ -11757,6 +12225,17 @@ components:
           format: ^[a-z0-9]{1,23}$
           type: string
       type: object
+    UpdateWorkspaceSnapshotRequest:
+      example:
+        visibility: visibility
+        tags: ""
+      properties:
+        tags:
+          nullable: true
+        visibility:
+          description: The updated visibility for the snapshot.
+          type: string
+      type: object
     User:
       example:
         avatar_url: avatar_url
@@ -11766,7 +12245,6 @@ components:
         id: id
         version_id: 0
         display_name: display_name
-        email: email
         preview_access_mode: preview_access_mode
         url: url
         status: status
@@ -11777,9 +12255,6 @@ components:
           description: The user created time.
           type: string
         display_name:
-          type: string
-        email:
-          description: Email address of a user.
           type: string
         handle:
           description: The handle name of a user.
@@ -11803,7 +12278,6 @@ components:
           type: integer
       required:
       - created_at
-      - email
       - handle
       - id
       - status
@@ -11846,7 +12320,6 @@ components:
     UserOrg:
       example:
         role: role
-        updated_at: updated_at
         org:
           avatar_url: avatar_url
           updated_at: updated_at
@@ -11858,7 +12331,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -11877,19 +12349,50 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
           url: url
+        created_at: created_at
+        version_id: 6
+        created_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        updated_at: updated_at
         user_id: user_id
         org_id: org_id
-        created_at: created_at
+        updated_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        updated_by_id: updated_by_id
+        created_by_id: created_by_id
         id: id
-        version_id: 0
         status: status
       properties:
         created_at:
+          description: The time of creation in ISO 8601 UTC.
+          type: string
+        created_by:
+          $ref: '#/components/schemas/User'
+        created_by_id:
+          description: The ID of the user that created this.
+          format: ^[a-z]_[0-9a-v]{20}$
           type: string
         id:
           format: ^[a-z]_[0-9a-v]{20}$
@@ -11904,18 +12407,30 @@ components:
           format: pending|accepted
           type: string
         updated_at:
+          description: The time of the last update in ISO 8601 UTC.
+          type: string
+        updated_by:
+          $ref: '#/components/schemas/User'
+        updated_by_id:
+          description: The ID of the user that performed the last update.
+          format: ^[a-z]_[0-9a-v]{20}$
           type: string
         user_id:
           type: string
         version_id:
+          description: The version ID of this item. Pass this version ID via an If-Match
+            header when performing mutation operations on the item.
           type: integer
       required:
       - created_at
+      - created_by_id
       - id
       - org_id
       - role
       - status
+      - updated_by_id
       - user_id
+      - version_id
       type: object
     UserQuota:
       example:
@@ -11987,7 +12502,8 @@ components:
         identity_id: identity_id
         created_at: created_at
         handle: aaa
-        version_id: 6
+        version_id: 0
+        api_version: api_version
         created_by:
           avatar_url: avatar_url
           updated_at: updated_at
@@ -11996,7 +12512,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -12010,15 +12525,19 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
+        cli_version: cli_version
         updated_by_id: updated_by_id
         created_by_id: created_by_id
         id: id
         state: state
       properties:
+        api_version:
+          type: string
+        cli_version:
+          type: string
         created_at:
           description: The time of creation in ISO 8601 UTC.
           type: string
@@ -12079,62 +12598,10 @@ components:
       type: object
     WorkspaceConn:
       example:
-        workspace:
-          hive: hive
-          public_key: public_key
-          database_name: database_name
-          identity_id: identity_id
-          created_at: created_at
-          handle: aaa
-          version_id: 6
-          created_by:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            created_at: created_at
-            handle: handle
-            id: id
-            version_id: 0
-            display_name: display_name
-            email: email
-            preview_access_mode: preview_access_mode
-            url: url
-            status: status
-          updated_at: updated_at
-          host: host
-          updated_by:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            created_at: created_at
-            handle: handle
-            id: id
-            version_id: 0
-            display_name: display_name
-            email: email
-            preview_access_mode: preview_access_mode
-            url: url
-            status: status
-          updated_by_id: updated_by_id
-          created_by_id: created_by_id
-          id: id
-          state: state
-        identity_id: identity_id
-        created_at: created_at
-        version_id: 0
-        created_by:
-          avatar_url: avatar_url
-          updated_at: updated_at
-          created_at: created_at
-          handle: handle
-          id: id
-          version_id: 0
-          display_name: display_name
-          email: email
-          preview_access_mode: preview_access_mode
-          url: url
-          status: status
         workspace_id: workspace_id
         updated_at: updated_at
         connection_id: connection_id
+        identity_id: identity_id
         updated_by:
           avatar_url: avatar_url
           updated_at: updated_at
@@ -12143,10 +12610,10 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
+        created_at: created_at
         connection:
           identity_id: identity_id
           created_at: created_at
@@ -12161,7 +12628,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -12175,7 +12641,6 @@ components:
             id: id
             version_id: 0
             display_name: display_name
-            email: email
             preview_access_mode: preview_access_mode
             url: url
             status: status
@@ -12186,6 +12651,18 @@ components:
         updated_by_id: updated_by_id
         created_by_id: created_by_id
         id: id
+        version_id: 0
+        created_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
       properties:
         connection:
           $ref: '#/components/schemas/Connection'
@@ -12222,8 +12699,6 @@ components:
           description: The version ID of this item. Pass this version ID via an If-Match
             header when performing mutation operations on the item.
           type: integer
-        workspace:
-          $ref: '#/components/schemas/Workspace'
         workspace_id:
           description: The unique identifier for the wokspace.
           format: ^[a-z]_[0-9a-v]{20}$
@@ -12240,44 +12715,6 @@ components:
       type: object
     WorkspaceMod:
       example:
-        workspace:
-          hive: hive
-          public_key: public_key
-          database_name: database_name
-          identity_id: identity_id
-          created_at: created_at
-          handle: aaa
-          version_id: 6
-          created_by:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            created_at: created_at
-            handle: handle
-            id: id
-            version_id: 0
-            display_name: display_name
-            email: email
-            preview_access_mode: preview_access_mode
-            url: url
-            status: status
-          updated_at: updated_at
-          host: host
-          updated_by:
-            avatar_url: avatar_url
-            updated_at: updated_at
-            created_at: created_at
-            handle: handle
-            id: id
-            version_id: 0
-            display_name: display_name
-            email: email
-            preview_access_mode: preview_access_mode
-            url: url
-            status: status
-          updated_by_id: updated_by_id
-          created_by_id: created_by_id
-          id: id
-          state: state
         identity_id: identity_id
         installed_version: installed_version
         created_at: created_at
@@ -12290,7 +12727,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -12305,7 +12741,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -12360,8 +12795,6 @@ components:
           description: The version ID of this item. Pass this version ID via an If-Match
             header when performing mutation operations on the item.
           type: integer
-        workspace:
-          $ref: '#/components/schemas/Workspace'
         workspace_id:
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
@@ -12389,7 +12822,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -12405,7 +12837,6 @@ components:
           id: id
           version_id: 0
           display_name: display_name
-          email: email
           preview_access_mode: preview_access_mode
           url: url
           status: status
@@ -12495,6 +12926,165 @@ components:
       required:
       - data_type
       - name
+      type: object
+    WorkspaceSnapshot:
+      example:
+        dashboard_name: dashboard_name
+        visibility: visibility
+        identity_id: identity_id
+        inputs: ""
+        created_at: created_at
+        version_id: 0
+        created_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        tags: ""
+        schema_version: schema_version
+        workspace_id: workspace_id
+        dashboard_title: dashboard_title
+        updated_at: updated_at
+        updated_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        updated_by_id: updated_by_id
+        created_by_id: created_by_id
+        id: id
+        state: state
+      properties:
+        created_at:
+          description: The time of creation in ISO 8601 UTC.
+          type: string
+        created_by:
+          $ref: '#/components/schemas/User'
+        created_by_id:
+          description: The ID of the user that created this.
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        dashboard_name:
+          description: The mod-prefixed name of the dashboard this snapshot belongs
+            to.
+          type: string
+        dashboard_title:
+          description: The title of the dashboard this snapshot belongs to.
+          type: string
+        id:
+          description: The unique identifier for the snapshot.
+          format: ^snap_[0-9a-z]{25}$
+          type: string
+        identity_id:
+          description: The unique identifier for the identity that the snapshot belongs
+            to.
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        inputs:
+          nullable: true
+        schema_version:
+          description: The schema version of the underlying snapshot.
+          type: string
+        state:
+          description: The current state of the snapshot.
+          type: string
+        tags:
+          nullable: true
+        updated_at:
+          description: The time of the last update in ISO 8601 UTC.
+          type: string
+        updated_by:
+          $ref: '#/components/schemas/User'
+        updated_by_id:
+          description: The ID of the user that performed the last update.
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        version_id:
+          description: The version ID of this item. Pass this version ID via an If-Match
+            header when performing mutation operations on the item.
+          type: integer
+        visibility:
+          description: The visibility of the snapshot.
+          type: string
+        workspace_id:
+          description: The unique identifier for the workspace that the snapshot belongs
+            to.
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+      required:
+      - created_at
+      - created_by_id
+      - dashboard_name
+      - id
+      - identity_id
+      - schema_version
+      - updated_by_id
+      - version_id
+      - workspace_id
+      type: object
+    WorkspaceSnapshotData:
+      example:
+        layout: '{}'
+        schema_version: schema_version
+        start_time: start_time
+        variables: '{}'
+        inputs: '{}'
+        panels: '{}'
+        search_path:
+        - search_path
+        - search_path
+        end_time: end_time
+        action: action
+        dashboard_node: '{}'
+      properties:
+        action:
+          description: The action type of the snapshot.
+          type: string
+        dashboard_node:
+          type: object
+        end_time:
+          description: The time the dashboard execution ended.
+          type: string
+        inputs:
+          type: object
+        layout:
+          type: object
+        panels:
+          type: object
+        schema_version:
+          description: The schema version of this snapshot.
+          type: string
+        search_path:
+          description: The search path used for this snapshot.
+          items:
+            type: string
+          type: array
+        start_time:
+          description: The time the dashboard execution started.
+          type: string
+        variables:
+          type: object
+      required:
+      - action
+      - dashboard_node
+      - end_time
+      - layout
+      - panels
+      - schema_version
+      - search_path
+      - start_time
       type: object
   securitySchemes:
     ApiKeyAuth:

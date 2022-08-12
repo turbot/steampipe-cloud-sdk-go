@@ -21,8 +21,6 @@ type User struct {
 	// The user created time.
 	CreatedAt   string  `json:"created_at"`
 	DisplayName *string `json:"display_name,omitempty"`
-	// Email address of a user.
-	Email string `json:"email"`
 	// The handle name of a user.
 	Handle string `json:"handle"`
 	// The unique identifier of a user.
@@ -41,10 +39,9 @@ type User struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUser(createdAt string, email string, handle string, id string, status string, versionId int32) *User {
+func NewUser(createdAt string, handle string, id string, status string, versionId int32) *User {
 	this := User{}
 	this.CreatedAt = createdAt
-	this.Email = email
 	this.Handle = handle
 	this.Id = id
 	this.Status = status
@@ -146,30 +143,6 @@ func (o *User) HasDisplayName() bool {
 // SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
 func (o *User) SetDisplayName(v string) {
 	o.DisplayName = &v
-}
-
-// GetEmail returns the Email field value
-func (o *User) GetEmail() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Email
-}
-
-// GetEmailOk returns a tuple with the Email field value
-// and a boolean to check if the value has been set.
-func (o *User) GetEmailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Email, true
-}
-
-// SetEmail sets field value
-func (o *User) SetEmail(v string) {
-	o.Email = v
 }
 
 // GetHandle returns the Handle field value
@@ -374,9 +347,6 @@ func (o User) MarshalJSON() ([]byte, error) {
 	}
 	if o.DisplayName != nil {
 		toSerialize["display_name"] = o.DisplayName
-	}
-	if true {
-		toSerialize["email"] = o.Email
 	}
 	if true {
 		toSerialize["handle"] = o.Handle

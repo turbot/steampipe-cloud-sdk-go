@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **CreatedAt** | **string** | The time of creation in ISO 8601 UTC. | 
 **CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **CreatedById** | **string** | The ID of the user that created this. | 
-**Email** | **string** | The email address of the member. | 
 **Id** | **string** | The unique identifier of the org member. | 
 **OrgId** | **string** | The identifier of an org. | 
 **Role** | Pointer to **string** | The role of the org user. | [optional] 
@@ -25,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewOrgUser
 
-`func NewOrgUser(createdAt string, createdById string, email string, id string, orgId string, status string, updatedById string, userHandle string, userId string, versionId int32, ) *OrgUser`
+`func NewOrgUser(createdAt string, createdById string, id string, orgId string, status string, updatedById string, userHandle string, userId string, versionId int32, ) *OrgUser`
 
 NewOrgUser instantiates a new OrgUser object
 This constructor will assign default values to properties that have it defined,
@@ -103,26 +102,6 @@ and a boolean to check if the value has been set.
 `func (o *OrgUser) SetCreatedById(v string)`
 
 SetCreatedById sets CreatedById field to given value.
-
-
-### GetEmail
-
-`func (o *OrgUser) GetEmail() string`
-
-GetEmail returns the Email field if non-nil, zero value otherwise.
-
-### GetEmailOk
-
-`func (o *OrgUser) GetEmailOk() (*string, bool)`
-
-GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmail
-
-`func (o *OrgUser) SetEmail(v string)`
-
-SetEmail sets Email field to given value.
 
 
 ### GetId

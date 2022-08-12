@@ -110,7 +110,20 @@ func NewConfiguration() *Configuration {
 				Description: "No description provided",
 			},
 		},
-		OperationServers: map[string]ServerConfigurations{},
+		OperationServers: map[string]ServerConfigurations{
+			"OrgWorkspaceSnapshotsService.Download": {
+				{
+					URL:         "https://cloud.steampipe.io/download",
+					Description: "No description provided",
+				},
+			},
+			"UserWorkspaceSnapshotsService.Download": {
+				{
+					URL:         "https://cloud.steampipe.io/download",
+					Description: "No description provided",
+				},
+			},
+		},
 	}
 	return cfg
 }
