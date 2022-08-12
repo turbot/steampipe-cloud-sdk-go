@@ -22,8 +22,6 @@ type OrgWorkspaceUser struct {
 	CreatedBy *User  `json:"created_by,omitempty"`
 	// The ID of the user that created this.
 	CreatedById string `json:"created_by_id"`
-	// The email address of the member.
-	Email string `json:"email"`
 	// The unique identifier of the org member.
 	Id string `json:"id"`
 	// The identifier of an org.
@@ -45,8 +43,7 @@ type OrgWorkspaceUser struct {
 	// The identifier of a user.
 	UserId string `json:"user_id"`
 	// The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item.
-	VersionId int32      `json:"version_id"`
-	Workspace *Workspace `json:"workspace,omitempty"`
+	VersionId int32 `json:"version_id"`
 	// The handle of the workspace with identifier WorkspaceID.
 	WorkspaceHandle string `json:"workspace_handle"`
 	// The identifier of a workspace belonging to the organization.
@@ -57,11 +54,10 @@ type OrgWorkspaceUser struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgWorkspaceUser(createdAt string, createdById string, email string, id string, orgId string, status string, updatedById string, userHandle string, userId string, versionId int32, workspaceHandle string, workspaceId string) *OrgWorkspaceUser {
+func NewOrgWorkspaceUser(createdAt string, createdById string, id string, orgId string, status string, updatedById string, userHandle string, userId string, versionId int32, workspaceHandle string, workspaceId string) *OrgWorkspaceUser {
 	this := OrgWorkspaceUser{}
 	this.CreatedAt = createdAt
 	this.CreatedById = createdById
-	this.Email = email
 	this.Id = id
 	this.OrgId = orgId
 	this.Status = status
@@ -160,30 +156,6 @@ func (o *OrgWorkspaceUser) GetCreatedByIdOk() (*string, bool) {
 // SetCreatedById sets field value
 func (o *OrgWorkspaceUser) SetCreatedById(v string) {
 	o.CreatedById = v
-}
-
-// GetEmail returns the Email field value
-func (o *OrgWorkspaceUser) GetEmail() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Email
-}
-
-// GetEmailOk returns a tuple with the Email field value
-// and a boolean to check if the value has been set.
-func (o *OrgWorkspaceUser) GetEmailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Email, true
-}
-
-// SetEmail sets field value
-func (o *OrgWorkspaceUser) SetEmail(v string) {
-	o.Email = v
 }
 
 // GetId returns the Id field value
@@ -514,38 +486,6 @@ func (o *OrgWorkspaceUser) SetVersionId(v int32) {
 	o.VersionId = v
 }
 
-// GetWorkspace returns the Workspace field value if set, zero value otherwise.
-func (o *OrgWorkspaceUser) GetWorkspace() Workspace {
-	if o == nil || o.Workspace == nil {
-		var ret Workspace
-		return ret
-	}
-	return *o.Workspace
-}
-
-// GetWorkspaceOk returns a tuple with the Workspace field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrgWorkspaceUser) GetWorkspaceOk() (*Workspace, bool) {
-	if o == nil || o.Workspace == nil {
-		return nil, false
-	}
-	return o.Workspace, true
-}
-
-// HasWorkspace returns a boolean if a field has been set.
-func (o *OrgWorkspaceUser) HasWorkspace() bool {
-	if o != nil && o.Workspace != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetWorkspace gets a reference to the given Workspace and assigns it to the Workspace field.
-func (o *OrgWorkspaceUser) SetWorkspace(v Workspace) {
-	o.Workspace = &v
-}
-
 // GetWorkspaceHandle returns the WorkspaceHandle field value
 func (o *OrgWorkspaceUser) GetWorkspaceHandle() string {
 	if o == nil {
@@ -606,9 +546,6 @@ func (o OrgWorkspaceUser) MarshalJSON() ([]byte, error) {
 		toSerialize["created_by_id"] = o.CreatedById
 	}
 	if true {
-		toSerialize["email"] = o.Email
-	}
-	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
@@ -643,9 +580,6 @@ func (o OrgWorkspaceUser) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["version_id"] = o.VersionId
-	}
-	if o.Workspace != nil {
-		toSerialize["workspace"] = o.Workspace
 	}
 	if true {
 		toSerialize["workspace_handle"] = o.WorkspaceHandle

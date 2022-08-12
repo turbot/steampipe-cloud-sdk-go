@@ -25,56 +25,64 @@ var (
 	_ _context.Context
 )
 
-// OrgsService Orgs service
-type OrgsService service
+// OrgWorkspaceSnapshotsService OrgWorkspaceSnapshots service
+type OrgWorkspaceSnapshotsService service
 
-type OrgsApiCreateRequest struct {
-	ctx        _context.Context
-	ApiService *OrgsService
-	request    *CreateOrgRequest
+type OrgWorkspaceSnapshotsApiCreateRequest struct {
+	ctx             _context.Context
+	ApiService      *OrgWorkspaceSnapshotsService
+	orgHandle       string
+	workspaceHandle string
+	request         *CreateWorkspaceSnapshotRequest
 }
 
-// The request body to create the organization.
-func (r OrgsApiCreateRequest) Request(request CreateOrgRequest) OrgsApiCreateRequest {
+// The request body for the org workspace snapshot to be created.
+func (r OrgWorkspaceSnapshotsApiCreateRequest) Request(request CreateWorkspaceSnapshotRequest) OrgWorkspaceSnapshotsApiCreateRequest {
 	r.request = &request
 	return r
 }
 
-func (r OrgsApiCreateRequest) Execute() (Org, *_nethttp.Response, error) {
+func (r OrgWorkspaceSnapshotsApiCreateRequest) Execute() (WorkspaceSnapshot, *_nethttp.Response, error) {
 	return r.ApiService.CreateExecute(r)
 }
 
 /*
-Create Create org
+Create Create org workspace snapshot
 
-Creates an organization.
+Creates a new workspace snapshot for an org.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OrgsApiCreateRequest
+ @param orgHandle The handle of the org to create the workspace snapshot for.
+ @param workspaceHandle The handle of the org workspace to create the snapshot for.
+ @return OrgWorkspaceSnapshotsApiCreateRequest
 */
-func (a *OrgsService) Create(ctx _context.Context) OrgsApiCreateRequest {
-	return OrgsApiCreateRequest{
-		ApiService: a,
-		ctx:        ctx,
+func (a *OrgWorkspaceSnapshotsService) Create(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceSnapshotsApiCreateRequest {
+	return OrgWorkspaceSnapshotsApiCreateRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
+		workspaceHandle: workspaceHandle,
 	}
 }
 
 // Execute executes the request
-//  @return Org
-func (a *OrgsService) CreateExecute(r OrgsApiCreateRequest) (Org, *_nethttp.Response, error) {
+//  @return WorkspaceSnapshot
+func (a *OrgWorkspaceSnapshotsService) CreateExecute(r OrgWorkspaceSnapshotsApiCreateRequest) (WorkspaceSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue Org
+		localVarReturnValue WorkspaceSnapshot
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.Create")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceSnapshotsService.Create")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/org"
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/snapshot"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -164,7 +172,7 @@ func (a *OrgsService) CreateExecute(r OrgsApiCreateRequest) (Org, *_nethttp.Resp
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 409 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -208,202 +216,58 @@ func (a *OrgsService) CreateExecute(r OrgsApiCreateRequest) (Org, *_nethttp.Resp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OrgsApiDeleteRequest struct {
-	ctx        _context.Context
-	ApiService *OrgsService
-	orgHandle  string
+type OrgWorkspaceSnapshotsApiDeleteRequest struct {
+	ctx             _context.Context
+	ApiService      *OrgWorkspaceSnapshotsService
+	orgHandle       string
+	workspaceHandle string
+	snapshotId      string
 }
 
-func (r OrgsApiDeleteRequest) Execute() (Org, *_nethttp.Response, error) {
+func (r OrgWorkspaceSnapshotsApiDeleteRequest) Execute() (WorkspaceSnapshot, *_nethttp.Response, error) {
 	return r.ApiService.DeleteExecute(r)
 }
 
 /*
-Delete Delete org
+Delete Delete org workspace snapshot
 
-Deletes the specified organization if you have the appropriate access.
+Deletes an org workspace snapshot.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization which need to be deleted.
- @return OrgsApiDeleteRequest
+ @param orgHandle The handle of the org that the workspace snapshot belongs to.
+ @param workspaceHandle The handle of the org workspace that the snapshot belongs to.
+ @param snapshotId The handle of the snapshot which needs to be deleted.
+ @return OrgWorkspaceSnapshotsApiDeleteRequest
 */
-func (a *OrgsService) Delete(ctx _context.Context, orgHandle string) OrgsApiDeleteRequest {
-	return OrgsApiDeleteRequest{
-		ApiService: a,
-		ctx:        ctx,
-		orgHandle:  orgHandle,
+func (a *OrgWorkspaceSnapshotsService) Delete(ctx _context.Context, orgHandle string, workspaceHandle string, snapshotId string) OrgWorkspaceSnapshotsApiDeleteRequest {
+	return OrgWorkspaceSnapshotsApiDeleteRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
+		workspaceHandle: workspaceHandle,
+		snapshotId:      snapshotId,
 	}
 }
 
 // Execute executes the request
-//  @return Org
-func (a *OrgsService) DeleteExecute(r OrgsApiDeleteRequest) (Org, *_nethttp.Response, error) {
+//  @return WorkspaceSnapshot
+func (a *OrgWorkspaceSnapshotsService) DeleteExecute(r OrgWorkspaceSnapshotsApiDeleteRequest) (WorkspaceSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue Org
+		localVarReturnValue WorkspaceSnapshot
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.Delete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceSnapshotsService.Delete")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/org/{org_handle}"
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type OrgsApiGetRequest struct {
-	ctx        _context.Context
-	ApiService *OrgsService
-	orgHandle  string
-}
-
-func (r OrgsApiGetRequest) Execute() (Org, *_nethttp.Response, error) {
-	return r.ApiService.GetExecute(r)
-}
-
-/*
-Get Get org
-
-Retrieves the organization information.
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of an organization whose information you want to retrieve.
- @return OrgsApiGetRequest
-*/
-func (a *OrgsService) Get(ctx _context.Context, orgHandle string) OrgsApiGetRequest {
-	return OrgsApiGetRequest{
-		ApiService: a,
-		ctx:        ctx,
-		orgHandle:  orgHandle,
-	}
-}
-
-// Execute executes the request
-//  @return Org
-func (a *OrgsService) GetExecute(r OrgsApiGetRequest) (Org, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue Org
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.Get")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/org/{org_handle}"
-	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"snapshot_id"+"}", _neturl.PathEscape(parameterToString(r.snapshotId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -522,50 +386,62 @@ func (a *OrgsService) GetExecute(r OrgsApiGetRequest) (Org, *_nethttp.Response, 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OrgsApiGetQuotaRequest struct {
-	ctx        _context.Context
-	ApiService *OrgsService
-	orgHandle  string
+type OrgWorkspaceSnapshotsApiDownloadRequest struct {
+	ctx             _context.Context
+	ApiService      *OrgWorkspaceSnapshotsService
+	orgHandle       string
+	workspaceHandle string
+	snapshotId      string
+	contentType     string
 }
 
-func (r OrgsApiGetQuotaRequest) Execute() (OrgQuota, *_nethttp.Response, error) {
-	return r.ApiService.GetQuotaExecute(r)
+func (r OrgWorkspaceSnapshotsApiDownloadRequest) Execute() (WorkspaceSnapshotData, *_nethttp.Response, error) {
+	return r.ApiService.DownloadExecute(r)
 }
 
 /*
-GetQuota Org quota
+Download Download org workspace snapshot
 
-Returns the quota information for an org.
+Downloads the full data for an org workspace snapshot.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the org handle to get the quota details.
- @return OrgsApiGetQuotaRequest
+ @param orgHandle The handle of the org that the workspace snapshot belongs to.
+ @param workspaceHandle The handle of the org workspace that the snapshot belongs to.
+ @param snapshotId The Id of the snapshot to be downloaded.
+ @param contentType The type of content to the downloaded.
+ @return OrgWorkspaceSnapshotsApiDownloadRequest
 */
-func (a *OrgsService) GetQuota(ctx _context.Context, orgHandle string) OrgsApiGetQuotaRequest {
-	return OrgsApiGetQuotaRequest{
-		ApiService: a,
-		ctx:        ctx,
-		orgHandle:  orgHandle,
+func (a *OrgWorkspaceSnapshotsService) Download(ctx _context.Context, orgHandle string, workspaceHandle string, snapshotId string, contentType string) OrgWorkspaceSnapshotsApiDownloadRequest {
+	return OrgWorkspaceSnapshotsApiDownloadRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
+		workspaceHandle: workspaceHandle,
+		snapshotId:      snapshotId,
+		contentType:     contentType,
 	}
 }
 
 // Execute executes the request
-//  @return OrgQuota
-func (a *OrgsService) GetQuotaExecute(r OrgsApiGetQuotaRequest) (OrgQuota, *_nethttp.Response, error) {
+//  @return WorkspaceSnapshotData
+func (a *OrgWorkspaceSnapshotsService) DownloadExecute(r OrgWorkspaceSnapshotsApiDownloadRequest) (WorkspaceSnapshotData, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue OrgQuota
+		localVarReturnValue WorkspaceSnapshotData
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.GetQuota")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceSnapshotsService.Download")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/org/{org_handle}/quota"
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}.{content_type}"
 	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"snapshot_id"+"}", _neturl.PathEscape(parameterToString(r.snapshotId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"content_type"+"}", _neturl.PathEscape(parameterToString(r.contentType, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -640,6 +516,176 @@ func (a *OrgsService) GetQuotaExecute(r OrgsApiGetQuotaRequest) (OrgQuota, *_net
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgWorkspaceSnapshotsApiGetRequest struct {
+	ctx             _context.Context
+	ApiService      *OrgWorkspaceSnapshotsService
+	orgHandle       string
+	workspaceHandle string
+	snapshotId      string
+}
+
+func (r OrgWorkspaceSnapshotsApiGetRequest) Execute() (WorkspaceSnapshot, *_nethttp.Response, error) {
+	return r.ApiService.GetExecute(r)
+}
+
+/*
+Get Get org workspace snapshot
+
+Get the details for an org workspace snapshot.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orgHandle The handle of the org that the workspace snapshot belongs to.
+ @param workspaceHandle The handle of the org workspace that the snapshot belongs to.
+ @param snapshotId The handle of the snapshot whose detail needs to be fetched.
+ @return OrgWorkspaceSnapshotsApiGetRequest
+*/
+func (a *OrgWorkspaceSnapshotsService) Get(ctx _context.Context, orgHandle string, workspaceHandle string, snapshotId string) OrgWorkspaceSnapshotsApiGetRequest {
+	return OrgWorkspaceSnapshotsApiGetRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
+		workspaceHandle: workspaceHandle,
+		snapshotId:      snapshotId,
+	}
+}
+
+// Execute executes the request
+//  @return WorkspaceSnapshot
+func (a *OrgWorkspaceSnapshotsService) GetExecute(r OrgWorkspaceSnapshotsApiGetRequest) (WorkspaceSnapshot, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceSnapshot
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceSnapshotsService.Get")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"snapshot_id"+"}", _neturl.PathEscape(parameterToString(r.snapshotId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -674,60 +720,68 @@ func (a *OrgsService) GetQuotaExecute(r OrgsApiGetQuotaRequest) (OrgQuota, *_net
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OrgsApiListRequest struct {
-	ctx        _context.Context
-	ApiService *OrgsService
-	limit      *int32
-	nextToken  *string
+type OrgWorkspaceSnapshotsApiListRequest struct {
+	ctx             _context.Context
+	ApiService      *OrgWorkspaceSnapshotsService
+	orgHandle       string
+	workspaceHandle string
+	limit           *int32
+	nextToken       *string
 }
 
 // The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
-func (r OrgsApiListRequest) Limit(limit int32) OrgsApiListRequest {
+func (r OrgWorkspaceSnapshotsApiListRequest) Limit(limit int32) OrgWorkspaceSnapshotsApiListRequest {
 	r.limit = &limit
 	return r
 }
 
 // When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
-func (r OrgsApiListRequest) NextToken(nextToken string) OrgsApiListRequest {
+func (r OrgWorkspaceSnapshotsApiListRequest) NextToken(nextToken string) OrgWorkspaceSnapshotsApiListRequest {
 	r.nextToken = &nextToken
 	return r
 }
 
-func (r OrgsApiListRequest) Execute() (ListOrgsResponse, *_nethttp.Response, error) {
+func (r OrgWorkspaceSnapshotsApiListRequest) Execute() (ListWorkspaceSnapshotsResponse, *_nethttp.Response, error) {
 	return r.ApiService.ListExecute(r)
 }
 
 /*
-List List orgs
+List List org workspace snapshots
 
-List all the organizations.
+List the workspace snapshots for an org.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OrgsApiListRequest
+ @param orgHandle The handle of the org to list the workspace snapshots for.
+ @param workspaceHandle The handle of the org workspace to list snapshots for.
+ @return OrgWorkspaceSnapshotsApiListRequest
 */
-func (a *OrgsService) List(ctx _context.Context) OrgsApiListRequest {
-	return OrgsApiListRequest{
-		ApiService: a,
-		ctx:        ctx,
+func (a *OrgWorkspaceSnapshotsService) List(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceSnapshotsApiListRequest {
+	return OrgWorkspaceSnapshotsApiListRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
+		workspaceHandle: workspaceHandle,
 	}
 }
 
 // Execute executes the request
-//  @return ListOrgsResponse
-func (a *OrgsService) ListExecute(r OrgsApiListRequest) (ListOrgsResponse, *_nethttp.Response, error) {
+//  @return ListWorkspaceSnapshotsResponse
+func (a *OrgWorkspaceSnapshotsService) ListExecute(r OrgWorkspaceSnapshotsApiListRequest) (ListWorkspaceSnapshotsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue ListOrgsResponse
+		localVarReturnValue ListWorkspaceSnapshotsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.List")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceSnapshotsService.List")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/org"
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/snapshot"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -842,381 +896,65 @@ func (a *OrgsService) ListExecute(r OrgsApiListRequest) (ListOrgsResponse, *_net
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OrgsApiListAuditLogsRequest struct {
-	ctx        _context.Context
-	ApiService *OrgsService
-	orgHandle  string
-	limit      *int32
-	nextToken  *string
+type OrgWorkspaceSnapshotsApiUpdateRequest struct {
+	ctx             _context.Context
+	ApiService      *OrgWorkspaceSnapshotsService
+	orgHandle       string
+	workspaceHandle string
+	snapshotId      string
+	request         *UpdateWorkspaceSnapshotRequest
 }
 
-// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
-func (r OrgsApiListAuditLogsRequest) Limit(limit int32) OrgsApiListAuditLogsRequest {
-	r.limit = &limit
-	return r
-}
-
-// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
-func (r OrgsApiListAuditLogsRequest) NextToken(nextToken string) OrgsApiListAuditLogsRequest {
-	r.nextToken = &nextToken
-	return r
-}
-
-func (r OrgsApiListAuditLogsRequest) Execute() (ListAuditLogsResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListAuditLogsExecute(r)
-}
-
-/*
-ListAuditLogs Org audit logs
-
-Returns the audit logs for an org.
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the org handle to get the audit logs.
- @return OrgsApiListAuditLogsRequest
-*/
-func (a *OrgsService) ListAuditLogs(ctx _context.Context, orgHandle string) OrgsApiListAuditLogsRequest {
-	return OrgsApiListAuditLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		orgHandle:  orgHandle,
-	}
-}
-
-// Execute executes the request
-//  @return ListAuditLogsResponse
-func (a *OrgsService) ListAuditLogsExecute(r OrgsApiListAuditLogsRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue ListAuditLogsResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.ListAuditLogs")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/org/{org_handle}/audit_log"
-	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
-	if r.nextToken != nil {
-		localVarQueryParams.Add("next_token", parameterToString(*r.nextToken, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type OrgsApiListFeaturesRequest struct {
-	ctx        _context.Context
-	ApiService *OrgsService
-	orgHandle  string
-}
-
-func (r OrgsApiListFeaturesRequest) Execute() (ListFeaturesResponse, *_nethttp.Response, error) {
-	return r.ApiService.ListFeaturesExecute(r)
-}
-
-/*
-ListFeatures Org features
-
-Returns the feature information for an org.
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the org handle to get the feature details.
- @return OrgsApiListFeaturesRequest
-*/
-func (a *OrgsService) ListFeatures(ctx _context.Context, orgHandle string) OrgsApiListFeaturesRequest {
-	return OrgsApiListFeaturesRequest{
-		ApiService: a,
-		ctx:        ctx,
-		orgHandle:  orgHandle,
-	}
-}
-
-// Execute executes the request
-//  @return ListFeaturesResponse
-func (a *OrgsService) ListFeaturesExecute(r OrgsApiListFeaturesRequest) (ListFeaturesResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue ListFeaturesResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.ListFeatures")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/org/{org_handle}/feature"
-	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type OrgsApiUpdateRequest struct {
-	ctx        _context.Context
-	ApiService *OrgsService
-	orgHandle  string
-	request    *UpdateOrgRequest
-}
-
-// The request body for the organization.
-func (r OrgsApiUpdateRequest) Request(request UpdateOrgRequest) OrgsApiUpdateRequest {
+// The request body for the org workspace snapshot to be updated.
+func (r OrgWorkspaceSnapshotsApiUpdateRequest) Request(request UpdateWorkspaceSnapshotRequest) OrgWorkspaceSnapshotsApiUpdateRequest {
 	r.request = &request
 	return r
 }
 
-func (r OrgsApiUpdateRequest) Execute() (Org, *_nethttp.Response, error) {
+func (r OrgWorkspaceSnapshotsApiUpdateRequest) Execute() (WorkspaceSnapshot, *_nethttp.Response, error) {
 	return r.ApiService.UpdateExecute(r)
 }
 
 /*
-Update Update org
+Update Update org workspace snapshot
 
-Updates the handle name, display name, or the URL of an organization.
+Updates an org workspace snapshot.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization which need to be updated.
- @return OrgsApiUpdateRequest
+ @param orgHandle The handle of the org that the workspace snapshot belongs to.
+ @param workspaceHandle The handle of the org workspace that the snapshot belongs to.
+ @param snapshotId The handle of the snapshot to update.
+ @return OrgWorkspaceSnapshotsApiUpdateRequest
 */
-func (a *OrgsService) Update(ctx _context.Context, orgHandle string) OrgsApiUpdateRequest {
-	return OrgsApiUpdateRequest{
-		ApiService: a,
-		ctx:        ctx,
-		orgHandle:  orgHandle,
+func (a *OrgWorkspaceSnapshotsService) Update(ctx _context.Context, orgHandle string, workspaceHandle string, snapshotId string) OrgWorkspaceSnapshotsApiUpdateRequest {
+	return OrgWorkspaceSnapshotsApiUpdateRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
+		workspaceHandle: workspaceHandle,
+		snapshotId:      snapshotId,
 	}
 }
 
 // Execute executes the request
-//  @return Org
-func (a *OrgsService) UpdateExecute(r OrgsApiUpdateRequest) (Org, *_nethttp.Response, error) {
+//  @return WorkspaceSnapshot
+func (a *OrgWorkspaceSnapshotsService) UpdateExecute(r OrgWorkspaceSnapshotsApiUpdateRequest) (WorkspaceSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue Org
+		localVarReturnValue WorkspaceSnapshot
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgsService.Update")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspaceSnapshotsService.Update")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/org/{org_handle}"
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"snapshot_id"+"}", _neturl.PathEscape(parameterToString(r.snapshotId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1277,16 +1015,6 @@ func (a *OrgsService) UpdateExecute(r OrgsApiUpdateRequest) (Org, *_nethttp.Resp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 402 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

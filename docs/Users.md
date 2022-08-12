@@ -11,9 +11,8 @@ Method | HTTP request | Description
 [**GetDBPassword**](Users.md#GetDBPassword) | **Get** /user/{user_handle}/password | Get user password
 [**GetQuota**](Users.md#GetQuota) | **Get** /user/{user_handle}/quota | User quota
 [**List**](Users.md#List) | **Get** /user | List users
-[**ListAuditLogs**](Users.md#ListAuditLogs) | **Get** /user/{user_handle}/audit | User audit logs
+[**ListAuditLogs**](Users.md#ListAuditLogs) | **Get** /user/{user_handle}/audit_log | User audit logs
 [**ListFeatures**](Users.md#ListFeatures) | **Get** /user/{user_handle}/feature | User features
-[**ListWorkspaceAuditLogs**](Users.md#ListWorkspaceAuditLogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/audit | User workspace audit logs
 [**Update**](Users.md#Update) | **Patch** /user/{user_handle} | Update user
 
 
@@ -633,83 +632,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListFeaturesResponse**](ListFeaturesResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ListWorkspaceAuditLogs
-
-> ListAuditLogsResponse ListWorkspaceAuditLogs(ctx, userHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
-
-User workspace audit logs
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    userHandle := "userHandle_example" // string | Specify the user handle to get the audit logs.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace whose logs needs to be fetched.
-    limit := int32(56) // int32 | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. (optional) (default to 25)
-    nextToken := "nextToken_example" // string | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.Users.ListWorkspaceAuditLogs(context.Background(), userHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Users.ListWorkspaceAuditLogs``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListWorkspaceAuditLogs`: ListAuditLogsResponse
-    fmt.Fprintf(os.Stdout, "Response from `Users.ListWorkspaceAuditLogs`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | **string** | Specify the user handle to get the audit logs. | 
-**workspaceHandle** | **string** | The handle of the workspace whose logs needs to be fetched. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListWorkspaceAuditLogsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **limit** | **int32** | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. | [default to 25]
- **nextToken** | **string** | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. | 
-
-### Return type
-
-[**ListAuditLogsResponse**](ListAuditLogsResponse.md)
 
 ### Authorization
 

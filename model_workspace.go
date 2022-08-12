@@ -17,6 +17,8 @@ import (
 
 // Workspace struct for Workspace
 type Workspace struct {
+	ApiVersion *string `json:"api_version,omitempty"`
+	CliVersion *string `json:"cli_version,omitempty"`
 	// The time of creation in ISO 8601 UTC.
 	CreatedAt string `json:"created_at"`
 	CreatedBy *User  `json:"created_by,omitempty"`
@@ -67,6 +69,70 @@ func NewWorkspace(createdAt string, createdById string, handle string, id string
 func NewWorkspaceWithDefaults() *Workspace {
 	this := Workspace{}
 	return &this
+}
+
+// GetApiVersion returns the ApiVersion field value if set, zero value otherwise.
+func (o *Workspace) GetApiVersion() string {
+	if o == nil || o.ApiVersion == nil {
+		var ret string
+		return ret
+	}
+	return *o.ApiVersion
+}
+
+// GetApiVersionOk returns a tuple with the ApiVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetApiVersionOk() (*string, bool) {
+	if o == nil || o.ApiVersion == nil {
+		return nil, false
+	}
+	return o.ApiVersion, true
+}
+
+// HasApiVersion returns a boolean if a field has been set.
+func (o *Workspace) HasApiVersion() bool {
+	if o != nil && o.ApiVersion != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApiVersion gets a reference to the given string and assigns it to the ApiVersion field.
+func (o *Workspace) SetApiVersion(v string) {
+	o.ApiVersion = &v
+}
+
+// GetCliVersion returns the CliVersion field value if set, zero value otherwise.
+func (o *Workspace) GetCliVersion() string {
+	if o == nil || o.CliVersion == nil {
+		var ret string
+		return ret
+	}
+	return *o.CliVersion
+}
+
+// GetCliVersionOk returns a tuple with the CliVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetCliVersionOk() (*string, bool) {
+	if o == nil || o.CliVersion == nil {
+		return nil, false
+	}
+	return o.CliVersion, true
+}
+
+// HasCliVersion returns a boolean if a field has been set.
+func (o *Workspace) HasCliVersion() bool {
+	if o != nil && o.CliVersion != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCliVersion gets a reference to the given string and assigns it to the CliVersion field.
+func (o *Workspace) SetCliVersion(v string) {
+	o.CliVersion = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -495,6 +561,12 @@ func (o *Workspace) SetVersionId(v int32) {
 
 func (o Workspace) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.ApiVersion != nil {
+		toSerialize["api_version"] = o.ApiVersion
+	}
+	if o.CliVersion != nil {
+		toSerialize["cli_version"] = o.CliVersion
+	}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
 	}

@@ -4,21 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **string** |  | 
+**CreatedAt** | **string** | The time of creation in ISO 8601 UTC. | 
+**CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
+**CreatedById** | **string** | The ID of the user that created this. | 
 **Id** | **string** |  | 
 **Org** | Pointer to [**Org**](Org.md) |  | [optional] 
 **OrgId** | **string** |  | 
 **Role** | **string** |  | 
 **Status** | **string** |  | 
-**UpdatedAt** | Pointer to **string** |  | [optional] 
+**UpdatedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
+**UpdatedBy** | Pointer to [**User**](User.md) |  | [optional] 
+**UpdatedById** | **string** | The ID of the user that performed the last update. | 
 **UserId** | **string** |  | 
-**VersionId** | Pointer to **int32** |  | [optional] 
+**VersionId** | **int32** | The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item. | 
 
 ## Methods
 
 ### NewUserOrg
 
-`func NewUserOrg(createdAt string, id string, orgId string, role string, status string, userId string, ) *UserOrg`
+`func NewUserOrg(createdAt string, createdById string, id string, orgId string, role string, status string, updatedById string, userId string, versionId int32, ) *UserOrg`
 
 NewUserOrg instantiates a new UserOrg object
 This constructor will assign default values to properties that have it defined,
@@ -51,6 +55,51 @@ and a boolean to check if the value has been set.
 `func (o *UserOrg) SetCreatedAt(v string)`
 
 SetCreatedAt sets CreatedAt field to given value.
+
+
+### GetCreatedBy
+
+`func (o *UserOrg) GetCreatedBy() User`
+
+GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+
+### GetCreatedByOk
+
+`func (o *UserOrg) GetCreatedByOk() (*User, bool)`
+
+GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedBy
+
+`func (o *UserOrg) SetCreatedBy(v User)`
+
+SetCreatedBy sets CreatedBy field to given value.
+
+### HasCreatedBy
+
+`func (o *UserOrg) HasCreatedBy() bool`
+
+HasCreatedBy returns a boolean if a field has been set.
+
+### GetCreatedById
+
+`func (o *UserOrg) GetCreatedById() string`
+
+GetCreatedById returns the CreatedById field if non-nil, zero value otherwise.
+
+### GetCreatedByIdOk
+
+`func (o *UserOrg) GetCreatedByIdOk() (*string, bool)`
+
+GetCreatedByIdOk returns a tuple with the CreatedById field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedById
+
+`func (o *UserOrg) SetCreatedById(v string)`
+
+SetCreatedById sets CreatedById field to given value.
 
 
 ### GetId
@@ -183,6 +232,51 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 HasUpdatedAt returns a boolean if a field has been set.
 
+### GetUpdatedBy
+
+`func (o *UserOrg) GetUpdatedBy() User`
+
+GetUpdatedBy returns the UpdatedBy field if non-nil, zero value otherwise.
+
+### GetUpdatedByOk
+
+`func (o *UserOrg) GetUpdatedByOk() (*User, bool)`
+
+GetUpdatedByOk returns a tuple with the UpdatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedBy
+
+`func (o *UserOrg) SetUpdatedBy(v User)`
+
+SetUpdatedBy sets UpdatedBy field to given value.
+
+### HasUpdatedBy
+
+`func (o *UserOrg) HasUpdatedBy() bool`
+
+HasUpdatedBy returns a boolean if a field has been set.
+
+### GetUpdatedById
+
+`func (o *UserOrg) GetUpdatedById() string`
+
+GetUpdatedById returns the UpdatedById field if non-nil, zero value otherwise.
+
+### GetUpdatedByIdOk
+
+`func (o *UserOrg) GetUpdatedByIdOk() (*string, bool)`
+
+GetUpdatedByIdOk returns a tuple with the UpdatedById field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedById
+
+`func (o *UserOrg) SetUpdatedById(v string)`
+
+SetUpdatedById sets UpdatedById field to given value.
+
+
 ### GetUserId
 
 `func (o *UserOrg) GetUserId() string`
@@ -222,11 +316,6 @@ and a boolean to check if the value has been set.
 
 SetVersionId sets VersionId field to given value.
 
-### HasVersionId
-
-`func (o *UserOrg) HasVersionId() bool`
-
-HasVersionId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

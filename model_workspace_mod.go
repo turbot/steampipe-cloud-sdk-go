@@ -37,9 +37,8 @@ type WorkspaceMod struct {
 	// The ID of the user that performed the last update.
 	UpdatedById string `json:"updated_by_id"`
 	// The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item.
-	VersionId   int32      `json:"version_id"`
-	Workspace   *Workspace `json:"workspace,omitempty"`
-	WorkspaceId string     `json:"workspace_id"`
+	VersionId   int32  `json:"version_id"`
+	WorkspaceId string `json:"workspace_id"`
 }
 
 // NewWorkspaceMod instantiates a new WorkspaceMod object
@@ -498,38 +497,6 @@ func (o *WorkspaceMod) SetVersionId(v int32) {
 	o.VersionId = v
 }
 
-// GetWorkspace returns the Workspace field value if set, zero value otherwise.
-func (o *WorkspaceMod) GetWorkspace() Workspace {
-	if o == nil || o.Workspace == nil {
-		var ret Workspace
-		return ret
-	}
-	return *o.Workspace
-}
-
-// GetWorkspaceOk returns a tuple with the Workspace field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WorkspaceMod) GetWorkspaceOk() (*Workspace, bool) {
-	if o == nil || o.Workspace == nil {
-		return nil, false
-	}
-	return o.Workspace, true
-}
-
-// HasWorkspace returns a boolean if a field has been set.
-func (o *WorkspaceMod) HasWorkspace() bool {
-	if o != nil && o.Workspace != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetWorkspace gets a reference to the given Workspace and assigns it to the Workspace field.
-func (o *WorkspaceMod) SetWorkspace(v Workspace) {
-	o.Workspace = &v
-}
-
 // GetWorkspaceId returns the WorkspaceId field value
 func (o *WorkspaceMod) GetWorkspaceId() string {
 	if o == nil {
@@ -600,9 +567,6 @@ func (o WorkspaceMod) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["version_id"] = o.VersionId
-	}
-	if o.Workspace != nil {
-		toSerialize["workspace"] = o.Workspace
 	}
 	if true {
 		toSerialize["workspace_id"] = o.WorkspaceId

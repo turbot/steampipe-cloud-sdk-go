@@ -22,8 +22,6 @@ type OrgUser struct {
 	CreatedBy *User  `json:"created_by,omitempty"`
 	// The ID of the user that created this.
 	CreatedById string `json:"created_by_id"`
-	// The email address of the member.
-	Email string `json:"email"`
 	// The unique identifier of the org member.
 	Id string `json:"id"`
 	// The identifier of an org.
@@ -52,11 +50,10 @@ type OrgUser struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgUser(createdAt string, createdById string, email string, id string, orgId string, status string, updatedById string, userHandle string, userId string, versionId int32) *OrgUser {
+func NewOrgUser(createdAt string, createdById string, id string, orgId string, status string, updatedById string, userHandle string, userId string, versionId int32) *OrgUser {
 	this := OrgUser{}
 	this.CreatedAt = createdAt
 	this.CreatedById = createdById
-	this.Email = email
 	this.Id = id
 	this.OrgId = orgId
 	this.Status = status
@@ -153,30 +150,6 @@ func (o *OrgUser) GetCreatedByIdOk() (*string, bool) {
 // SetCreatedById sets field value
 func (o *OrgUser) SetCreatedById(v string) {
 	o.CreatedById = v
-}
-
-// GetEmail returns the Email field value
-func (o *OrgUser) GetEmail() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Email
-}
-
-// GetEmailOk returns a tuple with the Email field value
-// and a boolean to check if the value has been set.
-func (o *OrgUser) GetEmailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Email, true
-}
-
-// SetEmail sets field value
-func (o *OrgUser) SetEmail(v string) {
-	o.Email = v
 }
 
 // GetId returns the Id field value
@@ -517,9 +490,6 @@ func (o OrgUser) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["created_by_id"] = o.CreatedById
-	}
-	if true {
-		toSerialize["email"] = o.Email
 	}
 	if true {
 		toSerialize["id"] = o.Id

@@ -11,6 +11,7 @@ api_org_workspace_connection_associations.go
 api_org_workspace_members.go
 api_org_workspace_mod_variables.go
 api_org_workspace_mods.go
+api_org_workspace_snapshots.go
 api_org_workspaces.go
 api_orgs.go
 api_user_connections.go
@@ -18,12 +19,11 @@ api_user_tokens.go
 api_user_workspace_connection_associations.go
 api_user_workspace_mod_variables.go
 api_user_workspace_mods.go
+api_user_workspace_snapshots.go
 api_user_workspaces.go
 api_users.go
 client.go
 configuration.go
-docs/ActorOrg.md
-docs/ActorOrgWorkspace.md
 docs/ActorWorkspace.md
 docs/Actors.md
 docs/AuditRecord.md
@@ -39,13 +39,13 @@ docs/CreateWorkspaceConnRequest.md
 docs/CreateWorkspaceModRequest.md
 docs/CreateWorkspaceModVariableSettingRequest.md
 docs/CreateWorkspaceRequest.md
+docs/CreateWorkspaceSnapshotRequest.md
 docs/ErrorDetailModel.md
 docs/ErrorModel.md
 docs/Feature.md
 docs/Identities.md
 docs/Identity.md
 docs/InviteOrgUserRequest.md
-docs/ListActorOrgsResponse.md
 docs/ListActorWorkspacesResponse.md
 docs/ListAuditLogsResponse.md
 docs/ListConnectionsResponse.md
@@ -61,6 +61,7 @@ docs/ListUsersResponse.md
 docs/ListWorkspaceConnResponse.md
 docs/ListWorkspaceModVariablesResponse.md
 docs/ListWorkspaceModsResponse.md
+docs/ListWorkspaceSnapshotsResponse.md
 docs/ListWorkspacesResponse.md
 docs/LogRecord.md
 docs/Org.md
@@ -72,6 +73,7 @@ docs/OrgWorkspaceConnectionAssociations.md
 docs/OrgWorkspaceMembers.md
 docs/OrgWorkspaceModVariables.md
 docs/OrgWorkspaceMods.md
+docs/OrgWorkspaceSnapshots.md
 docs/OrgWorkspaceUser.md
 docs/OrgWorkspaces.md
 docs/Orgs.md
@@ -89,6 +91,7 @@ docs/UpdateUserRequest.md
 docs/UpdateWorkspaceModRequest.md
 docs/UpdateWorkspaceModVariableSettingRequest.md
 docs/UpdateWorkspaceRequest.md
+docs/UpdateWorkspaceSnapshotRequest.md
 docs/User.md
 docs/UserConnections.md
 docs/UserDatabasePassword.md
@@ -100,6 +103,7 @@ docs/UserTokens.md
 docs/UserWorkspaceConnectionAssociations.md
 docs/UserWorkspaceModVariables.md
 docs/UserWorkspaceMods.md
+docs/UserWorkspaceSnapshots.md
 docs/UserWorkspaces.md
 docs/Users.md
 docs/Workspace.md
@@ -109,11 +113,11 @@ docs/WorkspaceModVariable.md
 docs/WorkspaceQueryResult.md
 docs/WorkspaceQueryResultColumn.md
 docs/WorkspaceSchema.md
+docs/WorkspaceSnapshot.md
+docs/WorkspaceSnapshotData.md
 git_push.sh
 go.mod
 go.sum
-model_actor_org.go
-model_actor_org_workspace.go
 model_actor_workspace.go
 model_audit_record.go
 model_connection.go
@@ -127,12 +131,12 @@ model_create_workspace_conn_request.go
 model_create_workspace_mod_request.go
 model_create_workspace_mod_variable_setting_request.go
 model_create_workspace_request.go
+model_create_workspace_snapshot_request.go
 model_error_detail_model.go
 model_error_model.go
 model_feature.go
 model_identity.go
 model_invite_org_user_request.go
-model_list_actor_orgs_response.go
 model_list_actor_workspaces_response.go
 model_list_audit_logs_response.go
 model_list_connections_response.go
@@ -148,6 +152,7 @@ model_list_users_response.go
 model_list_workspace_conn_response.go
 model_list_workspace_mod_variables_response.go
 model_list_workspace_mods_response.go
+model_list_workspace_snapshots_response.go
 model_list_workspaces_response.go
 model_log_record.go
 model_org.go
@@ -168,6 +173,7 @@ model_update_user_request.go
 model_update_workspace_mod_request.go
 model_update_workspace_mod_variable_setting_request.go
 model_update_workspace_request.go
+model_update_workspace_snapshot_request.go
 model_user.go
 model_user_database_password.go
 model_user_login_request.go
@@ -181,5 +187,7 @@ model_workspace_mod_variable.go
 model_workspace_query_result.go
 model_workspace_query_result_column.go
 model_workspace_schema.go
+model_workspace_snapshot.go
+model_workspace_snapshot_data.go
 response.go
 utils.go

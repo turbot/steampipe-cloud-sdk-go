@@ -11,7 +11,8 @@ Method | HTTP request | Description
 [**GetQueryWithExtensions**](OrgWorkspaces.md#GetQueryWithExtensions) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
 [**GetSchema**](OrgWorkspaces.md#GetSchema) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema | Get org workspace schemas
 [**List**](OrgWorkspaces.md#List) | **Get** /org/{org_handle}/workspace | List org workspaces
-[**ListDBLogs**](OrgWorkspaces.md#ListDBLogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/logs | Org workspace logs
+[**ListAuditLogs**](OrgWorkspaces.md#ListAuditLogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/audit_log | Org workspace audit logs
+[**ListDBLogs**](OrgWorkspaces.md#ListDBLogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/db_log | Org workspace logs
 [**PostQuery**](OrgWorkspaces.md#PostQuery) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
 [**PostQueryWithExtensions**](OrgWorkspaces.md#PostQueryWithExtensions) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
 [**Update**](OrgWorkspaces.md#Update) | **Patch** /org/{org_handle}/workspace/{workspace_handle} | Update org workspace
@@ -540,9 +541,86 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## ListAuditLogs
+
+> ListAuditLogsResponse ListAuditLogs(ctx, orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+
+Org workspace audit logs
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    orgHandle := "orgHandle_example" // string | Specify the org handle to get the audit logs.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace whose logs needs to be fetched.
+    limit := int32(56) // int32 | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. (optional) (default to 25)
+    nextToken := "nextToken_example" // string | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrgWorkspaces.ListAuditLogs(context.Background(), orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.ListAuditLogs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAuditLogs`: ListAuditLogsResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.ListAuditLogs`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgHandle** | **string** | Specify the org handle to get the audit logs. | 
+**workspaceHandle** | **string** | The handle of the workspace whose logs needs to be fetched. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListAuditLogsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **limit** | **int32** | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. | [default to 25]
+ **nextToken** | **string** | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. | 
+
+### Return type
+
+[**ListAuditLogsResponse**](ListAuditLogsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListDBLogs
 
-> ListLogsResponse ListDBLogs(ctx, orgHandle, workspaceHandle).Execute()
+> ListLogsResponse ListDBLogs(ctx, orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
 
 Org workspace logs
 
@@ -563,10 +641,12 @@ import (
 func main() {
     orgHandle := "orgHandle_example" // string | Specify the org handle to get the workspace logs.
     workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace whose logs needs to be fetched.
+    limit := int32(56) // int32 | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. (optional) (default to 25)
+    nextToken := "nextToken_example" // string | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaces.ListDBLogs(context.Background(), orgHandle, workspaceHandle).Execute()
+    resp, r, err := api_client.OrgWorkspaces.ListDBLogs(context.Background(), orgHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.ListDBLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -594,6 +674,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **limit** | **int32** | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. | [default to 25]
+ **nextToken** | **string** | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. | 
 
 ### Return type
 

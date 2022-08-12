@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **AvatarUrl** | Pointer to **string** |  | [optional] 
 **CreatedAt** | **string** | The user created time. | 
 **DisplayName** | Pointer to **string** |  | [optional] 
-**Email** | **string** | Email address of a user. | 
 **Handle** | **string** | The handle name of a user. | 
 **Id** | **string** | The unique identifier of a user. | 
 **PreviewAccessMode** | Pointer to **string** |  | [optional] 
@@ -20,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewUser
 
-`func NewUser(createdAt string, email string, handle string, id string, status string, versionId int32, ) *User`
+`func NewUser(createdAt string, handle string, id string, status string, versionId int32, ) *User`
 
 NewUser instantiates a new User object
 This constructor will assign default values to properties that have it defined,
@@ -104,26 +103,6 @@ SetDisplayName sets DisplayName field to given value.
 `func (o *User) HasDisplayName() bool`
 
 HasDisplayName returns a boolean if a field has been set.
-
-### GetEmail
-
-`func (o *User) GetEmail() string`
-
-GetEmail returns the Email field if non-nil, zero value otherwise.
-
-### GetEmailOk
-
-`func (o *User) GetEmailOk() (*string, bool)`
-
-GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmail
-
-`func (o *User) SetEmail(v string)`
-
-SetEmail sets Email field to given value.
-
 
 ### GetHandle
 
