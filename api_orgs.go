@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -49,8 +49,8 @@ Create Create org
 
 Creates an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OrgsApiCreateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return OrgsApiCreateRequest
 */
 func (a *OrgsService) Create(ctx _context.Context) OrgsApiCreateRequest {
 	return OrgsApiCreateRequest{
@@ -60,7 +60,8 @@ func (a *OrgsService) Create(ctx _context.Context) OrgsApiCreateRequest {
 }
 
 // Execute executes the request
-//  @return Org
+//
+//	@return Org
 func (a *OrgsService) CreateExecute(r OrgsApiCreateRequest) (Org, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -223,9 +224,9 @@ Delete Delete org
 
 Deletes the specified organization if you have the appropriate access.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization which need to be deleted.
- @return OrgsApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the handle of the organization which need to be deleted.
+	@return OrgsApiDeleteRequest
 */
 func (a *OrgsService) Delete(ctx _context.Context, orgHandle string) OrgsApiDeleteRequest {
 	return OrgsApiDeleteRequest{
@@ -236,7 +237,8 @@ func (a *OrgsService) Delete(ctx _context.Context, orgHandle string) OrgsApiDele
 }
 
 // Execute executes the request
-//  @return Org
+//
+//	@return Org
 func (a *OrgsService) DeleteExecute(r OrgsApiDeleteRequest) (Org, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -375,9 +377,9 @@ Get Get org
 
 Retrieves the organization information.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of an organization whose information you want to retrieve.
- @return OrgsApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the handle of an organization whose information you want to retrieve.
+	@return OrgsApiGetRequest
 */
 func (a *OrgsService) Get(ctx _context.Context, orgHandle string) OrgsApiGetRequest {
 	return OrgsApiGetRequest{
@@ -388,7 +390,8 @@ func (a *OrgsService) Get(ctx _context.Context, orgHandle string) OrgsApiGetRequ
 }
 
 // Execute executes the request
-//  @return Org
+//
+//	@return Org
 func (a *OrgsService) GetExecute(r OrgsApiGetRequest) (Org, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -537,9 +540,9 @@ GetQuota Org quota
 
 Returns the quota information for an org.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the org handle to get the quota details.
- @return OrgsApiGetQuotaRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the org handle to get the quota details.
+	@return OrgsApiGetQuotaRequest
 */
 func (a *OrgsService) GetQuota(ctx _context.Context, orgHandle string) OrgsApiGetQuotaRequest {
 	return OrgsApiGetQuotaRequest{
@@ -550,7 +553,8 @@ func (a *OrgsService) GetQuota(ctx _context.Context, orgHandle string) OrgsApiGe
 }
 
 // Execute executes the request
-//  @return OrgQuota
+//
+//	@return OrgQuota
 func (a *OrgsService) GetQuotaExecute(r OrgsApiGetQuotaRequest) (OrgQuota, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -702,8 +706,8 @@ List List orgs
 
 List all the organizations.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return OrgsApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return OrgsApiListRequest
 */
 func (a *OrgsService) List(ctx _context.Context) OrgsApiListRequest {
 	return OrgsApiListRequest{
@@ -713,7 +717,8 @@ func (a *OrgsService) List(ctx _context.Context) OrgsApiListRequest {
 }
 
 // Execute executes the request
-//  @return ListOrgsResponse
+//
+//	@return ListOrgsResponse
 func (a *OrgsService) ListExecute(r OrgsApiListRequest) (ListOrgsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -871,9 +876,9 @@ ListAuditLogs Org audit logs
 
 Returns the audit logs for an org.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the org handle to get the audit logs.
- @return OrgsApiListAuditLogsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the org handle to get the audit logs.
+	@return OrgsApiListAuditLogsRequest
 */
 func (a *OrgsService) ListAuditLogs(ctx _context.Context, orgHandle string) OrgsApiListAuditLogsRequest {
 	return OrgsApiListAuditLogsRequest{
@@ -884,7 +889,8 @@ func (a *OrgsService) ListAuditLogs(ctx _context.Context, orgHandle string) Orgs
 }
 
 // Execute executes the request
-//  @return ListAuditLogsResponse
+//
+//	@return ListAuditLogsResponse
 func (a *OrgsService) ListAuditLogsExecute(r OrgsApiListAuditLogsRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1029,9 +1035,9 @@ ListFeatures Org features
 
 Returns the feature information for an org.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the org handle to get the feature details.
- @return OrgsApiListFeaturesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the org handle to get the feature details.
+	@return OrgsApiListFeaturesRequest
 */
 func (a *OrgsService) ListFeatures(ctx _context.Context, orgHandle string) OrgsApiListFeaturesRequest {
 	return OrgsApiListFeaturesRequest{
@@ -1042,7 +1048,8 @@ func (a *OrgsService) ListFeatures(ctx _context.Context, orgHandle string) OrgsA
 }
 
 // Execute executes the request
-//  @return ListFeaturesResponse
+//
+//	@return ListFeaturesResponse
 func (a *OrgsService) ListFeaturesExecute(r OrgsApiListFeaturesRequest) (ListFeaturesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1188,9 +1195,9 @@ Update Update org
 
 Updates the handle name, display name, or the URL of an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization which need to be updated.
- @return OrgsApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the handle of the organization which need to be updated.
+	@return OrgsApiUpdateRequest
 */
 func (a *OrgsService) Update(ctx _context.Context, orgHandle string) OrgsApiUpdateRequest {
 	return OrgsApiUpdateRequest{
@@ -1201,7 +1208,8 @@ func (a *OrgsService) Update(ctx _context.Context, orgHandle string) OrgsApiUpda
 }
 
 // Execute executes the request
-//  @return Org
+//
+//	@return Org
 func (a *OrgsService) UpdateExecute(r OrgsApiUpdateRequest) (Org, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

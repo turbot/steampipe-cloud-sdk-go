@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -51,10 +51,10 @@ Create Create Org Workspace Member
 
 Add an individual as a member of a workspace in an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization where the member need to be invited.
- @param workspaceHandle Specify the handle of the workspace where the member need to be invited.
- @return OrgWorkspaceMembersApiCreateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the handle of the organization where the member need to be invited.
+	@param workspaceHandle Specify the handle of the workspace where the member need to be invited.
+	@return OrgWorkspaceMembersApiCreateRequest
 */
 func (a *OrgWorkspaceMembersService) Create(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceMembersApiCreateRequest {
 	return OrgWorkspaceMembersApiCreateRequest{
@@ -66,7 +66,8 @@ func (a *OrgWorkspaceMembersService) Create(ctx _context.Context, orgHandle stri
 }
 
 // Execute executes the request
-//  @return OrgWorkspaceUser
+//
+//	@return OrgWorkspaceUser
 func (a *OrgWorkspaceMembersService) CreateExecute(r OrgWorkspaceMembersApiCreateRequest) (OrgWorkspaceUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -213,11 +214,11 @@ Delete Delete Org Workspace Member
 
 Remove a member from a workspace of an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization where the member need to be invited.
- @param workspaceHandle Specify the handle of the workspace where the member need to be invited.
- @param userHandle Specify the handle of the user whose information you want to retrive.
- @return OrgWorkspaceMembersApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the handle of the organization where the member need to be invited.
+	@param workspaceHandle Specify the handle of the workspace where the member need to be invited.
+	@param userHandle Specify the handle of the user whose information you want to retrive.
+	@return OrgWorkspaceMembersApiDeleteRequest
 */
 func (a *OrgWorkspaceMembersService) Delete(ctx _context.Context, orgHandle string, workspaceHandle string, userHandle string) OrgWorkspaceMembersApiDeleteRequest {
 	return OrgWorkspaceMembersApiDeleteRequest{
@@ -230,7 +231,8 @@ func (a *OrgWorkspaceMembersService) Delete(ctx _context.Context, orgHandle stri
 }
 
 // Execute executes the request
-//  @return OrgWorkspaceUser
+//
+//	@return OrgWorkspaceUser
 func (a *OrgWorkspaceMembersService) DeleteExecute(r OrgWorkspaceMembersApiDeleteRequest) (OrgWorkspaceUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -373,11 +375,11 @@ Get Get Org Workspace Member
 
 Get details of a member belonging to a workspace of an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization where the member need to be invited.
- @param workspaceHandle Specify the handle of the workspace where the member need to be invited.
- @param userHandle Specify the handle of the user whose information you want to retrive.
- @return OrgWorkspaceMembersApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the handle of the organization where the member need to be invited.
+	@param workspaceHandle Specify the handle of the workspace where the member need to be invited.
+	@param userHandle Specify the handle of the user whose information you want to retrive.
+	@return OrgWorkspaceMembersApiGetRequest
 */
 func (a *OrgWorkspaceMembersService) Get(ctx _context.Context, orgHandle string, workspaceHandle string, userHandle string) OrgWorkspaceMembersApiGetRequest {
 	return OrgWorkspaceMembersApiGetRequest{
@@ -390,7 +392,8 @@ func (a *OrgWorkspaceMembersService) Get(ctx _context.Context, orgHandle string,
 }
 
 // Execute executes the request
-//  @return OrgWorkspaceUser
+//
+//	@return OrgWorkspaceUser
 func (a *OrgWorkspaceMembersService) GetExecute(r OrgWorkspaceMembersApiGetRequest) (OrgWorkspaceUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -553,10 +556,10 @@ List List Organization Workspace Members
 
 List all members of a workspace in an organization who has accepted / invited.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization where the member need to be invited.
- @param workspaceHandle Specify the handle of the workspace where the member need to be invited.
- @return OrgWorkspaceMembersApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the handle of the organization where the member need to be invited.
+	@param workspaceHandle Specify the handle of the workspace where the member need to be invited.
+	@return OrgWorkspaceMembersApiListRequest
 */
 func (a *OrgWorkspaceMembersService) List(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceMembersApiListRequest {
 	return OrgWorkspaceMembersApiListRequest{
@@ -568,7 +571,8 @@ func (a *OrgWorkspaceMembersService) List(ctx _context.Context, orgHandle string
 }
 
 // Execute executes the request
-//  @return ListOrgWorkspaceUsersResponse
+//
+//	@return ListOrgWorkspaceUsersResponse
 func (a *OrgWorkspaceMembersService) ListExecute(r OrgWorkspaceMembersApiListRequest) (ListOrgWorkspaceUsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -726,11 +730,11 @@ Update Update Org Workspace Member
 
 Update the role of a member belonging to a workspace of an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization where the member need to be invited.
- @param workspaceHandle Specify the handle of the workspace where the member need to be invited.
- @param userHandle Specify the handle of the user whose information you want to retrive.
- @return OrgWorkspaceMembersApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the handle of the organization where the member need to be invited.
+	@param workspaceHandle Specify the handle of the workspace where the member need to be invited.
+	@param userHandle Specify the handle of the user whose information you want to retrive.
+	@return OrgWorkspaceMembersApiUpdateRequest
 */
 func (a *OrgWorkspaceMembersService) Update(ctx _context.Context, orgHandle string, workspaceHandle string, userHandle string) OrgWorkspaceMembersApiUpdateRequest {
 	return OrgWorkspaceMembersApiUpdateRequest{
@@ -743,7 +747,8 @@ func (a *OrgWorkspaceMembersService) Update(ctx _context.Context, orgHandle stri
 }
 
 // Execute executes the request
-//  @return OrgWorkspaceUser
+//
+//	@return OrgWorkspaceUser
 func (a *OrgWorkspaceMembersService) UpdateExecute(r OrgWorkspaceMembersApiUpdateRequest) (OrgWorkspaceUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -28,6 +28,195 @@ var (
 // UserWorkspacesService UserWorkspaces service
 type UserWorkspacesService service
 
+type UserWorkspacesApiCommandRequest struct {
+	ctx             _context.Context
+	ApiService      *UserWorkspacesService
+	userHandle      string
+	workspaceHandle string
+	request         *WorkspaceCommandRequest
+}
+
+// The request body for the workspace command.
+func (r UserWorkspacesApiCommandRequest) Request(request WorkspaceCommandRequest) UserWorkspacesApiCommandRequest {
+	r.request = &request
+	return r
+}
+
+func (r UserWorkspacesApiCommandRequest) Execute() (WorkspaceCommandResponse, *_nethttp.Response, error) {
+	return r.ApiService.CommandExecute(r)
+}
+
+/*
+Command Run user workspace command
+
+Run a command in the workspace. Valid commands are: reboot.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user where we want to run the workspace command.
+	@param workspaceHandle The handle of the workspace where command will be executed.
+	@return UserWorkspacesApiCommandRequest
+*/
+func (a *UserWorkspacesService) Command(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiCommandRequest {
+	return UserWorkspacesApiCommandRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		userHandle:      userHandle,
+		workspaceHandle: workspaceHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return WorkspaceCommandResponse
+func (a *UserWorkspacesService) CommandExecute(r UserWorkspacesApiCommandRequest) (WorkspaceCommandResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceCommandResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserWorkspacesService.Command")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/user/{user_handle}/workspace/{workspace_handle}/command"
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.request
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type UserWorkspacesApiCreateRequest struct {
 	ctx        _context.Context
 	ApiService *UserWorkspacesService
@@ -50,9 +239,9 @@ Create Create user workspace
 
 Creates a new workspace for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user where we want to create the workspace.
- @return UserWorkspacesApiCreateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user where we want to create the workspace.
+	@return UserWorkspacesApiCreateRequest
 */
 func (a *UserWorkspacesService) Create(ctx _context.Context, userHandle string) UserWorkspacesApiCreateRequest {
 	return UserWorkspacesApiCreateRequest{
@@ -63,7 +252,8 @@ func (a *UserWorkspacesService) Create(ctx _context.Context, userHandle string) 
 }
 
 // Execute executes the request
-//  @return Workspace
+//
+//	@return Workspace
 func (a *UserWorkspacesService) CreateExecute(r UserWorkspacesApiCreateRequest) (Workspace, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -228,10 +418,10 @@ Delete Delete user workspace
 
 Deletes the workspace specified in the request by the user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user where the workspace exist.
- @param workspaceHandle Provide the handle of the workspace which needs to be deleted.
- @return UserWorkspacesApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user where the workspace exist.
+	@param workspaceHandle Provide the handle of the workspace which needs to be deleted.
+	@return UserWorkspacesApiDeleteRequest
 */
 func (a *UserWorkspacesService) Delete(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiDeleteRequest {
 	return UserWorkspacesApiDeleteRequest{
@@ -243,7 +433,8 @@ func (a *UserWorkspacesService) Delete(ctx _context.Context, userHandle string, 
 }
 
 // Execute executes the request
-//  @return Workspace
+//
+//	@return Workspace
 func (a *UserWorkspacesService) DeleteExecute(r UserWorkspacesApiDeleteRequest) (Workspace, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -384,10 +575,10 @@ Get Get user workspace
 
 Get the details for the workspace.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user where the workspace exist.
- @param workspaceHandle The handle of the workspace whose detail needs to be fetched.
- @return UserWorkspacesApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user where the workspace exist.
+	@param workspaceHandle The handle of the workspace whose detail needs to be fetched.
+	@return UserWorkspacesApiGetRequest
 */
 func (a *UserWorkspacesService) Get(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiGetRequest {
 	return UserWorkspacesApiGetRequest{
@@ -399,7 +590,8 @@ func (a *UserWorkspacesService) Get(ctx _context.Context, userHandle string, wor
 }
 
 // Execute executes the request
-//  @return Workspace
+//
+//	@return Workspace
 func (a *UserWorkspacesService) GetExecute(r UserWorkspacesApiGetRequest) (Workspace, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -564,10 +756,10 @@ GetQuery Query user workspace
 
 Performs a query in a user workspace. Results are limited to 3000 rows or 30 seconds of query execution.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to query.
- @return UserWorkspacesApiGetQueryRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user that the workspace belongs to.
+	@param workspaceHandle The handle of the workspace to query.
+	@return UserWorkspacesApiGetQueryRequest
 */
 func (a *UserWorkspacesService) GetQuery(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiGetQueryRequest {
 	return UserWorkspacesApiGetQueryRequest{
@@ -579,7 +771,8 @@ func (a *UserWorkspacesService) GetQuery(ctx _context.Context, userHandle string
 }
 
 // Execute executes the request
-//  @return WorkspaceQueryResult
+//
+//	@return WorkspaceQueryResult
 func (a *UserWorkspacesService) GetQueryExecute(r UserWorkspacesApiGetQueryRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -752,11 +945,11 @@ GetQueryWithExtensions Query user workspace with extensions
 
 Performs a query in a user workspace, with content type and content encoding forming part of the API path. Results are limited to 3000 rows or 30 seconds of query execution.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to query.
- @param extensions The content type for the request. E.g.
- @return UserWorkspacesApiGetQueryWithExtensionsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user that the workspace belongs to.
+	@param workspaceHandle The handle of the workspace to query.
+	@param extensions The content type for the request. E.g.
+	@return UserWorkspacesApiGetQueryWithExtensionsRequest
 */
 func (a *UserWorkspacesService) GetQueryWithExtensions(ctx _context.Context, userHandle string, workspaceHandle string, extensions string) UserWorkspacesApiGetQueryWithExtensionsRequest {
 	return UserWorkspacesApiGetQueryWithExtensionsRequest{
@@ -769,7 +962,8 @@ func (a *UserWorkspacesService) GetQueryWithExtensions(ctx _context.Context, use
 }
 
 // Execute executes the request
-//  @return WorkspaceQueryResult
+//
+//	@return WorkspaceQueryResult
 func (a *UserWorkspacesService) GetQueryWithExtensionsExecute(r UserWorkspacesApiGetQueryWithExtensionsRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -928,10 +1122,10 @@ GetSchema Get user workspace schemas
 
 Returns the postgres schemas for a user workspace. This will consist of the connections associated with the workspace and any automatic aggregators prefixed with "all_", which are created for any connections where you have >=2 of that plugin type.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to get the schemas for.
- @return UserWorkspacesApiGetSchemaRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user that the workspace belongs to.
+	@param workspaceHandle The handle of the workspace to get the schemas for.
+	@return UserWorkspacesApiGetSchemaRequest
 */
 func (a *UserWorkspacesService) GetSchema(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiGetSchemaRequest {
 	return UserWorkspacesApiGetSchemaRequest{
@@ -943,7 +1137,8 @@ func (a *UserWorkspacesService) GetSchema(ctx _context.Context, userHandle strin
 }
 
 // Execute executes the request
-//  @return WorkspaceSchema
+//
+//	@return WorkspaceSchema
 func (a *UserWorkspacesService) GetSchemaExecute(r UserWorkspacesApiGetSchemaRequest) (WorkspaceSchema, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1107,9 +1302,9 @@ List List user workspaces
 
 List the workspace for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user for which we want to list the workspace.
- @return UserWorkspacesApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user for which we want to list the workspace.
+	@return UserWorkspacesApiListRequest
 */
 func (a *UserWorkspacesService) List(ctx _context.Context, userHandle string) UserWorkspacesApiListRequest {
 	return UserWorkspacesApiListRequest{
@@ -1120,7 +1315,8 @@ func (a *UserWorkspacesService) List(ctx _context.Context, userHandle string) Us
 }
 
 // Execute executes the request
-//  @return ListWorkspacesResponse
+//
+//	@return ListWorkspacesResponse
 func (a *UserWorkspacesService) ListExecute(r UserWorkspacesApiListRequest) (ListWorkspacesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1280,10 +1476,10 @@ ListAuditLogs User workspace audit logs
 
 Returns the audit logs for a user workspace.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle Specify the user handle to get the audit logs.
- @param workspaceHandle The handle of the workspace whose logs needs to be fetched.
- @return UserWorkspacesApiListAuditLogsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the user handle to get the audit logs.
+	@param workspaceHandle The handle of the workspace whose logs needs to be fetched.
+	@return UserWorkspacesApiListAuditLogsRequest
 */
 func (a *UserWorkspacesService) ListAuditLogs(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiListAuditLogsRequest {
 	return UserWorkspacesApiListAuditLogsRequest{
@@ -1295,7 +1491,8 @@ func (a *UserWorkspacesService) ListAuditLogs(ctx _context.Context, userHandle s
 }
 
 // Execute executes the request
-//  @return ListAuditLogsResponse
+//
+//	@return ListAuditLogsResponse
 func (a *UserWorkspacesService) ListAuditLogsExecute(r UserWorkspacesApiListAuditLogsRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1456,10 +1653,10 @@ ListDBLogs User workspace logs
 
 Returns the workspace logs for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle Specify the user handle to get the workspace logs.
- @param workspaceHandle The handle of the workspace whose logs needs to be fetched.
- @return UserWorkspacesApiListDBLogsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the user handle to get the workspace logs.
+	@param workspaceHandle The handle of the workspace whose logs needs to be fetched.
+	@return UserWorkspacesApiListDBLogsRequest
 */
 func (a *UserWorkspacesService) ListDBLogs(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiListDBLogsRequest {
 	return UserWorkspacesApiListDBLogsRequest{
@@ -1471,7 +1668,8 @@ func (a *UserWorkspacesService) ListDBLogs(ctx _context.Context, userHandle stri
 }
 
 // Execute executes the request
-//  @return ListLogsResponse
+//
+//	@return ListLogsResponse
 func (a *UserWorkspacesService) ListDBLogsExecute(r UserWorkspacesApiListDBLogsRequest) (ListLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1632,10 +1830,10 @@ PostQuery Query user workspace
 
 Performs a query in a user workspace. Results are limited to 3000 rows or 30 seconds of query execution.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to query.
- @return UserWorkspacesApiPostQueryRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user that the workspace belongs to.
+	@param workspaceHandle The handle of the workspace to query.
+	@return UserWorkspacesApiPostQueryRequest
 */
 func (a *UserWorkspacesService) PostQuery(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiPostQueryRequest {
 	return UserWorkspacesApiPostQueryRequest{
@@ -1647,7 +1845,8 @@ func (a *UserWorkspacesService) PostQuery(ctx _context.Context, userHandle strin
 }
 
 // Execute executes the request
-//  @return WorkspaceQueryResult
+//
+//	@return WorkspaceQueryResult
 func (a *UserWorkspacesService) PostQueryExecute(r UserWorkspacesApiPostQueryRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1821,11 +2020,11 @@ PostQueryWithExtensions Query user workspace with extensions
 
 Performs a query in a user workspace, with content type and content encoding forming part of the API path. Results are limited to 3000 rows or 30 seconds of query execution.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to query.
- @param extensions The content type for the request. E.g.
- @return UserWorkspacesApiPostQueryWithExtensionsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user that the workspace belongs to.
+	@param workspaceHandle The handle of the workspace to query.
+	@param extensions The content type for the request. E.g.
+	@return UserWorkspacesApiPostQueryWithExtensionsRequest
 */
 func (a *UserWorkspacesService) PostQueryWithExtensions(ctx _context.Context, userHandle string, workspaceHandle string, extensions string) UserWorkspacesApiPostQueryWithExtensionsRequest {
 	return UserWorkspacesApiPostQueryWithExtensionsRequest{
@@ -1838,7 +2037,8 @@ func (a *UserWorkspacesService) PostQueryWithExtensions(ctx _context.Context, us
 }
 
 // Execute executes the request
-//  @return WorkspaceQueryResult
+//
+//	@return WorkspaceQueryResult
 func (a *UserWorkspacesService) PostQueryWithExtensionsExecute(r UserWorkspacesApiPostQueryWithExtensionsRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -2004,10 +2204,10 @@ Update Update user workspace
 
 Update the workspace for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user where the workspace exist.
- @param workspaceHandle The handle of the workspace which needs to be updated.
- @return UserWorkspacesApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user where the workspace exist.
+	@param workspaceHandle The handle of the workspace which needs to be updated.
+	@return UserWorkspacesApiUpdateRequest
 */
 func (a *UserWorkspacesService) Update(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspacesApiUpdateRequest {
 	return UserWorkspacesApiUpdateRequest{
@@ -2019,7 +2219,8 @@ func (a *UserWorkspacesService) Update(ctx _context.Context, userHandle string, 
 }
 
 // Execute executes the request
-//  @return Workspace
+//
+//	@return Workspace
 func (a *UserWorkspacesService) UpdateExecute(r UserWorkspacesApiUpdateRequest) (Workspace, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

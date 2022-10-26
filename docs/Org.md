@@ -8,6 +8,9 @@ Name | Type | Description | Notes
 **CreatedAt** | **string** | The time of creation in ISO 8601 UTC. | 
 **CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **CreatedById** | **string** | The ID of the user that created this. | 
+**DeletedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
+**DeletedBy** | Pointer to [**User**](User.md) |  | [optional] 
+**DeletedById** | **string** | The ID of the user that performed the deletion. | 
 **DisplayName** | Pointer to **string** | The display name of an org. | [optional] 
 **Handle** | **string** | The handle name for an org. | 
 **Id** | **string** | The unique identifier for an org. | 
@@ -21,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewOrg
 
-`func NewOrg(createdAt string, createdById string, handle string, id string, updatedById string, versionId int32, ) *Org`
+`func NewOrg(createdAt string, createdById string, deletedById string, handle string, id string, updatedById string, versionId int32, ) *Org`
 
 NewOrg instantiates a new Org object
 This constructor will assign default values to properties that have it defined,
@@ -124,6 +127,76 @@ and a boolean to check if the value has been set.
 `func (o *Org) SetCreatedById(v string)`
 
 SetCreatedById sets CreatedById field to given value.
+
+
+### GetDeletedAt
+
+`func (o *Org) GetDeletedAt() string`
+
+GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
+
+### GetDeletedAtOk
+
+`func (o *Org) GetDeletedAtOk() (*string, bool)`
+
+GetDeletedAtOk returns a tuple with the DeletedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedAt
+
+`func (o *Org) SetDeletedAt(v string)`
+
+SetDeletedAt sets DeletedAt field to given value.
+
+### HasDeletedAt
+
+`func (o *Org) HasDeletedAt() bool`
+
+HasDeletedAt returns a boolean if a field has been set.
+
+### GetDeletedBy
+
+`func (o *Org) GetDeletedBy() User`
+
+GetDeletedBy returns the DeletedBy field if non-nil, zero value otherwise.
+
+### GetDeletedByOk
+
+`func (o *Org) GetDeletedByOk() (*User, bool)`
+
+GetDeletedByOk returns a tuple with the DeletedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedBy
+
+`func (o *Org) SetDeletedBy(v User)`
+
+SetDeletedBy sets DeletedBy field to given value.
+
+### HasDeletedBy
+
+`func (o *Org) HasDeletedBy() bool`
+
+HasDeletedBy returns a boolean if a field has been set.
+
+### GetDeletedById
+
+`func (o *Org) GetDeletedById() string`
+
+GetDeletedById returns the DeletedById field if non-nil, zero value otherwise.
+
+### GetDeletedByIdOk
+
+`func (o *Org) GetDeletedByIdOk() (*string, bool)`
+
+GetDeletedByIdOk returns a tuple with the DeletedById field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedById
+
+`func (o *Org) SetDeletedById(v string)`
+
+SetDeletedById sets DeletedById field to given value.
 
 
 ### GetDisplayName

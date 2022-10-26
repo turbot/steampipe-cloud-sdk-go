@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -49,8 +49,8 @@ Create Create user
 
 Creates a new user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return UsersApiCreateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return UsersApiCreateRequest
 */
 func (a *UsersService) Create(ctx _context.Context) UsersApiCreateRequest {
 	return UsersApiCreateRequest{
@@ -60,7 +60,8 @@ func (a *UsersService) Create(ctx _context.Context) UsersApiCreateRequest {
 }
 
 // Execute executes the request
-//  @return User
+//
+//	@return User
 func (a *UsersService) CreateExecute(r UsersApiCreateRequest) (User, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -230,9 +231,9 @@ CreateDBPassword Create user password
 
 Create or rotate user password.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle Specify the handle of the user whose password need to be created or rotated.
- @return UsersApiCreateDBPasswordRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the handle of the user whose password need to be created or rotated.
+	@return UsersApiCreateDBPasswordRequest
 */
 func (a *UsersService) CreateDBPassword(ctx _context.Context, userHandle string) UsersApiCreateDBPasswordRequest {
 	return UsersApiCreateDBPasswordRequest{
@@ -243,7 +244,8 @@ func (a *UsersService) CreateDBPassword(ctx _context.Context, userHandle string)
 }
 
 // Execute executes the request
-//  @return UserDatabasePassword
+//
+//	@return UserDatabasePassword
 func (a *UsersService) CreateDBPasswordExecute(r UsersApiCreateDBPasswordRequest) (UserDatabasePassword, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -407,9 +409,9 @@ Delete Delete user
 
 Deletes the specified user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle Specify the handle of the user which need to be deleted.
- @return UsersApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the handle of the user which need to be deleted.
+	@return UsersApiDeleteRequest
 */
 func (a *UsersService) Delete(ctx _context.Context, userHandle string) UsersApiDeleteRequest {
 	return UsersApiDeleteRequest{
@@ -420,7 +422,8 @@ func (a *UsersService) Delete(ctx _context.Context, userHandle string) UsersApiD
 }
 
 // Execute executes the request
-//  @return User
+//
+//	@return User
 func (a *UsersService) DeleteExecute(r UsersApiDeleteRequest) (User, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -559,9 +562,9 @@ Get Get user
 
 Retrieves information of the specified user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle Specify the handle of the user whose information you want to retrieve.
- @return UsersApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the handle of the user whose information you want to retrieve.
+	@return UsersApiGetRequest
 */
 func (a *UsersService) Get(ctx _context.Context, userHandle string) UsersApiGetRequest {
 	return UsersApiGetRequest{
@@ -572,7 +575,8 @@ func (a *UsersService) Get(ctx _context.Context, userHandle string) UsersApiGetR
 }
 
 // Execute executes the request
-//  @return User
+//
+//	@return User
 func (a *UsersService) GetExecute(r UsersApiGetRequest) (User, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -721,9 +725,9 @@ GetDBPassword Get user password
 
 Get user password.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle Specify the handle of the user whose password need to be retrieved.
- @return UsersApiGetDBPasswordRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the handle of the user whose password need to be retrieved.
+	@return UsersApiGetDBPasswordRequest
 */
 func (a *UsersService) GetDBPassword(ctx _context.Context, userHandle string) UsersApiGetDBPasswordRequest {
 	return UsersApiGetDBPasswordRequest{
@@ -734,7 +738,8 @@ func (a *UsersService) GetDBPassword(ctx _context.Context, userHandle string) Us
 }
 
 // Execute executes the request
-//  @return UserDatabasePassword
+//
+//	@return UserDatabasePassword
 func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (UserDatabasePassword, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -878,6 +883,336 @@ func (a *UsersService) GetDBPasswordExecute(r UsersApiGetDBPasswordRequest) (Use
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type UsersApiGetEmailRequest struct {
+	ctx        _context.Context
+	ApiService *UsersService
+	userHandle string
+	emailId    string
+}
+
+func (r UsersApiGetEmailRequest) Execute() (UserEmail, *_nethttp.Response, error) {
+	return r.ApiService.GetEmailExecute(r)
+}
+
+/*
+GetEmail Get user email
+
+Get a particular user email record along with its metadata information.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the handle of the user whose information you want to retrieve.
+	@param emailId Specify the id of the email object you want to retrieve.
+	@return UsersApiGetEmailRequest
+*/
+func (a *UsersService) GetEmail(ctx _context.Context, userHandle string, emailId string) UsersApiGetEmailRequest {
+	return UsersApiGetEmailRequest{
+		ApiService: a,
+		ctx:        ctx,
+		userHandle: userHandle,
+		emailId:    emailId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return UserEmail
+func (a *UsersService) GetEmailExecute(r UsersApiGetEmailRequest) (UserEmail, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue UserEmail
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.GetEmail")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/user/{user_handle}/email/{email_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"email_id"+"}", _neturl.PathEscape(parameterToString(r.emailId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type UsersApiGetPreferencesRequest struct {
+	ctx        _context.Context
+	ApiService *UsersService
+	userHandle string
+}
+
+func (r UsersApiGetPreferencesRequest) Execute() (UserPreferences, *_nethttp.Response, error) {
+	return r.ApiService.GetPreferencesExecute(r)
+}
+
+/*
+GetPreferences Get user preferences
+
+Get preferences for the user such as email preferences.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the handle of the user whose preferences need to be retrieved.
+	@return UsersApiGetPreferencesRequest
+*/
+func (a *UsersService) GetPreferences(ctx _context.Context, userHandle string) UsersApiGetPreferencesRequest {
+	return UsersApiGetPreferencesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		userHandle: userHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return UserPreferences
+func (a *UsersService) GetPreferencesExecute(r UsersApiGetPreferencesRequest) (UserPreferences, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue UserPreferences
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.GetPreferences")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/user/{user_handle}/preferences"
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type UsersApiGetQuotaRequest struct {
 	ctx        _context.Context
 	ApiService *UsersService
@@ -893,9 +1228,9 @@ GetQuota User quota
 
 Returns the quota information for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle Specify the user handle to get the quota details.
- @return UsersApiGetQuotaRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the user handle to get the quota details.
+	@return UsersApiGetQuotaRequest
 */
 func (a *UsersService) GetQuota(ctx _context.Context, userHandle string) UsersApiGetQuotaRequest {
 	return UsersApiGetQuotaRequest{
@@ -906,7 +1241,8 @@ func (a *UsersService) GetQuota(ctx _context.Context, userHandle string) UsersAp
 }
 
 // Execute executes the request
-//  @return UserQuota
+//
+//	@return UserQuota
 func (a *UsersService) GetQuotaExecute(r UsersApiGetQuotaRequest) (UserQuota, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1058,8 +1394,8 @@ List List users
 
 List the users.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return UsersApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return UsersApiListRequest
 */
 func (a *UsersService) List(ctx _context.Context) UsersApiListRequest {
 	return UsersApiListRequest{
@@ -1069,7 +1405,8 @@ func (a *UsersService) List(ctx _context.Context) UsersApiListRequest {
 }
 
 // Execute executes the request
-//  @return ListUsersResponse
+//
+//	@return ListUsersResponse
 func (a *UsersService) ListExecute(r UsersApiListRequest) (ListUsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1227,9 +1564,9 @@ ListAuditLogs User audit logs
 
 Returns the audit logs for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle Specify the user handle to get the audit logs.
- @return UsersApiListAuditLogsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the user handle to get the audit logs.
+	@return UsersApiListAuditLogsRequest
 */
 func (a *UsersService) ListAuditLogs(ctx _context.Context, userHandle string) UsersApiListAuditLogsRequest {
 	return UsersApiListAuditLogsRequest{
@@ -1240,7 +1577,8 @@ func (a *UsersService) ListAuditLogs(ctx _context.Context, userHandle string) Us
 }
 
 // Execute executes the request
-//  @return ListAuditLogsResponse
+//
+//	@return ListAuditLogsResponse
 func (a *UsersService) ListAuditLogsExecute(r UsersApiListAuditLogsRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1255,6 +1593,179 @@ func (a *UsersService) ListAuditLogsExecute(r UsersApiListAuditLogsRequest) (Lis
 	}
 
 	localVarPath := localBasePath + "/user/{user_handle}/audit_log"
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.nextToken != nil {
+		localVarQueryParams.Add("next_token", parameterToString(*r.nextToken, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type UsersApiListEmailsRequest struct {
+	ctx        _context.Context
+	ApiService *UsersService
+	userHandle string
+	limit      *int32
+	nextToken  *string
+}
+
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
+func (r UsersApiListEmailsRequest) Limit(limit int32) UsersApiListEmailsRequest {
+	r.limit = &limit
+	return r
+}
+
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
+func (r UsersApiListEmailsRequest) NextToken(nextToken string) UsersApiListEmailsRequest {
+	r.nextToken = &nextToken
+	return r
+}
+
+func (r UsersApiListEmailsRequest) Execute() (ListUserEmailsResponse, *_nethttp.Response, error) {
+	return r.ApiService.ListEmailsExecute(r)
+}
+
+/*
+ListEmails List user emails
+
+List emails for a user along with other metadata information for each item.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the handle of the user whose information you want to retrieve.
+	@return UsersApiListEmailsRequest
+*/
+func (a *UsersService) ListEmails(ctx _context.Context, userHandle string) UsersApiListEmailsRequest {
+	return UsersApiListEmailsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		userHandle: userHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListUserEmailsResponse
+func (a *UsersService) ListEmailsExecute(r UsersApiListEmailsRequest) (ListUserEmailsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListUserEmailsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.ListEmails")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/user/{user_handle}/email"
 	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1385,9 +1896,9 @@ ListFeatures User features
 
 Returns the feature information for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle Specify the user handle to get the feature details.
- @return UsersApiListFeaturesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the user handle to get the feature details.
+	@return UsersApiListFeaturesRequest
 */
 func (a *UsersService) ListFeatures(ctx _context.Context, userHandle string) UsersApiListFeaturesRequest {
 	return UsersApiListFeaturesRequest{
@@ -1398,7 +1909,8 @@ func (a *UsersService) ListFeatures(ctx _context.Context, userHandle string) Use
 }
 
 // Execute executes the request
-//  @return ListFeaturesResponse
+//
+//	@return ListFeaturesResponse
 func (a *UsersService) ListFeaturesExecute(r UsersApiListFeaturesRequest) (ListFeaturesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1544,9 +2056,9 @@ Update Update user
 
 Updates the handle name, display name, or the URL of a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle Specify the handle of the user which need to be updated.
- @return UsersApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the handle of the user which need to be updated.
+	@return UsersApiUpdateRequest
 */
 func (a *UsersService) Update(ctx _context.Context, userHandle string) UsersApiUpdateRequest {
 	return UsersApiUpdateRequest{
@@ -1557,7 +2069,8 @@ func (a *UsersService) Update(ctx _context.Context, userHandle string) UsersApiU
 }
 
 // Execute executes the request
-//  @return User
+//
+//	@return User
 func (a *UsersService) UpdateExecute(r UsersApiUpdateRequest) (User, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -1643,6 +2156,181 @@ func (a *UsersService) UpdateExecute(r UsersApiUpdateRequest) (User, *_nethttp.R
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 402 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type UsersApiUpdatePreferencesRequest struct {
+	ctx        _context.Context
+	ApiService *UsersService
+	userHandle string
+	request    *UpdateUserPreferencesRequest
+}
+
+// The request body for updating user preferences.
+func (r UsersApiUpdatePreferencesRequest) Request(request UpdateUserPreferencesRequest) UsersApiUpdatePreferencesRequest {
+	r.request = &request
+	return r
+}
+
+func (r UsersApiUpdatePreferencesRequest) Execute() (UserPreferences, *_nethttp.Response, error) {
+	return r.ApiService.UpdatePreferencesExecute(r)
+}
+
+/*
+UpdatePreferences Update user preferences
+
+Update preferences for the user e.g. opting out of receiving certain kind of emails.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle Specify the handle of the user whose preferences need to be retrieved.
+	@return UsersApiUpdatePreferencesRequest
+*/
+func (a *UsersService) UpdatePreferences(ctx _context.Context, userHandle string) UsersApiUpdatePreferencesRequest {
+	return UsersApiUpdatePreferencesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		userHandle: userHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return UserPreferences
+func (a *UsersService) UpdatePreferencesExecute(r UsersApiUpdatePreferencesRequest) (UserPreferences, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue UserPreferences
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersService.UpdatePreferences")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/user/{user_handle}/preferences"
+	localVarPath = strings.Replace(localVarPath, "{"+"user_handle"+"}", _neturl.PathEscape(parameterToString(r.userHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.request
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

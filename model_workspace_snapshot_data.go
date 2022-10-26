@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -17,9 +17,6 @@ import (
 
 // WorkspaceSnapshotData struct for WorkspaceSnapshotData
 type WorkspaceSnapshotData struct {
-	// The action type of the snapshot.
-	Action        string                 `json:"action"`
-	DashboardNode map[string]interface{} `json:"dashboard_node"`
 	// The time the dashboard execution ended.
 	EndTime string                  `json:"end_time"`
 	Inputs  *map[string]interface{} `json:"inputs,omitempty"`
@@ -38,10 +35,8 @@ type WorkspaceSnapshotData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspaceSnapshotData(action string, dashboardNode map[string]interface{}, endTime string, layout map[string]interface{}, panels map[string]interface{}, schemaVersion string, searchPath []string, startTime string) *WorkspaceSnapshotData {
+func NewWorkspaceSnapshotData(endTime string, layout map[string]interface{}, panels map[string]interface{}, schemaVersion string, searchPath []string, startTime string) *WorkspaceSnapshotData {
 	this := WorkspaceSnapshotData{}
-	this.Action = action
-	this.DashboardNode = dashboardNode
 	this.EndTime = endTime
 	this.Layout = layout
 	this.Panels = panels
@@ -57,54 +52,6 @@ func NewWorkspaceSnapshotData(action string, dashboardNode map[string]interface{
 func NewWorkspaceSnapshotDataWithDefaults() *WorkspaceSnapshotData {
 	this := WorkspaceSnapshotData{}
 	return &this
-}
-
-// GetAction returns the Action field value
-func (o *WorkspaceSnapshotData) GetAction() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Action
-}
-
-// GetActionOk returns a tuple with the Action field value
-// and a boolean to check if the value has been set.
-func (o *WorkspaceSnapshotData) GetActionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Action, true
-}
-
-// SetAction sets field value
-func (o *WorkspaceSnapshotData) SetAction(v string) {
-	o.Action = v
-}
-
-// GetDashboardNode returns the DashboardNode field value
-func (o *WorkspaceSnapshotData) GetDashboardNode() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-
-	return o.DashboardNode
-}
-
-// GetDashboardNodeOk returns a tuple with the DashboardNode field value
-// and a boolean to check if the value has been set.
-func (o *WorkspaceSnapshotData) GetDashboardNodeOk() (*map[string]interface{}, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DashboardNode, true
-}
-
-// SetDashboardNode sets field value
-func (o *WorkspaceSnapshotData) SetDashboardNode(v map[string]interface{}) {
-	o.DashboardNode = v
 }
 
 // GetEndTime returns the EndTime field value
@@ -317,12 +264,6 @@ func (o *WorkspaceSnapshotData) SetVariables(v map[string]interface{}) {
 
 func (o WorkspaceSnapshotData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["action"] = o.Action
-	}
-	if true {
-		toSerialize["dashboard_node"] = o.DashboardNode
-	}
 	if true {
 		toSerialize["end_time"] = o.EndTime
 	}

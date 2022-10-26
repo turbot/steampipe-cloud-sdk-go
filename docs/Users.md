@@ -9,11 +9,15 @@ Method | HTTP request | Description
 [**Delete**](Users.md#Delete) | **Delete** /user/{user_handle} | Delete user
 [**Get**](Users.md#Get) | **Get** /user/{user_handle} | Get user
 [**GetDBPassword**](Users.md#GetDBPassword) | **Get** /user/{user_handle}/password | Get user password
+[**GetEmail**](Users.md#GetEmail) | **Get** /user/{user_handle}/email/{email_id} | Get user email
+[**GetPreferences**](Users.md#GetPreferences) | **Get** /user/{user_handle}/preferences | Get user preferences
 [**GetQuota**](Users.md#GetQuota) | **Get** /user/{user_handle}/quota | User quota
 [**List**](Users.md#List) | **Get** /user | List users
 [**ListAuditLogs**](Users.md#ListAuditLogs) | **Get** /user/{user_handle}/audit_log | User audit logs
+[**ListEmails**](Users.md#ListEmails) | **Get** /user/{user_handle}/email | List user emails
 [**ListFeatures**](Users.md#ListFeatures) | **Get** /user/{user_handle}/feature | User features
 [**Update**](Users.md#Update) | **Patch** /user/{user_handle} | Update user
+[**UpdatePreferences**](Users.md#UpdatePreferences) | **Patch** /user/{user_handle}/preferences | Update user preferences
 
 
 
@@ -365,6 +369,149 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## GetEmail
+
+> UserEmail GetEmail(ctx, userHandle, emailId).Execute()
+
+Get user email
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | Specify the handle of the user whose information you want to retrieve.
+    emailId := "emailId_example" // string | Specify the id of the email object you want to retrieve.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.Users.GetEmail(context.Background(), userHandle, emailId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Users.GetEmail``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetEmail`: UserEmail
+    fmt.Fprintf(os.Stdout, "Response from `Users.GetEmail`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | Specify the handle of the user whose information you want to retrieve. | 
+**emailId** | **string** | Specify the id of the email object you want to retrieve. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetEmailRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**UserEmail**](UserEmail.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPreferences
+
+> UserPreferences GetPreferences(ctx, userHandle).Execute()
+
+Get user preferences
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | Specify the handle of the user whose preferences need to be retrieved.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.Users.GetPreferences(context.Background(), userHandle).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Users.GetPreferences``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPreferences`: UserPreferences
+    fmt.Fprintf(os.Stdout, "Response from `Users.GetPreferences`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | Specify the handle of the user whose preferences need to be retrieved. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPreferencesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**UserPreferences**](UserPreferences.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetQuota
 
 > UserQuota GetQuota(ctx, userHandle).Execute()
@@ -577,6 +724,80 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## ListEmails
+
+> ListUserEmailsResponse ListEmails(ctx, userHandle).Limit(limit).NextToken(nextToken).Execute()
+
+List user emails
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | Specify the handle of the user whose information you want to retrieve.
+    limit := int32(56) // int32 | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. (optional) (default to 25)
+    nextToken := "nextToken_example" // string | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.Users.ListEmails(context.Background(), userHandle).Limit(limit).NextToken(nextToken).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Users.ListEmails``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListEmails`: ListUserEmailsResponse
+    fmt.Fprintf(os.Stdout, "Response from `Users.ListEmails`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | Specify the handle of the user whose information you want to retrieve. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListEmailsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **limit** | **int32** | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. | [default to 25]
+ **nextToken** | **string** | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. | 
+
+### Return type
+
+[**ListUserEmailsResponse**](ListUserEmailsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListFeatures
 
 > ListFeaturesResponse ListFeatures(ctx, userHandle).Execute()
@@ -704,6 +925,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**User**](User.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdatePreferences
+
+> UserPreferences UpdatePreferences(ctx, userHandle).Request(request).Execute()
+
+Update user preferences
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | Specify the handle of the user whose preferences need to be retrieved.
+    request := *openapiclient.NewUpdateUserPreferencesRequest() // UpdateUserPreferencesRequest | The request body for updating user preferences.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.Users.UpdatePreferences(context.Background(), userHandle).Request(request).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Users.UpdatePreferences``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdatePreferences`: UserPreferences
+    fmt.Fprintf(os.Stdout, "Response from `Users.UpdatePreferences`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | Specify the handle of the user whose preferences need to be retrieved. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdatePreferencesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **request** | [**UpdateUserPreferencesRequest**](UpdateUserPreferencesRequest.md) | The request body for updating user preferences. | 
+
+### Return type
+
+[**UserPreferences**](UserPreferences.md)
 
 ### Authorization
 

@@ -10,6 +10,9 @@ Name | Type | Description | Notes
 **CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **CreatedById** | **string** | The ID of the user that created this. | 
 **DatabaseName** | Pointer to **string** | The name of the database. | [optional] 
+**DeletedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
+**DeletedBy** | Pointer to [**User**](User.md) |  | [optional] 
+**DeletedById** | **string** | The ID of the user that performed the deletion. | 
 **Handle** | **string** | The handle name for the workspace. | 
 **Hive** | Pointer to **string** | The database hive for this workspace. | [optional] 
 **Host** | Pointer to **string** |  | [optional] 
@@ -26,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewWorkspace
 
-`func NewWorkspace(createdAt string, createdById string, handle string, id string, identityId string, updatedById string, versionId int32, ) *Workspace`
+`func NewWorkspace(createdAt string, createdById string, deletedById string, handle string, id string, identityId string, updatedById string, versionId int32, ) *Workspace`
 
 NewWorkspace instantiates a new Workspace object
 This constructor will assign default values to properties that have it defined,
@@ -180,6 +183,76 @@ SetDatabaseName sets DatabaseName field to given value.
 `func (o *Workspace) HasDatabaseName() bool`
 
 HasDatabaseName returns a boolean if a field has been set.
+
+### GetDeletedAt
+
+`func (o *Workspace) GetDeletedAt() string`
+
+GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
+
+### GetDeletedAtOk
+
+`func (o *Workspace) GetDeletedAtOk() (*string, bool)`
+
+GetDeletedAtOk returns a tuple with the DeletedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedAt
+
+`func (o *Workspace) SetDeletedAt(v string)`
+
+SetDeletedAt sets DeletedAt field to given value.
+
+### HasDeletedAt
+
+`func (o *Workspace) HasDeletedAt() bool`
+
+HasDeletedAt returns a boolean if a field has been set.
+
+### GetDeletedBy
+
+`func (o *Workspace) GetDeletedBy() User`
+
+GetDeletedBy returns the DeletedBy field if non-nil, zero value otherwise.
+
+### GetDeletedByOk
+
+`func (o *Workspace) GetDeletedByOk() (*User, bool)`
+
+GetDeletedByOk returns a tuple with the DeletedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedBy
+
+`func (o *Workspace) SetDeletedBy(v User)`
+
+SetDeletedBy sets DeletedBy field to given value.
+
+### HasDeletedBy
+
+`func (o *Workspace) HasDeletedBy() bool`
+
+HasDeletedBy returns a boolean if a field has been set.
+
+### GetDeletedById
+
+`func (o *Workspace) GetDeletedById() string`
+
+GetDeletedById returns the DeletedById field if non-nil, zero value otherwise.
+
+### GetDeletedByIdOk
+
+`func (o *Workspace) GetDeletedByIdOk() (*string, bool)`
+
+GetDeletedByIdOk returns a tuple with the DeletedById field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedById
+
+`func (o *Workspace) SetDeletedById(v string)`
+
+SetDeletedById sets DeletedById field to given value.
+
 
 ### GetHandle
 

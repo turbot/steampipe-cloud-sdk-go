@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -19,7 +19,10 @@ import (
 type OrgQuota struct {
 	Association map[string]Quota `json:"association"`
 	Conn        Quota            `json:"conn"`
+	Member      Quota            `json:"member"`
 	Mod         map[string]Quota `json:"mod"`
+	Pipeline    map[string]Quota `json:"pipeline"`
+	Snapshot    map[string]Quota `json:"snapshot"`
 	Workspace   Quota            `json:"workspace"`
 }
 
@@ -27,11 +30,14 @@ type OrgQuota struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgQuota(association map[string]Quota, conn Quota, mod map[string]Quota, workspace Quota) *OrgQuota {
+func NewOrgQuota(association map[string]Quota, conn Quota, member Quota, mod map[string]Quota, pipeline map[string]Quota, snapshot map[string]Quota, workspace Quota) *OrgQuota {
 	this := OrgQuota{}
 	this.Association = association
 	this.Conn = conn
+	this.Member = member
 	this.Mod = mod
+	this.Pipeline = pipeline
+	this.Snapshot = snapshot
 	this.Workspace = workspace
 	return &this
 }
@@ -92,6 +98,30 @@ func (o *OrgQuota) SetConn(v Quota) {
 	o.Conn = v
 }
 
+// GetMember returns the Member field value
+func (o *OrgQuota) GetMember() Quota {
+	if o == nil {
+		var ret Quota
+		return ret
+	}
+
+	return o.Member
+}
+
+// GetMemberOk returns a tuple with the Member field value
+// and a boolean to check if the value has been set.
+func (o *OrgQuota) GetMemberOk() (*Quota, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Member, true
+}
+
+// SetMember sets field value
+func (o *OrgQuota) SetMember(v Quota) {
+	o.Member = v
+}
+
 // GetMod returns the Mod field value
 func (o *OrgQuota) GetMod() map[string]Quota {
 	if o == nil {
@@ -114,6 +144,54 @@ func (o *OrgQuota) GetModOk() (*map[string]Quota, bool) {
 // SetMod sets field value
 func (o *OrgQuota) SetMod(v map[string]Quota) {
 	o.Mod = v
+}
+
+// GetPipeline returns the Pipeline field value
+func (o *OrgQuota) GetPipeline() map[string]Quota {
+	if o == nil {
+		var ret map[string]Quota
+		return ret
+	}
+
+	return o.Pipeline
+}
+
+// GetPipelineOk returns a tuple with the Pipeline field value
+// and a boolean to check if the value has been set.
+func (o *OrgQuota) GetPipelineOk() (*map[string]Quota, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Pipeline, true
+}
+
+// SetPipeline sets field value
+func (o *OrgQuota) SetPipeline(v map[string]Quota) {
+	o.Pipeline = v
+}
+
+// GetSnapshot returns the Snapshot field value
+func (o *OrgQuota) GetSnapshot() map[string]Quota {
+	if o == nil {
+		var ret map[string]Quota
+		return ret
+	}
+
+	return o.Snapshot
+}
+
+// GetSnapshotOk returns a tuple with the Snapshot field value
+// and a boolean to check if the value has been set.
+func (o *OrgQuota) GetSnapshotOk() (*map[string]Quota, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Snapshot, true
+}
+
+// SetSnapshot sets field value
+func (o *OrgQuota) SetSnapshot(v map[string]Quota) {
+	o.Snapshot = v
 }
 
 // GetWorkspace returns the Workspace field value
@@ -149,7 +227,16 @@ func (o OrgQuota) MarshalJSON() ([]byte, error) {
 		toSerialize["conn"] = o.Conn
 	}
 	if true {
+		toSerialize["member"] = o.Member
+	}
+	if true {
 		toSerialize["mod"] = o.Mod
+	}
+	if true {
+		toSerialize["pipeline"] = o.Pipeline
+	}
+	if true {
+		toSerialize["snapshot"] = o.Snapshot
 	}
 	if true {
 		toSerialize["workspace"] = o.Workspace

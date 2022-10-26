@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -50,9 +50,9 @@ Create Create org connection
 
 Creates a new connection for an organization. The limit is 10 per organization. If you require more than 10, you must contact support to request an increase.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization where we want to create the connection.
- @return OrgConnectionsApiCreateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization where we want to create the connection.
+	@return OrgConnectionsApiCreateRequest
 */
 func (a *OrgConnectionsService) Create(ctx _context.Context, orgHandle string) OrgConnectionsApiCreateRequest {
 	return OrgConnectionsApiCreateRequest{
@@ -63,7 +63,8 @@ func (a *OrgConnectionsService) Create(ctx _context.Context, orgHandle string) O
 }
 
 // Execute executes the request
-//  @return Connection
+//
+//	@return Connection
 func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) (Connection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -228,10 +229,10 @@ Delete Delete org connection
 
 Deletes the connection specified in the request.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization where the connection exist.
- @param connHandle Provide the handle of the connection which needs to be deleted.
- @return OrgConnectionsApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization where the connection exist.
+	@param connHandle Provide the handle of the connection which needs to be deleted.
+	@return OrgConnectionsApiDeleteRequest
 */
 func (a *OrgConnectionsService) Delete(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiDeleteRequest {
 	return OrgConnectionsApiDeleteRequest{
@@ -243,7 +244,8 @@ func (a *OrgConnectionsService) Delete(ctx _context.Context, orgHandle string, c
 }
 
 // Execute executes the request
-//  @return Connection
+//
+//	@return Connection
 func (a *OrgConnectionsService) DeleteExecute(r OrgConnectionsApiDeleteRequest) (Connection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -384,10 +386,10 @@ Get Get org connection
 
 Get the details for a connection.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of an organization where the connection exists.
- @param connHandle The handle of the connection whose detail needs to be fetched.
- @return OrgConnectionsApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of an organization where the connection exists.
+	@param connHandle The handle of the connection whose detail needs to be fetched.
+	@return OrgConnectionsApiGetRequest
 */
 func (a *OrgConnectionsService) Get(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiGetRequest {
 	return OrgConnectionsApiGetRequest{
@@ -399,7 +401,8 @@ func (a *OrgConnectionsService) Get(ctx _context.Context, orgHandle string, conn
 }
 
 // Execute executes the request
-//  @return Connection
+//
+//	@return Connection
 func (a *OrgConnectionsService) GetExecute(r OrgConnectionsApiGetRequest) (Connection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -563,9 +566,9 @@ List List org connections
 
 List the connection for an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization for which we want to list the connections.
- @return OrgConnectionsApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization for which we want to list the connections.
+	@return OrgConnectionsApiListRequest
 */
 func (a *OrgConnectionsService) List(ctx _context.Context, orgHandle string) OrgConnectionsApiListRequest {
 	return OrgConnectionsApiListRequest{
@@ -576,7 +579,8 @@ func (a *OrgConnectionsService) List(ctx _context.Context, orgHandle string) Org
 }
 
 // Execute executes the request
-//  @return ListConnectionsResponse
+//
+//	@return ListConnectionsResponse
 func (a *OrgConnectionsService) ListExecute(r OrgConnectionsApiListRequest) (ListConnectionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -722,10 +726,10 @@ Test Test org connection
 
 Test the config for an org connection to check for basic connectivity before you create it.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org performing the action.
- @param connHandle The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
- @return OrgConnectionsApiTestRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org performing the action.
+	@param connHandle The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
+	@return OrgConnectionsApiTestRequest
 */
 func (a *OrgConnectionsService) Test(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiTestRequest {
 	return OrgConnectionsApiTestRequest{
@@ -737,7 +741,8 @@ func (a *OrgConnectionsService) Test(ctx _context.Context, orgHandle string, con
 }
 
 // Execute executes the request
-//  @return ConnectionTestResult
+//
+//	@return ConnectionTestResult
 func (a *OrgConnectionsService) TestExecute(r OrgConnectionsApiTestRequest) (ConnectionTestResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -875,10 +880,10 @@ Update Update org connection
 
 Update the connection in an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization where the connection exist.
- @param connHandle The handle of the connection which needs to be updated.
- @return OrgConnectionsApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization where the connection exist.
+	@param connHandle The handle of the connection which needs to be updated.
+	@return OrgConnectionsApiUpdateRequest
 */
 func (a *OrgConnectionsService) Update(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiUpdateRequest {
 	return OrgConnectionsApiUpdateRequest{
@@ -890,7 +895,8 @@ func (a *OrgConnectionsService) Update(ctx _context.Context, orgHandle string, c
 }
 
 // Execute executes the request
-//  @return Connection
+//
+//	@return Connection
 func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) (Connection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

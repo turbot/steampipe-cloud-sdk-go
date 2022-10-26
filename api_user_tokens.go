@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -43,9 +43,9 @@ Create Create token
 
 Creates a new token for the specified user. The limit is 2 per user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user where the token will be created.
- @return UserTokensApiCreateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user where the token will be created.
+	@return UserTokensApiCreateRequest
 */
 func (a *UserTokensService) Create(ctx _context.Context, userHandle string) UserTokensApiCreateRequest {
 	return UserTokensApiCreateRequest{
@@ -56,7 +56,8 @@ func (a *UserTokensService) Create(ctx _context.Context, userHandle string) User
 }
 
 // Execute executes the request
-//  @return Token
+//
+//	@return Token
 func (a *UserTokensService) CreateExecute(r UserTokensApiCreateRequest) (Token, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -206,10 +207,10 @@ Delete Delete token
 
 Deletes the token associated with the specified user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user where the token exist.
- @param tokenId The identifier of the token.
- @return UserTokensApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user where the token exist.
+	@param tokenId The identifier of the token.
+	@return UserTokensApiDeleteRequest
 */
 func (a *UserTokensService) Delete(ctx _context.Context, userHandle string, tokenId string) UserTokensApiDeleteRequest {
 	return UserTokensApiDeleteRequest{
@@ -221,7 +222,8 @@ func (a *UserTokensService) Delete(ctx _context.Context, userHandle string, toke
 }
 
 // Execute executes the request
-//  @return Token
+//
+//	@return Token
 func (a *UserTokensService) DeleteExecute(r UserTokensApiDeleteRequest) (Token, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -362,10 +364,10 @@ Get Get token
 
 Retrieves the information of a specified token.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tokenId The identifier of the token.
- @param userHandle The handle of the user where the token exist.
- @return UserTokensApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param tokenId The identifier of the token.
+	@param userHandle The handle of the user where the token exist.
+	@return UserTokensApiGetRequest
 */
 func (a *UserTokensService) Get(ctx _context.Context, tokenId string, userHandle string) UserTokensApiGetRequest {
 	return UserTokensApiGetRequest{
@@ -377,7 +379,8 @@ func (a *UserTokensService) Get(ctx _context.Context, tokenId string, userHandle
 }
 
 // Execute executes the request
-//  @return Token
+//
+//	@return Token
 func (a *UserTokensService) GetExecute(r UserTokensApiGetRequest) (Token, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -541,9 +544,9 @@ List List tokens
 
 List the token for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user.
- @return UserTokensApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user.
+	@return UserTokensApiListRequest
 */
 func (a *UserTokensService) List(ctx _context.Context, userHandle string) UserTokensApiListRequest {
 	return UserTokensApiListRequest{
@@ -554,7 +557,8 @@ func (a *UserTokensService) List(ctx _context.Context, userHandle string) UserTo
 }
 
 // Execute executes the request
-//  @return ListTokensResponse
+//
+//	@return ListTokensResponse
 func (a *UserTokensService) ListExecute(r UserTokensApiListRequest) (ListTokensResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -707,10 +711,10 @@ Update Update token
 
 Changes the status of the specified token from Active to Inactive or vice versa.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user where the token exist.
- @param tokenId The identifier of the token.
- @return UserTokensApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user where the token exist.
+	@param tokenId The identifier of the token.
+	@return UserTokensApiUpdateRequest
 */
 func (a *UserTokensService) Update(ctx _context.Context, userHandle string, tokenId string) UserTokensApiUpdateRequest {
 	return UserTokensApiUpdateRequest{
@@ -722,7 +726,8 @@ func (a *UserTokensService) Update(ctx _context.Context, userHandle string, toke
 }
 
 // Execute executes the request
-//  @return Token
+//
+//	@return Token
 func (a *UserTokensService) UpdateExecute(r UserTokensApiUpdateRequest) (Token, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

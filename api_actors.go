@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -41,8 +41,8 @@ Get Actor information
 
 Returns the actor information.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ActorsApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ActorsApiGetRequest
 */
 func (a *ActorsService) Get(ctx _context.Context) ActorsApiGetRequest {
 	return ActorsApiGetRequest{
@@ -52,7 +52,8 @@ func (a *ActorsService) Get(ctx _context.Context) ActorsApiGetRequest {
 }
 
 // Execute executes the request
-//  @return User
+//
+//	@return User
 func (a *ActorsService) GetExecute(r ActorsApiGetRequest) (User, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -193,8 +194,8 @@ ListActivity List actor activity
 
 List the activity for an actor.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ActorsApiListActivityRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ActorsApiListActivityRequest
 */
 func (a *ActorsService) ListActivity(ctx _context.Context) ActorsApiListActivityRequest {
 	return ActorsApiListActivityRequest{
@@ -204,7 +205,8 @@ func (a *ActorsService) ListActivity(ctx _context.Context) ActorsApiListActivity
 }
 
 // Execute executes the request
-//  @return ListAuditLogsResponse
+//
+//	@return ListAuditLogsResponse
 func (a *ActorsService) ListActivityExecute(r ActorsApiListActivityRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -351,8 +353,8 @@ ListConnections List actor connections
 
 List the connections for an actor.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ActorsApiListConnectionsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ActorsApiListConnectionsRequest
 */
 func (a *ActorsService) ListConnections(ctx _context.Context) ActorsApiListConnectionsRequest {
 	return ActorsApiListConnectionsRequest{
@@ -362,7 +364,8 @@ func (a *ActorsService) ListConnections(ctx _context.Context) ActorsApiListConne
 }
 
 // Execute executes the request
-//  @return ListConnectionsResponse
+//
+//	@return ListConnectionsResponse
 func (a *ActorsService) ListConnectionsExecute(r ActorsApiListConnectionsRequest) (ListConnectionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -509,8 +512,8 @@ ListOrgInvites List org invites for actor
 
 List the orgs to which the actor has been invited.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ActorsApiListOrgInvitesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ActorsApiListOrgInvitesRequest
 */
 func (a *ActorsService) ListOrgInvites(ctx _context.Context) ActorsApiListOrgInvitesRequest {
 	return ActorsApiListOrgInvitesRequest{
@@ -520,7 +523,8 @@ func (a *ActorsService) ListOrgInvites(ctx _context.Context) ActorsApiListOrgInv
 }
 
 // Execute executes the request
-//  @return ListUserOrgsResponse
+//
+//	@return ListUserOrgsResponse
 func (a *ActorsService) ListOrgInvitesExecute(r ActorsApiListOrgInvitesRequest) (ListUserOrgsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -667,8 +671,8 @@ ListOrgs List actor orgs
 
 List the orgs and org workspaces for an actor, along with role within each.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ActorsApiListOrgsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ActorsApiListOrgsRequest
 */
 func (a *ActorsService) ListOrgs(ctx _context.Context) ActorsApiListOrgsRequest {
 	return ActorsApiListOrgsRequest{
@@ -678,7 +682,8 @@ func (a *ActorsService) ListOrgs(ctx _context.Context) ActorsApiListOrgsRequest 
 }
 
 // Execute executes the request
-//  @return ListUserOrgsResponse
+//
+//	@return ListUserOrgsResponse
 func (a *ActorsService) ListOrgsExecute(r ActorsApiListOrgsRequest) (ListUserOrgsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -825,8 +830,8 @@ ListWorkspaces List actor workspaces
 
 List the workspaces for an actor.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ActorsApiListWorkspacesRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ActorsApiListWorkspacesRequest
 */
 func (a *ActorsService) ListWorkspaces(ctx _context.Context) ActorsApiListWorkspacesRequest {
 	return ActorsApiListWorkspacesRequest{
@@ -836,7 +841,8 @@ func (a *ActorsService) ListWorkspaces(ctx _context.Context) ActorsApiListWorksp
 }
 
 // Execute executes the request
-//  @return ListActorWorkspacesResponse
+//
+//	@return ListActorWorkspacesResponse
 func (a *ActorsService) ListWorkspacesExecute(r ActorsApiListWorkspacesRequest) (ListActorWorkspacesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

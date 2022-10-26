@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -51,10 +51,10 @@ Create Create org workspace connection association
 
 Associate a connection with the workspace. A workspace can have multiple association.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization where we want to create an association.
- @param workspaceHandle The handle of the workspace where the connection will be associated.
- @return OrgWorkspaceConnectionAssociationsApiCreateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization where we want to create an association.
+	@param workspaceHandle The handle of the workspace where the connection will be associated.
+	@return OrgWorkspaceConnectionAssociationsApiCreateRequest
 */
 func (a *OrgWorkspaceConnectionAssociationsService) Create(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceConnectionAssociationsApiCreateRequest {
 	return OrgWorkspaceConnectionAssociationsApiCreateRequest{
@@ -66,7 +66,8 @@ func (a *OrgWorkspaceConnectionAssociationsService) Create(ctx _context.Context,
 }
 
 // Execute executes the request
-//  @return WorkspaceConn
+//
+//	@return WorkspaceConn
 func (a *OrgWorkspaceConnectionAssociationsService) CreateExecute(r OrgWorkspaceConnectionAssociationsApiCreateRequest) (WorkspaceConn, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -233,11 +234,11 @@ Delete Delete org workspace connection association
 
 Dissociates or delete the workspace and connection association.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of an organization where we want to delete the association.
- @param workspaceHandle The handle of the workspace whose association needs to be deleted.
- @param connHandle The handle of the conn whose association needs to be deleted.
- @return OrgWorkspaceConnectionAssociationsApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of an organization where we want to delete the association.
+	@param workspaceHandle The handle of the workspace whose association needs to be deleted.
+	@param connHandle The handle of the conn whose association needs to be deleted.
+	@return OrgWorkspaceConnectionAssociationsApiDeleteRequest
 */
 func (a *OrgWorkspaceConnectionAssociationsService) Delete(ctx _context.Context, orgHandle string, workspaceHandle string, connHandle string) OrgWorkspaceConnectionAssociationsApiDeleteRequest {
 	return OrgWorkspaceConnectionAssociationsApiDeleteRequest{
@@ -250,7 +251,8 @@ func (a *OrgWorkspaceConnectionAssociationsService) Delete(ctx _context.Context,
 }
 
 // Execute executes the request
-//  @return WorkspaceConn
+//
+//	@return WorkspaceConn
 func (a *OrgWorkspaceConnectionAssociationsService) DeleteExecute(r OrgWorkspaceConnectionAssociationsApiDeleteRequest) (WorkspaceConn, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -393,11 +395,11 @@ Get Get org workspace connection association
 
 Get the details for a workspace and connection association on an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org for which you want to get the association.
- @param workspaceHandle The handle of the workspace where the connection exist.
- @param connHandle The handle of the conn whose association details needs to be fetched.
- @return OrgWorkspaceConnectionAssociationsApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org for which you want to get the association.
+	@param workspaceHandle The handle of the workspace where the connection exist.
+	@param connHandle The handle of the conn whose association details needs to be fetched.
+	@return OrgWorkspaceConnectionAssociationsApiGetRequest
 */
 func (a *OrgWorkspaceConnectionAssociationsService) Get(ctx _context.Context, orgHandle string, workspaceHandle string, connHandle string) OrgWorkspaceConnectionAssociationsApiGetRequest {
 	return OrgWorkspaceConnectionAssociationsApiGetRequest{
@@ -410,7 +412,8 @@ func (a *OrgWorkspaceConnectionAssociationsService) Get(ctx _context.Context, or
 }
 
 // Execute executes the request
-//  @return WorkspaceConn
+//
+//	@return WorkspaceConn
 func (a *OrgWorkspaceConnectionAssociationsService) GetExecute(r OrgWorkspaceConnectionAssociationsApiGetRequest) (WorkspaceConn, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -576,10 +579,10 @@ List List org workspace connection associations
 
 List the connections associated with a workspace.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of an organization for which you want to list the associations.
- @param workspaceHandle The handle of the workspace where you want to list the associations.
- @return OrgWorkspaceConnectionAssociationsApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of an organization for which you want to list the associations.
+	@param workspaceHandle The handle of the workspace where you want to list the associations.
+	@return OrgWorkspaceConnectionAssociationsApiListRequest
 */
 func (a *OrgWorkspaceConnectionAssociationsService) List(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceConnectionAssociationsApiListRequest {
 	return OrgWorkspaceConnectionAssociationsApiListRequest{
@@ -591,7 +594,8 @@ func (a *OrgWorkspaceConnectionAssociationsService) List(ctx _context.Context, o
 }
 
 // Execute executes the request
-//  @return ListWorkspaceConnResponse
+//
+//	@return ListWorkspaceConnResponse
 func (a *OrgWorkspaceConnectionAssociationsService) ListExecute(r OrgWorkspaceConnectionAssociationsApiListRequest) (ListWorkspaceConnResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

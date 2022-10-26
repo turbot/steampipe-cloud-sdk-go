@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -30,7 +30,7 @@ type OrgUser struct {
 	Role *string `json:"role,omitempty"`
 	// The scope of the role. Can be either of org / workspace
 	Scope *string `json:"scope,omitempty"`
-	// The status of the org member i.e pending or accepted.
+	// The status of the org member i.e invited or accepted.
 	Status string `json:"status"`
 	// The time of the last update in ISO 8601 UTC.
 	UpdatedAt *string `json:"updated_at,omitempty"`
