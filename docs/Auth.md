@@ -8,7 +8,8 @@ Method | HTTP request | Description
 [**ConfirmSignup**](Auth.md#ConfirmSignup) | **Get** /signup/confirm | Confirm user signup
 [**Login**](Auth.md#Login) | **Post** /login | User login
 [**LoginTokenCreate**](Auth.md#LoginTokenCreate) | **Post** /login/token | Generate temporary token request
-[**LoginTokenDelete**](Auth.md#LoginTokenDelete) | **Get** /login/token/{temporary_token_request_id} | Delete temporary token request
+[**LoginTokenDelete**](Auth.md#LoginTokenDelete) | **Delete** /login/token/{temporary_token_request_id} | Delete temporary token request
+[**LoginTokenGet**](Auth.md#LoginTokenGet) | **Get** /login/token/{temporary_token_request_id} | Get temporary token request
 [**LoginTokenUpdate**](Auth.md#LoginTokenUpdate) | **Patch** /login/token/{temporary_token_request_id} | Update temporary token request
 [**Logout**](Auth.md#Logout) | **Get** /logout/{provider} | User logout
 [**Provider**](Auth.md#Provider) | **Get** /auth/{provider} | Auth Provider
@@ -321,6 +322,78 @@ Other parameters are passed through a pointer to a apiLoginTokenDeleteRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
+### Return type
+
+[**TemporaryTokenRequest**](TemporaryTokenRequest.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## LoginTokenGet
+
+> TemporaryTokenRequest LoginTokenGet(ctx, temporaryTokenRequestId).Code(code).Execute()
+
+Get temporary token request
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    temporaryTokenRequestId := "temporaryTokenRequestId_example" // string | The ID of the temporary token request to get.
+    code := "code_example" // string | The challenge code to request the temporary token. Will only be obtained after confirming the login request in the Steampipe Cloud UI. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.Auth.LoginTokenGet(context.Background(), temporaryTokenRequestId).Code(code).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Auth.LoginTokenGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `LoginTokenGet`: TemporaryTokenRequest
+    fmt.Fprintf(os.Stdout, "Response from `Auth.LoginTokenGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**temporaryTokenRequestId** | **string** | The ID of the temporary token request to get. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiLoginTokenGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **code** | **string** | The challenge code to request the temporary token. Will only be obtained after confirming the login request in the Steampipe Cloud UI. | 
 
 ### Return type
 

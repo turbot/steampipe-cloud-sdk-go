@@ -691,7 +691,7 @@ paths:
       tags:
       - Auth
   /login/token/{temporary_token_request_id}:
-    get:
+    delete:
       description: Delete a temporary token request status.
       operationId: auth_loginToken_delete
       parameters:
@@ -736,6 +736,69 @@ paths:
                 $ref: '#/components/schemas/ErrorModel'
           description: Internal Server Error
       summary: Delete temporary token request
+      tags:
+      - Auth
+    get:
+      description: Get a temporary token request status with token.
+      operationId: auth_loginToken_get
+      parameters:
+      - description: The ID of the temporary token request to get.
+        explode: false
+        in: path
+        name: temporary_token_request_id
+        required: true
+        schema:
+          format: ^spttr_[0-9a-v]{20}_[0-9a-z]{19,}$
+          type: string
+        style: simple
+      - description: The challenge code to request the temporary token. Will only
+          be obtained after confirming the login request in the Steampipe Cloud UI.
+        explode: true
+        in: query
+        name: code
+        required: false
+        schema:
+          format: ^[0-9]{4}$
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemporaryTokenRequest'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get temporary token request
       tags:
       - Auth
     patch:

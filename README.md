@@ -72,7 +72,8 @@ Class | Method | HTTP request | Description
 *Auth* | [**ConfirmSignup**](docs/Auth.md#confirmsignup) | **Get** /signup/confirm | Confirm user signup
 *Auth* | [**Login**](docs/Auth.md#login) | **Post** /login | User login
 *Auth* | [**LoginTokenCreate**](docs/Auth.md#logintokencreate) | **Post** /login/token | Generate temporary token request
-*Auth* | [**LoginTokenDelete**](docs/Auth.md#logintokendelete) | **Get** /login/token/{temporary_token_request_id} | Delete temporary token request
+*Auth* | [**LoginTokenDelete**](docs/Auth.md#logintokendelete) | **Delete** /login/token/{temporary_token_request_id} | Delete temporary token request
+*Auth* | [**LoginTokenGet**](docs/Auth.md#logintokenget) | **Get** /login/token/{temporary_token_request_id} | Get temporary token request
 *Auth* | [**LoginTokenUpdate**](docs/Auth.md#logintokenupdate) | **Patch** /login/token/{temporary_token_request_id} | Update temporary token request
 *Auth* | [**Logout**](docs/Auth.md#logout) | **Get** /logout/{provider} | User logout
 *Auth* | [**Provider**](docs/Auth.md#provider) | **Get** /auth/{provider} | Auth Provider
