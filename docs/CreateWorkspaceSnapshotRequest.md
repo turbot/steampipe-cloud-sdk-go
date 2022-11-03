@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | [**WorkspaceSnapshotData**](WorkspaceSnapshotData.md) |  | 
 **Tags** | Pointer to **interface{}** |  | [optional] 
+**Title** | Pointer to **string** | The title of the snapshot. | [optional] 
 **Visibility** | Pointer to **string** | The visibility of the snapshot to create. | [optional] 
 
 ## Methods
@@ -82,6 +83,31 @@ HasTags returns a boolean if a field has been set.
 `func (o *CreateWorkspaceSnapshotRequest) UnsetTags()`
 
 UnsetTags ensures that no value is present for Tags, not even an explicit nil
+### GetTitle
+
+`func (o *CreateWorkspaceSnapshotRequest) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *CreateWorkspaceSnapshotRequest) GetTitleOk() (*string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *CreateWorkspaceSnapshotRequest) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
+
+### HasTitle
+
+`func (o *CreateWorkspaceSnapshotRequest) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
 ### GetVisibility
 
 `func (o *CreateWorkspaceSnapshotRequest) GetVisibility() string`

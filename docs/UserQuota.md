@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Conn** | [**Quota**](Quota.md) |  | 
 **Mod** | [**map[string]Quota**](Quota.md) |  | 
 **Organization** | [**Quota**](Quota.md) |  | 
+**Pipeline** | [**map[string]Quota**](Quota.md) |  | 
+**Snapshot** | [**map[string]Quota**](Quota.md) |  | 
 **Token** | [**Quota**](Quota.md) |  | 
 **Workspace** | [**Quota**](Quota.md) |  | 
 
@@ -15,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewUserQuota
 
-`func NewUserQuota(association map[string]Quota, conn Quota, mod map[string]Quota, organization Quota, token Quota, workspace Quota, ) *UserQuota`
+`func NewUserQuota(association map[string]Quota, conn Quota, mod map[string]Quota, organization Quota, pipeline map[string]Quota, snapshot map[string]Quota, token Quota, workspace Quota, ) *UserQuota`
 
 NewUserQuota instantiates a new UserQuota object
 This constructor will assign default values to properties that have it defined,
@@ -108,6 +110,46 @@ and a boolean to check if the value has been set.
 `func (o *UserQuota) SetOrganization(v Quota)`
 
 SetOrganization sets Organization field to given value.
+
+
+### GetPipeline
+
+`func (o *UserQuota) GetPipeline() map[string]Quota`
+
+GetPipeline returns the Pipeline field if non-nil, zero value otherwise.
+
+### GetPipelineOk
+
+`func (o *UserQuota) GetPipelineOk() (*map[string]Quota, bool)`
+
+GetPipelineOk returns a tuple with the Pipeline field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPipeline
+
+`func (o *UserQuota) SetPipeline(v map[string]Quota)`
+
+SetPipeline sets Pipeline field to given value.
+
+
+### GetSnapshot
+
+`func (o *UserQuota) GetSnapshot() map[string]Quota`
+
+GetSnapshot returns the Snapshot field if non-nil, zero value otherwise.
+
+### GetSnapshotOk
+
+`func (o *UserQuota) GetSnapshotOk() (*map[string]Quota, bool)`
+
+GetSnapshotOk returns a tuple with the Snapshot field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnapshot
+
+`func (o *UserQuota) SetSnapshot(v map[string]Quota)`
+
+SetSnapshot sets Snapshot field to given value.
 
 
 ### GetToken

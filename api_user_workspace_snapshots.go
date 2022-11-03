@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -51,10 +51,10 @@ Create Create user workspace snapshot
 
 Creates a new workspace snapshot for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user to create the workspace snapshot for.
- @param workspaceHandle The handle of the user workspace to create the snapshot for.
- @return UserWorkspaceSnapshotsApiCreateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user to create the workspace snapshot for.
+	@param workspaceHandle The handle of the user workspace to create the snapshot for.
+	@return UserWorkspaceSnapshotsApiCreateRequest
 */
 func (a *UserWorkspaceSnapshotsService) Create(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspaceSnapshotsApiCreateRequest {
 	return UserWorkspaceSnapshotsApiCreateRequest{
@@ -66,7 +66,8 @@ func (a *UserWorkspaceSnapshotsService) Create(ctx _context.Context, userHandle 
 }
 
 // Execute executes the request
-//  @return WorkspaceSnapshot
+//
+//	@return WorkspaceSnapshot
 func (a *UserWorkspaceSnapshotsService) CreateExecute(r UserWorkspaceSnapshotsApiCreateRequest) (WorkspaceSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -233,11 +234,11 @@ Delete Delete user workspace snapshot
 
 Deletes a user workspace snapshot.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user that the workspace snapshot belongs to.
- @param workspaceHandle The handle of the user workspace that the snapshot belongs to.
- @param snapshotId The handle of the snapshot which needs to be deleted.
- @return UserWorkspaceSnapshotsApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user that the workspace snapshot belongs to.
+	@param workspaceHandle The handle of the user workspace that the snapshot belongs to.
+	@param snapshotId The handle of the snapshot which needs to be deleted.
+	@return UserWorkspaceSnapshotsApiDeleteRequest
 */
 func (a *UserWorkspaceSnapshotsService) Delete(ctx _context.Context, userHandle string, workspaceHandle string, snapshotId string) UserWorkspaceSnapshotsApiDeleteRequest {
 	return UserWorkspaceSnapshotsApiDeleteRequest{
@@ -250,7 +251,8 @@ func (a *UserWorkspaceSnapshotsService) Delete(ctx _context.Context, userHandle 
 }
 
 // Execute executes the request
-//  @return WorkspaceSnapshot
+//
+//	@return WorkspaceSnapshot
 func (a *UserWorkspaceSnapshotsService) DeleteExecute(r UserWorkspaceSnapshotsApiDeleteRequest) (WorkspaceSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -404,12 +406,12 @@ Download Download user workspace snapshot
 
 Downloads the full data for a user workspace snapshot.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user that the workspace snapshot belongs to.
- @param workspaceHandle The handle of the user workspace that the snapshot belongs to.
- @param snapshotId The Id of the snapshot to be downloaded.
- @param contentType The type of content to the downloaded.
- @return UserWorkspaceSnapshotsApiDownloadRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user that the workspace snapshot belongs to.
+	@param workspaceHandle The handle of the user workspace that the snapshot belongs to.
+	@param snapshotId The Id of the snapshot to be downloaded.
+	@param contentType The type of content to the downloaded.
+	@return UserWorkspaceSnapshotsApiDownloadRequest
 */
 func (a *UserWorkspaceSnapshotsService) Download(ctx _context.Context, userHandle string, workspaceHandle string, snapshotId string, contentType string) UserWorkspaceSnapshotsApiDownloadRequest {
 	return UserWorkspaceSnapshotsApiDownloadRequest{
@@ -423,7 +425,8 @@ func (a *UserWorkspaceSnapshotsService) Download(ctx _context.Context, userHandl
 }
 
 // Execute executes the request
-//  @return WorkspaceSnapshotData
+//
+//	@return WorkspaceSnapshotData
 func (a *UserWorkspaceSnapshotsService) DownloadExecute(r UserWorkspaceSnapshotsApiDownloadRequest) (WorkspaceSnapshotData, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -567,11 +570,11 @@ Get Get user workspace snapshot
 
 Get the details for a user workspace snapshot.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user that the workspace snapshot belongs to.
- @param workspaceHandle The handle of the user workspace that the snapshot belongs to.
- @param snapshotId The handle of the snapshot whose detail needs to be fetched.
- @return UserWorkspaceSnapshotsApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user that the workspace snapshot belongs to.
+	@param workspaceHandle The handle of the user workspace that the snapshot belongs to.
+	@param snapshotId The handle of the snapshot whose detail needs to be fetched.
+	@return UserWorkspaceSnapshotsApiGetRequest
 */
 func (a *UserWorkspaceSnapshotsService) Get(ctx _context.Context, userHandle string, workspaceHandle string, snapshotId string) UserWorkspaceSnapshotsApiGetRequest {
 	return UserWorkspaceSnapshotsApiGetRequest{
@@ -584,7 +587,8 @@ func (a *UserWorkspaceSnapshotsService) Get(ctx _context.Context, userHandle str
 }
 
 // Execute executes the request
-//  @return WorkspaceSnapshot
+//
+//	@return WorkspaceSnapshot
 func (a *UserWorkspaceSnapshotsService) GetExecute(r UserWorkspaceSnapshotsApiGetRequest) (WorkspaceSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -757,10 +761,10 @@ List List user workspace snapshots
 
 List the workspace snapshots for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user to list the workspace snapshots for.
- @param workspaceHandle The handle of the workspace to list snapshots for.
- @return UserWorkspaceSnapshotsApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user to list the workspace snapshots for.
+	@param workspaceHandle The handle of the workspace to list snapshots for.
+	@return UserWorkspaceSnapshotsApiListRequest
 */
 func (a *UserWorkspaceSnapshotsService) List(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspaceSnapshotsApiListRequest {
 	return UserWorkspaceSnapshotsApiListRequest{
@@ -772,7 +776,8 @@ func (a *UserWorkspaceSnapshotsService) List(ctx _context.Context, userHandle st
 }
 
 // Execute executes the request
-//  @return ListWorkspaceSnapshotsResponse
+//
+//	@return ListWorkspaceSnapshotsResponse
 func (a *UserWorkspaceSnapshotsService) ListExecute(r UserWorkspaceSnapshotsApiListRequest) (ListWorkspaceSnapshotsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -930,11 +935,11 @@ Update Update user workspace snapshot
 
 Updates a user workspace snapshot.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user that the workspace snapshot belongs to.
- @param workspaceHandle The handle of the user workspace that the snapshot belongs to.
- @param snapshotId The handle of the snapshot to update.
- @return UserWorkspaceSnapshotsApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user that the workspace snapshot belongs to.
+	@param workspaceHandle The handle of the user workspace that the snapshot belongs to.
+	@param snapshotId The handle of the snapshot to update.
+	@return UserWorkspaceSnapshotsApiUpdateRequest
 */
 func (a *UserWorkspaceSnapshotsService) Update(ctx _context.Context, userHandle string, workspaceHandle string, snapshotId string) UserWorkspaceSnapshotsApiUpdateRequest {
 	return UserWorkspaceSnapshotsApiUpdateRequest{
@@ -947,7 +952,8 @@ func (a *UserWorkspaceSnapshotsService) Update(ctx _context.Context, userHandle 
 }
 
 // Execute executes the request
-//  @return WorkspaceSnapshot
+//
+//	@return WorkspaceSnapshot
 func (a *UserWorkspaceSnapshotsService) UpdateExecute(r UserWorkspaceSnapshotsApiUpdateRequest) (WorkspaceSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

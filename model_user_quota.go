@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -21,6 +21,8 @@ type UserQuota struct {
 	Conn         Quota            `json:"conn"`
 	Mod          map[string]Quota `json:"mod"`
 	Organization Quota            `json:"organization"`
+	Pipeline     map[string]Quota `json:"pipeline"`
+	Snapshot     map[string]Quota `json:"snapshot"`
 	Token        Quota            `json:"token"`
 	Workspace    Quota            `json:"workspace"`
 }
@@ -29,12 +31,14 @@ type UserQuota struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserQuota(association map[string]Quota, conn Quota, mod map[string]Quota, organization Quota, token Quota, workspace Quota) *UserQuota {
+func NewUserQuota(association map[string]Quota, conn Quota, mod map[string]Quota, organization Quota, pipeline map[string]Quota, snapshot map[string]Quota, token Quota, workspace Quota) *UserQuota {
 	this := UserQuota{}
 	this.Association = association
 	this.Conn = conn
 	this.Mod = mod
 	this.Organization = organization
+	this.Pipeline = pipeline
+	this.Snapshot = snapshot
 	this.Token = token
 	this.Workspace = workspace
 	return &this
@@ -144,6 +148,54 @@ func (o *UserQuota) SetOrganization(v Quota) {
 	o.Organization = v
 }
 
+// GetPipeline returns the Pipeline field value
+func (o *UserQuota) GetPipeline() map[string]Quota {
+	if o == nil {
+		var ret map[string]Quota
+		return ret
+	}
+
+	return o.Pipeline
+}
+
+// GetPipelineOk returns a tuple with the Pipeline field value
+// and a boolean to check if the value has been set.
+func (o *UserQuota) GetPipelineOk() (*map[string]Quota, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Pipeline, true
+}
+
+// SetPipeline sets field value
+func (o *UserQuota) SetPipeline(v map[string]Quota) {
+	o.Pipeline = v
+}
+
+// GetSnapshot returns the Snapshot field value
+func (o *UserQuota) GetSnapshot() map[string]Quota {
+	if o == nil {
+		var ret map[string]Quota
+		return ret
+	}
+
+	return o.Snapshot
+}
+
+// GetSnapshotOk returns a tuple with the Snapshot field value
+// and a boolean to check if the value has been set.
+func (o *UserQuota) GetSnapshotOk() (*map[string]Quota, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Snapshot, true
+}
+
+// SetSnapshot sets field value
+func (o *UserQuota) SetSnapshot(v map[string]Quota) {
+	o.Snapshot = v
+}
+
 // GetToken returns the Token field value
 func (o *UserQuota) GetToken() Quota {
 	if o == nil {
@@ -205,6 +257,12 @@ func (o UserQuota) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["organization"] = o.Organization
+	}
+	if true {
+		toSerialize["pipeline"] = o.Pipeline
+	}
+	if true {
+		toSerialize["snapshot"] = o.Snapshot
 	}
 	if true {
 		toSerialize["token"] = o.Token

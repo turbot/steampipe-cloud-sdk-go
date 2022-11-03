@@ -8,6 +8,9 @@ Name | Type | Description | Notes
 **CreatedAt** | **string** | The time of creation in ISO 8601 UTC. | 
 **CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **CreatedById** | **string** | The ID of the user that created this. | 
+**DeletedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
+**DeletedBy** | Pointer to [**User**](User.md) |  | [optional] 
+**DeletedById** | **string** | The ID of the user that performed the deletion. | 
 **Handle** | **string** | The handle name of the  connection. | 
 **Id** | **string** | The unique identifier for the connection. | 
 **IdentityId** | **string** | The unique identifier for an identity where the connection has been created. | 
@@ -22,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewConnection
 
-`func NewConnection(createdAt string, createdById string, handle string, id string, identityId string, updatedById string, versionId int32, ) *Connection`
+`func NewConnection(createdAt string, createdById string, deletedById string, handle string, id string, identityId string, updatedById string, versionId int32, ) *Connection`
 
 NewConnection instantiates a new Connection object
 This constructor will assign default values to properties that have it defined,
@@ -125,6 +128,76 @@ and a boolean to check if the value has been set.
 `func (o *Connection) SetCreatedById(v string)`
 
 SetCreatedById sets CreatedById field to given value.
+
+
+### GetDeletedAt
+
+`func (o *Connection) GetDeletedAt() string`
+
+GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
+
+### GetDeletedAtOk
+
+`func (o *Connection) GetDeletedAtOk() (*string, bool)`
+
+GetDeletedAtOk returns a tuple with the DeletedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedAt
+
+`func (o *Connection) SetDeletedAt(v string)`
+
+SetDeletedAt sets DeletedAt field to given value.
+
+### HasDeletedAt
+
+`func (o *Connection) HasDeletedAt() bool`
+
+HasDeletedAt returns a boolean if a field has been set.
+
+### GetDeletedBy
+
+`func (o *Connection) GetDeletedBy() User`
+
+GetDeletedBy returns the DeletedBy field if non-nil, zero value otherwise.
+
+### GetDeletedByOk
+
+`func (o *Connection) GetDeletedByOk() (*User, bool)`
+
+GetDeletedByOk returns a tuple with the DeletedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedBy
+
+`func (o *Connection) SetDeletedBy(v User)`
+
+SetDeletedBy sets DeletedBy field to given value.
+
+### HasDeletedBy
+
+`func (o *Connection) HasDeletedBy() bool`
+
+HasDeletedBy returns a boolean if a field has been set.
+
+### GetDeletedById
+
+`func (o *Connection) GetDeletedById() string`
+
+GetDeletedById returns the DeletedById field if non-nil, zero value otherwise.
+
+### GetDeletedByIdOk
+
+`func (o *Connection) GetDeletedByIdOk() (*string, bool)`
+
+GetDeletedByIdOk returns a tuple with the DeletedById field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedById
+
+`func (o *Connection) SetDeletedById(v string)`
+
+SetDeletedById sets DeletedById field to given value.
 
 
 ### GetHandle

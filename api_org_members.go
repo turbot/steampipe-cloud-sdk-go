@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -50,9 +50,9 @@ ConfirmInvite Confirm org member invite
 
 Confirm org member invite.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of an organization where the member need to be invited.
- @return OrgMembersApiConfirmInviteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the handle of an organization where the member need to be invited.
+	@return OrgMembersApiConfirmInviteRequest
 */
 func (a *OrgMembersService) ConfirmInvite(ctx _context.Context, orgHandle string) OrgMembersApiConfirmInviteRequest {
 	return OrgMembersApiConfirmInviteRequest{
@@ -206,10 +206,10 @@ Delete Delete org member
 
 Delete the user from the org.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization where the member exists.
- @param userHandle Specify the handle of the user which need to be removed.
- @return OrgMembersApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the handle of the organization where the member exists.
+	@param userHandle Specify the handle of the user which need to be removed.
+	@return OrgMembersApiDeleteRequest
 */
 func (a *OrgMembersService) Delete(ctx _context.Context, orgHandle string, userHandle string) OrgMembersApiDeleteRequest {
 	return OrgMembersApiDeleteRequest{
@@ -221,7 +221,8 @@ func (a *OrgMembersService) Delete(ctx _context.Context, orgHandle string, userH
 }
 
 // Execute executes the request
-//  @return OrgUser
+//
+//	@return OrgUser
 func (a *OrgMembersService) DeleteExecute(r OrgMembersApiDeleteRequest) (OrgUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -388,9 +389,9 @@ DeleteInvite Delete org member invite
 
 Delete the org member invite.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the organization handle.
- @return OrgMembersApiDeleteInviteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the organization handle.
+	@return OrgMembersApiDeleteInviteRequest
 */
 func (a *OrgMembersService) DeleteInvite(ctx _context.Context, orgHandle string) OrgMembersApiDeleteInviteRequest {
 	return OrgMembersApiDeleteInviteRequest{
@@ -534,10 +535,10 @@ Get Get org member
 
 Get org member.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the organization handle where the member is associated.
- @param userHandle Specify the handle of the user whose information you want to retrieve.
- @return OrgMembersApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the organization handle where the member is associated.
+	@param userHandle Specify the handle of the user whose information you want to retrieve.
+	@return OrgMembersApiGetRequest
 */
 func (a *OrgMembersService) Get(ctx _context.Context, orgHandle string, userHandle string) OrgMembersApiGetRequest {
 	return OrgMembersApiGetRequest{
@@ -549,7 +550,8 @@ func (a *OrgMembersService) Get(ctx _context.Context, orgHandle string, userHand
 }
 
 // Execute executes the request
-//  @return OrgUser
+//
+//	@return OrgUser
 func (a *OrgMembersService) GetExecute(r OrgMembersApiGetRequest) (OrgUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -706,9 +708,9 @@ Invite Invite org member
 
 Invite member to an org.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of an organization where the member need to be invited.
- @return OrgMembersApiInviteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the handle of an organization where the member need to be invited.
+	@return OrgMembersApiInviteRequest
 */
 func (a *OrgMembersService) Invite(ctx _context.Context, orgHandle string) OrgMembersApiInviteRequest {
 	return OrgMembersApiInviteRequest{
@@ -719,7 +721,8 @@ func (a *OrgMembersService) Invite(ctx _context.Context, orgHandle string) OrgMe
 }
 
 // Execute executes the request
-//  @return OrgUser
+//
+//	@return OrgUser
 func (a *OrgMembersService) InviteExecute(r OrgMembersApiInviteRequest) (OrgUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -884,9 +887,9 @@ List List Organization Members
 
 List all members of an organization who are invited / accepted.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the organization handle.
- @return OrgMembersApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the organization handle.
+	@return OrgMembersApiListRequest
 */
 func (a *OrgMembersService) List(ctx _context.Context, orgHandle string) OrgMembersApiListRequest {
 	return OrgMembersApiListRequest{
@@ -897,7 +900,8 @@ func (a *OrgMembersService) List(ctx _context.Context, orgHandle string) OrgMemb
 }
 
 // Execute executes the request
-//  @return ListOrgUsersResponse
+//
+//	@return ListOrgUsersResponse
 func (a *OrgMembersService) ListExecute(r OrgMembersApiListRequest) (ListOrgUsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1053,10 +1057,10 @@ Update Update org member
 
 Update the role of the member.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the handle of the organization where the member exists.
- @param userHandle Specify the handle of the user whose role need to be updated.
- @return OrgMembersApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the handle of the organization where the member exists.
+	@param userHandle Specify the handle of the user whose role need to be updated.
+	@return OrgMembersApiUpdateRequest
 */
 func (a *OrgMembersService) Update(ctx _context.Context, orgHandle string, userHandle string) OrgMembersApiUpdateRequest {
 	return OrgMembersApiUpdateRequest{
@@ -1068,7 +1072,8 @@ func (a *OrgMembersService) Update(ctx _context.Context, orgHandle string, userH
 }
 
 // Execute executes the request
-//  @return OrgUser
+//
+//	@return OrgUser
 func (a *OrgMembersService) UpdateExecute(r OrgMembersApiUpdateRequest) (OrgUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

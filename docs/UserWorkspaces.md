@@ -4,6 +4,7 @@ All URIs are relative to *https://cloud.steampipe.io/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**Command**](UserWorkspaces.md#Command) | **Post** /user/{user_handle}/workspace/{workspace_handle}/command | Run user workspace command
 [**Create**](UserWorkspaces.md#Create) | **Post** /user/{user_handle}/workspace | Create user workspace
 [**Delete**](UserWorkspaces.md#Delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle} | Delete user workspace
 [**Get**](UserWorkspaces.md#Get) | **Get** /user/{user_handle}/workspace/{workspace_handle} | Get user workspace
@@ -17,6 +18,81 @@ Method | HTTP request | Description
 [**PostQueryWithExtensions**](UserWorkspaces.md#PostQueryWithExtensions) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
 [**Update**](UserWorkspaces.md#Update) | **Patch** /user/{user_handle}/workspace/{workspace_handle} | Update user workspace
 
+
+
+## Command
+
+> WorkspaceCommandResponse Command(ctx, userHandle, workspaceHandle).Request(request).Execute()
+
+Run user workspace command
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | The handle of the user where we want to run the workspace command.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace where command will be executed.
+    request := *openapiclient.NewWorkspaceCommandRequest("Command_example") // WorkspaceCommandRequest | The request body for the workspace command.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserWorkspaces.Command(context.Background(), userHandle, workspaceHandle).Request(request).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspaces.Command``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Command`: WorkspaceCommandResponse
+    fmt.Fprintf(os.Stdout, "Response from `UserWorkspaces.Command`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | The handle of the user where we want to run the workspace command. | 
+**workspaceHandle** | **string** | The handle of the workspace where command will be executed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCommandRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **request** | [**WorkspaceCommandRequest**](WorkspaceCommandRequest.md) | The request body for the workspace command. | 
+
+### Return type
+
+[**WorkspaceCommandResponse**](WorkspaceCommandResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## Create

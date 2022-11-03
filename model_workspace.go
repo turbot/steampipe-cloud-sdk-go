@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -26,6 +26,11 @@ type Workspace struct {
 	CreatedById string `json:"created_by_id"`
 	// The name of the database.
 	DatabaseName *string `json:"database_name,omitempty"`
+	// The time of the last update in ISO 8601 UTC.
+	DeletedAt *string `json:"deleted_at,omitempty"`
+	DeletedBy *User   `json:"deleted_by,omitempty"`
+	// The ID of the user that performed the deletion.
+	DeletedById string `json:"deleted_by_id"`
 	// The handle name for the workspace.
 	Handle string `json:"handle"`
 	// The database hive for this workspace.
@@ -51,10 +56,11 @@ type Workspace struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspace(createdAt string, createdById string, handle string, id string, identityId string, updatedById string, versionId int32) *Workspace {
+func NewWorkspace(createdAt string, createdById string, deletedById string, handle string, id string, identityId string, updatedById string, versionId int32) *Workspace {
 	this := Workspace{}
 	this.CreatedAt = createdAt
 	this.CreatedById = createdById
+	this.DeletedById = deletedById
 	this.Handle = handle
 	this.Id = id
 	this.IdentityId = identityId
@@ -245,6 +251,94 @@ func (o *Workspace) HasDatabaseName() bool {
 // SetDatabaseName gets a reference to the given string and assigns it to the DatabaseName field.
 func (o *Workspace) SetDatabaseName(v string) {
 	o.DatabaseName = &v
+}
+
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
+func (o *Workspace) GetDeletedAt() string {
+	if o == nil || o.DeletedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeletedAt
+}
+
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetDeletedAtOk() (*string, bool) {
+	if o == nil || o.DeletedAt == nil {
+		return nil, false
+	}
+	return o.DeletedAt, true
+}
+
+// HasDeletedAt returns a boolean if a field has been set.
+func (o *Workspace) HasDeletedAt() bool {
+	if o != nil && o.DeletedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedAt gets a reference to the given string and assigns it to the DeletedAt field.
+func (o *Workspace) SetDeletedAt(v string) {
+	o.DeletedAt = &v
+}
+
+// GetDeletedBy returns the DeletedBy field value if set, zero value otherwise.
+func (o *Workspace) GetDeletedBy() User {
+	if o == nil || o.DeletedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.DeletedBy
+}
+
+// GetDeletedByOk returns a tuple with the DeletedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetDeletedByOk() (*User, bool) {
+	if o == nil || o.DeletedBy == nil {
+		return nil, false
+	}
+	return o.DeletedBy, true
+}
+
+// HasDeletedBy returns a boolean if a field has been set.
+func (o *Workspace) HasDeletedBy() bool {
+	if o != nil && o.DeletedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedBy gets a reference to the given User and assigns it to the DeletedBy field.
+func (o *Workspace) SetDeletedBy(v User) {
+	o.DeletedBy = &v
+}
+
+// GetDeletedById returns the DeletedById field value
+func (o *Workspace) GetDeletedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeletedById
+}
+
+// GetDeletedByIdOk returns a tuple with the DeletedById field value
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetDeletedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeletedById, true
+}
+
+// SetDeletedById sets field value
+func (o *Workspace) SetDeletedById(v string) {
+	o.DeletedById = v
 }
 
 // GetHandle returns the Handle field value
@@ -578,6 +672,15 @@ func (o Workspace) MarshalJSON() ([]byte, error) {
 	}
 	if o.DatabaseName != nil {
 		toSerialize["database_name"] = o.DatabaseName
+	}
+	if o.DeletedAt != nil {
+		toSerialize["deleted_at"] = o.DeletedAt
+	}
+	if o.DeletedBy != nil {
+		toSerialize["deleted_by"] = o.DeletedBy
+	}
+	if true {
+		toSerialize["deleted_by_id"] = o.DeletedById
 	}
 	if true {
 		toSerialize["handle"] = o.Handle

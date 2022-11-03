@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -24,6 +24,11 @@ type Org struct {
 	CreatedBy *User  `json:"created_by,omitempty"`
 	// The ID of the user that created this.
 	CreatedById string `json:"created_by_id"`
+	// The time of the last update in ISO 8601 UTC.
+	DeletedAt *string `json:"deleted_at,omitempty"`
+	DeletedBy *User   `json:"deleted_by,omitempty"`
+	// The ID of the user that performed the deletion.
+	DeletedById string `json:"deleted_by_id"`
 	// The display name of an org.
 	DisplayName *string `json:"display_name,omitempty"`
 	// The handle name for an org.
@@ -44,10 +49,11 @@ type Org struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrg(createdAt string, createdById string, handle string, id string, updatedById string, versionId int32) *Org {
+func NewOrg(createdAt string, createdById string, deletedById string, handle string, id string, updatedById string, versionId int32) *Org {
 	this := Org{}
 	this.CreatedAt = createdAt
 	this.CreatedById = createdById
+	this.DeletedById = deletedById
 	this.Handle = handle
 	this.Id = id
 	this.UpdatedById = updatedById
@@ -173,6 +179,94 @@ func (o *Org) GetCreatedByIdOk() (*string, bool) {
 // SetCreatedById sets field value
 func (o *Org) SetCreatedById(v string) {
 	o.CreatedById = v
+}
+
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
+func (o *Org) GetDeletedAt() string {
+	if o == nil || o.DeletedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeletedAt
+}
+
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Org) GetDeletedAtOk() (*string, bool) {
+	if o == nil || o.DeletedAt == nil {
+		return nil, false
+	}
+	return o.DeletedAt, true
+}
+
+// HasDeletedAt returns a boolean if a field has been set.
+func (o *Org) HasDeletedAt() bool {
+	if o != nil && o.DeletedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedAt gets a reference to the given string and assigns it to the DeletedAt field.
+func (o *Org) SetDeletedAt(v string) {
+	o.DeletedAt = &v
+}
+
+// GetDeletedBy returns the DeletedBy field value if set, zero value otherwise.
+func (o *Org) GetDeletedBy() User {
+	if o == nil || o.DeletedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.DeletedBy
+}
+
+// GetDeletedByOk returns a tuple with the DeletedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Org) GetDeletedByOk() (*User, bool) {
+	if o == nil || o.DeletedBy == nil {
+		return nil, false
+	}
+	return o.DeletedBy, true
+}
+
+// HasDeletedBy returns a boolean if a field has been set.
+func (o *Org) HasDeletedBy() bool {
+	if o != nil && o.DeletedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedBy gets a reference to the given User and assigns it to the DeletedBy field.
+func (o *Org) SetDeletedBy(v User) {
+	o.DeletedBy = &v
+}
+
+// GetDeletedById returns the DeletedById field value
+func (o *Org) GetDeletedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeletedById
+}
+
+// GetDeletedByIdOk returns a tuple with the DeletedById field value
+// and a boolean to check if the value has been set.
+func (o *Org) GetDeletedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeletedById, true
+}
+
+// SetDeletedById sets field value
+func (o *Org) SetDeletedById(v string) {
+	o.DeletedById = v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
@@ -412,6 +506,15 @@ func (o Org) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["created_by_id"] = o.CreatedById
+	}
+	if o.DeletedAt != nil {
+		toSerialize["deleted_at"] = o.DeletedAt
+	}
+	if o.DeletedBy != nil {
+		toSerialize["deleted_by"] = o.DeletedBy
+	}
+	if true {
+		toSerialize["deleted_by_id"] = o.DeletedById
 	}
 	if o.DisplayName != nil {
 		toSerialize["display_name"] = o.DisplayName

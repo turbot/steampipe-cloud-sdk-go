@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -52,11 +52,11 @@ CreateSetting Create a setting for a mod variable in an organization workspace
 
 Create a setting for a mod variable in an organization workspace
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization that owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed.
- @param modAlias The mod alias or mod ID for which the variable setting is to be created.
- @return OrgWorkspaceModVariablesApiCreateSettingRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization that owns the workspace.
+	@param workspaceHandle The handle of the workspace where the mod was installed.
+	@param modAlias The mod alias or mod ID for which the variable setting is to be created.
+	@return OrgWorkspaceModVariablesApiCreateSettingRequest
 */
 func (a *OrgWorkspaceModVariablesService) CreateSetting(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string) OrgWorkspaceModVariablesApiCreateSettingRequest {
 	return OrgWorkspaceModVariablesApiCreateSettingRequest{
@@ -69,7 +69,8 @@ func (a *OrgWorkspaceModVariablesService) CreateSetting(ctx _context.Context, or
 }
 
 // Execute executes the request
-//  @return WorkspaceModVariable
+//
+//	@return WorkspaceModVariable
 func (a *OrgWorkspaceModVariablesService) CreateSettingExecute(r OrgWorkspaceModVariablesApiCreateSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -228,12 +229,12 @@ DeleteSetting Delete setting for a mod variable in an organization workspace
 
 Delete setting for a mod variable in an organization workspace
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization that owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed.
- @param modAlias The mod alias or mod ID which contains the variable.
- @param variableName The name of the variable to delete the setting for.
- @return OrgWorkspaceModVariablesApiDeleteSettingRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization that owns the workspace.
+	@param workspaceHandle The handle of the workspace where the mod was installed.
+	@param modAlias The mod alias or mod ID which contains the variable.
+	@param variableName The name of the variable to delete the setting for.
+	@return OrgWorkspaceModVariablesApiDeleteSettingRequest
 */
 func (a *OrgWorkspaceModVariablesService) DeleteSetting(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string, variableName string) OrgWorkspaceModVariablesApiDeleteSettingRequest {
 	return OrgWorkspaceModVariablesApiDeleteSettingRequest{
@@ -247,7 +248,8 @@ func (a *OrgWorkspaceModVariablesService) DeleteSetting(ctx _context.Context, or
 }
 
 // Execute executes the request
-//  @return WorkspaceModVariable
+//
+//	@return WorkspaceModVariable
 func (a *OrgWorkspaceModVariablesService) DeleteSettingExecute(r OrgWorkspaceModVariablesApiDeleteSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -402,12 +404,12 @@ GetSetting Get setting for a mod variable in an organization workspace
 
 Get setting for a mod variable in an organization workspace
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization that owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed.
- @param modAlias The mod alias or mod ID for which the variable setting belongs to.
- @param variableName The name of the variable to get the setting for.
- @return OrgWorkspaceModVariablesApiGetSettingRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization that owns the workspace.
+	@param workspaceHandle The handle of the workspace where the mod was installed.
+	@param modAlias The mod alias or mod ID for which the variable setting belongs to.
+	@param variableName The name of the variable to get the setting for.
+	@return OrgWorkspaceModVariablesApiGetSettingRequest
 */
 func (a *OrgWorkspaceModVariablesService) GetSetting(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string, variableName string) OrgWorkspaceModVariablesApiGetSettingRequest {
 	return OrgWorkspaceModVariablesApiGetSettingRequest{
@@ -421,7 +423,8 @@ func (a *OrgWorkspaceModVariablesService) GetSetting(ctx _context.Context, orgHa
 }
 
 // Execute executes the request
-//  @return WorkspaceModVariable
+//
+//	@return WorkspaceModVariable
 func (a *OrgWorkspaceModVariablesService) GetSettingExecute(r OrgWorkspaceModVariablesApiGetSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -589,11 +592,11 @@ List List variables in an organization workspace mod
 
 List all variables applicable for a mod in a workspace specific to an organization
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization that owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed.
- @param modAlias The mod alias or mod ID for which we want the variables to be listed.
- @return OrgWorkspaceModVariablesApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization that owns the workspace.
+	@param workspaceHandle The handle of the workspace where the mod was installed.
+	@param modAlias The mod alias or mod ID for which we want the variables to be listed.
+	@return OrgWorkspaceModVariablesApiListRequest
 */
 func (a *OrgWorkspaceModVariablesService) List(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string) OrgWorkspaceModVariablesApiListRequest {
 	return OrgWorkspaceModVariablesApiListRequest{
@@ -606,7 +609,8 @@ func (a *OrgWorkspaceModVariablesService) List(ctx _context.Context, orgHandle s
 }
 
 // Execute executes the request
-//  @return ListWorkspaceModVariablesResponse
+//
+//	@return ListWorkspaceModVariablesResponse
 func (a *OrgWorkspaceModVariablesService) ListExecute(r OrgWorkspaceModVariablesApiListRequest) (ListWorkspaceModVariablesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -773,12 +777,12 @@ UpdateSetting Update setting for a mod variable in an organization workspace
 
 Update setting for a mod variable in an organization workspace
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization that owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed.
- @param modAlias The mod alias or mod ID which contains the variable.
- @param variableName The name of the variable for which setting is to be updated.
- @return OrgWorkspaceModVariablesApiUpdateSettingRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization that owns the workspace.
+	@param workspaceHandle The handle of the workspace where the mod was installed.
+	@param modAlias The mod alias or mod ID which contains the variable.
+	@param variableName The name of the variable for which setting is to be updated.
+	@return OrgWorkspaceModVariablesApiUpdateSettingRequest
 */
 func (a *OrgWorkspaceModVariablesService) UpdateSetting(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string, variableName string) OrgWorkspaceModVariablesApiUpdateSettingRequest {
 	return OrgWorkspaceModVariablesApiUpdateSettingRequest{
@@ -792,7 +796,8 @@ func (a *OrgWorkspaceModVariablesService) UpdateSetting(ctx _context.Context, or
 }
 
 // Execute executes the request
-//  @return WorkspaceModVariable
+//
+//	@return WorkspaceModVariable
 func (a *OrgWorkspaceModVariablesService) UpdateSettingExecute(r OrgWorkspaceModVariablesApiUpdateSettingRequest) (WorkspaceModVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

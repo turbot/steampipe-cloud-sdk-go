@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -51,10 +51,10 @@ Create Create user workspace connection association
 
 Associate a connection with the workspace. A workspace can have multiple association.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user where we want to create an association.
- @param workspaceHandle The handle of the workspace where the connection will be associated.
- @return UserWorkspaceConnectionAssociationsApiCreateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user where we want to create an association.
+	@param workspaceHandle The handle of the workspace where the connection will be associated.
+	@return UserWorkspaceConnectionAssociationsApiCreateRequest
 */
 func (a *UserWorkspaceConnectionAssociationsService) Create(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspaceConnectionAssociationsApiCreateRequest {
 	return UserWorkspaceConnectionAssociationsApiCreateRequest{
@@ -66,7 +66,8 @@ func (a *UserWorkspaceConnectionAssociationsService) Create(ctx _context.Context
 }
 
 // Execute executes the request
-//  @return WorkspaceConn
+//
+//	@return WorkspaceConn
 func (a *UserWorkspaceConnectionAssociationsService) CreateExecute(r UserWorkspaceConnectionAssociationsApiCreateRequest) (WorkspaceConn, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -233,11 +234,11 @@ Delete Delete user workspace connection association
 
 Dissociates or delete the workspace and connection association.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user performing the action.
- @param workspaceHandle The handle of the workspace whose association needs to be deleted.
- @param connHandle The handle of the conn whose association needs to be deleted.
- @return UserWorkspaceConnectionAssociationsApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user performing the action.
+	@param workspaceHandle The handle of the workspace whose association needs to be deleted.
+	@param connHandle The handle of the conn whose association needs to be deleted.
+	@return UserWorkspaceConnectionAssociationsApiDeleteRequest
 */
 func (a *UserWorkspaceConnectionAssociationsService) Delete(ctx _context.Context, userHandle string, workspaceHandle string, connHandle string) UserWorkspaceConnectionAssociationsApiDeleteRequest {
 	return UserWorkspaceConnectionAssociationsApiDeleteRequest{
@@ -250,7 +251,8 @@ func (a *UserWorkspaceConnectionAssociationsService) Delete(ctx _context.Context
 }
 
 // Execute executes the request
-//  @return WorkspaceConn
+//
+//	@return WorkspaceConn
 func (a *UserWorkspaceConnectionAssociationsService) DeleteExecute(r UserWorkspaceConnectionAssociationsApiDeleteRequest) (WorkspaceConn, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -393,11 +395,11 @@ Get Get user workspace connection association
 
 Get the details for a workspace and connection association.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user for which you want to get the association.
- @param workspaceHandle The handle of the workspace wherethe association exist.
- @param connHandle The handle of the conn whose association details needs to be fetched.
- @return UserWorkspaceConnectionAssociationsApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user for which you want to get the association.
+	@param workspaceHandle The handle of the workspace wherethe association exist.
+	@param connHandle The handle of the conn whose association details needs to be fetched.
+	@return UserWorkspaceConnectionAssociationsApiGetRequest
 */
 func (a *UserWorkspaceConnectionAssociationsService) Get(ctx _context.Context, userHandle string, workspaceHandle string, connHandle string) UserWorkspaceConnectionAssociationsApiGetRequest {
 	return UserWorkspaceConnectionAssociationsApiGetRequest{
@@ -410,7 +412,8 @@ func (a *UserWorkspaceConnectionAssociationsService) Get(ctx _context.Context, u
 }
 
 // Execute executes the request
-//  @return WorkspaceConn
+//
+//	@return WorkspaceConn
 func (a *UserWorkspaceConnectionAssociationsService) GetExecute(r UserWorkspaceConnectionAssociationsApiGetRequest) (WorkspaceConn, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -576,10 +579,10 @@ List List user workspace connection associations
 
 List the connections associated with a workspace.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user for which you want to start listing associations.
- @param workspaceHandle The handle of the workspace where you want to list the associations.
- @return UserWorkspaceConnectionAssociationsApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user for which you want to start listing associations.
+	@param workspaceHandle The handle of the workspace where you want to list the associations.
+	@return UserWorkspaceConnectionAssociationsApiListRequest
 */
 func (a *UserWorkspaceConnectionAssociationsService) List(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspaceConnectionAssociationsApiListRequest {
 	return UserWorkspaceConnectionAssociationsApiListRequest{
@@ -591,7 +594,8 @@ func (a *UserWorkspaceConnectionAssociationsService) List(ctx _context.Context, 
 }
 
 // Execute executes the request
-//  @return ListWorkspaceConnResponse
+//
+//	@return ListWorkspaceConnResponse
 func (a *UserWorkspaceConnectionAssociationsService) ListExecute(r UserWorkspaceConnectionAssociationsApiListRequest) (ListWorkspaceConnResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

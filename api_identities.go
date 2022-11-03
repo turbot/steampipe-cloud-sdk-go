@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -43,9 +43,9 @@ Get Get identity
 
 Get public information for an identity.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param identityHandle Specify the handle of the identity whose information you want to retrieve.
- @return IdentitiesApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param identityHandle Specify the handle of the identity whose information you want to retrieve.
+	@return IdentitiesApiGetRequest
 */
 func (a *IdentitiesService) Get(ctx _context.Context, identityHandle string) IdentitiesApiGetRequest {
 	return IdentitiesApiGetRequest{
@@ -56,7 +56,8 @@ func (a *IdentitiesService) Get(ctx _context.Context, identityHandle string) Ide
 }
 
 // Execute executes the request
-//  @return Identity
+//
+//	@return Identity
 func (a *IdentitiesService) GetExecute(r IdentitiesApiGetRequest) (Identity, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -205,8 +206,8 @@ List List identities
 
 List identities with their public information.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return IdentitiesApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return IdentitiesApiListRequest
 */
 func (a *IdentitiesService) List(ctx _context.Context) IdentitiesApiListRequest {
 	return IdentitiesApiListRequest{
@@ -216,7 +217,8 @@ func (a *IdentitiesService) List(ctx _context.Context) IdentitiesApiListRequest 
 }
 
 // Execute executes the request
-//  @return ListIdentitiesResponse
+//
+//	@return ListIdentitiesResponse
 func (a *IdentitiesService) ListExecute(r IdentitiesApiListRequest) (ListIdentitiesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

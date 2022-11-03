@@ -71,6 +71,10 @@ Class | Method | HTTP request | Description
 *Auth* | [**ConfirmLogin**](docs/Auth.md#confirmlogin) | **Get** /login/confirm | Confirm user login
 *Auth* | [**ConfirmSignup**](docs/Auth.md#confirmsignup) | **Get** /signup/confirm | Confirm user signup
 *Auth* | [**Login**](docs/Auth.md#login) | **Post** /login | User login
+*Auth* | [**LoginTokenCreate**](docs/Auth.md#logintokencreate) | **Post** /login/token | Generate temporary token request
+*Auth* | [**LoginTokenDelete**](docs/Auth.md#logintokendelete) | **Delete** /login/token/{temporary_token_request_id} | Delete temporary token request
+*Auth* | [**LoginTokenGet**](docs/Auth.md#logintokenget) | **Get** /login/token/{temporary_token_request_id} | Get temporary token request
+*Auth* | [**LoginTokenUpdate**](docs/Auth.md#logintokenupdate) | **Patch** /login/token/{temporary_token_request_id} | Update temporary token request
 *Auth* | [**Logout**](docs/Auth.md#logout) | **Get** /logout/{provider} | User logout
 *Auth* | [**Provider**](docs/Auth.md#provider) | **Get** /auth/{provider} | Auth Provider
 *Auth* | [**ProviderCallback**](docs/Auth.md#providercallback) | **Get** /auth/{provider}/callback | Auth provider callback
@@ -115,6 +119,7 @@ Class | Method | HTTP request | Description
 *OrgWorkspaceSnapshots* | [**Get**](docs/OrgWorkspaceSnapshots.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Get org workspace snapshot
 *OrgWorkspaceSnapshots* | [**List**](docs/OrgWorkspaceSnapshots.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/snapshot | List org workspace snapshots
 *OrgWorkspaceSnapshots* | [**Update**](docs/OrgWorkspaceSnapshots.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Update org workspace snapshot
+*OrgWorkspaces* | [**Command**](docs/OrgWorkspaces.md#command) | **Post** /org/{org_handle}/workspace/{workspace_handle}/command | Run org workspace command
 *OrgWorkspaces* | [**Create**](docs/OrgWorkspaces.md#create) | **Post** /org/{org_handle}/workspace | Create org workspace
 *OrgWorkspaces* | [**Delete**](docs/OrgWorkspaces.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle} | Delete org workspace
 *OrgWorkspaces* | [**Get**](docs/OrgWorkspaces.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle} | Get org workspace
@@ -166,6 +171,7 @@ Class | Method | HTTP request | Description
 *UserWorkspaceSnapshots* | [**Get**](docs/UserWorkspaceSnapshots.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Get user workspace snapshot
 *UserWorkspaceSnapshots* | [**List**](docs/UserWorkspaceSnapshots.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/snapshot | List user workspace snapshots
 *UserWorkspaceSnapshots* | [**Update**](docs/UserWorkspaceSnapshots.md#update) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Update user workspace snapshot
+*UserWorkspaces* | [**Command**](docs/UserWorkspaces.md#command) | **Post** /user/{user_handle}/workspace/{workspace_handle}/command | Run user workspace command
 *UserWorkspaces* | [**Create**](docs/UserWorkspaces.md#create) | **Post** /user/{user_handle}/workspace | Create user workspace
 *UserWorkspaces* | [**Delete**](docs/UserWorkspaces.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle} | Delete user workspace
 *UserWorkspaces* | [**Get**](docs/UserWorkspaces.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle} | Get user workspace
@@ -183,11 +189,15 @@ Class | Method | HTTP request | Description
 *Users* | [**Delete**](docs/Users.md#delete) | **Delete** /user/{user_handle} | Delete user
 *Users* | [**Get**](docs/Users.md#get) | **Get** /user/{user_handle} | Get user
 *Users* | [**GetDBPassword**](docs/Users.md#getdbpassword) | **Get** /user/{user_handle}/password | Get user password
+*Users* | [**GetEmail**](docs/Users.md#getemail) | **Get** /user/{user_handle}/email/{email_id} | Get user email
+*Users* | [**GetPreferences**](docs/Users.md#getpreferences) | **Get** /user/{user_handle}/preferences | Get user preferences
 *Users* | [**GetQuota**](docs/Users.md#getquota) | **Get** /user/{user_handle}/quota | User quota
 *Users* | [**List**](docs/Users.md#list) | **Get** /user | List users
 *Users* | [**ListAuditLogs**](docs/Users.md#listauditlogs) | **Get** /user/{user_handle}/audit_log | User audit logs
+*Users* | [**ListEmails**](docs/Users.md#listemails) | **Get** /user/{user_handle}/email | List user emails
 *Users* | [**ListFeatures**](docs/Users.md#listfeatures) | **Get** /user/{user_handle}/feature | User features
 *Users* | [**Update**](docs/Users.md#update) | **Patch** /user/{user_handle} | Update user
+*Users* | [**UpdatePreferences**](docs/Users.md#updatepreferences) | **Patch** /user/{user_handle}/preferences | Update user preferences
 
 
 ## Documentation For Models
@@ -221,6 +231,7 @@ Class | Method | HTTP request | Description
  - [ListOrgWorkspaceUsersResponse](docs/ListOrgWorkspaceUsersResponse.md)
  - [ListOrgsResponse](docs/ListOrgsResponse.md)
  - [ListTokensResponse](docs/ListTokensResponse.md)
+ - [ListUserEmailsResponse](docs/ListUserEmailsResponse.md)
  - [ListUserOrgsResponse](docs/ListUserOrgsResponse.md)
  - [ListUsersResponse](docs/ListUsersResponse.md)
  - [ListWorkspaceConnResponse](docs/ListWorkspaceConnResponse.md)
@@ -237,12 +248,15 @@ Class | Method | HTTP request | Description
  - [SchemaInfo](docs/SchemaInfo.md)
  - [SchemaTable](docs/SchemaTable.md)
  - [SchemaTableColumn](docs/SchemaTableColumn.md)
+ - [TemporaryTokenRequest](docs/TemporaryTokenRequest.md)
  - [Token](docs/Token.md)
  - [UpdateConnectionRequest](docs/UpdateConnectionRequest.md)
  - [UpdateOrgRequest](docs/UpdateOrgRequest.md)
  - [UpdateOrgUserRequest](docs/UpdateOrgUserRequest.md)
  - [UpdateOrgWorkspaceUserRequest](docs/UpdateOrgWorkspaceUserRequest.md)
+ - [UpdateTemporaryTokenRequest](docs/UpdateTemporaryTokenRequest.md)
  - [UpdateTokenRequest](docs/UpdateTokenRequest.md)
+ - [UpdateUserPreferencesRequest](docs/UpdateUserPreferencesRequest.md)
  - [UpdateUserRequest](docs/UpdateUserRequest.md)
  - [UpdateWorkspaceModRequest](docs/UpdateWorkspaceModRequest.md)
  - [UpdateWorkspaceModVariableSettingRequest](docs/UpdateWorkspaceModVariableSettingRequest.md)
@@ -250,11 +264,15 @@ Class | Method | HTTP request | Description
  - [UpdateWorkspaceSnapshotRequest](docs/UpdateWorkspaceSnapshotRequest.md)
  - [User](docs/User.md)
  - [UserDatabasePassword](docs/UserDatabasePassword.md)
+ - [UserEmail](docs/UserEmail.md)
  - [UserLoginRequest](docs/UserLoginRequest.md)
  - [UserOrg](docs/UserOrg.md)
+ - [UserPreferences](docs/UserPreferences.md)
  - [UserQuota](docs/UserQuota.md)
  - [UserSignupRequest](docs/UserSignupRequest.md)
  - [Workspace](docs/Workspace.md)
+ - [WorkspaceCommandRequest](docs/WorkspaceCommandRequest.md)
+ - [WorkspaceCommandResponse](docs/WorkspaceCommandResponse.md)
  - [WorkspaceConn](docs/WorkspaceConn.md)
  - [WorkspaceMod](docs/WorkspaceMod.md)
  - [WorkspaceModVariable](docs/WorkspaceModVariable.md)

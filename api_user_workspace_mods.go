@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -45,11 +45,11 @@ Get Get user workspace installed mod
 
 Get user workspace installed mod by mod alias
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle Provide the handle of the workspace where mod was installed.
- @param modAlias The mod alias or mod ID
- @return UserWorkspaceModsApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user who owns the workspace.
+	@param workspaceHandle Provide the handle of the workspace where mod was installed.
+	@param modAlias The mod alias or mod ID
+	@return UserWorkspaceModsApiGetRequest
 */
 func (a *UserWorkspaceModsService) Get(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModsApiGetRequest {
 	return UserWorkspaceModsApiGetRequest{
@@ -62,7 +62,8 @@ func (a *UserWorkspaceModsService) Get(ctx _context.Context, userHandle string, 
 }
 
 // Execute executes the request
-//  @return WorkspaceMod
+//
+//	@return WorkspaceMod
 func (a *UserWorkspaceModsService) GetExecute(r UserWorkspaceModsApiGetRequest) (WorkspaceMod, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -231,10 +232,10 @@ Install Install a mod to a user's workspace
 
 Install a mod to a user's workspace
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod will be installed.
- @return UserWorkspaceModsApiInstallRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user who owns the workspace.
+	@param workspaceHandle The handle of the workspace where the mod will be installed.
+	@return UserWorkspaceModsApiInstallRequest
 */
 func (a *UserWorkspaceModsService) Install(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspaceModsApiInstallRequest {
 	return UserWorkspaceModsApiInstallRequest{
@@ -246,7 +247,8 @@ func (a *UserWorkspaceModsService) Install(ctx _context.Context, userHandle stri
 }
 
 // Execute executes the request
-//  @return WorkspaceMod
+//
+//	@return WorkspaceMod
 func (a *UserWorkspaceModsService) InstallExecute(r UserWorkspaceModsApiInstallRequest) (WorkspaceMod, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -426,10 +428,10 @@ List List user workspace installed mods
 
 List user workspace installed mods
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where mods were installed
- @return UserWorkspaceModsApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user who owns the workspace.
+	@param workspaceHandle The handle of the workspace where mods were installed
+	@return UserWorkspaceModsApiListRequest
 */
 func (a *UserWorkspaceModsService) List(ctx _context.Context, userHandle string, workspaceHandle string) UserWorkspaceModsApiListRequest {
 	return UserWorkspaceModsApiListRequest{
@@ -441,7 +443,8 @@ func (a *UserWorkspaceModsService) List(ctx _context.Context, userHandle string,
 }
 
 // Execute executes the request
-//  @return ListWorkspaceModsResponse
+//
+//	@return ListWorkspaceModsResponse
 func (a *UserWorkspaceModsService) ListExecute(r UserWorkspaceModsApiListRequest) (ListWorkspaceModsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -599,11 +602,11 @@ Uninstall Uninstall mod from a user's workspace.
 
 Uninstall mod from a user's workspace
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed.
- @param modAlias The mod alias or mod ID to delete.
- @return UserWorkspaceModsApiUninstallRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user who owns the workspace.
+	@param workspaceHandle The handle of the workspace where the mod was installed.
+	@param modAlias The mod alias or mod ID to delete.
+	@return UserWorkspaceModsApiUninstallRequest
 */
 func (a *UserWorkspaceModsService) Uninstall(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModsApiUninstallRequest {
 	return UserWorkspaceModsApiUninstallRequest{
@@ -616,7 +619,8 @@ func (a *UserWorkspaceModsService) Uninstall(ctx _context.Context, userHandle st
 }
 
 // Execute executes the request
-//  @return WorkspaceMod
+//
+//	@return WorkspaceMod
 func (a *UserWorkspaceModsService) UninstallExecute(r UserWorkspaceModsApiUninstallRequest) (WorkspaceMod, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -776,11 +780,11 @@ Update Update a mod in a user's workspace
 
 Update a mod in a user's workspace
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user who owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod will be updated.
- @param modAlias The mod alias or mod ID to update.
- @return UserWorkspaceModsApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user who owns the workspace.
+	@param workspaceHandle The handle of the workspace where the mod will be updated.
+	@param modAlias The mod alias or mod ID to update.
+	@return UserWorkspaceModsApiUpdateRequest
 */
 func (a *UserWorkspaceModsService) Update(ctx _context.Context, userHandle string, workspaceHandle string, modAlias string) UserWorkspaceModsApiUpdateRequest {
 	return UserWorkspaceModsApiUpdateRequest{
@@ -793,7 +797,8 @@ func (a *UserWorkspaceModsService) Update(ctx _context.Context, userHandle strin
 }
 
 // Execute executes the request
-//  @return WorkspaceMod
+//
+//	@return WorkspaceMod
 func (a *UserWorkspaceModsService) UpdateExecute(r UserWorkspaceModsApiUpdateRequest) (WorkspaceMod, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -50,9 +50,9 @@ Create Create user connection
 
 Creates a new connection for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user where we want to create the connection.
- @return UserConnectionsApiCreateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user where we want to create the connection.
+	@return UserConnectionsApiCreateRequest
 */
 func (a *UserConnectionsService) Create(ctx _context.Context, userHandle string) UserConnectionsApiCreateRequest {
 	return UserConnectionsApiCreateRequest{
@@ -63,7 +63,8 @@ func (a *UserConnectionsService) Create(ctx _context.Context, userHandle string)
 }
 
 // Execute executes the request
-//  @return Connection
+//
+//	@return Connection
 func (a *UserConnectionsService) CreateExecute(r UserConnectionsApiCreateRequest) (Connection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -228,10 +229,10 @@ Delete Delete user connection
 
 Deletes the connection specified in the request by the user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user where the connection exist.
- @param connHandle Provide the handle of the connection which needs to be deleted.
- @return UserConnectionsApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user where the connection exist.
+	@param connHandle Provide the handle of the connection which needs to be deleted.
+	@return UserConnectionsApiDeleteRequest
 */
 func (a *UserConnectionsService) Delete(ctx _context.Context, userHandle string, connHandle string) UserConnectionsApiDeleteRequest {
 	return UserConnectionsApiDeleteRequest{
@@ -243,7 +244,8 @@ func (a *UserConnectionsService) Delete(ctx _context.Context, userHandle string,
 }
 
 // Execute executes the request
-//  @return Connection
+//
+//	@return Connection
 func (a *UserConnectionsService) DeleteExecute(r UserConnectionsApiDeleteRequest) (Connection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -394,10 +396,10 @@ Get Get user connection
 
 Get the details for a connection.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle for the user where the connection exist.
- @param connHandle The handle of the connection whose detail needs to be fetched.
- @return UserConnectionsApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle for the user where the connection exist.
+	@param connHandle The handle of the connection whose detail needs to be fetched.
+	@return UserConnectionsApiGetRequest
 */
 func (a *UserConnectionsService) Get(ctx _context.Context, userHandle string, connHandle string) UserConnectionsApiGetRequest {
 	return UserConnectionsApiGetRequest{
@@ -409,7 +411,8 @@ func (a *UserConnectionsService) Get(ctx _context.Context, userHandle string, co
 }
 
 // Execute executes the request
-//  @return Connection
+//
+//	@return Connection
 func (a *UserConnectionsService) GetExecute(r UserConnectionsApiGetRequest) (Connection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -573,9 +576,9 @@ List List user connections
 
 List the connection for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user for which we want to list the connection.
- @return UserConnectionsApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user for which we want to list the connection.
+	@return UserConnectionsApiListRequest
 */
 func (a *UserConnectionsService) List(ctx _context.Context, userHandle string) UserConnectionsApiListRequest {
 	return UserConnectionsApiListRequest{
@@ -586,7 +589,8 @@ func (a *UserConnectionsService) List(ctx _context.Context, userHandle string) U
 }
 
 // Execute executes the request
-//  @return ListConnectionsResponse
+//
+//	@return ListConnectionsResponse
 func (a *UserConnectionsService) ListExecute(r UserConnectionsApiListRequest) (ListConnectionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -732,10 +736,10 @@ Test Test user connection
 
 Test the config for a user connection to check for basic connectivity before you create it.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user performing the action.
- @param connHandle The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
- @return UserConnectionsApiTestRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user performing the action.
+	@param connHandle The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
+	@return UserConnectionsApiTestRequest
 */
 func (a *UserConnectionsService) Test(ctx _context.Context, userHandle string, connHandle string) UserConnectionsApiTestRequest {
 	return UserConnectionsApiTestRequest{
@@ -747,7 +751,8 @@ func (a *UserConnectionsService) Test(ctx _context.Context, userHandle string, c
 }
 
 // Execute executes the request
-//  @return ConnectionTestResult
+//
+//	@return ConnectionTestResult
 func (a *UserConnectionsService) TestExecute(r UserConnectionsApiTestRequest) (ConnectionTestResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -885,10 +890,10 @@ Update Update user connection
 
 Update a connection for a user.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userHandle The handle of the user where the connection exist.
- @param connHandle The handle of the connection which needs to be updated.
- @return UserConnectionsApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userHandle The handle of the user where the connection exist.
+	@param connHandle The handle of the connection which needs to be updated.
+	@return UserConnectionsApiUpdateRequest
 */
 func (a *UserConnectionsService) Update(ctx _context.Context, userHandle string, connHandle string) UserConnectionsApiUpdateRequest {
 	return UserConnectionsApiUpdateRequest{
@@ -900,7 +905,8 @@ func (a *UserConnectionsService) Update(ctx _context.Context, userHandle string,
 }
 
 // Execute executes the request
-//  @return Connection
+//
+//	@return Connection
 func (a *UserConnectionsService) UpdateExecute(r UserConnectionsApiUpdateRequest) (Connection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

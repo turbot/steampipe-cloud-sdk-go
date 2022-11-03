@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -25,7 +25,7 @@ type WorkspaceSnapshot struct {
 	// The mod-prefixed name of the dashboard this snapshot belongs to.
 	DashboardName string `json:"dashboard_name"`
 	// The title of the dashboard this snapshot belongs to.
-	DashboardTitle *string `json:"dashboard_title,omitempty"`
+	DashboardTitle string `json:"dashboard_title"`
 	// The unique identifier for the snapshot.
 	Id string `json:"id"`
 	// The unique identifier for the identity that the snapshot belongs to.
@@ -36,6 +36,8 @@ type WorkspaceSnapshot struct {
 	// The current state of the snapshot.
 	State *string     `json:"state,omitempty"`
 	Tags  interface{} `json:"tags,omitempty"`
+	// The title of the snapshot.
+	Title *string `json:"title,omitempty"`
 	// The time of the last update in ISO 8601 UTC.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	UpdatedBy *User   `json:"updated_by,omitempty"`
@@ -53,11 +55,12 @@ type WorkspaceSnapshot struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspaceSnapshot(createdAt string, createdById string, dashboardName string, id string, identityId string, schemaVersion string, updatedById string, versionId int32, workspaceId string) *WorkspaceSnapshot {
+func NewWorkspaceSnapshot(createdAt string, createdById string, dashboardName string, dashboardTitle string, id string, identityId string, schemaVersion string, updatedById string, versionId int32, workspaceId string) *WorkspaceSnapshot {
 	this := WorkspaceSnapshot{}
 	this.CreatedAt = createdAt
 	this.CreatedById = createdById
 	this.DashboardName = dashboardName
+	this.DashboardTitle = dashboardTitle
 	this.Id = id
 	this.IdentityId = identityId
 	this.SchemaVersion = schemaVersion
@@ -179,36 +182,28 @@ func (o *WorkspaceSnapshot) SetDashboardName(v string) {
 	o.DashboardName = v
 }
 
-// GetDashboardTitle returns the DashboardTitle field value if set, zero value otherwise.
+// GetDashboardTitle returns the DashboardTitle field value
 func (o *WorkspaceSnapshot) GetDashboardTitle() string {
-	if o == nil || o.DashboardTitle == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.DashboardTitle
+
+	return o.DashboardTitle
 }
 
-// GetDashboardTitleOk returns a tuple with the DashboardTitle field value if set, nil otherwise
+// GetDashboardTitleOk returns a tuple with the DashboardTitle field value
 // and a boolean to check if the value has been set.
 func (o *WorkspaceSnapshot) GetDashboardTitleOk() (*string, bool) {
-	if o == nil || o.DashboardTitle == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.DashboardTitle, true
+	return &o.DashboardTitle, true
 }
 
-// HasDashboardTitle returns a boolean if a field has been set.
-func (o *WorkspaceSnapshot) HasDashboardTitle() bool {
-	if o != nil && o.DashboardTitle != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDashboardTitle gets a reference to the given string and assigns it to the DashboardTitle field.
+// SetDashboardTitle sets field value
 func (o *WorkspaceSnapshot) SetDashboardTitle(v string) {
-	o.DashboardTitle = &v
+	o.DashboardTitle = v
 }
 
 // GetId returns the Id field value
@@ -379,6 +374,38 @@ func (o *WorkspaceSnapshot) HasTags() bool {
 // SetTags gets a reference to the given interface{} and assigns it to the Tags field.
 func (o *WorkspaceSnapshot) SetTags(v interface{}) {
 	o.Tags = v
+}
+
+// GetTitle returns the Title field value if set, zero value otherwise.
+func (o *WorkspaceSnapshot) GetTitle() string {
+	if o == nil || o.Title == nil {
+		var ret string
+		return ret
+	}
+	return *o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSnapshot) GetTitleOk() (*string, bool) {
+	if o == nil || o.Title == nil {
+		return nil, false
+	}
+	return o.Title, true
+}
+
+// HasTitle returns a boolean if a field has been set.
+func (o *WorkspaceSnapshot) HasTitle() bool {
+	if o != nil && o.Title != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
+func (o *WorkspaceSnapshot) SetTitle(v string) {
+	o.Title = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -563,7 +590,7 @@ func (o WorkspaceSnapshot) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["dashboard_name"] = o.DashboardName
 	}
-	if o.DashboardTitle != nil {
+	if true {
 		toSerialize["dashboard_title"] = o.DashboardTitle
 	}
 	if true {
@@ -583,6 +610,9 @@ func (o WorkspaceSnapshot) MarshalJSON() ([]byte, error) {
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
+	}
+	if o.Title != nil {
+		toSerialize["title"] = o.Title
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt

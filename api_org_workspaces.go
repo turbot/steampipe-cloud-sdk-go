@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -28,6 +28,195 @@ var (
 // OrgWorkspacesService OrgWorkspaces service
 type OrgWorkspacesService service
 
+type OrgWorkspacesApiCommandRequest struct {
+	ctx             _context.Context
+	ApiService      *OrgWorkspacesService
+	orgHandle       string
+	workspaceHandle string
+	request         *WorkspaceCommandRequest
+}
+
+// The request body for the workspace command.
+func (r OrgWorkspacesApiCommandRequest) Request(request WorkspaceCommandRequest) OrgWorkspacesApiCommandRequest {
+	r.request = &request
+	return r
+}
+
+func (r OrgWorkspacesApiCommandRequest) Execute() (WorkspaceCommandResponse, *_nethttp.Response, error) {
+	return r.ApiService.CommandExecute(r)
+}
+
+/*
+Command Run org workspace command
+
+Run a command in the workspace. Valid commands are: reboot.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org where we want to run the workspace command.
+	@param workspaceHandle The handle of the workspace where command will be executed.
+	@return OrgWorkspacesApiCommandRequest
+*/
+func (a *OrgWorkspacesService) Command(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiCommandRequest {
+	return OrgWorkspacesApiCommandRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		orgHandle:       orgHandle,
+		workspaceHandle: workspaceHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return WorkspaceCommandResponse
+func (a *OrgWorkspacesService) CommandExecute(r OrgWorkspacesApiCommandRequest) (WorkspaceCommandResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue WorkspaceCommandResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgWorkspacesService.Command")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/workspace/{workspace_handle}/command"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workspace_handle"+"}", _neturl.PathEscape(parameterToString(r.workspaceHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.request
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type OrgWorkspacesApiCreateRequest struct {
 	ctx        _context.Context
 	ApiService *OrgWorkspacesService
@@ -50,9 +239,9 @@ Create Create org workspace
 
 Creates a new workspace for an organization. The limit is 10 per organization. If you require more than 10, you must contact support to request an increase.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization where we want to create the workspace.
- @return OrgWorkspacesApiCreateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization where we want to create the workspace.
+	@return OrgWorkspacesApiCreateRequest
 */
 func (a *OrgWorkspacesService) Create(ctx _context.Context, orgHandle string) OrgWorkspacesApiCreateRequest {
 	return OrgWorkspacesApiCreateRequest{
@@ -63,7 +252,8 @@ func (a *OrgWorkspacesService) Create(ctx _context.Context, orgHandle string) Or
 }
 
 // Execute executes the request
-//  @return Workspace
+//
+//	@return Workspace
 func (a *OrgWorkspacesService) CreateExecute(r OrgWorkspacesApiCreateRequest) (Workspace, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -228,10 +418,10 @@ Delete Delete org workspace
 
 Deletes the workspace specified in the request.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization where the workspace exist.
- @param workspaceHandle Provide the handle of the workspace which needs to be deleted.
- @return OrgWorkspacesApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization where the workspace exist.
+	@param workspaceHandle Provide the handle of the workspace which needs to be deleted.
+	@return OrgWorkspacesApiDeleteRequest
 */
 func (a *OrgWorkspacesService) Delete(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiDeleteRequest {
 	return OrgWorkspacesApiDeleteRequest{
@@ -243,7 +433,8 @@ func (a *OrgWorkspacesService) Delete(ctx _context.Context, orgHandle string, wo
 }
 
 // Execute executes the request
-//  @return Workspace
+//
+//	@return Workspace
 func (a *OrgWorkspacesService) DeleteExecute(r OrgWorkspacesApiDeleteRequest) (Workspace, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -384,10 +575,10 @@ Get Get org workspace
 
 Get the details for a workspace in an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle for an organization where the workspace exist.
- @param workspaceHandle The handle of the workspace whose detail needs to be fetched.
- @return OrgWorkspacesApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle for an organization where the workspace exist.
+	@param workspaceHandle The handle of the workspace whose detail needs to be fetched.
+	@return OrgWorkspacesApiGetRequest
 */
 func (a *OrgWorkspacesService) Get(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiGetRequest {
 	return OrgWorkspacesApiGetRequest{
@@ -399,7 +590,8 @@ func (a *OrgWorkspacesService) Get(ctx _context.Context, orgHandle string, works
 }
 
 // Execute executes the request
-//  @return Workspace
+//
+//	@return Workspace
 func (a *OrgWorkspacesService) GetExecute(r OrgWorkspacesApiGetRequest) (Workspace, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -564,10 +756,10 @@ GetQuery Query org workspace
 
 Performs a query in an org workspace. Results are limited to 3000 rows or 30 seconds of query execution.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to query.
- @return OrgWorkspacesApiGetQueryRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org that the workspace belongs to.
+	@param workspaceHandle The handle of the workspace to query.
+	@return OrgWorkspacesApiGetQueryRequest
 */
 func (a *OrgWorkspacesService) GetQuery(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiGetQueryRequest {
 	return OrgWorkspacesApiGetQueryRequest{
@@ -579,7 +771,8 @@ func (a *OrgWorkspacesService) GetQuery(ctx _context.Context, orgHandle string, 
 }
 
 // Execute executes the request
-//  @return WorkspaceQueryResult
+//
+//	@return WorkspaceQueryResult
 func (a *OrgWorkspacesService) GetQueryExecute(r OrgWorkspacesApiGetQueryRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -752,11 +945,11 @@ GetQueryWithExtensions Query org workspace with extensions
 
 Performs a query in an org workspace, with content type and content encoding forming part of the API path. Results are limited to 3000 rows or 30 seconds of query execution.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to query.
- @param extensions The content type for the request. E.g.
- @return OrgWorkspacesApiGetQueryWithExtensionsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org that the workspace belongs to.
+	@param workspaceHandle The handle of the workspace to query.
+	@param extensions The content type for the request. E.g.
+	@return OrgWorkspacesApiGetQueryWithExtensionsRequest
 */
 func (a *OrgWorkspacesService) GetQueryWithExtensions(ctx _context.Context, orgHandle string, workspaceHandle string, extensions string) OrgWorkspacesApiGetQueryWithExtensionsRequest {
 	return OrgWorkspacesApiGetQueryWithExtensionsRequest{
@@ -769,7 +962,8 @@ func (a *OrgWorkspacesService) GetQueryWithExtensions(ctx _context.Context, orgH
 }
 
 // Execute executes the request
-//  @return WorkspaceQueryResult
+//
+//	@return WorkspaceQueryResult
 func (a *OrgWorkspacesService) GetQueryWithExtensionsExecute(r OrgWorkspacesApiGetQueryWithExtensionsRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -928,10 +1122,10 @@ GetSchema Get org workspace schemas
 
 Returns the postgres schemas for an org workspace. This will consist of the connections associated with the workspace and any automatic aggregators prefixed with "all_", which are created for any connections where you have >=2 of that plugin type.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to get the schemas for.
- @return OrgWorkspacesApiGetSchemaRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org that the workspace belongs to.
+	@param workspaceHandle The handle of the workspace to get the schemas for.
+	@return OrgWorkspacesApiGetSchemaRequest
 */
 func (a *OrgWorkspacesService) GetSchema(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiGetSchemaRequest {
 	return OrgWorkspacesApiGetSchemaRequest{
@@ -943,7 +1137,8 @@ func (a *OrgWorkspacesService) GetSchema(ctx _context.Context, orgHandle string,
 }
 
 // Execute executes the request
-//  @return WorkspaceSchema
+//
+//	@return WorkspaceSchema
 func (a *OrgWorkspacesService) GetSchemaExecute(r OrgWorkspacesApiGetSchemaRequest) (WorkspaceSchema, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1107,9 +1302,9 @@ List List org workspaces
 
 List the workspace for an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization for which we want to list the workspace.
- @return OrgWorkspacesApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization for which we want to list the workspace.
+	@return OrgWorkspacesApiListRequest
 */
 func (a *OrgWorkspacesService) List(ctx _context.Context, orgHandle string) OrgWorkspacesApiListRequest {
 	return OrgWorkspacesApiListRequest{
@@ -1120,7 +1315,8 @@ func (a *OrgWorkspacesService) List(ctx _context.Context, orgHandle string) OrgW
 }
 
 // Execute executes the request
-//  @return ListWorkspacesResponse
+//
+//	@return ListWorkspacesResponse
 func (a *OrgWorkspacesService) ListExecute(r OrgWorkspacesApiListRequest) (ListWorkspacesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1280,10 +1476,10 @@ ListAuditLogs Org workspace audit logs
 
 Returns the audit logs for an org workspace.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the org handle to get the audit logs.
- @param workspaceHandle The handle of the workspace whose logs needs to be fetched.
- @return OrgWorkspacesApiListAuditLogsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the org handle to get the audit logs.
+	@param workspaceHandle The handle of the workspace whose logs needs to be fetched.
+	@return OrgWorkspacesApiListAuditLogsRequest
 */
 func (a *OrgWorkspacesService) ListAuditLogs(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiListAuditLogsRequest {
 	return OrgWorkspacesApiListAuditLogsRequest{
@@ -1295,7 +1491,8 @@ func (a *OrgWorkspacesService) ListAuditLogs(ctx _context.Context, orgHandle str
 }
 
 // Execute executes the request
-//  @return ListAuditLogsResponse
+//
+//	@return ListAuditLogsResponse
 func (a *OrgWorkspacesService) ListAuditLogsExecute(r OrgWorkspacesApiListAuditLogsRequest) (ListAuditLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1456,10 +1653,10 @@ ListDBLogs Org workspace logs
 
 Returns the workspace logs for an org.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle Specify the org handle to get the workspace logs.
- @param workspaceHandle The handle of the workspace whose logs needs to be fetched.
- @return OrgWorkspacesApiListDBLogsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle Specify the org handle to get the workspace logs.
+	@param workspaceHandle The handle of the workspace whose logs needs to be fetched.
+	@return OrgWorkspacesApiListDBLogsRequest
 */
 func (a *OrgWorkspacesService) ListDBLogs(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiListDBLogsRequest {
 	return OrgWorkspacesApiListDBLogsRequest{
@@ -1471,7 +1668,8 @@ func (a *OrgWorkspacesService) ListDBLogs(ctx _context.Context, orgHandle string
 }
 
 // Execute executes the request
-//  @return ListLogsResponse
+//
+//	@return ListLogsResponse
 func (a *OrgWorkspacesService) ListDBLogsExecute(r OrgWorkspacesApiListDBLogsRequest) (ListLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1632,10 +1830,10 @@ PostQuery Query org workspace
 
 Performs a query in an org workspace. Results are limited to 3000 rows or 30 seconds of query execution.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to query.
- @return OrgWorkspacesApiPostQueryRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org that the workspace belongs to.
+	@param workspaceHandle The handle of the workspace to query.
+	@return OrgWorkspacesApiPostQueryRequest
 */
 func (a *OrgWorkspacesService) PostQuery(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiPostQueryRequest {
 	return OrgWorkspacesApiPostQueryRequest{
@@ -1647,7 +1845,8 @@ func (a *OrgWorkspacesService) PostQuery(ctx _context.Context, orgHandle string,
 }
 
 // Execute executes the request
-//  @return WorkspaceQueryResult
+//
+//	@return WorkspaceQueryResult
 func (a *OrgWorkspacesService) PostQueryExecute(r OrgWorkspacesApiPostQueryRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1821,11 +2020,11 @@ PostQueryWithExtensions Query org workspace with extensions
 
 Performs a query in an org workspace, with content type and content encoding forming part of the API path. Results are limited to 3000 rows or 30 seconds of query execution.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org that the workspace belongs to.
- @param workspaceHandle The handle of the workspace to query.
- @param extensions The content type for the request. E.g.
- @return OrgWorkspacesApiPostQueryWithExtensionsRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org that the workspace belongs to.
+	@param workspaceHandle The handle of the workspace to query.
+	@param extensions The content type for the request. E.g.
+	@return OrgWorkspacesApiPostQueryWithExtensionsRequest
 */
 func (a *OrgWorkspacesService) PostQueryWithExtensions(ctx _context.Context, orgHandle string, workspaceHandle string, extensions string) OrgWorkspacesApiPostQueryWithExtensionsRequest {
 	return OrgWorkspacesApiPostQueryWithExtensionsRequest{
@@ -1838,7 +2037,8 @@ func (a *OrgWorkspacesService) PostQueryWithExtensions(ctx _context.Context, org
 }
 
 // Execute executes the request
-//  @return WorkspaceQueryResult
+//
+//	@return WorkspaceQueryResult
 func (a *OrgWorkspacesService) PostQueryWithExtensionsExecute(r OrgWorkspacesApiPostQueryWithExtensionsRequest) (WorkspaceQueryResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -2004,10 +2204,10 @@ Update Update org workspace
 
 Update a workspace in an organization.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the organization where the workspace exist.
- @param workspaceHandle The handle of the workspace which needs to be updated.
- @return OrgWorkspacesApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization where the workspace exist.
+	@param workspaceHandle The handle of the workspace which needs to be updated.
+	@return OrgWorkspacesApiUpdateRequest
 */
 func (a *OrgWorkspacesService) Update(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspacesApiUpdateRequest {
 	return OrgWorkspacesApiUpdateRequest{
@@ -2019,7 +2219,8 @@ func (a *OrgWorkspacesService) Update(ctx _context.Context, orgHandle string, wo
 }
 
 // Execute executes the request
-//  @return Workspace
+//
+//	@return Workspace
 func (a *OrgWorkspacesService) UpdateExecute(r OrgWorkspacesApiUpdateRequest) (Workspace, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

@@ -4,8 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | **string** | The action type of the snapshot. | 
-**DashboardNode** | **map[string]interface{}** |  | 
 **EndTime** | **string** | The time the dashboard execution ended. | 
 **Inputs** | Pointer to **map[string]interface{}** |  | [optional] 
 **Layout** | **map[string]interface{}** |  | 
@@ -19,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewWorkspaceSnapshotData
 
-`func NewWorkspaceSnapshotData(action string, dashboardNode map[string]interface{}, endTime string, layout map[string]interface{}, panels map[string]interface{}, schemaVersion string, searchPath []string, startTime string, ) *WorkspaceSnapshotData`
+`func NewWorkspaceSnapshotData(endTime string, layout map[string]interface{}, panels map[string]interface{}, schemaVersion string, searchPath []string, startTime string, ) *WorkspaceSnapshotData`
 
 NewWorkspaceSnapshotData instantiates a new WorkspaceSnapshotData object
 This constructor will assign default values to properties that have it defined,
@@ -33,46 +31,6 @@ will change when the set of required properties is changed
 NewWorkspaceSnapshotDataWithDefaults instantiates a new WorkspaceSnapshotData object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAction
-
-`func (o *WorkspaceSnapshotData) GetAction() string`
-
-GetAction returns the Action field if non-nil, zero value otherwise.
-
-### GetActionOk
-
-`func (o *WorkspaceSnapshotData) GetActionOk() (*string, bool)`
-
-GetActionOk returns a tuple with the Action field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAction
-
-`func (o *WorkspaceSnapshotData) SetAction(v string)`
-
-SetAction sets Action field to given value.
-
-
-### GetDashboardNode
-
-`func (o *WorkspaceSnapshotData) GetDashboardNode() map[string]interface{}`
-
-GetDashboardNode returns the DashboardNode field if non-nil, zero value otherwise.
-
-### GetDashboardNodeOk
-
-`func (o *WorkspaceSnapshotData) GetDashboardNodeOk() (*map[string]interface{}, bool)`
-
-GetDashboardNodeOk returns a tuple with the DashboardNode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDashboardNode
-
-`func (o *WorkspaceSnapshotData) SetDashboardNode(v map[string]interface{})`
-
-SetDashboardNode sets DashboardNode field to given value.
-
 
 ### GetEndTime
 

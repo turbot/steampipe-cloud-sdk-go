@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -45,11 +45,11 @@ Get Get organization workspace installed mod
 
 Get organization workspace installed mod by mod alias
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of an organization that owns the workspace.
- @param workspaceHandle The handle of the workspace where mod was installed.
- @param modAlias The mod alias or mod ID
- @return OrgWorkspaceModsApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of an organization that owns the workspace.
+	@param workspaceHandle The handle of the workspace where mod was installed.
+	@param modAlias The mod alias or mod ID
+	@return OrgWorkspaceModsApiGetRequest
 */
 func (a *OrgWorkspaceModsService) Get(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string) OrgWorkspaceModsApiGetRequest {
 	return OrgWorkspaceModsApiGetRequest{
@@ -62,7 +62,8 @@ func (a *OrgWorkspaceModsService) Get(ctx _context.Context, orgHandle string, wo
 }
 
 // Execute executes the request
-//  @return WorkspaceMod
+//
+//	@return WorkspaceMod
 func (a *OrgWorkspaceModsService) GetExecute(r OrgWorkspaceModsApiGetRequest) (WorkspaceMod, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -231,10 +232,10 @@ Install Install a mod to an organization workspace
 
 Install a mod to an organization workspace
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of an organization that owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod will be installed.
- @return OrgWorkspaceModsApiInstallRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of an organization that owns the workspace.
+	@param workspaceHandle The handle of the workspace where the mod will be installed.
+	@return OrgWorkspaceModsApiInstallRequest
 */
 func (a *OrgWorkspaceModsService) Install(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceModsApiInstallRequest {
 	return OrgWorkspaceModsApiInstallRequest{
@@ -246,7 +247,8 @@ func (a *OrgWorkspaceModsService) Install(ctx _context.Context, orgHandle string
 }
 
 // Execute executes the request
-//  @return WorkspaceMod
+//
+//	@return WorkspaceMod
 func (a *OrgWorkspaceModsService) InstallExecute(r OrgWorkspaceModsApiInstallRequest) (WorkspaceMod, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -426,10 +428,10 @@ List List organization workspace installed mods
 
 List organization workspace installed mods
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of an organization that owns the workspace.
- @param workspaceHandle The handle of the workspace where mods were installed
- @return OrgWorkspaceModsApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of an organization that owns the workspace.
+	@param workspaceHandle The handle of the workspace where mods were installed
+	@return OrgWorkspaceModsApiListRequest
 */
 func (a *OrgWorkspaceModsService) List(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceModsApiListRequest {
 	return OrgWorkspaceModsApiListRequest{
@@ -441,7 +443,8 @@ func (a *OrgWorkspaceModsService) List(ctx _context.Context, orgHandle string, w
 }
 
 // Execute executes the request
-//  @return ListWorkspaceModsResponse
+//
+//	@return ListWorkspaceModsResponse
 func (a *OrgWorkspaceModsService) ListExecute(r OrgWorkspaceModsApiListRequest) (ListWorkspaceModsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -599,11 +602,11 @@ Uninstall Uninstall mod from organization workspace.
 
 Uninstall mod from organization workspace.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of an organization that owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod was installed.
- @param modAlias The mod alias or mod ID to delete.
- @return OrgWorkspaceModsApiUninstallRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of an organization that owns the workspace.
+	@param workspaceHandle The handle of the workspace where the mod was installed.
+	@param modAlias The mod alias or mod ID to delete.
+	@return OrgWorkspaceModsApiUninstallRequest
 */
 func (a *OrgWorkspaceModsService) Uninstall(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string) OrgWorkspaceModsApiUninstallRequest {
 	return OrgWorkspaceModsApiUninstallRequest{
@@ -616,7 +619,8 @@ func (a *OrgWorkspaceModsService) Uninstall(ctx _context.Context, orgHandle stri
 }
 
 // Execute executes the request
-//  @return WorkspaceMod
+//
+//	@return WorkspaceMod
 func (a *OrgWorkspaceModsService) UninstallExecute(r OrgWorkspaceModsApiUninstallRequest) (WorkspaceMod, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -776,11 +780,11 @@ Update Update a mod in an organization workspace
 
 Update a mod in an organization workspace
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of an organization that owns the workspace.
- @param workspaceHandle The handle of the workspace where the mod will be updated.
- @param modAlias The mod alias or mod ID to update.
- @return OrgWorkspaceModsApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of an organization that owns the workspace.
+	@param workspaceHandle The handle of the workspace where the mod will be updated.
+	@param modAlias The mod alias or mod ID to update.
+	@return OrgWorkspaceModsApiUpdateRequest
 */
 func (a *OrgWorkspaceModsService) Update(ctx _context.Context, orgHandle string, workspaceHandle string, modAlias string) OrgWorkspaceModsApiUpdateRequest {
 	return OrgWorkspaceModsApiUpdateRequest{
@@ -793,7 +797,8 @@ func (a *OrgWorkspaceModsService) Update(ctx _context.Context, orgHandle string,
 }
 
 // Execute executes the request
-//  @return WorkspaceMod
+//
+//	@return WorkspaceMod
 func (a *OrgWorkspaceModsService) UpdateExecute(r OrgWorkspaceModsApiUpdateRequest) (WorkspaceMod, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

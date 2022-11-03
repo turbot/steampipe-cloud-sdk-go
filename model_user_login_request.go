@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -17,7 +17,8 @@ import (
 
 // UserLoginRequest struct for UserLoginRequest
 type UserLoginRequest struct {
-	Email string `json:"email"`
+	Email string  `json:"email"`
+	State *string `json:"state,omitempty"`
 }
 
 // NewUserLoginRequest instantiates a new UserLoginRequest object
@@ -62,10 +63,45 @@ func (o *UserLoginRequest) SetEmail(v string) {
 	o.Email = v
 }
 
+// GetState returns the State field value if set, zero value otherwise.
+func (o *UserLoginRequest) GetState() string {
+	if o == nil || o.State == nil {
+		var ret string
+		return ret
+	}
+	return *o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserLoginRequest) GetStateOk() (*string, bool) {
+	if o == nil || o.State == nil {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *UserLoginRequest) HasState() bool {
+	if o != nil && o.State != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given string and assigns it to the State field.
+func (o *UserLoginRequest) SetState(v string) {
+	o.State = &v
+}
+
 func (o UserLoginRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["email"] = o.Email
+	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
 	}
 	return json.Marshal(toSerialize)
 }

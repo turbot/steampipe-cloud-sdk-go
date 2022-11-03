@@ -3,7 +3,7 @@ Steampipe Cloud
 
 Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open source tool to instantly query your cloud services (e.g. AWS, Azure, GCP and more) with SQL. No DB required.
 
-API version: 1.0
+API version: {{OPEN_API_VERSION}}
 Contact: help@steampipe.io
 */
 
@@ -51,10 +51,10 @@ Create Create org workspace snapshot
 
 Creates a new workspace snapshot for an org.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org to create the workspace snapshot for.
- @param workspaceHandle The handle of the org workspace to create the snapshot for.
- @return OrgWorkspaceSnapshotsApiCreateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org to create the workspace snapshot for.
+	@param workspaceHandle The handle of the org workspace to create the snapshot for.
+	@return OrgWorkspaceSnapshotsApiCreateRequest
 */
 func (a *OrgWorkspaceSnapshotsService) Create(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceSnapshotsApiCreateRequest {
 	return OrgWorkspaceSnapshotsApiCreateRequest{
@@ -66,7 +66,8 @@ func (a *OrgWorkspaceSnapshotsService) Create(ctx _context.Context, orgHandle st
 }
 
 // Execute executes the request
-//  @return WorkspaceSnapshot
+//
+//	@return WorkspaceSnapshot
 func (a *OrgWorkspaceSnapshotsService) CreateExecute(r OrgWorkspaceSnapshotsApiCreateRequest) (WorkspaceSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -233,11 +234,11 @@ Delete Delete org workspace snapshot
 
 Deletes an org workspace snapshot.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org that the workspace snapshot belongs to.
- @param workspaceHandle The handle of the org workspace that the snapshot belongs to.
- @param snapshotId The handle of the snapshot which needs to be deleted.
- @return OrgWorkspaceSnapshotsApiDeleteRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org that the workspace snapshot belongs to.
+	@param workspaceHandle The handle of the org workspace that the snapshot belongs to.
+	@param snapshotId The handle of the snapshot which needs to be deleted.
+	@return OrgWorkspaceSnapshotsApiDeleteRequest
 */
 func (a *OrgWorkspaceSnapshotsService) Delete(ctx _context.Context, orgHandle string, workspaceHandle string, snapshotId string) OrgWorkspaceSnapshotsApiDeleteRequest {
 	return OrgWorkspaceSnapshotsApiDeleteRequest{
@@ -250,7 +251,8 @@ func (a *OrgWorkspaceSnapshotsService) Delete(ctx _context.Context, orgHandle st
 }
 
 // Execute executes the request
-//  @return WorkspaceSnapshot
+//
+//	@return WorkspaceSnapshot
 func (a *OrgWorkspaceSnapshotsService) DeleteExecute(r OrgWorkspaceSnapshotsApiDeleteRequest) (WorkspaceSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -404,12 +406,12 @@ Download Download org workspace snapshot
 
 Downloads the full data for an org workspace snapshot.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org that the workspace snapshot belongs to.
- @param workspaceHandle The handle of the org workspace that the snapshot belongs to.
- @param snapshotId The Id of the snapshot to be downloaded.
- @param contentType The type of content to the downloaded.
- @return OrgWorkspaceSnapshotsApiDownloadRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org that the workspace snapshot belongs to.
+	@param workspaceHandle The handle of the org workspace that the snapshot belongs to.
+	@param snapshotId The Id of the snapshot to be downloaded.
+	@param contentType The type of content to the downloaded.
+	@return OrgWorkspaceSnapshotsApiDownloadRequest
 */
 func (a *OrgWorkspaceSnapshotsService) Download(ctx _context.Context, orgHandle string, workspaceHandle string, snapshotId string, contentType string) OrgWorkspaceSnapshotsApiDownloadRequest {
 	return OrgWorkspaceSnapshotsApiDownloadRequest{
@@ -423,7 +425,8 @@ func (a *OrgWorkspaceSnapshotsService) Download(ctx _context.Context, orgHandle 
 }
 
 // Execute executes the request
-//  @return WorkspaceSnapshotData
+//
+//	@return WorkspaceSnapshotData
 func (a *OrgWorkspaceSnapshotsService) DownloadExecute(r OrgWorkspaceSnapshotsApiDownloadRequest) (WorkspaceSnapshotData, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -567,11 +570,11 @@ Get Get org workspace snapshot
 
 Get the details for an org workspace snapshot.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org that the workspace snapshot belongs to.
- @param workspaceHandle The handle of the org workspace that the snapshot belongs to.
- @param snapshotId The handle of the snapshot whose detail needs to be fetched.
- @return OrgWorkspaceSnapshotsApiGetRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org that the workspace snapshot belongs to.
+	@param workspaceHandle The handle of the org workspace that the snapshot belongs to.
+	@param snapshotId The handle of the snapshot whose detail needs to be fetched.
+	@return OrgWorkspaceSnapshotsApiGetRequest
 */
 func (a *OrgWorkspaceSnapshotsService) Get(ctx _context.Context, orgHandle string, workspaceHandle string, snapshotId string) OrgWorkspaceSnapshotsApiGetRequest {
 	return OrgWorkspaceSnapshotsApiGetRequest{
@@ -584,7 +587,8 @@ func (a *OrgWorkspaceSnapshotsService) Get(ctx _context.Context, orgHandle strin
 }
 
 // Execute executes the request
-//  @return WorkspaceSnapshot
+//
+//	@return WorkspaceSnapshot
 func (a *OrgWorkspaceSnapshotsService) GetExecute(r OrgWorkspaceSnapshotsApiGetRequest) (WorkspaceSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -750,10 +754,10 @@ List List org workspace snapshots
 
 List the workspace snapshots for an org.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org to list the workspace snapshots for.
- @param workspaceHandle The handle of the org workspace to list snapshots for.
- @return OrgWorkspaceSnapshotsApiListRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org to list the workspace snapshots for.
+	@param workspaceHandle The handle of the org workspace to list snapshots for.
+	@return OrgWorkspaceSnapshotsApiListRequest
 */
 func (a *OrgWorkspaceSnapshotsService) List(ctx _context.Context, orgHandle string, workspaceHandle string) OrgWorkspaceSnapshotsApiListRequest {
 	return OrgWorkspaceSnapshotsApiListRequest{
@@ -765,7 +769,8 @@ func (a *OrgWorkspaceSnapshotsService) List(ctx _context.Context, orgHandle stri
 }
 
 // Execute executes the request
-//  @return ListWorkspaceSnapshotsResponse
+//
+//	@return ListWorkspaceSnapshotsResponse
 func (a *OrgWorkspaceSnapshotsService) ListExecute(r OrgWorkspaceSnapshotsApiListRequest) (ListWorkspaceSnapshotsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -920,11 +925,11 @@ Update Update org workspace snapshot
 
 Updates an org workspace snapshot.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param orgHandle The handle of the org that the workspace snapshot belongs to.
- @param workspaceHandle The handle of the org workspace that the snapshot belongs to.
- @param snapshotId The handle of the snapshot to update.
- @return OrgWorkspaceSnapshotsApiUpdateRequest
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org that the workspace snapshot belongs to.
+	@param workspaceHandle The handle of the org workspace that the snapshot belongs to.
+	@param snapshotId The handle of the snapshot to update.
+	@return OrgWorkspaceSnapshotsApiUpdateRequest
 */
 func (a *OrgWorkspaceSnapshotsService) Update(ctx _context.Context, orgHandle string, workspaceHandle string, snapshotId string) OrgWorkspaceSnapshotsApiUpdateRequest {
 	return OrgWorkspaceSnapshotsApiUpdateRequest{
@@ -937,7 +942,8 @@ func (a *OrgWorkspaceSnapshotsService) Update(ctx _context.Context, orgHandle st
 }
 
 // Execute executes the request
-//  @return WorkspaceSnapshot
+//
+//	@return WorkspaceSnapshot
 func (a *OrgWorkspaceSnapshotsService) UpdateExecute(r OrgWorkspaceSnapshotsApiUpdateRequest) (WorkspaceSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
