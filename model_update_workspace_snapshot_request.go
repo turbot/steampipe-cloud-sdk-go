@@ -18,6 +18,8 @@ import (
 // UpdateWorkspaceSnapshotRequest struct for UpdateWorkspaceSnapshotRequest
 type UpdateWorkspaceSnapshotRequest struct {
 	Tags interface{} `json:"tags,omitempty"`
+	// The updated title for the snapshot.
+	Title *string `json:"title,omitempty"`
 	// The updated visibility for the snapshot.
 	Visibility *string `json:"visibility,omitempty"`
 }
@@ -72,6 +74,38 @@ func (o *UpdateWorkspaceSnapshotRequest) SetTags(v interface{}) {
 	o.Tags = v
 }
 
+// GetTitle returns the Title field value if set, zero value otherwise.
+func (o *UpdateWorkspaceSnapshotRequest) GetTitle() string {
+	if o == nil || o.Title == nil {
+		var ret string
+		return ret
+	}
+	return *o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateWorkspaceSnapshotRequest) GetTitleOk() (*string, bool) {
+	if o == nil || o.Title == nil {
+		return nil, false
+	}
+	return o.Title, true
+}
+
+// HasTitle returns a boolean if a field has been set.
+func (o *UpdateWorkspaceSnapshotRequest) HasTitle() bool {
+	if o != nil && o.Title != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
+func (o *UpdateWorkspaceSnapshotRequest) SetTitle(v string) {
+	o.Title = &v
+}
+
 // GetVisibility returns the Visibility field value if set, zero value otherwise.
 func (o *UpdateWorkspaceSnapshotRequest) GetVisibility() string {
 	if o == nil || o.Visibility == nil {
@@ -108,6 +142,9 @@ func (o UpdateWorkspaceSnapshotRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
+	}
+	if o.Title != nil {
+		toSerialize["title"] = o.Title
 	}
 	if o.Visibility != nil {
 		toSerialize["visibility"] = o.Visibility

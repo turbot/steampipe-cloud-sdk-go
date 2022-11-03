@@ -11001,12 +11001,16 @@ components:
           - search_path
           end_time: end_time
         visibility: visibility
+        title: title
         tags: ""
       properties:
         data:
           $ref: '#/components/schemas/WorkspaceSnapshotData'
         tags:
           nullable: true
+        title:
+          description: The title of the snapshot.
+          type: string
         visibility:
           description: The visibility of the snapshot to create.
           type: string
@@ -12349,6 +12353,7 @@ components:
           inputs: ""
           created_at: created_at
           version_id: 0
+          title: title
           created_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -12386,6 +12391,7 @@ components:
           inputs: ""
           created_at: created_at
           version_id: 0
+          title: title
           created_by:
             avatar_url: avatar_url
             updated_at: updated_at
@@ -13218,10 +13224,14 @@ components:
     UpdateWorkspaceSnapshotRequest:
       example:
         visibility: visibility
+        title: title
         tags: ""
       properties:
         tags:
           nullable: true
+        title:
+          description: The updated title for the snapshot.
+          type: string
         visibility:
           description: The updated visibility for the snapshot.
           type: string
@@ -14100,6 +14110,7 @@ components:
         inputs: ""
         created_at: created_at
         version_id: 0
+        title: title
         created_by:
           avatar_url: avatar_url
           updated_at: updated_at
@@ -14167,6 +14178,9 @@ components:
           type: string
         tags:
           nullable: true
+        title:
+          description: The title of the snapshot.
+          type: string
         updated_at:
           description: The time of the last update in ISO 8601 UTC.
           type: string
@@ -14192,6 +14206,7 @@ components:
       - created_at
       - created_by_id
       - dashboard_name
+      - dashboard_title
       - id
       - identity_id
       - schema_version

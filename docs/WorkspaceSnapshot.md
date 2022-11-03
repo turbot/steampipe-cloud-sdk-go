@@ -8,13 +8,14 @@ Name | Type | Description | Notes
 **CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **CreatedById** | **string** | The ID of the user that created this. | 
 **DashboardName** | **string** | The mod-prefixed name of the dashboard this snapshot belongs to. | 
-**DashboardTitle** | Pointer to **string** | The title of the dashboard this snapshot belongs to. | [optional] 
+**DashboardTitle** | **string** | The title of the dashboard this snapshot belongs to. | 
 **Id** | **string** | The unique identifier for the snapshot. | 
 **IdentityId** | **string** | The unique identifier for the identity that the snapshot belongs to. | 
 **Inputs** | Pointer to **interface{}** |  | [optional] 
 **SchemaVersion** | **string** | The schema version of the underlying snapshot. | 
 **State** | Pointer to **string** | The current state of the snapshot. | [optional] 
 **Tags** | Pointer to **interface{}** |  | [optional] 
+**Title** | Pointer to **string** | The title of the snapshot. | [optional] 
 **UpdatedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
 **UpdatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **UpdatedById** | **string** | The ID of the user that performed the last update. | 
@@ -26,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewWorkspaceSnapshot
 
-`func NewWorkspaceSnapshot(createdAt string, createdById string, dashboardName string, id string, identityId string, schemaVersion string, updatedById string, versionId int32, workspaceId string, ) *WorkspaceSnapshot`
+`func NewWorkspaceSnapshot(createdAt string, createdById string, dashboardName string, dashboardTitle string, id string, identityId string, schemaVersion string, updatedById string, versionId int32, workspaceId string, ) *WorkspaceSnapshot`
 
 NewWorkspaceSnapshot instantiates a new WorkspaceSnapshot object
 This constructor will assign default values to properties that have it defined,
@@ -145,11 +146,6 @@ and a boolean to check if the value has been set.
 
 SetDashboardTitle sets DashboardTitle field to given value.
 
-### HasDashboardTitle
-
-`func (o *WorkspaceSnapshot) HasDashboardTitle() bool`
-
-HasDashboardTitle returns a boolean if a field has been set.
 
 ### GetId
 
@@ -306,6 +302,31 @@ HasTags returns a boolean if a field has been set.
 `func (o *WorkspaceSnapshot) UnsetTags()`
 
 UnsetTags ensures that no value is present for Tags, not even an explicit nil
+### GetTitle
+
+`func (o *WorkspaceSnapshot) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *WorkspaceSnapshot) GetTitleOk() (*string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *WorkspaceSnapshot) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
+
+### HasTitle
+
+`func (o *WorkspaceSnapshot) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
 ### GetUpdatedAt
 
 `func (o *WorkspaceSnapshot) GetUpdatedAt() string`

@@ -19,6 +19,8 @@ import (
 type CreateWorkspaceSnapshotRequest struct {
 	Data WorkspaceSnapshotData `json:"data"`
 	Tags interface{}           `json:"tags,omitempty"`
+	// The title of the snapshot.
+	Title *string `json:"title,omitempty"`
 	// The visibility of the snapshot to create.
 	Visibility *string `json:"visibility,omitempty"`
 }
@@ -98,6 +100,38 @@ func (o *CreateWorkspaceSnapshotRequest) SetTags(v interface{}) {
 	o.Tags = v
 }
 
+// GetTitle returns the Title field value if set, zero value otherwise.
+func (o *CreateWorkspaceSnapshotRequest) GetTitle() string {
+	if o == nil || o.Title == nil {
+		var ret string
+		return ret
+	}
+	return *o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateWorkspaceSnapshotRequest) GetTitleOk() (*string, bool) {
+	if o == nil || o.Title == nil {
+		return nil, false
+	}
+	return o.Title, true
+}
+
+// HasTitle returns a boolean if a field has been set.
+func (o *CreateWorkspaceSnapshotRequest) HasTitle() bool {
+	if o != nil && o.Title != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
+func (o *CreateWorkspaceSnapshotRequest) SetTitle(v string) {
+	o.Title = &v
+}
+
 // GetVisibility returns the Visibility field value if set, zero value otherwise.
 func (o *CreateWorkspaceSnapshotRequest) GetVisibility() string {
 	if o == nil || o.Visibility == nil {
@@ -137,6 +171,9 @@ func (o CreateWorkspaceSnapshotRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
+	}
+	if o.Title != nil {
+		toSerialize["title"] = o.Title
 	}
 	if o.Visibility != nil {
 		toSerialize["visibility"] = o.Visibility
