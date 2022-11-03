@@ -1,5 +1,12 @@
 # Steampipe Cloud Go SDK
 
+## 0.2.0 [2022-11-03]
+
+- User Preferences APIs
+- User Emails APIs
+- Steampipe Login APIs
+- Add option to set snapshot titles
+
 ## 0.1.3 [2022-08-12]
 
 - Add Snapshot APIs.
