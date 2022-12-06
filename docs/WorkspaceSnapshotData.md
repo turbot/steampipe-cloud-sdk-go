@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **Layout** | **map[string]interface{}** |  | 
 **Panels** | **map[string]interface{}** |  | 
 **SchemaVersion** | **string** | The schema version of this snapshot. | 
-**SearchPath** | **[]string** | The search path used for this snapshot. | 
 **StartTime** | **string** | The time the dashboard execution started. | 
 **Variables** | Pointer to **map[string]interface{}** |  | [optional] 
 
@@ -17,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewWorkspaceSnapshotData
 
-`func NewWorkspaceSnapshotData(endTime string, layout map[string]interface{}, panels map[string]interface{}, schemaVersion string, searchPath []string, startTime string, ) *WorkspaceSnapshotData`
+`func NewWorkspaceSnapshotData(endTime string, layout map[string]interface{}, panels map[string]interface{}, schemaVersion string, startTime string, ) *WorkspaceSnapshotData`
 
 NewWorkspaceSnapshotData instantiates a new WorkspaceSnapshotData object
 This constructor will assign default values to properties that have it defined,
@@ -135,26 +134,6 @@ and a boolean to check if the value has been set.
 `func (o *WorkspaceSnapshotData) SetSchemaVersion(v string)`
 
 SetSchemaVersion sets SchemaVersion field to given value.
-
-
-### GetSearchPath
-
-`func (o *WorkspaceSnapshotData) GetSearchPath() []string`
-
-GetSearchPath returns the SearchPath field if non-nil, zero value otherwise.
-
-### GetSearchPathOk
-
-`func (o *WorkspaceSnapshotData) GetSearchPathOk() (*[]string, bool)`
-
-GetSearchPathOk returns a tuple with the SearchPath field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSearchPath
-
-`func (o *WorkspaceSnapshotData) SetSearchPath(v []string)`
-
-SetSearchPath sets SearchPath field to given value.
 
 
 ### GetStartTime

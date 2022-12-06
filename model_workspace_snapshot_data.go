@@ -24,8 +24,6 @@ type WorkspaceSnapshotData struct {
 	Panels  map[string]interface{}  `json:"panels"`
 	// The schema version of this snapshot.
 	SchemaVersion string `json:"schema_version"`
-	// The search path used for this snapshot.
-	SearchPath []string `json:"search_path"`
 	// The time the dashboard execution started.
 	StartTime string                  `json:"start_time"`
 	Variables *map[string]interface{} `json:"variables,omitempty"`
@@ -35,13 +33,12 @@ type WorkspaceSnapshotData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspaceSnapshotData(endTime string, layout map[string]interface{}, panels map[string]interface{}, schemaVersion string, searchPath []string, startTime string) *WorkspaceSnapshotData {
+func NewWorkspaceSnapshotData(endTime string, layout map[string]interface{}, panels map[string]interface{}, schemaVersion string, startTime string) *WorkspaceSnapshotData {
 	this := WorkspaceSnapshotData{}
 	this.EndTime = endTime
 	this.Layout = layout
 	this.Panels = panels
 	this.SchemaVersion = schemaVersion
-	this.SearchPath = searchPath
 	this.StartTime = startTime
 	return &this
 }
@@ -182,30 +179,6 @@ func (o *WorkspaceSnapshotData) SetSchemaVersion(v string) {
 	o.SchemaVersion = v
 }
 
-// GetSearchPath returns the SearchPath field value
-func (o *WorkspaceSnapshotData) GetSearchPath() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.SearchPath
-}
-
-// GetSearchPathOk returns a tuple with the SearchPath field value
-// and a boolean to check if the value has been set.
-func (o *WorkspaceSnapshotData) GetSearchPathOk() (*[]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SearchPath, true
-}
-
-// SetSearchPath sets field value
-func (o *WorkspaceSnapshotData) SetSearchPath(v []string) {
-	o.SearchPath = v
-}
-
 // GetStartTime returns the StartTime field value
 func (o *WorkspaceSnapshotData) GetStartTime() string {
 	if o == nil {
@@ -278,9 +251,6 @@ func (o WorkspaceSnapshotData) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["schema_version"] = o.SchemaVersion
-	}
-	if true {
-		toSerialize["search_path"] = o.SearchPath
 	}
 	if true {
 		toSerialize["start_time"] = o.StartTime

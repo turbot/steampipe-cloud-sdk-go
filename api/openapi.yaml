@@ -10895,7 +10895,7 @@ components:
         display_name:
           type: string
         handle:
-          format: ^[a-z0-9](?:[a-z0-9]|-(?=[a-z0-9])){0,38}$
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]){0,18}[a-z0-9]?$
           type: string
         url:
           type: string
@@ -10935,7 +10935,7 @@ components:
         email:
           type: string
         handle:
-          format: ^[a-z0-9](?:[a-z0-9]|-(?=[a-z0-9])){0,38}$
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]){0,18}[a-z0-9]?$
           type: string
         url:
           type: string
@@ -10996,9 +10996,6 @@ components:
           variables: '{}'
           inputs: '{}'
           panels: '{}'
-          search_path:
-          - search_path
-          - search_path
           end_time: end_time
         visibility: visibility
         title: title
@@ -12369,6 +12366,7 @@ components:
           schema_version: schema_version
           workspace_id: workspace_id
           dashboard_title: dashboard_title
+          expires_at: expires_at
           updated_at: updated_at
           updated_by:
             avatar_url: avatar_url
@@ -12407,6 +12405,7 @@ components:
           schema_version: schema_version
           workspace_id: workspace_id
           dashboard_title: dashboard_title
+          expires_at: expires_at
           updated_at: updated_at
           updated_by:
             avatar_url: avatar_url
@@ -13116,7 +13115,7 @@ components:
         display_name:
           type: string
         handle:
-          format: ^[a-z0-9](?:[a-z0-9]|-(?=[a-z0-9])){0,38}$
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]){0,18}[a-z0-9]?$
           type: string
         url:
           type: string
@@ -13191,7 +13190,7 @@ components:
         display_name:
           type: string
         handle:
-          format: ^[a-z0-9](?:[a-z0-9]|-(?=[a-z0-9])){0,38}$
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]){0,18}[a-z0-9]?$
           type: string
         url:
           type: string
@@ -14126,6 +14125,7 @@ components:
         schema_version: schema_version
         workspace_id: workspace_id
         dashboard_title: dashboard_title
+        expires_at: expires_at
         updated_at: updated_at
         updated_by:
           avatar_url: avatar_url
@@ -14158,6 +14158,9 @@ components:
           type: string
         dashboard_title:
           description: The title of the dashboard this snapshot belongs to.
+          type: string
+        expires_at:
+          description: The time when the snapshot will expire.
           type: string
         id:
           description: The unique identifier for the snapshot.
@@ -14222,9 +14225,6 @@ components:
         variables: '{}'
         inputs: '{}'
         panels: '{}'
-        search_path:
-        - search_path
-        - search_path
         end_time: end_time
       properties:
         end_time:
@@ -14239,11 +14239,6 @@ components:
         schema_version:
           description: The schema version of this snapshot.
           type: string
-        search_path:
-          description: The search path used for this snapshot.
-          items:
-            type: string
-          type: array
         start_time:
           description: The time the dashboard execution started.
           type: string
@@ -14254,7 +14249,6 @@ components:
       - layout
       - panels
       - schema_version
-      - search_path
       - start_time
       type: object
   securitySchemes:
