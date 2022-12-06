@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **CreatedById** | **string** | The ID of the user that created this. | 
 **DashboardName** | **string** | The mod-prefixed name of the dashboard this snapshot belongs to. | 
 **DashboardTitle** | **string** | The title of the dashboard this snapshot belongs to. | 
+**ExpiresAt** | Pointer to **string** | The time when the snapshot will expire. | [optional] 
 **Id** | **string** | The unique identifier for the snapshot. | 
 **IdentityId** | **string** | The unique identifier for the identity that the snapshot belongs to. | 
 **Inputs** | Pointer to **interface{}** |  | [optional] 
@@ -146,6 +147,31 @@ and a boolean to check if the value has been set.
 
 SetDashboardTitle sets DashboardTitle field to given value.
 
+
+### GetExpiresAt
+
+`func (o *WorkspaceSnapshot) GetExpiresAt() string`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *WorkspaceSnapshot) GetExpiresAtOk() (*string, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *WorkspaceSnapshot) SetExpiresAt(v string)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
+### HasExpiresAt
+
+`func (o *WorkspaceSnapshot) HasExpiresAt() bool`
+
+HasExpiresAt returns a boolean if a field has been set.
 
 ### GetId
 

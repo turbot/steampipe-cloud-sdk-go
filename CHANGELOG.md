@@ -1,5 +1,10 @@
 # Steampipe Cloud Go SDK
 
+## 0.3.0 [2022-12-06]
+
+- Remove SearchPath attribute from WorkspaceSnapshotData model
+- Add ExpiresAt attribute to WorkspaceSnapshot model
+
 ## 0.2.0 [2022-11-03]
 
 - User Preferences APIs

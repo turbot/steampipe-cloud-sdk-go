@@ -26,6 +26,8 @@ type WorkspaceSnapshot struct {
 	DashboardName string `json:"dashboard_name"`
 	// The title of the dashboard this snapshot belongs to.
 	DashboardTitle string `json:"dashboard_title"`
+	// The time when the snapshot will expire.
+	ExpiresAt *string `json:"expires_at,omitempty"`
 	// The unique identifier for the snapshot.
 	Id string `json:"id"`
 	// The unique identifier for the identity that the snapshot belongs to.
@@ -204,6 +206,38 @@ func (o *WorkspaceSnapshot) GetDashboardTitleOk() (*string, bool) {
 // SetDashboardTitle sets field value
 func (o *WorkspaceSnapshot) SetDashboardTitle(v string) {
 	o.DashboardTitle = v
+}
+
+// GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
+func (o *WorkspaceSnapshot) GetExpiresAt() string {
+	if o == nil || o.ExpiresAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.ExpiresAt
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSnapshot) GetExpiresAtOk() (*string, bool) {
+	if o == nil || o.ExpiresAt == nil {
+		return nil, false
+	}
+	return o.ExpiresAt, true
+}
+
+// HasExpiresAt returns a boolean if a field has been set.
+func (o *WorkspaceSnapshot) HasExpiresAt() bool {
+	if o != nil && o.ExpiresAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiresAt gets a reference to the given string and assigns it to the ExpiresAt field.
+func (o *WorkspaceSnapshot) SetExpiresAt(v string) {
+	o.ExpiresAt = &v
 }
 
 // GetId returns the Id field value
@@ -592,6 +626,9 @@ func (o WorkspaceSnapshot) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["dashboard_title"] = o.DashboardTitle
+	}
+	if o.ExpiresAt != nil {
+		toSerialize["expires_at"] = o.ExpiresAt
 	}
 	if true {
 		toSerialize["id"] = o.Id
