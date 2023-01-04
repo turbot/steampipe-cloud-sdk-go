@@ -17,22 +17,21 @@ import (
 
 // ErrorModel struct for ErrorModel
 type ErrorModel struct {
-	Detail   *string             `json:"detail,omitempty"`
-	Errors   *[]ErrorDetailModel `json:"errors,omitempty"`
-	Id       string              `json:"id"`
-	Instance *string             `json:"instance,omitempty"`
-	Status   int32               `json:"status"`
-	Title    string              `json:"title"`
-	Type     string              `json:"type"`
+	Detail           *string             `json:"detail,omitempty"`
+	Instance         string              `json:"instance"`
+	Status           int32               `json:"status"`
+	Title            string              `json:"title"`
+	Type             string              `json:"type"`
+	ValidationErrors *[]ErrorDetailModel `json:"validation_errors,omitempty"`
 }
 
 // NewErrorModel instantiates a new ErrorModel object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewErrorModel(id string, status int32, title string, type_ string) *ErrorModel {
+func NewErrorModel(instance string, status int32, title string, type_ string) *ErrorModel {
 	this := ErrorModel{}
-	this.Id = id
+	this.Instance = instance
 	this.Status = status
 	this.Title = title
 	this.Type = type_
@@ -79,92 +78,28 @@ func (o *ErrorModel) SetDetail(v string) {
 	o.Detail = &v
 }
 
-// GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *ErrorModel) GetErrors() []ErrorDetailModel {
-	if o == nil || o.Errors == nil {
-		var ret []ErrorDetailModel
-		return ret
-	}
-	return *o.Errors
-}
-
-// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ErrorModel) GetErrorsOk() (*[]ErrorDetailModel, bool) {
-	if o == nil || o.Errors == nil {
-		return nil, false
-	}
-	return o.Errors, true
-}
-
-// HasErrors returns a boolean if a field has been set.
-func (o *ErrorModel) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetErrors gets a reference to the given []ErrorDetailModel and assigns it to the Errors field.
-func (o *ErrorModel) SetErrors(v []ErrorDetailModel) {
-	o.Errors = &v
-}
-
-// GetId returns the Id field value
-func (o *ErrorModel) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *ErrorModel) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *ErrorModel) SetId(v string) {
-	o.Id = v
-}
-
-// GetInstance returns the Instance field value if set, zero value otherwise.
+// GetInstance returns the Instance field value
 func (o *ErrorModel) GetInstance() string {
-	if o == nil || o.Instance == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Instance
+
+	return o.Instance
 }
 
-// GetInstanceOk returns a tuple with the Instance field value if set, nil otherwise
+// GetInstanceOk returns a tuple with the Instance field value
 // and a boolean to check if the value has been set.
 func (o *ErrorModel) GetInstanceOk() (*string, bool) {
-	if o == nil || o.Instance == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Instance, true
+	return &o.Instance, true
 }
 
-// HasInstance returns a boolean if a field has been set.
-func (o *ErrorModel) HasInstance() bool {
-	if o != nil && o.Instance != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetInstance gets a reference to the given string and assigns it to the Instance field.
+// SetInstance sets field value
 func (o *ErrorModel) SetInstance(v string) {
-	o.Instance = &v
+	o.Instance = v
 }
 
 // GetStatus returns the Status field value
@@ -239,18 +174,44 @@ func (o *ErrorModel) SetType(v string) {
 	o.Type = v
 }
 
+// GetValidationErrors returns the ValidationErrors field value if set, zero value otherwise.
+func (o *ErrorModel) GetValidationErrors() []ErrorDetailModel {
+	if o == nil || o.ValidationErrors == nil {
+		var ret []ErrorDetailModel
+		return ret
+	}
+	return *o.ValidationErrors
+}
+
+// GetValidationErrorsOk returns a tuple with the ValidationErrors field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ErrorModel) GetValidationErrorsOk() (*[]ErrorDetailModel, bool) {
+	if o == nil || o.ValidationErrors == nil {
+		return nil, false
+	}
+	return o.ValidationErrors, true
+}
+
+// HasValidationErrors returns a boolean if a field has been set.
+func (o *ErrorModel) HasValidationErrors() bool {
+	if o != nil && o.ValidationErrors != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValidationErrors gets a reference to the given []ErrorDetailModel and assigns it to the ValidationErrors field.
+func (o *ErrorModel) SetValidationErrors(v []ErrorDetailModel) {
+	o.ValidationErrors = &v
+}
+
 func (o ErrorModel) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Detail != nil {
 		toSerialize["detail"] = o.Detail
 	}
-	if o.Errors != nil {
-		toSerialize["errors"] = o.Errors
-	}
 	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.Instance != nil {
 		toSerialize["instance"] = o.Instance
 	}
 	if true {
@@ -261,6 +222,9 @@ func (o ErrorModel) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["type"] = o.Type
+	}
+	if o.ValidationErrors != nil {
+		toSerialize["validation_errors"] = o.ValidationErrors
 	}
 	return json.Marshal(toSerialize)
 }

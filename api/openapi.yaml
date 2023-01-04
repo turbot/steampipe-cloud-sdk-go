@@ -10553,18 +10553,10 @@ components:
           type: string
         message:
           type: string
-        value:
-          type: string
       type: object
     ErrorModel:
       properties:
         detail:
-          type: string
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorDetailModel'
-          type: array
-        id:
           type: string
         instance:
           type: string
@@ -10574,8 +10566,12 @@ components:
           type: string
         type:
           type: string
+        validation_errors:
+          items:
+            $ref: '#/components/schemas/ErrorDetailModel'
+          type: array
       required:
-      - id
+      - instance
       - status
       - title
       - type
