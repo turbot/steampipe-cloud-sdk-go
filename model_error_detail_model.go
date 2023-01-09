@@ -19,7 +19,6 @@ import (
 type ErrorDetailModel struct {
 	Location *string `json:"location,omitempty"`
 	Message  *string `json:"message,omitempty"`
-	Value    *string `json:"value,omitempty"`
 }
 
 // NewErrorDetailModel instantiates a new ErrorDetailModel object
@@ -103,38 +102,6 @@ func (o *ErrorDetailModel) SetMessage(v string) {
 	o.Message = &v
 }
 
-// GetValue returns the Value field value if set, zero value otherwise.
-func (o *ErrorDetailModel) GetValue() string {
-	if o == nil || o.Value == nil {
-		var ret string
-		return ret
-	}
-	return *o.Value
-}
-
-// GetValueOk returns a tuple with the Value field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ErrorDetailModel) GetValueOk() (*string, bool) {
-	if o == nil || o.Value == nil {
-		return nil, false
-	}
-	return o.Value, true
-}
-
-// HasValue returns a boolean if a field has been set.
-func (o *ErrorDetailModel) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetValue gets a reference to the given string and assigns it to the Value field.
-func (o *ErrorDetailModel) SetValue(v string) {
-	o.Value = &v
-}
-
 func (o ErrorDetailModel) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Location != nil {
@@ -142,9 +109,6 @@ func (o ErrorDetailModel) MarshalJSON() ([]byte, error) {
 	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
-	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
 }

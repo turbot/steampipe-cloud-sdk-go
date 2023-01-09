@@ -5,18 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Detail** | Pointer to **string** |  | [optional] 
-**Errors** | Pointer to [**[]ErrorDetailModel**](ErrorDetailModel.md) |  | [optional] 
-**Id** | **string** |  | 
-**Instance** | Pointer to **string** |  | [optional] 
+**Instance** | **string** |  | 
 **Status** | **int32** |  | 
 **Title** | **string** |  | 
 **Type** | **string** |  | 
+**ValidationErrors** | Pointer to [**[]ErrorDetailModel**](ErrorDetailModel.md) |  | [optional] 
 
 ## Methods
 
 ### NewErrorModel
 
-`func NewErrorModel(id string, status int32, title string, type_ string, ) *ErrorModel`
+`func NewErrorModel(instance string, status int32, title string, type_ string, ) *ErrorModel`
 
 NewErrorModel instantiates a new ErrorModel object
 This constructor will assign default values to properties that have it defined,
@@ -56,51 +55,6 @@ SetDetail sets Detail field to given value.
 
 HasDetail returns a boolean if a field has been set.
 
-### GetErrors
-
-`func (o *ErrorModel) GetErrors() []ErrorDetailModel`
-
-GetErrors returns the Errors field if non-nil, zero value otherwise.
-
-### GetErrorsOk
-
-`func (o *ErrorModel) GetErrorsOk() (*[]ErrorDetailModel, bool)`
-
-GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetErrors
-
-`func (o *ErrorModel) SetErrors(v []ErrorDetailModel)`
-
-SetErrors sets Errors field to given value.
-
-### HasErrors
-
-`func (o *ErrorModel) HasErrors() bool`
-
-HasErrors returns a boolean if a field has been set.
-
-### GetId
-
-`func (o *ErrorModel) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *ErrorModel) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *ErrorModel) SetId(v string)`
-
-SetId sets Id field to given value.
-
-
 ### GetInstance
 
 `func (o *ErrorModel) GetInstance() string`
@@ -120,11 +74,6 @@ and a boolean to check if the value has been set.
 
 SetInstance sets Instance field to given value.
 
-### HasInstance
-
-`func (o *ErrorModel) HasInstance() bool`
-
-HasInstance returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -185,6 +134,31 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+
+### GetValidationErrors
+
+`func (o *ErrorModel) GetValidationErrors() []ErrorDetailModel`
+
+GetValidationErrors returns the ValidationErrors field if non-nil, zero value otherwise.
+
+### GetValidationErrorsOk
+
+`func (o *ErrorModel) GetValidationErrorsOk() (*[]ErrorDetailModel, bool)`
+
+GetValidationErrorsOk returns a tuple with the ValidationErrors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidationErrors
+
+`func (o *ErrorModel) SetValidationErrors(v []ErrorDetailModel)`
+
+SetValidationErrors sets ValidationErrors field to given value.
+
+### HasValidationErrors
+
+`func (o *ErrorModel) HasValidationErrors() bool`
+
+HasValidationErrors returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
