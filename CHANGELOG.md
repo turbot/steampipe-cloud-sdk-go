@@ -1,5 +1,16 @@
 # Steampipe Cloud Go SDK
 
+## 0.5.0 [tbd]
+
+_What's new?_
+
+- Identity Pipeline APIs
+- Identity Workspace Pipeline APIs
+
+_Breaking changes_
+
+- Modified attribute `Layout` of the WorkspaceSnapshotData struct to have defined type `WorkspaceSnapshotDataLayout` instead of `map[string]interface{}`
+
 ## 0.4.0 [2023-01-09]
 
 _Breaking changes_
