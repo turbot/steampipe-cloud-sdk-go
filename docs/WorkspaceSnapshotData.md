@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EndTime** | **string** | The time the dashboard execution ended. | 
 **Inputs** | Pointer to **map[string]interface{}** |  | [optional] 
-**Layout** | **map[string]interface{}** |  | 
+**Layout** | [**WorkspaceSnapshotDataLayout**](WorkspaceSnapshotDataLayout.md) |  | 
 **Panels** | **map[string]interface{}** |  | 
 **SchemaVersion** | **string** | The schema version of this snapshot. | 
 **StartTime** | **string** | The time the dashboard execution started. | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewWorkspaceSnapshotData
 
-`func NewWorkspaceSnapshotData(endTime string, layout map[string]interface{}, panels map[string]interface{}, schemaVersion string, startTime string, ) *WorkspaceSnapshotData`
+`func NewWorkspaceSnapshotData(endTime string, layout WorkspaceSnapshotDataLayout, panels map[string]interface{}, schemaVersion string, startTime string, ) *WorkspaceSnapshotData`
 
 NewWorkspaceSnapshotData instantiates a new WorkspaceSnapshotData object
 This constructor will assign default values to properties that have it defined,
@@ -78,20 +78,20 @@ HasInputs returns a boolean if a field has been set.
 
 ### GetLayout
 
-`func (o *WorkspaceSnapshotData) GetLayout() map[string]interface{}`
+`func (o *WorkspaceSnapshotData) GetLayout() WorkspaceSnapshotDataLayout`
 
 GetLayout returns the Layout field if non-nil, zero value otherwise.
 
 ### GetLayoutOk
 
-`func (o *WorkspaceSnapshotData) GetLayoutOk() (*map[string]interface{}, bool)`
+`func (o *WorkspaceSnapshotData) GetLayoutOk() (*WorkspaceSnapshotDataLayout, bool)`
 
 GetLayoutOk returns a tuple with the Layout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLayout
 
-`func (o *WorkspaceSnapshotData) SetLayout(v map[string]interface{})`
+`func (o *WorkspaceSnapshotData) SetLayout(v WorkspaceSnapshotDataLayout)`
 
 SetLayout sets Layout field to given value.
 

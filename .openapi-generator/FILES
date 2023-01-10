@@ -7,18 +7,22 @@ api_auth.go
 api_identities.go
 api_org_connections.go
 api_org_members.go
+api_org_pipelines.go
 api_org_workspace_connection_associations.go
 api_org_workspace_members.go
 api_org_workspace_mod_variables.go
 api_org_workspace_mods.go
+api_org_workspace_pipelines.go
 api_org_workspace_snapshots.go
 api_org_workspaces.go
 api_orgs.go
 api_user_connections.go
+api_user_pipelines.go
 api_user_tokens.go
 api_user_workspace_connection_associations.go
 api_user_workspace_mod_variables.go
 api_user_workspace_mods.go
+api_user_workspace_pipelines.go
 api_user_workspace_snapshots.go
 api_user_workspaces.go
 api_users.go
@@ -33,6 +37,7 @@ docs/ConnectionTestResult.md
 docs/CreateConnectionRequest.md
 docs/CreateOrgRequest.md
 docs/CreateOrgWorkspaceUserRequest.md
+docs/CreatePipelineRequest.md
 docs/CreateUserPasswordRequest.md
 docs/CreateUserRequest.md
 docs/CreateWorkspaceConnRequest.md
@@ -55,6 +60,7 @@ docs/ListLogsResponse.md
 docs/ListOrgUsersResponse.md
 docs/ListOrgWorkspaceUsersResponse.md
 docs/ListOrgsResponse.md
+docs/ListPipelinesResponse.md
 docs/ListTokensResponse.md
 docs/ListUserEmailsResponse.md
 docs/ListUserOrgsResponse.md
@@ -68,16 +74,19 @@ docs/LogRecord.md
 docs/Org.md
 docs/OrgConnections.md
 docs/OrgMembers.md
+docs/OrgPipelines.md
 docs/OrgQuota.md
 docs/OrgUser.md
 docs/OrgWorkspaceConnectionAssociations.md
 docs/OrgWorkspaceMembers.md
 docs/OrgWorkspaceModVariables.md
 docs/OrgWorkspaceMods.md
+docs/OrgWorkspacePipelines.md
 docs/OrgWorkspaceSnapshots.md
 docs/OrgWorkspaceUser.md
 docs/OrgWorkspaces.md
 docs/Orgs.md
+docs/Pipeline.md
 docs/Quota.md
 docs/SchemaInfo.md
 docs/SchemaTable.md
@@ -88,6 +97,7 @@ docs/UpdateConnectionRequest.md
 docs/UpdateOrgRequest.md
 docs/UpdateOrgUserRequest.md
 docs/UpdateOrgWorkspaceUserRequest.md
+docs/UpdatePipelineRequest.md
 docs/UpdateTemporaryTokenRequest.md
 docs/UpdateTokenRequest.md
 docs/UpdateUserPreferencesRequest.md
@@ -102,6 +112,7 @@ docs/UserDatabasePassword.md
 docs/UserEmail.md
 docs/UserLoginRequest.md
 docs/UserOrg.md
+docs/UserPipelines.md
 docs/UserPreferences.md
 docs/UserQuota.md
 docs/UserSignupRequest.md
@@ -109,6 +120,7 @@ docs/UserTokens.md
 docs/UserWorkspaceConnectionAssociations.md
 docs/UserWorkspaceModVariables.md
 docs/UserWorkspaceMods.md
+docs/UserWorkspacePipelines.md
 docs/UserWorkspaceSnapshots.md
 docs/UserWorkspaces.md
 docs/Users.md
@@ -123,6 +135,7 @@ docs/WorkspaceQueryResultColumn.md
 docs/WorkspaceSchema.md
 docs/WorkspaceSnapshot.md
 docs/WorkspaceSnapshotData.md
+docs/WorkspaceSnapshotDataLayout.md
 git_push.sh
 go.mod
 go.sum
@@ -133,6 +146,7 @@ model_connection_test_result.go
 model_create_connection_request.go
 model_create_org_request.go
 model_create_org_workspace_user_request.go
+model_create_pipeline_request.go
 model_create_user_password_request.go
 model_create_user_request.go
 model_create_workspace_conn_request.go
@@ -154,6 +168,7 @@ model_list_logs_response.go
 model_list_org_users_response.go
 model_list_org_workspace_users_response.go
 model_list_orgs_response.go
+model_list_pipelines_response.go
 model_list_tokens_response.go
 model_list_user_emails_response.go
 model_list_user_orgs_response.go
@@ -168,6 +183,7 @@ model_org.go
 model_org_quota.go
 model_org_user.go
 model_org_workspace_user.go
+model_pipeline.go
 model_quota.go
 model_schema_info.go
 model_schema_table.go
@@ -178,6 +194,7 @@ model_update_connection_request.go
 model_update_org_request.go
 model_update_org_user_request.go
 model_update_org_workspace_user_request.go
+model_update_pipeline_request.go
 model_update_temporary_token_request.go
 model_update_token_request.go
 model_update_user_preferences_request.go
@@ -205,5 +222,6 @@ model_workspace_query_result_column.go
 model_workspace_schema.go
 model_workspace_snapshot.go
 model_workspace_snapshot_data.go
+model_workspace_snapshot_data_layout.go
 response.go
 utils.go

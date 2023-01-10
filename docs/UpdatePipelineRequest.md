@@ -1,0 +1,134 @@
+# UpdatePipelineRequest
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Args** | Pointer to **map[string]interface{}** | A map of arguments to be passed to be pipeline. | [optional] 
+**Frequency** | Pointer to **map[string]interface{}** | The frequency at which the pipeline will run. | [optional] 
+**Tags** | Pointer to **map[string]interface{}** | The tags for this pipeline. | [optional] 
+**Title** | Pointer to **string** | The title of the pipeline. | [optional] 
+
+## Methods
+
+### NewUpdatePipelineRequest
+
+`func NewUpdatePipelineRequest() *UpdatePipelineRequest`
+
+NewUpdatePipelineRequest instantiates a new UpdatePipelineRequest object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewUpdatePipelineRequestWithDefaults
+
+`func NewUpdatePipelineRequestWithDefaults() *UpdatePipelineRequest`
+
+NewUpdatePipelineRequestWithDefaults instantiates a new UpdatePipelineRequest object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetArgs
+
+`func (o *UpdatePipelineRequest) GetArgs() map[string]interface{}`
+
+GetArgs returns the Args field if non-nil, zero value otherwise.
+
+### GetArgsOk
+
+`func (o *UpdatePipelineRequest) GetArgsOk() (*map[string]interface{}, bool)`
+
+GetArgsOk returns a tuple with the Args field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetArgs
+
+`func (o *UpdatePipelineRequest) SetArgs(v map[string]interface{})`
+
+SetArgs sets Args field to given value.
+
+### HasArgs
+
+`func (o *UpdatePipelineRequest) HasArgs() bool`
+
+HasArgs returns a boolean if a field has been set.
+
+### GetFrequency
+
+`func (o *UpdatePipelineRequest) GetFrequency() map[string]interface{}`
+
+GetFrequency returns the Frequency field if non-nil, zero value otherwise.
+
+### GetFrequencyOk
+
+`func (o *UpdatePipelineRequest) GetFrequencyOk() (*map[string]interface{}, bool)`
+
+GetFrequencyOk returns a tuple with the Frequency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFrequency
+
+`func (o *UpdatePipelineRequest) SetFrequency(v map[string]interface{})`
+
+SetFrequency sets Frequency field to given value.
+
+### HasFrequency
+
+`func (o *UpdatePipelineRequest) HasFrequency() bool`
+
+HasFrequency returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *UpdatePipelineRequest) GetTags() map[string]interface{}`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *UpdatePipelineRequest) GetTagsOk() (*map[string]interface{}, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *UpdatePipelineRequest) SetTags(v map[string]interface{})`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *UpdatePipelineRequest) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
+### GetTitle
+
+`func (o *UpdatePipelineRequest) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *UpdatePipelineRequest) GetTitleOk() (*string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *UpdatePipelineRequest) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
+
+### HasTitle
+
+`func (o *UpdatePipelineRequest) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
