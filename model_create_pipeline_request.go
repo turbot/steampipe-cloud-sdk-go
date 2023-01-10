@@ -17,14 +17,11 @@ import (
 
 // CreatePipelineRequest struct for CreatePipelineRequest
 type CreatePipelineRequest struct {
-	// A map of arguments to be passed to be pipeline.
-	Args map[string]interface{} `json:"args"`
-	// The frequency at which the pipeline will run.
-	Frequency map[string]interface{} `json:"frequency"`
+	Args      interface{} `json:"args"`
+	Frequency interface{} `json:"frequency"`
 	// The name of the pipeline to be executed.
-	Pipeline string `json:"pipeline"`
-	// The tags for this pipeline.
-	Tags *map[string]interface{} `json:"tags,omitempty"`
+	Pipeline string      `json:"pipeline"`
+	Tags     interface{} `json:"tags,omitempty"`
 	// The title of the pipeline.
 	Title string `json:"title"`
 }
@@ -33,7 +30,7 @@ type CreatePipelineRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreatePipelineRequest(args map[string]interface{}, frequency map[string]interface{}, pipeline string, title string) *CreatePipelineRequest {
+func NewCreatePipelineRequest(args interface{}, frequency interface{}, pipeline string, title string) *CreatePipelineRequest {
 	this := CreatePipelineRequest{}
 	this.Args = args
 	this.Frequency = frequency
@@ -51,9 +48,10 @@ func NewCreatePipelineRequestWithDefaults() *CreatePipelineRequest {
 }
 
 // GetArgs returns the Args field value
-func (o *CreatePipelineRequest) GetArgs() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *CreatePipelineRequest) GetArgs() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -62,22 +60,24 @@ func (o *CreatePipelineRequest) GetArgs() map[string]interface{} {
 
 // GetArgsOk returns a tuple with the Args field value
 // and a boolean to check if the value has been set.
-func (o *CreatePipelineRequest) GetArgsOk() (*map[string]interface{}, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreatePipelineRequest) GetArgsOk() (*interface{}, bool) {
+	if o == nil || o.Args == nil {
 		return nil, false
 	}
 	return &o.Args, true
 }
 
 // SetArgs sets field value
-func (o *CreatePipelineRequest) SetArgs(v map[string]interface{}) {
+func (o *CreatePipelineRequest) SetArgs(v interface{}) {
 	o.Args = v
 }
 
 // GetFrequency returns the Frequency field value
-func (o *CreatePipelineRequest) GetFrequency() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *CreatePipelineRequest) GetFrequency() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -86,15 +86,16 @@ func (o *CreatePipelineRequest) GetFrequency() map[string]interface{} {
 
 // GetFrequencyOk returns a tuple with the Frequency field value
 // and a boolean to check if the value has been set.
-func (o *CreatePipelineRequest) GetFrequencyOk() (*map[string]interface{}, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreatePipelineRequest) GetFrequencyOk() (*interface{}, bool) {
+	if o == nil || o.Frequency == nil {
 		return nil, false
 	}
 	return &o.Frequency, true
 }
 
 // SetFrequency sets field value
-func (o *CreatePipelineRequest) SetFrequency(v map[string]interface{}) {
+func (o *CreatePipelineRequest) SetFrequency(v interface{}) {
 	o.Frequency = v
 }
 
@@ -122,22 +123,23 @@ func (o *CreatePipelineRequest) SetPipeline(v string) {
 	o.Pipeline = v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *CreatePipelineRequest) GetTags() map[string]interface{} {
-	if o == nil || o.Tags == nil {
-		var ret map[string]interface{}
+// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreatePipelineRequest) GetTags() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreatePipelineRequest) GetTagsOk() (*map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreatePipelineRequest) GetTagsOk() (*interface{}, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -149,9 +151,9 @@ func (o *CreatePipelineRequest) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given map[string]interface{} and assigns it to the Tags field.
-func (o *CreatePipelineRequest) SetTags(v map[string]interface{}) {
-	o.Tags = &v
+// SetTags gets a reference to the given interface{} and assigns it to the Tags field.
+func (o *CreatePipelineRequest) SetTags(v interface{}) {
+	o.Tags = v
 }
 
 // GetTitle returns the Title field value
@@ -180,10 +182,10 @@ func (o *CreatePipelineRequest) SetTitle(v string) {
 
 func (o CreatePipelineRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.Args != nil {
 		toSerialize["args"] = o.Args
 	}
-	if true {
+	if o.Frequency != nil {
 		toSerialize["frequency"] = o.Frequency
 	}
 	if true {

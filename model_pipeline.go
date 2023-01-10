@@ -17,8 +17,7 @@ import (
 
 // Pipeline struct for Pipeline
 type Pipeline struct {
-	// A map of arguments to be passed to be pipeline.
-	Args *map[string]interface{} `json:"args,omitempty"`
+	Args interface{} `json:"args,omitempty"`
 	// The time of creation in ISO 8601 UTC.
 	CreatedAt string `json:"created_at"`
 	CreatedBy *User  `json:"created_by,omitempty"`
@@ -28,15 +27,13 @@ type Pipeline struct {
 	DeletedAt *string `json:"deleted_at,omitempty"`
 	DeletedBy *User   `json:"deleted_by,omitempty"`
 	// The ID of the user that performed the deletion.
-	DeletedById string `json:"deleted_by_id"`
-	// The frequency at which the pipeline will run.
-	Frequency map[string]interface{} `json:"frequency"`
+	DeletedById string      `json:"deleted_by_id"`
+	Frequency   interface{} `json:"frequency"`
 	// The unique identifier of the pipeline.
 	Id string `json:"id"`
 	// The name of the pipeline to be executed.
-	Pipeline string `json:"pipeline"`
-	// The tags for this pipeline.
-	Tags *map[string]interface{} `json:"tags,omitempty"`
+	Pipeline string      `json:"pipeline"`
+	Tags     interface{} `json:"tags,omitempty"`
 	// The title of the pipeline.
 	Title *string `json:"title,omitempty"`
 	// The time of the last update in ISO 8601 UTC.
@@ -54,7 +51,7 @@ type Pipeline struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPipeline(createdAt string, createdById string, deletedById string, frequency map[string]interface{}, id string, pipeline string, updatedById string, versionId int32) *Pipeline {
+func NewPipeline(createdAt string, createdById string, deletedById string, frequency interface{}, id string, pipeline string, updatedById string, versionId int32) *Pipeline {
 	this := Pipeline{}
 	this.CreatedAt = createdAt
 	this.CreatedById = createdById
@@ -75,22 +72,23 @@ func NewPipelineWithDefaults() *Pipeline {
 	return &this
 }
 
-// GetArgs returns the Args field value if set, zero value otherwise.
-func (o *Pipeline) GetArgs() map[string]interface{} {
-	if o == nil || o.Args == nil {
-		var ret map[string]interface{}
+// GetArgs returns the Args field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Pipeline) GetArgs() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Args
+	return o.Args
 }
 
 // GetArgsOk returns a tuple with the Args field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Pipeline) GetArgsOk() (*map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Pipeline) GetArgsOk() (*interface{}, bool) {
 	if o == nil || o.Args == nil {
 		return nil, false
 	}
-	return o.Args, true
+	return &o.Args, true
 }
 
 // HasArgs returns a boolean if a field has been set.
@@ -102,9 +100,9 @@ func (o *Pipeline) HasArgs() bool {
 	return false
 }
 
-// SetArgs gets a reference to the given map[string]interface{} and assigns it to the Args field.
-func (o *Pipeline) SetArgs(v map[string]interface{}) {
-	o.Args = &v
+// SetArgs gets a reference to the given interface{} and assigns it to the Args field.
+func (o *Pipeline) SetArgs(v interface{}) {
+	o.Args = v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -276,9 +274,10 @@ func (o *Pipeline) SetDeletedById(v string) {
 }
 
 // GetFrequency returns the Frequency field value
-func (o *Pipeline) GetFrequency() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *Pipeline) GetFrequency() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -287,15 +286,16 @@ func (o *Pipeline) GetFrequency() map[string]interface{} {
 
 // GetFrequencyOk returns a tuple with the Frequency field value
 // and a boolean to check if the value has been set.
-func (o *Pipeline) GetFrequencyOk() (*map[string]interface{}, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Pipeline) GetFrequencyOk() (*interface{}, bool) {
+	if o == nil || o.Frequency == nil {
 		return nil, false
 	}
 	return &o.Frequency, true
 }
 
 // SetFrequency sets field value
-func (o *Pipeline) SetFrequency(v map[string]interface{}) {
+func (o *Pipeline) SetFrequency(v interface{}) {
 	o.Frequency = v
 }
 
@@ -347,22 +347,23 @@ func (o *Pipeline) SetPipeline(v string) {
 	o.Pipeline = v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *Pipeline) GetTags() map[string]interface{} {
-	if o == nil || o.Tags == nil {
-		var ret map[string]interface{}
+// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Pipeline) GetTags() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Pipeline) GetTagsOk() (*map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Pipeline) GetTagsOk() (*interface{}, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -374,9 +375,9 @@ func (o *Pipeline) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given map[string]interface{} and assigns it to the Tags field.
-func (o *Pipeline) SetTags(v map[string]interface{}) {
-	o.Tags = &v
+// SetTags gets a reference to the given interface{} and assigns it to the Tags field.
+func (o *Pipeline) SetTags(v interface{}) {
+	o.Tags = v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
@@ -578,7 +579,7 @@ func (o Pipeline) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["deleted_by_id"] = o.DeletedById
 	}
-	if true {
+	if o.Frequency != nil {
 		toSerialize["frequency"] = o.Frequency
 	}
 	if true {

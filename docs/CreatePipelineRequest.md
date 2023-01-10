@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Args** | **map[string]interface{}** | A map of arguments to be passed to be pipeline. | 
-**Frequency** | **map[string]interface{}** | The frequency at which the pipeline will run. | 
+**Args** | **interface{}** |  | 
+**Frequency** | **interface{}** |  | 
 **Pipeline** | **string** | The name of the pipeline to be executed. | 
-**Tags** | Pointer to **map[string]interface{}** | The tags for this pipeline. | [optional] 
+**Tags** | Pointer to **interface{}** |  | [optional] 
 **Title** | **string** | The title of the pipeline. | 
 
 ## Methods
 
 ### NewCreatePipelineRequest
 
-`func NewCreatePipelineRequest(args map[string]interface{}, frequency map[string]interface{}, pipeline string, title string, ) *CreatePipelineRequest`
+`func NewCreatePipelineRequest(args interface{}, frequency interface{}, pipeline string, title string, ) *CreatePipelineRequest`
 
 NewCreatePipelineRequest instantiates a new CreatePipelineRequest object
 This constructor will assign default values to properties that have it defined,
@@ -31,44 +31,64 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetArgs
 
-`func (o *CreatePipelineRequest) GetArgs() map[string]interface{}`
+`func (o *CreatePipelineRequest) GetArgs() interface{}`
 
 GetArgs returns the Args field if non-nil, zero value otherwise.
 
 ### GetArgsOk
 
-`func (o *CreatePipelineRequest) GetArgsOk() (*map[string]interface{}, bool)`
+`func (o *CreatePipelineRequest) GetArgsOk() (*interface{}, bool)`
 
 GetArgsOk returns a tuple with the Args field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetArgs
 
-`func (o *CreatePipelineRequest) SetArgs(v map[string]interface{})`
+`func (o *CreatePipelineRequest) SetArgs(v interface{})`
 
 SetArgs sets Args field to given value.
 
 
+### SetArgsNil
+
+`func (o *CreatePipelineRequest) SetArgsNil(b bool)`
+
+ SetArgsNil sets the value for Args to be an explicit nil
+
+### UnsetArgs
+`func (o *CreatePipelineRequest) UnsetArgs()`
+
+UnsetArgs ensures that no value is present for Args, not even an explicit nil
 ### GetFrequency
 
-`func (o *CreatePipelineRequest) GetFrequency() map[string]interface{}`
+`func (o *CreatePipelineRequest) GetFrequency() interface{}`
 
 GetFrequency returns the Frequency field if non-nil, zero value otherwise.
 
 ### GetFrequencyOk
 
-`func (o *CreatePipelineRequest) GetFrequencyOk() (*map[string]interface{}, bool)`
+`func (o *CreatePipelineRequest) GetFrequencyOk() (*interface{}, bool)`
 
 GetFrequencyOk returns a tuple with the Frequency field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrequency
 
-`func (o *CreatePipelineRequest) SetFrequency(v map[string]interface{})`
+`func (o *CreatePipelineRequest) SetFrequency(v interface{})`
 
 SetFrequency sets Frequency field to given value.
 
 
+### SetFrequencyNil
+
+`func (o *CreatePipelineRequest) SetFrequencyNil(b bool)`
+
+ SetFrequencyNil sets the value for Frequency to be an explicit nil
+
+### UnsetFrequency
+`func (o *CreatePipelineRequest) UnsetFrequency()`
+
+UnsetFrequency ensures that no value is present for Frequency, not even an explicit nil
 ### GetPipeline
 
 `func (o *CreatePipelineRequest) GetPipeline() string`
@@ -91,20 +111,20 @@ SetPipeline sets Pipeline field to given value.
 
 ### GetTags
 
-`func (o *CreatePipelineRequest) GetTags() map[string]interface{}`
+`func (o *CreatePipelineRequest) GetTags() interface{}`
 
 GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *CreatePipelineRequest) GetTagsOk() (*map[string]interface{}, bool)`
+`func (o *CreatePipelineRequest) GetTagsOk() (*interface{}, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTags
 
-`func (o *CreatePipelineRequest) SetTags(v map[string]interface{})`
+`func (o *CreatePipelineRequest) SetTags(v interface{})`
 
 SetTags sets Tags field to given value.
 
@@ -114,6 +134,16 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
+### SetTagsNil
+
+`func (o *CreatePipelineRequest) SetTagsNil(b bool)`
+
+ SetTagsNil sets the value for Tags to be an explicit nil
+
+### UnsetTags
+`func (o *CreatePipelineRequest) UnsetTags()`
+
+UnsetTags ensures that no value is present for Tags, not even an explicit nil
 ### GetTitle
 
 `func (o *CreatePipelineRequest) GetTitle() string`

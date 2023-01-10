@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Args** | Pointer to **map[string]interface{}** | A map of arguments to be passed to be pipeline. | [optional] 
+**Args** | Pointer to **interface{}** |  | [optional] 
 **CreatedAt** | **string** | The time of creation in ISO 8601 UTC. | 
 **CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **CreatedById** | **string** | The ID of the user that created this. | 
 **DeletedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
 **DeletedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **DeletedById** | **string** | The ID of the user that performed the deletion. | 
-**Frequency** | **map[string]interface{}** | The frequency at which the pipeline will run. | 
+**Frequency** | **interface{}** |  | 
 **Id** | **string** | The unique identifier of the pipeline. | 
 **Pipeline** | **string** | The name of the pipeline to be executed. | 
-**Tags** | Pointer to **map[string]interface{}** | The tags for this pipeline. | [optional] 
+**Tags** | Pointer to **interface{}** |  | [optional] 
 **Title** | Pointer to **string** | The title of the pipeline. | [optional] 
 **UpdatedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
 **UpdatedBy** | Pointer to [**User**](User.md) |  | [optional] 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewPipeline
 
-`func NewPipeline(createdAt string, createdById string, deletedById string, frequency map[string]interface{}, id string, pipeline string, updatedById string, versionId int32, ) *Pipeline`
+`func NewPipeline(createdAt string, createdById string, deletedById string, frequency interface{}, id string, pipeline string, updatedById string, versionId int32, ) *Pipeline`
 
 NewPipeline instantiates a new Pipeline object
 This constructor will assign default values to properties that have it defined,
@@ -43,20 +43,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetArgs
 
-`func (o *Pipeline) GetArgs() map[string]interface{}`
+`func (o *Pipeline) GetArgs() interface{}`
 
 GetArgs returns the Args field if non-nil, zero value otherwise.
 
 ### GetArgsOk
 
-`func (o *Pipeline) GetArgsOk() (*map[string]interface{}, bool)`
+`func (o *Pipeline) GetArgsOk() (*interface{}, bool)`
 
 GetArgsOk returns a tuple with the Args field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetArgs
 
-`func (o *Pipeline) SetArgs(v map[string]interface{})`
+`func (o *Pipeline) SetArgs(v interface{})`
 
 SetArgs sets Args field to given value.
 
@@ -66,6 +66,16 @@ SetArgs sets Args field to given value.
 
 HasArgs returns a boolean if a field has been set.
 
+### SetArgsNil
+
+`func (o *Pipeline) SetArgsNil(b bool)`
+
+ SetArgsNil sets the value for Args to be an explicit nil
+
+### UnsetArgs
+`func (o *Pipeline) UnsetArgs()`
+
+UnsetArgs ensures that no value is present for Args, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *Pipeline) GetCreatedAt() string`
@@ -203,24 +213,34 @@ SetDeletedById sets DeletedById field to given value.
 
 ### GetFrequency
 
-`func (o *Pipeline) GetFrequency() map[string]interface{}`
+`func (o *Pipeline) GetFrequency() interface{}`
 
 GetFrequency returns the Frequency field if non-nil, zero value otherwise.
 
 ### GetFrequencyOk
 
-`func (o *Pipeline) GetFrequencyOk() (*map[string]interface{}, bool)`
+`func (o *Pipeline) GetFrequencyOk() (*interface{}, bool)`
 
 GetFrequencyOk returns a tuple with the Frequency field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrequency
 
-`func (o *Pipeline) SetFrequency(v map[string]interface{})`
+`func (o *Pipeline) SetFrequency(v interface{})`
 
 SetFrequency sets Frequency field to given value.
 
 
+### SetFrequencyNil
+
+`func (o *Pipeline) SetFrequencyNil(b bool)`
+
+ SetFrequencyNil sets the value for Frequency to be an explicit nil
+
+### UnsetFrequency
+`func (o *Pipeline) UnsetFrequency()`
+
+UnsetFrequency ensures that no value is present for Frequency, not even an explicit nil
 ### GetId
 
 `func (o *Pipeline) GetId() string`
@@ -263,20 +283,20 @@ SetPipeline sets Pipeline field to given value.
 
 ### GetTags
 
-`func (o *Pipeline) GetTags() map[string]interface{}`
+`func (o *Pipeline) GetTags() interface{}`
 
 GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *Pipeline) GetTagsOk() (*map[string]interface{}, bool)`
+`func (o *Pipeline) GetTagsOk() (*interface{}, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTags
 
-`func (o *Pipeline) SetTags(v map[string]interface{})`
+`func (o *Pipeline) SetTags(v interface{})`
 
 SetTags sets Tags field to given value.
 
@@ -286,6 +306,16 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
+### SetTagsNil
+
+`func (o *Pipeline) SetTagsNil(b bool)`
+
+ SetTagsNil sets the value for Tags to be an explicit nil
+
+### UnsetTags
+`func (o *Pipeline) UnsetTags()`
+
+UnsetTags ensures that no value is present for Tags, not even an explicit nil
 ### GetTitle
 
 `func (o *Pipeline) GetTitle() string`

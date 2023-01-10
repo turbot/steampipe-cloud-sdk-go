@@ -12470,28 +12470,22 @@ components:
       type: object
     CreatePipelineRequest:
       example:
-        args: '{}'
+        args: ""
         pipeline: pipeline
         title: title
-        frequency: '{}'
-        tags: '{}'
+        frequency: ""
+        tags: ""
       properties:
         args:
-          description: A map of arguments to be passed to be pipeline.
-          properties: {}
-          type: object
+          nullable: true
         frequency:
-          description: The frequency at which the pipeline will run.
-          properties: {}
-          type: object
+          nullable: true
         pipeline:
           description: The name of the pipeline to be executed.
           format: ^(pipeline\.save_snapshot|pipeline\.data_tank_schedule)$
           type: string
         tags:
-          description: The tags for this pipeline.
-          properties: {}
-          type: object
+          nullable: true
         title:
           description: The title of the pipeline.
           type: string
@@ -13377,9 +13371,9 @@ components:
             url: url
             status: status
           deleted_at: deleted_at
-          frequency: '{}'
-          tags: '{}'
-          args: '{}'
+          frequency: ""
+          tags: ""
+          args: ""
           pipeline: pipeline
           workspace_id: workspace_id
           updated_at: updated_at
@@ -13424,9 +13418,9 @@ components:
             url: url
             status: status
           deleted_at: deleted_at
-          frequency: '{}'
-          tags: '{}'
-          args: '{}'
+          frequency: ""
+          tags: ""
+          args: ""
           pipeline: pipeline
           workspace_id: workspace_id
           updated_at: updated_at
@@ -14727,9 +14721,9 @@ components:
           url: url
           status: status
         deleted_at: deleted_at
-        frequency: '{}'
-        tags: '{}'
-        args: '{}'
+        frequency: ""
+        tags: ""
+        args: ""
         pipeline: pipeline
         workspace_id: workspace_id
         updated_at: updated_at
@@ -14749,9 +14743,7 @@ components:
         id: id
       properties:
         args:
-          description: A map of arguments to be passed to be pipeline.
-          properties: {}
-          type: object
+          nullable: true
         created_at:
           description: The time of creation in ISO 8601 UTC.
           type: string
@@ -14771,9 +14763,7 @@ components:
           format: ^u_[0-9a-v]{20}$
           type: string
         frequency:
-          description: The frequency at which the pipeline will run.
-          properties: {}
-          type: object
+          nullable: true
         id:
           description: The unique identifier of the pipeline.
           format: ^pipe_[0-9a-z]{25}$
@@ -14783,9 +14773,7 @@ components:
           format: ^(pipeline\.save_snapshot|pipeline\.data_tank_schedule)$
           type: string
         tags:
-          description: The tags for this pipeline.
-          properties: {}
-          type: object
+          nullable: true
         title:
           description: The title of the pipeline.
           type: string
@@ -14955,23 +14943,17 @@ components:
       type: object
     UpdatePipelineRequest:
       example:
-        args: '{}'
+        args: ""
         title: title
-        frequency: '{}'
-        tags: '{}'
+        frequency: ""
+        tags: ""
       properties:
         args:
-          description: A map of arguments to be passed to be pipeline.
-          properties: {}
-          type: object
+          nullable: true
         frequency:
-          description: The frequency at which the pipeline will run.
-          properties: {}
-          type: object
+          nullable: true
         tags:
-          description: The tags for this pipeline.
-          properties: {}
-          type: object
+          nullable: true
         title:
           description: The title of the pipeline.
           type: string
