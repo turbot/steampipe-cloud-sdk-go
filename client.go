@@ -60,8 +60,6 @@ type APIClient struct {
 
 	OrgMembers *OrgMembersService
 
-	OrgPipelines *OrgPipelinesService
-
 	OrgWorkspaceConnectionAssociations *OrgWorkspaceConnectionAssociationsService
 
 	OrgWorkspaceMembers *OrgWorkspaceMembersService
@@ -79,8 +77,6 @@ type APIClient struct {
 	Orgs *OrgsService
 
 	UserConnections *UserConnectionsService
-
-	UserPipelines *UserPipelinesService
 
 	UserTokens *UserTokensService
 
@@ -120,7 +116,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.Identities = (*IdentitiesService)(&c.common)
 	c.OrgConnections = (*OrgConnectionsService)(&c.common)
 	c.OrgMembers = (*OrgMembersService)(&c.common)
-	c.OrgPipelines = (*OrgPipelinesService)(&c.common)
 	c.OrgWorkspaceConnectionAssociations = (*OrgWorkspaceConnectionAssociationsService)(&c.common)
 	c.OrgWorkspaceMembers = (*OrgWorkspaceMembersService)(&c.common)
 	c.OrgWorkspaceModVariables = (*OrgWorkspaceModVariablesService)(&c.common)
@@ -130,7 +125,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.OrgWorkspaces = (*OrgWorkspacesService)(&c.common)
 	c.Orgs = (*OrgsService)(&c.common)
 	c.UserConnections = (*UserConnectionsService)(&c.common)
-	c.UserPipelines = (*UserPipelinesService)(&c.common)
 	c.UserTokens = (*UserTokensService)(&c.common)
 	c.UserWorkspaceConnectionAssociations = (*UserWorkspaceConnectionAssociationsService)(&c.common)
 	c.UserWorkspaceModVariables = (*UserWorkspaceModVariablesService)(&c.common)

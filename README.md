@@ -94,11 +94,6 @@ Class | Method | HTTP request | Description
 *OrgMembers* | [**Invite**](docs/OrgMembers.md#invite) | **Post** /org/{org_handle}/member/invite | Invite org member
 *OrgMembers* | [**List**](docs/OrgMembers.md#list) | **Get** /org/{org_handle}/member | List Organization Members
 *OrgMembers* | [**Update**](docs/OrgMembers.md#update) | **Patch** /org/{org_handle}/member/{user_handle} | Update org member
-*OrgPipelines* | [**Create**](docs/OrgPipelines.md#create) | **Post** /org/{org_handle}/pipeline | Create org pipeline
-*OrgPipelines* | [**Delete**](docs/OrgPipelines.md#delete) | **Delete** /org/{org_handle}/pipeline/{pipeline_id} | Delete org pipeline
-*OrgPipelines* | [**Get**](docs/OrgPipelines.md#get) | **Get** /org/{org_handle}/pipeline/{pipeline_id} | Get org pipeline
-*OrgPipelines* | [**List**](docs/OrgPipelines.md#list) | **Get** /org/{org_handle}/pipeline | List org pipelines
-*OrgPipelines* | [**Update**](docs/OrgPipelines.md#update) | **Patch** /org/{org_handle}/pipeline/{pipeline_id} | Update org pipeline
 *OrgWorkspaceConnectionAssociations* | [**Create**](docs/OrgWorkspaceConnectionAssociations.md#create) | **Post** /org/{org_handle}/workspace/{workspace_handle}/conn | Create org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Delete**](docs/OrgWorkspaceConnectionAssociations.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Get**](docs/OrgWorkspaceConnectionAssociations.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get org workspace connection association
@@ -156,11 +151,6 @@ Class | Method | HTTP request | Description
 *UserConnections* | [**List**](docs/UserConnections.md#list) | **Get** /user/{user_handle}/conn | List user connections
 *UserConnections* | [**Test**](docs/UserConnections.md#test) | **Post** /user/{user_handle}/conn/{conn_handle}/test | Test user connection
 *UserConnections* | [**Update**](docs/UserConnections.md#update) | **Patch** /user/{user_handle}/conn/{conn_handle} | Update user connection
-*UserPipelines* | [**Create**](docs/UserPipelines.md#create) | **Post** /user/{user_handle}/pipeline | Create user pipeline
-*UserPipelines* | [**Delete**](docs/UserPipelines.md#delete) | **Delete** /user/{user_handle}/pipeline/{pipeline_id} | Delete user pipeline
-*UserPipelines* | [**Get**](docs/UserPipelines.md#get) | **Get** /user/{user_handle}/pipeline/{pipeline_id} | Get user pipeline
-*UserPipelines* | [**List**](docs/UserPipelines.md#list) | **Get** /user/{user_handle}/pipeline | List user pipelines
-*UserPipelines* | [**Update**](docs/UserPipelines.md#update) | **Patch** /user/{user_handle}/pipeline/{pipeline_id} | Update user pipeline
 *UserTokens* | [**Create**](docs/UserTokens.md#create) | **Post** /user/{user_handle}/token | Create token
 *UserTokens* | [**Delete**](docs/UserTokens.md#delete) | **Delete** /user/{user_handle}/token/{token_id} | Delete token
 *UserTokens* | [**Get**](docs/UserTokens.md#get) | **Get** /user/{user_handle}/token/{token_id} | Get token

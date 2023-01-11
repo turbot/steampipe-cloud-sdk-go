@@ -7,7 +7,6 @@ api_auth.go
 api_identities.go
 api_org_connections.go
 api_org_members.go
-api_org_pipelines.go
 api_org_workspace_connection_associations.go
 api_org_workspace_members.go
 api_org_workspace_mod_variables.go
@@ -17,7 +16,6 @@ api_org_workspace_snapshots.go
 api_org_workspaces.go
 api_orgs.go
 api_user_connections.go
-api_user_pipelines.go
 api_user_tokens.go
 api_user_workspace_connection_associations.go
 api_user_workspace_mod_variables.go
@@ -74,7 +72,6 @@ docs/LogRecord.md
 docs/Org.md
 docs/OrgConnections.md
 docs/OrgMembers.md
-docs/OrgPipelines.md
 docs/OrgQuota.md
 docs/OrgUser.md
 docs/OrgWorkspaceConnectionAssociations.md
@@ -112,7 +109,6 @@ docs/UserDatabasePassword.md
 docs/UserEmail.md
 docs/UserLoginRequest.md
 docs/UserOrg.md
-docs/UserPipelines.md
 docs/UserPreferences.md
 docs/UserQuota.md
 docs/UserSignupRequest.md
