@@ -4,7 +4,6 @@
 
 _What's new?_
 
-- Identity Pipeline APIs
 - Identity Workspace Pipeline APIs
 
 _Breaking changes_
