@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The unique identifier for the connection. | 
 **IdentityId** | **string** | The unique identifier for an identity where the connection has been created. | 
 **Plugin** | Pointer to **string** | The plugin name for the connection. | [optional] 
+**PluginVersion** | Pointer to **string** | The plugin version for the connection. | [optional] 
 **Type** | Pointer to **string** | Type of connection i.e aggregator or connection. | [optional] 
 **UpdatedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
 **UpdatedBy** | Pointer to [**User**](User.md) |  | [optional] 
@@ -284,6 +285,31 @@ SetPlugin sets Plugin field to given value.
 `func (o *Connection) HasPlugin() bool`
 
 HasPlugin returns a boolean if a field has been set.
+
+### GetPluginVersion
+
+`func (o *Connection) GetPluginVersion() string`
+
+GetPluginVersion returns the PluginVersion field if non-nil, zero value otherwise.
+
+### GetPluginVersionOk
+
+`func (o *Connection) GetPluginVersionOk() (*string, bool)`
+
+GetPluginVersionOk returns a tuple with the PluginVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPluginVersion
+
+`func (o *Connection) SetPluginVersion(v string)`
+
+SetPluginVersion sets PluginVersion field to given value.
+
+### HasPluginVersion
+
+`func (o *Connection) HasPluginVersion() bool`
+
+HasPluginVersion returns a boolean if a field has been set.
 
 ### GetType
 

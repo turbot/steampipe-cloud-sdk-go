@@ -94,6 +94,9 @@ Class | Method | HTTP request | Description
 *OrgMembers* | [**Invite**](docs/OrgMembers.md#invite) | **Post** /org/{org_handle}/member/invite | Invite org member
 *OrgMembers* | [**List**](docs/OrgMembers.md#list) | **Get** /org/{org_handle}/member | List Organization Members
 *OrgMembers* | [**Update**](docs/OrgMembers.md#update) | **Patch** /org/{org_handle}/member/{user_handle} | Update org member
+*OrgProcesses* | [**Get**](docs/OrgProcesses.md#get) | **Get** /org/{org_handle}/process/{process_id} | Get Org process
+*OrgProcesses* | [**List**](docs/OrgProcesses.md#list) | **Get** /org/{org_handle}/process | List Org processes
+*OrgProcesses* | [**Log**](docs/OrgProcesses.md#log) | **Get** /org/{org_handle}/process/{process_id}/log/{log_file}.{content_type} | List Org process logs
 *OrgWorkspaceConnectionAssociations* | [**Create**](docs/OrgWorkspaceConnectionAssociations.md#create) | **Post** /org/{org_handle}/workspace/{workspace_handle}/conn | Create org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Delete**](docs/OrgWorkspaceConnectionAssociations.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Get**](docs/OrgWorkspaceConnectionAssociations.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get org workspace connection association
@@ -113,11 +116,15 @@ Class | Method | HTTP request | Description
 *OrgWorkspaceMods* | [**List**](docs/OrgWorkspaceMods.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/mod | List organization workspace installed mods
 *OrgWorkspaceMods* | [**Uninstall**](docs/OrgWorkspaceMods.md#uninstall) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Uninstall mod from organization workspace.
 *OrgWorkspaceMods* | [**Update**](docs/OrgWorkspaceMods.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Update a mod in an organization workspace
+*OrgWorkspacePipelines* | [**Command**](docs/OrgWorkspacePipelines.md#command) | **Post** /org/{org_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id}/command | Run org workspace pipeline command
 *OrgWorkspacePipelines* | [**Create**](docs/OrgWorkspacePipelines.md#create) | **Post** /org/{org_handle}/workspace/{workspace_handle}/pipeline | Create org workspace pipeline
 *OrgWorkspacePipelines* | [**Delete**](docs/OrgWorkspacePipelines.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id} | Delete org workspace pipeline
 *OrgWorkspacePipelines* | [**Get**](docs/OrgWorkspacePipelines.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id} | Get org workspace pipeline
 *OrgWorkspacePipelines* | [**List**](docs/OrgWorkspacePipelines.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/pipeline | List org workspace pipelines
 *OrgWorkspacePipelines* | [**Update**](docs/OrgWorkspacePipelines.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id} | Update org workspace pipeline
+*OrgWorkspaceProcesses* | [**Get**](docs/OrgWorkspaceProcesses.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/process/{process_id} | Get org workspace process
+*OrgWorkspaceProcesses* | [**List**](docs/OrgWorkspaceProcesses.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/process | List org workspace processes
+*OrgWorkspaceProcesses* | [**Log**](docs/OrgWorkspaceProcesses.md#log) | **Get** /org/{org_handle}/workspace/{workspace_handle}/process/{process_id}/log/{log_file}.{content_type} | List org workspace process logs
 *OrgWorkspaceSnapshots* | [**Create**](docs/OrgWorkspaceSnapshots.md#create) | **Post** /org/{org_handle}/workspace/{workspace_handle}/snapshot | Create org workspace snapshot
 *OrgWorkspaceSnapshots* | [**Delete**](docs/OrgWorkspaceSnapshots.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Delete org workspace snapshot
 *OrgWorkspaceSnapshots* | [**Download**](docs/OrgWorkspaceSnapshots.md#download) | **Get** /org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}.{content_type} | Download org workspace snapshot
@@ -151,6 +158,9 @@ Class | Method | HTTP request | Description
 *UserConnections* | [**List**](docs/UserConnections.md#list) | **Get** /user/{user_handle}/conn | List user connections
 *UserConnections* | [**Test**](docs/UserConnections.md#test) | **Post** /user/{user_handle}/conn/{conn_handle}/test | Test user connection
 *UserConnections* | [**Update**](docs/UserConnections.md#update) | **Patch** /user/{user_handle}/conn/{conn_handle} | Update user connection
+*UserProcesses* | [**Get**](docs/UserProcesses.md#get) | **Get** /user/{user_handle}/process/{process_id} | Get User process
+*UserProcesses* | [**List**](docs/UserProcesses.md#list) | **Get** /user/{user_handle}/process | List User processes
+*UserProcesses* | [**Log**](docs/UserProcesses.md#log) | **Get** /user/{user_handle}/process/{process_id}/log/{log_file}.{content_type} | List user process logs
 *UserTokens* | [**Create**](docs/UserTokens.md#create) | **Post** /user/{user_handle}/token | Create token
 *UserTokens* | [**Delete**](docs/UserTokens.md#delete) | **Delete** /user/{user_handle}/token/{token_id} | Delete token
 *UserTokens* | [**Get**](docs/UserTokens.md#get) | **Get** /user/{user_handle}/token/{token_id} | Get token
@@ -170,11 +180,15 @@ Class | Method | HTTP request | Description
 *UserWorkspaceMods* | [**List**](docs/UserWorkspaceMods.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/mod | List user workspace installed mods
 *UserWorkspaceMods* | [**Uninstall**](docs/UserWorkspaceMods.md#uninstall) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Uninstall mod from a user&#39;s workspace.
 *UserWorkspaceMods* | [**Update**](docs/UserWorkspaceMods.md#update) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/mod/{mod_alias} | Update a mod in a user&#39;s workspace
+*UserWorkspacePipelines* | [**Command**](docs/UserWorkspacePipelines.md#command) | **Post** /user/{user_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id}/command | Run user workspace pipeline command
 *UserWorkspacePipelines* | [**Create**](docs/UserWorkspacePipelines.md#create) | **Post** /user/{user_handle}/workspace/{workspace_handle}/pipeline | Create user workspace pipeline
 *UserWorkspacePipelines* | [**Delete**](docs/UserWorkspacePipelines.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id} | Delete user workspace pipeline
 *UserWorkspacePipelines* | [**Get**](docs/UserWorkspacePipelines.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id} | Get user workspace pipeline
 *UserWorkspacePipelines* | [**List**](docs/UserWorkspacePipelines.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/pipeline | List user workspace pipelines
 *UserWorkspacePipelines* | [**Update**](docs/UserWorkspacePipelines.md#update) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id} | Update user workspace pipeline
+*UserWorkspaceProcesses* | [**Get**](docs/UserWorkspaceProcesses.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/process/{process_id} | Get user workspace process
+*UserWorkspaceProcesses* | [**List**](docs/UserWorkspaceProcesses.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/process | List user workspace processes
+*UserWorkspaceProcesses* | [**Log**](docs/UserWorkspaceProcesses.md#log) | **Get** /user/{user_handle}/workspace/{workspace_handle}/process/{process_id}/log/{log_file}.{content_type} | List user workspace process logs
 *UserWorkspaceSnapshots* | [**Create**](docs/UserWorkspaceSnapshots.md#create) | **Post** /user/{user_handle}/workspace/{workspace_handle}/snapshot | Create user workspace snapshot
 *UserWorkspaceSnapshots* | [**Delete**](docs/UserWorkspaceSnapshots.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Delete user workspace snapshot
 *UserWorkspaceSnapshots* | [**Download**](docs/UserWorkspaceSnapshots.md#download) | **Get** /user/{user_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}.{content_type} | Download user workspace snapshot
@@ -242,6 +256,7 @@ Class | Method | HTTP request | Description
  - [ListOrgWorkspaceUsersResponse](docs/ListOrgWorkspaceUsersResponse.md)
  - [ListOrgsResponse](docs/ListOrgsResponse.md)
  - [ListPipelinesResponse](docs/ListPipelinesResponse.md)
+ - [ListProcessesResponse](docs/ListProcessesResponse.md)
  - [ListTokensResponse](docs/ListTokensResponse.md)
  - [ListUserEmailsResponse](docs/ListUserEmailsResponse.md)
  - [ListUserOrgsResponse](docs/ListUserOrgsResponse.md)
@@ -257,10 +272,14 @@ Class | Method | HTTP request | Description
  - [OrgUser](docs/OrgUser.md)
  - [OrgWorkspaceUser](docs/OrgWorkspaceUser.md)
  - [Pipeline](docs/Pipeline.md)
+ - [PipelineCommandRequest](docs/PipelineCommandRequest.md)
+ - [PipelineCommandResponse](docs/PipelineCommandResponse.md)
+ - [PipelineFrequency](docs/PipelineFrequency.md)
  - [Quota](docs/Quota.md)
  - [SchemaInfo](docs/SchemaInfo.md)
  - [SchemaTable](docs/SchemaTable.md)
  - [SchemaTableColumn](docs/SchemaTableColumn.md)
+ - [SpProcess](docs/SpProcess.md)
  - [TemporaryTokenRequest](docs/TemporaryTokenRequest.md)
  - [Token](docs/Token.md)
  - [UpdateConnectionRequest](docs/UpdateConnectionRequest.md)

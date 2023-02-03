@@ -2,21 +2,27 @@
 
 ## 0.5.0 [tbd]
 
+_Breaking changes_
+
+- Modified attribute `Layout` of the WorkspaceSnapshotData struct to have defined type `WorkspaceSnapshotDataLayout` instead of `map[string]interface{}`.
+
 _What's new?_
 
 - Identity Workspace Pipeline APIs
+- Identity Process APIs
+- Identity Workspace Process APIs
 
-_Breaking changes_
+_Enhancements_
 
-- Modified attribute `Layout` of the WorkspaceSnapshotData struct to have defined type `WorkspaceSnapshotDataLayout` instead of `map[string]interface{}`
+- Added attribute `PluginVersion` in the `Connection` struct to return the version of the plugin.
 
 ## 0.4.0 [2023-01-09]
 
 _Breaking changes_
 
-- Removed attribute `id` in the ErrorModel struct.
-- Renamed attribute `errors` to `validation_errors` in the ErrorModel struct.
-- Attribute `instance` in the ErrorModel struct will now return the instance of the steampipe cloud error instead of the `id` attribute where it was previously accessed.
+- Removed attribute `id` in the `ErrorModel` struct.
+- Renamed attribute `errors` to `validation_errors` in the `ErrorModel` struct.
+- Attribute `instance` in the `ErrorModel` struct will now return the instance of the steampipe cloud error instead of the `id` attribute where it was previously accessed.
 
 ## 0.3.0 [2022-12-06]
 

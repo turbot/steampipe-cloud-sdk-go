@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Args** | **interface{}** |  | 
-**Frequency** | **interface{}** |  | 
+**Frequency** | [**PipelineFrequency**](PipelineFrequency.md) |  | 
 **Pipeline** | **string** | The name of the pipeline to be executed. | 
 **Tags** | Pointer to **interface{}** |  | [optional] 
 **Title** | **string** | The title of the pipeline. | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewCreatePipelineRequest
 
-`func NewCreatePipelineRequest(args interface{}, frequency interface{}, pipeline string, title string, ) *CreatePipelineRequest`
+`func NewCreatePipelineRequest(args interface{}, frequency PipelineFrequency, pipeline string, title string, ) *CreatePipelineRequest`
 
 NewCreatePipelineRequest instantiates a new CreatePipelineRequest object
 This constructor will assign default values to properties that have it defined,
@@ -61,34 +61,24 @@ SetArgs sets Args field to given value.
 UnsetArgs ensures that no value is present for Args, not even an explicit nil
 ### GetFrequency
 
-`func (o *CreatePipelineRequest) GetFrequency() interface{}`
+`func (o *CreatePipelineRequest) GetFrequency() PipelineFrequency`
 
 GetFrequency returns the Frequency field if non-nil, zero value otherwise.
 
 ### GetFrequencyOk
 
-`func (o *CreatePipelineRequest) GetFrequencyOk() (*interface{}, bool)`
+`func (o *CreatePipelineRequest) GetFrequencyOk() (*PipelineFrequency, bool)`
 
 GetFrequencyOk returns a tuple with the Frequency field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrequency
 
-`func (o *CreatePipelineRequest) SetFrequency(v interface{})`
+`func (o *CreatePipelineRequest) SetFrequency(v PipelineFrequency)`
 
 SetFrequency sets Frequency field to given value.
 
 
-### SetFrequencyNil
-
-`func (o *CreatePipelineRequest) SetFrequencyNil(b bool)`
-
- SetFrequencyNil sets the value for Frequency to be an explicit nil
-
-### UnsetFrequency
-`func (o *CreatePipelineRequest) UnsetFrequency()`
-
-UnsetFrequency ensures that no value is present for Frequency, not even an explicit nil
 ### GetPipeline
 
 `func (o *CreatePipelineRequest) GetPipeline() string`

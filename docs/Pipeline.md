@@ -11,8 +11,11 @@ Name | Type | Description | Notes
 **DeletedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
 **DeletedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **DeletedById** | **string** | The ID of the user that performed the deletion. | 
-**Frequency** | **interface{}** |  | 
+**Frequency** | [**PipelineFrequency**](PipelineFrequency.md) |  | 
 **Id** | **string** | The unique identifier of the pipeline. | 
+**LastProcess** | Pointer to [**SpProcess**](SpProcess.md) |  | [optional] 
+**LastProcessId** | Pointer to **string** | The id of the last process that was run for the pipeline. | [optional] 
+**NextRunAt** | **string** | The time when the pipeline is next scheduled to run in ISO 8601 UTC. | 
 **Pipeline** | **string** | The name of the pipeline to be executed. | 
 **Tags** | Pointer to **interface{}** |  | [optional] 
 **Title** | Pointer to **string** | The title of the pipeline. | [optional] 
@@ -26,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewPipeline
 
-`func NewPipeline(createdAt string, createdById string, deletedById string, frequency interface{}, id string, pipeline string, updatedById string, versionId int32, ) *Pipeline`
+`func NewPipeline(createdAt string, createdById string, deletedById string, frequency PipelineFrequency, id string, nextRunAt string, pipeline string, updatedById string, versionId int32, ) *Pipeline`
 
 NewPipeline instantiates a new Pipeline object
 This constructor will assign default values to properties that have it defined,
@@ -213,34 +216,24 @@ SetDeletedById sets DeletedById field to given value.
 
 ### GetFrequency
 
-`func (o *Pipeline) GetFrequency() interface{}`
+`func (o *Pipeline) GetFrequency() PipelineFrequency`
 
 GetFrequency returns the Frequency field if non-nil, zero value otherwise.
 
 ### GetFrequencyOk
 
-`func (o *Pipeline) GetFrequencyOk() (*interface{}, bool)`
+`func (o *Pipeline) GetFrequencyOk() (*PipelineFrequency, bool)`
 
 GetFrequencyOk returns a tuple with the Frequency field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrequency
 
-`func (o *Pipeline) SetFrequency(v interface{})`
+`func (o *Pipeline) SetFrequency(v PipelineFrequency)`
 
 SetFrequency sets Frequency field to given value.
 
 
-### SetFrequencyNil
-
-`func (o *Pipeline) SetFrequencyNil(b bool)`
-
- SetFrequencyNil sets the value for Frequency to be an explicit nil
-
-### UnsetFrequency
-`func (o *Pipeline) UnsetFrequency()`
-
-UnsetFrequency ensures that no value is present for Frequency, not even an explicit nil
 ### GetId
 
 `func (o *Pipeline) GetId() string`
@@ -259,6 +252,76 @@ and a boolean to check if the value has been set.
 `func (o *Pipeline) SetId(v string)`
 
 SetId sets Id field to given value.
+
+
+### GetLastProcess
+
+`func (o *Pipeline) GetLastProcess() SpProcess`
+
+GetLastProcess returns the LastProcess field if non-nil, zero value otherwise.
+
+### GetLastProcessOk
+
+`func (o *Pipeline) GetLastProcessOk() (*SpProcess, bool)`
+
+GetLastProcessOk returns a tuple with the LastProcess field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastProcess
+
+`func (o *Pipeline) SetLastProcess(v SpProcess)`
+
+SetLastProcess sets LastProcess field to given value.
+
+### HasLastProcess
+
+`func (o *Pipeline) HasLastProcess() bool`
+
+HasLastProcess returns a boolean if a field has been set.
+
+### GetLastProcessId
+
+`func (o *Pipeline) GetLastProcessId() string`
+
+GetLastProcessId returns the LastProcessId field if non-nil, zero value otherwise.
+
+### GetLastProcessIdOk
+
+`func (o *Pipeline) GetLastProcessIdOk() (*string, bool)`
+
+GetLastProcessIdOk returns a tuple with the LastProcessId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastProcessId
+
+`func (o *Pipeline) SetLastProcessId(v string)`
+
+SetLastProcessId sets LastProcessId field to given value.
+
+### HasLastProcessId
+
+`func (o *Pipeline) HasLastProcessId() bool`
+
+HasLastProcessId returns a boolean if a field has been set.
+
+### GetNextRunAt
+
+`func (o *Pipeline) GetNextRunAt() string`
+
+GetNextRunAt returns the NextRunAt field if non-nil, zero value otherwise.
+
+### GetNextRunAtOk
+
+`func (o *Pipeline) GetNextRunAtOk() (*string, bool)`
+
+GetNextRunAtOk returns a tuple with the NextRunAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNextRunAt
+
+`func (o *Pipeline) SetNextRunAt(v string)`
+
+SetNextRunAt sets NextRunAt field to given value.
 
 
 ### GetPipeline

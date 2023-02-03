@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Args** | Pointer to **interface{}** |  | [optional] 
-**Frequency** | Pointer to **interface{}** |  | [optional] 
+**Frequency** | Pointer to [**PipelineFrequency**](PipelineFrequency.md) |  | [optional] 
 **Tags** | Pointer to **interface{}** |  | [optional] 
 **Title** | Pointer to **string** | The title of the pipeline. | [optional] 
 
@@ -65,20 +65,20 @@ HasArgs returns a boolean if a field has been set.
 UnsetArgs ensures that no value is present for Args, not even an explicit nil
 ### GetFrequency
 
-`func (o *UpdatePipelineRequest) GetFrequency() interface{}`
+`func (o *UpdatePipelineRequest) GetFrequency() PipelineFrequency`
 
 GetFrequency returns the Frequency field if non-nil, zero value otherwise.
 
 ### GetFrequencyOk
 
-`func (o *UpdatePipelineRequest) GetFrequencyOk() (*interface{}, bool)`
+`func (o *UpdatePipelineRequest) GetFrequencyOk() (*PipelineFrequency, bool)`
 
 GetFrequencyOk returns a tuple with the Frequency field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrequency
 
-`func (o *UpdatePipelineRequest) SetFrequency(v interface{})`
+`func (o *UpdatePipelineRequest) SetFrequency(v PipelineFrequency)`
 
 SetFrequency sets Frequency field to given value.
 
@@ -88,16 +88,6 @@ SetFrequency sets Frequency field to given value.
 
 HasFrequency returns a boolean if a field has been set.
 
-### SetFrequencyNil
-
-`func (o *UpdatePipelineRequest) SetFrequencyNil(b bool)`
-
- SetFrequencyNil sets the value for Frequency to be an explicit nil
-
-### UnsetFrequency
-`func (o *UpdatePipelineRequest) UnsetFrequency()`
-
-UnsetFrequency ensures that no value is present for Frequency, not even an explicit nil
 ### GetTags
 
 `func (o *UpdatePipelineRequest) GetTags() interface{}`

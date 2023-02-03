@@ -17,8 +17,8 @@ import (
 
 // CreatePipelineRequest struct for CreatePipelineRequest
 type CreatePipelineRequest struct {
-	Args      interface{} `json:"args"`
-	Frequency interface{} `json:"frequency"`
+	Args      interface{}       `json:"args"`
+	Frequency PipelineFrequency `json:"frequency"`
 	// The name of the pipeline to be executed.
 	Pipeline string      `json:"pipeline"`
 	Tags     interface{} `json:"tags,omitempty"`
@@ -30,7 +30,7 @@ type CreatePipelineRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreatePipelineRequest(args interface{}, frequency interface{}, pipeline string, title string) *CreatePipelineRequest {
+func NewCreatePipelineRequest(args interface{}, frequency PipelineFrequency, pipeline string, title string) *CreatePipelineRequest {
 	this := CreatePipelineRequest{}
 	this.Args = args
 	this.Frequency = frequency
@@ -74,10 +74,9 @@ func (o *CreatePipelineRequest) SetArgs(v interface{}) {
 }
 
 // GetFrequency returns the Frequency field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *CreatePipelineRequest) GetFrequency() interface{} {
+func (o *CreatePipelineRequest) GetFrequency() PipelineFrequency {
 	if o == nil {
-		var ret interface{}
+		var ret PipelineFrequency
 		return ret
 	}
 
@@ -86,16 +85,15 @@ func (o *CreatePipelineRequest) GetFrequency() interface{} {
 
 // GetFrequencyOk returns a tuple with the Frequency field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreatePipelineRequest) GetFrequencyOk() (*interface{}, bool) {
-	if o == nil || o.Frequency == nil {
+func (o *CreatePipelineRequest) GetFrequencyOk() (*PipelineFrequency, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Frequency, true
 }
 
 // SetFrequency sets field value
-func (o *CreatePipelineRequest) SetFrequency(v interface{}) {
+func (o *CreatePipelineRequest) SetFrequency(v PipelineFrequency) {
 	o.Frequency = v
 }
 
@@ -185,7 +183,7 @@ func (o CreatePipelineRequest) MarshalJSON() ([]byte, error) {
 	if o.Args != nil {
 		toSerialize["args"] = o.Args
 	}
-	if o.Frequency != nil {
+	if true {
 		toSerialize["frequency"] = o.Frequency
 	}
 	if true {

@@ -17,9 +17,9 @@ import (
 
 // UpdatePipelineRequest struct for UpdatePipelineRequest
 type UpdatePipelineRequest struct {
-	Args      interface{} `json:"args,omitempty"`
-	Frequency interface{} `json:"frequency,omitempty"`
-	Tags      interface{} `json:"tags,omitempty"`
+	Args      interface{}        `json:"args,omitempty"`
+	Frequency *PipelineFrequency `json:"frequency,omitempty"`
+	Tags      interface{}        `json:"tags,omitempty"`
 	// The title of the pipeline.
 	Title *string `json:"title,omitempty"`
 }
@@ -74,23 +74,22 @@ func (o *UpdatePipelineRequest) SetArgs(v interface{}) {
 	o.Args = v
 }
 
-// GetFrequency returns the Frequency field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdatePipelineRequest) GetFrequency() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetFrequency returns the Frequency field value if set, zero value otherwise.
+func (o *UpdatePipelineRequest) GetFrequency() PipelineFrequency {
+	if o == nil || o.Frequency == nil {
+		var ret PipelineFrequency
 		return ret
 	}
-	return o.Frequency
+	return *o.Frequency
 }
 
 // GetFrequencyOk returns a tuple with the Frequency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdatePipelineRequest) GetFrequencyOk() (*interface{}, bool) {
+func (o *UpdatePipelineRequest) GetFrequencyOk() (*PipelineFrequency, bool) {
 	if o == nil || o.Frequency == nil {
 		return nil, false
 	}
-	return &o.Frequency, true
+	return o.Frequency, true
 }
 
 // HasFrequency returns a boolean if a field has been set.
@@ -102,9 +101,9 @@ func (o *UpdatePipelineRequest) HasFrequency() bool {
 	return false
 }
 
-// SetFrequency gets a reference to the given interface{} and assigns it to the Frequency field.
-func (o *UpdatePipelineRequest) SetFrequency(v interface{}) {
-	o.Frequency = v
+// SetFrequency gets a reference to the given PipelineFrequency and assigns it to the Frequency field.
+func (o *UpdatePipelineRequest) SetFrequency(v PipelineFrequency) {
+	o.Frequency = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).

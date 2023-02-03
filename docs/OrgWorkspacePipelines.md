@@ -4,12 +4,91 @@ All URIs are relative to *https://cloud.steampipe.io/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**Command**](OrgWorkspacePipelines.md#Command) | **Post** /org/{org_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id}/command | Run org workspace pipeline command
 [**Create**](OrgWorkspacePipelines.md#Create) | **Post** /org/{org_handle}/workspace/{workspace_handle}/pipeline | Create org workspace pipeline
 [**Delete**](OrgWorkspacePipelines.md#Delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id} | Delete org workspace pipeline
 [**Get**](OrgWorkspacePipelines.md#Get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id} | Get org workspace pipeline
 [**List**](OrgWorkspacePipelines.md#List) | **Get** /org/{org_handle}/workspace/{workspace_handle}/pipeline | List org workspace pipelines
 [**Update**](OrgWorkspacePipelines.md#Update) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id} | Update org workspace pipeline
 
+
+
+## Command
+
+> PipelineCommandResponse Command(ctx, orgHandle, workspaceHandle, pipelineId).Request(request).Execute()
+
+Run org workspace pipeline command
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    orgHandle := "orgHandle_example" // string | The handle of the organization which contains the workspace.
+    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace where the pipeline exists.
+    pipelineId := "pipelineId_example" // string | Id of the pipeline on which the command will be run.
+    request := *openapiclient.NewPipelineCommandRequest("Command_example") // PipelineCommandRequest | The request body of the pipeline command to run.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrgWorkspacePipelines.Command(context.Background(), orgHandle, workspaceHandle, pipelineId).Request(request).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspacePipelines.Command``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Command`: PipelineCommandResponse
+    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspacePipelines.Command`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**orgHandle** | **string** | The handle of the organization which contains the workspace. | 
+**workspaceHandle** | **string** | The handle of the workspace where the pipeline exists. | 
+**pipelineId** | **string** | Id of the pipeline on which the command will be run. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCommandRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **request** | [**PipelineCommandRequest**](PipelineCommandRequest.md) | The request body of the pipeline command to run. | 
+
+### Return type
+
+[**PipelineCommandResponse**](PipelineCommandResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## Create
@@ -35,7 +114,7 @@ import (
 func main() {
     orgHandle := "orgHandle_example" // string | The handle of the organization which contains the workspace.
     workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace where we want to create the pipeline.
-    request := *openapiclient.NewCreatePipelineRequest(interface{}(123), interface{}(123), "Pipeline_example", "Title_example") // CreatePipelineRequest | The request body for the pipeline to be created.
+    request := *openapiclient.NewCreatePipelineRequest(interface{}(123), *openapiclient.NewPipelineFrequency("Schedule_example", "Type_example"), "Pipeline_example", "Title_example") // CreatePipelineRequest | The request body for the pipeline to be created.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

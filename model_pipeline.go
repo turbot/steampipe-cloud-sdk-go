@@ -27,10 +27,15 @@ type Pipeline struct {
 	DeletedAt *string `json:"deleted_at,omitempty"`
 	DeletedBy *User   `json:"deleted_by,omitempty"`
 	// The ID of the user that performed the deletion.
-	DeletedById string      `json:"deleted_by_id"`
-	Frequency   interface{} `json:"frequency"`
+	DeletedById string            `json:"deleted_by_id"`
+	Frequency   PipelineFrequency `json:"frequency"`
 	// The unique identifier of the pipeline.
-	Id string `json:"id"`
+	Id          string     `json:"id"`
+	LastProcess *SpProcess `json:"last_process,omitempty"`
+	// The id of the last process that was run for the pipeline.
+	LastProcessId *string `json:"last_process_id,omitempty"`
+	// The time when the pipeline is next scheduled to run in ISO 8601 UTC.
+	NextRunAt string `json:"next_run_at"`
 	// The name of the pipeline to be executed.
 	Pipeline string      `json:"pipeline"`
 	Tags     interface{} `json:"tags,omitempty"`
@@ -51,13 +56,14 @@ type Pipeline struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPipeline(createdAt string, createdById string, deletedById string, frequency interface{}, id string, pipeline string, updatedById string, versionId int32) *Pipeline {
+func NewPipeline(createdAt string, createdById string, deletedById string, frequency PipelineFrequency, id string, nextRunAt string, pipeline string, updatedById string, versionId int32) *Pipeline {
 	this := Pipeline{}
 	this.CreatedAt = createdAt
 	this.CreatedById = createdById
 	this.DeletedById = deletedById
 	this.Frequency = frequency
 	this.Id = id
+	this.NextRunAt = nextRunAt
 	this.Pipeline = pipeline
 	this.UpdatedById = updatedById
 	this.VersionId = versionId
@@ -274,10 +280,9 @@ func (o *Pipeline) SetDeletedById(v string) {
 }
 
 // GetFrequency returns the Frequency field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *Pipeline) GetFrequency() interface{} {
+func (o *Pipeline) GetFrequency() PipelineFrequency {
 	if o == nil {
-		var ret interface{}
+		var ret PipelineFrequency
 		return ret
 	}
 
@@ -286,16 +291,15 @@ func (o *Pipeline) GetFrequency() interface{} {
 
 // GetFrequencyOk returns a tuple with the Frequency field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Pipeline) GetFrequencyOk() (*interface{}, bool) {
-	if o == nil || o.Frequency == nil {
+func (o *Pipeline) GetFrequencyOk() (*PipelineFrequency, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Frequency, true
 }
 
 // SetFrequency sets field value
-func (o *Pipeline) SetFrequency(v interface{}) {
+func (o *Pipeline) SetFrequency(v PipelineFrequency) {
 	o.Frequency = v
 }
 
@@ -321,6 +325,94 @@ func (o *Pipeline) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *Pipeline) SetId(v string) {
 	o.Id = v
+}
+
+// GetLastProcess returns the LastProcess field value if set, zero value otherwise.
+func (o *Pipeline) GetLastProcess() SpProcess {
+	if o == nil || o.LastProcess == nil {
+		var ret SpProcess
+		return ret
+	}
+	return *o.LastProcess
+}
+
+// GetLastProcessOk returns a tuple with the LastProcess field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Pipeline) GetLastProcessOk() (*SpProcess, bool) {
+	if o == nil || o.LastProcess == nil {
+		return nil, false
+	}
+	return o.LastProcess, true
+}
+
+// HasLastProcess returns a boolean if a field has been set.
+func (o *Pipeline) HasLastProcess() bool {
+	if o != nil && o.LastProcess != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastProcess gets a reference to the given SpProcess and assigns it to the LastProcess field.
+func (o *Pipeline) SetLastProcess(v SpProcess) {
+	o.LastProcess = &v
+}
+
+// GetLastProcessId returns the LastProcessId field value if set, zero value otherwise.
+func (o *Pipeline) GetLastProcessId() string {
+	if o == nil || o.LastProcessId == nil {
+		var ret string
+		return ret
+	}
+	return *o.LastProcessId
+}
+
+// GetLastProcessIdOk returns a tuple with the LastProcessId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Pipeline) GetLastProcessIdOk() (*string, bool) {
+	if o == nil || o.LastProcessId == nil {
+		return nil, false
+	}
+	return o.LastProcessId, true
+}
+
+// HasLastProcessId returns a boolean if a field has been set.
+func (o *Pipeline) HasLastProcessId() bool {
+	if o != nil && o.LastProcessId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastProcessId gets a reference to the given string and assigns it to the LastProcessId field.
+func (o *Pipeline) SetLastProcessId(v string) {
+	o.LastProcessId = &v
+}
+
+// GetNextRunAt returns the NextRunAt field value
+func (o *Pipeline) GetNextRunAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.NextRunAt
+}
+
+// GetNextRunAtOk returns a tuple with the NextRunAt field value
+// and a boolean to check if the value has been set.
+func (o *Pipeline) GetNextRunAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NextRunAt, true
+}
+
+// SetNextRunAt sets field value
+func (o *Pipeline) SetNextRunAt(v string) {
+	o.NextRunAt = v
 }
 
 // GetPipeline returns the Pipeline field value
@@ -579,11 +671,20 @@ func (o Pipeline) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["deleted_by_id"] = o.DeletedById
 	}
-	if o.Frequency != nil {
+	if true {
 		toSerialize["frequency"] = o.Frequency
 	}
 	if true {
 		toSerialize["id"] = o.Id
+	}
+	if o.LastProcess != nil {
+		toSerialize["last_process"] = o.LastProcess
+	}
+	if o.LastProcessId != nil {
+		toSerialize["last_process_id"] = o.LastProcessId
+	}
+	if true {
+		toSerialize["next_run_at"] = o.NextRunAt
 	}
 	if true {
 		toSerialize["pipeline"] = o.Pipeline
