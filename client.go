@@ -60,6 +60,8 @@ type APIClient struct {
 
 	OrgMembers *OrgMembersService
 
+	OrgProcesses *OrgProcessesService
+
 	OrgWorkspaceConnectionAssociations *OrgWorkspaceConnectionAssociationsService
 
 	OrgWorkspaceMembers *OrgWorkspaceMembersService
@@ -67,6 +69,10 @@ type APIClient struct {
 	OrgWorkspaceModVariables *OrgWorkspaceModVariablesService
 
 	OrgWorkspaceMods *OrgWorkspaceModsService
+
+	OrgWorkspacePipelines *OrgWorkspacePipelinesService
+
+	OrgWorkspaceProcesses *OrgWorkspaceProcessesService
 
 	OrgWorkspaceSnapshots *OrgWorkspaceSnapshotsService
 
@@ -76,6 +82,8 @@ type APIClient struct {
 
 	UserConnections *UserConnectionsService
 
+	UserProcesses *UserProcessesService
+
 	UserTokens *UserTokensService
 
 	UserWorkspaceConnectionAssociations *UserWorkspaceConnectionAssociationsService
@@ -83,6 +91,10 @@ type APIClient struct {
 	UserWorkspaceModVariables *UserWorkspaceModVariablesService
 
 	UserWorkspaceMods *UserWorkspaceModsService
+
+	UserWorkspacePipelines *UserWorkspacePipelinesService
+
+	UserWorkspaceProcesses *UserWorkspaceProcessesService
 
 	UserWorkspaceSnapshots *UserWorkspaceSnapshotsService
 
@@ -112,18 +124,24 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.Identities = (*IdentitiesService)(&c.common)
 	c.OrgConnections = (*OrgConnectionsService)(&c.common)
 	c.OrgMembers = (*OrgMembersService)(&c.common)
+	c.OrgProcesses = (*OrgProcessesService)(&c.common)
 	c.OrgWorkspaceConnectionAssociations = (*OrgWorkspaceConnectionAssociationsService)(&c.common)
 	c.OrgWorkspaceMembers = (*OrgWorkspaceMembersService)(&c.common)
 	c.OrgWorkspaceModVariables = (*OrgWorkspaceModVariablesService)(&c.common)
 	c.OrgWorkspaceMods = (*OrgWorkspaceModsService)(&c.common)
+	c.OrgWorkspacePipelines = (*OrgWorkspacePipelinesService)(&c.common)
+	c.OrgWorkspaceProcesses = (*OrgWorkspaceProcessesService)(&c.common)
 	c.OrgWorkspaceSnapshots = (*OrgWorkspaceSnapshotsService)(&c.common)
 	c.OrgWorkspaces = (*OrgWorkspacesService)(&c.common)
 	c.Orgs = (*OrgsService)(&c.common)
 	c.UserConnections = (*UserConnectionsService)(&c.common)
+	c.UserProcesses = (*UserProcessesService)(&c.common)
 	c.UserTokens = (*UserTokensService)(&c.common)
 	c.UserWorkspaceConnectionAssociations = (*UserWorkspaceConnectionAssociationsService)(&c.common)
 	c.UserWorkspaceModVariables = (*UserWorkspaceModVariablesService)(&c.common)
 	c.UserWorkspaceMods = (*UserWorkspaceModsService)(&c.common)
+	c.UserWorkspacePipelines = (*UserWorkspacePipelinesService)(&c.common)
+	c.UserWorkspaceProcesses = (*UserWorkspaceProcessesService)(&c.common)
 	c.UserWorkspaceSnapshots = (*UserWorkspaceSnapshotsService)(&c.common)
 	c.UserWorkspaces = (*UserWorkspacesService)(&c.common)
 	c.Users = (*UsersService)(&c.common)

@@ -36,6 +36,8 @@ type Connection struct {
 	IdentityId string `json:"identity_id"`
 	// The plugin name for the connection.
 	Plugin *string `json:"plugin,omitempty"`
+	// The plugin version for the connection.
+	PluginVersion *string `json:"plugin_version,omitempty"`
 	// Type of connection i.e aggregator or connection.
 	Type *string `json:"type,omitempty"`
 	// The time of the last update in ISO 8601 UTC.
@@ -376,6 +378,38 @@ func (o *Connection) SetPlugin(v string) {
 	o.Plugin = &v
 }
 
+// GetPluginVersion returns the PluginVersion field value if set, zero value otherwise.
+func (o *Connection) GetPluginVersion() string {
+	if o == nil || o.PluginVersion == nil {
+		var ret string
+		return ret
+	}
+	return *o.PluginVersion
+}
+
+// GetPluginVersionOk returns a tuple with the PluginVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Connection) GetPluginVersionOk() (*string, bool) {
+	if o == nil || o.PluginVersion == nil {
+		return nil, false
+	}
+	return o.PluginVersion, true
+}
+
+// HasPluginVersion returns a boolean if a field has been set.
+func (o *Connection) HasPluginVersion() bool {
+	if o != nil && o.PluginVersion != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPluginVersion gets a reference to the given string and assigns it to the PluginVersion field.
+func (o *Connection) SetPluginVersion(v string) {
+	o.PluginVersion = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Connection) GetType() string {
 	if o == nil || o.Type == nil {
@@ -554,6 +588,9 @@ func (o Connection) MarshalJSON() ([]byte, error) {
 	}
 	if o.Plugin != nil {
 		toSerialize["plugin"] = o.Plugin
+	}
+	if o.PluginVersion != nil {
+		toSerialize["plugin_version"] = o.PluginVersion
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type

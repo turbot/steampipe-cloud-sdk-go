@@ -18,10 +18,10 @@ import (
 // WorkspaceSnapshotData struct for WorkspaceSnapshotData
 type WorkspaceSnapshotData struct {
 	// The time the dashboard execution ended.
-	EndTime string                  `json:"end_time"`
-	Inputs  *map[string]interface{} `json:"inputs,omitempty"`
-	Layout  map[string]interface{}  `json:"layout"`
-	Panels  map[string]interface{}  `json:"panels"`
+	EndTime string                      `json:"end_time"`
+	Inputs  *map[string]interface{}     `json:"inputs,omitempty"`
+	Layout  WorkspaceSnapshotDataLayout `json:"layout"`
+	Panels  map[string]interface{}      `json:"panels"`
 	// The schema version of this snapshot.
 	SchemaVersion string `json:"schema_version"`
 	// The time the dashboard execution started.
@@ -33,7 +33,7 @@ type WorkspaceSnapshotData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspaceSnapshotData(endTime string, layout map[string]interface{}, panels map[string]interface{}, schemaVersion string, startTime string) *WorkspaceSnapshotData {
+func NewWorkspaceSnapshotData(endTime string, layout WorkspaceSnapshotDataLayout, panels map[string]interface{}, schemaVersion string, startTime string) *WorkspaceSnapshotData {
 	this := WorkspaceSnapshotData{}
 	this.EndTime = endTime
 	this.Layout = layout
@@ -108,9 +108,9 @@ func (o *WorkspaceSnapshotData) SetInputs(v map[string]interface{}) {
 }
 
 // GetLayout returns the Layout field value
-func (o *WorkspaceSnapshotData) GetLayout() map[string]interface{} {
+func (o *WorkspaceSnapshotData) GetLayout() WorkspaceSnapshotDataLayout {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret WorkspaceSnapshotDataLayout
 		return ret
 	}
 
@@ -119,7 +119,7 @@ func (o *WorkspaceSnapshotData) GetLayout() map[string]interface{} {
 
 // GetLayoutOk returns a tuple with the Layout field value
 // and a boolean to check if the value has been set.
-func (o *WorkspaceSnapshotData) GetLayoutOk() (*map[string]interface{}, bool) {
+func (o *WorkspaceSnapshotData) GetLayoutOk() (*WorkspaceSnapshotDataLayout, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *WorkspaceSnapshotData) GetLayoutOk() (*map[string]interface{}, bool) {
 }
 
 // SetLayout sets field value
-func (o *WorkspaceSnapshotData) SetLayout(v map[string]interface{}) {
+func (o *WorkspaceSnapshotData) SetLayout(v WorkspaceSnapshotDataLayout) {
 	o.Layout = v
 }
 

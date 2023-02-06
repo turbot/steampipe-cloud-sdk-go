@@ -2280,6 +2280,241 @@ paths:
       tags:
       - OrgMembers
       x-codegen-request-body-name: request
+  /org/{org_handle}/process:
+    get:
+      description: List processes for an org.
+      operationId: orgProcess_list
+      parameters:
+      - description: The handle of an organization to list the processes.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProcessesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List Org processes
+      tags:
+      - OrgProcesses
+  /org/{org_handle}/process/{process_id}:
+    get:
+      description: Get a process for an org.
+      operationId: orgProcess_get
+      parameters:
+      - description: The handle of an organization to get the process.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The id of the process to be fetched.
+        explode: false
+        in: path
+        name: process_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpProcess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get Org process
+      tags:
+      - OrgProcesses
+  /org/{org_handle}/process/{process_id}/log/{log_file}.{content_type}:
+    get:
+      description: List the process logs for a given process of an org.
+      operationId: orgProcess_log
+      parameters:
+      - description: The handle of an organization to list the process logs.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The id of the process where you want to list the process logs.
+        explode: false
+        in: path
+        name: process_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      - description: The process logs file to be fetched.
+        explode: false
+        in: path
+        name: log_file
+        required: true
+        schema:
+          enum:
+          - process
+          type: string
+        style: simple
+      - description: The required content type of the process logs.
+        explode: false
+        in: path
+        name: content_type
+        required: true
+        schema:
+          enum:
+          - jsonl
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/jsonlines+json:
+              schema:
+                type: string
+          description: OK
+        "204":
+          content:
+            application/jsonlines+json:
+              schema:
+                type: string
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List Org process logs
+      tags:
+      - OrgProcesses
   /org/{org_handle}/quota:
     get:
       description: Returns the quota information for an org.
@@ -4568,6 +4803,800 @@ paths:
       tags:
       - OrgWorkspaceModVariables
       x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/pipeline:
+    get:
+      description: Lists the pipelines for a workspace of an organization.
+      operationId: orgWorkspacePipeline_list
+      parameters:
+      - description: The handle of the organization which contains the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace for which we want to list the pipelines.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListPipelinesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List org workspace pipelines
+      tags:
+      - OrgWorkspacePipelines
+    post:
+      description: Creates a new pipeline for a workspace of an organization.
+      operationId: orgWorkspacePipeline_create
+      parameters:
+      - description: The handle of the organization which contains the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where we want to create the pipeline.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePipelineRequest'
+        description: The request body for the pipeline to be created.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Payment Required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Create org workspace pipeline
+      tags:
+      - OrgWorkspacePipelines
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id}:
+    delete:
+      description: Deletes the pipeline specified in the request for a workspace of
+        an organization.
+      operationId: orgWorkspacePipeline_delete
+      parameters:
+      - description: The handle of the organization which contains the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the pipeline exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: Provide the id of the pipeline which needs to be deleted.
+        explode: false
+        in: path
+        name: pipeline_id
+        required: true
+        schema:
+          format: ^pipe_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+          description: OK
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Delete org workspace pipeline
+      tags:
+      - OrgWorkspacePipelines
+    get:
+      description: Get the details of a pipeline for a workspace of an organization.
+      operationId: orgWorkspacePipeline_get
+      parameters:
+      - description: The handle of the organization which contains the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the pipeline exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The id of the pipeline whose detail needs to be fetched.
+        explode: false
+        in: path
+        name: pipeline_id
+        required: true
+        schema:
+          format: ^pipe_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get org workspace pipeline
+      tags:
+      - OrgWorkspacePipelines
+    patch:
+      description: Updates a pipeline for a workspace of an organization.
+      operationId: orgWorkspacePipeline_update
+      parameters:
+      - description: The handle of the organization which contains the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the pipeline exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The id of the pipeline which needs to be updated.
+        explode: false
+        in: path
+        name: pipeline_id
+        required: true
+        schema:
+          format: ^pipe_[0-9a-v]{20}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePipelineRequest'
+        description: The request body for the pipeline which needs to be updated.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Payment Required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Update org workspace pipeline
+      tags:
+      - OrgWorkspacePipelines
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id}/command:
+    post:
+      description: Run a command on a pipeline in a workspace belonging to an organization.
+      operationId: orgWorkspacePipeline_command
+      parameters:
+      - description: The handle of the organization which contains the workspace.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the pipeline exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: Id of the pipeline on which the command will be run.
+        explode: false
+        in: path
+        name: pipeline_id
+        required: true
+        schema:
+          format: ^pipe_[0-9a-v]{20}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineCommandRequest'
+        description: The request body of the pipeline command to run.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineCommandResponse'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Payment Required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Run org workspace pipeline command
+      tags:
+      - OrgWorkspacePipelines
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/process:
+    get:
+      description: List the processes associated with an org workspace.
+      operationId: orgWorkspaceProcess_list
+      parameters:
+      - description: The handle of an organization for which you want to list the
+          processes.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where you want to list the processes.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProcessesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List org workspace processes
+      tags:
+      - OrgWorkspaceProcesses
+  /org/{org_handle}/workspace/{workspace_handle}/process/{process_id}:
+    get:
+      description: Get the details for the process.
+      operationId: orgWorkspaceProcess_get
+      parameters:
+      - description: The handle of the org where the workspace exist.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace whose process needs to be fetched.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The id of the process to be fetched.
+        explode: false
+        in: path
+        name: process_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpProcess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get org workspace process
+      tags:
+      - OrgWorkspaceProcesses
+  /org/{org_handle}/workspace/{workspace_handle}/process/{process_id}/log/{log_file}.{content_type}:
+    get:
+      description: List the process logs associated with a workspace process.
+      operationId: orgWorkspaceProcess_log
+      parameters:
+      - description: The handle of the org for which you want to list process logs.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where you want to list the process
+          logs.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The id of the process where you want to list the process logs.
+        explode: false
+        in: path
+        name: process_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      - description: The process logs file to be fetched.
+        explode: false
+        in: path
+        name: log_file
+        required: true
+        schema:
+          enum:
+          - process
+          type: string
+        style: simple
+      - description: The required content type of the process logs.
+        explode: false
+        in: path
+        name: content_type
+        required: true
+        schema:
+          enum:
+          - jsonl
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/jsonlines+json:
+              schema:
+                type: string
+          description: OK
+        "204":
+          content:
+            application/jsonlines+json:
+              schema:
+                type: string
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List org workspace process logs
+      tags:
+      - OrgWorkspaceProcesses
   /org/{org_handle}/workspace/{workspace_handle}/query:
     get:
       description: Performs a query in an org workspace. Results are limited to 3000
@@ -5201,6 +6230,16 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The max number of items to fetch per page of data, subject to
           a min and max of 1 and 100 respectively. If not specified will default to
           25.
@@ -7062,6 +8101,242 @@ paths:
       tags:
       - Users
       x-codegen-request-body-name: request
+  /user/{user_handle}/process:
+    get:
+      description: List processes for a user.
+      operationId: userProcess_list
+      parameters:
+      - description: The handle of the user to list the processes.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProcessesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List User processes
+      tags:
+      - UserProcesses
+  /user/{user_handle}/process/{process_id}:
+    get:
+      description: Get process for a user.
+      operationId: userProcess_get
+      parameters:
+      - description: The handle of the user to get the process.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The id of the process to be fetched.
+        explode: false
+        in: path
+        name: process_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpProcess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get User process
+      tags:
+      - UserProcesses
+  /user/{user_handle}/process/{process_id}/log/{log_file}.{content_type}:
+    get:
+      description: List the process logs for a given process of a user.
+      operationId: userProcess_log
+      parameters:
+      - description: The handle of the user for which you want to list the process
+          logs.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The id of the process where you want to list the process logs.
+        explode: false
+        in: path
+        name: process_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      - description: The process logs file to be fetched.
+        explode: false
+        in: path
+        name: log_file
+        required: true
+        schema:
+          enum:
+          - process
+          type: string
+        style: simple
+      - description: The required content type of the process logs.
+        explode: false
+        in: path
+        name: content_type
+        required: true
+        schema:
+          enum:
+          - jsonl
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/jsonlines+json:
+              schema:
+                type: string
+          description: OK
+        "204":
+          content:
+            application/jsonlines+json:
+              schema:
+                type: string
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List user process logs
+      tags:
+      - UserProcesses
   /user/{user_handle}/quota:
     get:
       description: Returns the quota information for a user.
@@ -9300,6 +10575,805 @@ paths:
       tags:
       - UserWorkspaceModVariables
       x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/pipeline:
+    get:
+      description: Lists the pipelines for a workspace of a user.
+      operationId: userWorkspacePipeline_list
+      parameters:
+      - description: The handle of the user for which contains the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace for which we want to list the pipelines.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListPipelinesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List user workspace pipelines
+      tags:
+      - UserWorkspacePipelines
+    post:
+      description: Creates a new pipeline for a workspace of a user.
+      operationId: userWorkspacePipeline_create
+      parameters:
+      - description: The handle of the user which contains the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where we want to create the pipeline.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePipelineRequest'
+        description: The request body for the pipeline to be created.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Payment Required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Create user workspace pipeline
+      tags:
+      - UserWorkspacePipelines
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id}:
+    delete:
+      description: Deletes the pipeline specified in the request for a workspace of
+        a user.
+      operationId: userWorkspacePipeline_delete
+      parameters:
+      - description: The handle of the user which contains the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the pipeline exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: Provide the id of the pipeline which needs to be deleted.
+        explode: false
+        in: path
+        name: pipeline_id
+        required: true
+        schema:
+          format: ^pipe_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+          description: OK
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Delete user workspace pipeline
+      tags:
+      - UserWorkspacePipelines
+    get:
+      description: Get the details of a pipeline for a workspace of a user.
+      operationId: userWorkspacePipeline_get
+      parameters:
+      - description: The handle of the user which contains the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the pipeline exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The id of the pipeline whose detail needs to be fetched.
+        explode: false
+        in: path
+        name: pipeline_id
+        required: true
+        schema:
+          format: ^pipe_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get user workspace pipeline
+      tags:
+      - UserWorkspacePipelines
+    patch:
+      description: Updates a pipeline for a workspace of a user.
+      operationId: userWorkspacePipeline_update
+      parameters:
+      - description: The handle of the user which contains the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the pipeline exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The id of the pipeline which needs to be updated.
+        explode: false
+        in: path
+        name: pipeline_id
+        required: true
+        schema:
+          format: ^pipe_[0-9a-v]{20}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePipelineRequest'
+        description: The request body for the pipeline which needs to be updated.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Payment Required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Update user workspace pipeline
+      tags:
+      - UserWorkspacePipelines
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/pipeline/{pipeline_id}/command:
+    post:
+      description: Run a command on a pipeline in a workspace belonging to a user.
+      operationId: userWorkspacePipeline_command
+      parameters:
+      - description: The handle of the user which contains the workspace.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the pipeline exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: Id of the pipeline on which the command will be run.
+        explode: false
+        in: path
+        name: pipeline_id
+        required: true
+        schema:
+          format: ^pipe_[0-9a-v]{20}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineCommandRequest'
+        description: The request body of the pipeline command to run.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineCommandResponse'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Payment Required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Run user workspace pipeline command
+      tags:
+      - UserWorkspacePipelines
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/process:
+    get:
+      description: List the process associated with a user workspace.
+      operationId: userWorkspaceProcess_list
+      parameters:
+      - description: The handle of the user for which you want to start listing processes.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where you want to list the processes.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProcessesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List user workspace processes
+      tags:
+      - UserWorkspaceProcesses
+  /user/{user_handle}/workspace/{workspace_handle}/process/{process_id}:
+    get:
+      description: Get the details for a user workspace process.
+      operationId: userWorkspaceProcess_get
+      parameters:
+      - description: The handle of the user where the workspace exist.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace whose process needs to be fetched.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The id of the process to be fetched.
+        explode: false
+        in: path
+        name: process_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpProcess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get user workspace process
+      tags:
+      - UserWorkspaceProcesses
+  /user/{user_handle}/workspace/{workspace_handle}/process/{process_id}/log/{log_file}.{content_type}:
+    get:
+      description: List the process logs associated with a workspace process.
+      operationId: userWorkspaceProcess_log
+      parameters:
+      - description: The handle of the user where the workspace exist.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The handle of the workspace where you want to list the process
+          logs.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The id of the process where you want to list the process logs.
+        explode: false
+        in: path
+        name: process_id
+        required: true
+        schema:
+          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          type: string
+        style: simple
+      - description: The process logs file to be fetched.
+        explode: false
+        in: path
+        name: log_file
+        required: true
+        schema:
+          enum:
+          - process
+          type: string
+        style: simple
+      - description: The required content type of the process logs.
+        explode: false
+        in: path
+        name: content_type
+        required: true
+        schema:
+          enum:
+          - jsonl
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/jsonlines+json:
+              schema:
+                type: string
+          description: OK
+        "204":
+          content:
+            application/jsonlines+json:
+              schema:
+                type: string
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List user workspace process logs
+      tags:
+      - UserWorkspaceProcesses
   /user/{user_handle}/workspace/{workspace_handle}/query:
     get:
       description: Performs a query in a user workspace. Results are limited to 3000
@@ -10739,6 +12813,7 @@ components:
       type: object
     Connection:
       example:
+        plugin_version: plugin_version
         identity_id: identity_id
         deleted_by_id: deleted_by_id
         created_at: created_at
@@ -10821,6 +12896,9 @@ components:
           type: string
         plugin:
           description: The plugin name for the connection.
+          type: string
+        plugin_version:
+          description: The plugin version for the connection.
           type: string
         type:
           description: Type of connection i.e aggregator or connection.
@@ -10912,6 +12990,35 @@ components:
       - handle
       - role
       type: object
+    CreatePipelineRequest:
+      example:
+        args: ""
+        pipeline: pipeline
+        title: title
+        frequency:
+          schedule: schedule
+          type: interval
+        tags: ""
+      properties:
+        args:
+          nullable: true
+        frequency:
+          $ref: '#/components/schemas/PipelineFrequency'
+        pipeline:
+          description: The name of the pipeline to be executed.
+          format: ^(pipeline\.save_snapshot|pipeline\.data_tank_schedule)$
+          type: string
+        tags:
+          nullable: true
+        title:
+          description: The title of the pipeline.
+          type: string
+      required:
+      - args
+      - frequency
+      - pipeline
+      - title
+      type: object
     CreateUserPasswordRequest:
       example:
         expires_in_minutes: 0
@@ -10986,14 +13093,19 @@ components:
     CreateWorkspaceSnapshotRequest:
       example:
         data:
-          layout: '{}'
+          layout:
+            children:
+            - null
+            - null
+            panel_type: panel_type
+            name: name
           schema_version: schema_version
           start_time: start_time
           variables: '{}'
           inputs: '{}'
           panels: '{}'
           end_time: end_time
-        visibility: visibility
+        visibility: workspace
         title: title
         tags: ""
       properties:
@@ -11003,9 +13115,13 @@ components:
           nullable: true
         title:
           description: The title of the snapshot.
+          minLength: 1
           type: string
         visibility:
           description: The visibility of the snapshot to create.
+          enum:
+          - workspace
+          - anyone_with_link
           type: string
       required:
       - data
@@ -11267,7 +13383,8 @@ components:
       example:
         next_token: next_token
         items:
-        - identity_id: identity_id
+        - plugin_version: plugin_version
+          identity_id: identity_id
           deleted_by_id: deleted_by_id
           created_at: created_at
           deleted_by:
@@ -11313,7 +13430,8 @@ components:
           created_by_id: created_by_id
           id: id
           config: '{}'
-        - identity_id: identity_id
+        - plugin_version: plugin_version
+          identity_id: identity_id
           deleted_by_id: deleted_by_id
           created_at: created_at
           deleted_by:
@@ -11752,6 +13870,302 @@ components:
         next_token:
           type: string
       type: object
+    ListPipelinesResponse:
+      example:
+        next_token: next_token
+        items:
+        - next_run_at: next_run_at
+          deleted_by_id: deleted_by_id
+          created_at: created_at
+          deleted_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          last_process_id: last_process_id
+          version_id: 0
+          title: title
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          deleted_at: deleted_at
+          frequency:
+            schedule: schedule
+            type: interval
+          tags: ""
+          args: ""
+          pipeline: pipeline
+          workspace_id: workspace_id
+          updated_at: updated_at
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+        - next_run_at: next_run_at
+          deleted_by_id: deleted_by_id
+          created_at: created_at
+          deleted_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          last_process_id: last_process_id
+          version_id: 0
+          title: title
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          deleted_at: deleted_at
+          frequency:
+            schedule: schedule
+            type: interval
+          tags: ""
+          args: ""
+          pipeline: pipeline
+          workspace_id: workspace_id
+          updated_at: updated_at
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Pipeline'
+          type: array
+        next_token:
+          type: string
+      type: object
+    ListProcessesResponse:
+      example:
+        next_token: next_token
+        items:
+        - identity_id: identity_id
+          created_at: created_at
+          version_id: 6
+          type: type
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          pipeline:
+            next_run_at: next_run_at
+            deleted_by_id: deleted_by_id
+            created_at: created_at
+            deleted_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            last_process_id: last_process_id
+            version_id: 0
+            title: title
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            deleted_at: deleted_at
+            frequency:
+              schedule: schedule
+              type: interval
+            tags: ""
+            args: ""
+            pipeline: pipeline
+            workspace_id: workspace_id
+            updated_at: updated_at
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+          workspace_id: workspace_id
+          updated_at: updated_at
+          pipeline_id: pipeline_id
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          state: pending
+        - identity_id: identity_id
+          created_at: created_at
+          version_id: 6
+          type: type
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          pipeline:
+            next_run_at: next_run_at
+            deleted_by_id: deleted_by_id
+            created_at: created_at
+            deleted_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            last_process_id: last_process_id
+            version_id: 0
+            title: title
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            deleted_at: deleted_at
+            frequency:
+              schedule: schedule
+              type: interval
+            tags: ""
+            args: ""
+            pipeline: pipeline
+            workspace_id: workspace_id
+            updated_at: updated_at
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+          workspace_id: workspace_id
+          updated_at: updated_at
+          pipeline_id: pipeline_id
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          state: pending
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SpProcess'
+          type: array
+        next_token:
+          type: string
+      type: object
     ListTokensResponse:
       example:
         next_token: next_token
@@ -12023,6 +14437,7 @@ components:
             status: status
           created_at: created_at
           connection:
+            plugin_version: plugin_version
             identity_id: identity_id
             deleted_by_id: deleted_by_id
             created_at: created_at
@@ -12101,6 +14516,7 @@ components:
             status: status
           created_at: created_at
           connection:
+            plugin_version: plugin_version
             identity_id: identity_id
             deleted_by_id: deleted_by_id
             created_at: created_at
@@ -12998,6 +15414,176 @@ components:
       - workspace_handle
       - workspace_id
       type: object
+    Pipeline:
+      example:
+        next_run_at: next_run_at
+        deleted_by_id: deleted_by_id
+        created_at: created_at
+        deleted_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        last_process_id: last_process_id
+        version_id: 0
+        title: title
+        created_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        deleted_at: deleted_at
+        frequency:
+          schedule: schedule
+          type: interval
+        tags: ""
+        args: ""
+        pipeline: pipeline
+        workspace_id: workspace_id
+        updated_at: updated_at
+        updated_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        updated_by_id: updated_by_id
+        created_by_id: created_by_id
+        id: id
+      properties:
+        args:
+          nullable: true
+        created_at:
+          description: The time of creation in ISO 8601 UTC.
+          type: string
+        created_by:
+          $ref: '#/components/schemas/User'
+        created_by_id:
+          description: The ID of the user that created this.
+          format: ^u_[0-9a-v]{20}$
+          type: string
+        deleted_at:
+          description: The time of the last update in ISO 8601 UTC.
+          type: string
+        deleted_by:
+          $ref: '#/components/schemas/User'
+        deleted_by_id:
+          description: The ID of the user that performed the deletion.
+          format: ^u_[0-9a-v]{20}$
+          type: string
+        frequency:
+          $ref: '#/components/schemas/PipelineFrequency'
+        id:
+          description: The unique identifier of the pipeline.
+          format: ^pipe_[0-9a-z]{25}$
+          type: string
+        last_process:
+          $ref: '#/components/schemas/SpProcess'
+        last_process_id:
+          description: The id of the last process that was run for the pipeline.
+          type: string
+        next_run_at:
+          description: The time when the pipeline is next scheduled to run in ISO
+            8601 UTC.
+          type: string
+        pipeline:
+          description: The name of the pipeline to be executed.
+          format: ^(pipeline\.save_snapshot|pipeline\.data_tank_schedule)$
+          type: string
+        tags:
+          nullable: true
+        title:
+          description: The title of the pipeline.
+          type: string
+        updated_at:
+          description: The time of the last update in ISO 8601 UTC.
+          type: string
+        updated_by:
+          $ref: '#/components/schemas/User'
+        updated_by_id:
+          description: The ID of the user that performed the last update.
+          format: ^u_[0-9a-v]{20}$
+          type: string
+        version_id:
+          description: The version ID of this item. Pass this version ID via an If-Match
+            header when performing mutation operations on the item.
+          type: integer
+        workspace_id:
+          description: The unique identifier of the workspace on which the pipeline
+            is created if any.
+          format: ^w_[0-9a-v]{20}$
+          type: string
+      required:
+      - created_at
+      - created_by_id
+      - deleted_by_id
+      - frequency
+      - id
+      - next_run_at
+      - pipeline
+      - updated_by_id
+      - version_id
+      type: object
+    PipelineCommandRequest:
+      example:
+        command: run
+      properties:
+        command:
+          enum:
+          - run
+          type: string
+      required:
+      - command
+      type: object
+    PipelineCommandResponse:
+      example:
+        process_id: process_id
+        command: run
+      properties:
+        command:
+          enum:
+          - run
+          type: string
+        process_id:
+          format: ^p_[0-9a-v]{20}$
+          type: string
+      required:
+      - command
+      - process_id
+      type: object
+    PipelineFrequency:
+      example:
+        schedule: schedule
+        type: interval
+      properties:
+        schedule:
+          type: string
+        type:
+          enum:
+          - interval
+          - cron
+          type: string
+      required:
+      - schedule
+      - type
+      type: object
     PipelineQuota:
       additionalProperties:
         $ref: '#/components/schemas/Quota'
@@ -13021,6 +15607,159 @@ components:
     SnapshotQuota:
       additionalProperties:
         $ref: '#/components/schemas/Quota'
+      type: object
+    SpProcess:
+      example:
+        identity_id: identity_id
+        created_at: created_at
+        version_id: 6
+        type: type
+        created_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        pipeline:
+          next_run_at: next_run_at
+          deleted_by_id: deleted_by_id
+          created_at: created_at
+          deleted_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          last_process_id: last_process_id
+          version_id: 0
+          title: title
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          deleted_at: deleted_at
+          frequency:
+            schedule: schedule
+            type: interval
+          tags: ""
+          args: ""
+          pipeline: pipeline
+          workspace_id: workspace_id
+          updated_at: updated_at
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+        workspace_id: workspace_id
+        updated_at: updated_at
+        pipeline_id: pipeline_id
+        updated_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        updated_by_id: updated_by_id
+        created_by_id: created_by_id
+        id: id
+        state: pending
+      properties:
+        created_at:
+          description: The time of creation in ISO 8601 UTC.
+          type: string
+        created_by:
+          $ref: '#/components/schemas/User'
+        created_by_id:
+          description: The ID of the user that created this.
+          format: ^u_[0-9a-v]{20}$
+          type: string
+        id:
+          description: The unique identifier of the process.
+          format: ^p_[0-9a-v]{20}$
+          type: string
+        identity_id:
+          description: The unique identifier of the identity for which the process
+            is created.
+          format: ^[o|u]_[0-9a-v]{20}$
+          type: string
+        pipeline:
+          $ref: '#/components/schemas/Pipeline'
+        pipeline_id:
+          description: The unique identifier of the pipeline for which the process
+            is created.
+          format: ^pipe_[0-9a-v]{20}$
+          type: string
+        state:
+          description: The state of the process.
+          enum:
+          - pending
+          - running
+          - failed
+          - completed
+          - canceled
+          type: string
+        type:
+          description: The type of the process, generally denotes the activity performed
+            e.g. workspace.create, pipeline.execute, pipeline.command.run.
+          type: string
+        updated_at:
+          description: The time of the last update in ISO 8601 UTC.
+          type: string
+        updated_by:
+          $ref: '#/components/schemas/User'
+        updated_by_id:
+          description: The ID of the user that performed the last update.
+          format: ^u_[0-9a-v]{20}$
+          type: string
+        version_id:
+          description: The version ID of this item. Pass this version ID via an If-Match
+            header when performing mutation operations on the item.
+          type: integer
+        workspace_id:
+          description: The unique identifier of the workspace for which the process
+            is created.
+          format: ^w_[0-9a-v]{20}$
+          type: string
+      required:
+      - created_at
+      - created_by_id
+      - id
+      - type
+      - updated_at
+      - updated_by_id
+      - version_id
       type: object
     TemporaryTokenRequest:
       example:
@@ -13134,6 +15873,25 @@ components:
       required:
       - role
       type: object
+    UpdatePipelineRequest:
+      example:
+        args: ""
+        title: title
+        frequency:
+          schedule: schedule
+          type: interval
+        tags: ""
+      properties:
+        args:
+          nullable: true
+        frequency:
+          $ref: '#/components/schemas/PipelineFrequency'
+        tags:
+          nullable: true
+        title:
+          description: The title of the pipeline.
+          type: string
+      type: object
     UpdateTemporaryTokenRequest:
       example:
         state: state
@@ -13218,7 +15976,7 @@ components:
       type: object
     UpdateWorkspaceSnapshotRequest:
       example:
-        visibility: visibility
+        visibility: workspace
         title: title
         tags: ""
       properties:
@@ -13226,9 +15984,13 @@ components:
           nullable: true
         title:
           description: The updated title for the snapshot.
+          minLength: 1
           type: string
         visibility:
           description: The updated visibility for the snapshot.
+          enum:
+          - workspace
+          - anyone_with_link
           type: string
       type: object
     User:
@@ -13772,6 +16534,7 @@ components:
           status: status
         created_at: created_at
         connection:
+          plugin_version: plugin_version
           identity_id: identity_id
           deleted_by_id: deleted_by_id
           created_at: created_at
@@ -14215,7 +16978,12 @@ components:
       type: object
     WorkspaceSnapshotData:
       example:
-        layout: '{}'
+        layout:
+          children:
+          - null
+          - null
+          panel_type: panel_type
+          name: name
         schema_version: schema_version
         start_time: start_time
         variables: '{}'
@@ -14229,7 +16997,7 @@ components:
         inputs:
           type: object
         layout:
-          type: object
+          $ref: '#/components/schemas/WorkspaceSnapshotDataLayout'
         panels:
           type: object
         schema_version:
@@ -14246,6 +17014,26 @@ components:
       - panels
       - schema_version
       - start_time
+      type: object
+    WorkspaceSnapshotDataLayout:
+      example:
+        children:
+        - null
+        - null
+        panel_type: panel_type
+        name: name
+      properties:
+        children:
+          items:
+            $ref: '#/components/schemas/WorkspaceSnapshotDataLayout'
+          type: array
+        name:
+          type: string
+        panel_type:
+          type: string
+      required:
+      - name
+      - panel_type
       type: object
   securitySchemes:
     ApiKeyAuth:
