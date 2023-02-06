@@ -5396,7 +5396,7 @@ paths:
       - OrgWorkspaceProcesses
   /org/{org_handle}/workspace/{workspace_handle}/process/{process_id}:
     get:
-      description: Get the details for the process (this is an experimental feature).
+      description: Get the details for the process.
       operationId: orgWorkspaceProcess_get
       parameters:
       - description: The handle of the org where the workspace exist.
@@ -5474,8 +5474,7 @@ paths:
       - OrgWorkspaceProcesses
   /org/{org_handle}/workspace/{workspace_handle}/process/{process_id}/log/{log_file}.{content_type}:
     get:
-      description: List the process logs associated with a workspace process (this
-        is an experimental feature).
+      description: List the process logs associated with a workspace process.
       operationId: orgWorkspaceProcess_log
       parameters:
       - description: The handle of the org for which you want to list process logs.
@@ -11222,8 +11221,7 @@ paths:
       - UserWorkspaceProcesses
   /user/{user_handle}/workspace/{workspace_handle}/process/{process_id}/log/{log_file}.{content_type}:
     get:
-      description: List the process logs associated with a workspace process (this
-        is an experimental feature).
+      description: List the process logs associated with a workspace process.
       operationId: userWorkspaceProcess_log
       parameters:
       - description: The handle of the user where the workspace exist.

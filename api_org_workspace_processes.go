@@ -43,7 +43,7 @@ func (r OrgWorkspaceProcessesApiGetRequest) Execute() (SpProcess, *_nethttp.Resp
 /*
 Get Get org workspace process
 
-Get the details for the process (this is an experimental feature).
+Get the details for the process.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgHandle The handle of the org where the workspace exist.
@@ -393,7 +393,7 @@ func (r OrgWorkspaceProcessesApiLogRequest) Execute() (string, *_nethttp.Respons
 /*
 Log List org workspace process logs
 
-List the process logs associated with a workspace process (this is an experimental feature).
+List the process logs associated with a workspace process.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgHandle The handle of the org for which you want to list process logs.

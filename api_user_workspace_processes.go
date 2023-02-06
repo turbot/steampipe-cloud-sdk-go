@@ -403,7 +403,7 @@ func (r UserWorkspaceProcessesApiLogRequest) Execute() (string, *_nethttp.Respon
 /*
 Log List user workspace process logs
 
-List the process logs associated with a workspace process (this is an experimental feature).
+List the process logs associated with a workspace process.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userHandle The handle of the user where the workspace exist.
