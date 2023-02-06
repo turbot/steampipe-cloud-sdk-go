@@ -15,6 +15,7 @@ _What's new?_
 _Enhancements_
 
 - Added attribute `PluginVersion` in the `Connection` struct to return the version of the plugin.
+- Added ability to pass in `where` clauses for org workspace snapshot filtering capabilities.
 
 ## 0.4.0 [2023-01-09]
 

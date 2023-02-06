@@ -4826,6 +4826,16 @@ paths:
           format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
           type: string
         style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The max number of items to fetch per page of data, subject to
           a min and max of 1 and 100 respectively. If not specified will default to
           25.
@@ -5331,6 +5341,16 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The max number of items to fetch per page of data, subject to
           a min and max of 1 and 100 respectively. If not specified will default to
           25.
@@ -6210,6 +6230,16 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The max number of items to fetch per page of data, subject to
           a min and max of 1 and 100 respectively. If not specified will default to
           25.
@@ -10568,6 +10598,16 @@ paths:
           format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
           type: string
         style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The max number of items to fetch per page of data, subject to
           a min and max of 1 and 100 respectively. If not specified will default to
           25.
@@ -11072,6 +11112,16 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The max number of items to fetch per page of data, subject to
           a min and max of 1 and 100 respectively. If not specified will default to
           25.

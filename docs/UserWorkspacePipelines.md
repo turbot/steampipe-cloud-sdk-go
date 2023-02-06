@@ -320,7 +320,7 @@ No authorization required
 
 ## List
 
-> ListPipelinesResponse List(ctx, userHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+> ListPipelinesResponse List(ctx, userHandle, workspaceHandle).Where(where).Limit(limit).NextToken(nextToken).Execute()
 
 List user workspace pipelines
 
@@ -341,12 +341,13 @@ import (
 func main() {
     userHandle := "userHandle_example" // string | The handle of the user for which contains the workspace.
     workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace for which we want to list the pipelines.
+    where := "where_example" // string | The SQL where filter you wish to apply to this request. The filter will be parsed and sanitised and checked against the supported columns for this API. (optional)
     limit := int32(56) // int32 | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. (optional) (default to 25)
     nextToken := "nextToken_example" // string | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserWorkspacePipelines.List(context.Background(), userHandle, workspaceHandle).Limit(limit).NextToken(nextToken).Execute()
+    resp, r, err := api_client.UserWorkspacePipelines.List(context.Background(), userHandle, workspaceHandle).Where(where).Limit(limit).NextToken(nextToken).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserWorkspacePipelines.List``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -374,6 +375,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **where** | **string** | The SQL where filter you wish to apply to this request. The filter will be parsed and sanitised and checked against the supported columns for this API. | 
  **limit** | **int32** | The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25. | [default to 25]
  **nextToken** | **string** | When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data. | 
 

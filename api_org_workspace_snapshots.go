@@ -729,8 +729,15 @@ type OrgWorkspaceSnapshotsApiListRequest struct {
 	ApiService      *OrgWorkspaceSnapshotsService
 	orgHandle       string
 	workspaceHandle string
+	where           *string
 	limit           *int32
 	nextToken       *string
+}
+
+// The SQL where filter you wish to apply to this request. The filter will be parsed and sanitised and checked against the supported columns for this API.
+func (r OrgWorkspaceSnapshotsApiListRequest) Where(where string) OrgWorkspaceSnapshotsApiListRequest {
+	r.where = &where
+	return r
 }
 
 // The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
@@ -792,6 +799,9 @@ func (a *OrgWorkspaceSnapshotsService) ListExecute(r OrgWorkspaceSnapshotsApiLis
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.where != nil {
+		localVarQueryParams.Add("where", parameterToString(*r.where, ""))
+	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
