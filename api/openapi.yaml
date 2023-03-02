@@ -701,7 +701,7 @@ paths:
         name: temporary_token_request_id
         required: true
         schema:
-          format: ^spttr_[0-9a-v]{20}_[0-9a-z]{19,}$
+          format: ^spttr_[0-9a-v]{20}_[0-9a-z]{26}$
           type: string
         style: simple
       responses:
@@ -748,7 +748,7 @@ paths:
         name: temporary_token_request_id
         required: true
         schema:
-          format: ^spttr_[0-9a-v]{20}_[0-9a-z]{19,}$
+          format: ^spttr_[0-9a-v]{20}_[0-9a-z]{26}$
           type: string
         style: simple
       - description: The challenge code to request the temporary token. Will only
@@ -758,7 +758,7 @@ paths:
         name: code
         required: false
         schema:
-          format: ^[0-9]{4}$
+          format: ^[0-9]{6}$
           type: string
         style: form
       responses:
@@ -811,7 +811,7 @@ paths:
         name: temporary_token_request_id
         required: true
         schema:
-          format: ^spttr_[0-9a-v]{20}_[0-9a-z]{19,}$
+          format: ^spttr_[0-9a-v]{20}_[0-9a-z]{26}$
           type: string
         style: simple
       requestBody:
@@ -6414,7 +6414,7 @@ paths:
         name: snapshot_id
         required: true
         schema:
-          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          format: ^snap_[0-9a-v]{20}_[0-9a-z]{19,26}$
           type: string
         style: simple
       responses:
@@ -6494,7 +6494,7 @@ paths:
         name: snapshot_id
         required: true
         schema:
-          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          format: ^snap_[0-9a-v]{20}_[0-9a-z]{19,26}$
           type: string
         style: simple
       responses:
@@ -6571,7 +6571,7 @@ paths:
         name: snapshot_id
         required: true
         schema:
-          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          format: ^snap_[0-9a-v]{20}_[0-9a-z]{19,26}$
           type: string
         style: simple
       requestBody:
@@ -12191,7 +12191,7 @@ paths:
         name: snapshot_id
         required: true
         schema:
-          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          format: ^snap_[0-9a-v]{20}_[0-9a-z]{19,26}$
           type: string
         style: simple
       responses:
@@ -12271,7 +12271,7 @@ paths:
         name: snapshot_id
         required: true
         schema:
-          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          format: ^snap_[0-9a-v]{20}_[0-9a-z]{19,26}$
           type: string
         style: simple
       responses:
@@ -12348,7 +12348,7 @@ paths:
         name: snapshot_id
         required: true
         schema:
-          format: ^[a-z]{1,3}_[0-9a-v]{20}$
+          format: ^snap_[0-9a-v]{20}_[0-9a-z]{19,26}$
           type: string
         style: simple
       requestBody:
@@ -12993,7 +12993,7 @@ components:
     CreatePipelineRequest:
       example:
         args: ""
-        pipeline: pipeline
+        pipeline: pipeline.snapshot_dashboard
         title: title
         frequency:
           schedule: schedule
@@ -13006,7 +13006,9 @@ components:
           $ref: '#/components/schemas/PipelineFrequency'
         pipeline:
           description: The name of the pipeline to be executed.
-          format: ^(pipeline\.save_snapshot|pipeline\.data_tank_schedule)$
+          enum:
+          - pipeline.snapshot_dashboard
+          - pipeline.snapshot_query
           type: string
         tags:
           nullable: true
@@ -13908,7 +13910,7 @@ components:
             type: interval
           tags: ""
           args: ""
-          pipeline: pipeline
+          pipeline: pipeline.snapshot_dashboard
           workspace_id: workspace_id
           updated_at: updated_at
           updated_by:
@@ -13959,7 +13961,7 @@ components:
             type: interval
           tags: ""
           args: ""
-          pipeline: pipeline
+          pipeline: pipeline.snapshot_dashboard
           workspace_id: workspace_id
           updated_at: updated_at
           updated_by:
@@ -14038,7 +14040,7 @@ components:
               type: interval
             tags: ""
             args: ""
-            pipeline: pipeline
+            pipeline: pipeline.snapshot_dashboard
             workspace_id: workspace_id
             updated_at: updated_at
             updated_by:
@@ -14123,7 +14125,7 @@ components:
               type: interval
             tags: ""
             args: ""
-            pipeline: pipeline
+            pipeline: pipeline.snapshot_dashboard
             workspace_id: workspace_id
             updated_at: updated_at
             updated_by:
@@ -15450,7 +15452,7 @@ components:
           type: interval
         tags: ""
         args: ""
-        pipeline: pipeline
+        pipeline: pipeline.snapshot_dashboard
         workspace_id: workspace_id
         updated_at: updated_at
         updated_by:
@@ -15505,7 +15507,10 @@ components:
           type: string
         pipeline:
           description: The name of the pipeline to be executed.
-          format: ^(pipeline\.save_snapshot|pipeline\.data_tank_schedule)$
+          enum:
+          - pipeline.snapshot_dashboard
+          - pipeline.snapshot_query
+          - pipeline.datatank_schedule
           type: string
         tags:
           nullable: true
@@ -15660,7 +15665,7 @@ components:
             type: interval
           tags: ""
           args: ""
-          pipeline: pipeline
+          pipeline: pipeline.snapshot_dashboard
           workspace_id: workspace_id
           updated_at: updated_at
           updated_by:
