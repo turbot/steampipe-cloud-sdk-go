@@ -1,6 +1,14 @@
 # Steampipe Cloud Go SDK
 
-## 0.5.0 [tbd]
+## 0.5.1 [2023-03-02]
+
+_Enhancements_
+
+- Updated regular expression for `temporary_token_request_id` for various dependent APIs.
+- Updated regular expression for `snapshot_id` for various dependent APIs.
+- Updated field `pipeline` in `CreatePipelineRequest` to use an enum of acceptable values instead of a regular expression. 
+
+## 0.5.0 [2023-02-06]
 
 _Breaking changes_
 
