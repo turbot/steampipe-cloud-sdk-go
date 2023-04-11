@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **Handle** | **string** | The handle name of a user. | 
 **Id** | **string** | The unique identifier of a user. | 
 **PreviewAccessMode** | Pointer to **string** |  | [optional] 
-**Status** | **string** | The status of the user i.e accepted or pending | 
+**Status** | **string** | The status of the user i.e accepted or pending. | 
+**TokenMinIssuedAt** | Pointer to [**JSONTime**](JSONTime.md) |  | [optional] 
 **UpdatedAt** | Pointer to **string** | The user updated time. | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
 **VersionId** | **int32** | The current version of a user. | 
@@ -188,6 +189,31 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+
+### GetTokenMinIssuedAt
+
+`func (o *User) GetTokenMinIssuedAt() JSONTime`
+
+GetTokenMinIssuedAt returns the TokenMinIssuedAt field if non-nil, zero value otherwise.
+
+### GetTokenMinIssuedAtOk
+
+`func (o *User) GetTokenMinIssuedAtOk() (*JSONTime, bool)`
+
+GetTokenMinIssuedAtOk returns a tuple with the TokenMinIssuedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenMinIssuedAt
+
+`func (o *User) SetTokenMinIssuedAt(v JSONTime)`
+
+SetTokenMinIssuedAt sets TokenMinIssuedAt field to given value.
+
+### HasTokenMinIssuedAt
+
+`func (o *User) HasTokenMinIssuedAt() bool`
+
+HasTokenMinIssuedAt returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

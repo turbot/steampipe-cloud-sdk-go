@@ -26,8 +26,9 @@ type User struct {
 	// The unique identifier of a user.
 	Id                string  `json:"id"`
 	PreviewAccessMode *string `json:"preview_access_mode,omitempty"`
-	// The status of the user i.e accepted or pending
-	Status string `json:"status"`
+	// The status of the user i.e accepted or pending.
+	Status           string    `json:"status"`
+	TokenMinIssuedAt *JSONTime `json:"token_min_issued_at,omitempty"`
 	// The user updated time.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	Url       *string `json:"url,omitempty"`
@@ -249,6 +250,38 @@ func (o *User) SetStatus(v string) {
 	o.Status = v
 }
 
+// GetTokenMinIssuedAt returns the TokenMinIssuedAt field value if set, zero value otherwise.
+func (o *User) GetTokenMinIssuedAt() JSONTime {
+	if o == nil || o.TokenMinIssuedAt == nil {
+		var ret JSONTime
+		return ret
+	}
+	return *o.TokenMinIssuedAt
+}
+
+// GetTokenMinIssuedAtOk returns a tuple with the TokenMinIssuedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetTokenMinIssuedAtOk() (*JSONTime, bool) {
+	if o == nil || o.TokenMinIssuedAt == nil {
+		return nil, false
+	}
+	return o.TokenMinIssuedAt, true
+}
+
+// HasTokenMinIssuedAt returns a boolean if a field has been set.
+func (o *User) HasTokenMinIssuedAt() bool {
+	if o != nil && o.TokenMinIssuedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenMinIssuedAt gets a reference to the given JSONTime and assigns it to the TokenMinIssuedAt field.
+func (o *User) SetTokenMinIssuedAt(v JSONTime) {
+	o.TokenMinIssuedAt = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *User) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
@@ -359,6 +392,9 @@ func (o User) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["status"] = o.Status
+	}
+	if o.TokenMinIssuedAt != nil {
+		toSerialize["token_min_issued_at"] = o.TokenMinIssuedAt
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt

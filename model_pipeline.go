@@ -27,18 +27,25 @@ type Pipeline struct {
 	DeletedAt *string `json:"deleted_at,omitempty"`
 	DeletedBy *User   `json:"deleted_by,omitempty"`
 	// The ID of the user that performed the deletion.
-	DeletedById string            `json:"deleted_by_id"`
-	Frequency   PipelineFrequency `json:"frequency"`
+	DeletedById string `json:"deleted_by_id"`
+	// DesiredState is user editable state of the pipeline, there are only 3 options: enabled, disabled or paused
+	DesiredState string            `json:"desired_state"`
+	Frequency    PipelineFrequency `json:"frequency"`
 	// The unique identifier of the pipeline.
-	Id          string     `json:"id"`
+	Id string `json:"id"`
+	// We need the IdentityID to be in the JSON field because I'm sending the pipeline definition across the Temporal Workflow (see Datatank migration workflow)
+	IdentityId  string     `json:"identity_id"`
 	LastProcess *SpProcess `json:"last_process,omitempty"`
 	// The id of the last process that was run for the pipeline.
 	LastProcessId *string `json:"last_process_id,omitempty"`
 	// The time when the pipeline is next scheduled to run in ISO 8601 UTC.
-	NextRunAt string `json:"next_run_at"`
+	NextRunAt *string `json:"next_run_at,omitempty"`
 	// The name of the pipeline to be executed.
-	Pipeline string      `json:"pipeline"`
-	Tags     interface{} `json:"tags,omitempty"`
+	Pipeline string `json:"pipeline"`
+	// State is the system state of the pipeline. User should not be able to modify this value
+	State       string      `json:"state"`
+	StateReason *string     `json:"state_reason,omitempty"`
+	Tags        interface{} `json:"tags,omitempty"`
 	// The title of the pipeline.
 	Title *string `json:"title,omitempty"`
 	// The time of the last update in ISO 8601 UTC.
@@ -56,15 +63,17 @@ type Pipeline struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPipeline(createdAt string, createdById string, deletedById string, frequency PipelineFrequency, id string, nextRunAt string, pipeline string, updatedById string, versionId int32) *Pipeline {
+func NewPipeline(createdAt string, createdById string, deletedById string, desiredState string, frequency PipelineFrequency, id string, identityId string, pipeline string, state string, updatedById string, versionId int32) *Pipeline {
 	this := Pipeline{}
 	this.CreatedAt = createdAt
 	this.CreatedById = createdById
 	this.DeletedById = deletedById
+	this.DesiredState = desiredState
 	this.Frequency = frequency
 	this.Id = id
-	this.NextRunAt = nextRunAt
+	this.IdentityId = identityId
 	this.Pipeline = pipeline
+	this.State = state
 	this.UpdatedById = updatedById
 	this.VersionId = versionId
 	return &this
@@ -279,6 +288,30 @@ func (o *Pipeline) SetDeletedById(v string) {
 	o.DeletedById = v
 }
 
+// GetDesiredState returns the DesiredState field value
+func (o *Pipeline) GetDesiredState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DesiredState
+}
+
+// GetDesiredStateOk returns a tuple with the DesiredState field value
+// and a boolean to check if the value has been set.
+func (o *Pipeline) GetDesiredStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DesiredState, true
+}
+
+// SetDesiredState sets field value
+func (o *Pipeline) SetDesiredState(v string) {
+	o.DesiredState = v
+}
+
 // GetFrequency returns the Frequency field value
 func (o *Pipeline) GetFrequency() PipelineFrequency {
 	if o == nil {
@@ -325,6 +358,30 @@ func (o *Pipeline) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *Pipeline) SetId(v string) {
 	o.Id = v
+}
+
+// GetIdentityId returns the IdentityId field value
+func (o *Pipeline) GetIdentityId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.IdentityId
+}
+
+// GetIdentityIdOk returns a tuple with the IdentityId field value
+// and a boolean to check if the value has been set.
+func (o *Pipeline) GetIdentityIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IdentityId, true
+}
+
+// SetIdentityId sets field value
+func (o *Pipeline) SetIdentityId(v string) {
+	o.IdentityId = v
 }
 
 // GetLastProcess returns the LastProcess field value if set, zero value otherwise.
@@ -391,28 +448,36 @@ func (o *Pipeline) SetLastProcessId(v string) {
 	o.LastProcessId = &v
 }
 
-// GetNextRunAt returns the NextRunAt field value
+// GetNextRunAt returns the NextRunAt field value if set, zero value otherwise.
 func (o *Pipeline) GetNextRunAt() string {
-	if o == nil {
+	if o == nil || o.NextRunAt == nil {
 		var ret string
 		return ret
 	}
-
-	return o.NextRunAt
+	return *o.NextRunAt
 }
 
-// GetNextRunAtOk returns a tuple with the NextRunAt field value
+// GetNextRunAtOk returns a tuple with the NextRunAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Pipeline) GetNextRunAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.NextRunAt == nil {
 		return nil, false
 	}
-	return &o.NextRunAt, true
+	return o.NextRunAt, true
 }
 
-// SetNextRunAt sets field value
+// HasNextRunAt returns a boolean if a field has been set.
+func (o *Pipeline) HasNextRunAt() bool {
+	if o != nil && o.NextRunAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNextRunAt gets a reference to the given string and assigns it to the NextRunAt field.
 func (o *Pipeline) SetNextRunAt(v string) {
-	o.NextRunAt = v
+	o.NextRunAt = &v
 }
 
 // GetPipeline returns the Pipeline field value
@@ -437,6 +502,62 @@ func (o *Pipeline) GetPipelineOk() (*string, bool) {
 // SetPipeline sets field value
 func (o *Pipeline) SetPipeline(v string) {
 	o.Pipeline = v
+}
+
+// GetState returns the State field value
+func (o *Pipeline) GetState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *Pipeline) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
+// SetState sets field value
+func (o *Pipeline) SetState(v string) {
+	o.State = v
+}
+
+// GetStateReason returns the StateReason field value if set, zero value otherwise.
+func (o *Pipeline) GetStateReason() string {
+	if o == nil || o.StateReason == nil {
+		var ret string
+		return ret
+	}
+	return *o.StateReason
+}
+
+// GetStateReasonOk returns a tuple with the StateReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Pipeline) GetStateReasonOk() (*string, bool) {
+	if o == nil || o.StateReason == nil {
+		return nil, false
+	}
+	return o.StateReason, true
+}
+
+// HasStateReason returns a boolean if a field has been set.
+func (o *Pipeline) HasStateReason() bool {
+	if o != nil && o.StateReason != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStateReason gets a reference to the given string and assigns it to the StateReason field.
+func (o *Pipeline) SetStateReason(v string) {
+	o.StateReason = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -672,10 +793,16 @@ func (o Pipeline) MarshalJSON() ([]byte, error) {
 		toSerialize["deleted_by_id"] = o.DeletedById
 	}
 	if true {
+		toSerialize["desired_state"] = o.DesiredState
+	}
+	if true {
 		toSerialize["frequency"] = o.Frequency
 	}
 	if true {
 		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["identity_id"] = o.IdentityId
 	}
 	if o.LastProcess != nil {
 		toSerialize["last_process"] = o.LastProcess
@@ -683,11 +810,17 @@ func (o Pipeline) MarshalJSON() ([]byte, error) {
 	if o.LastProcessId != nil {
 		toSerialize["last_process_id"] = o.LastProcessId
 	}
-	if true {
+	if o.NextRunAt != nil {
 		toSerialize["next_run_at"] = o.NextRunAt
 	}
 	if true {
 		toSerialize["pipeline"] = o.Pipeline
+	}
+	if true {
+		toSerialize["state"] = o.State
+	}
+	if o.StateReason != nil {
+		toSerialize["state_reason"] = o.StateReason
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags

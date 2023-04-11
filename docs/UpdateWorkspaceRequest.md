@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DesiredState** | Pointer to **string** | paused is not yet supported for Workspace | [optional] 
 **Handle** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -24,6 +25,31 @@ will change when the set of required properties is changed
 NewUpdateWorkspaceRequestWithDefaults instantiates a new UpdateWorkspaceRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDesiredState
+
+`func (o *UpdateWorkspaceRequest) GetDesiredState() string`
+
+GetDesiredState returns the DesiredState field if non-nil, zero value otherwise.
+
+### GetDesiredStateOk
+
+`func (o *UpdateWorkspaceRequest) GetDesiredStateOk() (*string, bool)`
+
+GetDesiredStateOk returns a tuple with the DesiredState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDesiredState
+
+`func (o *UpdateWorkspaceRequest) SetDesiredState(v string)`
+
+SetDesiredState sets DesiredState field to given value.
+
+### HasDesiredState
+
+`func (o *UpdateWorkspaceRequest) HasDesiredState() bool`
+
+HasDesiredState returns a boolean if a field has been set.
 
 ### GetHandle
 

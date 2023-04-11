@@ -17,7 +17,9 @@ import (
 
 // UpdateWorkspaceRequest struct for UpdateWorkspaceRequest
 type UpdateWorkspaceRequest struct {
-	Handle *string `json:"handle,omitempty"`
+	// paused is not yet supported for Workspace
+	DesiredState *string `json:"desired_state,omitempty"`
+	Handle       *string `json:"handle,omitempty"`
 }
 
 // NewUpdateWorkspaceRequest instantiates a new UpdateWorkspaceRequest object
@@ -35,6 +37,38 @@ func NewUpdateWorkspaceRequest() *UpdateWorkspaceRequest {
 func NewUpdateWorkspaceRequestWithDefaults() *UpdateWorkspaceRequest {
 	this := UpdateWorkspaceRequest{}
 	return &this
+}
+
+// GetDesiredState returns the DesiredState field value if set, zero value otherwise.
+func (o *UpdateWorkspaceRequest) GetDesiredState() string {
+	if o == nil || o.DesiredState == nil {
+		var ret string
+		return ret
+	}
+	return *o.DesiredState
+}
+
+// GetDesiredStateOk returns a tuple with the DesiredState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateWorkspaceRequest) GetDesiredStateOk() (*string, bool) {
+	if o == nil || o.DesiredState == nil {
+		return nil, false
+	}
+	return o.DesiredState, true
+}
+
+// HasDesiredState returns a boolean if a field has been set.
+func (o *UpdateWorkspaceRequest) HasDesiredState() bool {
+	if o != nil && o.DesiredState != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDesiredState gets a reference to the given string and assigns it to the DesiredState field.
+func (o *UpdateWorkspaceRequest) SetDesiredState(v string) {
+	o.DesiredState = &v
 }
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
@@ -71,6 +105,9 @@ func (o *UpdateWorkspaceRequest) SetHandle(v string) {
 
 func (o UpdateWorkspaceRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.DesiredState != nil {
+		toSerialize["desired_state"] = o.DesiredState
+	}
 	if o.Handle != nil {
 		toSerialize["handle"] = o.Handle
 	}

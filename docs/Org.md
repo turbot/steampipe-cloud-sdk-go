@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AvatarUrl** | Pointer to **string** | The avatar of an org. | [optional] 
+**Billing** | Pointer to [**BillingInfo**](BillingInfo.md) |  | [optional] 
 **CreatedAt** | **string** | The time of creation in ISO 8601 UTC. | 
 **CreatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **CreatedById** | **string** | The ID of the user that created this. | 
@@ -14,6 +15,9 @@ Name | Type | Description | Notes
 **DisplayName** | Pointer to **string** | The display name of an org. | [optional] 
 **Handle** | **string** | The handle name for an org. | 
 **Id** | **string** | The unique identifier for an org. | 
+**State** | **string** | The state of the org. | 
+**StateReason** | Pointer to **string** | The reason for the state of the org | [optional] 
+**TokenMinIssuedAt** | Pointer to [**JSONTime**](JSONTime.md) |  | [optional] 
 **UpdatedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
 **UpdatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **UpdatedById** | **string** | The ID of the user that performed the last update. | 
@@ -24,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewOrg
 
-`func NewOrg(createdAt string, createdById string, deletedById string, handle string, id string, updatedById string, versionId int32, ) *Org`
+`func NewOrg(createdAt string, createdById string, deletedById string, handle string, id string, state string, updatedById string, versionId int32, ) *Org`
 
 NewOrg instantiates a new Org object
 This constructor will assign default values to properties that have it defined,
@@ -63,6 +67,31 @@ SetAvatarUrl sets AvatarUrl field to given value.
 `func (o *Org) HasAvatarUrl() bool`
 
 HasAvatarUrl returns a boolean if a field has been set.
+
+### GetBilling
+
+`func (o *Org) GetBilling() BillingInfo`
+
+GetBilling returns the Billing field if non-nil, zero value otherwise.
+
+### GetBillingOk
+
+`func (o *Org) GetBillingOk() (*BillingInfo, bool)`
+
+GetBillingOk returns a tuple with the Billing field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBilling
+
+`func (o *Org) SetBilling(v BillingInfo)`
+
+SetBilling sets Billing field to given value.
+
+### HasBilling
+
+`func (o *Org) HasBilling() bool`
+
+HasBilling returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -263,6 +292,76 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+
+### GetState
+
+`func (o *Org) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *Org) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *Org) SetState(v string)`
+
+SetState sets State field to given value.
+
+
+### GetStateReason
+
+`func (o *Org) GetStateReason() string`
+
+GetStateReason returns the StateReason field if non-nil, zero value otherwise.
+
+### GetStateReasonOk
+
+`func (o *Org) GetStateReasonOk() (*string, bool)`
+
+GetStateReasonOk returns a tuple with the StateReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStateReason
+
+`func (o *Org) SetStateReason(v string)`
+
+SetStateReason sets StateReason field to given value.
+
+### HasStateReason
+
+`func (o *Org) HasStateReason() bool`
+
+HasStateReason returns a boolean if a field has been set.
+
+### GetTokenMinIssuedAt
+
+`func (o *Org) GetTokenMinIssuedAt() JSONTime`
+
+GetTokenMinIssuedAt returns the TokenMinIssuedAt field if non-nil, zero value otherwise.
+
+### GetTokenMinIssuedAtOk
+
+`func (o *Org) GetTokenMinIssuedAtOk() (*JSONTime, bool)`
+
+GetTokenMinIssuedAtOk returns a tuple with the TokenMinIssuedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenMinIssuedAt
+
+`func (o *Org) SetTokenMinIssuedAt(v JSONTime)`
+
+SetTokenMinIssuedAt sets TokenMinIssuedAt field to given value.
+
+### HasTokenMinIssuedAt
+
+`func (o *Org) HasTokenMinIssuedAt() bool`
+
+HasTokenMinIssuedAt returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

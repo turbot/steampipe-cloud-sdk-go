@@ -5,8 +5,10 @@ All URIs are relative to *https://cloud.steampipe.io/api/v0*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Create**](Users.md#Create) | **Post** /user | Create user
+[**CreateAvatar**](Users.md#CreateAvatar) | **Post** /user/{user_handle}/avatar | Create user avatar
 [**CreateDBPassword**](Users.md#CreateDBPassword) | **Post** /user/{user_handle}/password | Create user password
 [**Delete**](Users.md#Delete) | **Delete** /user/{user_handle} | Delete user
+[**DeleteAvatar**](Users.md#DeleteAvatar) | **Delete** /user/{user_handle}/avatar | Delete user avatar
 [**Get**](Users.md#Get) | **Get** /user/{user_handle} | Get user
 [**GetDBPassword**](Users.md#GetDBPassword) | **Get** /user/{user_handle}/password | Get user password
 [**GetEmail**](Users.md#GetEmail) | **Get** /user/{user_handle}/email/{email_id} | Get user email
@@ -80,6 +82,76 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateAvatar
+
+> CreateUserAvatarResponse CreateAvatar(ctx, userHandle).Execute()
+
+Create user avatar
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | The handle of the user whose avatar is to be created.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.Users.CreateAvatar(context.Background(), userHandle).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Users.CreateAvatar``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateAvatar`: CreateUserAvatarResponse
+    fmt.Fprintf(os.Stdout, "Response from `Users.CreateAvatar`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | The handle of the user whose avatar is to be created. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateAvatarRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**CreateUserAvatarResponse**](CreateUserAvatarResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -214,6 +286,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**User**](User.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteAvatar
+
+> DeleteUserAvatarResponse DeleteAvatar(ctx, userHandle).Execute()
+
+Delete user avatar
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userHandle := "userHandle_example" // string | The handle of the user whose avatar is to be deleted.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.Users.DeleteAvatar(context.Background(), userHandle).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Users.DeleteAvatar``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteAvatar`: DeleteUserAvatarResponse
+    fmt.Fprintf(os.Stdout, "Response from `Users.DeleteAvatar`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userHandle** | **string** | The handle of the user whose avatar is to be deleted. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAvatarRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DeleteUserAvatarResponse**](DeleteUserAvatarResponse.md)
 
 ### Authorization
 

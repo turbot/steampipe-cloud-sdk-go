@@ -754,7 +754,7 @@ func (r UserWorkspacesApiGetQueryRequest) Execute() (WorkspaceQueryResult, *_net
 /*
 GetQuery Query user workspace
 
-Performs a query in a user workspace. Results are limited to 3000 rows or 30 seconds of query execution.
+Performs a query in a user workspace. Results are limited to 5000 rows or 30 seconds of query execution.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userHandle The handle of the user that the workspace belongs to.
@@ -943,7 +943,7 @@ func (r UserWorkspacesApiGetQueryWithExtensionsRequest) Execute() (WorkspaceQuer
 /*
 GetQueryWithExtensions Query user workspace with extensions
 
-Performs a query in a user workspace, with content type and content encoding forming part of the API path. Results are limited to 3000 rows or 30 seconds of query execution.
+Performs a query in a user workspace, with content type and content encoding forming part of the API path. Results are limited to 5000 rows or 30 seconds of query execution.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userHandle The handle of the user that the workspace belongs to.
@@ -1828,7 +1828,7 @@ func (r UserWorkspacesApiPostQueryRequest) Execute() (WorkspaceQueryResult, *_ne
 /*
 PostQuery Query user workspace
 
-Performs a query in a user workspace. Results are limited to 3000 rows or 30 seconds of query execution.
+Performs a query in a user workspace. Results are limited to 5000 rows or 30 seconds of query execution.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userHandle The handle of the user that the workspace belongs to.
@@ -2018,7 +2018,7 @@ func (r UserWorkspacesApiPostQueryWithExtensionsRequest) Execute() (WorkspaceQue
 /*
 PostQueryWithExtensions Query user workspace with extensions
 
-Performs a query in a user workspace, with content type and content encoding forming part of the API path. Results are limited to 3000 rows or 30 seconds of query execution.
+Performs a query in a user workspace, with content type and content encoding forming part of the API path. Results are limited to 5000 rows or 30 seconds of query execution.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userHandle The handle of the user that the workspace belongs to.

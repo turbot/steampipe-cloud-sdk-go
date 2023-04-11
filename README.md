@@ -80,13 +80,22 @@ Class | Method | HTTP request | Description
 *Auth* | [**ProviderCallback**](docs/Auth.md#providercallback) | **Get** /auth/{provider}/callback | Auth provider callback
 *Auth* | [**Signup**](docs/Auth.md#signup) | **Post** /signup | User signup
 *Identities* | [**Get**](docs/Identities.md#get) | **Get** /identity/{identity_handle} | Get identity
+*Identities* | [**GetAvatar**](docs/Identities.md#getavatar) | **Get** /identity/{identity_handle}/avatar | Get identity avatar
 *Identities* | [**List**](docs/Identities.md#list) | **Get** /identity | List identities
-*OrgConnections* | [**Create**](docs/OrgConnections.md#create) | **Post** /org/{org_handle}/conn | Create org connection
-*OrgConnections* | [**Delete**](docs/OrgConnections.md#delete) | **Delete** /org/{org_handle}/conn/{conn_handle} | Delete org connection
-*OrgConnections* | [**Get**](docs/OrgConnections.md#get) | **Get** /org/{org_handle}/conn/{conn_handle} | Get org connection
-*OrgConnections* | [**List**](docs/OrgConnections.md#list) | **Get** /org/{org_handle}/conn | List org connections
-*OrgConnections* | [**Test**](docs/OrgConnections.md#test) | **Post** /org/{org_handle}/conn/{conn_handle}/test | Test org connection
-*OrgConnections* | [**Update**](docs/OrgConnections.md#update) | **Patch** /org/{org_handle}/conn/{conn_handle} | Update org connection
+*OrgConnections* | [**Create**](docs/OrgConnections.md#create) | **Post** /org/{org_handle}/connection | Create org connection
+*OrgConnections* | [**CreateDeprecated**](docs/OrgConnections.md#createdeprecated) | **Post** /org/{org_handle}/conn | Create org connection
+*OrgConnections* | [**Delete**](docs/OrgConnections.md#delete) | **Delete** /org/{org_handle}/connection/{connection_handle} | Delete org connection
+*OrgConnections* | [**DeleteDeprecated**](docs/OrgConnections.md#deletedeprecated) | **Delete** /org/{org_handle}/conn/{conn_handle} | Delete org connection
+*OrgConnections* | [**Get**](docs/OrgConnections.md#get) | **Get** /org/{org_handle}/connection/{connection_handle} | Get org connection
+*OrgConnections* | [**GetDeprecated**](docs/OrgConnections.md#getdeprecated) | **Get** /org/{org_handle}/conn/{conn_handle} | Get org connection
+*OrgConnections* | [**List**](docs/OrgConnections.md#list) | **Get** /org/{org_handle}/connection | List org connections
+*OrgConnections* | [**ListDeprecated**](docs/OrgConnections.md#listdeprecated) | **Get** /org/{org_handle}/conn | List org connections
+*OrgConnections* | [**ListWorkspaces**](docs/OrgConnections.md#listworkspaces) | **Get** /org/{org_handle}/connection/{connection_handle}/workspace | List org connection workspaces
+*OrgConnections* | [**ListWorkspacesDeprecated**](docs/OrgConnections.md#listworkspacesdeprecated) | **Get** /org/{org_handle}/conn/{conn_handle}/workspace | List org connection workspaces
+*OrgConnections* | [**Test**](docs/OrgConnections.md#test) | **Post** /org/{org_handle}/connection/{connection_handle}/test | Test org connection
+*OrgConnections* | [**TestDeprecated**](docs/OrgConnections.md#testdeprecated) | **Post** /org/{org_handle}/conn/{conn_handle}/test | Test org connection
+*OrgConnections* | [**Update**](docs/OrgConnections.md#update) | **Patch** /org/{org_handle}/connection/{connection_handle} | Update org connection
+*OrgConnections* | [**UpdateDeprecated**](docs/OrgConnections.md#updatedeprecated) | **Patch** /org/{org_handle}/conn/{conn_handle} | Update org connection
 *OrgMembers* | [**ConfirmInvite**](docs/OrgMembers.md#confirminvite) | **Get** /org/{org_handle}/member/invite/confirm | Confirm org member invite
 *OrgMembers* | [**Delete**](docs/OrgMembers.md#delete) | **Delete** /org/{org_handle}/member/{user_handle} | Delete org member
 *OrgMembers* | [**DeleteInvite**](docs/OrgMembers.md#deleteinvite) | **Delete** /org/{org_handle}/member/invite | Delete org member invite
@@ -97,6 +106,13 @@ Class | Method | HTTP request | Description
 *OrgProcesses* | [**Get**](docs/OrgProcesses.md#get) | **Get** /org/{org_handle}/process/{process_id} | Get Org process
 *OrgProcesses* | [**List**](docs/OrgProcesses.md#list) | **Get** /org/{org_handle}/process | List Org processes
 *OrgProcesses* | [**Log**](docs/OrgProcesses.md#log) | **Get** /org/{org_handle}/process/{process_id}/log/{log_file}.{content_type} | List Org process logs
+*OrgWorkspaceAggregators* | [**Create**](docs/OrgWorkspaceAggregators.md#create) | **Post** /org/{org_handle}/workspace/{workspace_handle}/aggregator | Create an aggregator for an org workspace
+*OrgWorkspaceAggregators* | [**Delete**](docs/OrgWorkspaceAggregators.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/aggregator/{aggregator_handle} | Delete an aggregator for a org workspace
+*OrgWorkspaceAggregators* | [**Get**](docs/OrgWorkspaceAggregators.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/aggregator/{aggregator_handle} | Get an aggregator for a org workspace
+*OrgWorkspaceAggregators* | [**GetConnection**](docs/OrgWorkspaceAggregators.md#getconnection) | **Get** /org/{org_handle}/workspace/{workspace_handle}/aggregator/{aggregator_handle}/connection/{connection_handle} | Get a connection in the scope of an aggregator for a org workspace
+*OrgWorkspaceAggregators* | [**List**](docs/OrgWorkspaceAggregators.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/aggregator | List aggregators for an org workspace
+*OrgWorkspaceAggregators* | [**ListConnections**](docs/OrgWorkspaceAggregators.md#listconnections) | **Get** /org/{org_handle}/workspace/{workspace_handle}/aggregator/{aggregator_handle}/connection | List connections in the scope of an aggregator for a org workspace
+*OrgWorkspaceAggregators* | [**Update**](docs/OrgWorkspaceAggregators.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle}/aggregator/{aggregator_handle} | Update an aggregator for a org workspace
 *OrgWorkspaceConnectionAssociations* | [**Create**](docs/OrgWorkspaceConnectionAssociations.md#create) | **Post** /org/{org_handle}/workspace/{workspace_handle}/conn | Create org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Delete**](docs/OrgWorkspaceConnectionAssociations.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete org workspace connection association
 *OrgWorkspaceConnectionAssociations* | [**Get**](docs/OrgWorkspaceConnectionAssociations.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get org workspace connection association
@@ -145,19 +161,29 @@ Class | Method | HTTP request | Description
 *OrgWorkspaces* | [**PostQueryWithExtensions**](docs/OrgWorkspaces.md#postquerywithextensions) | **Post** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
 *OrgWorkspaces* | [**Update**](docs/OrgWorkspaces.md#update) | **Patch** /org/{org_handle}/workspace/{workspace_handle} | Update org workspace
 *Orgs* | [**Create**](docs/Orgs.md#create) | **Post** /org | Create org
+*Orgs* | [**CreateAvatar**](docs/Orgs.md#createavatar) | **Post** /org/{org_handle}/avatar | Create org avatar
 *Orgs* | [**Delete**](docs/Orgs.md#delete) | **Delete** /org/{org_handle} | Delete org
+*Orgs* | [**DeleteAvatar**](docs/Orgs.md#deleteavatar) | **Delete** /org/{org_handle}/avatar | Delete org avatar
 *Orgs* | [**Get**](docs/Orgs.md#get) | **Get** /org/{org_handle} | Get org
 *Orgs* | [**GetQuota**](docs/Orgs.md#getquota) | **Get** /org/{org_handle}/quota | Org quota
 *Orgs* | [**List**](docs/Orgs.md#list) | **Get** /org | List orgs
 *Orgs* | [**ListAuditLogs**](docs/Orgs.md#listauditlogs) | **Get** /org/{org_handle}/audit_log | Org audit logs
 *Orgs* | [**ListFeatures**](docs/Orgs.md#listfeatures) | **Get** /org/{org_handle}/feature | Org features
 *Orgs* | [**Update**](docs/Orgs.md#update) | **Patch** /org/{org_handle} | Update org
-*UserConnections* | [**Create**](docs/UserConnections.md#create) | **Post** /user/{user_handle}/conn | Create user connection
-*UserConnections* | [**Delete**](docs/UserConnections.md#delete) | **Delete** /user/{user_handle}/conn/{conn_handle} | Delete user connection
-*UserConnections* | [**Get**](docs/UserConnections.md#get) | **Get** /user/{user_handle}/conn/{conn_handle} | Get user connection
-*UserConnections* | [**List**](docs/UserConnections.md#list) | **Get** /user/{user_handle}/conn | List user connections
-*UserConnections* | [**Test**](docs/UserConnections.md#test) | **Post** /user/{user_handle}/conn/{conn_handle}/test | Test user connection
-*UserConnections* | [**Update**](docs/UserConnections.md#update) | **Patch** /user/{user_handle}/conn/{conn_handle} | Update user connection
+*UserConnections* | [**Create**](docs/UserConnections.md#create) | **Post** /user/{user_handle}/connection | Create user connection
+*UserConnections* | [**CreateDeprecated**](docs/UserConnections.md#createdeprecated) | **Post** /user/{user_handle}/conn | Create user connection
+*UserConnections* | [**Delete**](docs/UserConnections.md#delete) | **Delete** /user/{user_handle}/connection/{connection_handle} | Delete user connection
+*UserConnections* | [**DeleteDeprecated**](docs/UserConnections.md#deletedeprecated) | **Delete** /user/{user_handle}/conn/{conn_handle} | Delete user connection
+*UserConnections* | [**Get**](docs/UserConnections.md#get) | **Get** /user/{user_handle}/connection/{connection_handle} | Get user connection
+*UserConnections* | [**GetDeprecated**](docs/UserConnections.md#getdeprecated) | **Get** /user/{user_handle}/conn/{conn_handle} | Get user connection
+*UserConnections* | [**List**](docs/UserConnections.md#list) | **Get** /user/{user_handle}/connection | List user connections
+*UserConnections* | [**ListDeprecated**](docs/UserConnections.md#listdeprecated) | **Get** /user/{user_handle}/conn | List user connections
+*UserConnections* | [**ListWorkspaces**](docs/UserConnections.md#listworkspaces) | **Get** /user/{user_handle}/connection/{connection_handle}/workspace | List user connection workspaces
+*UserConnections* | [**ListWorkspacesDeprecated**](docs/UserConnections.md#listworkspacesdeprecated) | **Get** /user/{user_handle}/conn/{conn_handle}/workspace | List user connection workspaces
+*UserConnections* | [**Test**](docs/UserConnections.md#test) | **Post** /user/{user_handle}/connection/{connection_handle}/test | Test user connection
+*UserConnections* | [**TestDeprecated**](docs/UserConnections.md#testdeprecated) | **Post** /user/{user_handle}/conn/{conn_handle}/test | Test user connection
+*UserConnections* | [**Update**](docs/UserConnections.md#update) | **Patch** /user/{user_handle}/connection/{connection_handle} | Update user connection
+*UserConnections* | [**UpdateDeprecated**](docs/UserConnections.md#updatedeprecated) | **Patch** /user/{user_handle}/conn/{conn_handle} | Update user connection
 *UserProcesses* | [**Get**](docs/UserProcesses.md#get) | **Get** /user/{user_handle}/process/{process_id} | Get User process
 *UserProcesses* | [**List**](docs/UserProcesses.md#list) | **Get** /user/{user_handle}/process | List User processes
 *UserProcesses* | [**Log**](docs/UserProcesses.md#log) | **Get** /user/{user_handle}/process/{process_id}/log/{log_file}.{content_type} | List user process logs
@@ -166,6 +192,13 @@ Class | Method | HTTP request | Description
 *UserTokens* | [**Get**](docs/UserTokens.md#get) | **Get** /user/{user_handle}/token/{token_id} | Get token
 *UserTokens* | [**List**](docs/UserTokens.md#list) | **Get** /user/{user_handle}/token | List tokens
 *UserTokens* | [**Update**](docs/UserTokens.md#update) | **Patch** /user/{user_handle}/token/{token_id} | Update token
+*UserWorkspaceAggregators* | [**Create**](docs/UserWorkspaceAggregators.md#create) | **Post** /user/{user_handle}/workspace/{workspace_handle}/aggregator | Create an aggregator for a user workspace
+*UserWorkspaceAggregators* | [**Delete**](docs/UserWorkspaceAggregators.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/aggregator/{aggregator_handle} | Delete an aggregator for a user workspace
+*UserWorkspaceAggregators* | [**Get**](docs/UserWorkspaceAggregators.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/aggregator/{aggregator_handle} | Get an aggregator for a user workspace
+*UserWorkspaceAggregators* | [**GetConnection**](docs/UserWorkspaceAggregators.md#getconnection) | **Get** /user/{user_handle}/workspace/{workspace_handle}/aggregator/{aggregator_handle}/connection/{connection_handle} | Get a connection in the scope of an aggregator for a user workspace
+*UserWorkspaceAggregators* | [**List**](docs/UserWorkspaceAggregators.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/aggregator | List aggregators for a user workspace
+*UserWorkspaceAggregators* | [**ListConnections**](docs/UserWorkspaceAggregators.md#listconnections) | **Get** /user/{user_handle}/workspace/{workspace_handle}/aggregator/{aggregator_handle}/connection | List connections in the scope of an aggregator for a user workspace
+*UserWorkspaceAggregators* | [**Update**](docs/UserWorkspaceAggregators.md#update) | **Patch** /user/{user_handle}/workspace/{workspace_handle}/aggregator/{aggregator_handle} | Update an aggregator for a user workspace
 *UserWorkspaceConnectionAssociations* | [**Create**](docs/UserWorkspaceConnectionAssociations.md#create) | **Post** /user/{user_handle}/workspace/{workspace_handle}/conn | Create user workspace connection association
 *UserWorkspaceConnectionAssociations* | [**Delete**](docs/UserWorkspaceConnectionAssociations.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Delete user workspace connection association
 *UserWorkspaceConnectionAssociations* | [**Get**](docs/UserWorkspaceConnectionAssociations.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/conn/{conn_handle} | Get user workspace connection association
@@ -209,8 +242,10 @@ Class | Method | HTTP request | Description
 *UserWorkspaces* | [**PostQueryWithExtensions**](docs/UserWorkspaces.md#postquerywithextensions) | **Post** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
 *UserWorkspaces* | [**Update**](docs/UserWorkspaces.md#update) | **Patch** /user/{user_handle}/workspace/{workspace_handle} | Update user workspace
 *Users* | [**Create**](docs/Users.md#create) | **Post** /user | Create user
+*Users* | [**CreateAvatar**](docs/Users.md#createavatar) | **Post** /user/{user_handle}/avatar | Create user avatar
 *Users* | [**CreateDBPassword**](docs/Users.md#createdbpassword) | **Post** /user/{user_handle}/password | Create user password
 *Users* | [**Delete**](docs/Users.md#delete) | **Delete** /user/{user_handle} | Delete user
+*Users* | [**DeleteAvatar**](docs/Users.md#deleteavatar) | **Delete** /user/{user_handle}/avatar | Delete user avatar
 *Users* | [**Get**](docs/Users.md#get) | **Get** /user/{user_handle} | Get user
 *Users* | [**GetDBPassword**](docs/Users.md#getdbpassword) | **Get** /user/{user_handle}/password | Get user password
 *Users* | [**GetEmail**](docs/Users.md#getemail) | **Get** /user/{user_handle}/email/{email_id} | Get user email
@@ -228,24 +263,31 @@ Class | Method | HTTP request | Description
 
  - [ActorWorkspace](docs/ActorWorkspace.md)
  - [AuditRecord](docs/AuditRecord.md)
+ - [BillingInfo](docs/BillingInfo.md)
  - [Connection](docs/Connection.md)
  - [ConnectionTestResult](docs/ConnectionTestResult.md)
  - [CreateConnectionRequest](docs/CreateConnectionRequest.md)
+ - [CreateOrgAvatarResponse](docs/CreateOrgAvatarResponse.md)
  - [CreateOrgRequest](docs/CreateOrgRequest.md)
  - [CreateOrgWorkspaceUserRequest](docs/CreateOrgWorkspaceUserRequest.md)
  - [CreatePipelineRequest](docs/CreatePipelineRequest.md)
+ - [CreateUserAvatarResponse](docs/CreateUserAvatarResponse.md)
  - [CreateUserPasswordRequest](docs/CreateUserPasswordRequest.md)
  - [CreateUserRequest](docs/CreateUserRequest.md)
+ - [CreateWorkspaceAggregatorRequest](docs/CreateWorkspaceAggregatorRequest.md)
  - [CreateWorkspaceConnRequest](docs/CreateWorkspaceConnRequest.md)
  - [CreateWorkspaceModRequest](docs/CreateWorkspaceModRequest.md)
  - [CreateWorkspaceModVariableSettingRequest](docs/CreateWorkspaceModVariableSettingRequest.md)
  - [CreateWorkspaceRequest](docs/CreateWorkspaceRequest.md)
  - [CreateWorkspaceSnapshotRequest](docs/CreateWorkspaceSnapshotRequest.md)
+ - [DeleteOrgAvatarResponse](docs/DeleteOrgAvatarResponse.md)
+ - [DeleteUserAvatarResponse](docs/DeleteUserAvatarResponse.md)
  - [ErrorDetailModel](docs/ErrorDetailModel.md)
  - [ErrorModel](docs/ErrorModel.md)
  - [Feature](docs/Feature.md)
  - [Identity](docs/Identity.md)
  - [InviteOrgUserRequest](docs/InviteOrgUserRequest.md)
+ - [JSONTime](docs/JSONTime.md)
  - [ListActorWorkspacesResponse](docs/ListActorWorkspacesResponse.md)
  - [ListAuditLogsResponse](docs/ListAuditLogsResponse.md)
  - [ListConnectionsResponse](docs/ListConnectionsResponse.md)
@@ -261,7 +303,10 @@ Class | Method | HTTP request | Description
  - [ListUserEmailsResponse](docs/ListUserEmailsResponse.md)
  - [ListUserOrgsResponse](docs/ListUserOrgsResponse.md)
  - [ListUsersResponse](docs/ListUsersResponse.md)
+ - [ListWorkspaceAggregatorsResponse](docs/ListWorkspaceAggregatorsResponse.md)
  - [ListWorkspaceConnResponse](docs/ListWorkspaceConnResponse.md)
+ - [ListWorkspaceConnectionAssociationsResponse](docs/ListWorkspaceConnectionAssociationsResponse.md)
+ - [ListWorkspaceConnectionsResponse](docs/ListWorkspaceConnectionsResponse.md)
  - [ListWorkspaceModVariablesResponse](docs/ListWorkspaceModVariablesResponse.md)
  - [ListWorkspaceModsResponse](docs/ListWorkspaceModsResponse.md)
  - [ListWorkspaceSnapshotsResponse](docs/ListWorkspaceSnapshotsResponse.md)
@@ -281,6 +326,7 @@ Class | Method | HTTP request | Description
  - [SchemaTableColumn](docs/SchemaTableColumn.md)
  - [SpProcess](docs/SpProcess.md)
  - [TemporaryTokenRequest](docs/TemporaryTokenRequest.md)
+ - [TestConnectionRequest](docs/TestConnectionRequest.md)
  - [Token](docs/Token.md)
  - [UpdateConnectionRequest](docs/UpdateConnectionRequest.md)
  - [UpdateOrgRequest](docs/UpdateOrgRequest.md)
@@ -291,6 +337,7 @@ Class | Method | HTTP request | Description
  - [UpdateTokenRequest](docs/UpdateTokenRequest.md)
  - [UpdateUserPreferencesRequest](docs/UpdateUserPreferencesRequest.md)
  - [UpdateUserRequest](docs/UpdateUserRequest.md)
+ - [UpdateWorkspaceAggregatorRequest](docs/UpdateWorkspaceAggregatorRequest.md)
  - [UpdateWorkspaceModRequest](docs/UpdateWorkspaceModRequest.md)
  - [UpdateWorkspaceModVariableSettingRequest](docs/UpdateWorkspaceModVariableSettingRequest.md)
  - [UpdateWorkspaceRequest](docs/UpdateWorkspaceRequest.md)
@@ -304,9 +351,12 @@ Class | Method | HTTP request | Description
  - [UserQuota](docs/UserQuota.md)
  - [UserSignupRequest](docs/UserSignupRequest.md)
  - [Workspace](docs/Workspace.md)
+ - [WorkspaceAggregator](docs/WorkspaceAggregator.md)
  - [WorkspaceCommandRequest](docs/WorkspaceCommandRequest.md)
  - [WorkspaceCommandResponse](docs/WorkspaceCommandResponse.md)
  - [WorkspaceConn](docs/WorkspaceConn.md)
+ - [WorkspaceConnection](docs/WorkspaceConnection.md)
+ - [WorkspaceConnectionAssociation](docs/WorkspaceConnectionAssociation.md)
  - [WorkspaceMod](docs/WorkspaceMod.md)
  - [WorkspaceModVariable](docs/WorkspaceModVariable.md)
  - [WorkspaceQueryResult](docs/WorkspaceQueryResult.md)

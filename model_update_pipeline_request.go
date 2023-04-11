@@ -17,9 +17,11 @@ import (
 
 // UpdatePipelineRequest struct for UpdatePipelineRequest
 type UpdatePipelineRequest struct {
-	Args      interface{}        `json:"args,omitempty"`
-	Frequency *PipelineFrequency `json:"frequency,omitempty"`
-	Tags      interface{}        `json:"tags,omitempty"`
+	Args interface{} `json:"args,omitempty"`
+	// The desired state of the pipeline.
+	DesiredState *string            `json:"desired_state,omitempty"`
+	Frequency    *PipelineFrequency `json:"frequency,omitempty"`
+	Tags         interface{}        `json:"tags,omitempty"`
 	// The title of the pipeline.
 	Title *string `json:"title,omitempty"`
 }
@@ -72,6 +74,38 @@ func (o *UpdatePipelineRequest) HasArgs() bool {
 // SetArgs gets a reference to the given interface{} and assigns it to the Args field.
 func (o *UpdatePipelineRequest) SetArgs(v interface{}) {
 	o.Args = v
+}
+
+// GetDesiredState returns the DesiredState field value if set, zero value otherwise.
+func (o *UpdatePipelineRequest) GetDesiredState() string {
+	if o == nil || o.DesiredState == nil {
+		var ret string
+		return ret
+	}
+	return *o.DesiredState
+}
+
+// GetDesiredStateOk returns a tuple with the DesiredState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdatePipelineRequest) GetDesiredStateOk() (*string, bool) {
+	if o == nil || o.DesiredState == nil {
+		return nil, false
+	}
+	return o.DesiredState, true
+}
+
+// HasDesiredState returns a boolean if a field has been set.
+func (o *UpdatePipelineRequest) HasDesiredState() bool {
+	if o != nil && o.DesiredState != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDesiredState gets a reference to the given string and assigns it to the DesiredState field.
+func (o *UpdatePipelineRequest) SetDesiredState(v string) {
+	o.DesiredState = &v
 }
 
 // GetFrequency returns the Frequency field value if set, zero value otherwise.
@@ -175,6 +209,9 @@ func (o UpdatePipelineRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Args != nil {
 		toSerialize["args"] = o.Args
+	}
+	if o.DesiredState != nil {
+		toSerialize["desired_state"] = o.DesiredState
 	}
 	if o.Frequency != nil {
 		toSerialize["frequency"] = o.Frequency

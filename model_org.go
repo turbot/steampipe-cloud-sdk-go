@@ -18,7 +18,8 @@ import (
 // Org struct for Org
 type Org struct {
 	// The avatar of an org.
-	AvatarUrl *string `json:"avatar_url,omitempty"`
+	AvatarUrl *string      `json:"avatar_url,omitempty"`
+	Billing   *BillingInfo `json:"billing,omitempty"`
 	// The time of creation in ISO 8601 UTC.
 	CreatedAt string `json:"created_at"`
 	CreatedBy *User  `json:"created_by,omitempty"`
@@ -35,6 +36,11 @@ type Org struct {
 	Handle string `json:"handle"`
 	// The unique identifier for an org.
 	Id string `json:"id"`
+	// The state of the org.
+	State string `json:"state"`
+	// The reason for the state of the org
+	StateReason      *string   `json:"state_reason,omitempty"`
+	TokenMinIssuedAt *JSONTime `json:"token_min_issued_at,omitempty"`
 	// The time of the last update in ISO 8601 UTC.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	UpdatedBy *User   `json:"updated_by,omitempty"`
@@ -49,13 +55,14 @@ type Org struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrg(createdAt string, createdById string, deletedById string, handle string, id string, updatedById string, versionId int32) *Org {
+func NewOrg(createdAt string, createdById string, deletedById string, handle string, id string, state string, updatedById string, versionId int32) *Org {
 	this := Org{}
 	this.CreatedAt = createdAt
 	this.CreatedById = createdById
 	this.DeletedById = deletedById
 	this.Handle = handle
 	this.Id = id
+	this.State = state
 	this.UpdatedById = updatedById
 	this.VersionId = versionId
 	return &this
@@ -99,6 +106,38 @@ func (o *Org) HasAvatarUrl() bool {
 // SetAvatarUrl gets a reference to the given string and assigns it to the AvatarUrl field.
 func (o *Org) SetAvatarUrl(v string) {
 	o.AvatarUrl = &v
+}
+
+// GetBilling returns the Billing field value if set, zero value otherwise.
+func (o *Org) GetBilling() BillingInfo {
+	if o == nil || o.Billing == nil {
+		var ret BillingInfo
+		return ret
+	}
+	return *o.Billing
+}
+
+// GetBillingOk returns a tuple with the Billing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Org) GetBillingOk() (*BillingInfo, bool) {
+	if o == nil || o.Billing == nil {
+		return nil, false
+	}
+	return o.Billing, true
+}
+
+// HasBilling returns a boolean if a field has been set.
+func (o *Org) HasBilling() bool {
+	if o != nil && o.Billing != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBilling gets a reference to the given BillingInfo and assigns it to the Billing field.
+func (o *Org) SetBilling(v BillingInfo) {
+	o.Billing = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -349,6 +388,94 @@ func (o *Org) SetId(v string) {
 	o.Id = v
 }
 
+// GetState returns the State field value
+func (o *Org) GetState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *Org) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
+// SetState sets field value
+func (o *Org) SetState(v string) {
+	o.State = v
+}
+
+// GetStateReason returns the StateReason field value if set, zero value otherwise.
+func (o *Org) GetStateReason() string {
+	if o == nil || o.StateReason == nil {
+		var ret string
+		return ret
+	}
+	return *o.StateReason
+}
+
+// GetStateReasonOk returns a tuple with the StateReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Org) GetStateReasonOk() (*string, bool) {
+	if o == nil || o.StateReason == nil {
+		return nil, false
+	}
+	return o.StateReason, true
+}
+
+// HasStateReason returns a boolean if a field has been set.
+func (o *Org) HasStateReason() bool {
+	if o != nil && o.StateReason != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStateReason gets a reference to the given string and assigns it to the StateReason field.
+func (o *Org) SetStateReason(v string) {
+	o.StateReason = &v
+}
+
+// GetTokenMinIssuedAt returns the TokenMinIssuedAt field value if set, zero value otherwise.
+func (o *Org) GetTokenMinIssuedAt() JSONTime {
+	if o == nil || o.TokenMinIssuedAt == nil {
+		var ret JSONTime
+		return ret
+	}
+	return *o.TokenMinIssuedAt
+}
+
+// GetTokenMinIssuedAtOk returns a tuple with the TokenMinIssuedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Org) GetTokenMinIssuedAtOk() (*JSONTime, bool) {
+	if o == nil || o.TokenMinIssuedAt == nil {
+		return nil, false
+	}
+	return o.TokenMinIssuedAt, true
+}
+
+// HasTokenMinIssuedAt returns a boolean if a field has been set.
+func (o *Org) HasTokenMinIssuedAt() bool {
+	if o != nil && o.TokenMinIssuedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenMinIssuedAt gets a reference to the given JSONTime and assigns it to the TokenMinIssuedAt field.
+func (o *Org) SetTokenMinIssuedAt(v JSONTime) {
+	o.TokenMinIssuedAt = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Org) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
@@ -498,6 +625,9 @@ func (o Org) MarshalJSON() ([]byte, error) {
 	if o.AvatarUrl != nil {
 		toSerialize["avatar_url"] = o.AvatarUrl
 	}
+	if o.Billing != nil {
+		toSerialize["billing"] = o.Billing
+	}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -524,6 +654,15 @@ func (o Org) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["state"] = o.State
+	}
+	if o.StateReason != nil {
+		toSerialize["state_reason"] = o.StateReason
+	}
+	if o.TokenMinIssuedAt != nil {
+		toSerialize["token_min_issued_at"] = o.TokenMinIssuedAt
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt

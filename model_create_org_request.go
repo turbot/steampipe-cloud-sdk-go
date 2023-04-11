@@ -17,9 +17,9 @@ import (
 
 // CreateOrgRequest struct for CreateOrgRequest
 type CreateOrgRequest struct {
-	AvatarUrl   *string `json:"avatar_url,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`
 	Handle      string  `json:"handle"`
+	PlanId      *string `json:"plan_id,omitempty"`
 	Url         *string `json:"url,omitempty"`
 }
 
@@ -39,38 +39,6 @@ func NewCreateOrgRequest(handle string) *CreateOrgRequest {
 func NewCreateOrgRequestWithDefaults() *CreateOrgRequest {
 	this := CreateOrgRequest{}
 	return &this
-}
-
-// GetAvatarUrl returns the AvatarUrl field value if set, zero value otherwise.
-func (o *CreateOrgRequest) GetAvatarUrl() string {
-	if o == nil || o.AvatarUrl == nil {
-		var ret string
-		return ret
-	}
-	return *o.AvatarUrl
-}
-
-// GetAvatarUrlOk returns a tuple with the AvatarUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateOrgRequest) GetAvatarUrlOk() (*string, bool) {
-	if o == nil || o.AvatarUrl == nil {
-		return nil, false
-	}
-	return o.AvatarUrl, true
-}
-
-// HasAvatarUrl returns a boolean if a field has been set.
-func (o *CreateOrgRequest) HasAvatarUrl() bool {
-	if o != nil && o.AvatarUrl != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAvatarUrl gets a reference to the given string and assigns it to the AvatarUrl field.
-func (o *CreateOrgRequest) SetAvatarUrl(v string) {
-	o.AvatarUrl = &v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
@@ -129,6 +97,38 @@ func (o *CreateOrgRequest) SetHandle(v string) {
 	o.Handle = v
 }
 
+// GetPlanId returns the PlanId field value if set, zero value otherwise.
+func (o *CreateOrgRequest) GetPlanId() string {
+	if o == nil || o.PlanId == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlanId
+}
+
+// GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrgRequest) GetPlanIdOk() (*string, bool) {
+	if o == nil || o.PlanId == nil {
+		return nil, false
+	}
+	return o.PlanId, true
+}
+
+// HasPlanId returns a boolean if a field has been set.
+func (o *CreateOrgRequest) HasPlanId() bool {
+	if o != nil && o.PlanId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlanId gets a reference to the given string and assigns it to the PlanId field.
+func (o *CreateOrgRequest) SetPlanId(v string) {
+	o.PlanId = &v
+}
+
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *CreateOrgRequest) GetUrl() string {
 	if o == nil || o.Url == nil {
@@ -163,14 +163,14 @@ func (o *CreateOrgRequest) SetUrl(v string) {
 
 func (o CreateOrgRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AvatarUrl != nil {
-		toSerialize["avatar_url"] = o.AvatarUrl
-	}
 	if o.DisplayName != nil {
 		toSerialize["display_name"] = o.DisplayName
 	}
 	if true {
 		toSerialize["handle"] = o.Handle
+	}
+	if o.PlanId != nil {
+		toSerialize["plan_id"] = o.PlanId
 	}
 	if o.Url != nil {
 		toSerialize["url"] = o.Url

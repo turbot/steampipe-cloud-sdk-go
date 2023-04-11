@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Schedule** | **string** |  | 
+**Schedule** | Pointer to **string** |  | [optional] 
 **Type** | **string** |  | 
 
 ## Methods
 
 ### NewPipelineFrequency
 
-`func NewPipelineFrequency(schedule string, type_ string, ) *PipelineFrequency`
+`func NewPipelineFrequency(type_ string, ) *PipelineFrequency`
 
 NewPipelineFrequency instantiates a new PipelineFrequency object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetSchedule sets Schedule field to given value.
 
+### HasSchedule
+
+`func (o *PipelineFrequency) HasSchedule() bool`
+
+HasSchedule returns a boolean if a field has been set.
 
 ### GetType
 

@@ -17,10 +17,10 @@ import (
 
 // UpdateUserRequest struct for UpdateUserRequest
 type UpdateUserRequest struct {
-	AvatarUrl   *string `json:"avatar_url,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
-	Handle      *string `json:"handle,omitempty"`
-	Url         *string `json:"url,omitempty"`
+	DisplayName      *string   `json:"display_name,omitempty"`
+	Handle           *string   `json:"handle,omitempty"`
+	TokenMinIssuedAt *JSONTime `json:"token_min_issued_at,omitempty"`
+	Url              *string   `json:"url,omitempty"`
 }
 
 // NewUpdateUserRequest instantiates a new UpdateUserRequest object
@@ -38,38 +38,6 @@ func NewUpdateUserRequest() *UpdateUserRequest {
 func NewUpdateUserRequestWithDefaults() *UpdateUserRequest {
 	this := UpdateUserRequest{}
 	return &this
-}
-
-// GetAvatarUrl returns the AvatarUrl field value if set, zero value otherwise.
-func (o *UpdateUserRequest) GetAvatarUrl() string {
-	if o == nil || o.AvatarUrl == nil {
-		var ret string
-		return ret
-	}
-	return *o.AvatarUrl
-}
-
-// GetAvatarUrlOk returns a tuple with the AvatarUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateUserRequest) GetAvatarUrlOk() (*string, bool) {
-	if o == nil || o.AvatarUrl == nil {
-		return nil, false
-	}
-	return o.AvatarUrl, true
-}
-
-// HasAvatarUrl returns a boolean if a field has been set.
-func (o *UpdateUserRequest) HasAvatarUrl() bool {
-	if o != nil && o.AvatarUrl != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAvatarUrl gets a reference to the given string and assigns it to the AvatarUrl field.
-func (o *UpdateUserRequest) SetAvatarUrl(v string) {
-	o.AvatarUrl = &v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
@@ -136,6 +104,38 @@ func (o *UpdateUserRequest) SetHandle(v string) {
 	o.Handle = &v
 }
 
+// GetTokenMinIssuedAt returns the TokenMinIssuedAt field value if set, zero value otherwise.
+func (o *UpdateUserRequest) GetTokenMinIssuedAt() JSONTime {
+	if o == nil || o.TokenMinIssuedAt == nil {
+		var ret JSONTime
+		return ret
+	}
+	return *o.TokenMinIssuedAt
+}
+
+// GetTokenMinIssuedAtOk returns a tuple with the TokenMinIssuedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateUserRequest) GetTokenMinIssuedAtOk() (*JSONTime, bool) {
+	if o == nil || o.TokenMinIssuedAt == nil {
+		return nil, false
+	}
+	return o.TokenMinIssuedAt, true
+}
+
+// HasTokenMinIssuedAt returns a boolean if a field has been set.
+func (o *UpdateUserRequest) HasTokenMinIssuedAt() bool {
+	if o != nil && o.TokenMinIssuedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenMinIssuedAt gets a reference to the given JSONTime and assigns it to the TokenMinIssuedAt field.
+func (o *UpdateUserRequest) SetTokenMinIssuedAt(v JSONTime) {
+	o.TokenMinIssuedAt = &v
+}
+
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *UpdateUserRequest) GetUrl() string {
 	if o == nil || o.Url == nil {
@@ -170,14 +170,14 @@ func (o *UpdateUserRequest) SetUrl(v string) {
 
 func (o UpdateUserRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AvatarUrl != nil {
-		toSerialize["avatar_url"] = o.AvatarUrl
-	}
 	if o.DisplayName != nil {
 		toSerialize["display_name"] = o.DisplayName
 	}
 	if o.Handle != nil {
 		toSerialize["handle"] = o.Handle
+	}
+	if o.TokenMinIssuedAt != nil {
+		toSerialize["token_min_issued_at"] = o.TokenMinIssuedAt
 	}
 	if o.Url != nil {
 		toSerialize["url"] = o.Url
