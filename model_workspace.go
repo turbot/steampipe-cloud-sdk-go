@@ -30,7 +30,8 @@ type Workspace struct {
 	DeletedAt *string `json:"deleted_at,omitempty"`
 	DeletedBy *User   `json:"deleted_by,omitempty"`
 	// The ID of the user that performed the deletion.
-	DeletedById string `json:"deleted_by_id"`
+	DeletedById  string `json:"deleted_by_id"`
+	DesiredState string `json:"desired_state"`
 	// The handle name for the workspace.
 	Handle string `json:"handle"`
 	// The database hive for this workspace.
@@ -42,7 +43,8 @@ type Workspace struct {
 	IdentityId string  `json:"identity_id"`
 	PublicKey  *string `json:"public_key,omitempty"`
 	// The current state of the workspace.
-	State *string `json:"state,omitempty"`
+	State       *string `json:"state,omitempty"`
+	StateReason *string `json:"state_reason,omitempty"`
 	// The time of the last update in ISO 8601 UTC.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	UpdatedBy *User   `json:"updated_by,omitempty"`
@@ -56,11 +58,12 @@ type Workspace struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspace(createdAt string, createdById string, deletedById string, handle string, id string, identityId string, updatedById string, versionId int32) *Workspace {
+func NewWorkspace(createdAt string, createdById string, deletedById string, desiredState string, handle string, id string, identityId string, updatedById string, versionId int32) *Workspace {
 	this := Workspace{}
 	this.CreatedAt = createdAt
 	this.CreatedById = createdById
 	this.DeletedById = deletedById
+	this.DesiredState = desiredState
 	this.Handle = handle
 	this.Id = id
 	this.IdentityId = identityId
@@ -341,6 +344,30 @@ func (o *Workspace) SetDeletedById(v string) {
 	o.DeletedById = v
 }
 
+// GetDesiredState returns the DesiredState field value
+func (o *Workspace) GetDesiredState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DesiredState
+}
+
+// GetDesiredStateOk returns a tuple with the DesiredState field value
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetDesiredStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DesiredState, true
+}
+
+// SetDesiredState sets field value
+func (o *Workspace) SetDesiredState(v string) {
+	o.DesiredState = v
+}
+
 // GetHandle returns the Handle field value
 func (o *Workspace) GetHandle() string {
 	if o == nil {
@@ -541,6 +568,38 @@ func (o *Workspace) SetState(v string) {
 	o.State = &v
 }
 
+// GetStateReason returns the StateReason field value if set, zero value otherwise.
+func (o *Workspace) GetStateReason() string {
+	if o == nil || o.StateReason == nil {
+		var ret string
+		return ret
+	}
+	return *o.StateReason
+}
+
+// GetStateReasonOk returns a tuple with the StateReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetStateReasonOk() (*string, bool) {
+	if o == nil || o.StateReason == nil {
+		return nil, false
+	}
+	return o.StateReason, true
+}
+
+// HasStateReason returns a boolean if a field has been set.
+func (o *Workspace) HasStateReason() bool {
+	if o != nil && o.StateReason != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStateReason gets a reference to the given string and assigns it to the StateReason field.
+func (o *Workspace) SetStateReason(v string) {
+	o.StateReason = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Workspace) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
@@ -683,6 +742,9 @@ func (o Workspace) MarshalJSON() ([]byte, error) {
 		toSerialize["deleted_by_id"] = o.DeletedById
 	}
 	if true {
+		toSerialize["desired_state"] = o.DesiredState
+	}
+	if true {
 		toSerialize["handle"] = o.Handle
 	}
 	if o.Hive != nil {
@@ -702,6 +764,9 @@ func (o Workspace) MarshalJSON() ([]byte, error) {
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
+	}
+	if o.StateReason != nil {
+		toSerialize["state_reason"] = o.StateReason
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt

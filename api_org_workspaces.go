@@ -754,7 +754,7 @@ func (r OrgWorkspacesApiGetQueryRequest) Execute() (WorkspaceQueryResult, *_neth
 /*
 GetQuery Query org workspace
 
-Performs a query in an org workspace. Results are limited to 3000 rows or 30 seconds of query execution.
+Performs a query in an org workspace. Results are limited to 5000 rows or 30 seconds of query execution.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgHandle The handle of the org that the workspace belongs to.
@@ -943,7 +943,7 @@ func (r OrgWorkspacesApiGetQueryWithExtensionsRequest) Execute() (WorkspaceQuery
 /*
 GetQueryWithExtensions Query org workspace with extensions
 
-Performs a query in an org workspace, with content type and content encoding forming part of the API path. Results are limited to 3000 rows or 30 seconds of query execution.
+Performs a query in an org workspace, with content type and content encoding forming part of the API path. Results are limited to 5000 rows or 30 seconds of query execution.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgHandle The handle of the org that the workspace belongs to.
@@ -1828,7 +1828,7 @@ func (r OrgWorkspacesApiPostQueryRequest) Execute() (WorkspaceQueryResult, *_net
 /*
 PostQuery Query org workspace
 
-Performs a query in an org workspace. Results are limited to 3000 rows or 30 seconds of query execution.
+Performs a query in an org workspace. Results are limited to 5000 rows or 30 seconds of query execution.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgHandle The handle of the org that the workspace belongs to.
@@ -2018,7 +2018,7 @@ func (r OrgWorkspacesApiPostQueryWithExtensionsRequest) Execute() (WorkspaceQuer
 /*
 PostQueryWithExtensions Query org workspace with extensions
 
-Performs a query in an org workspace, with content type and content encoding forming part of the API path. Results are limited to 3000 rows or 30 seconds of query execution.
+Performs a query in an org workspace, with content type and content encoding forming part of the API path. Results are limited to 5000 rows or 30 seconds of query execution.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgHandle The handle of the org that the workspace belongs to.

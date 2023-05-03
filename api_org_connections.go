@@ -33,11 +33,18 @@ type OrgConnectionsApiCreateRequest struct {
 	ApiService *OrgConnectionsService
 	orgHandle  string
 	request    *CreateConnectionRequest
+	mode       *string
 }
 
 // The request body for the connection to be created.
 func (r OrgConnectionsApiCreateRequest) Request(request CreateConnectionRequest) OrgConnectionsApiCreateRequest {
 	r.request = &request
+	return r
+}
+
+// The mode of this request
+func (r OrgConnectionsApiCreateRequest) Mode(mode string) OrgConnectionsApiCreateRequest {
+	r.mode = &mode
 	return r
 }
 
@@ -48,7 +55,7 @@ func (r OrgConnectionsApiCreateRequest) Execute() (Connection, *_nethttp.Respons
 /*
 Create Create org connection
 
-Creates a new connection for an organization. The limit is 10 per organization. If you require more than 10, you must contact support to request an increase.
+Creates a new connection for an organization.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgHandle The handle of the organization where we want to create the connection.
@@ -78,6 +85,205 @@ func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) 
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
+	localVarPath := localBasePath + "/org/{org_handle}/connection"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
+	}
+
+	if r.mode != nil {
+		localVarQueryParams.Add("mode", parameterToString(*r.mode, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.request
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgConnectionsApiCreateDeprecatedRequest struct {
+	ctx        _context.Context
+	ApiService *OrgConnectionsService
+	orgHandle  string
+	request    *CreateConnectionRequest
+	mode       *string
+}
+
+// The request body for the connection to be created.
+func (r OrgConnectionsApiCreateDeprecatedRequest) Request(request CreateConnectionRequest) OrgConnectionsApiCreateDeprecatedRequest {
+	r.request = &request
+	return r
+}
+
+// The mode of this request
+func (r OrgConnectionsApiCreateDeprecatedRequest) Mode(mode string) OrgConnectionsApiCreateDeprecatedRequest {
+	r.mode = &mode
+	return r
+}
+
+func (r OrgConnectionsApiCreateDeprecatedRequest) Execute() (Connection, *_nethttp.Response, error) {
+	return r.ApiService.CreateDeprecatedExecute(r)
+}
+
+/*
+CreateDeprecated Create org connection
+
+Creates a new connection for an organization.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization where we want to create the connection.
+	@return OrgConnectionsApiCreateDeprecatedRequest
+
+Deprecated
+*/
+func (a *OrgConnectionsService) CreateDeprecated(ctx _context.Context, orgHandle string) OrgConnectionsApiCreateDeprecatedRequest {
+	return OrgConnectionsApiCreateDeprecatedRequest{
+		ApiService: a,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return Connection
+//
+// Deprecated
+func (a *OrgConnectionsService) CreateDeprecatedExecute(r OrgConnectionsApiCreateDeprecatedRequest) (Connection, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Connection
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.CreateDeprecated")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
 	localVarPath := localBasePath + "/org/{org_handle}/conn"
 	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
 
@@ -88,6 +294,9 @@ func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) 
 		return localVarReturnValue, nil, reportError("request is required and must be specified")
 	}
 
+	if r.mode != nil {
+		localVarQueryParams.Add("mode", parameterToString(*r.mode, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -214,10 +423,10 @@ func (a *OrgConnectionsService) CreateExecute(r OrgConnectionsApiCreateRequest) 
 }
 
 type OrgConnectionsApiDeleteRequest struct {
-	ctx        _context.Context
-	ApiService *OrgConnectionsService
-	orgHandle  string
-	connHandle string
+	ctx              _context.Context
+	ApiService       *OrgConnectionsService
+	orgHandle        string
+	connectionHandle string
 }
 
 func (r OrgConnectionsApiDeleteRequest) Execute() (Connection, *_nethttp.Response, error) {
@@ -227,19 +436,19 @@ func (r OrgConnectionsApiDeleteRequest) Execute() (Connection, *_nethttp.Respons
 /*
 Delete Delete org connection
 
-Deletes the connection specified in the request.
+Deletes a connection belonging to an org.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgHandle The handle of the organization where the connection exist.
-	@param connHandle Provide the handle of the connection which needs to be deleted.
+	@param orgHandle The handle of the organization where the connection exists.
+	@param connectionHandle The handle of the connection that needs to be deleted.
 	@return OrgConnectionsApiDeleteRequest
 */
-func (a *OrgConnectionsService) Delete(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiDeleteRequest {
+func (a *OrgConnectionsService) Delete(ctx _context.Context, orgHandle string, connectionHandle string) OrgConnectionsApiDeleteRequest {
 	return OrgConnectionsApiDeleteRequest{
-		ApiService: a,
-		ctx:        ctx,
-		orgHandle:  orgHandle,
-		connHandle: connHandle,
+		ApiService:       a,
+		ctx:              ctx,
+		orgHandle:        orgHandle,
+		connectionHandle: connectionHandle,
 	}
 }
 
@@ -255,6 +464,167 @@ func (a *OrgConnectionsService) DeleteExecute(r OrgConnectionsApiDeleteRequest) 
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.Delete")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/connection/{connection_handle}"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_handle"+"}", _neturl.PathEscape(parameterToString(r.connectionHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgConnectionsApiDeleteDeprecatedRequest struct {
+	ctx        _context.Context
+	ApiService *OrgConnectionsService
+	orgHandle  string
+	connHandle string
+}
+
+func (r OrgConnectionsApiDeleteDeprecatedRequest) Execute() (Connection, *_nethttp.Response, error) {
+	return r.ApiService.DeleteDeprecatedExecute(r)
+}
+
+/*
+DeleteDeprecated Delete org connection
+
+Delete a connection belonging to an org.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization where the connection exist.
+	@param connHandle The handle of the connection that needs to be deleted.
+	@return OrgConnectionsApiDeleteDeprecatedRequest
+
+Deprecated
+*/
+func (a *OrgConnectionsService) DeleteDeprecated(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiDeleteDeprecatedRequest {
+	return OrgConnectionsApiDeleteDeprecatedRequest{
+		ApiService: a,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
+		connHandle: connHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return Connection
+//
+// Deprecated
+func (a *OrgConnectionsService) DeleteDeprecatedExecute(r OrgConnectionsApiDeleteDeprecatedRequest) (Connection, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Connection
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.DeleteDeprecated")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -371,10 +741,10 @@ func (a *OrgConnectionsService) DeleteExecute(r OrgConnectionsApiDeleteRequest) 
 }
 
 type OrgConnectionsApiGetRequest struct {
-	ctx        _context.Context
-	ApiService *OrgConnectionsService
-	orgHandle  string
-	connHandle string
+	ctx              _context.Context
+	ApiService       *OrgConnectionsService
+	orgHandle        string
+	connectionHandle string
 }
 
 func (r OrgConnectionsApiGetRequest) Execute() (Connection, *_nethttp.Response, error) {
@@ -384,19 +754,19 @@ func (r OrgConnectionsApiGetRequest) Execute() (Connection, *_nethttp.Response, 
 /*
 Get Get org connection
 
-Get the details for a connection.
+Get the details of a connection belonging to an org.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgHandle The handle of an organization where the connection exists.
-	@param connHandle The handle of the connection whose detail needs to be fetched.
+	@param connectionHandle The handle of the connection whose detail needs to be fetched.
 	@return OrgConnectionsApiGetRequest
 */
-func (a *OrgConnectionsService) Get(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiGetRequest {
+func (a *OrgConnectionsService) Get(ctx _context.Context, orgHandle string, connectionHandle string) OrgConnectionsApiGetRequest {
 	return OrgConnectionsApiGetRequest{
-		ApiService: a,
-		ctx:        ctx,
-		orgHandle:  orgHandle,
-		connHandle: connHandle,
+		ApiService:       a,
+		ctx:              ctx,
+		orgHandle:        orgHandle,
+		connectionHandle: connectionHandle,
 	}
 }
 
@@ -412,6 +782,177 @@ func (a *OrgConnectionsService) GetExecute(r OrgConnectionsApiGetRequest) (Conne
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.Get")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/connection/{connection_handle}"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_handle"+"}", _neturl.PathEscape(parameterToString(r.connectionHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgConnectionsApiGetDeprecatedRequest struct {
+	ctx        _context.Context
+	ApiService *OrgConnectionsService
+	orgHandle  string
+	connHandle string
+}
+
+func (r OrgConnectionsApiGetDeprecatedRequest) Execute() (Connection, *_nethttp.Response, error) {
+	return r.ApiService.GetDeprecatedExecute(r)
+}
+
+/*
+GetDeprecated Get org connection
+
+Get the details for a connection belonging to an org.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of an organization where the connection exists.
+	@param connHandle The handle of the connection whose detail needs to be fetched.
+	@return OrgConnectionsApiGetDeprecatedRequest
+
+Deprecated
+*/
+func (a *OrgConnectionsService) GetDeprecated(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiGetDeprecatedRequest {
+	return OrgConnectionsApiGetDeprecatedRequest{
+		ApiService: a,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
+		connHandle: connHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return Connection
+//
+// Deprecated
+func (a *OrgConnectionsService) GetDeprecatedExecute(r OrgConnectionsApiGetDeprecatedRequest) (Connection, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Connection
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.GetDeprecated")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -564,10 +1105,10 @@ func (r OrgConnectionsApiListRequest) Execute() (ListConnectionsResponse, *_neth
 /*
 List List org connections
 
-List the connection for an organization.
+List connections for an organization.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgHandle The handle of the organization for which we want to list the connections.
+	@param orgHandle The handle of the organization for which we want to list connections.
 	@return OrgConnectionsApiListRequest
 */
 func (a *OrgConnectionsService) List(ctx _context.Context, orgHandle string) OrgConnectionsApiListRequest {
@@ -590,6 +1131,183 @@ func (a *OrgConnectionsService) ListExecute(r OrgConnectionsApiListRequest) (Lis
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.List")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/connection"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.nextToken != nil {
+		localVarQueryParams.Add("next_token", parameterToString(*r.nextToken, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgConnectionsApiListDeprecatedRequest struct {
+	ctx        _context.Context
+	ApiService *OrgConnectionsService
+	orgHandle  string
+	limit      *int32
+	nextToken  *string
+}
+
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
+func (r OrgConnectionsApiListDeprecatedRequest) Limit(limit int32) OrgConnectionsApiListDeprecatedRequest {
+	r.limit = &limit
+	return r
+}
+
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
+func (r OrgConnectionsApiListDeprecatedRequest) NextToken(nextToken string) OrgConnectionsApiListDeprecatedRequest {
+	r.nextToken = &nextToken
+	return r
+}
+
+func (r OrgConnectionsApiListDeprecatedRequest) Execute() (ListConnectionsResponse, *_nethttp.Response, error) {
+	return r.ApiService.ListDeprecatedExecute(r)
+}
+
+/*
+ListDeprecated List org connections
+
+List connections for an organization.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org for which we want to list connections.
+	@return OrgConnectionsApiListDeprecatedRequest
+
+Deprecated
+*/
+func (a *OrgConnectionsService) ListDeprecated(ctx _context.Context, orgHandle string) OrgConnectionsApiListDeprecatedRequest {
+	return OrgConnectionsApiListDeprecatedRequest{
+		ApiService: a,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListConnectionsResponse
+//
+// Deprecated
+func (a *OrgConnectionsService) ListDeprecatedExecute(r OrgConnectionsApiListDeprecatedRequest) (ListConnectionsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListConnectionsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.ListDeprecated")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -710,11 +1428,396 @@ func (a *OrgConnectionsService) ListExecute(r OrgConnectionsApiListRequest) (Lis
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type OrgConnectionsApiTestRequest struct {
+type OrgConnectionsApiListWorkspacesRequest struct {
+	ctx              _context.Context
+	ApiService       *OrgConnectionsService
+	orgHandle        string
+	connectionHandle string
+	limit            *int32
+	nextToken        *string
+}
+
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
+func (r OrgConnectionsApiListWorkspacesRequest) Limit(limit int32) OrgConnectionsApiListWorkspacesRequest {
+	r.limit = &limit
+	return r
+}
+
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
+func (r OrgConnectionsApiListWorkspacesRequest) NextToken(nextToken string) OrgConnectionsApiListWorkspacesRequest {
+	r.nextToken = &nextToken
+	return r
+}
+
+func (r OrgConnectionsApiListWorkspacesRequest) Execute() (ListWorkspaceConnectionAssociationsResponse, *_nethttp.Response, error) {
+	return r.ApiService.ListWorkspacesExecute(r)
+}
+
+/*
+ListWorkspaces List org connection workspaces
+
+List the workspaces that an org connection has been added to.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization where the connection exists.
+	@param connectionHandle The handle of the connection for which we want to list workspaces.
+	@return OrgConnectionsApiListWorkspacesRequest
+*/
+func (a *OrgConnectionsService) ListWorkspaces(ctx _context.Context, orgHandle string, connectionHandle string) OrgConnectionsApiListWorkspacesRequest {
+	return OrgConnectionsApiListWorkspacesRequest{
+		ApiService:       a,
+		ctx:              ctx,
+		orgHandle:        orgHandle,
+		connectionHandle: connectionHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListWorkspaceConnectionAssociationsResponse
+func (a *OrgConnectionsService) ListWorkspacesExecute(r OrgConnectionsApiListWorkspacesRequest) (ListWorkspaceConnectionAssociationsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListWorkspaceConnectionAssociationsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.ListWorkspaces")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/connection/{connection_handle}/workspace"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_handle"+"}", _neturl.PathEscape(parameterToString(r.connectionHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.nextToken != nil {
+		localVarQueryParams.Add("next_token", parameterToString(*r.nextToken, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgConnectionsApiListWorkspacesDeprecatedRequest struct {
 	ctx        _context.Context
 	ApiService *OrgConnectionsService
 	orgHandle  string
 	connHandle string
+	limit      *int32
+	nextToken  *string
+}
+
+// The max number of items to fetch per page of data, subject to a min and max of 1 and 100 respectively. If not specified will default to 25.
+func (r OrgConnectionsApiListWorkspacesDeprecatedRequest) Limit(limit int32) OrgConnectionsApiListWorkspacesDeprecatedRequest {
+	r.limit = &limit
+	return r
+}
+
+// When list results are truncated, next_token will be returned, which is a cursor to fetch the next page of data. Pass next_token to the subsequent list request to fetch the next page of data.
+func (r OrgConnectionsApiListWorkspacesDeprecatedRequest) NextToken(nextToken string) OrgConnectionsApiListWorkspacesDeprecatedRequest {
+	r.nextToken = &nextToken
+	return r
+}
+
+func (r OrgConnectionsApiListWorkspacesDeprecatedRequest) Execute() (ListWorkspaceConnResponse, *_nethttp.Response, error) {
+	return r.ApiService.ListWorkspacesDeprecatedExecute(r)
+}
+
+/*
+ListWorkspacesDeprecated List org connection workspaces
+
+List the workspaces that an org connection has been added to.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization where the connection exists.
+	@param connHandle The handle of the connection for which we want to list workspaces.
+	@return OrgConnectionsApiListWorkspacesDeprecatedRequest
+
+Deprecated
+*/
+func (a *OrgConnectionsService) ListWorkspacesDeprecated(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiListWorkspacesDeprecatedRequest {
+	return OrgConnectionsApiListWorkspacesDeprecatedRequest{
+		ApiService: a,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
+		connHandle: connHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListWorkspaceConnResponse
+//
+// Deprecated
+func (a *OrgConnectionsService) ListWorkspacesDeprecatedExecute(r OrgConnectionsApiListWorkspacesDeprecatedRequest) (ListWorkspaceConnResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ListWorkspaceConnResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.ListWorkspacesDeprecated")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/conn/{conn_handle}/workspace"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"conn_handle"+"}", _neturl.PathEscape(parameterToString(r.connHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.nextToken != nil {
+		localVarQueryParams.Add("next_token", parameterToString(*r.nextToken, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgConnectionsApiTestRequest struct {
+	ctx              _context.Context
+	ApiService       *OrgConnectionsService
+	orgHandle        string
+	connectionHandle string
+	request          *TestConnectionRequest
+}
+
+// The request body for the connection to be tested.
+func (r OrgConnectionsApiTestRequest) Request(request TestConnectionRequest) OrgConnectionsApiTestRequest {
+	r.request = &request
+	return r
 }
 
 func (r OrgConnectionsApiTestRequest) Execute() (ConnectionTestResult, *_nethttp.Response, error) {
@@ -728,15 +1831,15 @@ Test the config for an org connection to check for basic connectivity before you
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param orgHandle The handle of the org performing the action.
-	@param connHandle The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
+	@param connectionHandle The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
 	@return OrgConnectionsApiTestRequest
 */
-func (a *OrgConnectionsService) Test(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiTestRequest {
+func (a *OrgConnectionsService) Test(ctx _context.Context, orgHandle string, connectionHandle string) OrgConnectionsApiTestRequest {
 	return OrgConnectionsApiTestRequest{
-		ApiService: a,
-		ctx:        ctx,
-		orgHandle:  orgHandle,
-		connHandle: connHandle,
+		ApiService:       a,
+		ctx:              ctx,
+		orgHandle:        orgHandle,
+		connectionHandle: connectionHandle,
 	}
 }
 
@@ -756,16 +1859,19 @@ func (a *OrgConnectionsService) TestExecute(r OrgConnectionsApiTestRequest) (Con
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/org/{org_handle}/conn/{conn_handle}/test"
+	localVarPath := localBasePath + "/org/{org_handle}/connection/{connection_handle}/test"
 	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"conn_handle"+"}", _neturl.PathEscape(parameterToString(r.connHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_handle"+"}", _neturl.PathEscape(parameterToString(r.connectionHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
+	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -781,6 +1887,171 @@ func (a *OrgConnectionsService) TestExecute(r OrgConnectionsApiTestRequest) (Con
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.request
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgConnectionsApiTestDeprecatedRequest struct {
+	ctx        _context.Context
+	ApiService *OrgConnectionsService
+	orgHandle  string
+	connHandle string
+	request    *TestConnectionRequest
+}
+
+// The request body for the connection to be tested.
+func (r OrgConnectionsApiTestDeprecatedRequest) Request(request TestConnectionRequest) OrgConnectionsApiTestDeprecatedRequest {
+	r.request = &request
+	return r
+}
+
+func (r OrgConnectionsApiTestDeprecatedRequest) Execute() (ConnectionTestResult, *_nethttp.Response, error) {
+	return r.ApiService.TestDeprecatedExecute(r)
+}
+
+/*
+TestDeprecated Test org connection
+
+Test the config for an org connection to check for basic connectivity.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the org where the connection exists / intends to be created.
+	@param connHandle The handle of the connection to be tested. For connections that are not yet created, use underscore `_` as the handle, else pass the handle of the existing connection.
+	@return OrgConnectionsApiTestDeprecatedRequest
+
+Deprecated
+*/
+func (a *OrgConnectionsService) TestDeprecated(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiTestDeprecatedRequest {
+	return OrgConnectionsApiTestDeprecatedRequest{
+		ApiService: a,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
+		connHandle: connHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ConnectionTestResult
+//
+// Deprecated
+func (a *OrgConnectionsService) TestDeprecatedExecute(r OrgConnectionsApiTestDeprecatedRequest) (ConnectionTestResult, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue ConnectionTestResult
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.TestDeprecated")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/conn/{conn_handle}/test"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"conn_handle"+"}", _neturl.PathEscape(parameterToString(r.connHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.request
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -858,16 +2129,23 @@ func (a *OrgConnectionsService) TestExecute(r OrgConnectionsApiTestRequest) (Con
 }
 
 type OrgConnectionsApiUpdateRequest struct {
-	ctx        _context.Context
-	ApiService *OrgConnectionsService
-	orgHandle  string
-	connHandle string
-	request    *UpdateConnectionRequest
+	ctx              _context.Context
+	ApiService       *OrgConnectionsService
+	orgHandle        string
+	connectionHandle string
+	request          *UpdateConnectionRequest
+	mode             *string
 }
 
 // The request body of the connection which needs to be updated.
 func (r OrgConnectionsApiUpdateRequest) Request(request UpdateConnectionRequest) OrgConnectionsApiUpdateRequest {
 	r.request = &request
+	return r
+}
+
+// The mode of this request
+func (r OrgConnectionsApiUpdateRequest) Mode(mode string) OrgConnectionsApiUpdateRequest {
+	r.mode = &mode
 	return r
 }
 
@@ -878,19 +2156,19 @@ func (r OrgConnectionsApiUpdateRequest) Execute() (Connection, *_nethttp.Respons
 /*
 Update Update org connection
 
-Update the connection in an organization.
+Update the details of a connection belonging to an org.
 
 	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param orgHandle The handle of the organization where the connection exist.
-	@param connHandle The handle of the connection which needs to be updated.
+	@param orgHandle The handle of the organization where the connection exists.
+	@param connectionHandle The handle of the connection which needs to be updated.
 	@return OrgConnectionsApiUpdateRequest
 */
-func (a *OrgConnectionsService) Update(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiUpdateRequest {
+func (a *OrgConnectionsService) Update(ctx _context.Context, orgHandle string, connectionHandle string) OrgConnectionsApiUpdateRequest {
 	return OrgConnectionsApiUpdateRequest{
-		ApiService: a,
-		ctx:        ctx,
-		orgHandle:  orgHandle,
-		connHandle: connHandle,
+		ApiService:       a,
+		ctx:              ctx,
+		orgHandle:        orgHandle,
+		connectionHandle: connectionHandle,
 	}
 }
 
@@ -910,9 +2188,9 @@ func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) 
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/org/{org_handle}/conn/{conn_handle}"
+	localVarPath := localBasePath + "/org/{org_handle}/connection/{connection_handle}"
 	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"conn_handle"+"}", _neturl.PathEscape(parameterToString(r.connHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connection_handle"+"}", _neturl.PathEscape(parameterToString(r.connectionHandle, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -921,6 +2199,9 @@ func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) 
 		return localVarReturnValue, nil, reportError("request is required and must be specified")
 	}
 
+	if r.mode != nil {
+		localVarQueryParams.Add("mode", parameterToString(*r.mode, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -982,7 +2263,190 @@ func (a *OrgConnectionsService) UpdateExecute(r OrgConnectionsApiUpdateRequest) 
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrgConnectionsApiUpdateDeprecatedRequest struct {
+	ctx        _context.Context
+	ApiService *OrgConnectionsService
+	orgHandle  string
+	connHandle string
+	request    *UpdateConnectionRequest
+	mode       *string
+}
+
+// The request body for the connection which needs to be updated.
+func (r OrgConnectionsApiUpdateDeprecatedRequest) Request(request UpdateConnectionRequest) OrgConnectionsApiUpdateDeprecatedRequest {
+	r.request = &request
+	return r
+}
+
+// The mode of this request
+func (r OrgConnectionsApiUpdateDeprecatedRequest) Mode(mode string) OrgConnectionsApiUpdateDeprecatedRequest {
+	r.mode = &mode
+	return r
+}
+
+func (r OrgConnectionsApiUpdateDeprecatedRequest) Execute() (Connection, *_nethttp.Response, error) {
+	return r.ApiService.UpdateDeprecatedExecute(r)
+}
+
+/*
+UpdateDeprecated Update org connection
+
+Update the details of a connection belonging to an org.
+
+	@param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orgHandle The handle of the organization where the connection exist.
+	@param connHandle The handle of the connection which needs to be updated.
+	@return OrgConnectionsApiUpdateDeprecatedRequest
+
+Deprecated
+*/
+func (a *OrgConnectionsService) UpdateDeprecated(ctx _context.Context, orgHandle string, connHandle string) OrgConnectionsApiUpdateDeprecatedRequest {
+	return OrgConnectionsApiUpdateDeprecatedRequest{
+		ApiService: a,
+		ctx:        ctx,
+		orgHandle:  orgHandle,
+		connHandle: connHandle,
+	}
+}
+
+// Execute executes the request
+//
+//	@return Connection
+//
+// Deprecated
+func (a *OrgConnectionsService) UpdateDeprecatedExecute(r OrgConnectionsApiUpdateDeprecatedRequest) (Connection, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue Connection
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrgConnectionsService.UpdateDeprecated")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/org/{org_handle}/conn/{conn_handle}"
+	localVarPath = strings.Replace(localVarPath, "{"+"org_handle"+"}", _neturl.PathEscape(parameterToString(r.orgHandle, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"conn_handle"+"}", _neturl.PathEscape(parameterToString(r.connHandle, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
+	}
+
+	if r.mode != nil {
+		localVarQueryParams.Add("mode", parameterToString(*r.mode, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.request
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

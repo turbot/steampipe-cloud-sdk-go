@@ -17,17 +17,16 @@ import (
 
 // PipelineFrequency struct for PipelineFrequency
 type PipelineFrequency struct {
-	Schedule string `json:"schedule"`
-	Type     string `json:"type"`
+	Schedule *string `json:"schedule,omitempty"`
+	Type     string  `json:"type"`
 }
 
 // NewPipelineFrequency instantiates a new PipelineFrequency object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPipelineFrequency(schedule string, type_ string) *PipelineFrequency {
+func NewPipelineFrequency(type_ string) *PipelineFrequency {
 	this := PipelineFrequency{}
-	this.Schedule = schedule
 	this.Type = type_
 	return &this
 }
@@ -40,28 +39,36 @@ func NewPipelineFrequencyWithDefaults() *PipelineFrequency {
 	return &this
 }
 
-// GetSchedule returns the Schedule field value
+// GetSchedule returns the Schedule field value if set, zero value otherwise.
 func (o *PipelineFrequency) GetSchedule() string {
-	if o == nil {
+	if o == nil || o.Schedule == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Schedule
+	return *o.Schedule
 }
 
-// GetScheduleOk returns a tuple with the Schedule field value
+// GetScheduleOk returns a tuple with the Schedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PipelineFrequency) GetScheduleOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Schedule == nil {
 		return nil, false
 	}
-	return &o.Schedule, true
+	return o.Schedule, true
 }
 
-// SetSchedule sets field value
+// HasSchedule returns a boolean if a field has been set.
+func (o *PipelineFrequency) HasSchedule() bool {
+	if o != nil && o.Schedule != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSchedule gets a reference to the given string and assigns it to the Schedule field.
 func (o *PipelineFrequency) SetSchedule(v string) {
-	o.Schedule = v
+	o.Schedule = &v
 }
 
 // GetType returns the Type field value
@@ -90,7 +97,7 @@ func (o *PipelineFrequency) SetType(v string) {
 
 func (o PipelineFrequency) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.Schedule != nil {
 		toSerialize["schedule"] = o.Schedule
 	}
 	if true {

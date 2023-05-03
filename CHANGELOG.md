@@ -1,6 +1,23 @@
 # Steampipe Cloud Go SDK
 
-## 0.5.0 [tbd]
+## 0.6.0 [2023-04-20]
+
+_Breaking changes_
+
+- Removed attribute `AvatarUrl` from CreateOrgRequest struct.
+- Removed attribute `AvatarUrl` from UpdateOrgRequest struct.
+- Removed attribute `AvatarUrl` from UpdateUserRequest struct.
+
+_What's new?_
+
+- Identity Workspace Aggregator APIs.
+- Identity APIs to get Avatar URLs
+- Org APIs to create / delete custom avatar.
+- User APIs to create / delete custom avatar.
+- Add `TokenMinIssuedAt` attribute to Org struct to determine the time after which tokens will be accepted for this identity.
+- Add `TokenMinIssuedAt` attribute to User struct to determine the time after which tokens will be accepted for this identity.
+
+## 0.5.0 [2023-02-06]
 
 _Breaking changes_
 

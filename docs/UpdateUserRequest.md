@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AvatarUrl** | Pointer to **string** |  | [optional] 
 **DisplayName** | Pointer to **string** |  | [optional] 
 **Handle** | Pointer to **string** |  | [optional] 
+**TokenMinIssuedAt** | Pointer to [**JSONTime**](JSONTime.md) |  | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -27,31 +27,6 @@ will change when the set of required properties is changed
 NewUpdateUserRequestWithDefaults instantiates a new UpdateUserRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAvatarUrl
-
-`func (o *UpdateUserRequest) GetAvatarUrl() string`
-
-GetAvatarUrl returns the AvatarUrl field if non-nil, zero value otherwise.
-
-### GetAvatarUrlOk
-
-`func (o *UpdateUserRequest) GetAvatarUrlOk() (*string, bool)`
-
-GetAvatarUrlOk returns a tuple with the AvatarUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvatarUrl
-
-`func (o *UpdateUserRequest) SetAvatarUrl(v string)`
-
-SetAvatarUrl sets AvatarUrl field to given value.
-
-### HasAvatarUrl
-
-`func (o *UpdateUserRequest) HasAvatarUrl() bool`
-
-HasAvatarUrl returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -102,6 +77,31 @@ SetHandle sets Handle field to given value.
 `func (o *UpdateUserRequest) HasHandle() bool`
 
 HasHandle returns a boolean if a field has been set.
+
+### GetTokenMinIssuedAt
+
+`func (o *UpdateUserRequest) GetTokenMinIssuedAt() JSONTime`
+
+GetTokenMinIssuedAt returns the TokenMinIssuedAt field if non-nil, zero value otherwise.
+
+### GetTokenMinIssuedAtOk
+
+`func (o *UpdateUserRequest) GetTokenMinIssuedAtOk() (*JSONTime, bool)`
+
+GetTokenMinIssuedAtOk returns a tuple with the TokenMinIssuedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenMinIssuedAt
+
+`func (o *UpdateUserRequest) SetTokenMinIssuedAt(v JSONTime)`
+
+SetTokenMinIssuedAt sets TokenMinIssuedAt field to given value.
+
+### HasTokenMinIssuedAt
+
+`func (o *UpdateUserRequest) HasTokenMinIssuedAt() bool`
+
+HasTokenMinIssuedAt returns a boolean if a field has been set.
 
 ### GetUrl
 

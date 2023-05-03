@@ -11,12 +11,16 @@ Name | Type | Description | Notes
 **DeletedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
 **DeletedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **DeletedById** | **string** | The ID of the user that performed the deletion. | 
+**DesiredState** | **string** | DesiredState is user editable state of the pipeline, there are only 3 options: enabled, disabled or paused | 
 **Frequency** | [**PipelineFrequency**](PipelineFrequency.md) |  | 
 **Id** | **string** | The unique identifier of the pipeline. | 
+**IdentityId** | **string** | We need the IdentityID to be in the JSON field because I&#39;m sending the pipeline definition across the Temporal Workflow (see Datatank migration workflow) | 
 **LastProcess** | Pointer to [**SpProcess**](SpProcess.md) |  | [optional] 
 **LastProcessId** | Pointer to **string** | The id of the last process that was run for the pipeline. | [optional] 
-**NextRunAt** | **string** | The time when the pipeline is next scheduled to run in ISO 8601 UTC. | 
+**NextRunAt** | Pointer to **string** | The time when the pipeline is next scheduled to run in ISO 8601 UTC. | [optional] 
 **Pipeline** | **string** | The name of the pipeline to be executed. | 
+**State** | **string** | State is the system state of the pipeline. User should not be able to modify this value | 
+**StateReason** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **interface{}** |  | [optional] 
 **Title** | Pointer to **string** | The title of the pipeline. | [optional] 
 **UpdatedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
@@ -29,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewPipeline
 
-`func NewPipeline(createdAt string, createdById string, deletedById string, frequency PipelineFrequency, id string, nextRunAt string, pipeline string, updatedById string, versionId int32, ) *Pipeline`
+`func NewPipeline(createdAt string, createdById string, deletedById string, desiredState string, frequency PipelineFrequency, id string, identityId string, pipeline string, state string, updatedById string, versionId int32, ) *Pipeline`
 
 NewPipeline instantiates a new Pipeline object
 This constructor will assign default values to properties that have it defined,
@@ -214,6 +218,26 @@ and a boolean to check if the value has been set.
 SetDeletedById sets DeletedById field to given value.
 
 
+### GetDesiredState
+
+`func (o *Pipeline) GetDesiredState() string`
+
+GetDesiredState returns the DesiredState field if non-nil, zero value otherwise.
+
+### GetDesiredStateOk
+
+`func (o *Pipeline) GetDesiredStateOk() (*string, bool)`
+
+GetDesiredStateOk returns a tuple with the DesiredState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDesiredState
+
+`func (o *Pipeline) SetDesiredState(v string)`
+
+SetDesiredState sets DesiredState field to given value.
+
+
 ### GetFrequency
 
 `func (o *Pipeline) GetFrequency() PipelineFrequency`
@@ -252,6 +276,26 @@ and a boolean to check if the value has been set.
 `func (o *Pipeline) SetId(v string)`
 
 SetId sets Id field to given value.
+
+
+### GetIdentityId
+
+`func (o *Pipeline) GetIdentityId() string`
+
+GetIdentityId returns the IdentityId field if non-nil, zero value otherwise.
+
+### GetIdentityIdOk
+
+`func (o *Pipeline) GetIdentityIdOk() (*string, bool)`
+
+GetIdentityIdOk returns a tuple with the IdentityId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdentityId
+
+`func (o *Pipeline) SetIdentityId(v string)`
+
+SetIdentityId sets IdentityId field to given value.
 
 
 ### GetLastProcess
@@ -323,6 +367,11 @@ and a boolean to check if the value has been set.
 
 SetNextRunAt sets NextRunAt field to given value.
 
+### HasNextRunAt
+
+`func (o *Pipeline) HasNextRunAt() bool`
+
+HasNextRunAt returns a boolean if a field has been set.
 
 ### GetPipeline
 
@@ -343,6 +392,51 @@ and a boolean to check if the value has been set.
 
 SetPipeline sets Pipeline field to given value.
 
+
+### GetState
+
+`func (o *Pipeline) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *Pipeline) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *Pipeline) SetState(v string)`
+
+SetState sets State field to given value.
+
+
+### GetStateReason
+
+`func (o *Pipeline) GetStateReason() string`
+
+GetStateReason returns the StateReason field if non-nil, zero value otherwise.
+
+### GetStateReasonOk
+
+`func (o *Pipeline) GetStateReasonOk() (*string, bool)`
+
+GetStateReasonOk returns a tuple with the StateReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStateReason
+
+`func (o *Pipeline) SetStateReason(v string)`
+
+SetStateReason sets StateReason field to given value.
+
+### HasStateReason
+
+`func (o *Pipeline) HasStateReason() bool`
+
+HasStateReason returns a boolean if a field has been set.
 
 ### GetTags
 

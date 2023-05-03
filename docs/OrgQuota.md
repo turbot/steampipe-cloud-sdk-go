@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Aggregator** | [**map[string]Quota**](Quota.md) |  | 
 **Association** | [**map[string]Quota**](Quota.md) |  | 
 **Conn** | [**Quota**](Quota.md) |  | 
 **Member** | [**Quota**](Quota.md) |  | 
@@ -16,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewOrgQuota
 
-`func NewOrgQuota(association map[string]Quota, conn Quota, member Quota, mod map[string]Quota, pipeline map[string]Quota, snapshot map[string]Quota, workspace Quota, ) *OrgQuota`
+`func NewOrgQuota(aggregator map[string]Quota, association map[string]Quota, conn Quota, member Quota, mod map[string]Quota, pipeline map[string]Quota, snapshot map[string]Quota, workspace Quota, ) *OrgQuota`
 
 NewOrgQuota instantiates a new OrgQuota object
 This constructor will assign default values to properties that have it defined,
@@ -30,6 +31,26 @@ will change when the set of required properties is changed
 NewOrgQuotaWithDefaults instantiates a new OrgQuota object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAggregator
+
+`func (o *OrgQuota) GetAggregator() map[string]Quota`
+
+GetAggregator returns the Aggregator field if non-nil, zero value otherwise.
+
+### GetAggregatorOk
+
+`func (o *OrgQuota) GetAggregatorOk() (*map[string]Quota, bool)`
+
+GetAggregatorOk returns a tuple with the Aggregator field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAggregator
+
+`func (o *OrgQuota) SetAggregator(v map[string]Quota)`
+
+SetAggregator sets Aggregator field to given value.
+
 
 ### GetAssociation
 

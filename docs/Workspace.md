@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **DeletedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
 **DeletedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **DeletedById** | **string** | The ID of the user that performed the deletion. | 
+**DesiredState** | **string** |  | 
 **Handle** | **string** | The handle name for the workspace. | 
 **Hive** | Pointer to **string** | The database hive for this workspace. | [optional] 
 **Host** | Pointer to **string** |  | [optional] 
@@ -20,6 +21,7 @@ Name | Type | Description | Notes
 **IdentityId** | **string** | The unique identifier for an identity where the workspace is created. | 
 **PublicKey** | Pointer to **string** |  | [optional] 
 **State** | Pointer to **string** | The current state of the workspace. | [optional] 
+**StateReason** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** | The time of the last update in ISO 8601 UTC. | [optional] 
 **UpdatedBy** | Pointer to [**User**](User.md) |  | [optional] 
 **UpdatedById** | **string** | The ID of the user that performed the last update. | 
@@ -29,7 +31,7 @@ Name | Type | Description | Notes
 
 ### NewWorkspace
 
-`func NewWorkspace(createdAt string, createdById string, deletedById string, handle string, id string, identityId string, updatedById string, versionId int32, ) *Workspace`
+`func NewWorkspace(createdAt string, createdById string, deletedById string, desiredState string, handle string, id string, identityId string, updatedById string, versionId int32, ) *Workspace`
 
 NewWorkspace instantiates a new Workspace object
 This constructor will assign default values to properties that have it defined,
@@ -254,6 +256,26 @@ and a boolean to check if the value has been set.
 SetDeletedById sets DeletedById field to given value.
 
 
+### GetDesiredState
+
+`func (o *Workspace) GetDesiredState() string`
+
+GetDesiredState returns the DesiredState field if non-nil, zero value otherwise.
+
+### GetDesiredStateOk
+
+`func (o *Workspace) GetDesiredStateOk() (*string, bool)`
+
+GetDesiredStateOk returns a tuple with the DesiredState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDesiredState
+
+`func (o *Workspace) SetDesiredState(v string)`
+
+SetDesiredState sets DesiredState field to given value.
+
+
 ### GetHandle
 
 `func (o *Workspace) GetHandle() string`
@@ -413,6 +435,31 @@ SetState sets State field to given value.
 `func (o *Workspace) HasState() bool`
 
 HasState returns a boolean if a field has been set.
+
+### GetStateReason
+
+`func (o *Workspace) GetStateReason() string`
+
+GetStateReason returns the StateReason field if non-nil, zero value otherwise.
+
+### GetStateReasonOk
+
+`func (o *Workspace) GetStateReasonOk() (*string, bool)`
+
+GetStateReasonOk returns a tuple with the StateReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStateReason
+
+`func (o *Workspace) SetStateReason(v string)`
+
+SetStateReason sets StateReason field to given value.
+
+### HasStateReason
+
+`func (o *Workspace) HasStateReason() bool`
+
+HasStateReason returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

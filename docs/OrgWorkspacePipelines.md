@@ -114,7 +114,7 @@ import (
 func main() {
     orgHandle := "orgHandle_example" // string | The handle of the organization which contains the workspace.
     workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace where we want to create the pipeline.
-    request := *openapiclient.NewCreatePipelineRequest(interface{}(123), *openapiclient.NewPipelineFrequency("Schedule_example", "Type_example"), "Pipeline_example", "Title_example") // CreatePipelineRequest | The request body for the pipeline to be created.
+    request := *openapiclient.NewCreatePipelineRequest(interface{}(123), *openapiclient.NewPipelineFrequency("Type_example"), "Pipeline_example", "Title_example") // CreatePipelineRequest | The request body for the pipeline to be created.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

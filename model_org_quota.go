@@ -17,6 +17,7 @@ import (
 
 // OrgQuota struct for OrgQuota
 type OrgQuota struct {
+	Aggregator  map[string]Quota `json:"aggregator"`
 	Association map[string]Quota `json:"association"`
 	Conn        Quota            `json:"conn"`
 	Member      Quota            `json:"member"`
@@ -30,8 +31,9 @@ type OrgQuota struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgQuota(association map[string]Quota, conn Quota, member Quota, mod map[string]Quota, pipeline map[string]Quota, snapshot map[string]Quota, workspace Quota) *OrgQuota {
+func NewOrgQuota(aggregator map[string]Quota, association map[string]Quota, conn Quota, member Quota, mod map[string]Quota, pipeline map[string]Quota, snapshot map[string]Quota, workspace Quota) *OrgQuota {
 	this := OrgQuota{}
+	this.Aggregator = aggregator
 	this.Association = association
 	this.Conn = conn
 	this.Member = member
@@ -48,6 +50,30 @@ func NewOrgQuota(association map[string]Quota, conn Quota, member Quota, mod map
 func NewOrgQuotaWithDefaults() *OrgQuota {
 	this := OrgQuota{}
 	return &this
+}
+
+// GetAggregator returns the Aggregator field value
+func (o *OrgQuota) GetAggregator() map[string]Quota {
+	if o == nil {
+		var ret map[string]Quota
+		return ret
+	}
+
+	return o.Aggregator
+}
+
+// GetAggregatorOk returns a tuple with the Aggregator field value
+// and a boolean to check if the value has been set.
+func (o *OrgQuota) GetAggregatorOk() (*map[string]Quota, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Aggregator, true
+}
+
+// SetAggregator sets field value
+func (o *OrgQuota) SetAggregator(v map[string]Quota) {
+	o.Aggregator = v
 }
 
 // GetAssociation returns the Association field value
@@ -220,6 +246,9 @@ func (o *OrgQuota) SetWorkspace(v Quota) {
 
 func (o OrgQuota) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["aggregator"] = o.Aggregator
+	}
 	if true {
 		toSerialize["association"] = o.Association
 	}

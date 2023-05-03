@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AvatarUrl** | Pointer to **string** |  | [optional] 
 **DisplayName** | Pointer to **string** |  | [optional] 
 **Handle** | **string** |  | 
+**PlanId** | Pointer to **string** |  | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -27,31 +27,6 @@ will change when the set of required properties is changed
 NewCreateOrgRequestWithDefaults instantiates a new CreateOrgRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAvatarUrl
-
-`func (o *CreateOrgRequest) GetAvatarUrl() string`
-
-GetAvatarUrl returns the AvatarUrl field if non-nil, zero value otherwise.
-
-### GetAvatarUrlOk
-
-`func (o *CreateOrgRequest) GetAvatarUrlOk() (*string, bool)`
-
-GetAvatarUrlOk returns a tuple with the AvatarUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAvatarUrl
-
-`func (o *CreateOrgRequest) SetAvatarUrl(v string)`
-
-SetAvatarUrl sets AvatarUrl field to given value.
-
-### HasAvatarUrl
-
-`func (o *CreateOrgRequest) HasAvatarUrl() bool`
-
-HasAvatarUrl returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -97,6 +72,31 @@ and a boolean to check if the value has been set.
 
 SetHandle sets Handle field to given value.
 
+
+### GetPlanId
+
+`func (o *CreateOrgRequest) GetPlanId() string`
+
+GetPlanId returns the PlanId field if non-nil, zero value otherwise.
+
+### GetPlanIdOk
+
+`func (o *CreateOrgRequest) GetPlanIdOk() (*string, bool)`
+
+GetPlanIdOk returns a tuple with the PlanId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlanId
+
+`func (o *CreateOrgRequest) SetPlanId(v string)`
+
+SetPlanId sets PlanId field to given value.
+
+### HasPlanId
+
+`func (o *CreateOrgRequest) HasPlanId() bool`
+
+HasPlanId returns a boolean if a field has been set.
 
 ### GetUrl
 

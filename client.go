@@ -62,6 +62,8 @@ type APIClient struct {
 
 	OrgProcesses *OrgProcessesService
 
+	OrgWorkspaceAggregators *OrgWorkspaceAggregatorsService
+
 	OrgWorkspaceConnectionAssociations *OrgWorkspaceConnectionAssociationsService
 
 	OrgWorkspaceMembers *OrgWorkspaceMembersService
@@ -85,6 +87,8 @@ type APIClient struct {
 	UserProcesses *UserProcessesService
 
 	UserTokens *UserTokensService
+
+	UserWorkspaceAggregators *UserWorkspaceAggregatorsService
 
 	UserWorkspaceConnectionAssociations *UserWorkspaceConnectionAssociationsService
 
@@ -125,6 +129,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.OrgConnections = (*OrgConnectionsService)(&c.common)
 	c.OrgMembers = (*OrgMembersService)(&c.common)
 	c.OrgProcesses = (*OrgProcessesService)(&c.common)
+	c.OrgWorkspaceAggregators = (*OrgWorkspaceAggregatorsService)(&c.common)
 	c.OrgWorkspaceConnectionAssociations = (*OrgWorkspaceConnectionAssociationsService)(&c.common)
 	c.OrgWorkspaceMembers = (*OrgWorkspaceMembersService)(&c.common)
 	c.OrgWorkspaceModVariables = (*OrgWorkspaceModVariablesService)(&c.common)
@@ -137,6 +142,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.UserConnections = (*UserConnectionsService)(&c.common)
 	c.UserProcesses = (*UserProcessesService)(&c.common)
 	c.UserTokens = (*UserTokensService)(&c.common)
+	c.UserWorkspaceAggregators = (*UserWorkspaceAggregatorsService)(&c.common)
 	c.UserWorkspaceConnectionAssociations = (*UserWorkspaceConnectionAssociationsService)(&c.common)
 	c.UserWorkspaceModVariables = (*UserWorkspaceModVariablesService)(&c.common)
 	c.UserWorkspaceMods = (*UserWorkspaceModsService)(&c.common)
