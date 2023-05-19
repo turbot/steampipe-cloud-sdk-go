@@ -40,8 +40,9 @@ type Workspace struct {
 	// The unique identifier for the workspace.
 	Id string `json:"id"`
 	// The unique identifier for an identity where the workspace is created.
-	IdentityId string  `json:"identity_id"`
-	PublicKey  *string `json:"public_key,omitempty"`
+	IdentityId string                  `json:"identity_id"`
+	Notices    *map[string]interface{} `json:"notices,omitempty"`
+	PublicKey  *string                 `json:"public_key,omitempty"`
 	// The current state of the workspace.
 	State       *string `json:"state,omitempty"`
 	StateReason *string `json:"state_reason,omitempty"`
@@ -504,6 +505,38 @@ func (o *Workspace) SetIdentityId(v string) {
 	o.IdentityId = v
 }
 
+// GetNotices returns the Notices field value if set, zero value otherwise.
+func (o *Workspace) GetNotices() map[string]interface{} {
+	if o == nil || o.Notices == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return *o.Notices
+}
+
+// GetNoticesOk returns a tuple with the Notices field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Workspace) GetNoticesOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Notices == nil {
+		return nil, false
+	}
+	return o.Notices, true
+}
+
+// HasNotices returns a boolean if a field has been set.
+func (o *Workspace) HasNotices() bool {
+	if o != nil && o.Notices != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNotices gets a reference to the given map[string]interface{} and assigns it to the Notices field.
+func (o *Workspace) SetNotices(v map[string]interface{}) {
+	o.Notices = &v
+}
+
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *Workspace) GetPublicKey() string {
 	if o == nil || o.PublicKey == nil {
@@ -758,6 +791,9 @@ func (o Workspace) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["identity_id"] = o.IdentityId
+	}
+	if o.Notices != nil {
+		toSerialize["notices"] = o.Notices
 	}
 	if o.PublicKey != nil {
 		toSerialize["public_key"] = o.PublicKey

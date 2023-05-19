@@ -141,6 +141,11 @@ Class | Method | HTTP request | Description
 *OrgWorkspaceProcesses* | [**Get**](docs/OrgWorkspaceProcesses.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/process/{process_id} | Get org workspace process
 *OrgWorkspaceProcesses* | [**List**](docs/OrgWorkspaceProcesses.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/process | List org workspace processes
 *OrgWorkspaceProcesses* | [**Log**](docs/OrgWorkspaceProcesses.md#log) | **Get** /org/{org_handle}/workspace/{workspace_handle}/process/{process_id}/log/{log_file}.{content_type} | List org workspace process logs
+*OrgWorkspaceSchemas* | [**Attach**](docs/OrgWorkspaceSchemas.md#attach) | **Post** /org/{org_handle}/workspace/{workspace_handle}/schema | Attach a schema to an org workspace
+*OrgWorkspaceSchemas* | [**Detach**](docs/OrgWorkspaceSchemas.md#detach) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/schema/{schema_name} | Detach a schema from an org workspace
+*OrgWorkspaceSchemas* | [**Get**](docs/OrgWorkspaceSchemas.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema/{schema_name} | Get org workspace schema
+*OrgWorkspaceSchemas* | [**Get_0**](docs/OrgWorkspaceSchemas.md#get_0) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema/{schema_name}/table | List org workspace schema tables
+*OrgWorkspaceSchemas* | [**List**](docs/OrgWorkspaceSchemas.md#list) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema | List org workspace schemas
 *OrgWorkspaceSnapshots* | [**Create**](docs/OrgWorkspaceSnapshots.md#create) | **Post** /org/{org_handle}/workspace/{workspace_handle}/snapshot | Create org workspace snapshot
 *OrgWorkspaceSnapshots* | [**Delete**](docs/OrgWorkspaceSnapshots.md#delete) | **Delete** /org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Delete org workspace snapshot
 *OrgWorkspaceSnapshots* | [**Download**](docs/OrgWorkspaceSnapshots.md#download) | **Get** /org/{org_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}.{content_type} | Download org workspace snapshot
@@ -153,7 +158,6 @@ Class | Method | HTTP request | Description
 *OrgWorkspaces* | [**Get**](docs/OrgWorkspaces.md#get) | **Get** /org/{org_handle}/workspace/{workspace_handle} | Get org workspace
 *OrgWorkspaces* | [**GetQuery**](docs/OrgWorkspaces.md#getquery) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
 *OrgWorkspaces* | [**GetQueryWithExtensions**](docs/OrgWorkspaces.md#getquerywithextensions) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
-*OrgWorkspaces* | [**GetSchema**](docs/OrgWorkspaces.md#getschema) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema | Get org workspace schemas
 *OrgWorkspaces* | [**List**](docs/OrgWorkspaces.md#list) | **Get** /org/{org_handle}/workspace | List org workspaces
 *OrgWorkspaces* | [**ListAuditLogs**](docs/OrgWorkspaces.md#listauditlogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/audit_log | Org workspace audit logs
 *OrgWorkspaces* | [**ListDBLogs**](docs/OrgWorkspaces.md#listdblogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/db_log | Org workspace logs
@@ -168,6 +172,7 @@ Class | Method | HTTP request | Description
 *Orgs* | [**GetQuota**](docs/Orgs.md#getquota) | **Get** /org/{org_handle}/quota | Org quota
 *Orgs* | [**List**](docs/Orgs.md#list) | **Get** /org | List orgs
 *Orgs* | [**ListAuditLogs**](docs/Orgs.md#listauditlogs) | **Get** /org/{org_handle}/audit_log | Org audit logs
+*Orgs* | [**ListConstraints**](docs/Orgs.md#listconstraints) | **Get** /org/{org_handle}/constraint | List org constraints
 *Orgs* | [**ListFeatures**](docs/Orgs.md#listfeatures) | **Get** /org/{org_handle}/feature | Org features
 *Orgs* | [**Update**](docs/Orgs.md#update) | **Patch** /org/{org_handle} | Update org
 *UserConnections* | [**Create**](docs/UserConnections.md#create) | **Post** /user/{user_handle}/connection | Create user connection
@@ -222,6 +227,11 @@ Class | Method | HTTP request | Description
 *UserWorkspaceProcesses* | [**Get**](docs/UserWorkspaceProcesses.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/process/{process_id} | Get user workspace process
 *UserWorkspaceProcesses* | [**List**](docs/UserWorkspaceProcesses.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/process | List user workspace processes
 *UserWorkspaceProcesses* | [**Log**](docs/UserWorkspaceProcesses.md#log) | **Get** /user/{user_handle}/workspace/{workspace_handle}/process/{process_id}/log/{log_file}.{content_type} | List user workspace process logs
+*UserWorkspaceSchemas* | [**Attach**](docs/UserWorkspaceSchemas.md#attach) | **Post** /user/{user_handle}/workspace/{workspace_handle}/schema | Attach a schema to a user workspace
+*UserWorkspaceSchemas* | [**Detach**](docs/UserWorkspaceSchemas.md#detach) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/schema/{schema_name} | Detach a schema from a user workspace
+*UserWorkspaceSchemas* | [**Get**](docs/UserWorkspaceSchemas.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle}/schema/{schema_name} | Get user workspace schema
+*UserWorkspaceSchemas* | [**Get_0**](docs/UserWorkspaceSchemas.md#get_0) | **Get** /user/{user_handle}/workspace/{workspace_handle}/schema/{schema_name}/table | List user workspace schema tables
+*UserWorkspaceSchemas* | [**List**](docs/UserWorkspaceSchemas.md#list) | **Get** /user/{user_handle}/workspace/{workspace_handle}/schema | List user workspace schemas
 *UserWorkspaceSnapshots* | [**Create**](docs/UserWorkspaceSnapshots.md#create) | **Post** /user/{user_handle}/workspace/{workspace_handle}/snapshot | Create user workspace snapshot
 *UserWorkspaceSnapshots* | [**Delete**](docs/UserWorkspaceSnapshots.md#delete) | **Delete** /user/{user_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id} | Delete user workspace snapshot
 *UserWorkspaceSnapshots* | [**Download**](docs/UserWorkspaceSnapshots.md#download) | **Get** /user/{user_handle}/workspace/{workspace_handle}/snapshot/{snapshot_id}.{content_type} | Download user workspace snapshot
@@ -234,7 +244,6 @@ Class | Method | HTTP request | Description
 *UserWorkspaces* | [**Get**](docs/UserWorkspaces.md#get) | **Get** /user/{user_handle}/workspace/{workspace_handle} | Get user workspace
 *UserWorkspaces* | [**GetQuery**](docs/UserWorkspaces.md#getquery) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query | Query user workspace
 *UserWorkspaces* | [**GetQueryWithExtensions**](docs/UserWorkspaces.md#getquerywithextensions) | **Get** /user/{user_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query user workspace with extensions
-*UserWorkspaces* | [**GetSchema**](docs/UserWorkspaces.md#getschema) | **Get** /user/{user_handle}/workspace/{workspace_handle}/schema | Get user workspace schemas
 *UserWorkspaces* | [**List**](docs/UserWorkspaces.md#list) | **Get** /user/{user_handle}/workspace | List user workspaces
 *UserWorkspaces* | [**ListAuditLogs**](docs/UserWorkspaces.md#listauditlogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/audit_log | User workspace audit logs
 *UserWorkspaces* | [**ListDBLogs**](docs/UserWorkspaces.md#listdblogs) | **Get** /user/{user_handle}/workspace/{workspace_handle}/db_log | User workspace logs
@@ -253,8 +262,10 @@ Class | Method | HTTP request | Description
 *Users* | [**GetQuota**](docs/Users.md#getquota) | **Get** /user/{user_handle}/quota | User quota
 *Users* | [**List**](docs/Users.md#list) | **Get** /user | List users
 *Users* | [**ListAuditLogs**](docs/Users.md#listauditlogs) | **Get** /user/{user_handle}/audit_log | User audit logs
+*Users* | [**ListConstraints**](docs/Users.md#listconstraints) | **Get** /user/{user_handle}/constraint | List user constraints
 *Users* | [**ListEmails**](docs/Users.md#listemails) | **Get** /user/{user_handle}/email | List user emails
 *Users* | [**ListFeatures**](docs/Users.md#listfeatures) | **Get** /user/{user_handle}/feature | User features
+*Users* | [**RequestConstraintOverride**](docs/Users.md#requestconstraintoverride) | **Patch** /user/{user_handle}/constraint | Request user constraint override
 *Users* | [**Update**](docs/Users.md#update) | **Patch** /user/{user_handle} | Update user
 *Users* | [**UpdatePreferences**](docs/Users.md#updatepreferences) | **Patch** /user/{user_handle}/preferences | Update user preferences
 
@@ -262,10 +273,13 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [ActorWorkspace](docs/ActorWorkspace.md)
+ - [AttachWorkspaceSchemaRequest](docs/AttachWorkspaceSchemaRequest.md)
  - [AuditRecord](docs/AuditRecord.md)
  - [BillingInfo](docs/BillingInfo.md)
  - [Connection](docs/Connection.md)
  - [ConnectionTestResult](docs/ConnectionTestResult.md)
+ - [Constraint](docs/Constraint.md)
+ - [ConstraintOverrideRequest](docs/ConstraintOverrideRequest.md)
  - [CreateConnectionRequest](docs/CreateConnectionRequest.md)
  - [CreateOrgAvatarResponse](docs/CreateOrgAvatarResponse.md)
  - [CreateOrgRequest](docs/CreateOrgRequest.md)
@@ -280,6 +294,7 @@ Class | Method | HTTP request | Description
  - [CreateWorkspaceModVariableSettingRequest](docs/CreateWorkspaceModVariableSettingRequest.md)
  - [CreateWorkspaceRequest](docs/CreateWorkspaceRequest.md)
  - [CreateWorkspaceSnapshotRequest](docs/CreateWorkspaceSnapshotRequest.md)
+ - [Datatank](docs/Datatank.md)
  - [DeleteOrgAvatarResponse](docs/DeleteOrgAvatarResponse.md)
  - [DeleteUserAvatarResponse](docs/DeleteUserAvatarResponse.md)
  - [ErrorDetailModel](docs/ErrorDetailModel.md)
@@ -291,6 +306,7 @@ Class | Method | HTTP request | Description
  - [ListActorWorkspacesResponse](docs/ListActorWorkspacesResponse.md)
  - [ListAuditLogsResponse](docs/ListAuditLogsResponse.md)
  - [ListConnectionsResponse](docs/ListConnectionsResponse.md)
+ - [ListConstraintsResponse](docs/ListConstraintsResponse.md)
  - [ListFeaturesResponse](docs/ListFeaturesResponse.md)
  - [ListIdentitiesResponse](docs/ListIdentitiesResponse.md)
  - [ListLogsResponse](docs/ListLogsResponse.md)
@@ -309,6 +325,8 @@ Class | Method | HTTP request | Description
  - [ListWorkspaceConnectionsResponse](docs/ListWorkspaceConnectionsResponse.md)
  - [ListWorkspaceModVariablesResponse](docs/ListWorkspaceModVariablesResponse.md)
  - [ListWorkspaceModsResponse](docs/ListWorkspaceModsResponse.md)
+ - [ListWorkspaceSchemaResponse](docs/ListWorkspaceSchemaResponse.md)
+ - [ListWorkspaceSchemaTableResponse](docs/ListWorkspaceSchemaTableResponse.md)
  - [ListWorkspaceSnapshotsResponse](docs/ListWorkspaceSnapshotsResponse.md)
  - [ListWorkspacesResponse](docs/ListWorkspacesResponse.md)
  - [LogRecord](docs/LogRecord.md)
@@ -321,9 +339,6 @@ Class | Method | HTTP request | Description
  - [PipelineCommandResponse](docs/PipelineCommandResponse.md)
  - [PipelineFrequency](docs/PipelineFrequency.md)
  - [Quota](docs/Quota.md)
- - [SchemaInfo](docs/SchemaInfo.md)
- - [SchemaTable](docs/SchemaTable.md)
- - [SchemaTableColumn](docs/SchemaTableColumn.md)
  - [SpProcess](docs/SpProcess.md)
  - [TemporaryTokenRequest](docs/TemporaryTokenRequest.md)
  - [TestConnectionRequest](docs/TestConnectionRequest.md)
@@ -362,6 +377,8 @@ Class | Method | HTTP request | Description
  - [WorkspaceQueryResult](docs/WorkspaceQueryResult.md)
  - [WorkspaceQueryResultColumn](docs/WorkspaceQueryResultColumn.md)
  - [WorkspaceSchema](docs/WorkspaceSchema.md)
+ - [WorkspaceSchemaTable](docs/WorkspaceSchemaTable.md)
+ - [WorkspaceSchemaTableColumn](docs/WorkspaceSchemaTableColumn.md)
  - [WorkspaceSnapshot](docs/WorkspaceSnapshot.md)
  - [WorkspaceSnapshotData](docs/WorkspaceSnapshotData.md)
  - [WorkspaceSnapshotDataLayout](docs/WorkspaceSnapshotDataLayout.md)

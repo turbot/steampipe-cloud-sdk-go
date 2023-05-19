@@ -15,6 +15,7 @@ api_org_workspace_mod_variables.go
 api_org_workspace_mods.go
 api_org_workspace_pipelines.go
 api_org_workspace_processes.go
+api_org_workspace_schemas.go
 api_org_workspace_snapshots.go
 api_org_workspaces.go
 api_orgs.go
@@ -27,6 +28,7 @@ api_user_workspace_mod_variables.go
 api_user_workspace_mods.go
 api_user_workspace_pipelines.go
 api_user_workspace_processes.go
+api_user_workspace_schemas.go
 api_user_workspace_snapshots.go
 api_user_workspaces.go
 api_users.go
@@ -34,11 +36,14 @@ client.go
 configuration.go
 docs/ActorWorkspace.md
 docs/Actors.md
+docs/AttachWorkspaceSchemaRequest.md
 docs/AuditRecord.md
 docs/Auth.md
 docs/BillingInfo.md
 docs/Connection.md
 docs/ConnectionTestResult.md
+docs/Constraint.md
+docs/ConstraintOverrideRequest.md
 docs/CreateConnectionRequest.md
 docs/CreateOrgAvatarResponse.md
 docs/CreateOrgRequest.md
@@ -53,6 +58,7 @@ docs/CreateWorkspaceModRequest.md
 docs/CreateWorkspaceModVariableSettingRequest.md
 docs/CreateWorkspaceRequest.md
 docs/CreateWorkspaceSnapshotRequest.md
+docs/Datatank.md
 docs/DeleteOrgAvatarResponse.md
 docs/DeleteUserAvatarResponse.md
 docs/ErrorDetailModel.md
@@ -65,6 +71,7 @@ docs/JSONTime.md
 docs/ListActorWorkspacesResponse.md
 docs/ListAuditLogsResponse.md
 docs/ListConnectionsResponse.md
+docs/ListConstraintsResponse.md
 docs/ListFeaturesResponse.md
 docs/ListIdentitiesResponse.md
 docs/ListLogsResponse.md
@@ -83,6 +90,8 @@ docs/ListWorkspaceConnectionAssociationsResponse.md
 docs/ListWorkspaceConnectionsResponse.md
 docs/ListWorkspaceModVariablesResponse.md
 docs/ListWorkspaceModsResponse.md
+docs/ListWorkspaceSchemaResponse.md
+docs/ListWorkspaceSchemaTableResponse.md
 docs/ListWorkspaceSnapshotsResponse.md
 docs/ListWorkspacesResponse.md
 docs/LogRecord.md
@@ -99,6 +108,7 @@ docs/OrgWorkspaceModVariables.md
 docs/OrgWorkspaceMods.md
 docs/OrgWorkspacePipelines.md
 docs/OrgWorkspaceProcesses.md
+docs/OrgWorkspaceSchemas.md
 docs/OrgWorkspaceSnapshots.md
 docs/OrgWorkspaceUser.md
 docs/OrgWorkspaces.md
@@ -108,9 +118,6 @@ docs/PipelineCommandRequest.md
 docs/PipelineCommandResponse.md
 docs/PipelineFrequency.md
 docs/Quota.md
-docs/SchemaInfo.md
-docs/SchemaTable.md
-docs/SchemaTableColumn.md
 docs/SpProcess.md
 docs/TemporaryTokenRequest.md
 docs/TestConnectionRequest.md
@@ -146,6 +153,7 @@ docs/UserWorkspaceModVariables.md
 docs/UserWorkspaceMods.md
 docs/UserWorkspacePipelines.md
 docs/UserWorkspaceProcesses.md
+docs/UserWorkspaceSchemas.md
 docs/UserWorkspaceSnapshots.md
 docs/UserWorkspaces.md
 docs/Users.md
@@ -161,6 +169,8 @@ docs/WorkspaceModVariable.md
 docs/WorkspaceQueryResult.md
 docs/WorkspaceQueryResultColumn.md
 docs/WorkspaceSchema.md
+docs/WorkspaceSchemaTable.md
+docs/WorkspaceSchemaTableColumn.md
 docs/WorkspaceSnapshot.md
 docs/WorkspaceSnapshotData.md
 docs/WorkspaceSnapshotDataLayout.md
@@ -168,10 +178,13 @@ git_push.sh
 go.mod
 go.sum
 model_actor_workspace.go
+model_attach_workspace_schema_request.go
 model_audit_record.go
 model_billing_info.go
 model_connection.go
 model_connection_test_result.go
+model_constraint.go
+model_constraint_override_request.go
 model_create_connection_request.go
 model_create_org_avatar_response.go
 model_create_org_request.go
@@ -186,6 +199,7 @@ model_create_workspace_mod_request.go
 model_create_workspace_mod_variable_setting_request.go
 model_create_workspace_request.go
 model_create_workspace_snapshot_request.go
+model_datatank.go
 model_delete_org_avatar_response.go
 model_delete_user_avatar_response.go
 model_error_detail_model.go
@@ -197,6 +211,7 @@ model_json_time.go
 model_list_actor_workspaces_response.go
 model_list_audit_logs_response.go
 model_list_connections_response.go
+model_list_constraints_response.go
 model_list_features_response.go
 model_list_identities_response.go
 model_list_logs_response.go
@@ -215,6 +230,8 @@ model_list_workspace_connection_associations_response.go
 model_list_workspace_connections_response.go
 model_list_workspace_mod_variables_response.go
 model_list_workspace_mods_response.go
+model_list_workspace_schema_response.go
+model_list_workspace_schema_table_response.go
 model_list_workspace_snapshots_response.go
 model_list_workspaces_response.go
 model_log_record.go
@@ -227,9 +244,6 @@ model_pipeline_command_request.go
 model_pipeline_command_response.go
 model_pipeline_frequency.go
 model_quota.go
-model_schema_info.go
-model_schema_table.go
-model_schema_table_column.go
 model_sp_process.go
 model_temporary_token_request.go
 model_test_connection_request.go
@@ -268,6 +282,8 @@ model_workspace_mod_variable.go
 model_workspace_query_result.go
 model_workspace_query_result_column.go
 model_workspace_schema.go
+model_workspace_schema_table.go
+model_workspace_schema_table_column.go
 model_workspace_snapshot.go
 model_workspace_snapshot_data.go
 model_workspace_snapshot_data_layout.go

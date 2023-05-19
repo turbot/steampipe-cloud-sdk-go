@@ -2576,6 +2576,93 @@ paths:
       summary: List org connection workspaces
       tags:
       - OrgConnections
+  /org/{org_handle}/constraint:
+    get:
+      description: List all applicable constraints for an org.
+      operationId: org_listConstraints
+      parameters:
+      - description: Specify the handle of the org whose constraints you want to retrieve.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListConstraintsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List org constraints
+      tags:
+      - Orgs
   /org/{org_handle}/feature:
     get:
       description: Returns the feature information for an org.
@@ -7593,11 +7680,10 @@ paths:
       - OrgWorkspaces
   /org/{org_handle}/workspace/{workspace_handle}/schema:
     get:
-      description: Returns the postgres schemas for an org workspace. This will consist
-        of the connections associated with the workspace and any automatic aggregators
-        prefixed with "all_", which are created for any connections where you have
-        >=2 of that plugin type.
-      operationId: orgWorkspace_getSchema
+      description: List the schemas for the org workspace. This will consist of the
+        aggregators, datatanks and identity-level connections associated with the
+        workspace.
+      operationId: orgWorkspaceSchema_list
       parameters:
       - description: The handle of the org that the workspace belongs to.
         explode: false
@@ -7605,7 +7691,7 @@ paths:
         name: org_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
           type: string
         style: simple
       - description: The handle of the workspace to get the schemas for.
@@ -7617,12 +7703,35 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WorkspaceSchema'
+                $ref: '#/components/schemas/ListWorkspaceSchemaResponse'
           description: OK
         "400":
           content:
@@ -7660,9 +7769,321 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Internal Server Error
-      summary: Get org workspace schemas
+      summary: List org workspace schemas
       tags:
-      - OrgWorkspaces
+      - OrgWorkspaceSchemas
+    post:
+      description: Attach an identity-level connection schema to an org workspace.
+      operationId: orgWorkspaceSchema_attach
+      parameters:
+      - description: The handle of the org that the workspace belongs to.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the schema will be attached.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachWorkspaceSchemaRequest'
+        description: The request body for the schema to be attached.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSchema'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Payment Required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Attach a schema to an org workspace
+      tags:
+      - OrgWorkspaceSchemas
+      x-codegen-request-body-name: request
+  /org/{org_handle}/workspace/{workspace_handle}/schema/{schema_name}:
+    delete:
+      description: Detach an identity-level connection schema from an org workspace.
+      operationId: orgWorkspaceSchema_detach
+      parameters:
+      - description: The handle of the org that the workspace belongs to.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace from which the schema will be detached.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The name of the schema that will be detached.
+        explode: false
+        in: path
+        name: schema_name
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSchema'
+          description: Created
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Detach a schema from an org workspace
+      tags:
+      - OrgWorkspaceSchemas
+    get:
+      description: Get the details for an org workspace schema.
+      operationId: orgWorkspaceSchema_get
+      parameters:
+      - description: The handle of the org that the workspace belongs to.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the schema exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The name of the schema whose detail needs to be fetched.
+        explode: false
+        in: path
+        name: schema_name
+        required: true
+        schema:
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSchema'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get org workspace schema
+      tags:
+      - OrgWorkspaceSchemas
+  /org/{org_handle}/workspace/{workspace_handle}/schema/{schema_name}/table:
+    get:
+      description: List the tables for an org workspace schema.
+      operationId: orgWorkspaceSchemaTable_get
+      parameters:
+      - description: The handle of the org that the workspace belongs to.
+        explode: false
+        in: path
+        name: org_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the schema exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The name of the schema whose detail needs to be fetched.
+        explode: false
+        in: path
+        name: schema_name
+        required: true
+        schema:
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspaceSchemaTableResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List org workspace schema tables
+      tags:
+      - OrgWorkspaceSchemas
   /org/{org_handle}/workspace/{workspace_handle}/snapshot:
     get:
       description: List the workspace snapshots for an org.
@@ -9896,6 +10317,157 @@ paths:
       summary: List user connection workspaces
       tags:
       - UserConnections
+  /user/{user_handle}/constraint:
+    get:
+      description: List all applicable constraints for a user.
+      operationId: user_listConstraints
+      parameters:
+      - description: Specify the handle of the user whose constraints you want to
+          retrieve.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      - description: The SQL where filter you wish to apply to this request. The filter
+          will be parsed and sanitised and checked against the supported columns for
+          this API.
+        explode: true
+        in: query
+        name: where
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListConstraintsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List user constraints
+      tags:
+      - Users
+    patch:
+      description: Request an override for a constraint applicable to a user or any
+        resource belonging to a user.
+      operationId: user_requestConstraintOverride
+      parameters:
+      - description: Specify the handle of the user for which you want to request
+          override.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConstraintOverrideRequest'
+        description: The request body for requesting an override for a user constraint.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Request user constraint override
+      tags:
+      - Users
+      x-codegen-request-body-name: request
   /user/{user_handle}/email:
     get:
       description: List emails for a user along with other metadata information for
@@ -14787,11 +15359,10 @@ paths:
       - UserWorkspaces
   /user/{user_handle}/workspace/{workspace_handle}/schema:
     get:
-      description: Returns the postgres schemas for a user workspace. This will consist
-        of the connections associated with the workspace and any automatic aggregators
-        prefixed with "all_", which are created for any connections where you have
-        >=2 of that plugin type.
-      operationId: userWorkspace_getSchema
+      description: List the schemas for the user workspace. This will consist of the
+        aggregators, datatanks and identity-level connections associated with the
+        workspace.
+      operationId: userWorkspaceSchema_list
       parameters:
       - description: The handle of the user that the workspace belongs to.
         explode: false
@@ -14799,7 +15370,7 @@ paths:
         name: user_handle
         required: true
         schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
           type: string
         style: simple
       - description: The handle of the workspace to get the schemas for.
@@ -14811,12 +15382,35 @@ paths:
           format: ^[a-z0-9]{1,23}$
           type: string
         style: simple
+      - description: The max number of items to fetch per page of data, subject to
+          a min and max of 1 and 100 respectively. If not specified will default to
+          25.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: When list results are truncated, next_token will be returned,
+          which is a cursor to fetch the next page of data. Pass next_token to the
+          subsequent list request to fetch the next page of data.
+        explode: true
+        in: query
+        name: next_token
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WorkspaceSchema'
+                $ref: '#/components/schemas/ListWorkspaceSchemaResponse'
           description: OK
         "400":
           content:
@@ -14854,9 +15448,321 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Internal Server Error
-      summary: Get user workspace schemas
+      summary: List user workspace schemas
       tags:
-      - UserWorkspaces
+      - UserWorkspaceSchemas
+    post:
+      description: Attach an identity-level connection schema to a user workspace.
+      operationId: userWorkspaceSchema_attach
+      parameters:
+      - description: The handle of the user that the workspace belongs to.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the schema will be attached.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachWorkspaceSchemaRequest'
+        description: The request body for the schema to be attached.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSchema'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Payment Required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Attach a schema to a user workspace
+      tags:
+      - UserWorkspaceSchemas
+      x-codegen-request-body-name: request
+  /user/{user_handle}/workspace/{workspace_handle}/schema/{schema_name}:
+    delete:
+      description: Detach an identity-level connection schema from a user workspace.
+      operationId: userWorkspaceSchema_detach
+      parameters:
+      - description: The handle of the user that the workspace belongs to.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace from which the schema will be detached.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The name of the schema that will be detached.
+        explode: false
+        in: path
+        name: schema_name
+        required: true
+        schema:
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
+          type: string
+        style: simple
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSchema'
+          description: Created
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Detach a schema from a user workspace
+      tags:
+      - UserWorkspaceSchemas
+    get:
+      description: Get the details for a user workspace schema.
+      operationId: userWorkspaceSchema_get
+      parameters:
+      - description: The handle of the user that the workspace belongs to.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the schema exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The name of the schema whose detail needs to be fetched.
+        explode: false
+        in: path
+        name: schema_name
+        required: true
+        schema:
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceSchema'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: Get user workspace schema
+      tags:
+      - UserWorkspaceSchemas
+  /user/{user_handle}/workspace/{workspace_handle}/schema/{schema_name}/table:
+    get:
+      description: List the tables for a user workspace schema.
+      operationId: userWorkspaceSchemaTable_get
+      parameters:
+      - description: The handle of the user that the workspace belongs to.
+        explode: false
+        in: path
+        name: user_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,2}(?:[a-z0-9]{1,2}|-[a-z0-9]
+          type: string
+        style: simple
+      - description: The handle of the workspace where the schema exists.
+        explode: false
+        in: path
+        name: workspace_handle
+        required: true
+        schema:
+          format: ^[a-z0-9]{1,23}$
+          type: string
+        style: simple
+      - description: The name of the schema whose detail needs to be fetched.
+        explode: false
+        in: path
+        name: schema_name
+        required: true
+        schema:
+          format: ^[a-z][a-z0-9_]{0,37}[a-z0-9]?$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspaceSchemaTableResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+      summary: List user workspace schema tables
+      tags:
+      - UserWorkspaceSchemas
   /user/{user_handle}/workspace/{workspace_handle}/snapshot:
     get:
       description: List the workspace snapshots for a user.
@@ -15361,139 +16267,6 @@ paths:
     - url: https://cloud.steampipe.io/download
 components:
   schemas:
-    SchemaInfo:
-      example:
-        tables:
-        - columns:
-          - data_type: data_type
-            name: name
-            description: description
-          - data_type: data_type
-            name: name
-            description: description
-          name: name
-          description: description
-        - columns:
-          - data_type: data_type
-            name: name
-            description: description
-          - data_type: data_type
-            name: name
-            description: description
-          name: name
-          description: description
-        name: name
-        description: description
-      properties:
-        description:
-          type: string
-        name:
-          type: string
-        tables:
-          items:
-            $ref: '#/components/schemas/SchemaTable'
-          type: array
-      required:
-      - name
-      - tables
-      type: object
-    SchemaTable:
-      example:
-        columns:
-        - data_type: data_type
-          name: name
-          description: description
-        - data_type: data_type
-          name: name
-          description: description
-        name: name
-        description: description
-      properties:
-        columns:
-          items:
-            $ref: '#/components/schemas/SchemaTableColumn'
-          type: array
-        description:
-          type: string
-        name:
-          type: string
-      required:
-      - columns
-      - name
-      type: object
-    SchemaTableColumn:
-      example:
-        data_type: data_type
-        name: name
-        description: description
-      properties:
-        data_type:
-          type: string
-        description:
-          type: string
-        name:
-          type: string
-      required:
-      - data_type
-      - name
-      type: object
-    WorkspaceSchema:
-      example:
-        duration: 0
-        schemas:
-        - tables:
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          name: name
-          description: description
-        - tables:
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          - columns:
-            - data_type: data_type
-              name: name
-              description: description
-            - data_type: data_type
-              name: name
-              description: description
-            name: name
-            description: description
-          name: name
-          description: description
-      properties:
-        duration:
-          type: integer
-        schemas:
-          items:
-            $ref: '#/components/schemas/SchemaInfo'
-          type: array
-      required:
-      - duration
-      - schemas
-      type: object
     ErrorDetailModel:
       properties:
         location:
@@ -15565,6 +16338,7 @@ components:
             url: url
             status: status
           deleted_at: deleted_at
+          notices: '{}'
           updated_at: updated_at
           host: host
           updated_by:
@@ -15624,6 +16398,16 @@ components:
     AssociationQuota:
       additionalProperties:
         $ref: '#/components/schemas/Quota'
+      type: object
+    AttachWorkspaceSchemaRequest:
+      example:
+        connection_handle: connection_handle
+      properties:
+        connection_handle:
+          format: ^[a-z0-9][a-z0-9-]{1,37}[a-z0-9]$
+          type: string
+      required:
+      - connection_handle
       type: object
     AuditRecord:
       example:
@@ -15859,6 +16643,112 @@ components:
         status:
           type: string
       type: object
+    Constraint:
+      example:
+        approval: approval
+        description: description
+        type: type
+        setting: ""
+        target: target
+        workspace_id: workspace_id
+        datatank_id: datatank_id
+        user_id: user_id
+        org_id: org_id
+        limit: ""
+        name: name
+        pipeline_id: pipeline_id
+        value_from: value_from
+        value: ""
+        plan_id: plan_id
+        statistics: ""
+      properties:
+        approval:
+          description: The status of the setting requested for the constraint at this
+            level.
+          type: string
+        datatank_id:
+          description: The datatank id for which the constraint applies to.
+          type: string
+        description:
+          description: A short description of the constraint.
+          type: string
+        limit:
+          nullable: true
+        name:
+          description: The name of the constraint.
+          type: string
+        org_id:
+          description: The org id for which the constraint applies to.
+          type: string
+        pipeline_id:
+          description: The pipeline id for which the constraint applies to.
+          type: string
+        plan_id:
+          description: The plan id for which the constraint applies to.
+          type: string
+        setting:
+          nullable: true
+        statistics:
+          nullable: true
+        target:
+          description: The resource which the constraint targets.
+          type: string
+        type:
+          description: The type of constraint. Can be one of rate, quota, range, feature
+            or constant.
+          type: string
+        user_id:
+          description: The user id for which the constraint applies to.
+          type: string
+        value:
+          nullable: true
+        value_from:
+          description: The id of the item from which the value is inherited.
+          type: string
+        workspace_id:
+          description: The workspace id for which the constraint applies to.
+          type: string
+      required:
+      - name
+      - target
+      - type
+      - value
+      - value_from
+      type: object
+    ConstraintOverrideRequest:
+      example:
+        workspace_id: workspace_id
+        datatank_id: datatank_id
+        user_id: user_id
+        org_id: org_id
+        name: name
+        pipeline_id: pipeline_id
+        setting: ""
+      properties:
+        datatank_id:
+          description: The id of the datatank where the override will be set.
+          type: string
+        name:
+          description: The name of the constraint to request override for.
+          type: string
+        org_id:
+          description: The id of the org where the override will be set.
+          type: string
+        pipeline_id:
+          description: The id of the pipeline where the override will be set.
+          type: string
+        setting:
+          nullable: true
+        user_id:
+          description: The id of the user where the override will be set.
+          type: string
+        workspace_id:
+          description: The id of the workspace where the override will be set.
+          type: string
+      required:
+      - name
+      - setting
+      type: object
     CreateConnectionRequest:
       example:
         plugin: plugin
@@ -16090,6 +16980,137 @@ components:
       required:
       - data
       type: object
+    Datatank:
+      example:
+        state_reason: state_reason
+        identity_id: identity_id
+        deleted_by_id: deleted_by_id
+        created_at: created_at
+        deleted_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          token_min_issued_at:
+            time.Time: time.Time
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        description: description
+        desired_state: enabled
+        handle: handle
+        version_id: 0
+        created_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          token_min_issued_at:
+            time.Time: time.Time
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        deleted_at: deleted_at
+        workspace_id: workspace_id
+        updated_at: updated_at
+        updated_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          token_min_issued_at:
+            time.Time: time.Time
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        updated_by_id: updated_by_id
+        created_by_id: created_by_id
+        id: id
+        state: created
+      properties:
+        created_at:
+          description: The time of creation in ISO 8601 UTC.
+          type: string
+        created_by:
+          $ref: '#/components/schemas/User'
+        created_by_id:
+          description: The ID of the user that created this.
+          format: ^u_[0-9a-v]{20}$
+          type: string
+        deleted_at:
+          description: The time of the last update in ISO 8601 UTC.
+          type: string
+        deleted_by:
+          $ref: '#/components/schemas/User'
+        deleted_by_id:
+          description: The ID of the user that performed the deletion.
+          format: ^u_[0-9a-v]{20}$
+          type: string
+        description:
+          type: string
+        desired_state:
+          enum:
+          - enabled
+          - disabled
+          - paused
+          type: string
+        handle:
+          format: ^[A-Za-z_][A-Za-z_0-9$]*$
+          type: string
+        id:
+          format: ^dt_[0-9a-v]{20}$
+          type: string
+        identity_id:
+          format: ^[uo]_[0-9a-v]{20}$
+          type: string
+        state:
+          enum:
+          - created
+          - enabled
+          - paused
+          - deleted
+          type: string
+        state_reason:
+          type: string
+        updated_at:
+          description: The time of the last update in ISO 8601 UTC.
+          type: string
+        updated_by:
+          $ref: '#/components/schemas/User'
+        updated_by_id:
+          description: The ID of the user that performed the last update.
+          format: ^u_[0-9a-v]{20}$
+          type: string
+        version_id:
+          description: The version ID of this item. Pass this version ID via an If-Match
+            header when performing mutation operations on the item.
+          type: integer
+        workspace_id:
+          format: ^w_[0-9a-v]{20}$
+          type: string
+      required:
+      - created_at
+      - created_by_id
+      - deleted_by_id
+      - description
+      - desired_state
+      - handle
+      - id
+      - identity_id
+      - state
+      - updated_by_id
+      - version_id
+      - workspace_id
+      type: object
     DeleteOrgAvatarResponse:
       example:
         avatar_url: avatar_url
@@ -16230,6 +17251,7 @@ components:
               url: url
               status: status
             deleted_at: deleted_at
+            notices: '{}'
             updated_at: updated_at
             host: host
             updated_by:
@@ -16302,6 +17324,7 @@ components:
               url: url
               status: status
             deleted_at: deleted_at
+            notices: '{}'
             updated_at: updated_at
             host: host
             updated_by:
@@ -16496,6 +17519,50 @@ components:
         items:
           items:
             $ref: '#/components/schemas/Connection'
+          type: array
+        next_token:
+          type: string
+      type: object
+    ListConstraintsResponse:
+      example:
+        next_token: next_token
+        items:
+        - approval: approval
+          description: description
+          type: type
+          setting: ""
+          target: target
+          workspace_id: workspace_id
+          datatank_id: datatank_id
+          user_id: user_id
+          org_id: org_id
+          limit: ""
+          name: name
+          pipeline_id: pipeline_id
+          value_from: value_from
+          value: ""
+          plan_id: plan_id
+          statistics: ""
+        - approval: approval
+          description: description
+          type: type
+          setting: ""
+          target: target
+          workspace_id: workspace_id
+          datatank_id: datatank_id
+          user_id: user_id
+          org_id: org_id
+          limit: ""
+          name: name
+          pipeline_id: pipeline_id
+          value_from: value_from
+          value: ""
+          plan_id: plan_id
+          statistics: ""
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Constraint'
           type: array
         next_token:
           type: string
@@ -18557,6 +19624,486 @@ components:
         next_token:
           type: string
       type: object
+    ListWorkspaceSchemaResponse:
+      example:
+        next_token: next_token
+        items:
+        - aggregator_id: aggregator_id
+          datatank:
+            state_reason: state_reason
+            identity_id: identity_id
+            deleted_by_id: deleted_by_id
+            created_at: created_at
+            deleted_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            description: description
+            desired_state: enabled
+            handle: handle
+            version_id: 0
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            deleted_at: deleted_at
+            workspace_id: workspace_id
+            updated_at: updated_at
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            state: created
+          identity_id: identity_id
+          deleted_by_id: deleted_by_id
+          aggregator:
+            identity_id: identity_id
+            deleted_by_id: deleted_by_id
+            created_at: created_at
+            deleted_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            handle: handle
+            version_id: 0
+            type: type
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            deleted_at: deleted_at
+            workspace_id: workspace_id
+            plugin: plugin
+            updated_at: updated_at
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            connections:
+            - connections
+            - connections
+          created_at: created_at
+          deleted_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          version_id: 6
+          type: type
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          deleted_at: deleted_at
+          workspace_id: workspace_id
+          datatank_id: datatank_id
+          updated_at: updated_at
+          connection_id: connection_id
+          name: name
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          connection:
+            plugin_version: plugin_version
+            identity_id: identity_id
+            deleted_by_id: deleted_by_id
+            created_at: created_at
+            deleted_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            handle: handle
+            version_id: 0
+            type: type
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            deleted_at: deleted_at
+            plugin: plugin
+            updated_at: updated_at
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            config: '{}'
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+        - aggregator_id: aggregator_id
+          datatank:
+            state_reason: state_reason
+            identity_id: identity_id
+            deleted_by_id: deleted_by_id
+            created_at: created_at
+            deleted_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            description: description
+            desired_state: enabled
+            handle: handle
+            version_id: 0
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            deleted_at: deleted_at
+            workspace_id: workspace_id
+            updated_at: updated_at
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            state: created
+          identity_id: identity_id
+          deleted_by_id: deleted_by_id
+          aggregator:
+            identity_id: identity_id
+            deleted_by_id: deleted_by_id
+            created_at: created_at
+            deleted_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            handle: handle
+            version_id: 0
+            type: type
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            deleted_at: deleted_at
+            workspace_id: workspace_id
+            plugin: plugin
+            updated_at: updated_at
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            connections:
+            - connections
+            - connections
+          created_at: created_at
+          deleted_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          version_id: 6
+          type: type
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          deleted_at: deleted_at
+          workspace_id: workspace_id
+          datatank_id: datatank_id
+          updated_at: updated_at
+          connection_id: connection_id
+          name: name
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          connection:
+            plugin_version: plugin_version
+            identity_id: identity_id
+            deleted_by_id: deleted_by_id
+            created_at: created_at
+            deleted_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            handle: handle
+            version_id: 0
+            type: type
+            created_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            deleted_at: deleted_at
+            plugin: plugin
+            updated_at: updated_at
+            updated_by:
+              avatar_url: avatar_url
+              updated_at: updated_at
+              created_at: created_at
+              handle: handle
+              token_min_issued_at:
+                time.Time: time.Time
+              id: id
+              version_id: 0
+              display_name: display_name
+              preview_access_mode: preview_access_mode
+              url: url
+              status: status
+            updated_by_id: updated_by_id
+            created_by_id: created_by_id
+            id: id
+            config: '{}'
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/WorkspaceSchema'
+          type: array
+        next_token:
+          type: string
+      type: object
+    ListWorkspaceSchemaTableResponse:
+      example:
+        next_token: next_token
+        items:
+        - columns:
+          - data_type: data_type
+            name: name
+            description: description
+          - data_type: data_type
+            name: name
+            description: description
+          name: name
+          description: description
+        - columns:
+          - data_type: data_type
+            name: name
+            description: description
+          - data_type: data_type
+            name: name
+            description: description
+          name: name
+          description: description
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/WorkspaceSchemaTable'
+          type: array
+        next_token:
+          type: string
+      type: object
     ListWorkspaceSnapshotsResponse:
       example:
         next_token: next_token
@@ -18698,6 +20245,7 @@ components:
             url: url
             status: status
           deleted_at: deleted_at
+          notices: '{}'
           updated_at: updated_at
           host: host
           updated_by:
@@ -18756,6 +20304,7 @@ components:
             url: url
             status: status
           deleted_at: deleted_at
+          notices: '{}'
           updated_at: updated_at
           host: host
           updated_by:
@@ -20420,6 +21969,7 @@ components:
           url: url
           status: status
         deleted_at: deleted_at
+        notices: '{}'
         updated_at: updated_at
         host: host
         updated_by:
@@ -20490,6 +22040,9 @@ components:
             created.
           format: ^[a-z]_[0-9a-v]{20}$
           type: string
+        notices:
+          properties: {}
+          type: object
         public_key:
           type: string
         state:
@@ -21400,6 +22953,345 @@ components:
           type: string
         max_data_length:
           type: integer
+        name:
+          type: string
+      required:
+      - data_type
+      - name
+      type: object
+    WorkspaceSchema:
+      example:
+        aggregator_id: aggregator_id
+        datatank:
+          state_reason: state_reason
+          identity_id: identity_id
+          deleted_by_id: deleted_by_id
+          created_at: created_at
+          deleted_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          description: description
+          desired_state: enabled
+          handle: handle
+          version_id: 0
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          deleted_at: deleted_at
+          workspace_id: workspace_id
+          updated_at: updated_at
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          state: created
+        identity_id: identity_id
+        deleted_by_id: deleted_by_id
+        aggregator:
+          identity_id: identity_id
+          deleted_by_id: deleted_by_id
+          created_at: created_at
+          deleted_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          handle: handle
+          version_id: 0
+          type: type
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          deleted_at: deleted_at
+          workspace_id: workspace_id
+          plugin: plugin
+          updated_at: updated_at
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          connections:
+          - connections
+          - connections
+        created_at: created_at
+        deleted_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          token_min_issued_at:
+            time.Time: time.Time
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        version_id: 6
+        type: type
+        created_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          token_min_issued_at:
+            time.Time: time.Time
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        deleted_at: deleted_at
+        workspace_id: workspace_id
+        datatank_id: datatank_id
+        updated_at: updated_at
+        connection_id: connection_id
+        name: name
+        updated_by:
+          avatar_url: avatar_url
+          updated_at: updated_at
+          created_at: created_at
+          handle: handle
+          token_min_issued_at:
+            time.Time: time.Time
+          id: id
+          version_id: 0
+          display_name: display_name
+          preview_access_mode: preview_access_mode
+          url: url
+          status: status
+        connection:
+          plugin_version: plugin_version
+          identity_id: identity_id
+          deleted_by_id: deleted_by_id
+          created_at: created_at
+          deleted_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          handle: handle
+          version_id: 0
+          type: type
+          created_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          deleted_at: deleted_at
+          plugin: plugin
+          updated_at: updated_at
+          updated_by:
+            avatar_url: avatar_url
+            updated_at: updated_at
+            created_at: created_at
+            handle: handle
+            token_min_issued_at:
+              time.Time: time.Time
+            id: id
+            version_id: 0
+            display_name: display_name
+            preview_access_mode: preview_access_mode
+            url: url
+            status: status
+          updated_by_id: updated_by_id
+          created_by_id: created_by_id
+          id: id
+          config: '{}'
+        updated_by_id: updated_by_id
+        created_by_id: created_by_id
+        id: id
+      properties:
+        aggregator:
+          $ref: '#/components/schemas/WorkspaceAggregator'
+        aggregator_id:
+          description: The id of the aggregator if the schema is of type 'aggregator'.
+          type: string
+        connection:
+          $ref: '#/components/schemas/Connection'
+        connection_id:
+          description: The id of the connection if the schema is of type 'connection'.
+          type: string
+        created_at:
+          description: The time of creation in ISO 8601 UTC.
+          type: string
+        created_by:
+          $ref: '#/components/schemas/User'
+        created_by_id:
+          description: The ID of the user that created this.
+          format: ^u_[0-9a-v]{20}$
+          type: string
+        datatank:
+          $ref: '#/components/schemas/Datatank'
+        datatank_id:
+          description: The id of the datatank if the schema is of type 'datatank'.
+          type: string
+        deleted_at:
+          description: The time of the last update in ISO 8601 UTC.
+          type: string
+        deleted_by:
+          $ref: '#/components/schemas/User'
+        deleted_by_id:
+          description: The ID of the user that performed the deletion.
+          format: ^u_[0-9a-v]{20}$
+          type: string
+        id:
+          description: The unique identifier for the schema.
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        identity_id:
+          description: The unique identifier for an identity where the schema has
+            been created.
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+        name:
+          description: The name of the schema.
+          format: ^[a-z](?:[a-z0-9]|_(?=[a-z0-9])){0,38}$
+          type: string
+        type:
+          description: Type of schems can be one of datatank, aggregator or connection.
+          type: string
+        updated_at:
+          description: The time of the last update in ISO 8601 UTC.
+          type: string
+        updated_by:
+          $ref: '#/components/schemas/User'
+        updated_by_id:
+          description: The ID of the user that performed the last update.
+          format: ^u_[0-9a-v]{20}$
+          type: string
+        version_id:
+          description: The version ID of this item. Pass this version ID via an If-Match
+            header when performing mutation operations on the item.
+          type: integer
+        workspace_id:
+          description: The unique identifier for the workspace where the schema exists.
+          format: ^[a-z]_[0-9a-v]{20}$
+          type: string
+      required:
+      - created_at
+      - created_by_id
+      - deleted_by_id
+      - id
+      - identity_id
+      - name
+      - updated_by_id
+      - version_id
+      - workspace_id
+      type: object
+    WorkspaceSchemaTable:
+      example:
+        columns:
+        - data_type: data_type
+          name: name
+          description: description
+        - data_type: data_type
+          name: name
+          description: description
+        name: name
+        description: description
+      properties:
+        columns:
+          items:
+            $ref: '#/components/schemas/WorkspaceSchemaTableColumn'
+          type: array
+        description:
+          type: string
+        name:
+          type: string
+      required:
+      - columns
+      - name
+      type: object
+    WorkspaceSchemaTableColumn:
+      example:
+        data_type: data_type
+        name: name
+        description: description
+      properties:
+        data_type:
+          type: string
+        description:
+          type: string
         name:
           type: string
       required:

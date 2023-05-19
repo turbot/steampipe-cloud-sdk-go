@@ -17,18 +17,59 @@ import (
 
 // WorkspaceSchema struct for WorkspaceSchema
 type WorkspaceSchema struct {
-	Duration int32        `json:"duration"`
-	Schemas  []SchemaInfo `json:"schemas"`
+	Aggregator *WorkspaceAggregator `json:"aggregator,omitempty"`
+	// The id of the aggregator if the schema is of type 'aggregator'.
+	AggregatorId *string     `json:"aggregator_id,omitempty"`
+	Connection   *Connection `json:"connection,omitempty"`
+	// The id of the connection if the schema is of type 'connection'.
+	ConnectionId *string `json:"connection_id,omitempty"`
+	// The time of creation in ISO 8601 UTC.
+	CreatedAt string `json:"created_at"`
+	CreatedBy *User  `json:"created_by,omitempty"`
+	// The ID of the user that created this.
+	CreatedById string    `json:"created_by_id"`
+	Datatank    *Datatank `json:"datatank,omitempty"`
+	// The id of the datatank if the schema is of type 'datatank'.
+	DatatankId *string `json:"datatank_id,omitempty"`
+	// The time of the last update in ISO 8601 UTC.
+	DeletedAt *string `json:"deleted_at,omitempty"`
+	DeletedBy *User   `json:"deleted_by,omitempty"`
+	// The ID of the user that performed the deletion.
+	DeletedById string `json:"deleted_by_id"`
+	// The unique identifier for the schema.
+	Id string `json:"id"`
+	// The unique identifier for an identity where the schema has been created.
+	IdentityId string `json:"identity_id"`
+	// The name of the schema.
+	Name string `json:"name"`
+	// Type of schems can be one of datatank, aggregator or connection.
+	Type *string `json:"type,omitempty"`
+	// The time of the last update in ISO 8601 UTC.
+	UpdatedAt *string `json:"updated_at,omitempty"`
+	UpdatedBy *User   `json:"updated_by,omitempty"`
+	// The ID of the user that performed the last update.
+	UpdatedById string `json:"updated_by_id"`
+	// The version ID of this item. Pass this version ID via an If-Match header when performing mutation operations on the item.
+	VersionId int32 `json:"version_id"`
+	// The unique identifier for the workspace where the schema exists.
+	WorkspaceId string `json:"workspace_id"`
 }
 
 // NewWorkspaceSchema instantiates a new WorkspaceSchema object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspaceSchema(duration int32, schemas []SchemaInfo) *WorkspaceSchema {
+func NewWorkspaceSchema(createdAt string, createdById string, deletedById string, id string, identityId string, name string, updatedById string, versionId int32, workspaceId string) *WorkspaceSchema {
 	this := WorkspaceSchema{}
-	this.Duration = duration
-	this.Schemas = schemas
+	this.CreatedAt = createdAt
+	this.CreatedById = createdById
+	this.DeletedById = deletedById
+	this.Id = id
+	this.IdentityId = identityId
+	this.Name = name
+	this.UpdatedById = updatedById
+	this.VersionId = versionId
+	this.WorkspaceId = workspaceId
 	return &this
 }
 
@@ -40,61 +81,670 @@ func NewWorkspaceSchemaWithDefaults() *WorkspaceSchema {
 	return &this
 }
 
-// GetDuration returns the Duration field value
-func (o *WorkspaceSchema) GetDuration() int32 {
+// GetAggregator returns the Aggregator field value if set, zero value otherwise.
+func (o *WorkspaceSchema) GetAggregator() WorkspaceAggregator {
+	if o == nil || o.Aggregator == nil {
+		var ret WorkspaceAggregator
+		return ret
+	}
+	return *o.Aggregator
+}
+
+// GetAggregatorOk returns a tuple with the Aggregator field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetAggregatorOk() (*WorkspaceAggregator, bool) {
+	if o == nil || o.Aggregator == nil {
+		return nil, false
+	}
+	return o.Aggregator, true
+}
+
+// HasAggregator returns a boolean if a field has been set.
+func (o *WorkspaceSchema) HasAggregator() bool {
+	if o != nil && o.Aggregator != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAggregator gets a reference to the given WorkspaceAggregator and assigns it to the Aggregator field.
+func (o *WorkspaceSchema) SetAggregator(v WorkspaceAggregator) {
+	o.Aggregator = &v
+}
+
+// GetAggregatorId returns the AggregatorId field value if set, zero value otherwise.
+func (o *WorkspaceSchema) GetAggregatorId() string {
+	if o == nil || o.AggregatorId == nil {
+		var ret string
+		return ret
+	}
+	return *o.AggregatorId
+}
+
+// GetAggregatorIdOk returns a tuple with the AggregatorId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetAggregatorIdOk() (*string, bool) {
+	if o == nil || o.AggregatorId == nil {
+		return nil, false
+	}
+	return o.AggregatorId, true
+}
+
+// HasAggregatorId returns a boolean if a field has been set.
+func (o *WorkspaceSchema) HasAggregatorId() bool {
+	if o != nil && o.AggregatorId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAggregatorId gets a reference to the given string and assigns it to the AggregatorId field.
+func (o *WorkspaceSchema) SetAggregatorId(v string) {
+	o.AggregatorId = &v
+}
+
+// GetConnection returns the Connection field value if set, zero value otherwise.
+func (o *WorkspaceSchema) GetConnection() Connection {
+	if o == nil || o.Connection == nil {
+		var ret Connection
+		return ret
+	}
+	return *o.Connection
+}
+
+// GetConnectionOk returns a tuple with the Connection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetConnectionOk() (*Connection, bool) {
+	if o == nil || o.Connection == nil {
+		return nil, false
+	}
+	return o.Connection, true
+}
+
+// HasConnection returns a boolean if a field has been set.
+func (o *WorkspaceSchema) HasConnection() bool {
+	if o != nil && o.Connection != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetConnection gets a reference to the given Connection and assigns it to the Connection field.
+func (o *WorkspaceSchema) SetConnection(v Connection) {
+	o.Connection = &v
+}
+
+// GetConnectionId returns the ConnectionId field value if set, zero value otherwise.
+func (o *WorkspaceSchema) GetConnectionId() string {
+	if o == nil || o.ConnectionId == nil {
+		var ret string
+		return ret
+	}
+	return *o.ConnectionId
+}
+
+// GetConnectionIdOk returns a tuple with the ConnectionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetConnectionIdOk() (*string, bool) {
+	if o == nil || o.ConnectionId == nil {
+		return nil, false
+	}
+	return o.ConnectionId, true
+}
+
+// HasConnectionId returns a boolean if a field has been set.
+func (o *WorkspaceSchema) HasConnectionId() bool {
+	if o != nil && o.ConnectionId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetConnectionId gets a reference to the given string and assigns it to the ConnectionId field.
+func (o *WorkspaceSchema) SetConnectionId(v string) {
+	o.ConnectionId = &v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *WorkspaceSchema) GetCreatedAt() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetCreatedAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *WorkspaceSchema) SetCreatedAt(v string) {
+	o.CreatedAt = v
+}
+
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+func (o *WorkspaceSchema) GetCreatedBy() User {
+	if o == nil || o.CreatedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetCreatedByOk() (*User, bool) {
+	if o == nil || o.CreatedBy == nil {
+		return nil, false
+	}
+	return o.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (o *WorkspaceSchema) HasCreatedBy() bool {
+	if o != nil && o.CreatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy gets a reference to the given User and assigns it to the CreatedBy field.
+func (o *WorkspaceSchema) SetCreatedBy(v User) {
+	o.CreatedBy = &v
+}
+
+// GetCreatedById returns the CreatedById field value
+func (o *WorkspaceSchema) GetCreatedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CreatedById
+}
+
+// GetCreatedByIdOk returns a tuple with the CreatedById field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetCreatedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedById, true
+}
+
+// SetCreatedById sets field value
+func (o *WorkspaceSchema) SetCreatedById(v string) {
+	o.CreatedById = v
+}
+
+// GetDatatank returns the Datatank field value if set, zero value otherwise.
+func (o *WorkspaceSchema) GetDatatank() Datatank {
+	if o == nil || o.Datatank == nil {
+		var ret Datatank
+		return ret
+	}
+	return *o.Datatank
+}
+
+// GetDatatankOk returns a tuple with the Datatank field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetDatatankOk() (*Datatank, bool) {
+	if o == nil || o.Datatank == nil {
+		return nil, false
+	}
+	return o.Datatank, true
+}
+
+// HasDatatank returns a boolean if a field has been set.
+func (o *WorkspaceSchema) HasDatatank() bool {
+	if o != nil && o.Datatank != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDatatank gets a reference to the given Datatank and assigns it to the Datatank field.
+func (o *WorkspaceSchema) SetDatatank(v Datatank) {
+	o.Datatank = &v
+}
+
+// GetDatatankId returns the DatatankId field value if set, zero value otherwise.
+func (o *WorkspaceSchema) GetDatatankId() string {
+	if o == nil || o.DatatankId == nil {
+		var ret string
+		return ret
+	}
+	return *o.DatatankId
+}
+
+// GetDatatankIdOk returns a tuple with the DatatankId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetDatatankIdOk() (*string, bool) {
+	if o == nil || o.DatatankId == nil {
+		return nil, false
+	}
+	return o.DatatankId, true
+}
+
+// HasDatatankId returns a boolean if a field has been set.
+func (o *WorkspaceSchema) HasDatatankId() bool {
+	if o != nil && o.DatatankId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDatatankId gets a reference to the given string and assigns it to the DatatankId field.
+func (o *WorkspaceSchema) SetDatatankId(v string) {
+	o.DatatankId = &v
+}
+
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
+func (o *WorkspaceSchema) GetDeletedAt() string {
+	if o == nil || o.DeletedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeletedAt
+}
+
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetDeletedAtOk() (*string, bool) {
+	if o == nil || o.DeletedAt == nil {
+		return nil, false
+	}
+	return o.DeletedAt, true
+}
+
+// HasDeletedAt returns a boolean if a field has been set.
+func (o *WorkspaceSchema) HasDeletedAt() bool {
+	if o != nil && o.DeletedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedAt gets a reference to the given string and assigns it to the DeletedAt field.
+func (o *WorkspaceSchema) SetDeletedAt(v string) {
+	o.DeletedAt = &v
+}
+
+// GetDeletedBy returns the DeletedBy field value if set, zero value otherwise.
+func (o *WorkspaceSchema) GetDeletedBy() User {
+	if o == nil || o.DeletedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.DeletedBy
+}
+
+// GetDeletedByOk returns a tuple with the DeletedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetDeletedByOk() (*User, bool) {
+	if o == nil || o.DeletedBy == nil {
+		return nil, false
+	}
+	return o.DeletedBy, true
+}
+
+// HasDeletedBy returns a boolean if a field has been set.
+func (o *WorkspaceSchema) HasDeletedBy() bool {
+	if o != nil && o.DeletedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedBy gets a reference to the given User and assigns it to the DeletedBy field.
+func (o *WorkspaceSchema) SetDeletedBy(v User) {
+	o.DeletedBy = &v
+}
+
+// GetDeletedById returns the DeletedById field value
+func (o *WorkspaceSchema) GetDeletedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeletedById
+}
+
+// GetDeletedByIdOk returns a tuple with the DeletedById field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetDeletedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeletedById, true
+}
+
+// SetDeletedById sets field value
+func (o *WorkspaceSchema) SetDeletedById(v string) {
+	o.DeletedById = v
+}
+
+// GetId returns the Id field value
+func (o *WorkspaceSchema) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *WorkspaceSchema) SetId(v string) {
+	o.Id = v
+}
+
+// GetIdentityId returns the IdentityId field value
+func (o *WorkspaceSchema) GetIdentityId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.IdentityId
+}
+
+// GetIdentityIdOk returns a tuple with the IdentityId field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetIdentityIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IdentityId, true
+}
+
+// SetIdentityId sets field value
+func (o *WorkspaceSchema) SetIdentityId(v string) {
+	o.IdentityId = v
+}
+
+// GetName returns the Name field value
+func (o *WorkspaceSchema) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *WorkspaceSchema) SetName(v string) {
+	o.Name = v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *WorkspaceSchema) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *WorkspaceSchema) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *WorkspaceSchema) SetType(v string) {
+	o.Type = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *WorkspaceSchema) GetUpdatedAt() string {
+	if o == nil || o.UpdatedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetUpdatedAtOk() (*string, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *WorkspaceSchema) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
+func (o *WorkspaceSchema) SetUpdatedAt(v string) {
+	o.UpdatedAt = &v
+}
+
+// GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
+func (o *WorkspaceSchema) GetUpdatedBy() User {
+	if o == nil || o.UpdatedBy == nil {
+		var ret User
+		return ret
+	}
+	return *o.UpdatedBy
+}
+
+// GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetUpdatedByOk() (*User, bool) {
+	if o == nil || o.UpdatedBy == nil {
+		return nil, false
+	}
+	return o.UpdatedBy, true
+}
+
+// HasUpdatedBy returns a boolean if a field has been set.
+func (o *WorkspaceSchema) HasUpdatedBy() bool {
+	if o != nil && o.UpdatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedBy gets a reference to the given User and assigns it to the UpdatedBy field.
+func (o *WorkspaceSchema) SetUpdatedBy(v User) {
+	o.UpdatedBy = &v
+}
+
+// GetUpdatedById returns the UpdatedById field value
+func (o *WorkspaceSchema) GetUpdatedById() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UpdatedById
+}
+
+// GetUpdatedByIdOk returns a tuple with the UpdatedById field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceSchema) GetUpdatedByIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdatedById, true
+}
+
+// SetUpdatedById sets field value
+func (o *WorkspaceSchema) SetUpdatedById(v string) {
+	o.UpdatedById = v
+}
+
+// GetVersionId returns the VersionId field value
+func (o *WorkspaceSchema) GetVersionId() int32 {
 	if o == nil {
 		var ret int32
 		return ret
 	}
 
-	return o.Duration
+	return o.VersionId
 }
 
-// GetDurationOk returns a tuple with the Duration field value
+// GetVersionIdOk returns a tuple with the VersionId field value
 // and a boolean to check if the value has been set.
-func (o *WorkspaceSchema) GetDurationOk() (*int32, bool) {
+func (o *WorkspaceSchema) GetVersionIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Duration, true
+	return &o.VersionId, true
 }
 
-// SetDuration sets field value
-func (o *WorkspaceSchema) SetDuration(v int32) {
-	o.Duration = v
+// SetVersionId sets field value
+func (o *WorkspaceSchema) SetVersionId(v int32) {
+	o.VersionId = v
 }
 
-// GetSchemas returns the Schemas field value
-func (o *WorkspaceSchema) GetSchemas() []SchemaInfo {
+// GetWorkspaceId returns the WorkspaceId field value
+func (o *WorkspaceSchema) GetWorkspaceId() string {
 	if o == nil {
-		var ret []SchemaInfo
+		var ret string
 		return ret
 	}
 
-	return o.Schemas
+	return o.WorkspaceId
 }
 
-// GetSchemasOk returns a tuple with the Schemas field value
+// GetWorkspaceIdOk returns a tuple with the WorkspaceId field value
 // and a boolean to check if the value has been set.
-func (o *WorkspaceSchema) GetSchemasOk() (*[]SchemaInfo, bool) {
+func (o *WorkspaceSchema) GetWorkspaceIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Schemas, true
+	return &o.WorkspaceId, true
 }
 
-// SetSchemas sets field value
-func (o *WorkspaceSchema) SetSchemas(v []SchemaInfo) {
-	o.Schemas = v
+// SetWorkspaceId sets field value
+func (o *WorkspaceSchema) SetWorkspaceId(v string) {
+	o.WorkspaceId = v
 }
 
 func (o WorkspaceSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["duration"] = o.Duration
+	if o.Aggregator != nil {
+		toSerialize["aggregator"] = o.Aggregator
+	}
+	if o.AggregatorId != nil {
+		toSerialize["aggregator_id"] = o.AggregatorId
+	}
+	if o.Connection != nil {
+		toSerialize["connection"] = o.Connection
+	}
+	if o.ConnectionId != nil {
+		toSerialize["connection_id"] = o.ConnectionId
 	}
 	if true {
-		toSerialize["schemas"] = o.Schemas
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.CreatedBy != nil {
+		toSerialize["created_by"] = o.CreatedBy
+	}
+	if true {
+		toSerialize["created_by_id"] = o.CreatedById
+	}
+	if o.Datatank != nil {
+		toSerialize["datatank"] = o.Datatank
+	}
+	if o.DatatankId != nil {
+		toSerialize["datatank_id"] = o.DatatankId
+	}
+	if o.DeletedAt != nil {
+		toSerialize["deleted_at"] = o.DeletedAt
+	}
+	if o.DeletedBy != nil {
+		toSerialize["deleted_by"] = o.DeletedBy
+	}
+	if true {
+		toSerialize["deleted_by_id"] = o.DeletedById
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["identity_id"] = o.IdentityId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if o.UpdatedBy != nil {
+		toSerialize["updated_by"] = o.UpdatedBy
+	}
+	if true {
+		toSerialize["updated_by_id"] = o.UpdatedById
+	}
+	if true {
+		toSerialize["version_id"] = o.VersionId
+	}
+	if true {
+		toSerialize["workspace_id"] = o.WorkspaceId
 	}
 	return json.Marshal(toSerialize)
 }

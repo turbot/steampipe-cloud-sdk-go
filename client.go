@@ -76,6 +76,8 @@ type APIClient struct {
 
 	OrgWorkspaceProcesses *OrgWorkspaceProcessesService
 
+	OrgWorkspaceSchemas *OrgWorkspaceSchemasService
+
 	OrgWorkspaceSnapshots *OrgWorkspaceSnapshotsService
 
 	OrgWorkspaces *OrgWorkspacesService
@@ -99,6 +101,8 @@ type APIClient struct {
 	UserWorkspacePipelines *UserWorkspacePipelinesService
 
 	UserWorkspaceProcesses *UserWorkspaceProcessesService
+
+	UserWorkspaceSchemas *UserWorkspaceSchemasService
 
 	UserWorkspaceSnapshots *UserWorkspaceSnapshotsService
 
@@ -136,6 +140,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.OrgWorkspaceMods = (*OrgWorkspaceModsService)(&c.common)
 	c.OrgWorkspacePipelines = (*OrgWorkspacePipelinesService)(&c.common)
 	c.OrgWorkspaceProcesses = (*OrgWorkspaceProcessesService)(&c.common)
+	c.OrgWorkspaceSchemas = (*OrgWorkspaceSchemasService)(&c.common)
 	c.OrgWorkspaceSnapshots = (*OrgWorkspaceSnapshotsService)(&c.common)
 	c.OrgWorkspaces = (*OrgWorkspacesService)(&c.common)
 	c.Orgs = (*OrgsService)(&c.common)
@@ -148,6 +153,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.UserWorkspaceMods = (*UserWorkspaceModsService)(&c.common)
 	c.UserWorkspacePipelines = (*UserWorkspacePipelinesService)(&c.common)
 	c.UserWorkspaceProcesses = (*UserWorkspaceProcessesService)(&c.common)
+	c.UserWorkspaceSchemas = (*UserWorkspaceSchemasService)(&c.common)
 	c.UserWorkspaceSnapshots = (*UserWorkspaceSnapshotsService)(&c.common)
 	c.UserWorkspaces = (*UserWorkspacesService)(&c.common)
 	c.Users = (*UsersService)(&c.common)

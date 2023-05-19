@@ -10,7 +10,6 @@ Method | HTTP request | Description
 [**Get**](OrgWorkspaces.md#Get) | **Get** /org/{org_handle}/workspace/{workspace_handle} | Get org workspace
 [**GetQuery**](OrgWorkspaces.md#GetQuery) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query | Query org workspace
 [**GetQueryWithExtensions**](OrgWorkspaces.md#GetQueryWithExtensions) | **Get** /org/{org_handle}/workspace/{workspace_handle}/query/data.{extensions} | Query org workspace with extensions
-[**GetSchema**](OrgWorkspaces.md#GetSchema) | **Get** /org/{org_handle}/workspace/{workspace_handle}/schema | Get org workspace schemas
 [**List**](OrgWorkspaces.md#List) | **Get** /org/{org_handle}/workspace | List org workspaces
 [**ListAuditLogs**](OrgWorkspaces.md#ListAuditLogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/audit_log | Org workspace audit logs
 [**ListDBLogs**](OrgWorkspaces.md#ListDBLogs) | **Get** /org/{org_handle}/workspace/{workspace_handle}/db_log | Org workspace logs
@@ -464,79 +463,6 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: application/json, text/csv, text/markdown
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetSchema
-
-> WorkspaceSchema GetSchema(ctx, orgHandle, workspaceHandle).Execute()
-
-Get org workspace schemas
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    orgHandle := "orgHandle_example" // string | The handle of the org that the workspace belongs to.
-    workspaceHandle := "workspaceHandle_example" // string | The handle of the workspace to get the schemas for.
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrgWorkspaces.GetSchema(context.Background(), orgHandle, workspaceHandle).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrgWorkspaces.GetSchema``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetSchema`: WorkspaceSchema
-    fmt.Fprintf(os.Stdout, "Response from `OrgWorkspaces.GetSchema`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**orgHandle** | **string** | The handle of the org that the workspace belongs to. | 
-**workspaceHandle** | **string** | The handle of the workspace to get the schemas for. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetSchemaRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-### Return type
-
-[**WorkspaceSchema**](WorkspaceSchema.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

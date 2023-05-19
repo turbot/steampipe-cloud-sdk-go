@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **Host** | Pointer to **string** |  | [optional] 
 **Id** | **string** | The unique identifier for the workspace. | 
 **IdentityId** | **string** | The unique identifier for an identity where the workspace is created. | 
+**Notices** | Pointer to **map[string]interface{}** |  | [optional] 
 **PublicKey** | Pointer to **string** |  | [optional] 
 **State** | Pointer to **string** | The current state of the workspace. | [optional] 
 **StateReason** | Pointer to **string** |  | [optional] 
@@ -385,6 +386,31 @@ and a boolean to check if the value has been set.
 
 SetIdentityId sets IdentityId field to given value.
 
+
+### GetNotices
+
+`func (o *Workspace) GetNotices() map[string]interface{}`
+
+GetNotices returns the Notices field if non-nil, zero value otherwise.
+
+### GetNoticesOk
+
+`func (o *Workspace) GetNoticesOk() (*map[string]interface{}, bool)`
+
+GetNoticesOk returns a tuple with the Notices field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotices
+
+`func (o *Workspace) SetNotices(v map[string]interface{})`
+
+SetNotices sets Notices field to given value.
+
+### HasNotices
+
+`func (o *Workspace) HasNotices() bool`
+
+HasNotices returns a boolean if a field has been set.
 
 ### GetPublicKey
 
