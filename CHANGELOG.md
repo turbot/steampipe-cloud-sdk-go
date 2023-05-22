@@ -1,5 +1,12 @@
 # Steampipe Cloud Go SDK
 
+## 0.7.0 [2023-05-22]
+
+_What's new?_
+
+- Identity Workspace Schema APIs.
+- Identity Constraint APIs.
+
 ## 0.6.0 [2023-04-20]
 
 _Breaking changes_
