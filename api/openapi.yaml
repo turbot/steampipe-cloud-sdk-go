@@ -10405,69 +10405,6 @@ paths:
       summary: List user constraints
       tags:
       - Users
-    patch:
-      description: Request an override for a constraint applicable to a user or any
-        resource belonging to a user.
-      operationId: user_requestConstraintOverride
-      parameters:
-      - description: Specify the handle of the user for which you want to request
-          override.
-        explode: false
-        in: path
-        name: user_handle
-        required: true
-        schema:
-          format: ^[a-z0-9][a-z0-9-]{0,37}[a-z0-9]$
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ConstraintOverrideRequest'
-        description: The request body for requesting an override for a user constraint.
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: string
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Forbidden
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorModel'
-          description: Internal Server Error
-      summary: Request user constraint override
-      tags:
-      - Users
-      x-codegen-request-body-name: request
   /user/{user_handle}/email:
     get:
       description: List emails for a user along with other metadata information for
@@ -16714,40 +16651,6 @@ components:
       - type
       - value
       - value_from
-      type: object
-    ConstraintOverrideRequest:
-      example:
-        workspace_id: workspace_id
-        datatank_id: datatank_id
-        user_id: user_id
-        org_id: org_id
-        name: name
-        pipeline_id: pipeline_id
-        setting: ""
-      properties:
-        datatank_id:
-          description: The id of the datatank where the override will be set.
-          type: string
-        name:
-          description: The name of the constraint to request override for.
-          type: string
-        org_id:
-          description: The id of the org where the override will be set.
-          type: string
-        pipeline_id:
-          description: The id of the pipeline where the override will be set.
-          type: string
-        setting:
-          nullable: true
-        user_id:
-          description: The id of the user where the override will be set.
-          type: string
-        workspace_id:
-          description: The id of the workspace where the override will be set.
-          type: string
-      required:
-      - name
-      - setting
       type: object
     CreateConnectionRequest:
       example:
@@ -23477,6 +23380,10 @@ components:
       - name
       - panel_type
       type: object
+    ConstraintOverrideRequest:
+      properties:
+        setting:
+          nullable: true
   securitySchemes:
     ApiKeyAuth:
       in: header

@@ -19,7 +19,6 @@ Method | HTTP request | Description
 [**ListConstraints**](Users.md#ListConstraints) | **Get** /user/{user_handle}/constraint | List user constraints
 [**ListEmails**](Users.md#ListEmails) | **Get** /user/{user_handle}/email | List user emails
 [**ListFeatures**](Users.md#ListFeatures) | **Get** /user/{user_handle}/feature | User features
-[**RequestConstraintOverride**](Users.md#RequestConstraintOverride) | **Patch** /user/{user_handle}/constraint | Request user constraint override
 [**Update**](Users.md#Update) | **Patch** /user/{user_handle} | Update user
 [**UpdatePreferences**](Users.md#UpdatePreferences) | **Patch** /user/{user_handle}/preferences | Update user preferences
 
@@ -1081,78 +1080,6 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## RequestConstraintOverride
-
-> string RequestConstraintOverride(ctx, userHandle).Request(request).Execute()
-
-Request user constraint override
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    userHandle := "userHandle_example" // string | Specify the handle of the user for which you want to request override.
-    request := *openapiclient.NewConstraintOverrideRequest("Name_example", interface{}(123)) // ConstraintOverrideRequest | The request body for requesting an override for a user constraint.
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.Users.RequestConstraintOverride(context.Background(), userHandle).Request(request).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Users.RequestConstraintOverride``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RequestConstraintOverride`: string
-    fmt.Fprintf(os.Stdout, "Response from `Users.RequestConstraintOverride`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userHandle** | **string** | Specify the handle of the user for which you want to request override. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRequestConstraintOverrideRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **request** | [**ConstraintOverrideRequest**](ConstraintOverrideRequest.md) | The request body for requesting an override for a user constraint. | 
-
-### Return type
-
-**string**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

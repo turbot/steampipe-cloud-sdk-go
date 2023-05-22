@@ -17,29 +17,15 @@ import (
 
 // ConstraintOverrideRequest struct for ConstraintOverrideRequest
 type ConstraintOverrideRequest struct {
-	// The id of the datatank where the override will be set.
-	DatatankId *string `json:"datatank_id,omitempty"`
-	// The name of the constraint to request override for.
-	Name string `json:"name"`
-	// The id of the org where the override will be set.
-	OrgId *string `json:"org_id,omitempty"`
-	// The id of the pipeline where the override will be set.
-	PipelineId *string     `json:"pipeline_id,omitempty"`
-	Setting    interface{} `json:"setting"`
-	// The id of the user where the override will be set.
-	UserId *string `json:"user_id,omitempty"`
-	// The id of the workspace where the override will be set.
-	WorkspaceId *string `json:"workspace_id,omitempty"`
+	Setting interface{} `json:"setting,omitempty"`
 }
 
 // NewConstraintOverrideRequest instantiates a new ConstraintOverrideRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConstraintOverrideRequest(name string, setting interface{}) *ConstraintOverrideRequest {
+func NewConstraintOverrideRequest() *ConstraintOverrideRequest {
 	this := ConstraintOverrideRequest{}
-	this.Name = name
-	this.Setting = setting
 	return &this
 }
 
@@ -51,138 +37,16 @@ func NewConstraintOverrideRequestWithDefaults() *ConstraintOverrideRequest {
 	return &this
 }
 
-// GetDatatankId returns the DatatankId field value if set, zero value otherwise.
-func (o *ConstraintOverrideRequest) GetDatatankId() string {
-	if o == nil || o.DatatankId == nil {
-		var ret string
-		return ret
-	}
-	return *o.DatatankId
-}
-
-// GetDatatankIdOk returns a tuple with the DatatankId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ConstraintOverrideRequest) GetDatatankIdOk() (*string, bool) {
-	if o == nil || o.DatatankId == nil {
-		return nil, false
-	}
-	return o.DatatankId, true
-}
-
-// HasDatatankId returns a boolean if a field has been set.
-func (o *ConstraintOverrideRequest) HasDatatankId() bool {
-	if o != nil && o.DatatankId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDatatankId gets a reference to the given string and assigns it to the DatatankId field.
-func (o *ConstraintOverrideRequest) SetDatatankId(v string) {
-	o.DatatankId = &v
-}
-
-// GetName returns the Name field value
-func (o *ConstraintOverrideRequest) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ConstraintOverrideRequest) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ConstraintOverrideRequest) SetName(v string) {
-	o.Name = v
-}
-
-// GetOrgId returns the OrgId field value if set, zero value otherwise.
-func (o *ConstraintOverrideRequest) GetOrgId() string {
-	if o == nil || o.OrgId == nil {
-		var ret string
-		return ret
-	}
-	return *o.OrgId
-}
-
-// GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ConstraintOverrideRequest) GetOrgIdOk() (*string, bool) {
-	if o == nil || o.OrgId == nil {
-		return nil, false
-	}
-	return o.OrgId, true
-}
-
-// HasOrgId returns a boolean if a field has been set.
-func (o *ConstraintOverrideRequest) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOrgId gets a reference to the given string and assigns it to the OrgId field.
-func (o *ConstraintOverrideRequest) SetOrgId(v string) {
-	o.OrgId = &v
-}
-
-// GetPipelineId returns the PipelineId field value if set, zero value otherwise.
-func (o *ConstraintOverrideRequest) GetPipelineId() string {
-	if o == nil || o.PipelineId == nil {
-		var ret string
-		return ret
-	}
-	return *o.PipelineId
-}
-
-// GetPipelineIdOk returns a tuple with the PipelineId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ConstraintOverrideRequest) GetPipelineIdOk() (*string, bool) {
-	if o == nil || o.PipelineId == nil {
-		return nil, false
-	}
-	return o.PipelineId, true
-}
-
-// HasPipelineId returns a boolean if a field has been set.
-func (o *ConstraintOverrideRequest) HasPipelineId() bool {
-	if o != nil && o.PipelineId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPipelineId gets a reference to the given string and assigns it to the PipelineId field.
-func (o *ConstraintOverrideRequest) SetPipelineId(v string) {
-	o.PipelineId = &v
-}
-
-// GetSetting returns the Setting field value
-// If the value is explicit nil, the zero value for interface{} will be returned
+// GetSetting returns the Setting field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ConstraintOverrideRequest) GetSetting() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
 	}
-
 	return o.Setting
 }
 
-// GetSettingOk returns a tuple with the Setting field value
+// GetSettingOk returns a tuple with the Setting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ConstraintOverrideRequest) GetSettingOk() (*interface{}, bool) {
@@ -192,97 +56,24 @@ func (o *ConstraintOverrideRequest) GetSettingOk() (*interface{}, bool) {
 	return &o.Setting, true
 }
 
-// SetSetting sets field value
+// HasSetting returns a boolean if a field has been set.
+func (o *ConstraintOverrideRequest) HasSetting() bool {
+	if o != nil && o.Setting != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSetting gets a reference to the given interface{} and assigns it to the Setting field.
 func (o *ConstraintOverrideRequest) SetSetting(v interface{}) {
 	o.Setting = v
 }
 
-// GetUserId returns the UserId field value if set, zero value otherwise.
-func (o *ConstraintOverrideRequest) GetUserId() string {
-	if o == nil || o.UserId == nil {
-		var ret string
-		return ret
-	}
-	return *o.UserId
-}
-
-// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ConstraintOverrideRequest) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
-		return nil, false
-	}
-	return o.UserId, true
-}
-
-// HasUserId returns a boolean if a field has been set.
-func (o *ConstraintOverrideRequest) HasUserId() bool {
-	if o != nil && o.UserId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUserId gets a reference to the given string and assigns it to the UserId field.
-func (o *ConstraintOverrideRequest) SetUserId(v string) {
-	o.UserId = &v
-}
-
-// GetWorkspaceId returns the WorkspaceId field value if set, zero value otherwise.
-func (o *ConstraintOverrideRequest) GetWorkspaceId() string {
-	if o == nil || o.WorkspaceId == nil {
-		var ret string
-		return ret
-	}
-	return *o.WorkspaceId
-}
-
-// GetWorkspaceIdOk returns a tuple with the WorkspaceId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ConstraintOverrideRequest) GetWorkspaceIdOk() (*string, bool) {
-	if o == nil || o.WorkspaceId == nil {
-		return nil, false
-	}
-	return o.WorkspaceId, true
-}
-
-// HasWorkspaceId returns a boolean if a field has been set.
-func (o *ConstraintOverrideRequest) HasWorkspaceId() bool {
-	if o != nil && o.WorkspaceId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetWorkspaceId gets a reference to the given string and assigns it to the WorkspaceId field.
-func (o *ConstraintOverrideRequest) SetWorkspaceId(v string) {
-	o.WorkspaceId = &v
-}
-
 func (o ConstraintOverrideRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.DatatankId != nil {
-		toSerialize["datatank_id"] = o.DatatankId
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if o.OrgId != nil {
-		toSerialize["org_id"] = o.OrgId
-	}
-	if o.PipelineId != nil {
-		toSerialize["pipeline_id"] = o.PipelineId
-	}
 	if o.Setting != nil {
 		toSerialize["setting"] = o.Setting
-	}
-	if o.UserId != nil {
-		toSerialize["user_id"] = o.UserId
-	}
-	if o.WorkspaceId != nil {
-		toSerialize["workspace_id"] = o.WorkspaceId
 	}
 	return json.Marshal(toSerialize)
 }

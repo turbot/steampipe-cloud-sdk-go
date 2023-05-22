@@ -265,7 +265,6 @@ Class | Method | HTTP request | Description
 *Users* | [**ListConstraints**](docs/Users.md#listconstraints) | **Get** /user/{user_handle}/constraint | List user constraints
 *Users* | [**ListEmails**](docs/Users.md#listemails) | **Get** /user/{user_handle}/email | List user emails
 *Users* | [**ListFeatures**](docs/Users.md#listfeatures) | **Get** /user/{user_handle}/feature | User features
-*Users* | [**RequestConstraintOverride**](docs/Users.md#requestconstraintoverride) | **Patch** /user/{user_handle}/constraint | Request user constraint override
 *Users* | [**Update**](docs/Users.md#update) | **Patch** /user/{user_handle} | Update user
 *Users* | [**UpdatePreferences**](docs/Users.md#updatepreferences) | **Patch** /user/{user_handle}/preferences | Update user preferences
 
