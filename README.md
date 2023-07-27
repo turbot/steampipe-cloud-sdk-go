@@ -6,7 +6,7 @@ For help on getting started with Steampipe Cloud, please visit https://steampipe
 
 ## Note
 
-This SDK has been deprecated and moved to https://github.com/turbot/pipes-sdk-go
+This SDK has been deprecated and moved to https://github.com/turbot/pipes-sdk-go.
 
 ## Getting Started
 
