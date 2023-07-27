@@ -4,6 +4,10 @@ Steampipe Cloud is a hosted version of Steampipe (https://steampipe.io), an open
 
 For help on getting started with Steampipe Cloud, please visit https://steampipe.io/docs/cloud/getting-started.
 
+## Note
+
+This SDK has been deprecated and moved to https://github.com/turbot/pipes-sdk-go
+
 ## Getting Started
 
 Here's an example of listing the workspaces for your user:
