@@ -1,3 +1,8 @@
+# :warning: DEPRECATED
+
+The Steampipe Cloud Go SDK has been deprecated as part of our [renaming](https://turbot.com/blog/2023/07/introducing-turbot-guardrails-and-pipes) of Steampipe Cloud to Turbot Pipes. Please use the [Turbot Pipes Go SDK](https://github.com/turbot/pipes-sdk-go) instead.
+
+
 # Go SDK for Steampipe Cloud [DEPRECATED]
 
 **This SDK has been deprecated and replaced by https://github.com/turbot/pipes-sdk-go. This was part of our [renaming](https://turbot.com/blog/2023/07/introducing-turbot-guardrails-and-pipes) of Steampipe Cloud to Turbot Pipes.**
